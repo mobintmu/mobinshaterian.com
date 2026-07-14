@@ -118,7 +118,7 @@ function BlogPostPage() {
         {post.tags.length > 0 ? (
           <div className="mt-6 flex flex-wrap items-center gap-1.5">
             <TagIcon className="h-3.5 w-3.5 text-terminal" />
-            {post.tags.map((t) => (
+            {post.tags.map((t: string) => (
               <Link
                 key={t}
                 to="/blogs"
