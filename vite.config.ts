@@ -15,9 +15,13 @@ export default defineConfig({
   vite: {
     // Leave this as "/" since you are using your custom apex domain (mobinshaterian.com)
     base: "/",
+    build: {
+      // Prevents Vite 8 from attempting to compile an SSR bundle using HTML inputs
+      ssr: false,
+    },
   },
   nitro: {
-    // Force a fully static compilation output
+    // Force static SPA outputs
     preset: "static",
     prerender: {
       routes: ["/"],
