@@ -76,6 +76,12 @@ function Nav() {
               {i.label}
             </a>
           ))}
+          <Link
+            to="/blogs"
+            className="transition-colors hover:text-terminal"
+          >
+            blog
+          </Link>
         </nav>
         <a
           href={profile.links.medium}
