@@ -1,0 +1,56 @@
+[
+  {
+    "slug": "clickhouse-15m-rows-per-hour",
+    "title": "Architecting a KPI Pipeline on ClickHouse for 15M+ Rows/Hour",
+    "excerpt": "Lessons from date-based partitioning, wide flat tables, and the trade-offs of denormalization when you're ingesting network telemetry at scale.",
+    "date": "2026-06-02",
+    "tags": ["ClickHouse", "Data Engineering", "Go"],
+    "readingTime": "9 min",
+    "url": "https://mobinshaterian.medium.com"
+  },
+  {
+    "slug": "b2b-api-v2-400k-requests",
+    "title": "Redesigning a B2B API to Serve 30+ Partners and 400K Daily Requests",
+    "excerpt": "How we rebuilt Snapp Trip's partner API for scalability, high availability, and predictable latency without breaking integrations.",
+    "date": "2025-08-14",
+    "tags": ["Go", "API Design", "Microservices"],
+    "readingTime": "12 min",
+    "url": "https://mobinshaterian.medium.com"
+  },
+  {
+    "slug": "monolith-to-microservices-wallit",
+    "title": "From Monolith to Microservices: A Field Report",
+    "excerpt": "The strangler-fig migration, the OAuth2 rewrite, the Go-micro stack, and the metrics that actually mattered to leadership.",
+    "date": "2024-07-21",
+    "tags": ["Microservices", "Go", "Architecture"],
+    "readingTime": "15 min",
+    "url": "https://mobinshaterian.medium.com"
+  },
+  {
+    "slug": "cqrs-payments-postgres-mongo",
+    "title": "CQRS for Payments: Postgres, Debezium, Kafka, MongoDB",
+    "excerpt": "Turning a write-heavy ledger into a queryable transaction history without hurting the hot path.",
+    "date": "2023-01-10",
+    "tags": ["CQRS", "Postgres", "Kafka"],
+    "readingTime": "11 min",
+    "url": "https://mobinshaterian.medium.com"
+  },
+  {
+    "slug": "100k-rps-postgres-redis",
+    "title": "Squeezing 100K RPS Out of Postgres (with a Little Help from Redis)",
+    "excerpt": "Connection pooling, index discipline, materialized reads, and where Redis genuinely earns its keep.",
+    "date": "2022-11-03",
+    "tags": ["Postgres", "Redis", "Performance"],
+    "readingTime": "10 min",
+    "url": "https://mobinshaterian.medium.com"
+  },
+  {
+    "slug": "riskeman-3tps-to-10ktps",
+    "title": "From 3 TPS to 10,000 TPS: Scaling an ML Inference Endpoint",
+    "excerpt": "What changed when Riskeman went from a research script to serving 8M predictions per day during COVID-19.",
+    "date": "2022-03-18",
+    "tags": ["Go", "ML", "Performance"],
+    "readingTime": "8 min",
+    "url": "https://mobinshaterian.medium.com"
+  }
+]

@@ -1,0 +1,100 @@
+{
+  "name": "Mobin Shaterian",
+  "title": "Senior Software Engineer · Golang Developer",
+  "tagline": "16 years building high-throughput backends, microservices, and data pipelines.",
+  "location": "Tehran, Iran",
+  "email": "mobinest@gmail.com",
+  "phone": "+98 912 494 7927",
+  "whatsapp": "+374 99 915 813",
+  "links": {
+    "medium": "https://mobinshaterian.medium.com",
+    "github": "https://github.com/mobintmu",
+    "linkedin": "https://www.linkedin.com/in/mobin-shaterian/"
+  },
+  "skills": {
+    "Languages & Frameworks": ["Go", "gRPC", "Gin", "Echo", "Protobuf", "GraphQL", "RESTful API"],
+    "Architecture": ["Microservices", "DDD", "CQRS", "Clean Code", "SOLID", "OOP", "Design Patterns"],
+    "Data": ["PostgreSQL", "MongoDB", "Redis", "Cassandra", "Elasticsearch", "MySQL", "ClickHouse"],
+    "Messaging": ["NATS", "JetStream", "Kafka", "RabbitMQ"],
+    "Observability": ["OpenTelemetry", "Prometheus", "Sentry", "Swagger"],
+    "Ops": ["Docker", "Docker Compose", "MinIO", "CI/CD", "Linux"],
+    "Testing": ["TDD", "Unit", "Integration", "Performance"]
+  },
+  "experience": [
+    {
+      "company": "MTN Irancell",
+      "role": "Senior Software Engineer · Golang",
+      "location": "Tehran, Iran",
+      "period": "Sep 2025 — Present",
+      "highlights": [
+        "Designing an ETL system integrating Atoll network measurement data, exposed via a high-performance GraphQL API.",
+        "Architecting a KPI pipeline on ClickHouse processing 15M+ rows/hour with date-based partitioning and wide-table storage."
+      ]
+    },
+    {
+      "company": "Snapp Trip",
+      "role": "Golang Developer",
+      "location": "Tehran, Iran",
+      "period": "Dec 2024 — Oct 2025",
+      "highlights": [
+        "Built V2 of a B2B API serving 30+ partners and 400K+ daily requests; redesigned architecture for scale and HA.",
+        "Contributed to the Tour project with performance work, testing discipline, and fault-tolerant design."
+      ]
+    },
+    {
+      "company": "Wall IT s.r.o.",
+      "role": "Golang Developer (Remote)",
+      "location": "Bratislava, Slovakia",
+      "period": "Jan 2023 — Sep 2024",
+      "highlights": [
+        "Led monolith → microservices transformation with clean code and SOLID.",
+        "Integrated Go-micro, Swagger, OpenTelemetry, Prometheus, GCS, Liquibase — 40% better monitoring, 25% faster deploys, 60% fewer post-deploy issues.",
+        "Also worked as a Data Scientist: LLM-driven CRM auto-response and topic modeling for ticket clustering."
+      ]
+    },
+    {
+      "company": "Tehran Internet (*780#)",
+      "role": "Golang Developer",
+      "location": "Tehran, Iran",
+      "period": "Jun 2022 — Feb 2023",
+      "highlights": [
+        "High-TPS microservices with Postgres, MongoDB, Kafka, and NATS.",
+        "Built a CQRS transaction system for payment businesses; Debezium + Kafka replication into MongoDB.",
+        "Handled 100K read/write RPS on Postgres with aggressive Redis strategies."
+      ]
+    },
+    {
+      "company": "Mom Hospital",
+      "role": "Golang Developer",
+      "location": "Tehran, Iran",
+      "period": "Jan 2021 — Jun 2022",
+      "highlights": [
+        "Riskeman: back-end for COVID-19 mortality prediction, scaled to 8M requests/day.",
+        "Optimized ML model serving from 3 TPS → 10,000 TPS.",
+        "Led backend for Crawler News processing 1TB of data per day."
+      ]
+    },
+    {
+      "company": "Elaart",
+      "role": "Technical Project Manager (Contract)",
+      "location": "Karaj, Iran",
+      "period": "Jan 2019 — Present",
+      "highlights": [
+        "Automated e-commerce workflows; online sales surpassed physical store revenue."
+      ]
+    }
+  ],
+  "education": [
+    {
+      "degree": "M.Sc. Artificial Intelligence",
+      "school": "Islamic Azad University, Science and Research Branch",
+      "period": "2014 — 2017",
+      "notes": "Intelligent system for chronic pain classification at Khatam Hospital. Published research on neuropathic disease prediction with deep neural networks."
+    },
+    {
+      "degree": "B.Sc. Computer Science",
+      "school": "Kharazmi University",
+      "period": "2010 — 2013"
+    }
+  ]
+}
