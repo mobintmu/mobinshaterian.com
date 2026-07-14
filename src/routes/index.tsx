@@ -296,6 +296,15 @@ function Writing({ posts }: { posts: Post[] }) {
           </a>
         ))}
       </div>
+      <div className="mt-8 flex justify-center">
+        <Link
+          to="/blogs"
+          className="inline-flex items-center gap-2 rounded-md border border-terminal/40 bg-terminal/5 px-4 py-2 font-mono-plus text-sm text-terminal transition-colors hover:bg-terminal/10"
+        >
+          browse all {(posts as Post[]).length} posts · filter by tag
+          <ArrowUpRight className="h-4 w-4" />
+        </Link>
+      </div>
     </section>
   );
 }
