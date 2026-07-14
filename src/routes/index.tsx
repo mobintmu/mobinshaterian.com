@@ -26,9 +26,11 @@ type Post = {
 };
 
 function HomePage() {
-  const sortedPosts = [...(posts as Post[])].sort((a, b) =>
-    a.date < b.date ? 1 : -1,
-  );
+  const sortedPosts = [...(posts as Post[])]
+    .sort((a, b) =>
+      a.date === b.date ? a.slug.localeCompare(b.slug) : a.date < b.date ? 1 : -1,
+    )
+    .slice(0, 6);
 
   return (
     <div className="min-h-screen bg-background text-foreground font-sans">
