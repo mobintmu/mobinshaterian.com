@@ -12,4 +12,15 @@ export default defineConfig({
     // nitro/vite builds from this
     server: { entry: "server" },
   },
+  vite: {
+    // Tells Vite to build static assets relative to your GitHub Pages subdirectory
+    base: "/mobinshaterian.com/",
+  },
+  nitro: {
+    // This tells Nitro to prerender routes into static HTML files
+    prerender: {
+      routes: ["/"], 
+      crawlLinks: true,
+    },
+  },
 });
