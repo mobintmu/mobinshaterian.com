@@ -13,13 +13,14 @@ export default defineConfig({
     server: { entry: "server" },
   },
   vite: {
-    // Tells Vite to build static assets relative to your GitHub Pages subdirectory
-    base: "/mobinshaterian.com/",
+    // Leave this as "/" since you are using your custom apex domain (mobinshaterian.com)
+    base: "/",
   },
   nitro: {
-    // This tells Nitro to prerender routes into static HTML files
+    // Force a fully static compilation output
+    preset: "static",
     prerender: {
-      routes: ["/"], 
+      routes: ["/"],
       crawlLinks: true,
     },
   },
