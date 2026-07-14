@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import profile from "@/data/profile.json";
 import posts from "@/data/posts.json";
 import {
