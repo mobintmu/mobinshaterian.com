@@ -109,7 +109,7 @@ function BlogsPage() {
             value={q}
             onChange={(e) =>
               navigate({
-                search: (prev) => ({ ...prev, q: e.target.value }),
+                search: (prev: { tag: string; q: string }) => ({ ...prev, q: e.target.value }),
                 replace: true,
               })
             }
@@ -118,7 +118,7 @@ function BlogsPage() {
           />
           {q ? (
             <button
-              onClick={() => navigate({ search: (prev) => ({ ...prev, q: "" }), replace: true })}
+              onClick={() => navigate({ search: (prev: { tag: string; q: string }) => ({ ...prev, q: "" }), replace: true })}
               className="font-mono-plus text-xs text-muted-foreground hover:text-terminal"
             >
               clear
@@ -133,7 +133,7 @@ function BlogsPage() {
           </div>
           <div className="flex flex-wrap gap-1.5">
             <button
-              onClick={() => navigate({ search: (prev) => ({ ...prev, tag: "" }), replace: true })}
+              onClick={() => navigate({ search: (prev: { tag: string; q: string }) => ({ ...prev, tag: "" }), replace: true })}
               className={
                 "rounded border px-2 py-1 font-mono-plus text-xs transition-colors " +
                 (!tag
@@ -147,7 +147,7 @@ function BlogsPage() {
               <button
                 key={t}
                 onClick={() =>
-                  navigate({ search: (prev) => ({ ...prev, tag: t === tag ? "" : t }), replace: true })
+                  navigate({ search: (prev: { tag: string; q: string }) => ({ ...prev, tag: t === tag ? "" : t }), replace: true })
                 }
                 className={
                   "rounded border px-2 py-1 font-mono-plus text-xs transition-colors " +
