@@ -12,4 +12,13 @@ export default defineConfig({
     // nitro/vite builds from this
     server: { entry: "server" },
   },
+  vite: {
+    // Tells Vite to build static assets relative to your GitHub Pages subpath
+    base: "/mobinshaterian.com/",
+  },
+  // If you are compiling purely to static HTML pages for GitHub Pages
+  // you can also force Nitro to use a static preset here:
+  nitro: {
+    preset: "github-pages",
+  },
 });

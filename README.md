@@ -1,7 +1,6 @@
 # Run project
 
 ```
-npm install
-npm install --legacy-peer-deps
+pnpm install
 npm run dev
 ```
