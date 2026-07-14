@@ -169,11 +169,10 @@ function BlogsPage() {
         ) : (
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
             {filtered.map((p) => (
-              <a
+              <Link
                 key={p.slug}
-                href={p.url}
-                target="_blank"
-                rel="noreferrer noopener"
+                to="/blog/$slug"
+                params={{ slug: p.slug }}
                 className="group flex flex-col rounded-lg border border-border bg-surface p-5 transition-all hover:-translate-y-0.5 hover:border-terminal/40"
               >
                 <div className="mb-3 flex items-center justify-between font-mono-plus text-xs text-muted-foreground">
@@ -196,7 +195,7 @@ function BlogsPage() {
                     </span>
                   ))}
                 </div>
-              </a>
+              </Link>
             ))}
           </div>
         )}
