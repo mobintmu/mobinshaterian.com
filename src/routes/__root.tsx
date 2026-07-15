@@ -84,14 +84,18 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           "Personal site of Mobin Shaterian: 16 years building high-throughput backends, microservices, and data pipelines in Go.",
       },
       { name: "author", content: "Mobin Shaterian" },
-      { property: "og:title", content: "Mobin Shaterian — Senior Software Engineer" },
+      { property: "og:title", content: "Mobin Shaterian — Senior Software Engineer & Golang Developer" },
       {
         property: "og:description",
         content:
-          "Go, microservices, CQRS, and data platforms serving millions of requests per day.",
+          "Personal site of Mobin Shaterian: 16 years building high-throughput backends, microservices, and data pipelines in Go.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "Mobin Shaterian — Senior Software Engineer & Golang Developer" },
+      { name: "twitter:description", content: "Personal site of Mobin Shaterian: 16 years building high-throughput backends, microservices, and data pipelines in Go." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/50858779-44d9-4398-b0e8-59c517b067f2/id-preview-c19d299e--cd58d848-7226-42ee-bc8a-dd81a6f956b3.lovable.app-1784106332462.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/50858779-44d9-4398-b0e8-59c517b067f2/id-preview-c19d299e--cd58d848-7226-42ee-bc8a-dd81a6f956b3.lovable.app-1784106332462.png" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
