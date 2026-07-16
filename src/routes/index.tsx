@@ -46,8 +46,8 @@ function HomePage() {
 function Nav() {
   const items = [
     { href: "#about", label: "about" },
-    { href: "#experience", label: "experience" },
     { href: "#writing", label: "writing" },
+    { href: "#experience", label: "experience" },
     { href: "#skills", label: "skills" },
     { href: "#contact", label: "contact" },
   ];
@@ -105,10 +105,10 @@ function Hero() {
           </div>
           <pre className="mt-3 overflow-x-auto rounded-md border border-border bg-surface p-4 text-xs leading-relaxed text-foreground/90 md:text-sm">
             {`> role      : Senior Software Engineer @ MTN Irancell
-              > stack     : Go · gRPC · ClickHouse · Kafka · NATS · Postgres
-              > shipped   : 15M rows/hr · 400K req/day · 10K TPS ML inference
-              > location  : ${profile.location}
-              > writing   : 200+ articles on Medium`}
+> stack     : Go · gRPC · ClickHouse · Kafka · NATS · Postgres
+> shipped   : 15M rows/hr · 400K req/day · 10K TPS ML inference
+> location  : ${profile.location}
+> writing   : 200+ articles on Medium`}
           </pre>
         </div>
 
