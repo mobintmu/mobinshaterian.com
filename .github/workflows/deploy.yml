@@ -15,17 +15,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      
-      - uses: actions/setup-node@v4
+
+      - uses: oven-sh/setup-bun@v2
         with:
-          node-version: 24
-          cache: 'npm' # Speeds up future workflow runs by caching dependencies
-          
-      - run: npm ci --legacy-peer-deps
-      
-      - run: npm run build
-      
-      # TanStack Start / Nitro compiles the production static files into .output/public
+          bun-version: latest
+
+      - run: bun install --frozen-lockfile
+      - run: bun run build
+        # TanStack Start / Nitro compiles the production static files into .output/public
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
