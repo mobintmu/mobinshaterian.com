@@ -220,7 +220,9 @@ async function parseFile(filename) {
     content: blocks,
   };
 
-  fs.writeFileSync(path.join(OUT_POSTS, `${slug}.json`), JSON.stringify(post, null, 2));
+  const postJson = JSON.stringify(post, null, 2);
+  fs.writeFileSync(path.join(OUT_POSTS, `${slug}.json`), postJson);
+  fs.writeFileSync(path.join(PUBLIC_POSTS, `${slug}.json`), postJson);
 
   index.push({
     slug,
