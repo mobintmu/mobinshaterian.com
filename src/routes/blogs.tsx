@@ -173,7 +173,7 @@ function BlogsPage() {
             onFocus={load}
             onChange={(e) =>
               navigate({
-                search: (prev) => ({ ...prev, q: e.target.value }),
+                search: (prev: { tag: string; q: string }) => ({ ...prev, q: e.target.value }),
                 replace: true,
               })
             }
@@ -183,7 +183,7 @@ function BlogsPage() {
           {q ? (
             <button
               onClick={() =>
-                navigate({ search: (prev) => ({ ...prev, q: "" }), replace: true })
+                navigate({ search: (prev: { tag: string; q: string }) => ({ ...prev, q: "" }), replace: true })
               }
               className="font-mono-plus text-xs text-muted-foreground hover:text-terminal"
             >
@@ -200,7 +200,7 @@ function BlogsPage() {
           <div className="flex flex-wrap gap-1.5">
             <button
               onClick={() =>
-                navigate({ search: (prev) => ({ ...prev, tag: "" }), replace: true })
+                navigate({ search: (prev: { tag: string; q: string }) => ({ ...prev, tag: "" }), replace: true })
               }
               className={
                 "rounded border px-2 py-1 font-mono-plus text-xs transition-colors " +
@@ -216,7 +216,7 @@ function BlogsPage() {
                 key={t}
                 onClick={() =>
                   navigate({
-                    search: (prev) => ({ ...prev, tag: t === tag ? "" : t }),
+                    search: (prev: { tag: string; q: string }) => ({ ...prev, tag: t === tag ? "" : t }),
                     replace: true,
                   })
                 }
