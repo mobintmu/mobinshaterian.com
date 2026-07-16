@@ -7,9 +7,12 @@ import * as cheerio from "cheerio";
 
 const POSTS_DIR = process.argv[2] || "/tmp/medium/posts";
 const OUT_POSTS = "src/data/posts";
+const PUBLIC_POSTS = "public/data/posts";
 const OUT_ASSETS = "public/blog-assets";
 const INDEX_FILE = "src/data/posts-index.json";
+const PUBLIC_INDEX = "public/data/posts-index.json";
 const SEARCH_FILE = "src/data/search-index.json";
+const PUBLIC_SEARCH = "public/data/search-index.json";
 const DOWNLOAD_IMAGES = process.env.DOWNLOAD_IMAGES !== "0";
 
 const existingIndex = fs.existsSync("src/data/posts.json")
