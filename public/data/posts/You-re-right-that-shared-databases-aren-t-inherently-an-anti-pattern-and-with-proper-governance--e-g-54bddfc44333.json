@@ -1,0 +1,45 @@
+{
+  "slug": "You-re-right-that-shared-databases-aren-t-inherently-an-anti-pattern-and-with-proper-governance--e-g-54bddfc44333",
+  "title": "You're right that shared databases aren't inherently an anti-pattern—and with proper governance (e.g",
+  "subtitle": "That said, the organizational challenges are often harder to solve than the technical ones. In practice, when multiple teams or domains…",
+  "excerpt": "That said, the organizational challenges are often harder to solve than the technical ones. In practice, when multiple teams or domains…",
+  "date": "2025-11-10",
+  "tags": [],
+  "readingTime": "1 min",
+  "url": "https://medium.com/@mobinshaterian/youre-right-that-shared-databases-aren-t-inherently-an-anti-pattern-and-with-proper-governance-e-g-54bddfc44333",
+  "hero": null,
+  "content": [
+    {
+      "type": "paragraph",
+      "html": "You're right that shared databases aren't inherently an anti-pattern—and with proper governance (e.g., treating schema as a versioned API, using read replicas, etc.), many technical risks can be mitigated."
+    },
+    {
+      "type": "paragraph",
+      "html": "That said, the organizational challenges are often harder to solve than the technical ones. In practice, when multiple teams or domains share a single schema, ownership ambiguity leads to:"
+    },
+    {
+      "type": "paragraph",
+      "html": "Uncoordinated schema changes (“just a small ALTER” that breaks another team’s assumptions),"
+    },
+    {
+      "type": "paragraph",
+      "html": "Slower evolution due to cross-team coordination overhead,"
+    },
+    {
+      "type": "paragraph",
+      "html": "Blurred accountability during incidents or data quality issues."
+    },
+    {
+      "type": "paragraph",
+      "html": "Even with good intent, Conway’s Law tends to surface: if services are independent, but data isn’t, coupling sneaks in at the persistence layer—undermining many of the benefits you hoped to gain from separation."
+    },
+    {
+      "type": "paragraph",
+      "html": "Microservices aren’t always the answer (and premature decomposition does add complexity), but bounded contexts with clear data ownership—even if initially co-located in one DB instance—help avoid the “shared schema trap.” Physical separation can then follow incrementally, when the domain boundaries are stable."
+    },
+    {
+      "type": "paragraph",
+      "html": "So yes—it’s situational. But in my experience, investing early in logical data boundaries pays dividends, even if physical isolation comes later."
+    }
+  ]
+}

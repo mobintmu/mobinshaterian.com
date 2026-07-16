@@ -1,0 +1,376 @@
+{
+  "slug": "Building-a-Safe--Parallel-WooCommerce-Crawler-in-Go-with-Colly-8786353b4b16",
+  "title": "Building a Safe, Parallel WooCommerce Crawler in Go with Colly",
+  "subtitle": "Web crawling often starts simple: fetch a listing page, extract some fields, and move on. The complexity appears when you need to enrich…",
+  "excerpt": "Web crawling often starts simple: fetch a listing page, extract some fields, and move on. The complexity appears when you need to enrich…",
+  "date": "2026-01-07",
+  "tags": [],
+  "readingTime": "3 min",
+  "url": "https://medium.com/@mobinshaterian/building-a-safe-parallel-woocommerce-crawler-in-go-with-colly-8786353b4b16",
+  "hero": "https://cdn-images-1.medium.com/max/800/1*LOSYb3H5JRoDenSvFH5p3Q.png",
+  "content": [
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Building a Safe, Parallel WooCommerce Crawler in Go with Colly"
+    },
+    {
+      "type": "paragraph",
+      "html": "Web crawling often starts simple: fetch a listing page, extract some fields, and move on. The complexity appears when you need to <strong>enrich data by visiting detail pages</strong>, do it <strong>in parallel</strong>, and still keep your code <strong>race-free, testable, and maintainable</strong>."
+    },
+    {
+      "type": "paragraph",
+      "html": "This article walks through the evolution of a Go-based crawler built with <strong>Colly</strong>, focusing on the architectural decisions that make it safe and production-ready."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Go-wordpress Project"
+    },
+    {
+      "type": "image",
+      "src": "https://cdn-images-1.medium.com/max/800/1*LOSYb3H5JRoDenSvFH5p3Q.png",
+      "alt": "Building a Safe, Parallel WooCommerce Crawler in Go with Colly",
+      "caption": "",
+      "width": 1024,
+      "height": 1536
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Problem Statement"
+    },
+    {
+      "type": "paragraph",
+      "html": "The goal was to crawl a WooCommerce website and extract:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Product title",
+        "Price",
+        "Image",
+        "Product URL",
+        "<strong>Product description from the product page</strong>"
+      ]
+    },
+    {
+      "type": "paragraph",
+      "html": "The challenge was to:"
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Separate listing crawling from detail crawling",
+        "Fetch product pages <strong>in parallel</strong>",
+        "Avoid <strong>data races</strong>",
+        "Normalize the extracted data",
+        "Keep the crawler testable"
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Data Model Evolution"
+    },
+    {
+      "type": "paragraph",
+      "html": "The first change was extending the product model to support enrichment from product pages:"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "type Product struct { Title       string Price       string Link        string Image       string Description string}"
+    },
+    {
+      "type": "paragraph",
+      "html": "This makes it explicit that descriptions are <strong>not available at listing time</strong> and must be fetched later."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Service Architecture"
+    },
+    {
+      "type": "paragraph",
+      "html": "The crawler is implemented as a service with a clear lifecycle:"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "type Service struct { products        []Product cleanedProducts []Product logger          *zap.Logger mu              sync.Mutex}"
+    },
+    {
+      "type": "paragraph",
+      "html": "Key points:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "<code>products</code> holds raw crawl results",
+        "<code>cleanedProducts</code> holds normalized output",
+        "<code>sync.Mutex</code> protects concurrent writes",
+        "Logging is injected (no global state)"
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Execution Flow"
+    },
+    {
+      "type": "paragraph",
+      "html": "The crawler runs in three deterministic phases:"
+    },
+    {
+      "type": "code",
+      "lang": "go",
+      "code": "func (s *Service) Run() error { if err := s.ListProducts(); err != nil {  return err } if err := s.FetchDescriptions(); err != nil {  return err } s.cleanUP() return nil}"
+    },
+    {
+      "type": "paragraph",
+      "html": "This separation ensures:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Listing logic is isolated",
+        "Detail crawling can be parallelized independently",
+        "Cleanup runs only after all data is available"
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Phase 1: Listing Crawl"
+    },
+    {
+      "type": "paragraph",
+      "html": "The listing crawler only extracts what is available on category pages:"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "c.OnHTML(\"div.product-grid-item\", func(e *colly.HTMLElement) { p := Product{  Title: e.ChildText(\"h3.wd-entities-title a\"),  Price: e.ChildText(\"span.price\"),  Link:  e.ChildAttr(\"a.product-image-link\", \"href\"),  Image: e.ChildAttr(\"a.product-image-link img\", \"src\"), } if p.Link != \"\" {  products = append(products, p) }})"
+    },
+    {
+      "type": "paragraph",
+      "html": "No concurrency is needed here. The result is a stable slice of products that becomes the <strong>input</strong> for the next phase."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Phase 2: Parallel Description Fetching"
+    },
+    {
+      "type": "paragraph",
+      "html": "This is where most crawlers break."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "Enabling Parallelism Correctly"
+    },
+    {
+      "type": "paragraph",
+      "html": "Colly already provides a safe async engine:"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "c := colly.NewCollector( colly.AllowedDomains(\"badomjip.com\"), colly.Async(true),)"
+    },
+    {
+      "type": "paragraph",
+      "html": "Concurrency is controlled via <code>LimitRule</code>:"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "c.Limit(&colly.LimitRule{ DomainGlob:  \"badomjip.com\", Parallelism: 4, Delay:       800 * time.Millisecond,})"
+    },
+    {
+      "type": "paragraph",
+      "html": "No goroutines around <code>Visit()</code> are used — Colly handles scheduling internally."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Passing Context Safely"
+    },
+    {
+      "type": "paragraph",
+      "html": "Each request carries the index of the product it belongs to:"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "ctx := colly.NewContext()ctx.Put(\"index\", strconv.Itoa(i))"
+    },
+    {
+      "type": "paragraph",
+      "html": "This allows mapping a product page back to the correct slice element without lookups or maps."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Preventing Data Races"
+    },
+    {
+      "type": "paragraph",
+      "html": "Parallel callbacks mean concurrent writes. This line is <strong>not safe</strong> without protection:"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "s.products[idx].Description = desc"
+    },
+    {
+      "type": "paragraph",
+      "html": "The fix is explicit synchronization:"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "s.mu.Lock()s.products[idx].Description = descs.mu.Unlock()"
+    },
+    {
+      "type": "paragraph",
+      "html": "This guarantees:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "No slice corruption",
+        "Clean <code>go test -race</code>",
+        "Predictable behavior under load"
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Phase 3: Cleanup and Normalization"
+    },
+    {
+      "type": "paragraph",
+      "html": "The cleanup step converts scraped strings into normalized data:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "HTML tags removed",
+        "Prices converted to numeric strings",
+        "Currency stripped",
+        "Whitespace trimmed"
+      ]
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "cleaned = append(cleaned, Product{ Title:       title, Price:       strconv.Itoa(priceInt), Link:        p.Link, Image:       p.Image, Description: p.Description,})"
+    },
+    {
+      "type": "paragraph",
+      "html": "This separation ensures that scraping concerns never leak into business logic."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Testing the Crawler"
+    },
+    {
+      "type": "paragraph",
+      "html": "An integration test validates the full pipeline:"
+    },
+    {
+      "type": "code",
+      "lang": "go",
+      "code": "func TestListProductsIntegration(t *testing.T) { cr := crawler.New(logger) if err := cr.Run(); err != nil {  t.Fatalf(\"failed to run service: %v\", err) } products := cr.CleanedProducts() if len(products) == 0 {  t.Fatalf(\"expected at least 1 product\") }}"
+    },
+    {
+      "type": "paragraph",
+      "html": "Key benefits:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Tests real HTML parsing",
+        "Verifies async completion",
+        "Catches selector regressions early"
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Key Takeaways"
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "<strong>Never mix listing and detail crawling</strong>",
+        "<strong>Parallelism must be controlled, not improvised</strong>",
+        "<strong>Async callbacks require explicit synchronization</strong>",
+        "<strong>Context is safer than global maps</strong>",
+        "<strong>Cleanup belongs in its own phase</strong>",
+        "<strong>Integration tests matter for crawlers</strong>"
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Git-commit"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Final Result"
+    },
+    {
+      "type": "paragraph",
+      "html": "The crawler is now:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Parallel but race-free",
+        "Deterministic",
+        "Easy to extend (pagination, retries, specs)",
+        "Safe under load",
+        "Testable"
+      ]
+    },
+    {
+      "type": "paragraph",
+      "html": "This pattern scales cleanly to thousands of products and is suitable for production use."
+    },
+    {
+      "type": "paragraph",
+      "html": "Your Business — On AutoPilot with <em>DDImedia AI Assistant</em><br>(<a href=\"https://waitlist.ddimedia.ai/join-the-waitlist-aie\" target=\"_blank\" rel=\"noreferrer noopener\">Join Our Waitlist</a>)"
+    },
+    {
+      "type": "paragraph",
+      "html": "Visit us at <a href=\"https://www.datadriveninvestor.com/\" target=\"_blank\" rel=\"noreferrer noopener\"><em>DataDrivenInvestor.com</em></a>"
+    },
+    {
+      "type": "paragraph",
+      "html": "Join our creator ecosystem <a href=\"https://join.datadriveninvestor.com/\" target=\"_blank\" rel=\"noreferrer noopener\"><em>here</em></a>."
+    },
+    {
+      "type": "paragraph",
+      "html": "DDI Official Telegram Channel: <a href=\"https://t.me/+tafUp6ecEys4YjQ1\" target=\"_blank\" rel=\"noreferrer noopener\">https://t.me/+tafUp6ecEys4YjQ1</a>"
+    },
+    {
+      "type": "paragraph",
+      "html": "Follow us on <a href=\"https://www.linkedin.com/company/data-driven-investor\" target=\"_blank\" rel=\"noreferrer noopener\"><em>LinkedIn</em></a>, <a href=\"https://twitter.com/@DDInvestorHQ\" target=\"_blank\" rel=\"noreferrer noopener\"><em>Twitter</em></a>, <a href=\"https://www.youtube.com/c/datadriveninvestor\" target=\"_blank\" rel=\"noreferrer noopener\"><em>YouTube</em></a>, and <a href=\"https://www.facebook.com/datadriveninvestor\" target=\"_blank\" rel=\"noreferrer noopener\"><em>Facebook</em></a>."
+    }
+  ]
+}

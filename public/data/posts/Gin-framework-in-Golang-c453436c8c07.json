@@ -1,0 +1,64 @@
+{
+  "slug": "Gin-framework-in-Golang-c453436c8c07",
+  "title": "Gin framework in Golang",
+  "subtitle": "https://gin-gonic.com/",
+  "excerpt": "https://gin-gonic.com/",
+  "date": "2023-11-07",
+  "tags": [],
+  "readingTime": "1 min",
+  "url": "https://medium.com/@mobinshaterian/gin-framework-in-golang-c453436c8c07",
+  "hero": "https://cdn-images-1.medium.com/max/800/1*NwnROdIFvkD0MdjEDQfoPg.png",
+  "content": [
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Gin framework in Golang"
+    },
+    {
+      "type": "paragraph",
+      "html": "<a href=\"https://gin-gonic.com/\" target=\"_blank\" rel=\"noreferrer noopener\">https://gin-gonic.com/</a>"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "I need to set gin mode to release mode. How should I do it?gin.SetMode(gin.ReleaseMode)"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Gin plus open telemetry"
+    },
+    {
+      "type": "paragraph",
+      "html": "<a href=\"https://stackoverflow.com/questions/72226307/how-to-get-in-opentelemetry-otelgin-middleware-the-traceid-or-full-context-to-pr\" target=\"_blank\" rel=\"noreferrer noopener\">If you are using otelgin middleware, the traceable context is propagated through </a><code><a href=\"https://stackoverflow.com/questions/72226307/how-to-get-in-opentelemetry-otelgin-middleware-the-traceid-or-full-context-to-pr\" target=\"_blank\" rel=\"noreferrer noopener\">ginContext.Request.Context()</a></code><a href=\"https://stackoverflow.com/questions/72226307/how-to-get-in-opentelemetry-otelgin-middleware-the-traceid-or-full-context-to-pr\" target=\"_blank\" rel=\"noreferrer noopener\">. So you can pass on this request context instead of ginContext to your gRPC client to propagate trace.</a>"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Prometheus with Gin"
+    },
+    {
+      "type": "code",
+      "lang": "go",
+      "code": "func PrometheusMiddleware() gin.HandlerFunc { return func(c *gin.Context) {  path := c.FullPath()  timer := prometheus.NewTimer(MonitoringHttpDuration.WithLabelValues(path))  c.Next()  timer.ObserveDuration() }}"
+    },
+    {
+      "type": "code",
+      "lang": "go",
+      "code": "package mainimport (    \"github.com/gin-gonic/gin\"    \"github.com/prometheus/client_golang/prometheus\"    \"github.com/prometheus/client_golang/prometheus/promhttp\")var cpuTemp = prometheus.NewGauge(prometheus.GaugeOpts{    Name: \"cpu_temperature_celsius\",    Help: \"Current temperature of the CPU.\",})func init() {    prometheus.MustRegister(cpuTemp)}func prometheusHandler() gin.HandlerFunc {    h := promhttp.Handler()    return func(c *gin.Context) {        h.ServeHTTP(c.Writer, c.Request)    }}func main() {    cpuTemp.Set(65.3)    r := gin.New()    r.GET(\"/\", func(c *gin.Context) {        c.JSON(200, \"Hello world!\")    })    r.GET(\"/metrics\", prometheusHandler())    r.Run()}"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Transform gin.Context to context.Context"
+    },
+    {
+      "type": "image",
+      "src": "https://cdn-images-1.medium.com/max/800/1*NwnROdIFvkD0MdjEDQfoPg.png",
+      "alt": "Gin framework in Golang",
+      "caption": "",
+      "width": 761,
+      "height": 476
+    }
+  ]
+}

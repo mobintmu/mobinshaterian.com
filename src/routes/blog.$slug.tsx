@@ -1,9 +1,10 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
-import posts from "@/data/posts.json";
+import postsIndex from "@/data/posts-index.json";
 import profile from "@/data/profile.json";
-import { ArrowLeft, ExternalLink, Calendar, Clock, Tag as TagIcon } from "lucide-react";
+import { PostContent, type Block } from "@/components/PostContent";
+import { ArrowLeft, ExternalLink, Calendar, Clock, Tag as TagIcon, FileJson } from "lucide-react";
 
-type Post = {
+type IndexEntry = {
   slug: string;
   title: string;
   excerpt: string;
@@ -11,15 +12,26 @@ type Post = {
   tags: string[];
   readingTime: string;
   url: string;
+  hero?: string | null;
 };
 
-function getPost(slug: string): Post | undefined {
-  return (posts as Post[]).find((p) => p.slug === slug);
+type FullPost = IndexEntry & {
+  subtitle?: string;
+  content: Block[];
+};
+
+const postModules = import.meta.glob("@/data/posts/*.json");
+
+async function loadPost(slug: string): Promise<FullPost | null> {
+  const key = Object.keys(postModules).find((k) => k.endsWith(`/${slug}.json`));
+  if (!key) return null;
+  const mod = (await postModules[key]()) as { default: FullPost };
+  return mod.default;
 }
 
 export const Route = createFileRoute("/blog/$slug")({
-  loader: ({ params }) => {
-    const post = getPost(params.slug);
+  loader: async ({ params }) => {
+    const post = await loadPost(params.slug);
     if (!post) throw notFound();
     return { post };
   },
@@ -33,20 +45,20 @@ export const Route = createFileRoute("/blog/$slug")({
       };
     }
     const { post } = loaderData;
+    const meta: Array<Record<string, string>> = [
+      { title: `${post.title} — Mobin Shaterian` },
+      { name: "description", content: post.excerpt },
+      { property: "og:title", content: post.title },
+      { property: "og:description", content: post.excerpt },
+      { property: "og:type", content: "article" },
+      { property: "og:url", content: `/blog/${params.slug}` },
+      { property: "article:published_time", content: post.date },
+      ...post.tags.map((t) => ({ property: "article:tag", content: t })),
+    ];
+    if (post.hero) meta.push({ property: "og:image", content: post.hero });
     return {
-      meta: [
-        { title: `${post.title} — Mobin Shaterian` },
-        { name: "description", content: post.excerpt },
-        { property: "og:title", content: post.title },
-        { property: "og:description", content: post.excerpt },
-        { property: "og:type", content: "article" },
-        { property: "og:url", content: `/blog/${params.slug}` },
-        { property: "article:published_time", content: post.date },
-        ...post.tags.map((t) => ({ property: "article:tag", content: t })),
-      ],
-      links: [
-        { rel: "canonical", href: post.url },
-      ],
+      meta,
+      links: [{ rel: "canonical", href: post.url }],
       scripts: [
         {
           type: "application/ld+json",
@@ -58,6 +70,7 @@ export const Route = createFileRoute("/blog/$slug")({
             datePublished: post.date,
             author: { "@type": "Person", name: profile.name },
             keywords: post.tags.join(", "),
+            image: post.hero || undefined,
             mainEntityOfPage: post.url,
           }),
         },
@@ -80,17 +93,20 @@ function BlogPostPage() {
     <div className="min-h-screen bg-background text-foreground font-sans">
       <header className="sticky top-0 z-40 border-b border-border/60 bg-background/80 backdrop-blur">
         <div className="mx-auto flex max-w-3xl items-center justify-between px-6 py-4">
-          <Link to="/blogs" className="inline-flex items-center gap-2 font-mono-plus text-sm text-terminal terminal-glow">
+          <Link
+            to="/blogs"
+            className="inline-flex items-center gap-2 font-mono-plus text-sm text-terminal terminal-glow"
+          >
             <ArrowLeft className="h-4 w-4" />
             ~/blogs
           </Link>
           <a
-            href={profile.links.medium}
-            target="_blank"
-            rel="noreferrer noopener"
-            className="font-mono-plus text-xs text-muted-foreground hover:text-terminal"
+            href={`/data/posts/${post.slug}.json`}
+            className="inline-flex items-center gap-1 font-mono-plus text-xs text-muted-foreground hover:text-terminal"
+            title="Open data — machine readable"
           >
-            medium
+            <FileJson className="h-3.5 w-3.5" />
+            .json
           </a>
         </div>
       </header>
@@ -104,6 +120,10 @@ function BlogPostPage() {
           {post.title}
         </h1>
 
+        {post.subtitle ? (
+          <p className="mt-3 text-lg text-muted-foreground">{post.subtitle}</p>
+        ) : null}
+
         <div className="mt-4 flex flex-wrap items-center gap-4 font-mono-plus text-xs text-muted-foreground">
           <span className="inline-flex items-center gap-1.5">
             <Calendar className="h-3.5 w-3.5 text-terminal" />
@@ -115,7 +135,7 @@ function BlogPostPage() {
           </span>
         </div>
 
-        {post.tags.length > 0 ? (
+        {post.tags?.length ? (
           <div className="mt-6 flex flex-wrap items-center gap-1.5">
             <TagIcon className="h-3.5 w-3.5 text-terminal" />
             {post.tags.map((t: string) => (
@@ -131,18 +151,25 @@ function BlogPostPage() {
           </div>
         ) : null}
 
-        <div className="mt-10 rounded-lg border border-border bg-surface p-6">
-          <p className="text-base leading-relaxed text-foreground/90">
-            {post.excerpt}
-          </p>
-        </div>
+        {post.hero ? (
+          <img
+            src={post.hero}
+            alt=""
+            className="mt-8 w-full rounded-md border border-border"
+            loading="eager"
+          />
+        ) : null}
 
-        <div className="mt-8 rounded-lg border border-terminal/30 bg-terminal/5 p-6">
+        <article className="mt-8">
+          <PostContent blocks={post.content} />
+        </article>
+
+        <div className="mt-12 rounded-lg border border-terminal/30 bg-terminal/5 p-6">
           <p className="font-mono-plus text-xs uppercase tracking-wider text-terminal">
-            $ read --full
+            $ open --canonical
           </p>
           <p className="mt-2 text-sm text-muted-foreground">
-            The full article lives on Medium (canonical source).
+            Also published on Medium — the canonical source.
           </p>
           <a
             href={post.url}
@@ -150,7 +177,7 @@ function BlogPostPage() {
             rel="noreferrer noopener"
             className="mt-4 inline-flex items-center gap-2 rounded border border-terminal bg-terminal/10 px-4 py-2 font-mono-plus text-sm text-terminal transition-colors hover:bg-terminal/20"
           >
-            Read on Medium
+            View on Medium
             <ExternalLink className="h-3.5 w-3.5" />
           </a>
         </div>
@@ -179,9 +206,7 @@ function PostNotFound() {
       <main className="mx-auto max-w-3xl px-6 py-24 text-center">
         <div className="font-mono-plus text-xs text-terminal">$ cat posts/{slug}</div>
         <h1 className="mt-4 text-3xl font-semibold">cat: no such post</h1>
-        <p className="mt-3 text-sm text-muted-foreground">
-          That slug isn't in the archive.
-        </p>
+        <p className="mt-3 text-sm text-muted-foreground">That slug isn't in the archive.</p>
         <Link
           to="/blogs"
           className="mt-8 inline-flex items-center gap-2 rounded border border-terminal bg-terminal/10 px-4 py-2 font-mono-plus text-sm text-terminal transition-colors hover:bg-terminal/20"
@@ -193,3 +218,6 @@ function PostNotFound() {
     </div>
   );
 }
+
+// Silence unused-warning if postsIndex ever becomes useful for related links.
+void postsIndex;

@@ -1,0 +1,172 @@
+{
+  "slug": "Ory-Hydra-Hello-world-581ee5c1f023",
+  "title": "Ory Hydra Hello world",
+  "subtitle": "Run ORY HYDRA service",
+  "excerpt": "Run ORY HYDRA service",
+  "date": "2023-02-03",
+  "tags": [],
+  "readingTime": "2 min",
+  "url": "https://medium.com/@mobinshaterian/ory-hydra-hello-world-581ee5c1f023",
+  "hero": "/blog-assets/Ory-Hydra-Hello-world-581ee5c1f023/img-0.png",
+  "content": [
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Ory Hydra Hello world"
+    },
+    {
+      "type": "embed",
+      "provider": "youtube",
+      "url": "https://www.youtube.com/embed/tlO9p2E501A?feature=oembed"
+    },
+    {
+      "type": "image",
+      "src": "/blog-assets/Ory-Hydra-Hello-world-581ee5c1f023/img-0.png",
+      "alt": "https://www.ory.sh/",
+      "caption": "https://www.ory.sh/",
+      "width": 1439,
+      "height": 649
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "git clone https://github.com/ory/hydra"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Run ORY HYDRA service"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "docker-compose -f quickstart.yml \\    -f quickstart-postgres.yml \\    up --build"
+    },
+    {
+      "type": "paragraph",
+      "html": "We will get Thank you in terminal:"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "Thank you for using Ory Hydra v2.0.3!"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Give authentication to the customer or third party"
+    },
+    {
+      "type": "paragraph",
+      "html": "The OAuth 2.0 client uses port <code>4444</code> and <code>4445</code>. The former is Ory Hydra's public endpoint, the latter its administrative endpoint. For more information head over to <a href=\"https://www.ory.sh/docs/hydra/self-hosted/production\" target=\"_blank\" rel=\"noreferrer noopener\">Exposing Administrative and Public API Endpoints</a>."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "Exposing administrative and public API endpoints"
+    },
+    {
+      "type": "paragraph",
+      "html": "Ory Hydra serves APIs via two ports:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "<strong>Public port (default 4444)</strong>",
+        "<strong>Administrative port (default 4445)</strong>"
+      ]
+    },
+    {
+      "type": "paragraph",
+      "html": "The public port can and should be exposed to public internet traffic. That port handles requests to:"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "/.well-known/jwks.json/.well-known/openid-configuration/oauth2/auth/oauth2/token/oauth2/revoke/oauth2/fallbacks/consent/oauth2/fallbacks/error/oauth2/sessions/logout/userinfo"
+    },
+    {
+      "type": "paragraph",
+      "html": "The <strong>administrative port </strong>shouldn’t be exposed to <strong>public internet traffic</strong>. If you want to expose certain endpoints, such as the <code>/clients</code> endpoint for OpenID Connect Dynamic Client Registry, you can do so but you need to properly secure these endpoints with an API Gateway or Authorization Proxy. Administrative endpoints include:"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "All /clients endpoints.All /keys endpoints.All /health, /metrics, /version endpoints.All /oauth2/auth/requests endpoints.Endpoint /oauth2/introspect.Endpoint /oauth2/flush."
+    },
+    {
+      "type": "paragraph",
+      "html": "Let’s create the OAuth 2.0 Client: (<strong>administrative)</strong>"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "docker-compose -f quickstart.yml exec hydra \\    hydra create client \\    --endpoint http://127.0.0.1:4445/ \\    --format json \\    --grant-type client_credentials"
+    },
+    {
+      "type": "paragraph",
+      "html": "response (<strong>administrative)</strong>"
+    },
+    {
+      "type": "code",
+      "lang": "json",
+      "code": "{\"client_id\":\"f95a8d96-9d15-471a-8f7b-b37fbab3c1f1\",\"client_name\":\"\",\"client_secret\":\"B~~zBRuoBpdAByNhq8fMkq_d2C\",\"client_secret_expires_at\":0,\"client_uri\":\"\",\"created_at\":\"2023-01-30T07:50:43Z\",\"grant_types\":[\"client_credentials\"],\"jwks\":{},\"logo_uri\":\"\",\"metadata\":{},\"owner\":\"\",\"policy_uri\":\"\",\"registration_access_token\":\"ory_at_3BY4izdL2AuYCXyT-g_B5nPUZp2RiGTzY-itCztfViI.TFOwoqKQlnSlzpw1PZ9blQuCSFVw50DLxQA1zY3RueI\",\"registration_client_uri\":\"http://127.0.0.1:4444/oauth2/register/f95a8d96-9d15-471a-8f7b-b37fbab3c1f0\",\"request_object_signing_alg\":\"RS256\",\"response_types\":[\"code\"],\"scope\":\"offline_access offline openid\",\"subject_type\":\"public\",\"token_endpoint_auth_method\":\"client_secret_basic\",\"tos_uri\":\"\",\"updated_at\":\"2023-01-30T07:50:43.099053Z\",\"userinfo_signed_response_alg\":\"none\"}"
+    },
+    {
+      "type": "paragraph",
+      "html": "Let’s perform the client credentials grant: (<strong>public)</strong>"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "docker-compose -f quickstart.yml exec hydra \\  hydra perform client-credentials \\  --endpoint http://127.0.0.1:4444/ \\  --client-id $client_id \\  --client-secret $client_secret"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "docker-compose -f quickstart.yml exec hydrahydra perform client-credentials--endpoint http://127.0.0.1:4444/--client-id f95a8d96-9d15-471a-8f7b-b37fbab3c1f0   --client-secret Y~~zBRuoBpdAByNhq8fMkq_d2CACCESS TOKEN ory_at_HjvbarTv4ZngKuhF0JhM4AhdnReXJfT0Fb__8MFc5uA.qftzDg6vfqoT46fQqJPGmSSWSH8YG6ZxHLsrTIZznH4 REFRESH TOKEN <empty>            ID TOKEN <empty>            EXPIRY  2023-01-30 08:58:16 +0000 UTC"
+    },
+    {
+      "type": "paragraph",
+      "html": "Let’s perform token introspection on that token. Make sure to copy the token you just got and not the dummy value. ( <strong>administrative )</strong>"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "docker-compose -f quickstart.yml exec hydra \\  hydra introspect token \\  --format json-pretty \\  --endpoint http://127.0.0.1:4445/ \\  ory_at_HjvbarTv4ZngKuhF5JhM4AhdnReXJfT0Fb__8MFc5uA.qftzDg6vfqoT46fQqJPGmSSWSH8YG8ZxHLsrTIZznH4{  \"active\": true,  \"client_id\": \"f95a8d96-9d15-471a-8f7b-b37fbab3c1f0\",  \"exp\": 1675069097,  \"iat\": 1675065497,  \"iss\": \"http://127.0.0.1:4444\",  \"nbf\": 1675065497,  \"sub\": \"f95a8d96-9d15-471a-8f7b-b37fbab3c1f0\",  \"token_type\": \"Bearer\",  \"token_use\": \"access_token\"}"
+    },
+    {
+      "type": "paragraph",
+      "html": "install jq on ubuntu"
+    },
+    {
+      "type": "code",
+      "lang": "bash",
+      "code": "sudo apt install -y jq"
+    },
+    {
+      "type": "paragraph",
+      "html": "[ client of <strong>administrative </strong>]"
+    },
+    {
+      "type": "paragraph",
+      "html": "Next, we will perform the OAuth 2.0 Authorization Code Grant. For that, we must first create a client that’s capable of performing that grant: (<strong>administrative)</strong>"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "code_client=$(docker-compose -f quickstart.yml exec hydra \\    hydra create client \\    --endpoint http://127.0.0.1:4445 \\    --grant-type authorization_code,refresh_token \\    --response-type code,id_token \\    --format json \\    --scope openid --scope offline \\    --redirect-uri http://127.0.0.1:5555/callback)code_client_id=$(echo $code_client | jq -r '.client_id')code_client_secret=$(echo $code_client | jq -r '.client_secret')"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "docker-compose -f quickstart.yml exec hydra \\    hydra create client \\    --endpoint http://127.0.0.1:4445 \\    --grant-type authorization_code,refresh_token \\    --response-type code,id_token \\    --format json \\    --scope openid --scope offline \\    --redirect-uri http://127.0.0.1:5555/callback"
+    },
+    {
+      "type": "code",
+      "lang": "json",
+      "code": "{\"client_id\":\"9184ee7f-ffb1-4f0b-af5a-99ce52d8f324\",\"client_name\":\"\",\"client_secret\":\"rt1tpaWDiZwCetWDROH-LFpN.t\",\"client_secret_expires_at\":0,\"client_uri\":\"\",\"created_at\":\"2023-01-30T08:31:38Z\",\"grant_types\":[\"authorization_code\",\"refresh_token\"],\"jwks\":{},\"logo_uri\":\"\",\"metadata\":{},\"owner\":\"\",\"policy_uri\":\"\",\"redirect_uris\":[\"http://127.0.0.1:5555/callback\"],\"registration_access_token\":\"ory_at_qM2EmFkLsHUI_YjTe0uuJhkr2LiB8_VK04ilYIxXLe8.gLywrTZ4YGA8w8ziSV_ttm_9VP5mDoBME-Iki3kdo18\",\"registration_client_uri\":\"http://127.0.0.1:4444/oauth2/register/9184ee7f-ffb1-4f0b-af5a-99ce52d8f324\",\"request_object_signing_alg\":\"RS256\",\"response_types\":[\"code\",\"id_token\"],\"scope\":\"openid offline\",\"subject_type\":\"public\",\"token_endpoint_auth_method\":\"client_secret_basic\",\"tos_uri\":\"\",\"updated_at\":\"2023-01-30T08:31:37.725833Z\",\"userinfo_signed_response_alg\":\"none\"}"
+    }
+  ]
+}

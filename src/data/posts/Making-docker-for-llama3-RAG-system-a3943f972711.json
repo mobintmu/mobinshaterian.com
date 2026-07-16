@@ -1,0 +1,279 @@
+{
+  "slug": "Making-docker-for-llama3-RAG-system-a3943f972711",
+  "title": "Making docker for llama3 RAG system",
+  "subtitle": "This document describes how to set up a Docker container for a Retrieval-Augmented Generation (RAG) system using Llama 3 and Ollama.",
+  "excerpt": "This document describes how to set up a Docker container for a Retrieval-Augmented Generation (RAG) system using Llama 3 and Ollama.",
+  "date": "2024-06-07",
+  "tags": [],
+  "readingTime": "2 min",
+  "url": "https://medium.com/@mobinshaterian/making-docker-for-llama3-rag-system-a3943f972711",
+  "hero": "https://cdn-images-1.medium.com/max/800/1*TS9svvfzTiQY5L3xFIatLQ.jpeg",
+  "content": [
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Making docker for llama3 RAG system"
+    },
+    {
+      "type": "paragraph",
+      "html": "This document describes how to set up a Docker container for a Retrieval-Augmented Generation (RAG) system using Llama 3 and Ollama."
+    },
+    {
+      "type": "image",
+      "src": "https://cdn-images-1.medium.com/max/800/1*TS9svvfzTiQY5L3xFIatLQ.jpeg",
+      "alt": "Making docker for llama3 RAG system",
+      "caption": "",
+      "width": 1024,
+      "height": 1024
+    },
+    {
+      "type": "paragraph",
+      "html": "Here’s a breakdown of the steps:"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "Using Ollama Docker Image:"
+    },
+    {
+      "type": "paragraph",
+      "html": "Ollama provides a Docker image (<code>ollama/ollama:latest</code>) that includes the necessary components for running Llama 3."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "Verifying Ollama:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "The guide outlines commands to check if Ollama is running in the container and how to adjust its address and port."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "Creating a Dockerfile:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "A sample Dockerfile is provided that defines multiple services:",
+        "<code>ollama-faqs</code>: This service runs a question-answering application using Ollama.",
+        "<code>ollama</code>: This is the core Ollama service.",
+        "<code>ollama-webui</code>: This service provides a web interface for interacting with Ollama."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "html": "This setup allows you to deploy a complete RAG system with Llama 3 and Ollama using Docker containers."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Ollama Docker image"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Ollama docker-compose.yml"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Verify if Ollama is running or not"
+    },
+    {
+      "type": "paragraph",
+      "html": "Here’s the magic: execute the following command in your terminal:"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "$ docker ps aa492e7068d7   ollama/ollama:latest        \"/bin/ollama serve\"      9 seconds ago   Up 8 seconds   0.0.0.0:11434->11434/tcp   ollama"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "$ curl localhost: 11434Ollama is running"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Add address and port"
+    },
+    {
+      "type": "paragraph",
+      "html": "Ollama binds <strong>127.0.</strong> <strong>0.1 port 11434</strong> by default. Change the bind address with the OLLAMA_HOST environment variable."
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "model = Ollama(model=MODEL , base_url='http://ollama:11434')"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Docker File"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "version: \"3.9\"services:  ollama-faqs:    image: ollama-app    env_file:      - .env    networks:      - ollama-network    ports:      - 8000:8080    depends_on:      - ollama  ollama:      image: ollama/ollama:latest      ports:        - 7869:11434      volumes:        - .:/code        - ./ollama/ollama:/root/.ollama      container_name: ollama      pull_policy: always      tty: true      restart: always      environment:        - OLLAMA_KEEP_ALIVE=24h        - OLLAMA_HOST=0.0.0.0      networks:        - ollama-network  ollama-webui:    image: ghcr.io/open-webui/open-webui:main    container_name: ollama-webui    volumes:      - ./ollama/ollama-webui:/app/backend/data    depends_on:      - ollama    ports:      - 8080:8080    environment: # https://docs.openwebui.com/getting-started/env-configuration#default_models      - OLLAMA_BASE_URLS=http://host.docker.internal:7869 #comma separated ollama hosts      - ENV=dev      - WEBUI_AUTH=False      - WEBUI_NAME=valiantlynx AI      - WEBUI_URL=http://localhost:8080      - WEBUI_SECRET_KEY=t0p-s3cr3t    extra_hosts:      - host.docker.internal:host-gateway    restart: unless-stopped    networks:      - ollama-networknetworks:  ollama-network:    external: true"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Docker-compose with GPU"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Nvidia GPU"
+    },
+    {
+      "type": "paragraph",
+      "html": "<a href=\"https://hub.docker.com/r/ollama/ollama\" target=\"_blank\" rel=\"noreferrer noopener\">https://hub.docker.com/r/ollama/ollama</a>"
+    },
+    {
+      "type": "paragraph",
+      "html": "Add GPU to docker"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Installing with Apt"
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Configure the production repository:"
+      ]
+    },
+    {
+      "type": "code",
+      "lang": "bash",
+      "code": "curl -fsSL https://nvidia.github.io/libnvidia-container/gpgkey | sudo gpg --dearmor -o /usr/share/keyrings/nvidia-container-toolkit-keyring.gpg \\  && curl -s -L https://nvidia.github.io/libnvidia-container/stable/deb/nvidia-container-toolkit.list | \\    sed 's#deb https://#deb [signed-by=/usr/share/keyrings/nvidia-container-toolkit-keyring.gpg] https://#g' | \\    sudo tee /etc/apt/sources.list.d/nvidia-container-toolkit.list"
+    },
+    {
+      "type": "paragraph",
+      "html": "Optionally, configure the repository to use experimental packages:"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "sed -i -e '/experimental/ s/^#//g' /etc/apt/sources.list.d/nvidia-container-toolkit.list"
+    },
+    {
+      "type": "paragraph",
+      "html": "Update the packages list from the repository:"
+    },
+    {
+      "type": "code",
+      "lang": "bash",
+      "code": "sudo apt-get update"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Install the NVIDIA Container Toolkit packages:"
+      ]
+    },
+    {
+      "type": "code",
+      "lang": "bash",
+      "code": "sudo apt-get install -y nvidia-container-toolkit"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Configuring Docker"
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Configure the container runtime by using the <code>nvidia-ctk</code> command:"
+      ]
+    },
+    {
+      "type": "code",
+      "lang": "bash",
+      "code": "sudo nvidia-ctk runtime configure --runtime=docker"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "The <code>nvidia-ctk</code> command modifies the <code>/etc/docker/daemon.json</code> file on the host. The file is updated so that Docker can use the NVIDIA Container Runtime.",
+        "Restart the Docker daemon:"
+      ]
+    },
+    {
+      "type": "code",
+      "lang": "bash",
+      "code": "sudo systemctl restart docker"
+    },
+    {
+      "type": "paragraph",
+      "html": "gedit /etc/docker/daemon.json"
+    },
+    {
+      "type": "code",
+      "lang": "json",
+      "code": "{    \"registry-mirrors\": [        \"https://registry.docker.ir\"    ],    \"runtimes\": {        \"nvidia\": {            \"args\": [],            \"path\": \"nvidia-container-runtime\"        }    }}"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Add to docker"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "version: \"3.8\"  # Adjust version if neededservices:  your-service:    image: your-image:latest    deploy:      resources:        reservations:          devices:            - driver: nvidia              capabilities: [gpu]              count: 1  # Adjust count as needed"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Run Docker-compose"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "llama_new_context_with_model:        CPU  output buffer size =     0.00 MiBllama_new_context_with_model:      CUDA0 compute buffer size =    23.00 MiBllama_new_context_with_model:  CUDA_Host compute buffer size =     3.50 MiB"
+    },
+    {
+      "type": "paragraph",
+      "html": "…"
+    },
+    {
+      "type": "paragraph",
+      "html": "Visit us at <a href=\"https://www.datadriveninvestor.com/\" target=\"_blank\" rel=\"noreferrer noopener\"><em>DataDrivenInvestor.com</em></a>"
+    },
+    {
+      "type": "paragraph",
+      "html": "Subscribe to DDIntel <a href=\"https://www.ddintel.com/\" target=\"_blank\" rel=\"noreferrer noopener\"><em>here</em></a>."
+    },
+    {
+      "type": "paragraph",
+      "html": "Featured Article:"
+    },
+    {
+      "type": "paragraph",
+      "html": "Join our creator ecosystem <a href=\"https://join.datadriveninvestor.com/\" target=\"_blank\" rel=\"noreferrer noopener\"><em>here</em></a>."
+    },
+    {
+      "type": "paragraph",
+      "html": "DDI Official Telegram Channel: <a href=\"https://t.me/+tafUp6ecEys4YjQ1\" target=\"_blank\" rel=\"noreferrer noopener\">https://t.me/+tafUp6ecEys4YjQ1</a>"
+    },
+    {
+      "type": "paragraph",
+      "html": "Follow us on <a href=\"https://www.linkedin.com/company/data-driven-investor\" target=\"_blank\" rel=\"noreferrer noopener\"><em>LinkedIn</em></a>, <a href=\"https://twitter.com/@DDInvestorHQ\" target=\"_blank\" rel=\"noreferrer noopener\"><em>Twitter</em></a>, <a href=\"https://www.youtube.com/c/datadriveninvestor\" target=\"_blank\" rel=\"noreferrer noopener\"><em>YouTube</em></a>, and <a href=\"https://www.facebook.com/datadriveninvestor\" target=\"_blank\" rel=\"noreferrer noopener\"><em>Facebook</em></a>."
+    }
+  ]
+}

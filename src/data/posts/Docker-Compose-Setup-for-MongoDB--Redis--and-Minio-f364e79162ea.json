@@ -1,0 +1,89 @@
+{
+  "slug": "Docker-Compose-Setup-for-MongoDB--Redis--and-Minio-f364e79162ea",
+  "title": "Docker Compose Setup for MongoDB, Redis, and Minio",
+  "subtitle": "This Docker Compose file sets up a development environment with MongoDB, Redis, and Minio and their respective management interfaces. The…",
+  "excerpt": "This Docker Compose file sets up a development environment with MongoDB, Redis, and Minio and their respective management interfaces. The…",
+  "date": "2024-07-29",
+  "tags": [],
+  "readingTime": "1 min",
+  "url": "https://medium.com/@mobinshaterian/docker-compose-setup-for-mongodb-redis-and-minio-f364e79162ea",
+  "hero": "https://cdn-images-1.medium.com/max/800/1*f-OjtziN6MjN7gn8i9hB1w.jpeg",
+  "content": [
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Docker Compose Setup for MongoDB, Redis, and Minio"
+    },
+    {
+      "type": "paragraph",
+      "html": "This Docker Compose file sets up a development environment with MongoDB, Redis, and Minio and their respective management interfaces. The setup is language-agnostic and can be used with various projects."
+    },
+    {
+      "type": "image",
+      "src": "https://cdn-images-1.medium.com/max/800/1*f-OjtziN6MjN7gn8i9hB1w.jpeg",
+      "alt": "Docker Compose Setup for MongoDB, Redis, and Minio",
+      "caption": "",
+      "width": 1024,
+      "height": 1024
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "version: '3.9'services:  mongo:    image: mongo:latest    restart: always    ports:      - \"27017:27017\"  mongoexpress:    image: mongo-express    ports:      - \"8081:8081\"    environment:       - ME_CONFIG_MONGODB_URL=mongodb://mongo:27017      - ME_CONFIG_BASICAUTH=true    depends_on:      - mongo    restart: always  redis:    image: redis:latest    restart: always    ports:      - \"6379:6379\"  redis-commander:    image: rediscommander/redis-commander:latest    restart: always    environment:      - REDIS_HOSTS=local:redis:6379    ports:      - 8082:8081    depends_on:      - redis  minio:    image: docker.io/bitnami/minio:latest    ports:      - '9000:9000'      - '9001:9001'    volumes:      - 'minio_data:/data'    environment:      - MINIO_ROOT_USER=username      - MINIO_ROOT_PASSWORD=pasword_is_here      - MINIO_DEFAULT_BUCKETS=name_bucket    restart: alwaysvolumes:  mongo_data:    driver: local  minio_data:    driver: local networks:  default:    external:      name: my-network"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Mongo express"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "http://127.0.0.1:8081/db/admin/"
+    },
+    {
+      "type": "image",
+      "src": "https://cdn-images-1.medium.com/max/800/1*8GxHarxhynYBvCR_8xVKOw.png",
+      "alt": "Docker Compose Setup for MongoDB, Redis, and Minio",
+      "caption": "",
+      "width": 1211,
+      "height": 614
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Redis Commander"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "http://127.0.0.1:8082/"
+    },
+    {
+      "type": "image",
+      "src": "https://cdn-images-1.medium.com/max/800/1*trP_xRfzuIKhIna_sTJLvg.png",
+      "alt": "Docker Compose Setup for MongoDB, Redis, and Minio",
+      "caption": "",
+      "width": 304,
+      "height": 134
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Minio"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "http://127.0.0.1:9001/browser"
+    },
+    {
+      "type": "image",
+      "src": "https://cdn-images-1.medium.com/max/800/1*yE3XIsfloiVCwU91AWThSw.png",
+      "alt": "Docker Compose Setup for MongoDB, Redis, and Minio",
+      "caption": "",
+      "width": 1574,
+      "height": 422
+    }
+  ]
+}

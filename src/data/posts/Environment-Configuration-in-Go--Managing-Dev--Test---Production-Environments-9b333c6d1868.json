@@ -1,0 +1,321 @@
+{
+  "slug": "Environment-Configuration-in-Go--Managing-Dev--Test---Production-Environments-9b333c6d1868",
+  "title": "Environment Configuration in Go: Managing Dev, Test & Production Environments",
+  "subtitle": "One of the most critical aspects of building professional Go applications is proper environment configuration management.",
+  "excerpt": "One of the most critical aspects of building professional Go applications is proper environment configuration management.",
+  "date": "2025-10-30",
+  "tags": [],
+  "readingTime": "8 min",
+  "url": "https://medium.com/@mobinshaterian/environment-configuration-in-go-managing-dev-test-production-environments-9b333c6d1868",
+  "hero": "https://cdn-images-1.medium.com/max/800/1*BhcMymB1i6VwFNZXlz7w7w.png",
+  "content": [
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Introduction"
+    },
+    {
+      "type": "paragraph",
+      "html": "One of the most critical aspects of building professional Go applications is proper environment configuration management. Whether you’re developing locally, running tests, or deploying to production, each environment has different requirements. This article walks you through the best practices for setting up environment-specific&nbsp;<code>.env</code> files in your Go project."
+    },
+    {
+      "type": "paragraph",
+      "html": "By the end of this guide, you’ll understand:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "✅ How to structure environment files",
+        "✅ How to load environment variables in Go",
+        "✅ How to validate configuration",
+        "✅ How to handle different environments",
+        "✅ Production-ready configuration management"
+      ]
+    },
+    {
+      "type": "image",
+      "src": "https://cdn-images-1.medium.com/max/800/1*BhcMymB1i6VwFNZXlz7w7w.png",
+      "alt": "Environment Configuration in Go: Managing Dev, Test & Production Environments",
+      "caption": "",
+      "width": 1024,
+      "height": 1024
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Why Environment Configuration Matters"
+    },
+    {
+      "type": "paragraph",
+      "html": "Consider this scenario: Your development database has loose security settings, your test database is isolated for testing, and your production database has strict security and backups. You need a way to switch between these without changing code."
+    },
+    {
+      "type": "paragraph",
+      "html": "That’s where environment configuration comes in. Instead of hardcoding values, you externalize them as environment variables, typically stored in&nbsp;<code>.env</code> files for local development."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Go-simple Project"
+    },
+    {
+      "type": "paragraph",
+      "html": "The <strong>Go-Simple</strong> project is an open-source <strong>Golang</strong> repository created by Mobin Shaterian that serves as a living, evolving blueprint for building <strong>scalable, clean, and production-grade web services</strong>. It is not a simple “hello world” example, but a practical demonstration of advanced architectural patterns and best practices in the Go ecosystem. The project’s primary purpose is to showcase how to integrate modern Go frameworks and tools — such as the <strong>Gin</strong> web framework, <strong>SQLC</strong> for database interaction, and <strong>Uber FX</strong> for dependency injection and lifecycle management — to create a modular, maintainable application. It follows principles like <strong>clean architecture</strong> and domain-centric design, separating concerns into distinct layers like controllers, services, and repositories, ensuring the codebase remains flexible and testable as it grows."
+    },
+    {
+      "type": "paragraph",
+      "html": "The project is continually developed and documented through a series of technical articles on Medium, which detail the step-by-step evolution of the architecture. Starting from a basic HTTP server, the project has been refactored to incorporate key enterprise features: it uses <strong>Uber FX</strong> to manage dependencies and simplify application startup, implements a robust <strong>product management module</strong> with full <strong>CRUD</strong> (Create, Read, Update, Delete) functionality, integrates <strong>gRPC</strong> for high-performance microservice communication, and features a <strong>Redis-backed cache layer</strong> for speed and scalability. By observing the project’s evolution, developers can learn how to apply modern Go idioms, implement advanced concepts like <strong>lifecycle hooks</strong> and <strong>Data Transfer Objects (DTOs)</strong>, and establish a solid foundation for their own complex Go applications."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Project Structure"
+    },
+    {
+      "type": "paragraph",
+      "html": "Let’s start with the recommended directory structure:"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "go-simple/├── .env                    # Local development (don't commit)├── .env.test               # Testing (don't commit)├── .env.development        # Development (can commit)├── .env.production         # Production (don't commit)├── .env.example            # Template (COMMIT THIS)├── .gitignore              # Ignore actual .env files├── cmd/│   └── server/│       └── main.go         # Entry point├── internal/│   ├── config/│   │   ├── config.go       # Config loading & validation│   │   └── validate.go     # Validation functions│   ├── storage/│   │   └── db.go           # Database initialization│   └── app/│       └── app.go          # Application setup└── test/    ├── http_server_test.go    └── grpc_server_test.go"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Step 1: Install Required Dependencies"
+    },
+    {
+      "type": "paragraph",
+      "html": "First, add the necessary Go packages to your <code>go.mod</code>:"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "go get github.com/joho/godotenvgo get github.com/spf13/viper"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "<strong>godotenv</strong>: Loads&nbsp;<code>.env</code> files into environment variables",
+        "<strong>viper</strong>: Configuration management with support for environment variables"
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Step 2: Create Environment Files"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": ".env.example (Commit this!)"
+    },
+    {
+      "type": "paragraph",
+      "html": "This file serves as a template for developers. It should contain all required environment variables with example values."
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "# Server ConfigurationAPP_HTTP_PORT=4000APP_HTTP_ADDRESS=127.0.0.1APP_GRPC_PORT=9001# EnvironmentAPP_ENV=development# DatabaseAPP_DATABASE_DSN=postgresql://user:pass@localhost:5432/database?sslmode=disable# JWTAPP_JWT_SECRET=this-is-a-secret-keyAPP_JWT_EXPIRY_HOURS=72# RedisAPP_REDIS_DSN=localhost:6379APP_REDIS_DB=0APP_REDIS_PREFIX=go-simpleAPP_REDIS_DEFAULT_TTL=5"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": ".env.development (Local development)"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "# Server ConfigurationAPP_HTTP_PORT=4000APP_HTTP_ADDRESS=127.0.0.1APP_GRPC_PORT=9001# EnvironmentAPP_ENV=development# Database - Local PostgreSQLAPP_DATABASE_DSN=postgresql://postgres:postgres@localhost:5432/go_simple_dev?sslmode=disable# JWTAPP_JWT_SECRET=dev-secret-key-change-in-productionAPP_JWT_EXPIRY_HOURS=72# RedisAPP_REDIS_DSN=localhost:6379APP_REDIS_DB=0APP_REDIS_PREFIX=go-simpleAPP_REDIS_DEFAULT_TTL=5"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": ".env.test (Testing)"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "# Server ConfigurationAPP_HTTP_PORT=4001APP_HTTP_ADDRESS=127.0.0.1APP_GRPC_PORT=9002# EnvironmentAPP_ENV=test# Database - Separate test databaseAPP_DATABASE_DSN=postgresql://postgres:postgres@localhost:5432/go_simple_test?sslmode=disable# JWTAPP_JWT_SECRET=test-secret-keyAPP_JWT_EXPIRY_HOURS=1# Redis - Different DB for isolationAPP_REDIS_DSN=localhost:6379APP_REDIS_DB=1APP_REDIS_PREFIX=go-simple-testAPP_REDIS_DEFAULT_TTL=1"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": ".gitignore"
+    },
+    {
+      "type": "paragraph",
+      "html": "Make sure actual&nbsp;<code>.env</code> files are never committed:"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "# Environment files - never commit actual values.env.env.test.env.development.env.production# But commit the template!.env.example"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Step 3: Create the Config Package"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "internal/config/config.go"
+    },
+    {
+      "type": "paragraph",
+      "html": "This file loads and structures your configuration:"
+    },
+    {
+      "type": "code",
+      "lang": "go",
+      "code": "package configimport ( \"fmt\" \"log\" \"os\" \"github.com/spf13/viper\")// Config represents all application configurationtype Config struct { HTTPPort       int HTTPAddress    string GRPCPort       int ENV            string JWTSecret      string JWTExpiryHours int Database       DatabaseCfg Redis          RedisCfg}// DatabaseCfg contains database configurationtype DatabaseCfg struct { DSN string}// RedisCfg contains Redis configurationtype RedisCfg struct { DSN        string DB         int Prefix     string DefaultTTL int // minutes}// NewConfig creates and returns validated configurationfunc NewConfig() (*Config, error) { v := viper.New() v.SetEnvPrefix(\"APP\") v.AutomaticEnv() // Check if environment variables are set if !hasEnvironmentVariables() {  return nil, fmt.Errorf(   \"no environment variables found (APP_* prefix). \" +   \"Make sure .env file was loaded or environment variables are set\",  ) } // Build config cfg := buildConfig(v) // Validate configuration if err := ValidateConfig(cfg); err != nil {  return nil, fmt.Errorf(\"⚠️ invalid configuration: %w\", err) } log.Printf(\"✅ Loaded config: %+v\\n\", cfg) return cfg, nil}// buildConfig constructs the Config struct from viper valuesfunc buildConfig(v *viper.Viper) *Config { return &Config{  HTTPPort:       v.GetInt(\"HTTP_PORT\"),  HTTPAddress:    v.GetString(\"HTTP_ADDRESS\"),  GRPCPort:       v.GetInt(\"GRPC_PORT\"),  ENV:            v.GetString(\"ENV\"),  JWTSecret:      v.GetString(\"JWT_SECRET\"),  JWTExpiryHours: v.GetInt(\"JWT_EXPIRY_HOURS\"),  Database: DatabaseCfg{   DSN: v.GetString(\"DATABASE_DSN\"),  },  Redis: RedisCfg{   DSN:        v.GetString(\"REDIS_DSN\"),   DB:         v.GetInt(\"REDIS_DB\"),   Prefix:     v.GetString(\"REDIS_PREFIX\"),   DefaultTTL: v.GetInt(\"REDIS_DEFAULT_TTL\"),  }, }}// hasEnvironmentVariables checks if any APP_* variables are setfunc hasEnvironmentVariables() bool { requiredVars := []string{  \"APP_HTTP_PORT\",  \"APP_DATABASE_DSN\",  \"APP_ENV\", } for _, varName := range requiredVars {  if os.Getenv(varName) != \"\" {   return true  } } return false}// LoadEnv loads environment variables from .env filefunc LoadEnv() { env := os.Getenv(\"APP_ENV\") if env == \"\" {  env = \"development\" } log.Printf(\"📋 Environment: %s\\n\", env) paths := []string{  fmt.Sprintf(\".env.%s\", env),  \".env\",  filepath.Join(\"..\", fmt.Sprintf(\".env.%s\", env)),  filepath.Join(\"..\", \".env\"), } for _, path := range paths {  if err := godotenv.Load(path); err == nil {   log.Printf(\"✅ Loaded from: %s\\n\", path)   return  } } log.Printf(\"⚠️  No .env file found\\n\") log.Printf(\"ℹ️  Using system environment variables\\n\")}// Helper methods for environment checks// IsTest returns true if environment is testfunc (cfg *Config) IsTest() bool { return cfg.ENV == \"test\"}// IsDevelopment returns true if environment is developmentfunc (cfg *Config) IsDevelopment() bool { return cfg.ENV == \"development\"}// IsProduction returns true if environment is productionfunc (cfg *Config) IsProduction() bool { return cfg.ENV == \"production\"}"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Step 4: Validate Configuration"
+    },
+    {
+      "type": "paragraph",
+      "html": "Create <code>internal/config/validate.go</code> to ensure all configuration values are correct:"
+    },
+    {
+      "type": "code",
+      "lang": "go",
+      "code": "package configimport ( \"fmt\" \"log\" \"net\" \"strings\")// ValidateConfig validates all configuration valuesfunc ValidateConfig(cfg *Config) error { checks := []func(*Config) error{  validateHTTPPort,  validateGRPCPort,  validatePortConflict,  validateHTTPAddress,  validateEnvironment,  validateJWTSecret,  validateJWTExpiry,  validateDatabaseDSN,  validateRedisDSN,  validateRedisDB,  validateRedisPrefix,  validateRedisTTL, } for _, check := range checks {  if err := check(cfg); err != nil {   return err  } } validateWarnings(cfg) return nil}// validateHTTPPort validates HTTP portfunc validateHTTPPort(cfg *Config) error { if cfg.HTTPPort <= 0 || cfg.HTTPPort > 65535 {  return fmt.Errorf(   \"invalid HTTP_PORT: %d. Expected value between 1 and 65535\",   cfg.HTTPPort,  ) } return nil}// validateGRPCPort validates GRPC portfunc validateGRPCPort(cfg *Config) error { if cfg.GRPCPort <= 0 || cfg.GRPCPort > 65535 {  return fmt.Errorf(   \"invalid GRPC_PORT: %d. Expected value between 1 and 65535\",   cfg.GRPCPort,  ) } return nil}// validatePortConflict ensures ports don't conflictfunc validatePortConflict(cfg *Config) error { if cfg.HTTPPort == cfg.GRPCPort {  return fmt.Errorf(   \"port conflict: HTTP_PORT and GRPC_PORT cannot be the same (%d)\",   cfg.HTTPPort,  ) } return nil}// validateHTTPAddress validates HTTP addressfunc validateHTTPAddress(cfg *Config) error { if cfg.HTTPAddress == \"\" {  return fmt.Errorf(\"HTTP_ADDRESS cannot be empty\") }  if ip := net.ParseIP(cfg.HTTPAddress); ip == nil && cfg.HTTPAddress != \"localhost\" {  return fmt.Errorf(\"invalid HTTP_ADDRESS: %q\", cfg.HTTPAddress) } return nil}// validateEnvironment validates environment valuefunc validateEnvironment(cfg *Config) error { if cfg.ENV == \"\" {  return fmt.Errorf(\"ENV cannot be empty\") } validEnvs := []string{\"development\", \"test\", \"production\"} for _, valid := range validEnvs {  if cfg.ENV == valid {   return nil  } } return fmt.Errorf(\"invalid ENV: %q\", cfg.ENV)}// validateJWTSecret validates JWT secretfunc validateJWTSecret(cfg *Config) error { if cfg.JWTSecret == \"\" {  return fmt.Errorf(\"JWT_SECRET cannot be empty\") } if len(cfg.JWTSecret) < 32 {  log.Printf(\"⚠️  WARNING: JWT_SECRET is too short (%d chars). \"+   \"Recommended: 32+ characters\\n\", len(cfg.JWTSecret)) } return nil}// validateJWTExpiry validates JWT expiryfunc validateJWTExpiry(cfg *Config) error { if cfg.JWTExpiryHours <= 0 {  return fmt.Errorf(\"invalid JWT_EXPIRY_HOURS: %d\", cfg.JWTExpiryHours) } return nil}// validateDatabaseDSN validates database DSNfunc validateDatabaseDSN(cfg *Config) error { if cfg.Database.DSN == \"\" {  return fmt.Errorf(\"DATABASE_DSN cannot be empty\") } if !strings.HasPrefix(cfg.Database.DSN, \"postgresql://\") &&  !strings.HasPrefix(cfg.Database.DSN, \"postgres://\") &&  !strings.HasPrefix(cfg.Database.DSN, \"mysql://\") {  return fmt.Errorf(\"invalid DATABASE_DSN format\") } return nil}// validateRedisDSN validates Redis DSNfunc validateRedisDSN(cfg *Config) error { if cfg.Redis.DSN == \"\" {  return fmt.Errorf(\"REDIS_DSN cannot be empty\") } parts := strings.Split(cfg.Redis.DSN, \":\") if len(parts) < 2 {  return fmt.Errorf(\"invalid REDIS_DSN format: expected host:port\") } return nil}// validateRedisDB validates Redis DBfunc validateRedisDB(cfg *Config) error { if cfg.Redis.DB < 0 || cfg.Redis.DB > 15 {  return fmt.Errorf(\"invalid REDIS_DB: %d (must be 0-15)\", cfg.Redis.DB) } return nil}// validateRedisPrefix validates Redis prefixfunc validateRedisPrefix(cfg *Config) error { if cfg.Redis.Prefix == \"\" {  return fmt.Errorf(\"REDIS_PREFIX cannot be empty\") } if strings.Contains(cfg.Redis.Prefix, \" \") {  return fmt.Errorf(\"invalid REDIS_PREFIX: cannot contain spaces\") } return nil}// validateRedisTTL validates Redis TTLfunc validateRedisTTL(cfg *Config) error { if cfg.Redis.DefaultTTL <= 0 {  return fmt.Errorf(\"invalid REDIS_DEFAULT_TTL: %d\", cfg.Redis.DefaultTTL) } return nil}// validateWarnings logs warnings for production environmentsfunc validateWarnings(cfg *Config) { if cfg.IsProduction() {  if cfg.JWTSecret == \"this-is-a-secret-key\" {   log.Printf(\"⚠️  SECURITY WARNING: Using default JWT_SECRET in production!\\n\")  }  if cfg.HTTPAddress == \"127.0.0.1\" {   log.Printf(\"⚠️  WARNING: HTTP_ADDRESS is 127.0.0.1 in production\\n\")  }  if strings.Contains(cfg.Database.DSN, \"localhost\") {   log.Printf(\"⚠️  WARNING: DATABASE_DSN points to localhost in production\\n\")  }  if strings.Contains(cfg.Redis.DSN, \"localhost\") {   log.Printf(\"⚠️  WARNING: REDIS_DSN points to localhost in production\\n\")  } }}"
+    },
+    {
+      "type": "image",
+      "src": "https://cdn-images-1.medium.com/max/800/1*xUvxZ1-oqGJQ6_yRqj6YAw.png",
+      "alt": "Environment Configuration in Go: Managing Dev, Test & Production Environments",
+      "caption": "",
+      "width": 1024,
+      "height": 1024
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Step 5: Use Configuration in main.go"
+    },
+    {
+      "type": "paragraph",
+      "html": "Your main entry point should load the environment and config first:"
+    },
+    {
+      "type": "code",
+      "lang": "go",
+      "code": "package mainimport ( \"log\" \"your-module/internal/app\" \"your-module/internal/config\")func main() { // Step 1: Load .env file config.LoadEnv() // Step 2: Load and validate configuration cfg, err := config.NewConfig() if err != nil {  log.Fatalf(\"❌ Configuration error: %v\", err) } // Step 3: Initialize and run app app.NewApp(cfg).Run()}"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Step 6: Handle Different Environments"
+    },
+    {
+      "type": "paragraph",
+      "html": "Use the helper methods to apply environment-specific logic:"
+    },
+    {
+      "type": "code",
+      "lang": "go",
+      "code": "package serverimport ( \"log\" \"your-module/internal/config\")func NewGinEngine(cfg *config.Config) *gin.Engine { engine := gin.New() // Development: Verbose logging if cfg.IsDevelopment() {  gin.SetMode(gin.DebugMode)  log.Println(\"🔍 Running in DEBUG mode\") } // Production: Silent mode if cfg.IsProduction() {  gin.SetMode(gin.ReleaseMode)  log.Println(\"🚀 Running in RELEASE mode\") } // Test: Specific test mode if cfg.IsTest() {  gin.SetMode(gin.TestMode)  log.Println(\"🧪 Running in TEST mode\") } return engine}"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Step 7: Testing with Environment Files"
+    },
+    {
+      "type": "paragraph",
+      "html": "Your tests can easily switch environments:"
+    },
+    {
+      "type": "code",
+      "lang": "go",
+      "code": "package testimport ( \"os\" \"testing\" \"your-module/internal/app\" \"your-module/internal/config\")func TestHTTPServer(t *testing.T) { // Set test environment os.Setenv(\"APP_ENV\", \"test\") // Change to project root (if running from test directory) os.Chdir(\"..\") defer os.Chdir(\"test\") // Load test environment config.LoadEnv() // Create app app := app.NewApp()  // Your test code here}"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Git Commit"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Summary"
+    },
+    {
+      "type": "paragraph",
+      "html": "Environment configuration management is crucial for professional Go applications. Here’s what you’ve learned:"
+    },
+    {
+      "type": "paragraph",
+      "html": "✅ <strong>Structure</strong>: Use&nbsp;<code>.env.development</code>,&nbsp;<code>.env.test</code>,&nbsp;<code>.env.production</code>"
+    },
+    {
+      "type": "paragraph",
+      "html": "✅ <strong>Loading</strong>: Use godotenv to load files, viper for configuration"
+    },
+    {
+      "type": "paragraph",
+      "html": "✅ <strong>Validation</strong>: Validate all config values and fail fast"
+    },
+    {
+      "type": "paragraph",
+      "html": "✅ <strong>Environment-aware</strong>: Use helpers like <code>IsProduction()</code> for logic"
+    },
+    {
+      "type": "paragraph",
+      "html": "✅ <strong>Security</strong>: Never commit actual&nbsp;<code>.env</code> files"
+    },
+    {
+      "type": "paragraph",
+      "html": "✅ <strong>Testing</strong>: Easy environment switching for tests"
+    },
+    {
+      "type": "paragraph",
+      "html": "✅ <strong>Production</strong>: Works with system environment variables"
+    },
+    {
+      "type": "paragraph",
+      "html": "By following these practices, you’ll have:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "🚀 Professional configuration management",
+        "🔒 Secure secret handling",
+        "🧪 Easy testing setup",
+        "📦 Production-ready code",
+        "🎯 Clear separation of concerns"
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "A message from our Founder"
+    },
+    {
+      "type": "paragraph",
+      "html": "<strong>Hey, </strong><a href=\"https://linkedin.com/in/sunilsandhu\" target=\"_blank\" rel=\"noreferrer noopener\"><strong>Sunil</strong></a><strong> here.</strong> I wanted to take a moment to thank you for reading until the end and for being a part of this community."
+    },
+    {
+      "type": "paragraph",
+      "html": "Did you know that our team run these publications as a volunteer effort to over 3.5m monthly readers? <strong>We don’t receive any funding, we do this to support the community. ❤️</strong>"
+    },
+    {
+      "type": "paragraph",
+      "html": "If you want to show some love, please take a moment to <strong>follow me on </strong><a href=\"https://linkedin.com/in/sunilsandhu\" target=\"_blank\" rel=\"noreferrer noopener\"><strong>LinkedIn</strong></a><strong>, </strong><a href=\"https://tiktok.com/@messyfounder\" target=\"_blank\" rel=\"noreferrer noopener\"><strong>TikTok</strong></a>, <a href=\"https://instagram.com/sunilsandhu\" target=\"_blank\" rel=\"noreferrer noopener\"><strong>Instagram</strong></a>. You can also subscribe to our <a href=\"https://newsletter.plainenglish.io/\" target=\"_blank\" rel=\"noreferrer noopener\"><strong>weekly newsletter</strong></a>."
+    },
+    {
+      "type": "paragraph",
+      "html": "And before you go, don’t forget to <strong>clap</strong> and <strong>follow</strong> the writer️!"
+    }
+  ]
+}

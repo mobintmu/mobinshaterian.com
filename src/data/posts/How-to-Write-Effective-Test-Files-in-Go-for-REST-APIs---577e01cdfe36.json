@@ -1,0 +1,252 @@
+{
+  "slug": "How-to-Write-Effective-Test-Files-in-Go-for-REST-APIs---577e01cdfe36",
+  "title": "How to Write Effective Test Files in Go for REST APIs🧪",
+  "subtitle": "Testing is the backbone of reliable software. In Go, writing test files not only ensures correctness but also improves developer…",
+  "excerpt": "Testing is the backbone of reliable software. In Go, writing test files not only ensures correctness but also improves developer…",
+  "date": "2025-10-06",
+  "tags": [],
+  "readingTime": "7 min",
+  "url": "https://medium.com/@mobinshaterian/how-to-write-effective-test-files-in-go-for-rest-apis-577e01cdfe36",
+  "hero": "https://cdn-images-1.medium.com/max/800/1*1vV0ZFtHac6J8i0OZhqL0g.png",
+  "content": [
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "How to Write Effective Test Files in Go for REST APIs🧪"
+    },
+    {
+      "type": "paragraph",
+      "html": "Testing is the backbone of reliable software. In Go, writing test files not only ensures correctness but also improves developer confidence, speeds up refactoring, and documents behavior. Let’s walk through how to structure and implement test files for a typical RESTful API using Gin, SQLC, and DTOs."
+    },
+    {
+      "type": "image",
+      "src": "https://cdn-images-1.medium.com/max/800/1*1vV0ZFtHac6J8i0OZhqL0g.png",
+      "alt": "How to Write Effective Test Files in Go for REST APIs🧪",
+      "caption": "",
+      "width": 1024,
+      "height": 1024
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Go-Simple"
+    },
+    {
+      "type": "paragraph",
+      "html": "In this article, we plan to write unit tests for the Product CRUD operations to ensure the reliability and stability of the application."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "📁 1. Organize Your Test Files"
+    },
+    {
+      "type": "paragraph",
+      "html": "Place your test files in the same package as the code they test, but use the <code>_test.go</code> suffix:"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "internal/  product/    handler.go    handler_test.go  test/    admin_test.go    client_test.go"
+    },
+    {
+      "type": "paragraph",
+      "html": "Use <code>package test</code> for integration-style tests and <code>package product_test</code> for unit tests."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "🏗️ 2. Scaffold Your Test Suite"
+    },
+    {
+      "type": "paragraph",
+      "html": "Use <code>testing.T</code> and <code>t.Run()</code> to structure your tests. For integration tests, wrap your logic in a helper like <code>WithTestServer</code>:"
+    },
+    {
+      "type": "code",
+      "lang": "go",
+      "code": "func TestProductsAdmin(t *testing.T) {    t.Parallel()    WithTestServer(t, func() {        // Setup config and base URL    })}"
+    },
+    {
+      "type": "paragraph",
+      "html": "This isolates each test run and ensures parallel execution."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "🛠️ 3. Create Test Data via API"
+    },
+    {
+      "type": "paragraph",
+      "html": "Use <code>http.Post</code> to create resources:"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "productRequest := sqlc.CreateProductParams{    Name: \"Test Product\",    Description: \"This is a test product\",    Price: 1000,    IsActive: true,}body, _ := json.Marshal(productRequest)resp, _ := http.Post(addr+\"/api/v1/admin/products\", \"application/json\", bytes.NewBuffer(body))"
+    },
+    {
+      "type": "paragraph",
+      "html": "Decode the response into a DTO to reuse in later tests."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "🔍 4. Test Retrieval and Listing"
+    },
+    {
+      "type": "paragraph",
+      "html": "Use <code>http.Get</code> to verify endpoints like <code>ListProducts</code> and <code>GetProductByID</code>:"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "resp, _ := http.Get(addr + \"/api/v1/products\")var products []dto.ClientListProductsResponsejson.NewDecoder(resp.Body).Decode(&products)"
+    },
+    {
+      "type": "paragraph",
+      "html": "Assert that the product you created appears in the list."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "✏️ 5. Test Updates"
+    },
+    {
+      "type": "paragraph",
+      "html": "Use <code>http.NewRequest</code> with <code>PUT</code> to update resources:"
+    },
+    {
+      "type": "code",
+      "lang": "sql",
+      "code": "update := dto.AdminUpdateProductRequest{ Name: \"Updated\", Price: 1500 }body, _ := json.Marshal(update)req, _ := http.NewRequest(http.MethodPut, addr+\"/api/v1/admin/products/1\", bytes.NewBuffer(body))req.Header.Set(\"Content-Type\", \"application/json\")client := &http.Client{}resp, _ := client.Do(req)"
+    },
+    {
+      "type": "paragraph",
+      "html": "Decode and assert the updated fields."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "🗑️ 6. Test Deletion and Post-Delete Behavior"
+    },
+    {
+      "type": "paragraph",
+      "html": "Use <code>DELETE</code> and verify the resource is gone:"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "req, _ := http.NewRequest(http.MethodDelete, addr+\"/api/v1/admin/products/1\", nil)client := &http.Client{}resp, _ := client.Do(req)"
+    },
+    {
+      "type": "paragraph",
+      "html": "Then try a <code>GET</code> and expect a <code>400</code> or <code>500</code> response."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "✅ 7. Assert Everything"
+    },
+    {
+      "type": "paragraph",
+      "html": "Use <code>t.Errorf</code> or <code>t.Fatalf</code> to fail tests with meaningful messages:"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "if resp.StatusCode != http.StatusOK {    t.Errorf(\"Expected 200 OK, got %d\", resp.StatusCode)}"
+    },
+    {
+      "type": "paragraph",
+      "html": "Also assert field values, lengths, and error messages."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "🧼 8. Clean Up and Isolate"
+    },
+    {
+      "type": "paragraph",
+      "html": "Ensure each test is independent. Use teardown logic or a test database that resets between runs. Avoid relying on global state."
+    },
+    {
+      "type": "image",
+      "src": "https://cdn-images-1.medium.com/max/800/1*dU4z-jRX2smBLF_O4byOJg.jpeg",
+      "alt": "How to Write Effective Test Files in Go for REST APIs🧪",
+      "caption": "",
+      "width": 1024,
+      "height": 1024
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "🧠 Final Thoughts"
+    },
+    {
+      "type": "paragraph",
+      "html": "Writing test files is not just about coverage — it’s about clarity, confidence, and collaboration. A well-written test suite lets you refactor fearlessly and onboard teammates faster."
+    },
+    {
+      "type": "paragraph",
+      "html": "If you’re building modular systems with Uber FX and SQLC, test files become your safety net. Keep them clean, descriptive, and example-driven."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Test Coverage"
+    },
+    {
+      "type": "image",
+      "src": "https://cdn-images-1.medium.com/max/800/1*rmDXV395KyOvX1g8sdDWxQ.png",
+      "alt": "How to Write Effective Test Files in Go for REST APIs🧪",
+      "caption": "",
+      "width": 1377,
+      "height": 314
+    },
+    {
+      "type": "image",
+      "src": "https://cdn-images-1.medium.com/max/800/1*dnR419EHnw4cN-5e2gnf-w.png",
+      "alt": "How to Write Effective Test Files in Go for REST APIs🧪",
+      "caption": "",
+      "width": 1073,
+      "height": 504
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Test Files"
+    },
+    {
+      "type": "code",
+      "lang": "go",
+      "code": "package testimport ( \"bytes\" \"encoding/json\" \"fmt\" \"go-simple/internal/config\" \"go-simple/internal/db/sqlc\" \"go-simple/internal/product/dto\" \"io\" \"net/http\" \"testing\")func TestProductsAdmin(t *testing.T) { // t.Parallel() WithTestServer(t, func() {  cfg, err := config.NewConfig()  if err != nil {   t.Fatalf(\"Failed to load config: %v\", err)  }  addr := fmt.Sprintf(\"http://%s:%d\", cfg.HTTPAddress, cfg.HTTPPort)  product := dto.ProductResponse{}  t.Run(\"Create Product\", func(t *testing.T) {   productRequest := sqlc.CreateProductParams{    Name:        \"Test Product\",    Description: \"This is a test product\",    Price:       1000,    IsActive:    true,   }   body, err := json.Marshal(productRequest)   if err != nil {    t.Fatalf(\"Failed to marshal product: %v\", err)   }   resp, err := http.Post(addr+\"/api/v1/admin/products\", \"application/json\", bytes.NewBuffer(body))   if err != nil {    t.Fatalf(\"Failed to send request: %v\", err)   }   if resp.StatusCode != http.StatusCreated {    t.Errorf(\"Expected status 201 Created, got %d\", resp.StatusCode)    // Optional: Print response body for debugging    responseBody, _ := io.ReadAll(resp.Body)    t.Logf(\"Response body: %s\", string(responseBody))   }   defer resp.Body.Close()   if err := json.NewDecoder(resp.Body).Decode(&product); err != nil {    t.Fatalf(\"Failed to decode response: %v\", err)   }  })  t.Run(\"List Products\", func(t *testing.T) {   resp, err := http.Get(addr + \"/api/v1/admin/products\")   if err != nil {    t.Fatalf(\"Failed to send GET request: %v\", err)   }   defer resp.Body.Close()   if resp.StatusCode != http.StatusOK {    t.Errorf(\"Expected status 200 OK, got %d\", resp.StatusCode)    responseBody, _ := io.ReadAll(resp.Body)    t.Logf(\"Response body: %s\", string(responseBody))    return   }   var products dto.ClientListProductsResponse   if err := json.NewDecoder(resp.Body).Decode(&products); err != nil {    t.Fatalf(\"Failed to decode response: %v\", err)   }   if len(products) == 0 {    t.Errorf(\"Expected at least one product, got 0\")   }   findCreatedProduct := false   for index, p := range products {    if p.ID == product.ID {     findCreatedProduct = true     t.Logf(\"Found created product at index %d: %+v\", index, p)     break    }   }   if !findCreatedProduct {    t.Errorf(\"Created product not found in the list\")   }  })  t.Run(\"Get Product By ID\", func(t *testing.T) {   url := fmt.Sprintf(\"%s/api/v1/admin/products/%d\", addr, product.ID)   resp, err := http.Get(url)   if err != nil {    t.Fatalf(\"Failed to send GET request: %v\", err)   }   defer resp.Body.Close()   if resp.StatusCode != http.StatusOK {    t.Errorf(\"Expected status 200 OK, got %d\", resp.StatusCode)    responseBody, _ := io.ReadAll(resp.Body)    t.Logf(\"Response body: %s\", string(responseBody))    return   }   var fetchedProduct dto.ProductResponse   if err := json.NewDecoder(resp.Body).Decode(&fetchedProduct); err != nil {    t.Fatalf(\"Failed to decode response: %v\", err)   }   if fetchedProduct.ID != product.ID {    t.Errorf(\"Expected product ID %d, got %d\", product.ID, fetchedProduct.ID)   }   if fetchedProduct.Name != product.Name {    t.Errorf(\"Expected product name %q, got %q\", product.Name, fetchedProduct.Name)   }  })  t.Run(\"Update Product\", func(t *testing.T) {   updateRequest := dto.AdminUpdateProductRequest{    Name:        \"Updated Product\",    Description: \"Updated description\",    Price:       1500,    IsActive:    false,   }   body, err := json.Marshal(updateRequest)   if err != nil {    t.Fatalf(\"Failed to marshal update request: %v\", err)   }   req, err := http.NewRequest(http.MethodPut, fmt.Sprintf(\"%s/api/v1/admin/products/%d\", addr, product.ID), bytes.NewBuffer(body))   if err != nil {    t.Fatalf(\"Failed to create PUT request: %v\", err)   }   req.Header.Set(\"Content-Type\", \"application/json\")   client := &http.Client{}   resp, err := client.Do(req)   if err != nil {    t.Fatalf(\"Failed to send PUT request: %v\", err)   }   defer resp.Body.Close()   if resp.StatusCode != http.StatusOK {    t.Errorf(\"Expected status 200 OK, got %d\", resp.StatusCode)    responseBody, _ := io.ReadAll(resp.Body)    t.Logf(\"Response body: %s\", string(responseBody))    return   }   var updatedProduct dto.ProductResponse   if err := json.NewDecoder(resp.Body).Decode(&updatedProduct); err != nil {    t.Fatalf(\"Failed to decode update response: %v\", err)   }   if updatedProduct.Name != updateRequest.Name || updatedProduct.Description != updateRequest.Description ||    updatedProduct.Price != updateRequest.Price {    t.Errorf(\"Product update mismatch. Expected %+v, got %+v\", updateRequest, updatedProduct)   }  })  t.Run(\"Delete Product\", func(t *testing.T) {   req, err := http.NewRequest(http.MethodDelete, fmt.Sprintf(\"%s/api/v1/admin/products/%d\", addr, product.ID), nil)   if err != nil {    t.Fatalf(\"Failed to create DELETE request: %v\", err)   }   client := &http.Client{}   resp, err := client.Do(req)   if err != nil {    t.Fatalf(\"Failed to send DELETE request: %v\", err)   }   defer resp.Body.Close()   if resp.StatusCode != http.StatusNoContent {    t.Errorf(\"Expected status 204 No Content, got %d\", resp.StatusCode)    responseBody, _ := io.ReadAll(resp.Body)    t.Logf(\"Response body: %s\", string(responseBody))   }  })  t.Run(\"Verify Product Deleted\", func(t *testing.T) {   resp, err := http.Get(fmt.Sprintf(\"%s/api/v1/admin/products/%d\", addr, product.ID))   if err != nil {    t.Fatalf(\"Failed to send GET request: %v\", err)   }   defer resp.Body.Close()   if resp.StatusCode != http.StatusBadRequest && resp.StatusCode != http.StatusInternalServerError {    t.Errorf(\"Expected error status after deletion, got %d\", resp.StatusCode)   }  }) })}"
+    },
+    {
+      "type": "code",
+      "lang": "go",
+      "code": "package testimport ( \"bytes\" \"encoding/json\" \"fmt\" \"go-simple/internal/config\" \"go-simple/internal/db/sqlc\" \"go-simple/internal/product/dto\" \"io\" \"net/http\" \"testing\")func TestProductsClient(t *testing.T) { // t.Parallel() WithTestServer(t, func() {  cfg, err := config.NewConfig()  if err != nil {   t.Fatalf(\"Failed to load config: %v\", err)  }  addr := fmt.Sprintf(\"http://%s:%d\", cfg.HTTPAddress, cfg.HTTPPort)  // First, create a product via admin API so it's available to the client  var product dto.ProductResponse  t.Run(\"Create Product (Admin)\", func(t *testing.T) {   productRequest := sqlc.CreateProductParams{    Name:        \"Client Visible Product\",    Description: \"Visible to client\",    Price:       2000,    IsActive:    true,   }   body, err := json.Marshal(productRequest)   if err != nil {    t.Fatalf(\"Failed to marshal product: %v\", err)   }   resp, err := http.Post(addr+\"/api/v1/admin/products\", \"application/json\", bytes.NewBuffer(body))   if err != nil {    t.Fatalf(\"Failed to send request: %v\", err)   }   defer resp.Body.Close()   if resp.StatusCode != http.StatusCreated {    t.Fatalf(\"Expected status 201 Created, got %d\", resp.StatusCode)   }   if err := json.NewDecoder(resp.Body).Decode(&product); err != nil {    t.Fatalf(\"Failed to decode response: %v\", err)   }  })  t.Run(\"List Products (Client)\", func(t *testing.T) {   resp, err := http.Get(addr + \"/api/v1/products\")   if err != nil {    t.Fatalf(\"Failed to send GET request: %v\", err)   }   defer resp.Body.Close()   if resp.StatusCode != http.StatusOK {    t.Errorf(\"Expected status 200 OK, got %d\", resp.StatusCode)    responseBody, _ := io.ReadAll(resp.Body)    t.Logf(\"Response body: %s\", string(responseBody))    return   }   var products dto.ClientListProductsResponse   if err := json.NewDecoder(resp.Body).Decode(&products); err != nil {    t.Fatalf(\"Failed to decode response: %v\", err)   }   found := false   for _, p := range products {    if p.ID == product.ID {     found = true     t.Logf(\"Found product in client list: %+v\", p)     break    }   }   if !found {    t.Errorf(\"Product not found in client list\")   }  })  t.Run(\"Get Product By ID (Client)\", func(t *testing.T) {   resp, err := http.Get(fmt.Sprintf(\"%s/api/v1/products/%d\", addr, product.ID))   if err != nil {    t.Fatalf(\"Failed to send GET request: %v\", err)   }   defer resp.Body.Close()   if resp.StatusCode != http.StatusOK {    t.Errorf(\"Expected status 200 OK, got %d\", resp.StatusCode)    responseBody, _ := io.ReadAll(resp.Body)    t.Logf(\"Response body: %s\", string(responseBody))    return   }   var fetchedProduct dto.ProductResponse   if err := json.NewDecoder(resp.Body).Decode(&fetchedProduct); err != nil {    t.Fatalf(\"Failed to decode response: %v\", err)   }   if fetchedProduct.ID != product.ID {    t.Errorf(\"Expected product ID %d, got %d\", product.ID, fetchedProduct.ID)   }   if fetchedProduct.Name != product.Name {    t.Errorf(\"Expected product name %q, got %q\", product.Name, fetchedProduct.Name)   }  })  t.Run(\"Delete Product\", func(t *testing.T) {   req, err := http.NewRequest(http.MethodDelete, fmt.Sprintf(\"%s/api/v1/admin/products/%d\", addr, product.ID), nil)   if err != nil {    t.Fatalf(\"Failed to create DELETE request: %v\", err)   }   client := &http.Client{}   resp, err := client.Do(req)   if err != nil {    t.Fatalf(\"Failed to send DELETE request: %v\", err)   }   defer resp.Body.Close()   if resp.StatusCode != http.StatusNoContent {    t.Errorf(\"Expected status 204 No Content, got %d\", resp.StatusCode)    responseBody, _ := io.ReadAll(resp.Body)    t.Logf(\"Response body: %s\", string(responseBody))   }  }) })}"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "A message from our Founder"
+    },
+    {
+      "type": "paragraph",
+      "html": "<strong>Hey, </strong><a href=\"https://linkedin.com/in/sunilsandhu\" target=\"_blank\" rel=\"noreferrer noopener\"><strong>Sunil</strong></a><strong> here.</strong> I wanted to take a moment to thank you for reading until the end and for being a part of this community."
+    },
+    {
+      "type": "paragraph",
+      "html": "Did you know that our team run these publications as a volunteer effort to over 3.5m monthly readers? <strong>We don’t receive any funding, we do this to support the community. ❤️</strong>"
+    },
+    {
+      "type": "paragraph",
+      "html": "If you want to show some love, please take a moment to <strong>follow me on </strong><a href=\"https://linkedin.com/in/sunilsandhu\" target=\"_blank\" rel=\"noreferrer noopener\"><strong>LinkedIn</strong></a><strong>, </strong><a href=\"https://tiktok.com/@messyfounder\" target=\"_blank\" rel=\"noreferrer noopener\"><strong>TikTok</strong></a>, <a href=\"https://instagram.com/sunilsandhu\" target=\"_blank\" rel=\"noreferrer noopener\"><strong>Instagram</strong></a>. You can also subscribe to our <a href=\"https://newsletter.plainenglish.io/\" target=\"_blank\" rel=\"noreferrer noopener\"><strong>weekly newsletter</strong></a>."
+    },
+    {
+      "type": "paragraph",
+      "html": "And before you go, don’t forget to <strong>clap</strong> and <strong>follow</strong> the writer️!"
+    }
+  ]
+}

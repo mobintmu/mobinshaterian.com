@@ -1,0 +1,260 @@
+{
+  "slug": "Adding-ClickHouse-to-a-Go-Project--A-Practical-Guide-Inspired-by-go-simple-5a4cfef93e41",
+  "title": "Adding ClickHouse to a Go Project: A Practical Guide Inspired by go-simple",
+  "subtitle": "ClickHouse has become a favorite for developers who need fast analytical queries, real‑time inserts, and effortless scalability. But…",
+  "excerpt": "ClickHouse has become a favorite for developers who need fast analytical queries, real‑time inserts, and effortless scalability. But…",
+  "date": "2025-12-14",
+  "tags": [],
+  "readingTime": "4 min",
+  "url": "https://medium.com/@mobinshaterian/adding-clickhouse-to-a-go-project-a-practical-guide-inspired-by-go-simple-5a4cfef93e41",
+  "hero": "https://cdn-images-1.medium.com/max/800/1*ZOWPI0j5bM3YfoeF4JjGgg.png",
+  "content": [
+    {
+      "type": "paragraph",
+      "html": "ClickHouse has become a favorite for developers who need fast analytical queries, real‑time inserts, and effortless scalability. But integrating it into a clean, modular Go project can feel intimidating if you haven’t done it before. In this article, I’ll walk through a practical, architecture‑friendly way to add ClickHouse to a Go codebase — using the patterns from the <em>go-simple</em> project as inspiration."
+    },
+    {
+      "type": "paragraph",
+      "html": "The goal is simple: <strong>Add ClickHouse as a first‑class storage backend without breaking the project’s clean structure.</strong>"
+    },
+    {
+      "type": "image",
+      "src": "https://cdn-images-1.medium.com/max/800/1*ZOWPI0j5bM3YfoeF4JjGgg.png",
+      "alt": "Adding ClickHouse to a Go Project: A Practical Guide Inspired by go-simple",
+      "caption": "",
+      "width": 1408,
+      "height": 768
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Go-simple"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Go-Simple Article"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Start With Docker Compose"
+    },
+    {
+      "type": "paragraph",
+      "html": "Before writing any Go code, you need ClickHouse running locally. The easiest way is to add a service to your existing <code>docker-compose.yaml</code>:"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "services:  clickhouse:    image: clickhouse/clickhouse-server:24.1    ports:      - \"8123:8123\"   # HTTP interface      - \"9000:9000\"   # Native TCP interface    environment:      CLICKHOUSE_DB: default      CLICKHOUSE_USER: default      CLICKHOUSE_PASSWORD: pass      CLICKHOUSE_DEFAULT_ACCESS_MANAGEMENT: 1    volumes:      - clickhouse_data:/var/lib/clickhousevolumes:  clickhouse_data:"
+    },
+    {
+      "type": "paragraph",
+      "html": "A few notes:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "The <strong>native TCP port (9000)</strong> is what the Go driver uses.",
+        "<code>CLICKHOUSE_DEFAULT_ACCESS_MANAGEMENT=1</code> enables password authentication.",
+        "The <code>default</code> user now requires the password <code>pass</code>."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "html": "Once this is running, you can create tables or insert data using <code>curl</code>:"
+    },
+    {
+      "type": "code",
+      "lang": "bash",
+      "code": "curl -X POST \"http://localhost:8123\" \\     -u default:pass \\     --data-binary \"SELECT 1\""
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Create Your Table Manually"
+    },
+    {
+      "type": "paragraph",
+      "html": "ClickHouse is schema‑first, so define your table before writing Go code. For a product model like:"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "type ProductResponse struct {    ID          int32    Name        string    Description string    Price       int64}"
+    },
+    {
+      "type": "paragraph",
+      "html": "The matching ClickHouse table is:"
+    },
+    {
+      "type": "code",
+      "lang": "bash",
+      "code": "curl -X POST \"http://localhost:8123\" \\     -u default:pass \\     --data-binary \"CREATE TABLE IF NOT EXISTS products (        id Int32,        name String,        description String,        price Int64     ) ENGINE = MergeTree()     ORDER BY (id)\""
+    },
+    {
+      "type": "paragraph",
+      "html": "Insert sample data:"
+    },
+    {
+      "type": "code",
+      "lang": "bash",
+      "code": "curl -X POST \"http://localhost:8123\" \\     -u default:pass \\     --data-binary \"INSERT INTO products FORMAT Values     (1, 'Laptop', 'High-performance laptop', 129900),     (2, 'Mouse', 'Wireless mouse', 2999)\""
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Add ClickHouse Configuration to Your Go Project"
+    },
+    {
+      "type": "paragraph",
+      "html": "A clean Go project keeps configuration centralized. Add a ClickHouse section:"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "type ClickHouseCfg struct { Host     string Port     string DB       string User     string Password string}"
+    },
+    {
+      "type": "paragraph",
+      "html": "Now, ClickHouse settings load the same way as SQL and Redis."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Build a ClickHouse Storage Module"
+    },
+    {
+      "type": "paragraph",
+      "html": "Following the go-simple architecture, each backend gets its own folder:"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "internal/storage/    sql/    cache/    clickhouse/"
+    },
+    {
+      "type": "paragraph",
+      "html": "Inside <code>clickhouse.go</code>:"
+    },
+    {
+      "type": "code",
+      "lang": "go",
+      "code": "package clickhouseimport ( \"context\" \"fmt\" \"go-clickhouse/internal/config\" \"go-clickhouse/internal/storage/clickhouse/product\" \"github.com/ClickHouse/clickhouse-go/v2\")type ClickHouse struct { conn    clickhouse.Conn Product *product.Repository}func (c *ClickHouse) Conn() clickhouse.Conn { return c.conn}func New(cfg *config.Config) (*ClickHouse, error) { conn, err := clickhouse.Open(&clickhouse.Options{  Addr: []string{cfg.ClickHouse.Host + \":\" + cfg.ClickHouse.Port},  Auth: clickhouse.Auth{   Database: cfg.ClickHouse.DB,   Username: cfg.ClickHouse.User,   Password: cfg.ClickHouse.Password,  }, }) if err != nil {  fmt.Println(\"🛑 Click House could not connect: \", err)  return nil, err } if err := conn.Ping(context.Background()); err != nil {  conn.Close()  fmt.Println(\"🛑 Click House could not connect: \", err)  return nil, err } return &ClickHouse{  conn:    conn,  Product: product.NewProductRepository(conn), }, nil}"
+    },
+    {
+      "type": "paragraph",
+      "html": "A key detail: <code>clickhouse.Conn</code> is an <strong>interface</strong>, so you store it by value, not by pointer."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Implement a Repository Layer"
+    },
+    {
+      "type": "paragraph",
+      "html": "Just like SQL repositories, ClickHouse gets its own:"
+    },
+    {
+      "type": "code",
+      "lang": "go",
+      "code": "package productimport ( \"context\" \"github.com/ClickHouse/clickhouse-go/v2\")type Product struct { ID          int32 Name        string Description string Price       int64}type Repository struct { conn clickhouse.Conn}func NewProductRepository(conn clickhouse.Conn) *Repository { return &Repository{conn: conn}}const productColumns = `id, name, description, price`func (r *Repository) SelectProduct(ctx context.Context, id int32) (*Product, error) { var p Product err := r.conn.QueryRow(ctx, `        SELECT `+productColumns+`        FROM products        WHERE id = ?        LIMIT 1    `, id).Scan(&p.ID, &p.Name, &p.Description, &p.Price) if err != nil {  return nil, err } return &p, nil}"
+    },
+    {
+      "type": "paragraph",
+      "html": "Using <code>ScanStruct</code> keeps the code clean and avoids manual field mapping."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Wire ClickHouse Into the Global Storage Layer"
+    },
+    {
+      "type": "paragraph",
+      "html": "Your <code>Storage</code> struct becomes:"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "type Storage struct {    SQL        *sql.SQL    Cache      *cache.Cache    ClickHouse *clickhouse.ClickHouse}"
+    },
+    {
+      "type": "paragraph",
+      "html": "Constructor:"
+    },
+    {
+      "type": "code",
+      "lang": "go",
+      "code": "func New(pg *sql.SQL, cache *cache.Cache, ch *clickhouse.ClickHouse) *Storage {    return &Storage{        SQL:        pg,        Cache:      cache,        ClickHouse: ch,    }}"
+    },
+    {
+      "type": "paragraph",
+      "html": "Now your service layer can do:"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "product, err := s.storage.ClickHouse.ProductCH.GetProductByID(ctx, id)"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Add Tests for the ClickHouse-Backed Endpoints"
+    },
+    {
+      "type": "paragraph",
+      "html": "A simple test for fetching a product:"
+    },
+    {
+      "type": "code",
+      "lang": "go",
+      "code": "package testimport ( \"encoding/json\" \"fmt\" \"go-clickhouse/internal/config\" \"go-clickhouse/internal/product/dto\" \"io\" \"net/http\" \"testing\")func TestProductReportClient(t *testing.T) { // t.Parallel() WithHttpTestServer(t, func() {  cfg, err := config.NewConfig()  if err != nil {   t.Fatalf(\"Failed to load config: %v\", err)  }  addr := fmt.Sprintf(\"http://%s:%d\", cfg.HTTPAddress, cfg.HTTPPort)  // the product has been create in different way  product := dto.ProductResponse{   ID:          1,   Name:        \"Test Product for Client Report\",   Description: \"A product created for testing client report endpoint\",   Price:       1999,  }  clientGetProductByIDWithReport(t, product, addr) })}func clientGetProductByIDWithReport(t *testing.T, product dto.ProductResponse, addr string) { t.Run(\"List Products (Client)\", func(t *testing.T) {  resp, err := http.Get(addr + \"/api/v1/products/\" + fmt.Sprintf(\"%d/report\", product.ID))  if err != nil {   t.Fatalf(\"Failed to send GET request: %v\", err)  }  defer resp.Body.Close()  if resp.StatusCode != http.StatusOK {   t.Errorf(\"Expected status 200 OK, got %d\", resp.StatusCode)   responseBody, _ := io.ReadAll(resp.Body)   t.Logf(ResponseBodyMessage, string(responseBody))   return  }  var result dto.ProductResponse  if err := json.NewDecoder(resp.Body).Decode(&result); err != nil {   t.Fatalf(FailedToDecodeMessage, err)  }  if result.ID != product.ID {   t.Fatal(\"Product not found in client list\")  } })}"
+    },
+    {
+      "type": "paragraph",
+      "html": "This ensures your ClickHouse integration works end‑to‑end."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Git commit"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Go-clickhouse project"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Conclusion"
+    },
+    {
+      "type": "paragraph",
+      "html": "Adding ClickHouse to a Go project doesn’t have to be messy. By following a clean architecture — like the one used in go-simple — you can introduce a new storage backend without disrupting the rest of your system."
+    },
+    {
+      "type": "paragraph",
+      "html": "The key steps are:"
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Add ClickHouse to Docker Compose",
+        "Create tables manually (or via migrations)",
+        "Add ClickHouse config to your Go project",
+        "Build a ClickHouse storage module",
+        "Implement repository methods",
+        "Wire it into the global storage layer",
+        "Test your endpoints end‑to‑end"
+      ]
+    },
+    {
+      "type": "paragraph",
+      "html": "The result is a clean, modular, production‑ready ClickHouse integration that feels native to your Go codebase."
+    }
+  ]
+}

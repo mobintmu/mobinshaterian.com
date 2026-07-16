@@ -1,0 +1,249 @@
+{
+  "slug": "Using-open-telemetry-in-Golang-ef282c236e77",
+  "title": "Using open telemetry in Golang",
+  "subtitle": "In such a way that traces and metrics are emitted to the console.",
+  "excerpt": "In such a way that traces and metrics are emitted to the console.",
+  "date": "2023-11-15",
+  "tags": [],
+  "readingTime": "6 min",
+  "url": "https://medium.com/@mobinshaterian/using-open-telemetry-in-golang-ef282c236e77",
+  "hero": "https://cdn-images-1.medium.com/max/800/1*Wu0W1mNZ_0fhfeGekIrZNA.png",
+  "content": [
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Using open telemetry in Golang"
+    },
+    {
+      "type": "paragraph",
+      "html": "In such a way that <a href=\"https://opentelemetry.io/docs/concepts/signals/traces/\" target=\"_blank\" rel=\"noreferrer noopener\">traces</a> and <a href=\"https://opentelemetry.io/docs/concepts/signals/metrics/\" target=\"_blank\" rel=\"noreferrer noopener\">metrics</a> are emitted to the console."
+    },
+    {
+      "type": "paragraph",
+      "html": "You can use in other framework too look like <strong>gin</strong>"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Connect open telemetry into gin"
+    },
+    {
+      "type": "image",
+      "src": "https://cdn-images-1.medium.com/max/800/1*Wu0W1mNZ_0fhfeGekIrZNA.png",
+      "alt": "https://signoz.io/blog/opentelemetry-backend/",
+      "caption": "https://signoz.io/blog/opentelemetry-backend/",
+      "width": 739,
+      "height": 587
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Open telemetry examples"
+    },
+    {
+      "type": "paragraph",
+      "html": "<a href=\"https://github.com/open-telemetry/opentelemetry-go/tree/main/example\" target=\"_blank\" rel=\"noreferrer noopener\">https://github.com/open-telemetry/opentelemetry-go/tree/main/example</a>"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Get dependency of open telemetry in Golang"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "go get \"go.opentelemetry.io/otel\" \\  \"go.opentelemetry.io/otel/exporters/stdout/stdoutmetric\" \\  \"go.opentelemetry.io/otel/exporters/stdout/stdouttrace\" \\  \"go.opentelemetry.io/otel/propagation\" \\  \"go.opentelemetry.io/otel/sdk/metric\" \\  \"go.opentelemetry.io/otel/sdk/resource\" \\  \"go.opentelemetry.io/otel/sdk/trace\" \\  \"go.opentelemetry.io/otel/semconv/v1.21.0\" \\  \"go.opentelemetry.io/contrib/instrumentation/net/http/otelhttp\""
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "make otel.go file"
+    },
+    {
+      "type": "code",
+      "lang": "go",
+      "code": "package mainimport ( \"context\" \"errors\" \"time\" \"go.opentelemetry.io/otel\" \"go.opentelemetry.io/otel/exporters/stdout/stdoutmetric\" \"go.opentelemetry.io/otel/exporters/stdout/stdouttrace\" \"go.opentelemetry.io/otel/propagation\" \"go.opentelemetry.io/otel/sdk/metric\" \"go.opentelemetry.io/otel/sdk/resource\" \"go.opentelemetry.io/otel/sdk/trace\" semconv \"go.opentelemetry.io/otel/semconv/v1.21.0\")// setupOTelSDK bootstraps the OpenTelemetry pipeline.// If it does not return an error, make sure to call shutdown for proper cleanup.func setupOTelSDK(ctx context.Context, serviceName, serviceVersion string) (shutdown func(context.Context) error, err error) { var shutdownFuncs []func(context.Context) error // shutdown calls cleanup functions registered via shutdownFuncs. // The errors from the calls are joined. // Each registered cleanup will be invoked once. shutdown = func(ctx context.Context) error {  var err error  for _, fn := range shutdownFuncs {   err = errors.Join(err, fn(ctx))  }  shutdownFuncs = nil  return err } // handleErr calls shutdown for cleanup and makes sure that all errors are returned. handleErr := func(inErr error) {  err = errors.Join(inErr, shutdown(ctx)) } // Set up resource. res, err := newResource(serviceName, serviceVersion) if err != nil {  handleErr(err)  return } // Set up propagator. prop := newPropagator() otel.SetTextMapPropagator(prop) // Set up trace provider. tracerProvider, err := newTraceProvider(res) if err != nil {  handleErr(err)  return } shutdownFuncs = append(shutdownFuncs, tracerProvider.Shutdown) otel.SetTracerProvider(tracerProvider) // Set up meter provider. meterProvider, err := newMeterProvider(res) if err != nil {  handleErr(err)  return } shutdownFuncs = append(shutdownFuncs, meterProvider.Shutdown) otel.SetMeterProvider(meterProvider) return}func newResource(serviceName, serviceVersion string) (*resource.Resource, error) { return resource.Merge(resource.Default(),  resource.NewWithAttributes(semconv.SchemaURL,   semconv.ServiceName(serviceName),   semconv.ServiceVersion(serviceVersion),  ))}func newPropagator() propagation.TextMapPropagator { return propagation.NewCompositeTextMapPropagator(  propagation.TraceContext{},  propagation.Baggage{}, )}func newTraceProvider(res *resource.Resource) (*trace.TracerProvider, error) { traceExporter, err := stdouttrace.New(  stdouttrace.WithPrettyPrint()) if err != nil {  return nil, err } traceProvider := trace.NewTracerProvider(  trace.WithBatcher(traceExporter,   // Default is 5s. Set to 1s for demonstrative purposes.   trace.WithBatchTimeout(time.Second)),  trace.WithResource(res), ) return traceProvider, nil}func newMeterProvider(res *resource.Resource) (*metric.MeterProvider, error) { metricExporter, err := stdoutmetric.New() if err != nil {  return nil, err } meterProvider := metric.NewMeterProvider(  metric.WithResource(res),  metric.WithReader(metric.NewPeriodicReader(metricExporter,   // Default is 1m. Set to 3s for demonstrative purposes.   metric.WithInterval(3*time.Second))), ) return meterProvider, nil}"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "add Gin in open telemetry"
+    },
+    {
+      "type": "paragraph",
+      "html": "<a href=\"https://signoz.io/blog/opentelemetry-gin/\" target=\"_blank\" rel=\"noreferrer noopener\">https://signoz.io/blog/opentelemetry-gin/</a>"
+    },
+    {
+      "type": "paragraph",
+      "html": "<a href=\"https://github.com/open-telemetry/opentelemetry-go-contrib/blob/main/instrumentation/github.com/gin-gonic/gin/otelgin/example/server.go\" target=\"_blank\" rel=\"noreferrer noopener\">https://github.com/open-telemetry/opentelemetry-go-contrib/blob/main/instrumentation/github.com/gin-gonic/gin/otelgin/example/server.go</a>"
+    },
+    {
+      "type": "code",
+      "lang": "go",
+      "code": "func InitTracer(serviceName string) (*sdktrace.TracerProvider, error) { secureOption := otlptracegrpc.WithInsecure() exporter, err := otlptrace.New(  context.Background(),  otlptracegrpc.NewClient(   secureOption,   otlptracegrpc.WithEndpoint(config.OtelEndpoint()),  ), ) if err != nil {  log.Fatal(err) } resources, err := resource.New(  context.Background(),  resource.WithAttributes(   attribute.String(\"service.name\", ServiceName()),  ), ) if err != nil {  log.Fatal(\"Could not set resources: \", err) } tp := sdktrace.NewTracerProvider(  sdktrace.WithSampler(sdktrace.TraceIDRatioBased(config.OtelSampleRate())), //sdktrace.AlwaysSample()  sdktrace.WithBatcher(exporter),  sdktrace.WithResource(resources), ) otel.SetTracerProvider(tp) // Set up meter provider. metricExporter, err := stdoutmetric.New() if err != nil {  return nil, err } meterProvider := metric.NewMeterProvider(  metric.WithReader(metric.NewPeriodicReader(metricExporter,   // Default is 1m. Set to 3s for demonstrative purposes.   metric.WithInterval(3*time.Second))),  metric.WithResource(resources), ) otel.SetMeterProvider(meterProvider) //propagator otel.SetTextMapPropagator(propagation.NewCompositeTextMapPropagator(propagation.TraceContext{}, propagation.Baggage{})) TracerMain = tp.Tracer(serviceName) return tp, nil}"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Add metric with open telemetry"
+    },
+    {
+      "type": "paragraph",
+      "html": "<a href=\"https://github.com/open-telemetry/opentelemetry-go/blob/main/example/dice/rolldice.go\" target=\"_blank\" rel=\"noreferrer noopener\">https://github.com/open-telemetry/opentelemetry-go/blob/main/example/dice/rolldice.go</a>"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "ADD event"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": " var span trace.Span ctx, span = tracer.Start(ctx, \"operation\") defer span.End() span.AddEvent(\"Nice operation!\", trace.WithAttributes(attribute.Int(\"bogons\", 100))) span.SetAttributes(anotherKey.String(\"yes\")) if err := foo.SubOperation(ctx); err != nil {  panic(err) }"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Connect to prometeus"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Sampling"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "type key intconst sampleKey key = iotatype sampler struct { delegate trace.Sampler}func New(delegate trace.Sampler) trace.Sampler { return &sampler{delegate: delegate}}func (s *sampler) ShouldSample(p trace.SamplingParameters) trace.SamplingResult { if _, ok := p.ParentContext.Value(sampleKey).(struct{}); ok {  return trace.SamplingResult{   Decision:   trace.RecordAndSample,   Tracestate: traceapi.SpanContextFromContext(p.ParentContext).TraceState(),  } } return s.delegate.ShouldSample(p)}func (s *sampler) Description() string { return fmt.Sprintf(\"my-sampler{%s}\", s.delegate.Description())}func main() { s := New(trace.ParentBased(trace.TraceIDRatioBased(0.5))) tracer := trace.NewTracerProvider(trace.WithSampler(s)).Tracer(\"my-app\") ctx := context.WithValue(context.Background(), sampleKey, struct{}{}) _, span := tracer.Start(ctx, \"span name\") fmt.Println(span.SpanContext().IsSampled())}"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Add graceful shutdown"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "// setupOTelSDK bootstraps the OpenTelemetry pipeline.// If it does not return an error, make sure to call shutdown for proper cleanup.func SetupOTelSDK(ctx context.Context, serviceName, serviceVersion string) (shutdown func(context.Context) error, err error) { var shutdownFuncs []func(context.Context) error // shutdown calls cleanup functions registered via shutdownFuncs. // The errors from the calls are joined. // Each registered cleanup will be invoked once. shutdown = func(ctx context.Context) error {  var err error  for _, fn := range shutdownFuncs {   err = errors.Join(err, fn(ctx))  }  shutdownFuncs = nil  return err } // handleErr calls shutdown for cleanup and makes sure that all errors are returned. handleErr := func(inErr error) {  err = errors.Join(inErr, shutdown(ctx)) } // Set up resource. res, err := newResource(serviceName, serviceVersion) if err != nil {  handleErr(err)  return } // Set up propagator. prop := newPropagator() otel.SetTextMapPropagator(prop) // Set up trace provider. tracerProvider, err := newTraceProvider(res) if err != nil {  handleErr(err)  return } shutdownFuncs = append(shutdownFuncs, tracerProvider.Shutdown) otel.SetTracerProvider(tracerProvider) // Set up meter provider. meterProvider, err := newMeterProvider(res) if err != nil {  handleErr(err)  return } shutdownFuncs = append(shutdownFuncs, meterProvider.Shutdown) otel.SetMeterProvider(meterProvider) return}func newResource(serviceName, serviceVersion string) (*resource.Resource, error) { return resource.Merge(resource.Default(),  resource.NewWithAttributes(semconv.SchemaURL,   semconv.ServiceName(serviceName),   semconv.ServiceVersion(serviceVersion),  ))}func newPropagator() propagation.TextMapPropagator { return propagation.NewCompositeTextMapPropagator(  propagation.TraceContext{},  propagation.Baggage{}, )}func newTraceProvider(res *resource.Resource) (*trace.TracerProvider, error) { traceExporter, err := stdouttrace.New(  stdouttrace.WithPrettyPrint()) if err != nil {  return nil, err } traceProvider := trace.NewTracerProvider(  trace.WithBatcher(traceExporter,   // Default is 5s. Set to 1s for demonstrative purposes.   trace.WithBatchTimeout(time.Second)),  trace.WithResource(res), ) return traceProvider, nil}func newMeterProvider(res *resource.Resource) (*metric.MeterProvider, error) { metricExporter, err := stdoutmetric.New() if err != nil {  return nil, err } meterProvider := metric.NewMeterProvider(  metric.WithResource(res),  metric.WithReader(metric.NewPeriodicReader(metricExporter,   // Default is 1m. Set to 3s for demonstrative purposes.   metric.WithInterval(3*time.Second))), ) return meterProvider, nil}"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Add traceClientHttp"
+    },
+    {
+      "type": "paragraph",
+      "html": "Initialize OpenTelemetry SDK for Go. Replace Endpoint and URLPath with the endpoint obtained in the Prerequisites section."
+    },
+    {
+      "type": "paragraph",
+      "html": "You can submit data by using OpenTelemetry SDK for Go or forward data by using the open source OpenTelemetry Collector."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "If you submit data by using OpenTelemetry SDK for Go, replace Endpoint and URLPath with the endpoint obtained in the Prerequisites section.",
+        "If you forward data by using the open source OpenTelemetry Collector, replace Endpoint with the IP address of your on-premises service and delete the headers"
+      ]
+    },
+    {
+      "type": "code",
+      "lang": "go",
+      "code": "func initProvider() func() {    ctx := context.Background()    traceClientHttp := otlptracehttp.NewClient(        otlptracehttp.WithEndpoint(\"127.0.XX.XX:8080\"),      //Replace Endpoint with the endpoint obtained in the Prerequisites section.         otlptracehttp.WithURLPath(\"/adapt_xxxxx/api/otlp/traces\"),   //Replace URLPath with the endpoint obtained in the Prerequisites section.         otlptracehttp.WithInsecure())    otlptracehttp.WithCompression(1)    traceExp, err := otlptrace.New(ctx, traceClientHttp)    handleErr(err, \"Failed to create the collector trace exporter\")    res, err := resource.New(ctx,        resource.WithFromEnv(),        resource.WithProcess(),        resource.WithTelemetrySDK(),        resource.WithHost(),        resource.WithAttributes(            // Specify the service name displayed on the backend of Tracing Analysis.             semconv.ServiceNameKey.String(common.ClientServiceName),        ),    )    handleErr(err, \"failed to create resource\")    bsp := sdktrace.NewBatchSpanProcessor(traceExp)    tracerProvider := sdktrace.NewTracerProvider(        sdktrace.WithSampler(sdktrace.AlwaysSample()),        sdktrace.WithResource(res),        sdktrace.WithSpanProcessor(bsp),    )    // Set the global propagator to tracecontext. The global propagator is not specified by default.     otel.SetTextMapPropagator(propagation.TraceContext{})    otel.SetTracerProvider(tracerProvider)    log.Println(\"OTEL init success\")    return func() {        cxt, cancel := context.WithTimeout(ctx, time.Second)        defer cancel()        if err := traceExp.Shutdown(cxt); err != nil {            otel.Handle(err)        }    }}"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Add console tracer"
+    },
+    {
+      "type": "paragraph",
+      "html": "<strong>For run locally</strong>"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "exporter, err := stdouttrace.New(stdouttrace.WithPrettyPrint())  if err != nil {  log.Fatal(err)}"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "if you had a “ failed to build resolver: passthrough: received empty target in Build() ” error in tests, then put below code for your open telemetry in test cases:"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": " tp = SDKTrace.NewTracerProvider(  SDKTrace.WithSpanProcessor(sentryOtel.NewSentrySpanProcessor()), ) otel.SetTracerProvider(tp) otel.SetTextMapPropagator(sentryOtel.NewSentryPropagator()) Tracer = tp.Tracer(serviceName) return tp}"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "OpenTelemetry Protocol Exporter"
+    },
+    {
+      "type": "paragraph",
+      "html": "<strong>Endpoint (OTLP/HTTP)</strong>:"
+    },
+    {
+      "type": "paragraph",
+      "html": "When using <code>OTEL_EXPORTER_OTLP_ENDPOINT</code>, exporters MUST construct per-signal URLs as <a href=\"https://opentelemetry.io/docs/specs/otel/protocol/exporter/#endpoint-urls-for-otlphttp\" target=\"_blank\" rel=\"noreferrer noopener\">described below</a>."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Default: <code>http://localhost:4318</code> [1]",
+        "Env vars: <code>OTEL_EXPORTER_OTLP_ENDPOINT</code> <code>OTEL_EXPORTER_OTLP_TRACES_ENDPOINT</code> <code>OTEL_EXPORTER_OTLP_METRICS_ENDPOINT</code> <code>OTEL_EXPORTER_OTLP_LOGS_ENDPOINT</code>"
+      ]
+    },
+    {
+      "type": "paragraph",
+      "html": "<strong>Endpoint (OTLP/gRPC)</strong>:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Default: <code>http://localhost:4317</code> [1]",
+        "Env vars: <code>OTEL_EXPORTER_OTLP_ENDPOINT</code> <code>OTEL_EXPORTER_OTLP_TRACES_ENDPOINT</code> <code>OTEL_EXPORTER_OTLP_METRICS_ENDPOINT</code> <code>OTEL_EXPORTER_OTLP_LOGS_ENDPOINT</code>"
+      ]
+    },
+    {
+      "type": "paragraph",
+      "html": "<strong>Insecure</strong>:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Default: <code>false</code>",
+        "Env vars: <code>OTEL_EXPORTER_OTLP_INSECURE</code> <code>OTEL_EXPORTER_OTLP_TRACES_INSECURE</code> <code>OTEL_EXPORTER_OTLP_METRICS_INSECURE</code> <code>OTEL_EXPORTER_OTLP_LOGS_INSECURE</code>"
+      ]
+    },
+    {
+      "type": "paragraph",
+      "html": "<strong>Timeout</strong>: Maximum time the OTLP exporter will wait for each batch export."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Default: 10s",
+        "Env vars: <code>OTEL_EXPORTER_OTLP_TIMEOUT</code> <code>OTEL_EXPORTER_OTLP_TRACES_TIMEOUT</code> <code>OTEL_EXPORTER_OTLP_METRICS_TIMEOUT</code> <code>OTEL_EXPORTER_OTLP_LOGS_TIMEOUT</code>"
+      ]
+    },
+    {
+      "type": "paragraph",
+      "html": "<strong>Protocol</strong>: The transport protocol. Options MUST be one of: <code>grpc</code>, <code>http/protobuf</code>, <code>http/json</code>. See <a href=\"https://opentelemetry.io/docs/specs/otel/protocol/exporter/#specify-protocol\" target=\"_blank\" rel=\"noreferrer noopener\">Specify Protocol</a> for more details."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Default: <code>http/protobuf</code>",
+        "Env vars: <code>OTEL_EXPORTER_OTLP_PROTOCOL</code> <code>OTEL_EXPORTER_OTLP_TRACES_PROTOCOL</code> <code>OTEL_EXPORTER_OTLP_METRICS_PROTOCOL</code> <code>OTEL_EXPORTER_OTLP_LOGS_PROTOCOL</code>"
+      ]
+    }
+  ]
+}
