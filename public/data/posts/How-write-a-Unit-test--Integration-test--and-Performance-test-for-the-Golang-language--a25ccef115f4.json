@@ -7,7 +7,7 @@
   "tags": [],
   "readingTime": "14 min",
   "url": "https://medium.com/@mobinshaterian/how-write-a-unit-test-integration-test-and-performance-test-for-the-golang-language-a25ccef115f4",
-  "hero": "https://cdn-images-1.medium.com/max/800/1*I2NRnfrsWl_Pm45_w6NWkw.png",
+  "hero": "/blog-assets/How-write-a-Unit-test--Integration-test--and-Performance-test-for-the-Golang-language--a25ccef115f4/img-0.png",
   "content": [
     {
       "type": "heading",
@@ -64,7 +64,7 @@
     },
     {
       "type": "image",
-      "src": "https://cdn-images-1.medium.com/max/800/1*I2NRnfrsWl_Pm45_w6NWkw.png",
+      "src": "/blog-assets/How-write-a-Unit-test--Integration-test--and-Performance-test-for-the-Golang-language--a25ccef115f4/img-0.png",
       "alt": "https://www.headspin.io/blog/the-testing-pyramid-simplified-for-one-and-all",
       "caption": "https://www.headspin.io/blog/the-testing-pyramid-simplified-for-one-and-all",
       "width": 869,
@@ -72,7 +72,7 @@
     },
     {
       "type": "image",
-      "src": "https://cdn-images-1.medium.com/max/800/1*5Hz3xd2N4A5-VyOzAFWpFQ.png",
+      "src": "/blog-assets/How-write-a-Unit-test--Integration-test--and-Performance-test-for-the-Golang-language--a25ccef115f4/img-1.png",
       "alt": "https://medium.com/@nathankpeck/microservice-testing-introduction-347d2f74095e",
       "caption": "https://medium.com/@nathankpeck/microservice-testing-introduction-347d2f74095e",
       "width": 798,
@@ -216,7 +216,7 @@
     },
     {
       "type": "image",
-      "src": "https://cdn-images-1.medium.com/max/800/1*tiQIuoRo2NDkePP32iJb_Q.png",
+      "src": "/blog-assets/How-write-a-Unit-test--Integration-test--and-Performance-test-for-the-Golang-language--a25ccef115f4/img-2.png",
       "alt": "Junit result in Gitlab",
       "caption": "Junit result in Gitlab",
       "width": 513,
@@ -243,7 +243,7 @@
     },
     {
       "type": "image",
-      "src": "https://cdn-images-1.medium.com/max/800/1*3zxGRCx096Ks_iqTehmQ1g.png",
+      "src": "/blog-assets/How-write-a-Unit-test--Integration-test--and-Performance-test-for-the-Golang-language--a25ccef115f4/img-3.png",
       "alt": "How write a Unit test, Integration test, and Performance test for the Golang language?",
       "caption": "",
       "width": 477,
@@ -251,7 +251,7 @@
     },
     {
       "type": "image",
-      "src": "https://cdn-images-1.medium.com/max/800/1*8oEX9D10yqRxejZleusL_Q.gif",
+      "src": "/blog-assets/How-write-a-Unit-test--Integration-test--and-Performance-test-for-the-Golang-language--a25ccef115f4/img-4.gif",
       "alt": "1 percent coverage!",
       "caption": "1 percent coverage!",
       "width": 200,
@@ -269,7 +269,7 @@
     },
     {
       "type": "image",
-      "src": "https://cdn-images-1.medium.com/max/800/1*ShY2KDRsJM8s1GzxXTIPkA.jpeg",
+      "src": "/blog-assets/How-write-a-Unit-test--Integration-test--and-Performance-test-for-the-Golang-language--a25ccef115f4/img-5.jpeg",
       "alt": "https://t.me/programmerjokes",
       "caption": "https://t.me/programmerjokes",
       "width": 720,
@@ -347,7 +347,7 @@
     },
     {
       "type": "image",
-      "src": "https://cdn-images-1.medium.com/max/800/1*2UfTeU24QWt0KwBTC07a8Q.png",
+      "src": "/blog-assets/How-write-a-Unit-test--Integration-test--and-Performance-test-for-the-Golang-language--a25ccef115f4/img-6.png",
       "alt": "How write a Unit test, Integration test, and Performance test for the Golang language?",
       "caption": "",
       "width": 653,
@@ -391,7 +391,7 @@
     },
     {
       "type": "image",
-      "src": "https://cdn-images-1.medium.com/max/800/1*pMtk4g9gNhriLdtLvKca_A.png",
+      "src": "/blog-assets/How-write-a-Unit-test--Integration-test--and-Performance-test-for-the-Golang-language--a25ccef115f4/img-7.png",
       "alt": "How write a Unit test, Integration test, and Performance test for the Golang language?",
       "caption": "",
       "width": 567,
@@ -472,7 +472,7 @@
     },
     {
       "type": "image",
-      "src": "https://cdn-images-1.medium.com/max/800/1*Kgp2jxs-EY6_FTPeZ_DVSQ.jpeg",
+      "src": "/blog-assets/How-write-a-Unit-test--Integration-test--and-Performance-test-for-the-Golang-language--a25ccef115f4/img-8.jpeg",
       "alt": "https://t.me/programmerjokes",
       "caption": "https://t.me/programmerjokes",
       "width": 720,

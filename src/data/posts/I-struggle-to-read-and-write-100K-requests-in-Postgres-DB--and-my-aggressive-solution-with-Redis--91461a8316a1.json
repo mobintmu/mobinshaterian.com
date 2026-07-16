@@ -7,7 +7,7 @@
   "tags": [],
   "readingTime": "3 min",
   "url": "https://medium.com/@mobinshaterian/i-struggle-to-read-and-write-100k-requests-in-postgres-db-with-my-aggressive-solution-with-redis-91461a8316a1",
-  "hero": "https://cdn-images-1.medium.com/max/800/1*FuRIfaWhy_wMrugAoL13ig.png",
+  "hero": "/blog-assets/I-struggle-to-read-and-write-100K-requests-in-Postgres-DB--and-my-aggressive-solution-with-Redis--91461a8316a1/img-0.png",
   "content": [
     {
       "type": "heading",
@@ -20,7 +20,7 @@
     },
     {
       "type": "image",
-      "src": "https://cdn-images-1.medium.com/max/800/1*FuRIfaWhy_wMrugAoL13ig.png",
+      "src": "/blog-assets/I-struggle-to-read-and-write-100K-requests-in-Postgres-DB--and-my-aggressive-solution-with-Redis--91461a8316a1/img-0.png",
       "alt": "https://www.percona.com/blog/2017/01/06/millions-queries-per-second-postgresql-and-mysql-peaceful-battle-at-modern-demanding-workloads/",
       "caption": "https://www.percona.com/blog/2017/01/06/millions-queries-per-second-postgresql-and-mysql-peaceful-battle-at-modern-demanding-workloads/",
       "width": 763,
@@ -57,7 +57,7 @@
     },
     {
       "type": "image",
-      "src": "https://cdn-images-1.medium.com/max/800/1*cnFEnd1yaZjMb1nF4aqphw.png",
+      "src": "/blog-assets/I-struggle-to-read-and-write-100K-requests-in-Postgres-DB--and-my-aggressive-solution-with-Redis--91461a8316a1/img-1.png",
       "alt": "https://redis.com/",
       "caption": "https://redis.com/",
       "width": 232,
@@ -140,7 +140,7 @@
     },
     {
       "type": "image",
-      "src": "https://cdn-images-1.medium.com/max/800/1*lT3KlFYPL2j2q_AJzalTdQ.png",
+      "src": "/blog-assets/I-struggle-to-read-and-write-100K-requests-in-Postgres-DB--and-my-aggressive-solution-with-Redis--91461a8316a1/img-2.png",
       "alt": "https://kafka.apache.org/",
       "caption": "https://kafka.apache.org/",
       "width": 555,

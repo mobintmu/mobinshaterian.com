@@ -7,7 +7,7 @@
   "tags": [],
   "readingTime": "1 min",
   "url": "https://medium.com/@mobinshaterian/reading-matlab-mat-format-dataset-in-python-f19c024bdb83",
-  "hero": "https://cdn-images-1.medium.com/max/800/1*mRfv8Xy1F6263TOJh9p8vg.png",
+  "hero": "/blog-assets/Reading-Matlab--mat-format-Dataset-in-Python-f19c024bdb83/img-0.png",
   "content": [
     {
       "type": "heading",
@@ -16,7 +16,7 @@
     },
     {
       "type": "image",
-      "src": "https://cdn-images-1.medium.com/max/800/1*mRfv8Xy1F6263TOJh9p8vg.png",
+      "src": "/blog-assets/Reading-Matlab--mat-format-Dataset-in-Python-f19c024bdb83/img-0.png",
       "alt": "Reading Matlab .mat format Dataset in Python",
       "caption": "",
       "width": 1028,
@@ -163,7 +163,7 @@
     },
     {
       "type": "image",
-      "src": "https://cdn-images-1.medium.com/max/800/1*_tCuHXDYbKKEQZufi1MscA.png",
+      "src": "/blog-assets/Reading-Matlab--mat-format-Dataset-in-Python-f19c024bdb83/img-1.png",
       "alt": "PPG Signal",
       "caption": "PPG Signal",
       "width": 1159,
@@ -171,7 +171,7 @@
     },
     {
       "type": "image",
-      "src": "https://cdn-images-1.medium.com/max/800/1*7u0Uhtgu9gTztLXyPQcqGw.png",
+      "src": "/blog-assets/Reading-Matlab--mat-format-Dataset-in-Python-f19c024bdb83/img-2.png",
       "alt": "ABP Signal",
       "caption": "ABP Signal",
       "width": 1159,
@@ -179,7 +179,7 @@
     },
     {
       "type": "image",
-      "src": "https://cdn-images-1.medium.com/max/800/1*V8CGMVoUyjt1rk5wCt6dpA.png",
+      "src": "/blog-assets/Reading-Matlab--mat-format-Dataset-in-Python-f19c024bdb83/img-3.png",
       "alt": "ECG Channel 2 Signal",
       "caption": "ECG Channel 2 Signal",
       "width": 1340,

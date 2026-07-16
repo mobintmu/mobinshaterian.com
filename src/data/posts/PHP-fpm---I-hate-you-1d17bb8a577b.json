@@ -7,7 +7,7 @@
   "tags": [],
   "readingTime": "2 min",
   "url": "https://medium.com/@mobinshaterian/php-fpm-i-hate-you-1d17bb8a577b",
-  "hero": "https://cdn-images-1.medium.com/max/800/1*mt5x80RlRyTLz7iS5aVfTg.png",
+  "hero": "/blog-assets/PHP-fpm---I-hate-you-1d17bb8a577b/img-0.png",
   "content": [
     {
       "type": "heading",
@@ -16,7 +16,7 @@
     },
     {
       "type": "image",
-      "src": "https://cdn-images-1.medium.com/max/800/1*mt5x80RlRyTLz7iS5aVfTg.png",
+      "src": "/blog-assets/PHP-fpm---I-hate-you-1d17bb8a577b/img-0.png",
       "alt": "problem with Mysql",
       "caption": "problem with Mysql",
       "width": 892,
@@ -75,7 +75,7 @@
     },
     {
       "type": "image",
-      "src": "https://cdn-images-1.medium.com/max/800/1*sog1JKO3sZDHxtGHYmbapg.png",
+      "src": "/blog-assets/PHP-fpm---I-hate-you-1d17bb8a577b/img-1.png",
       "alt": "504 Gateway Error",
       "caption": "504 Gateway Error",
       "width": 644,
@@ -97,7 +97,7 @@
     },
     {
       "type": "image",
-      "src": "https://cdn-images-1.medium.com/max/800/1*k3H4rvlNdCHi0zeEWBKz6A.png",
+      "src": "/blog-assets/PHP-fpm---I-hate-you-1d17bb8a577b/img-2.png",
       "alt": "response time",
       "caption": "response time",
       "width": 598,
@@ -118,7 +118,7 @@
     },
     {
       "type": "image",
-      "src": "https://cdn-images-1.medium.com/max/800/1*eylY2H6jYcBM9y3tNX6NGg.png",
+      "src": "/blog-assets/PHP-fpm---I-hate-you-1d17bb8a577b/img-3.png",
       "alt": "PHP-fpm ! I hate you",
       "caption": "",
       "width": 567,
@@ -144,7 +144,7 @@
     },
     {
       "type": "image",
-      "src": "https://cdn-images-1.medium.com/max/800/1*TZlGsqnBtuCBAY7Fftjphw.png",
+      "src": "/blog-assets/PHP-fpm---I-hate-you-1d17bb8a577b/img-4.png",
       "alt": "ctop contianer usage",
       "caption": "ctop contianer usage",
       "width": 649,
@@ -152,7 +152,7 @@
     },
     {
       "type": "image",
-      "src": "https://cdn-images-1.medium.com/max/800/1*hiisXJlWItyd_suTvleqog.png",
+      "src": "/blog-assets/PHP-fpm---I-hate-you-1d17bb8a577b/img-5.png",
       "alt": "htop cpu usage",
       "caption": "htop cpu usage",
       "width": 1176,
@@ -165,7 +165,7 @@
     },
     {
       "type": "image",
-      "src": "https://cdn-images-1.medium.com/max/800/1*yMFoP1etPu_NZUvc-1ROIg.png",
+      "src": "/blog-assets/PHP-fpm---I-hate-you-1d17bb8a577b/img-6.png",
       "alt": "after optimization query and index",
       "caption": "after optimization query and index",
       "width": 593,

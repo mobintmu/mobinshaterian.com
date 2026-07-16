@@ -7,7 +7,7 @@
   "tags": [],
   "readingTime": "2 min",
   "url": "https://medium.com/@mobinshaterian/my-solution-for-designing-a-resilient-system-in-an-event-driven-pipeline-d1396711d423",
-  "hero": "https://cdn-images-1.medium.com/max/800/1*-pko7Vufla7Xi1Wk53C3jA.png",
+  "hero": "/blog-assets/My-solution-for-designing-a-resilient-system-in-an-event-driven-pipeline-d1396711d423/img-0.png",
   "content": [
     {
       "type": "paragraph",
@@ -15,7 +15,7 @@
     },
     {
       "type": "image",
-      "src": "https://cdn-images-1.medium.com/max/800/1*-pko7Vufla7Xi1Wk53C3jA.png",
+      "src": "/blog-assets/My-solution-for-designing-a-resilient-system-in-an-event-driven-pipeline-d1396711d423/img-0.png",
       "alt": "event-driven pipeline",
       "caption": "event-driven pipeline",
       "width": 380,
@@ -45,7 +45,7 @@
     },
     {
       "type": "image",
-      "src": "https://cdn-images-1.medium.com/max/800/1*T1MczFdIHVGuisbQReqIiw.png",
+      "src": "/blog-assets/My-solution-for-designing-a-resilient-system-in-an-event-driven-pipeline-d1396711d423/img-1.png",
       "alt": "https://debezium.io/",
       "caption": "https://debezium.io/",
       "width": 1135,
@@ -53,7 +53,7 @@
     },
     {
       "type": "image",
-      "src": "https://cdn-images-1.medium.com/max/800/1*0wV0Map--EzJhYit4zJcyg.png",
+      "src": "/blog-assets/My-solution-for-designing-a-resilient-system-in-an-event-driven-pipeline-d1396711d423/img-2.png",
       "alt": "My solution for designing a resilient system in an event-driven pipeline",
       "caption": "",
       "width": 425,
@@ -74,7 +74,7 @@
     },
     {
       "type": "image",
-      "src": "https://cdn-images-1.medium.com/max/800/1*0UPUxtlIlUE26qift67pOw.png",
+      "src": "/blog-assets/My-solution-for-designing-a-resilient-system-in-an-event-driven-pipeline-d1396711d423/img-3.png",
       "alt": "My solution for designing a resilient system in an event-driven pipeline",
       "caption": "",
       "width": 446,
@@ -90,7 +90,7 @@
     },
     {
       "type": "image",
-      "src": "https://cdn-images-1.medium.com/max/800/1*EVB1xb9Ge5UwZInxSyt9Yg.png",
+      "src": "/blog-assets/My-solution-for-designing-a-resilient-system-in-an-event-driven-pipeline-d1396711d423/img-4.png",
       "alt": "My solution for designing a resilient system in an event-driven pipeline",
       "caption": "",
       "width": 665,
@@ -107,7 +107,7 @@
     },
     {
       "type": "image",
-      "src": "https://cdn-images-1.medium.com/max/800/1*B-iEZ90_qOoVM97C0slhjw.png",
+      "src": "/blog-assets/My-solution-for-designing-a-resilient-system-in-an-event-driven-pipeline-d1396711d423/img-5.png",
       "alt": "My solution for designing a resilient system in an event-driven pipeline",
       "caption": "",
       "width": 520,

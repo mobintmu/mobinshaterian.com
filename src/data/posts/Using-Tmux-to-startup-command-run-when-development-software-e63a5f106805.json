@@ -7,7 +7,7 @@
   "tags": [],
   "readingTime": "1 min",
   "url": "https://medium.com/@mobinshaterian/using-tmux-to-startup-command-run-when-development-software-e63a5f106805",
-  "hero": "https://cdn-images-1.medium.com/max/800/1*Sd1G3r7caSafwve_BLr4JQ.png",
+  "hero": "/blog-assets/Using-Tmux-to-startup-command-run-when-development-software-e63a5f106805/img-0.png",
   "content": [
     {
       "type": "paragraph",
@@ -15,7 +15,7 @@
     },
     {
       "type": "image",
-      "src": "https://cdn-images-1.medium.com/max/800/1*Sd1G3r7caSafwve_BLr4JQ.png",
+      "src": "/blog-assets/Using-Tmux-to-startup-command-run-when-development-software-e63a5f106805/img-0.png",
       "alt": "Tmux https://www.perl.com/article/an-introduction-to-tmux/",
       "caption": "Tmux https://www.perl.com/article/an-introduction-to-tmux/",
       "width": 889,

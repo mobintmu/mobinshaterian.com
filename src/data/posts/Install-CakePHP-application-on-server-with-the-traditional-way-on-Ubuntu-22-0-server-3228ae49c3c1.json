@@ -7,7 +7,7 @@
   "tags": [],
   "readingTime": "5 min",
   "url": "https://medium.com/@mobinshaterian/install-cakephp-application-on-server-with-the-traditional-way-on-ubuntu-22-0-server-3228ae49c3c1",
-  "hero": "https://cdn-images-1.medium.com/max/800/1*Yo30HmX_znWbnvuEbG1vEw.png",
+  "hero": "/blog-assets/Install-CakePHP-application-on-server-with-the-traditional-way-on-Ubuntu-22-0-server-3228ae49c3c1/img-0.png",
   "content": [
     {
       "type": "heading",
@@ -20,7 +20,7 @@
     },
     {
       "type": "image",
-      "src": "https://cdn-images-1.medium.com/max/800/1*Yo30HmX_znWbnvuEbG1vEw.png",
+      "src": "/blog-assets/Install-CakePHP-application-on-server-with-the-traditional-way-on-Ubuntu-22-0-server-3228ae49c3c1/img-0.png",
       "alt": "Install CakePHP application on server with the traditional way on Ubuntu 22.0 server",
       "caption": "",
       "width": 1024,
@@ -46,7 +46,7 @@
     },
     {
       "type": "image",
-      "src": "https://cdn-images-1.medium.com/max/800/1*hXuuhny2NRwVopbkfz5caw.png",
+      "src": "/blog-assets/Install-CakePHP-application-on-server-with-the-traditional-way-on-Ubuntu-22-0-server-3228ae49c3c1/img-1.png",
       "alt": "https://www.freecodecamp.org/news/an-introduction-to-nginx-for-developers-62179b6a458f/",
       "caption": "https://www.freecodecamp.org/news/an-introduction-to-nginx-for-developers-62179b6a458f/",
       "width": 800,

@@ -7,7 +7,7 @@
   "tags": [],
   "readingTime": "2 min",
   "url": "https://medium.com/@mobinshaterian/my-first-application-development-with-golang-as-a-php-developer-9c31e37903b8",
-  "hero": "https://cdn-images-1.medium.com/max/800/1*1_AsY_DTrHOrTTCM0uWB3w.png",
+  "hero": "/blog-assets/My-first-application-development-with-Golang-as-a-PHP-developer--9c31e37903b8/img-0.png",
   "content": [
     {
       "type": "paragraph",
@@ -15,7 +15,7 @@
     },
     {
       "type": "image",
-      "src": "https://cdn-images-1.medium.com/max/800/1*1_AsY_DTrHOrTTCM0uWB3w.png",
+      "src": "/blog-assets/My-first-application-development-with-Golang-as-a-PHP-developer--9c31e37903b8/img-0.png",
       "alt": "PHP application using all cores",
       "caption": "PHP application using all cores",
       "width": 1537,
@@ -81,7 +81,7 @@
     },
     {
       "type": "image",
-      "src": "https://cdn-images-1.medium.com/max/800/1*DEkPRvllmnlrXRDq8MhGHg.png",
+      "src": "/blog-assets/My-first-application-development-with-Golang-as-a-PHP-developer--9c31e37903b8/img-1.png",
       "alt": "My first application development with Golang as a PHP developer.",
       "caption": "",
       "width": 562,
