@@ -252,8 +252,12 @@ for (const f of files) {
 }
 
 index.sort((a, b) => (a.date < b.date ? 1 : -1));
-fs.writeFileSync(INDEX_FILE, JSON.stringify(index, null, 2));
-fs.writeFileSync(SEARCH_FILE, JSON.stringify(search));
+const indexJson = JSON.stringify(index, null, 2);
+const searchJson = JSON.stringify(search);
+fs.writeFileSync(INDEX_FILE, indexJson);
+fs.writeFileSync(PUBLIC_INDEX, indexJson);
+fs.writeFileSync(SEARCH_FILE, searchJson);
+fs.writeFileSync(PUBLIC_SEARCH, searchJson);
 
 console.log(`\nWrote ${index.length} posts. Skipped ${skipped}. Images ok=${imgOk} fail=${imgFail}.`);
 console.log(`  ${INDEX_FILE}`);
