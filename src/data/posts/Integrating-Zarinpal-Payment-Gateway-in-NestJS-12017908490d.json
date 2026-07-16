@@ -1,0 +1,267 @@
+{
+  "slug": "Integrating-Zarinpal-Payment-Gateway-in-NestJS-12017908490d",
+  "title": "Integrating Zarinpal Payment Gateway in NestJS",
+  "subtitle": "A guide on how to integrate Zarinpal Payment Gateway in NestJS.",
+  "excerpt": "A guide on how to integrate Zarinpal Payment Gateway in NestJS.",
+  "date": "2024-08-01",
+  "tags": [],
+  "readingTime": "4 min",
+  "url": "https://medium.com/@mobinshaterian/integrating-zarinpal-payment-gateway-in-nestjs-12017908490d",
+  "hero": "https://cdn-images-1.medium.com/max/800/1*hsp-3yoQce39agYt5dyBTQ.jpeg",
+  "content": [
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Integrating Zarinpal Payment Gateway in NestJS"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "A guide on how to integrate Zarinpal Payment Gateway in NestJS."
+    },
+    {
+      "type": "paragraph",
+      "html": "The provided content outlines integrating the Zarinpal payment gateway into a NestJS application. Zarinpal is an Iranian payment service provider, and this implementation allows developers to facilitate online transactions in their web applications."
+    },
+    {
+      "type": "paragraph",
+      "html": "The integration process begins with installing the necessary package, “zarinpal-nestjs”, and setting up the module in the application. The app module and configuration files specify configuration details, such as the merchant ID and callback URL."
+    },
+    {
+      "type": "image",
+      "src": "https://cdn-images-1.medium.com/max/800/1*hsp-3yoQce39agYt5dyBTQ.jpeg",
+      "alt": "Integrating Zarinpal Payment Gateway in NestJS",
+      "caption": "",
+      "width": 1024,
+      "height": 1024
+    },
+    {
+      "type": "paragraph",
+      "html": "The payment flow consists of two main steps: opening and verifying a transaction. The “<strong>openTransaction</strong>” function initiates the payment process, creating a link redirecting the user to the bank’s payment page. After the user completes the payment, they are redirected to the application’s callback URL."
+    },
+    {
+      "type": "paragraph",
+      "html": "The “<strong>verifyTransaction</strong>” function is crucial for confirming the payment’s success or failure. It checks the payment status and communicates with Zarinpal’s API to verify the transaction details. The implementation includes error handling and updates the payment status in the database accordingly."
+    },
+    {
+      "type": "paragraph",
+      "html": "The code snippets provided demonstrate the structure of the payment module, including the controller, service, and data transfer objects (DTOs). They also showcase the use of MongoDB with Mongoose to store payment information."
+    },
+    {
+      "type": "paragraph",
+      "html": "One notable point is mentioning a bug in the package’s <strong>verifyTransaction</strong> function. The implementation includes a custom verification method using direct HTTP requests to Zarinpal’s API to work around this."
+    },
+    {
+      "type": "paragraph",
+      "html": "In conclusion, this integration offers a comprehensive solution for handling online payments in a NestJS application, covering the entire payment lifecycle from initiation to verification. It provides a solid foundation for developers looking to implement Zarinpal as their payment gateway in Node.js-based web applications."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Create a resource"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "nest g resource payment "
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Nodejs sample code"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Nestjs sample code"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Documentation"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Installation"
+    },
+    {
+      "type": "code",
+      "lang": "bash",
+      "code": "yarn add zarinpal-nestjsnpm install --save zarinpal-nestjsnpm audit fix --force"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Open Transaction"
+    },
+    {
+      "type": "paragraph",
+      "html": "In the first step, it is mandatory to initial a transaction."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "app.module.ts"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "    ZarinpalModule.register({      callBackUrl: configuration().zarinpal.callBackUrl,      merchantId: configuration().zarinpal.merchantId,    }),    PaymentModule,"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "configuration.ts"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "  zarinpal: {    merchantId: process.env.ZARINPAL_MERCHANT_ID,    callBackUrl: process.env.ZARINPAL_CALLBACK_URL,  },"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "payment.controller.ts"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "  @Post('/openTransaction/')  @UseGuards(CustomerGuard)  @ApiOkResponse({ type: () => CreatePaymentResultDto })  @ApiBearerAuth()  create(    @Body() createPaymentDto: CreatePaymentDto,    @Req() req: { user: Partial<User> },  ) {    return this.paymentService.openTransaction(createPaymentDto, req.user);  }"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "payment.service.ts"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "  async openTransaction(    createPaymentDto: CreatePaymentDto,    user: Partial<User>,  ): Promise<CreatePaymentResultDto> {    const transactionResult = await this.zarinpalService.openTransaction({      amount: createPaymentDto.amount,      description: createPaymentDto.uniqueID,      metadata: {        mobile: user.phoneNumber,      },    });    try {      const result =        this.zarinpalService.generateStartPayUrl(transactionResult);      await this.paymentModel.create({        user: user,        amount: createPaymentDto.amount,        uniqueID: createPaymentDto.uniqueID,        status: PaymentStatus.Initial,        gateway: PaymentGateway.Zarinpal,        paymentLink: result,        authority: transactionResult,      });      return { paymentLink: result };    } catch (e) {      throw InternalServerErrorException;    }  }"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "create.dto.ts"
+    },
+    {
+      "type": "code",
+      "lang": "python",
+      "code": "import { ApiProperty } from '@nestjs/swagger';export class CreatePaymentDto {  @ApiProperty()  amount: number;  @ApiProperty()  uniqueID: string;}export class CreatePaymentResultDto {  @ApiProperty()  paymentLink: string;}"
+    },
+    {
+      "type": "paragraph",
+      "html": "<strong>payment.entity.ts</strong>"
+    },
+    {
+      "type": "code",
+      "lang": "python",
+      "code": "import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';import mongoose, { Document } from 'mongoose';import { User } from 'src/users/schemas/user.schema';export enum PaymentStatus {  Initial = 'Initial',  Pending = 'Pending',  Success = 'Success',  Failed = 'Failed',}export enum PaymentGateway {  Zarinpal = 'Zarinpal',}@Schema({  timestamps: true,  collection: 'Payment',})export class Payment extends Document {  @ApiProperty()  _id: string;  @ApiProperty({ type: () => User })  @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'user' })  user: User;  @ApiProperty()  @Prop({ required: true })  amount: number;  @ApiProperty()  @Prop({ required: true, unique: true })  uniqueID: string;  @ApiProperty({ type: () => [PaymentStatus] })  @Prop({ required: true })  status: string;  @ApiProperty({ type: () => [PaymentGateway] })  @Prop({ required: true })  gateway: string;  @ApiProperty()  @Prop({ required: true })  paymentLink: string;  @ApiPropertyOptional()  @Prop({ type: Object })  authority: Record<string, any>;}const PaymentSchema = SchemaFactory.createForClass(Payment);export { PaymentSchema };"
+    },
+    {
+      "type": "image",
+      "src": "https://cdn-images-1.medium.com/max/800/1*XCNXf75ifIou7diVH7TSSg.png",
+      "alt": "Integrating Zarinpal Payment Gateway in NestJS",
+      "caption": "",
+      "width": 607,
+      "height": 423
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Payment"
+    },
+    {
+      "type": "paragraph",
+      "html": "the client will go to the bank page and pay with his cart. Then, the bank sends him back to the callback on the website."
+    },
+    {
+      "type": "image",
+      "src": "https://cdn-images-1.medium.com/max/800/1*5SVnK5SggRfzmSMxAp7q2g.png",
+      "alt": "Integrating Zarinpal Payment Gateway in NestJS",
+      "caption": "",
+      "width": 880,
+      "height": 574
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Verify Transaction"
+    },
+    {
+      "type": "paragraph",
+      "html": "If you don’t verify the transaction after 30 minutes, money will be returned to the customer."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "payment.controler.ts"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "  @Get('/zarinpal/verify')  @ApiOkResponse({ type: () => VerifyPaymentZarinPalResponseDto })  async verifyTransaction(@Query() query: VerifyPaymentZarinPalDto) {    return this.paymentZarinpalService.verifyTransaction(query);  }"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "payment.module.ts"
+    },
+    {
+      "type": "code",
+      "lang": "python",
+      "code": "import { Module } from '@nestjs/common';import { PaymentZarinpalService } from './payment.zarinpal.service';import { PaymentController } from './payment.controller';import { AuthModule } from 'src/auth/auth.module';import { MongooseModule } from '@nestjs/mongoose';import { Payment, PaymentSchema } from './entities/payment.entity';import { HttpModule } from '@nestjs/axios';@Module({  imports: [    AuthModule,    MongooseModule.forFeature([{ name: Payment.name, schema: PaymentSchema }]),    HttpModule,  ],  controllers: [PaymentController],  providers: [PaymentZarinpalService],})export class PaymentModule {}"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "payment.zarinpal.service."
+    },
+    {
+      "type": "paragraph",
+      "html": "In this case, it is possible to use a verifyTransaction function."
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "    async verifyTransaction(query: VerifyPaymentZarinPalDto) {    const payment = await this.paymentModel.findOne({      authority_code: query.Authority,    });    if (!payment) {      throw new NotFoundException();    }    if (      payment.status == PaymentStatus.Failed ||      payment.status == PaymentStatus.Success    ) {      return new NotFoundException();    }    if (query.Status === 'NOK') {      payment.status = PaymentStatus.Failed;      payment.save();      return { status: PaymentStatus.Failed, message: PaymentStatus.Failed };    }    payment.status = PaymentStatus.Pending;    await payment.save();    try {      const verify = await this.zarinpalService.verifyTransaction({        authority: query.Authority,        amount: payment.amount,      });      if (verify.code == 100 || verify.code == 101) {        payment.status = PaymentStatus.Success;      } else {        payment.status = PaymentStatus.Failed;      }      payment.response = verify;      await payment.save();      return { status: payment.status, message: verify.message };    } catch (e) {      console.error(e);      payment.response = e;      payment.status = PaymentStatus.Failed;      payment.save();      throw InternalServerErrorException;    }  }"
+    },
+    {
+      "type": "paragraph",
+      "html": "create.dto.ts"
+    },
+    {
+      "type": "code",
+      "lang": "javascript",
+      "code": "export class VerifyPaymentZarinPalDto {  @ApiProperty()  Status: string;  @ApiProperty()  Authority: string;}export class VerifyPaymentZarinPalResponseDto {  @ApiProperty()  Status: string;  @ApiProperty()  Message: string;}"
+    },
+    {
+      "type": "paragraph",
+      "html": "zarinpal.type.ts"
+    },
+    {
+      "type": "code",
+      "lang": "javascript",
+      "code": "export class ZarinPalVerifyResponse {  data: {    code: number;    message: string;    card_hash: string;    card_pan: string;    ref_id: number;    fee_type: string;    fee: number;    shaparak_fee: string;    order_id: number | null;  };  errors: any[];}export const ZarinPalVerifyURL =  'https://payment.zarinpal.com/pg/v4/payment/verify.json';"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Stackademic 🎓"
+    },
+    {
+      "type": "paragraph",
+      "html": "Thank you for reading until the end. Before you go:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Please consider <strong>clapping</strong> and <strong>following</strong> the writer! 👏",
+        "Follow us <a href=\"https://twitter.com/stackademichq\" target=\"_blank\" rel=\"noreferrer noopener\"><strong>X</strong></a> | <a href=\"https://www.linkedin.com/company/stackademic\" target=\"_blank\" rel=\"noreferrer noopener\"><strong>LinkedIn</strong></a> | <a href=\"https://www.youtube.com/c/stackademic\" target=\"_blank\" rel=\"noreferrer noopener\"><strong>YouTube</strong></a> | <a href=\"https://discord.gg/in-plain-english-709094664682340443\" target=\"_blank\" rel=\"noreferrer noopener\"><strong>Discord</strong></a>",
+        "Visit our other platforms: <a href=\"https://plainenglish.io/\" target=\"_blank\" rel=\"noreferrer noopener\"><strong>In Plain English</strong></a> | <a href=\"https://cofeed.app/\" target=\"_blank\" rel=\"noreferrer noopener\"><strong>CoFeed</strong></a> | <a href=\"https://differ.blog/\" target=\"_blank\" rel=\"noreferrer noopener\"><strong>Differ</strong></a>",
+        "More content at <a href=\"https://stackademic.com/\" target=\"_blank\" rel=\"noreferrer noopener\"><strong>Stackademic.com</strong></a>"
+      ]
+    }
+  ]
+}

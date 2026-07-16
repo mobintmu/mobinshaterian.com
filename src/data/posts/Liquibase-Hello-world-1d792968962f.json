@@ -1,0 +1,218 @@
+{
+  "slug": "Liquibase-Hello-world-1d792968962f",
+  "title": "Liquibase Hello world",
+  "subtitle": "Getting start with Liquibase for write migration in Postgres database",
+  "excerpt": "Getting start with Liquibase for write migration in Postgres database",
+  "date": "2023-02-16",
+  "tags": [],
+  "readingTime": "1 min",
+  "url": "https://medium.com/@mobinshaterian/liquibase-hello-world-1d792968962f",
+  "hero": "/blog-assets/Liquibase-Hello-world-1d792968962f/img-0.png",
+  "content": [
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Liquibase Hello world"
+    },
+    {
+      "type": "image",
+      "src": "/blog-assets/Liquibase-Hello-world-1d792968962f/img-0.png",
+      "alt": "https://www.liquibase.org/",
+      "caption": "https://www.liquibase.org/",
+      "width": 1004,
+      "height": 478
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Getting start with Liquibase"
+    },
+    {
+      "type": "embed",
+      "provider": "youtube",
+      "url": "https://www.youtube.com/embed/SyrjSPC8EZ8?feature=oembed"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Creating Your First Liquibase Migration Using SQL"
+    },
+    {
+      "type": "embed",
+      "provider": "youtube",
+      "url": "https://www.youtube.com/embed/HdXcf9E8ZVI?feature=oembed"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "https://docs.liquibase.com/workflows/liquibase-community/migrate-with-sql.html"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Best Practices for Managing Liquibase Changelogs"
+    },
+    {
+      "type": "embed",
+      "provider": "youtube",
+      "url": "https://www.youtube.com/embed/WvliSpQVoHw?list=PL9IBfI55CftJlGpd1s1pbdG-qirHY8M6G"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Install on Ubuntu"
+    },
+    {
+      "type": "code",
+      "lang": "bash",
+      "code": "sudo snap install liquibase"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Connect to the Postgres"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "https://docs.liquibase.com/start/install/tutorials/postgresql.html"
+    },
+    {
+      "type": "paragraph",
+      "html": "Sql command in liquibase"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "-- liquibase formatted sql-- changeset liquibase:1CREATE TABLE test_table (test_id INT, test_column VARCHAR(256), PRIMARY KEY (test_id))"
+    },
+    {
+      "type": "paragraph",
+      "html": "run the Liquibase <a href=\"https://docs.liquibase.com/commands/change-tracking/status.html\" target=\"_blank\" rel=\"noreferrer noopener\">status</a> command to see whether the connection is successful:"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "liquibase --username=test --password=test --changelog-file=<changelog.xml> status"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "How to configuration changelog.xml"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "<?xml version=\"1.0\" encoding=\"UTF-8\"?><databaseChangeLog        xmlns=\"http://www.liquibase.org/xml/ns/dbchangelog\"        xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"        xmlns:ext=\"http://www.liquibase.org/xml/ns/dbchangelog-ext\"        xsi:schemaLocation=\"http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd\">  <include file=\"changesets/db-agnostic/initial-schema.xml\"/>  <!-- Load Example Data --> <include file=\"data/loadCOUNTRIES.sql\"/>  <include file=\"data/loadCITIES.sql\"/>  <include file=\"data/loadAIRLINES.sql\"/>   <include file=\"data/loadFLIGHTS1.sql\"/>   <include file=\"data/loadFLIGHTS2.sql\"/>   <include file=\"data/loadFLIGHTAVAILABILITY1.sql\"/>   <include file=\"data/loadFLIGHTAVAILABILITY2.sql\"/>   <include file=\"changesets/db-agnostic/schema-only.xml\"/> <include file=\"changesets/db-agnostic/qa-only.xml\"/> <include file=\"changesets/db-agnostic/sql-server-only.xml\"/>  <include file=\"changesets/db-agnostic/tag-database.xml\"/> </databaseChangeLog>"
+    },
+    {
+      "type": "paragraph",
+      "html": "included all files in SQL"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "<?xml version=\"1.0\" encoding=\"UTF-8\"?><databaseChangeLog xmlns=\"http://www.liquibase.org/xml/ns/dbchangelog\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:ext=\"http://www.liquibase.org/xml/ns/dbchangelog-ext\" xmlns:pro=\"http://www.liquibase.org/xml/ns/pro\" xsi:schemaLocation=\"http://www.liquibase.org/xml/ns/dbchangelog  http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd  http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd  http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-latest.xsd\"> <includeAll path=\"com/example/changelogs/\"/> <includeAll path=\"liquibase/parser/core/yaml/included/\"/></databaseChangeLog>"
+    },
+    {
+      "type": "paragraph",
+      "html": "relativeToChangelogFile&nbsp;: Specifies whether the file path is relative to the changelog file rather than looked up in the search path. <strong>Default: </strong><code><strong>false</strong></code>."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "SQL Format Example"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Full Example to how make liquibase with SQL"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "<?xml version=\"1.0\" encoding=\"UTF-8\"?><databaseChangeLog     xmlns_xsi=\"https://www.w3.org/2001/XMLSchema-instance\"    xsi_schemaLocation=\"https://www.liquibase.org/xml/ns/dbchangelog    https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.5.xsd\">  <includeAll  path=\"migrations/\" relativeToChangelogFile=\"true\"/></databaseChangeLog>"
+    },
+    {
+      "type": "paragraph",
+      "html": "As with changesets in other formats, each changeset must have an author, a unique identifier, and should be an “atomic unit of change”."
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "--liquibase formatted sql--changeset stevedonie:create-test-tableCREATE TABLE testTable(  columnName1 VARCHAR (355));--rollback DROP TABLE--rollback testTable"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "Make sure your SQL changelogs are in the XML changelog file"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "  <include file=\"<path to SQL files>/<changelog file name>.sql\"            relativeToChangelogFile=\"true\" />"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Liquibase Change Types"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Use Liquibase command"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "Liquibase update"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Use Docker for Liquibase"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "https://docs.liquibase.com/workflows/liquibase-community/using-liquibase-and-docker.html?Highlight=postgres"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Run and execute commands update and rollback"
+    },
+    {
+      "type": "paragraph",
+      "html": "after install docker and go into the pod of Liquibase, we can execute update command"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "docker-compose -f docker-compose-postgres.yml exec liquibase /bin/sh "
+    },
+    {
+      "type": "paragraph",
+      "html": "update"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "liquibase update --url=jdbc:postgresql://<db_host>:5432/<db_name>?currentSchema=public --changelog-file=changelog.xml --username=<db_username> --password=<db_password>"
+    },
+    {
+      "type": "paragraph",
+      "html": "rollback"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "https://docs.liquibase.com/commands/rollback/rollback-by-tag.htmlhttps://docs.liquibase.com/commands/rollback/rollback-sql.html"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "liquibase rollback-count --count=1 --url=jdbc:postgresql://<db_host>:5432/<db_name>?currentSchema=public --changelog-file=changelog.xml --username=<db_username> --password=<db_password>"
+    }
+  ]
+}

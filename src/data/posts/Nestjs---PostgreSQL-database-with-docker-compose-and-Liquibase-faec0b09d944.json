@@ -1,0 +1,464 @@
+{
+  "slug": "Nestjs---PostgreSQL-database-with-docker-compose-and-Liquibase-faec0b09d944",
+  "title": "Nestjs : PostgreSQL database with docker-compose and Liquibase",
+  "subtitle": "Building a CRUD API with NestJS, PostgreSQL, and Liquibase",
+  "excerpt": "Building a CRUD API with NestJS, PostgreSQL, and Liquibase",
+  "date": "2024-06-27",
+  "tags": [],
+  "readingTime": "6 min",
+  "url": "https://medium.com/@mobinshaterian/nestjs-postgresql-database-with-docker-compose-and-liquibase-faec0b09d944",
+  "hero": "https://cdn-images-1.medium.com/max/800/1*j2IUBxzA0q9_OE6O5uuKKQ.jpeg",
+  "content": [
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Building a CRUD API with NestJS, PostgreSQL, and Liquibase"
+    },
+    {
+      "type": "paragraph",
+      "html": "This report outlines the steps involved in creating a CRUD (Create, Read, Update, Delete) API using NestJS, PostgreSQL, and Liquibase for database management."
+    },
+    {
+      "type": "image",
+      "src": "https://cdn-images-1.medium.com/max/800/1*j2IUBxzA0q9_OE6O5uuKKQ.jpeg",
+      "alt": "Nestjs : PostgreSQL database with docker-compose and Liquibase",
+      "caption": "",
+      "width": 1024,
+      "height": 1024
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "Technologies Used:"
+    },
+    {
+      "type": "paragraph",
+      "html": "<strong>NestJS</strong>: A Node.js framework for building efficient and scalable server-side applications.<br>&nbsp;<strong>PostgreSQL</strong>: An open-source object-relational database management system (ORDBMS).<br>&nbsp;<strong>Liquibase</strong>: An open-source database migration tool for managing database schema changes.<br>&nbsp;<strong>TypeORM</strong>: An object-relational mapper (ORM) that simplifies working with databases in TypeScript or JavaScript."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "Setting Up the Environment"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "Docker Compose:"
+    },
+    {
+      "type": "paragraph",
+      "html": "The provided docker-compose.yml file defines services for:"
+    },
+    {
+      "type": "paragraph",
+      "html": "<strong>postgres-tasks</strong>: Runs a PostgreSQL container with specific configurations.<br>&nbsp;<strong>adminer</strong>: Runs an admin interface for managing the PostgreSQL database.<br>&nbsp;<strong>liquibase</strong>: Runs a Liquibase container to handle database schema changes."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "Liquibase Configuration:"
+    },
+    {
+      "type": "paragraph",
+      "html": "<strong>changelog.xml</strong>: This file defines how Liquibase manages database schema changes.<br><strong> migrations/*.sql</strong>: These files contain the actual SQL statements for creating and modifying database tables."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "NestJS Application:"
+    },
+    {
+      "type": "paragraph",
+      "html": "The application code utilizes TypeORM to interact with the PostgreSQL database."
+    },
+    {
+      "type": "paragraph",
+      "html": "<strong>app.module.ts</strong>: Configures the connection to the PostgreSQL database using TypeORM.<br><strong> task.entity.ts:</strong> Defines the structure of the Task entity to be stored in the database.<br><strong> task.repository.ts: </strong>Provides methods for interacting with the Task entity in the database.<br><strong> tasks.controller.ts, tasks.service.ts</strong>: Implement the CRUD operations for managing tasks in the database."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Connect the Next Js application to Postgres using typeorm."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Source Code:"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Run PostgreSQL with Docker-compose:"
+    },
+    {
+      "type": "paragraph",
+      "html": "docker-compose"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "version: \"3.9\"services:  postgres-tasks:    image: postgres:13.4-buster    environment:      POSTGRES_USER: user      POSTGRES_PASSWORD: pass      POSTGRES_DB: tasks    volumes:      - postgres-db:/var/lib/postgresql/data    restart: always    ports:       - 3001:5432    networks:      - tasks-network  admin:    image: adminer    restart: always    depends_on:       - postgres-tasks    ports:      - 10000:8080    networks:      - tasks-network  liquibase:    image: liquibase/liquibase    command: tail -f /liquibase/changelog.xml    volumes:      - ./sql/changelog.xml:/liquibase/changelog.xml      - ./sql/migrations:/liquibase/migrations    networks:      - tasks-networkvolumes:  postgres-db:    driver: localnetworks:  tasks-network:    external: true"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "Liquibase"
+    },
+    {
+      "type": "image",
+      "src": "https://cdn-images-1.medium.com/max/800/1*1WSg3Qh3DXsZFaT1qc4M0Q.png",
+      "alt": "Nestjs : PostgreSQL database with docker-compose and Liquibase",
+      "caption": "",
+      "width": 235,
+      "height": 106
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": ".SQL"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "--liquibase formatted sql-- changeset mobin:1CREATE TABLE IF NOT EXISTS \"tasks\" (  \"id\" bigserial PRIMARY KEY,  \"title\" TEXT NOT NULL,  \"description\" TEXT NOT NULL,  \"created_at\" timestamptz NOT NULL DEFAULT (now()));CREATE INDEX ON \"tasks\" (\"id\");--rollback DROP TABLE \"tasks\";"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "Changelog.xml"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "<?xml version=\"1.0\" encoding=\"UTF-8\"?><databaseChangeLog  xmlns=\"http://www.liquibase.org/xml/ns/dbchangelog\"  xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"  xsi:schemaLocation=\"http://www.liquibase.org/xml/ns/dbchangelog         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd\">    <includeAll  path=\"migrations/\" relativeToChangelogFile=\"true\"/></databaseChangeLog>"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "Command Run docker-compose"
+    },
+    {
+      "type": "code",
+      "lang": "bash",
+      "code": "docker network create tasks-networksudo docker-compose up"
+    },
+    {
+      "type": "image",
+      "src": "https://cdn-images-1.medium.com/max/800/1*dulODqQ7FZ45tCtzQ-I69Q.png",
+      "alt": "Nestjs : PostgreSQL database with docker-compose and Liquibase",
+      "caption": "",
+      "width": 761,
+      "height": 508
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "Liquibase migration"
+    },
+    {
+      "type": "code",
+      "lang": "bash",
+      "code": "sudo docker-compose -f docker-compose.yml exec liquibase /bin/sh liquibase update --url=jdbc:postgresql://postgres-tasks:5432/task?currentSchema=public --changelog-file=changelog.xml --username=user --password=pass "
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "Adminer"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "http://127.0.0.1:10000/?pgsql=postgres-tasks&username=user&db=task&ns=public"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Object Relational Mapping (ORM) — TypeORM"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Install packages"
+    },
+    {
+      "type": "code",
+      "lang": "bash",
+      "code": "yarn add typeorm @nestjs/typeorm pg"
+    },
+    {
+      "type": "paragraph",
+      "html": "app.module.ts"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "@Module({  imports: [    TasksModule,    TypeOrmModule.forRoot({      type: 'postgres',      host: '127.0.0.1',      port: 3001,      username: 'user',      password: 'pass',      database: 'task',      autoLoadEntities: true,      synchronize: true,    }),  ],})export class AppModule {}"
+    },
+    {
+      "type": "paragraph",
+      "html": "problem connection&nbsp;:"
+    },
+    {
+      "type": "image",
+      "src": "https://cdn-images-1.medium.com/max/800/1*eHOiLQ7r9T9pkRo1JrhJHw.png",
+      "alt": "Nestjs : PostgreSQL database with docker-compose and Liquibase",
+      "caption": "",
+      "width": 945,
+      "height": 260
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Create Entity:"
+    },
+    {
+      "type": "paragraph",
+      "html": "task.entity.ts"
+    },
+    {
+      "type": "code",
+      "lang": "python",
+      "code": "import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';import { TaskStatus } from './tasks.model';@Entity()export class Task {  @PrimaryGeneratedColumn('uuid')  id: string;  @Column()  title: string;  @Column()  description: string;  @Column()  status: TaskStatus;}"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Active Record vs Data Mapper"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "How to do custom repository using TypeORM (MongoDB) in NestJS?"
+    },
+    {
+      "type": "paragraph",
+      "html": "I have a question. With <code>@EntityRepository</code> decorator being marked as deprecated in <code>typeorm@^0.3.6</code>, what is now the recommended or TypeScript-friendly way to create a custom repository for an entity in NestJS? A custom repository before would look like this:"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Add Repository"
+    },
+    {
+      "type": "paragraph",
+      "html": "task.repository.ts"
+    },
+    {
+      "type": "code",
+      "lang": "python",
+      "code": "import { DataSource, Repository } from 'typeorm';import { Injectable } from '@nestjs/common';import { Task } from './task.entity';@Injectable()export class TaskRepository extends Repository<Task> {  constructor(private dataSource: DataSource) {    super(Task, dataSource.createEntityManager());  }}"
+    },
+    {
+      "type": "paragraph",
+      "html": "task.module.ts"
+    },
+    {
+      "type": "code",
+      "lang": "python",
+      "code": "import { Module } from '@nestjs/common';import { TasksController } from './tasks.controller';import { TasksService } from './tasks.service';import { TypeOrmModule } from '@nestjs/typeorm';import { Task } from './task.entity';@Module({  imports: [TypeOrmModule.forFeature([Task])],  controllers: [TasksController],  providers: [TasksService],})export class TasksModule {}"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What is a promise?"
+    },
+    {
+      "type": "paragraph",
+      "html": "A promise is essentially an improvement of callbacks that manage all asynchronous data activities. A JavaScript promise represents an activity that will either be completed or declined. If the promise is fulfilled, it is resolved; otherwise, it is rejected. Promises, unlike typical callbacks, may be chained."
+    },
+    {
+      "type": "image",
+      "src": "https://cdn-images-1.medium.com/max/800/1*1QRnTZ-55sNx-uJ_5llVhA.png",
+      "alt": "Nestjs : PostgreSQL database with docker-compose and Liquibase",
+      "caption": "",
+      "width": 939,
+      "height": 247
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Add Get Task by ID"
+    },
+    {
+      "type": "paragraph",
+      "html": "controller"
+    },
+    {
+      "type": "code",
+      "lang": "python",
+      "code": "import { Controller, Get, Param } from '@nestjs/common';import { TasksService } from './tasks.service';import { Task } from './task.entity';@Controller('tasks')export class TasksController {  constructor(private tasksService: TasksService) {}  @Get('/:id')  getTaskById(@Param('id') id: string): Promise<Task> {    return this.tasksService.getTaskById(id);  }}"
+    },
+    {
+      "type": "paragraph",
+      "html": "service"
+    },
+    {
+      "type": "code",
+      "lang": "python",
+      "code": "import { Injectable, NotFoundException } from '@nestjs/common';import { TaskRepository } from './task.repository';import { InjectRepository } from '@nestjs/typeorm';import { Task } from './task.entity';@Injectable()export class TasksService {  constructor(    @InjectRepository(Task)    private taskRepository: TaskRepository,  ) {}  async getTaskById(id: string): Promise<Task> {    const found = await this.taskRepository.findOne({ where: { id: id } });    if (!found) {      throw new NotFoundException(`Task with ID \"${id}\" not found`);    }    return found;  }}"
+    },
+    {
+      "type": "paragraph",
+      "html": "<a href=\"https://typeorm.io/repository-api\" target=\"_blank\" rel=\"noreferrer noopener\">https://typeorm.io/repository-api</a>"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Add Repository layer"
+    },
+    {
+      "type": "paragraph",
+      "html": "module"
+    },
+    {
+      "type": "code",
+      "lang": "python",
+      "code": "import { Module } from '@nestjs/common';import { TasksController } from './tasks.controller';import { TasksService } from './tasks.service';import { TypeOrmModule } from '@nestjs/typeorm';import { Task } from './task.entity';import { TaskRepository } from './task.repository';@Module({  imports: [TypeOrmModule.forFeature([Task])],  controllers: [TasksController],  providers: [TasksService, TaskRepository],})export class TasksModule {}"
+    },
+    {
+      "type": "paragraph",
+      "html": "controller"
+    },
+    {
+      "type": "code",
+      "lang": "python",
+      "code": "import { Body, Controller, Get, Param, Post } from '@nestjs/common';import { TasksService } from './tasks.service';import { Task } from './task.entity';import { CreateTaskDto } from './dto/create-task.dto';@Controller('tasks')export class TasksController {  constructor(private tasksService: TasksService) {}  @Get('/:id')  getTaskById(@Param('id') id: string): Promise<Task> {    return this.tasksService.getTaskById(id);  }  @Post()  createTask(@Body() createTaskDto: CreateTaskDto): Promise<Task> {    return this.tasksService.createTask(createTaskDto);  }}"
+    },
+    {
+      "type": "paragraph",
+      "html": "service"
+    },
+    {
+      "type": "code",
+      "lang": "python",
+      "code": "import { Injectable } from '@nestjs/common';import { TaskRepository } from './task.repository';import { InjectRepository } from '@nestjs/typeorm';import { Task } from './task.entity';import { CreateTaskDto } from './dto/create-task.dto';@Injectable()export class TasksService {  constructor(    @InjectRepository(TaskRepository)    private taskRepository: TaskRepository,  ) {}  async getTaskById(id: string): Promise<Task> {    const task = await this.taskRepository.getTaskById(id);    return task;  }  async createTask(createTaskDto: CreateTaskDto): Promise<Task> {    const task = await this.taskRepository.createTask(createTaskDto);    return task;  }}"
+    },
+    {
+      "type": "paragraph",
+      "html": "repository"
+    },
+    {
+      "type": "code",
+      "lang": "python",
+      "code": "import { DataSource, Repository } from 'typeorm';import { Injectable, NotFoundException } from '@nestjs/common';import { Task } from './task.entity';import { TaskStatus } from './tasks-status.enum';import { CreateTaskDto } from './dto/create-task.dto';@Injectable()export class TaskRepository extends Repository<Task> {  constructor(private ds: DataSource) {    super(Task, ds.createEntityManager());  }  public async getTaskById(id: string): Promise<Task> {    const found = await this.findOne({ where: { id: id } });    if (!found) {      throw new NotFoundException(`Task with ID \"${id}\" not found`);    }    return found;  }  public async createTask(createTaskDto: CreateTaskDto): Promise<Task> {    const { title, description } = createTaskDto;    const task = this.create({      title,      description,      status: TaskStatus.OPEN,    });    await this.save(task);    return task;  }}"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "synchronize: true"
+    },
+    {
+      "type": "paragraph",
+      "html": "Be careful not to set “true” synchronize in production."
+    },
+    {
+      "type": "paragraph",
+      "html": "module"
+    },
+    {
+      "type": "code",
+      "lang": "python",
+      "code": "import { Module } from '@nestjs/common';import { TasksModule } from './tasks/tasks.module';import { TypeOrmModule } from '@nestjs/typeorm';@Module({  imports: [    TasksModule,    TypeOrmModule.forRoot({      type: 'postgres',      host: '127.0.0.1',      port: 3001,      username: 'user',      password: 'pass',      database: 'task',      autoLoadEntities: true,      // synchronize: true,    }),  ],})export class AppModule {}"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Delete Task"
+    },
+    {
+      "type": "paragraph",
+      "html": "controller"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "  @Delete('/:id')  deleteTask(@Param('id') id: string): Promise<void> {    return this.tasksService.deleteTask(id);  }"
+    },
+    {
+      "type": "paragraph",
+      "html": "service"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "  async deleteTask(id: string): Promise<void> {    return await this.taskRepository.deleteTask(id);  }"
+    },
+    {
+      "type": "paragraph",
+      "html": "repository"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "  public async deleteTask(id: string): Promise<void> {    const result = await this.delete(id);    if (result.affected === 0) {      throw new NotFoundException(`Task with ID \"${id}\" not found`);    }  }"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Update Task"
+    },
+    {
+      "type": "paragraph",
+      "html": "controller"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "  @Patch('/:id/status')  updateTaskStatus(    @Param('id') id: string,    @Body() updateTaskStatusDto: UpdateTaskStatusDto,  ): Promise<Tasks> {    const { status } = updateTaskStatusDto;    return this.tasksService.updateTaskStatus(id, status);  }"
+    },
+    {
+      "type": "paragraph",
+      "html": "service"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "  async updateTaskStatus(id: string, status: TaskStatus): Promise<Tasks> {    return await this.taskRepository.updateTaskStatus(id, status);  }"
+    },
+    {
+      "type": "paragraph",
+      "html": "repository"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "  public async updateTaskStatus(    id: string,    status: TaskStatus,  ): Promise<Tasks> {    const task = await this.getTaskById(id);    task.status = status;    await this.save(task);    return task;  }"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Search Task"
+    },
+    {
+      "type": "paragraph",
+      "html": "controller"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "  @Get()  getTasks(@Query() filterDto: GetTasksFilterDto): Promise<Tasks[]> {    return this.tasksService.getTasks(filterDto);  }"
+    },
+    {
+      "type": "paragraph",
+      "html": "service"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "  async getTasks(filterDto: GetTasksFilterDto): Promise<Tasks[]> {    return await this.taskRepository.getTasks(filterDto);  }"
+    },
+    {
+      "type": "paragraph",
+      "html": "repository"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "  async getTasks(filterDto: GetTasksFilterDto): Promise<Tasks[]> {    const { status, search } = filterDto;    const query = this.createQueryBuilder('tasks');    if (status) {      query.andWhere('tasks.status = :status', { status });    }    if (search) {      query.andWhere(        'LOWER(tasks.title) LIKE LOWER(:search) OR LOWER(tasks.description) LIKE LOWER(:search)',        { search: `%${search}%` },      );    }    const tasks = await query.getMany();    return tasks;  }"
+    },
+    {
+      "type": "paragraph",
+      "html": "<strong>Conclusion:</strong><br>This report demonstrates how to leverage NestJS, PostgreSQL, Liquibase, and TypeORM to build a robust and scalable CRUD API with database management capabilities. The provided code offers a starting point for developing more complex applications with NestJS."
+    }
+  ]
+}

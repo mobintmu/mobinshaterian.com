@@ -1,0 +1,21 @@
+{
+  "slug": "Absolutely---and-you-re-spot-on--go-generate-is-most-valuable-when-structural-repetition-is-high--1f6b094de34d",
+  "title": "Absolutely — and you’re spot on: go generate is most valuable when structural repetition is high…",
+  "subtitle": "The biggest pitfalls I’ve seen are stale outputs and tooling gaps—not running go generate consistently can lead to silent mismatches…",
+  "excerpt": "The biggest pitfalls I’ve seen are stale outputs and tooling gaps—not running go generate consistently can lead to silent mismatches…",
+  "date": "2025-12-02",
+  "tags": [],
+  "readingTime": "1 min",
+  "url": "https://medium.com/@mobinshaterian/absolutely-and-youre-spot-on-go-generate-is-most-valuable-when-structural-repetition-is-high-1f6b094de34d",
+  "hero": null,
+  "content": [
+    {
+      "type": "paragraph",
+      "html": "Absolutely — and you’re spot on: go generate is most valuable when structural repetition is high and the patterns are stable. In production, I use it selectively—for things like enum helpers, DTO↔entity mappers, or gRPC glue code—where the logic is mechanical and error-prone if done manually. The payoff is cleaner, more consistent code, but only when applied judiciously: overuse or generation of semantic logic (e.g., business rules) tends to backfire."
+    },
+    {
+      "type": "paragraph",
+      "html": "The biggest pitfalls I’ve seen are stale outputs and tooling gaps—not running go generate consistently can lead to silent mismatches between source and generated code. That’s why enforcing regeneration in CI and treating generated files like any other artifact (with tests, reviews, and version-pinned tools) is essential. As you noted, generated code isn’t exempt from testing—even more so, since a bug in the generator can propagate widely. When requirements evolve, well-structured generation actually helps highlight inconsistencies early, turning what could be hidden tech debt into visible, fixable feedback."
+    }
+  ]
+}

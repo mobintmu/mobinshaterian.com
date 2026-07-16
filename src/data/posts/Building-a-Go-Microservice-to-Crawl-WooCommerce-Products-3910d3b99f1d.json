@@ -1,0 +1,172 @@
+{
+  "slug": "Building-a-Go-Microservice-to-Crawl-WooCommerce-Products-3910d3b99f1d",
+  "title": "Building a Go Microservice to Crawl WooCommerce Products",
+  "subtitle": "In this project, we explored how to design and implement a Go‑based microservice that crawls products from a WooCommerce WordPress site.",
+  "excerpt": "In this project, we explored how to design and implement a Go‑based microservice that crawls products from a WooCommerce WordPress site.",
+  "date": "2026-01-06",
+  "tags": [],
+  "readingTime": "3 min",
+  "url": "https://medium.com/@mobinshaterian/building-a-go-microservice-to-crawl-woocommerce-products-3910d3b99f1d",
+  "hero": "https://cdn-images-1.medium.com/max/800/1*UzYkzVS4SlhfzZV-Ap3ycQ.png",
+  "content": [
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Introduction"
+    },
+    {
+      "type": "paragraph",
+      "html": "In this project, we explored how to design and implement a Go‑based microservice that crawls products from a WooCommerce WordPress site. The journey started with a simple Colly scraper and evolved into a clean, testable service integrated into a larger application framework using Uber’s <strong>Fx</strong> dependency injection."
+    },
+    {
+      "type": "paragraph",
+      "html": "The goal was to reliably fetch product data, normalize it (clean titles and prices), and expose it for downstream services such as storage, analytics, or APIs."
+    },
+    {
+      "type": "image",
+      "src": "https://cdn-images-1.medium.com/max/800/1*UzYkzVS4SlhfzZV-Ap3ycQ.png",
+      "alt": "Building a Go Microservice to Crawl WooCommerce Products",
+      "caption": "",
+      "width": 1024,
+      "height": 1024
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Go-Wordpress"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Application Architecture"
+    },
+    {
+      "type": "paragraph",
+      "html": "At the top level, the application is composed with <strong>Fx</strong>:"
+    },
+    {
+      "type": "code",
+      "lang": "go",
+      "code": "func NewApp() *fx.App {    return fx.New(        fx.Provide(            logger.NewLogger,            config.NewConfig,            sql.InitialDB,            health.New,            server.NewGinEngine,            server.CreateHTTPServer,            server.CreateGRPCServer,            migrate.NewRunner,            sqlc.New,            cache.NewClient,            cache.NewCacheStore,            productController.NewAdmin,            productController.NewClient,            productController.NewGRPC,            productService.New,            crawler.New,            dispatcher.New,            poller.New,        ),        fx.Invoke(            dispatcher.RegisterServices,            dispatcher.RegisterLifecycle,            poller.RegisterLifecycle,            server.RegisterRoutes,            server.StartHTTPServer,            server.StartGRPCServer,            migrate.RunMigrations,            logger.RegisterLoggerLifecycle,            server.GRPCLifeCycle,        ),    )}"
+    },
+    {
+      "type": "paragraph",
+      "html": "This composition wires together logging, configuration, SQL storage, cache, controllers, services, and our new <strong>crawler</strong> service."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "badomjip"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "The Crawler Service"
+    },
+    {
+      "type": "paragraph",
+      "html": "The crawler is responsible for scraping product data from the WooCommerce category page:"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "type Product struct {    Title string    Price string    Link  string    Image string}type Service struct {    products        []Product    cleanedProducts []Product}"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Scraping Logic"
+    },
+    {
+      "type": "paragraph",
+      "html": "Using <strong>Colly</strong>, the service visits the target page and extracts product information:"
+    },
+    {
+      "type": "code",
+      "lang": "go",
+      "code": "func (s *Service) ListProducts() error {    c := colly.NewCollector(        colly.AllowedDomains(\"badomjip.com\"),    )    products := []Product{}    c.OnHTML(\"div.product-grid-item\", func(e *colly.HTMLElement) {        p := Product{            Title: e.ChildText(\"h3.wd-entities-title a\"),            Price: e.ChildText(\"span.price\"),            Link:  e.ChildAttr(\"a.product-image-link\", \"href\"),            Image: e.ChildAttr(\"a.product-image-link img\", \"src\"),        }        products = append(products, p)    })    err := c.Visit(\"https://badomjip.com/product-category/%d9%be%da%a9%db%8c%d8%ac%d9%87%d8%a7/\")    if err != nil {        return err    }    s.products = products    s.cleanUP()    return nil}"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Data Normalization"
+    },
+    {
+      "type": "paragraph",
+      "html": "Raw HTML often contains extra markup and localized currency strings. The <code>cleanUP</code> method ensures titles and prices are normalized:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "<strong>Title</strong>: strip HTML tags and trim whitespace",
+        "<strong>Price</strong>: remove commas, currency symbols, and convert to an integer"
+      ]
+    },
+    {
+      "type": "code",
+      "lang": "go",
+      "code": "func (s *Service) cleanUP() {    cleaned := make([]Product, 0, len(s.products))    reTags := regexp.MustCompile(`<[^>]*>`)    for _, p := range s.products {        title := reTags.ReplaceAllString(p.Title, \"\")        title = strings.TrimSpace(title)        priceStr := strings.ReplaceAll(p.Price, \"تومان\", \"\")        priceStr = strings.ReplaceAll(priceStr, \",\", \"\")        priceStr = strings.TrimSpace(priceStr)        reDigits := regexp.MustCompile(`\\D`)        priceStr = reDigits.ReplaceAllString(priceStr, \"\")        var priceInt int        if priceStr != \"\" {            if val, err := strconv.Atoi(priceStr); err == nil {                priceInt = val            }        }        cleaned = append(cleaned, Product{            Title: title,            Price: strconv.Itoa(priceInt),            Link:  p.Link,            Image: p.Image,        })    }    s.cleanedProducts = cleaned}"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Integration Testing"
+    },
+    {
+      "type": "paragraph",
+      "html": "To validate the crawler against the live site, we wrote an integration test:"
+    },
+    {
+      "type": "code",
+      "lang": "go",
+      "code": "func TestListProductsIntegration(t *testing.T) {    svc := crawler.New()    err := svc.ListProducts()    if err != nil {        t.Fatalf(\"ListProducts failed: %v\", err)    }    products := svc.CleanedProducts()    if len(products) == 0 {        t.Fatalf(\"expected at least 1 product, got 0\")    }    p := products[0]    if p.Title == \"\" {        t.Errorf(\"product title should not be empty\")    }    if p.Price == \"\" {        t.Errorf(\"product price should not be empty\")    }    if p.Link == \"\" {        t.Errorf(\"product link should not be empty\")    }    if p.Image == \"\" {        t.Errorf(\"product image should not be empty\")    }}"
+    },
+    {
+      "type": "paragraph",
+      "html": "This test ensures that:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "The crawler successfully fetches products from the live WooCommerce page",
+        "Cleaned products contain non‑empty fields",
+        "Price normalization works as expected"
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Lessons Learned"
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "<strong>Colly selectors must match the theme HTML</strong>: WooCommerce themes vary, so we adapted selectors to <code>div.product-grid-item</code> instead of the default <code>ul.products li.product</code>.",
+        "<strong>Normalization is essential</strong>: Prices often include commas, non‑breaking spaces, and localized currency symbols. Cleaning ensures consistent numeric values.",
+        "<strong>Integration tests provide confidence</strong>: By hitting the real page, we validated that our crawler works end‑to‑end.",
+        "<strong>Fx integration makes services composable</strong>: The crawler plugs into the larger application seamlessly, benefiting from DI and lifecycle management."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Git Commits"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Conclusion"
+    },
+    {
+      "type": "paragraph",
+      "html": "Through iterative refinement, we built a robust Go service that crawls WooCommerce products, cleans the data, and integrates into a modern microservice architecture. The combination of <strong>Colly</strong> for scraping, <strong>Fx</strong> for dependency injection, and <strong>Go’s testing framework</strong> for integration tests provides a solid foundation for extending this service — whether storing products in SQL/ClickHouse, exposing them via APIs, or scheduling periodic crawls with a poller."
+    },
+    {
+      "type": "paragraph",
+      "html": "This project demonstrates how backend engineering principles — modularity, testability, and clean architecture — apply even to something as seemingly simple as a web scraper."
+    }
+  ]
+}

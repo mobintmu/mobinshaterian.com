@@ -1,0 +1,183 @@
+{
+  "slug": "NestJS--Data-Validation-and-Transformation-ce99115c760d",
+  "title": "NestJS: Data Validation and Transformation",
+  "subtitle": "This report summarizes data validation and transformation techniques in NestJS, a framework for building Node.js server-side applications.",
+  "excerpt": "This report summarizes data validation and transformation techniques in NestJS, a framework for building Node.js server-side applications.",
+  "date": "2024-06-26",
+  "tags": [],
+  "readingTime": "1 min",
+  "url": "https://medium.com/@mobinshaterian/nestjs-data-validation-and-transformation-ce99115c760d",
+  "hero": "https://cdn-images-1.medium.com/max/800/1*gwMTI2OlRutMoFGDYh7m4g.jpeg",
+  "content": [
+    {
+      "type": "paragraph",
+      "html": "This report summarizes data validation and transformation techniques in NestJS, a framework for building Node.js server-side applications."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "Importance of Data Validation"
+    },
+    {
+      "type": "paragraph",
+      "html": "Validating data ensures it adheres to predefined rules before reaching the controller layer. This prevents issues like:"
+    },
+    {
+      "type": "paragraph",
+      "html": "<strong>Incorrect or Malicious Data</strong>: Protects against attacks like SQL injection and unexpected data types.<br><strong>Errors and Exceptions</strong>: Prevents errors caused by invalid data formats."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "Benefits"
+    },
+    {
+      "type": "paragraph",
+      "html": "<strong>Improved Data Integrity</strong>: Guarantees data adheres to defined rules.<br><strong>Reduced Errors</strong>: Prevents issues caused by invalid data.<br><strong>Cleaner Code</strong>: Separates data validation logic from controllers."
+    },
+    {
+      "type": "image",
+      "src": "https://cdn-images-1.medium.com/max/800/1*gwMTI2OlRutMoFGDYh7m4g.jpeg",
+      "alt": "NestJS: Data Validation and Transformation",
+      "caption": "",
+      "width": 1024,
+      "height": 1024
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Check validation of DTO and input data before controller."
+    },
+    {
+      "type": "paragraph",
+      "html": "<a href=\"https://github.com/typestack/class-validator\" target=\"_blank\" rel=\"noreferrer noopener\">https://github.com/typestack/class-validator</a>"
+    },
+    {
+      "type": "image",
+      "src": "https://cdn-images-1.medium.com/max/800/1*ILH0LlIscaC9_SQ8VI3cMw.png",
+      "alt": "NestJS: Data Validation and Transformation",
+      "caption": "",
+      "width": 1419,
+      "height": 715
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Install packages"
+    },
+    {
+      "type": "code",
+      "lang": "bash",
+      "code": "yarn add class-validator class-transformer"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Document validation"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Run in developer mode"
+    },
+    {
+      "type": "code",
+      "lang": "bash",
+      "code": "yarn start:dev"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Add Pipe controller"
+    },
+    {
+      "type": "paragraph",
+      "html": "main.ts"
+    },
+    {
+      "type": "code",
+      "lang": "python",
+      "code": "import { NestFactory } from '@nestjs/core';import { AppModule } from './app.module';import { ValidationPipe } from '@nestjs/common';async function bootstrap() {  const app = await NestFactory.create(AppModule);  app.useGlobalPipes(new ValidationPipe());  await app.listen(3000);}bootstrap();"
+    },
+    {
+      "type": "paragraph",
+      "html": "DTO folder"
+    },
+    {
+      "type": "code",
+      "lang": "python",
+      "code": "import { IsNotEmpty } from 'class-validator';export class CreateTaskDto {  @IsNotEmpty()  title: string;  @IsNotEmpty()  description: string;}"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Check Id exists"
+    },
+    {
+      "type": "paragraph",
+      "html": "service"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "  getTaskById(id: string): Task {    const found = this.tasks.find((task) => task.id === id);    if (!found) {      throw new NotFoundException(`Task with ID \"${id}\" not found`);    }    return found;  }"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Check ID exists when the element was deleted"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "  deleteTask(id: string): void {    const found = this.getTaskById(id);    this.tasks = this.tasks.filter((task) => task.id !== found.id);  }"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Check ID exists when the element was updated"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "  updateTaskStatus(id: string, status: TaskStatus): Task {    const task = this.getTaskById(id);    task.status = status;    return task;  }"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Check Update Status"
+    },
+    {
+      "type": "paragraph",
+      "html": "add update-task-status.dto in dto folder"
+    },
+    {
+      "type": "code",
+      "lang": "python",
+      "code": "import { IsEnum } from 'class-validator';import { TaskStatus } from '../tasks.model';export class UpdateTaskStatus {  @IsEnum(TaskStatus)  status: TaskStatus;}"
+    },
+    {
+      "type": "paragraph",
+      "html": "controller"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "  @Patch('/:id/status')  updateTaskStatus(    @Param('id') id: string,    @Body() updateTaskStatusDto: UpdateTaskStatusDto,  ): Task {    const { status } = updateTaskStatusDto;    return this.tasksService.updateTaskStatus(id, status);  }"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "validation for Search"
+    },
+    {
+      "type": "paragraph",
+      "html": "dto"
+    },
+    {
+      "type": "code",
+      "lang": "python",
+      "code": "import { IsEnum, IsOptional, IsString } from 'class-validator';import { TaskStatus } from '../tasks.model';export class GetTasksFilterDto {  @IsOptional()  @IsEnum(TaskStatus)  status?: TaskStatus;  @IsOptional()  @IsString()  search?: string;}"
+    }
+  ]
+}

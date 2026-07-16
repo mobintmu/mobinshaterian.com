@@ -1,0 +1,258 @@
+{
+  "slug": "Introduction-to-the-Parsian-Bank-Gateway-Implementation-in-NestJS-9077a5441b5a",
+  "title": "Introduction to the Parsian Bank Gateway Implementation in NestJS",
+  "subtitle": "پیاده سازی درگاه پارسیان در نست جی اس",
+  "excerpt": "پیاده سازی درگاه پارسیان در نست جی اس",
+  "date": "2024-08-22",
+  "tags": [],
+  "readingTime": "5 min",
+  "url": "https://medium.com/@mobinshaterian/introduction-to-the-parsian-bank-gateway-implementation-in-nestjs-9077a5441b5a",
+  "hero": "https://cdn-images-1.medium.com/max/800/1*DH7HLlb7fBHk4lcYcVPu7g.png",
+  "content": [
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Introduction to the Parsian Bank Gateway Implementation in NestJS"
+    },
+    {
+      "type": "paragraph",
+      "html": "پیاده سازی درگاه پارسیان در نست جی اس"
+    },
+    {
+      "type": "paragraph",
+      "html": "This guide outlines integrating the Parsian payment gateway into a NestJS application. The implementation covers two main steps:"
+    },
+    {
+      "type": "paragraph",
+      "html": "1. Initial Transaction: Opening a transaction and obtaining a token from the Parsian gateway.<br>2. Transaction Confirmation: Verifying the transaction after the user completes the payment process."
+    },
+    {
+      "type": "paragraph",
+      "html": "The integration utilizes the SOAP protocol for communication with the Parsian gateway. The guide includes:"
+    },
+    {
+      "type": "paragraph",
+      "html": "- Required dependencies and setup<br>- Data Transfer Objects (DTOs) for request and response handling<br>- Entity definitions for storing payment information<br>- Controller setup for handling payment requests<br>- Service implementation for interacting with the Parsian bank gateway<br>- Configuration details for the Parsian gateway"
+    },
+    {
+      "type": "paragraph",
+      "html": "The code provides a structured approach to handling payments, including error handling, database interactions, and proper request/response management. This implementation allows for seamless integration of the Parsian payment gateway into a NestJS-based application, enabling secure and efficient payment processing."
+    },
+    {
+      "type": "image",
+      "src": "https://cdn-images-1.medium.com/max/800/1*9O52ZHYUMJYzUlle_g-k8Q.png",
+      "alt": "Introduction to the Parsian Bank Gateway Implementation in NestJS",
+      "caption": "",
+      "width": 695,
+      "height": 355
+    },
+    {
+      "type": "image",
+      "src": "https://cdn-images-1.medium.com/max/800/1*DH7HLlb7fBHk4lcYcVPu7g.png",
+      "alt": "Introduction to the Parsian Bank Gateway Implementation in NestJS",
+      "caption": "",
+      "width": 667,
+      "height": 462
+    },
+    {
+      "type": "image",
+      "src": "https://cdn-images-1.medium.com/max/800/1*Jdy9OoNX7kQqn06yMtNrEQ.png",
+      "alt": "Introduction to the Parsian Bank Gateway Implementation in NestJS",
+      "caption": "",
+      "width": 696,
+      "height": 404
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "SOAP"
+    },
+    {
+      "type": "code",
+      "lang": "bash",
+      "code": "npm i nestjs-soap"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Initial Transaction"
+    },
+    {
+      "type": "paragraph",
+      "html": "Opening a transaction and getting a token is mandatory in the first step."
+    },
+    {
+      "type": "paragraph",
+      "html": "Make Service, controller, and model for payment."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "DTO"
+    },
+    {
+      "type": "code",
+      "lang": "python",
+      "code": "import { ApiProperty } from '@nestjs/swagger';import { PaymentStatus } from '../entities/payment.entity';export class CreatePaymentParsianDto {  @ApiProperty()  amount: number;  @ApiProperty()  uniqueID: number;  @ApiProperty()  additionalData: string;}export class CreatePaymentParsianResultDto {  @ApiProperty()  paymentLink: string;}"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "entity => parisan.type.ts"
+    },
+    {
+      "type": "code",
+      "lang": "javascript",
+      "code": "export const ParsianConfiguration = {  Address: 'https://pec.shaparak.ir/NewIPG/?token=',  WsdlInitial:    'https://pec.shaparak.ir/NewIPGServices/Sale/SaleService.asmx?wsdl',  WsdlConfirm:    'https://pec.shaparak.ir/NewIPGServices/Confirm/ConfirmService.asmx?wsdl',};"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "entity => payment.entity.ts for store result in database"
+    },
+    {
+      "type": "code",
+      "lang": "python",
+      "code": "import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';import mongoose, { Document } from 'mongoose';import { User } from 'src/users/schemas/user.schema';export enum PaymentStatus {  Initial = 'Initial',  Pending = 'Pending',  Success = 'Success',  Failed = 'Failed',}export enum PaymentGateway {  Parsian = 'Parsian',}@Schema({  timestamps: true,  collection: 'payment',})export class Payment extends Document {  @ApiProperty()  _id: string;  @ApiProperty({ type: () => User })  @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'user' })  user: User;  @ApiProperty()  @Prop({ required: true })  amount: number;  @ApiProperty()  @Prop({ required: true })  uniqueID: string;  @ApiProperty({ type: () => [PaymentStatus] })  @Prop({ required: true })  status: string;  @ApiProperty({ type: () => [PaymentGateway] })  @Prop({ required: true })  gateway: string;  @ApiProperty()  @Prop({ required: true })  authority_code: string;  @ApiPropertyOptional()  @Prop({ type: Object })  authority: Record<string, any>;  @ApiPropertyOptional()  @Prop({ type: Object })  response: Record<string, any>;}const PaymentSchema = SchemaFactory.createForClass(Payment);export { PaymentSchema };"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "payment.controller.ts"
+    },
+    {
+      "type": "code",
+      "lang": "python",
+      "code": "import {  Controller,  Post,  Body,  UseGuards,  Req,  Query,  Get,} from '@nestjs/common';import { ApiBearerAuth, ApiOkResponse, ApiTags } from '@nestjs/swagger';import { SkipThrottle } from '@nestjs/throttler';import { CustomerGuard } from 'src/auth/customers-auth.guard';import { User } from 'src/users/schemas/user.schema';import {  CreatePaymentParsianDto,  CreatePaymentParsianResultDto,  VerifyPaymentParsianDto,  VerifyPaymentParsianResponseDto,} from './dto/create.parsian.dto';import { PaymentParsianService } from './payment.parsian.service';@ApiTags('payments')@SkipThrottle()@Controller('payment')export class PaymentController {  constructor(    private readonly paymentParsianService: PaymentParsianService,  ) {}  @Post('/parsian/openTransaction')  @UseGuards(CustomerGuard)  @ApiOkResponse({ type: () => CreatePaymentParsianResultDto })  @ApiBearerAuth()  createParsian(    @Body() createPaymentDto: CreatePaymentParsianDto,    @Req() req: { user: Partial<User> },  ) {    return this.paymentParsianService.openTransaction(      createPaymentDto,      req.user,    );  }}"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "payment.parsian.service.ts"
+    },
+    {
+      "type": "code",
+      "lang": "python",
+      "code": "import {  Injectable,  InternalServerErrorException,  NotFoundException,} from '@nestjs/common';import {  Payment,  PaymentGateway,  PaymentStatus,} from './entities/payment.entity';import { Model } from 'mongoose';import { InjectModel } from '@nestjs/mongoose';import { User } from 'src/users/schemas/user.schema';import {  CreatePaymentParsianDto,  VerifyPaymentParsianDto,} from './dto/create.parsian.dto';const soap = require('soap');const moment = require('moment');import { ParsianConfiguration } from './entities/parsian.type';import configuration from 'src/config/configuration';@Injectable()export class PaymentParsianService {  constructor(    @InjectModel(Payment.name) private paymentModel: Model<Payment>,  ) {}  async openTransaction(    createPaymentDto: CreatePaymentParsianDto,    user: Partial<User>,  ) {    let token = '';    // Make a SOAP request    const requestData = {      requestData: {        LoginAccount: configuration().parsian.loginAccount,        OrderId: createPaymentDto.uniqueID,        Amount: createPaymentDto.amount,        CallBackUrl: configuration().parsian.callBackUrl,        Originator: user.phoneNumber,        AdditionalData: createPaymentDto.additionalData,      },    };    try {      const resolve = await this.SendRequestInitial(requestData);      if (!resolve.hasOwnProperty('SalePaymentRequestResult')) {        console.log('SalePaymentRequestResult not found');        throw new InternalServerErrorException();      }      if (resolve.SalePaymentRequestResult.Token != 0) {        token = resolve?.SalePaymentRequestResult?.Token;      } else {        console.log(resolve.SalePaymentRequestResult.Message);        throw new InternalServerErrorException();      }      await this.paymentModel.create({        user: user,        amount: createPaymentDto.amount,        uniqueID: createPaymentDto.uniqueID,        status: PaymentStatus.Initial,        gateway: PaymentGateway.Parsian,        authority_code: token,        authority: resolve,      });      return { paymentLink: ParsianConfiguration.Address + token };    } catch (error) {      console.log(error);      throw new InternalServerErrorException();    }  }  async SendRequestInitial(requestData: any): Promise<any> {    moment.locale('en');    const options = {      // overrideRootElement: {      // namespace: 'ns1',      // },    };    return await new Promise<any>((resolve, reject) => {      soap.createClient(        ParsianConfiguration.WsdlInitial,        options,        function (err: any, client: any) {          if (err) {            console.error('Error creating SOAP client:', err);            reject(err);          }          client.SalePaymentRequest(requestData, function (err, result) {            if (err) {              console.error('Error making SOAP request:', err);              reject(err);            }            resolve(result);          });        },      );    });  }}"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "payment.module.ts"
+    },
+    {
+      "type": "code",
+      "lang": "python",
+      "code": "import { Module } from '@nestjs/common';import { PaymentZarinpalService } from './payment.zarinpal.service';import { PaymentController } from './payment.controller';import { AuthModule } from 'src/auth/auth.module';import { MongooseModule } from '@nestjs/mongoose';import { Payment, PaymentSchema } from './entities/payment.entity';import { HttpModule } from '@nestjs/axios';import { PaymentParsianService } from './payment.parsian.service';@Module({  imports: [    AuthModule,    MongooseModule.forFeature([{ name: Payment.name, schema: PaymentSchema }]),    HttpModule,  ],  controllers: [PaymentController],  providers: [PaymentZarinpalService, PaymentParsianService],})export class PaymentModule {}"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "configuration.ts"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "  parsian: {    callBackUrl: process.env.PARSIAN_CALLBACK_URL,    loginAccount: process.env.PARSIAN_PIN,  },"
+    },
+    {
+      "type": "image",
+      "src": "https://cdn-images-1.medium.com/max/800/1*J0Uk4Iymb12TwpXZKyce4Q.png",
+      "alt": "Introduction to the Parsian Bank Gateway Implementation in NestJS",
+      "caption": "",
+      "width": 574,
+      "height": 357
+    },
+    {
+      "type": "image",
+      "src": "https://cdn-images-1.medium.com/max/800/1*TDZfk1WrXCJZwba2j3kF3A.png",
+      "alt": "Introduction to the Parsian Bank Gateway Implementation in NestJS",
+      "caption": "",
+      "width": 683,
+      "height": 238
+    },
+    {
+      "type": "image",
+      "src": "https://cdn-images-1.medium.com/max/800/1*fQXCkMpyI94Fq8hzItMGsA.png",
+      "alt": "Introduction to the Parsian Bank Gateway Implementation in NestJS",
+      "caption": "",
+      "width": 784,
+      "height": 916
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Confirm transaction"
+    },
+    {
+      "type": "image",
+      "src": "https://cdn-images-1.medium.com/max/800/1*mZti4wiqy8OWcBjeCNtt0g.png",
+      "alt": "Introduction to the Parsian Bank Gateway Implementation in NestJS",
+      "caption": "",
+      "width": 710,
+      "height": 408
+    },
+    {
+      "type": "image",
+      "src": "https://cdn-images-1.medium.com/max/800/1*C424Mk7ccoIFLkm0IXPsZw.png",
+      "alt": "Introduction to the Parsian Bank Gateway Implementation in NestJS",
+      "caption": "",
+      "width": 685,
+      "height": 244
+    },
+    {
+      "type": "paragraph",
+      "html": "After the initial transaction and the client goes to the Parsian gateway, the bank will call back to verify the endpoint of your website. You must verify the transaction request with Parsian Bank. If you don’t, money will come back to the client's balance."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "DTO"
+    },
+    {
+      "type": "code",
+      "lang": "javascript",
+      "code": "export class VerifyPaymentParsianDto {  @ApiProperty()  Token: string;  @ApiProperty()  OrderId: string;  @ApiProperty()  TerminalNo: string;  @ApiProperty()  RRN: string;  @ApiProperty()  status: string;  @ApiProperty()  Amount: string;  @ApiProperty()  STraceNo: string;}export class VerifyPaymentParsianResponseDto {  @ApiProperty()  Status: PaymentStatus;  @ApiProperty()  Message: string;}"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Controller"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "  @Post('/parsian/verify')  @ApiOkResponse({ type: () => VerifyPaymentParsianResponseDto })  async verifyTransactionParsian(@Body() query: VerifyPaymentParsianDto) {    return this.paymentParsianService.verifyTransaction(query);  }"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Service"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "async verifyTransaction(query: VerifyPaymentParsianDto) {    const payment = await this.paymentModel.findOne({      authority_code: query.Token,    });    if (!payment) {      throw new NotFoundException();    }    if (      payment.status == PaymentStatus.Failed ||      payment.status == PaymentStatus.Success    ) {      return new NotFoundException();    }    if (Number(query.RRN) < 0 || Number(query.status) != 0) {      payment.status = PaymentStatus.Failed;      payment.response = query;      payment.save();      return { status: PaymentStatus.Failed, message: PaymentStatus.Failed };    }    payment.status = PaymentStatus.Pending;    await payment.save();    // Make a SOAP request    const requestData = {      requestData: {        LoginAccount: configuration().parsian.loginAccount,        Token: query.Token,      },    };    try {      const resolve = await this.SendRequestConfirm(requestData);      if (!resolve.hasOwnProperty('ConfirmPaymentResult')) {        console.log('ConfirmPaymentResult not found');        throw new InternalServerErrorException();      }      const result = resolve?.ConfirmPaymentResult;      if (resolve?.ConfirmPaymentResult?.Status == 0) {        payment.response = result;        payment.status = PaymentStatus.Success;        await payment.save();        return { status: PaymentStatus.Success, message: result.RRN };      } else {        payment.response = result;        payment.status = PaymentStatus.Failed;        await payment.save();        return {          status: result.status,          message: PaymentStatus.Failed,        };      }    } catch (e) {      console.error(e);      payment.response = e;      payment.status = PaymentStatus.Failed;      await payment.save();      throw InternalServerErrorException;    }  }  async SendRequestConfirm(requestData: any): Promise<any> {    moment.locale('en');    const options = {      // overrideRootElement: {      // namespace: 'ns1',      // },    };    return await new Promise<any>((resolve, reject) => {      soap.createClient(        ParsianConfiguration.WsdlConfirm,        options,        function (err: any, client: any) {          if (err) {            console.error('Error creating SOAP client:', err);            reject(err);          }          client.ConfirmPayment(requestData, function (err, result) {            if (err) {              console.error('Error making SOAP request:', err);              reject(err);            }            resolve(result);          });        },      );    });  }"
+    },
+    {
+      "type": "paragraph",
+      "html": "Visit us at <a href=\"https://www.datadriveninvestor.com/\" target=\"_blank\" rel=\"noreferrer noopener\"><em>DataDrivenInvestor.com</em></a>"
+    },
+    {
+      "type": "paragraph",
+      "html": "Subscribe to DDIntel <a href=\"https://www.ddintel.com/\" target=\"_blank\" rel=\"noreferrer noopener\"><em>here</em></a>."
+    },
+    {
+      "type": "paragraph",
+      "html": "Join our creator ecosystem <a href=\"https://join.datadriveninvestor.com/\" target=\"_blank\" rel=\"noreferrer noopener\"><em>here</em></a>."
+    },
+    {
+      "type": "paragraph",
+      "html": "DDI Official Telegram Channel: <a href=\"https://t.me/+tafUp6ecEys4YjQ1\" target=\"_blank\" rel=\"noreferrer noopener\">https://t.me/+tafUp6ecEys4YjQ1</a>"
+    },
+    {
+      "type": "paragraph",
+      "html": "Follow us on <a href=\"https://www.linkedin.com/company/data-driven-investor\" target=\"_blank\" rel=\"noreferrer noopener\"><em>LinkedIn</em></a>, <a href=\"https://twitter.com/@DDInvestorHQ\" target=\"_blank\" rel=\"noreferrer noopener\"><em>Twitter</em></a>, <a href=\"https://www.youtube.com/c/datadriveninvestor\" target=\"_blank\" rel=\"noreferrer noopener\"><em>YouTube</em></a>, and <a href=\"https://www.facebook.com/datadriveninvestor\" target=\"_blank\" rel=\"noreferrer noopener\"><em>Facebook</em></a>."
+    }
+  ]
+}
