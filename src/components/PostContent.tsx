@@ -18,7 +18,9 @@ function CodeBlock({ lang, code }: { lang: string; code: string }) {
       await navigator.clipboard.writeText(code);
       setCopied(true);
       setTimeout(() => setCopied(false), 1200);
-    } catch {}
+    } catch {
+      // ignore
+    }
   };
   return (
     <div className="my-6 overflow-hidden rounded-md border border-border bg-surface">

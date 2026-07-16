@@ -118,7 +118,10 @@ function BlogsPage() {
     <div className="min-h-screen bg-background text-foreground font-sans">
       <header className="sticky top-0 z-40 border-b border-border/60 bg-background/80 backdrop-blur">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-          <Link to="/" className="inline-flex items-center gap-2 font-mono-plus text-sm text-terminal terminal-glow">
+          <Link
+            to="/"
+            className="inline-flex items-center gap-2 font-mono-plus text-sm text-terminal terminal-glow"
+          >
             <ArrowLeft className="h-4 w-4" />
             ~/mobin
           </Link>
@@ -152,12 +155,13 @@ function BlogsPage() {
             {filtered.length} of {all.length} articles
             {tag ? (
               <>
-                {" "}tagged <span className="font-mono-plus text-terminal">#{tag}</span>
+                {" "}
+                tagged <span className="font-mono-plus text-terminal">#{tag}</span>
               </>
             ) : null}
             {q.trim() ? (
               <>
-                {" "}matching{" "}
+                {" "}
                 <span className="font-mono-plus text-terminal">"{q.trim()}"</span>
                 {searching ? <span className="text-muted-foreground"> · indexing…</span> : null}
               </>
@@ -183,7 +187,10 @@ function BlogsPage() {
           {q ? (
             <button
               onClick={() =>
-                navigate({ search: (prev: { tag: string; q: string }) => ({ ...prev, q: "" }), replace: true })
+                navigate({
+                  search: (prev: { tag: string; q: string }) => ({ ...prev, q: "" }),
+                  replace: true,
+                })
               }
               className="font-mono-plus text-xs text-muted-foreground hover:text-terminal"
             >
@@ -200,7 +207,10 @@ function BlogsPage() {
           <div className="flex flex-wrap gap-1.5">
             <button
               onClick={() =>
-                navigate({ search: (prev: { tag: string; q: string }) => ({ ...prev, tag: "" }), replace: true })
+                navigate({
+                  search: (prev: { tag: string; q: string }) => ({ ...prev, tag: "" }),
+                  replace: true,
+                })
               }
               className={
                 "rounded border px-2 py-1 font-mono-plus text-xs transition-colors " +
@@ -216,7 +226,10 @@ function BlogsPage() {
                 key={t}
                 onClick={() =>
                   navigate({
-                    search: (prev: { tag: string; q: string }) => ({ ...prev, tag: t === tag ? "" : t }),
+                    search: (prev: { tag: string; q: string }) => ({
+                      ...prev,
+                      tag: t === tag ? "" : t,
+                    }),
                     replace: true,
                   })
                 }
@@ -234,7 +247,9 @@ function BlogsPage() {
         </div>
 
         {loading && !ms ? (
-          <div className="mb-4 font-mono-plus text-xs text-muted-foreground">$ loading search index…</div>
+          <div className="mb-4 font-mono-plus text-xs text-muted-foreground">
+            $ loading search index…
+          </div>
         ) : null}
 
         {filtered.length === 0 ? (
@@ -288,11 +303,19 @@ function BlogsPage() {
 
       <footer className="border-t border-border/60">
         <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-3 px-6 py-6 font-mono-plus text-xs text-muted-foreground">
-          <span>© {new Date().getFullYear()} {profile.name}</span>
-          <span className="hidden md:inline">
-            open data · <a className="hover:text-terminal" href="/data/posts-index.json">posts-index.json</a> · <code className="text-terminal">/data/posts/&lt;slug&gt;.json</code>
+          <span>
+            © {new Date().getFullYear()} {profile.name}
           </span>
-          <Link to="/" className="hover:text-terminal">← back home</Link>
+          <span className="hidden md:inline">
+            open data ·{" "}
+            <a className="hover:text-terminal" href="/data/posts-index.json">
+              posts-index.json
+            </a>{" "}
+            · <code className="text-terminal">/data/posts/&lt;slug&gt;.json</code>
+          </span>
+          <Link to="/" className="hover:text-terminal">
+            ← back home
+          </Link>
         </div>
       </footer>
     </div>

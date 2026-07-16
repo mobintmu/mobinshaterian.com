@@ -183,7 +183,10 @@ function BlogPostPage() {
         </div>
 
         <div className="mt-10 border-t border-border pt-6">
-          <Link to="/blogs" className="font-mono-plus text-xs text-muted-foreground hover:text-terminal">
+          <Link
+            to="/blogs"
+            className="font-mono-plus text-xs text-muted-foreground hover:text-terminal"
+          >
             ← back to archive
           </Link>
         </div>
@@ -191,8 +194,12 @@ function BlogPostPage() {
 
       <footer className="border-t border-border/60">
         <div className="mx-auto flex max-w-3xl flex-wrap items-center justify-between gap-3 px-6 py-6 font-mono-plus text-xs text-muted-foreground">
-          <span>© {new Date().getFullYear()} {profile.name}</span>
-          <Link to="/" className="hover:text-terminal">home</Link>
+          <span>
+            © {new Date().getFullYear()} {profile.name}
+          </span>
+          <Link to="/" className="hover:text-terminal">
+            home
+          </Link>
         </div>
       </footer>
     </div>

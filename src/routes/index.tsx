@@ -1,15 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import profile from "@/data/profile.json";
 import posts from "@/data/posts.json";
-import {
-  ArrowUpRight,
-  Github,
-  Linkedin,
-  Mail,
-  MapPin,
-  PenLine,
-  Terminal,
-} from "lucide-react";
+import { ArrowUpRight, Github, Linkedin, Mail, MapPin, PenLine, Terminal } from "lucide-react";
 
 export const Route = createFileRoute("/")({
   component: HomePage,
@@ -27,9 +19,9 @@ type Post = {
 
 function HomePage() {
   const sortedPosts = [...(posts as Post[])]
-    .sort((a, b) =>
-      a.date === b.date ? a.slug.localeCompare(b.slug) : a.date < b.date ? 1 : -1,
-    )
+    .sort((a, b): number => {
+      return a.date === b.date ? a.slug.localeCompare(b.slug) : a.date < b.date ? 1 : -1;
+    })
     .slice(0, 6);
 
   return (
@@ -37,9 +29,9 @@ function HomePage() {
       <Nav />
       <Hero />
       <main className="mx-auto max-w-5xl px-6 pb-24">
+        <Writing posts={sortedPosts} />
         <About />
         <Experience />
-        <Writing posts={sortedPosts} />
         <Skills />
         <Education />
         <Contact />
@@ -68,18 +60,11 @@ function Nav() {
         </a>
         <nav className="hidden gap-6 font-mono-plus text-xs text-muted-foreground md:flex">
           {items.map((i) => (
-            <a
-              key={i.href}
-              href={i.href}
-              className="transition-colors hover:text-terminal"
-            >
+            <a key={i.href} href={i.href} className="transition-colors hover:text-terminal">
               {i.label}
             </a>
           ))}
-          <Link
-            to="/blogs"
-            className="transition-colors hover:text-terminal"
-          >
+          <Link to="/blogs" className="transition-colors hover:text-terminal">
             blog
           </Link>
         </nav>
@@ -108,15 +93,10 @@ function Hero() {
         </div>
 
         <h1 className="max-w-3xl text-4xl font-semibold leading-tight tracking-tight md:text-6xl">
-          {profile.name}.
-          <span className="block text-muted-foreground">
-            {profile.title}.
-          </span>
+          {profile.name}.<span className="block text-muted-foreground">{profile.title}.</span>
         </h1>
 
-        <p className="mt-6 max-w-2xl text-lg text-muted-foreground">
-          {profile.tagline}
-        </p>
+        <p className="mt-6 max-w-2xl text-lg text-muted-foreground">{profile.tagline}</p>
 
         <div className="mt-8 font-mono-plus text-sm">
           <div className="flex items-center gap-2 text-terminal">
@@ -124,11 +104,11 @@ function Hero() {
             <span>whoami</span>
           </div>
           <pre className="mt-3 overflow-x-auto rounded-md border border-border bg-surface p-4 text-xs leading-relaxed text-foreground/90 md:text-sm">
-{`> role      : Senior Software Engineer @ MTN Irancell
-> stack     : Go · gRPC · ClickHouse · Kafka · NATS · Postgres
-> shipped   : 15M rows/hr · 400K req/day · 10K TPS ML inference
-> location  : ${profile.location}
-> writing   : 200+ articles on Medium`}
+            {`> role      : Senior Software Engineer @ MTN Irancell
+              > stack     : Go · gRPC · ClickHouse · Kafka · NATS · Postgres
+              > shipped   : 15M rows/hr · 400K req/day · 10K TPS ML inference
+              > location  : ${profile.location}
+              > writing   : 200+ articles on Medium`}
           </pre>
         </div>
 
@@ -180,11 +160,10 @@ function About() {
       <SectionHeading id="about" kbd="cat about.md" title="About" />
       <div className="grid gap-8 md:grid-cols-3">
         <p className="text-base leading-relaxed text-muted-foreground md:col-span-2">
-          I'm a senior backend engineer focused on Go, distributed systems, and
-          data-heavy platforms. Over 16 years I've moved teams from monoliths
-          into microservices, rebuilt B2B APIs for scale, and turned research-grade
-          ML services into production systems doing tens of thousands of TPS.
-          I care about clean code, honest observability, and the boring parts
+          I'm a senior backend engineer focused on Go, distributed systems, and data-heavy
+          platforms. Over 16 years I've moved teams from monoliths into microservices, rebuilt B2B
+          APIs for scale, and turned research-grade ML services into production systems doing tens
+          of thousands of TPS. I care about clean code, honest observability, and the boring parts
           of reliability.
         </p>
         <ul className="space-y-3 font-mono-plus text-sm">
@@ -228,16 +207,11 @@ function Experience() {
             <div className="flex flex-wrap items-baseline justify-between gap-2">
               <div>
                 <h3 className="text-lg font-semibold">
-                  {job.role}{" "}
-                  <span className="text-muted-foreground">@ {job.company}</span>
+                  {job.role} <span className="text-muted-foreground">@ {job.company}</span>
                 </h3>
-                <p className="mt-1 font-mono-plus text-xs text-muted-foreground">
-                  {job.location}
-                </p>
+                <p className="mt-1 font-mono-plus text-xs text-muted-foreground">{job.location}</p>
               </div>
-              <span className="font-mono-plus text-xs text-terminal">
-                {job.period}
-              </span>
+              <span className="font-mono-plus text-xs text-terminal">{job.period}</span>
             </div>
             <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
               {job.highlights.map((h, i) => (
@@ -286,9 +260,7 @@ function Writing({ posts }: { posts: Post[] }) {
             <h3 className="mb-2 text-base font-semibold leading-snug group-hover:text-terminal">
               {p.title}
             </h3>
-            <p className="mb-4 flex-1 text-sm leading-relaxed text-muted-foreground">
-              {p.excerpt}
-            </p>
+            <p className="mb-4 flex-1 text-sm leading-relaxed text-muted-foreground">{p.excerpt}</p>
             <div className="flex flex-wrap gap-1.5">
               {p.tags.map((t) => (
                 <span
@@ -321,10 +293,7 @@ function Skills() {
       <SectionHeading id="skills" kbd="cat skills.json" title="Skills" />
       <div className="grid gap-4 md:grid-cols-2">
         {Object.entries(profile.skills).map(([group, items]) => (
-          <div
-            key={group}
-            className="rounded-lg border border-border bg-surface p-5"
-          >
+          <div key={group} className="rounded-lg border border-border bg-surface p-5">
             <h3 className="mb-3 font-mono-plus text-xs uppercase tracking-wider text-terminal">
               {group}
             </h3>
@@ -351,21 +320,14 @@ function Education() {
       <SectionHeading id="education" kbd="cat edu.log" title="Education" />
       <ul className="space-y-4">
         {profile.education.map((e) => (
-          <li
-            key={e.degree}
-            className="rounded-lg border border-border bg-surface p-5"
-          >
+          <li key={e.degree} className="rounded-lg border border-border bg-surface p-5">
             <div className="flex flex-wrap items-baseline justify-between gap-2">
               <h3 className="font-semibold">{e.degree}</h3>
-              <span className="font-mono-plus text-xs text-terminal">
-                {e.period}
-              </span>
+              <span className="font-mono-plus text-xs text-terminal">{e.period}</span>
             </div>
             <p className="mt-1 text-sm text-muted-foreground">{e.school}</p>
             {"notes" in e && e.notes ? (
-              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-                {e.notes}
-              </p>
+              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{e.notes}</p>
             ) : null}
           </li>
         ))}
@@ -380,8 +342,8 @@ function Contact() {
       <SectionHeading id="contact" kbd="./contact.sh" title="Contact" />
       <div className="rounded-lg border border-border bg-surface p-8">
         <p className="max-w-xl text-base text-muted-foreground">
-          The fastest way to reach me is email. I'm open to senior backend,
-          staff-level, and platform roles — remote or Tehran-based.
+          The fastest way to reach me is email. I'm open to senior backend, staff-level, and
+          platform roles — remote or Tehran-based.
         </p>
         <div className="mt-6 flex flex-wrap gap-3">
           <a
