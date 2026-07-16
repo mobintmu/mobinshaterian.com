@@ -21,6 +21,7 @@ const existingIndex = fs.existsSync("src/data/posts.json")
 const tagsBySlug = new Map(existingIndex.map((p) => [p.slug, p.tags || []]));
 
 fs.mkdirSync(OUT_POSTS, { recursive: true });
+fs.mkdirSync(PUBLIC_POSTS, { recursive: true });
 fs.mkdirSync(OUT_ASSETS, { recursive: true });
 
 const files = fs
