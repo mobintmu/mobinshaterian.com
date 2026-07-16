@@ -1,0 +1,701 @@
+{
+  "slug": "Make-simple-CRUD-requests-with-NestJS-366f6cbfff6d",
+  "title": "Make simple CRUD requests with NestJS",
+  "subtitle": "This article details the steps involved in creating a basic CRUD (Create, Read, Update, Delete) API using NestJS, a popular framework for…",
+  "excerpt": "This article details the steps involved in creating a basic CRUD (Create, Read, Update, Delete) API using NestJS, a popular framework for…",
+  "date": "2024-06-19",
+  "tags": [],
+  "readingTime": "4 min",
+  "url": "https://medium.com/@mobinshaterian/make-simple-crud-requests-with-nestjs-366f6cbfff6d",
+  "hero": "https://cdn-images-1.medium.com/max/800/1*vB-RVcr8raAypqIsVegIyw.jpeg",
+  "content": [
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Make simple CRUD requests with NestJS"
+    },
+    {
+      "type": "paragraph",
+      "html": "This article details the steps involved in creating a basic CRUD (Create, Read, Update, Delete) API using NestJS, a popular framework for building Node.js applications."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Prerequisites"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Node.js and npm (or yarn) installed on your system."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Installation"
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "<strong>Install NestJS CLI:</strong>",
+        "<strong>Create a new NestJS project</strong>",
+        "<strong>Start the development server</strong>"
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Project Structure"
+    },
+    {
+      "type": "paragraph",
+      "html": "NestJS utilizes a modular approach, where functionalities are organized into modules. The core building blocks include:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "<strong>Modules:</strong> Group controllers, services, and other providers.",
+        "<strong>Controllers:</strong> Handle incoming requests and interact with services.",
+        "<strong>Services:</strong> Implement business logic and interact with data sources."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "CRUD Operations"
+    },
+    {
+      "type": "paragraph",
+      "html": "<strong>1. Create</strong>"
+    },
+    {
+      "type": "paragraph",
+      "html": "<strong>2. Read</strong>"
+    },
+    {
+      "type": "paragraph",
+      "html": "<strong>3. Update</strong>"
+    },
+    {
+      "type": "paragraph",
+      "html": "<strong>4. Delete</strong>"
+    },
+    {
+      "type": "paragraph",
+      "html": "<strong>Additional Features</strong>"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "<strong>Data Transfer Objects (DTOs):</strong> Define DTOs to handle data validation and transfer between layers.",
+        "<strong>Filtering and Searching:</strong> Implement functionalities to filter and search tasks based on criteria."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Testing with Postman"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Download and install Postman, a popular API client.",
+        "Use Postman to send requests (GET, POST, PUT, DELETE) to the defined API endpoints with appropriate data.",
+        "Verify the responses and ensure they align with expectations."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Download Node.js®"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "# installs nvm (Node Version Manager)curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash# download and install Node.js (you may need to restart the terminal)nvm install 20# verifies the right Node.js version is in the environmentnode -v # should print `v20.14.0`# verifies the right NPM version is in the environmentnpm -v # should print `10.7.0`"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "node -v # should print `v20.14.0`v20.14.0"
+    },
+    {
+      "type": "image",
+      "src": "https://cdn-images-1.medium.com/max/800/1*oWrap98ATrjGTpbJhVxDrg.png",
+      "alt": "Make simple CRUD requests with NestJS",
+      "caption": "",
+      "width": 451,
+      "height": 249
+    },
+    {
+      "type": "image",
+      "src": "https://cdn-images-1.medium.com/max/800/1*vB-RVcr8raAypqIsVegIyw.jpeg",
+      "alt": "Make simple CRUD requests with NestJS",
+      "caption": "",
+      "width": 1024,
+      "height": 1024
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Install Nestjs"
+    },
+    {
+      "type": "code",
+      "lang": "bash",
+      "code": "yarn global add @nestjs/cli"
+    },
+    {
+      "type": "code",
+      "lang": "bash",
+      "code": "npm install -g @nestjs/cli"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Extension for vscode"
+    },
+    {
+      "type": "image",
+      "src": "https://cdn-images-1.medium.com/max/800/1*ovoV8AVs6elFAt7ba3pnuQ.png",
+      "alt": "Make simple CRUD requests with NestJS",
+      "caption": "",
+      "width": 627,
+      "height": 437
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Format document"
+    },
+    {
+      "type": "image",
+      "src": "https://cdn-images-1.medium.com/max/800/1*ws-mY8R5jl1ZNbQiA1VOXQ.png",
+      "alt": "Make simple CRUD requests with NestJS",
+      "caption": "",
+      "width": 401,
+      "height": 151
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Install new project"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "nest new nestjs-task-management? Which package manager would you ❤️  to use? yarn"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Get start"
+    },
+    {
+      "type": "code",
+      "lang": "bash",
+      "code": "cd nestjs-task-managementyarn run start"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Run Server"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "http://127.0.0.1:3000/"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Structure of project"
+    },
+    {
+      "type": "image",
+      "src": "https://cdn-images-1.medium.com/max/800/1*PLjSZ2L3jjspPOpo-kjNXw.png",
+      "alt": "Make simple CRUD requests with NestJS",
+      "caption": "",
+      "width": 231,
+      "height": 402
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "decorators"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "@Module({  imports: [],  controllers: [AppController],  providers: [AppService],})"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What you need to know about Decorators"
+    },
+    {
+      "type": "embed",
+      "provider": "youtube",
+      "url": "https://www.youtube.com/embed/bRAcWk9S-6g?feature=oembed"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Decorator Pattern — Design Patterns (ep 3)"
+    },
+    {
+      "type": "embed",
+      "provider": "youtube",
+      "url": "https://www.youtube.com/embed/GCraGHx6gso?start=26&feature=oembed&start=26"
+    },
+    {
+      "type": "image",
+      "src": "https://cdn-images-1.medium.com/max/800/1*28zKXFa_zyD-kvXj7H8HWw.png",
+      "alt": "Make simple CRUD requests with NestJS",
+      "caption": "",
+      "width": 937,
+      "height": 572
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Python Decorators in 1 Minute!"
+    },
+    {
+      "type": "embed",
+      "provider": "youtube",
+      "url": "https://www.youtube.com/embed/BE-L7xu8pO4?feature=oembed"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Golang decorators pattern"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Run in developer mode"
+    },
+    {
+      "type": "code",
+      "lang": "bash",
+      "code": "yarn start:dev"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Nest Command line"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "nest g --help"
+    },
+    {
+      "type": "image",
+      "src": "https://cdn-images-1.medium.com/max/800/1*JiTn_O0MhxvgKMeHryudCQ.png",
+      "alt": "Make simple CRUD requests with NestJS",
+      "caption": "",
+      "width": 753,
+      "height": 442
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Create Nest module"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "nest g module tasks_name"
+    },
+    {
+      "type": "image",
+      "src": "https://cdn-images-1.medium.com/max/800/1*Fa6L7qHU8fSPnrxDsz7iOA.png",
+      "alt": "Make simple CRUD requests with NestJS",
+      "caption": "",
+      "width": 224,
+      "height": 103
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Create Nest controller"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "nest g controller tasks_name"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Create a Nest Controller without a test"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": " nest g controller tasks --no-spec"
+    },
+    {
+      "type": "code",
+      "lang": "python",
+      "code": "import { Controller } from '@nestjs/common';@Controller('tasks')export class TasksController {}"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Create Services"
+    },
+    {
+      "type": "image",
+      "src": "https://cdn-images-1.medium.com/max/800/1*wXC8w_Mg4bRqk9XlQrdRSQ.png",
+      "alt": "Make simple CRUD requests with NestJS",
+      "caption": "",
+      "width": 998,
+      "height": 494
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": " nest g service tasks --no-spec"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "Added to module"
+    },
+    {
+      "type": "code",
+      "lang": "python",
+      "code": "import { Module } from '@nestjs/common';import { TasksController } from './tasks.controller';import { TasksService } from './tasks.service';@Module({  controllers: [TasksController],  providers: [TasksService],})export class TasksModule {}"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "Add service to controller constructor"
+    },
+    {
+      "type": "code",
+      "lang": "python",
+      "code": "import { Controller } from '@nestjs/common';import { TasksService } from './tasks.service';@Controller('tasks')export class TasksController {  tasksService: TasksService;  constructor(tasksService: TasksService) {    this.tasksService = tasksService;  }  helloWorld() {    this.tasksService.helloWorld();  }}"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "Set service as private element in Controller"
+    },
+    {
+      "type": "code",
+      "lang": "python",
+      "code": "import { Controller } from '@nestjs/common';import { TasksService } from './tasks.service';@Controller('tasks')export class TasksController {  constructor(private tasksService: TasksService) {}  helloWorld() {    this.tasksService.helloWorld();  }}"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Define Controller and service example"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "controller"
+    },
+    {
+      "type": "code",
+      "lang": "python",
+      "code": "import { Controller, Get } from '@nestjs/common';import { TasksService } from './tasks.service';@Controller('tasks')export class TasksController {  constructor(private tasksService: TasksService) {}  @Get()  getAllTasks() {    return this.tasksService.getAllTasks();  }}"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "Service"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "@Injectable()export class TasksService {  private tasks = [];  getAllTasks() {    this.tasks.push({ id: 1, title: 'Task 1', description: 'Description 1' });    return this.tasks;  }}"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "postman"
+    },
+    {
+      "type": "image",
+      "src": "https://cdn-images-1.medium.com/max/800/1*OJK27f67xhAIaO7BT88mjA.png",
+      "alt": "Make simple CRUD requests with NestJS",
+      "caption": "",
+      "width": 1462,
+      "height": 601
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Download Postman"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Create model"
+    },
+    {
+      "type": "paragraph",
+      "html": "tasks.model.ts"
+    },
+    {
+      "type": "code",
+      "lang": "javascript",
+      "code": "export interface Task {  id: number;  title: string;  description: string;  status: TaskStatus;}export enum TaskStatus {  OPEN = 'OPEN',  IN_PROGRESS = 'IN_PROGRESS',  DONE = 'DONE',}"
+    },
+    {
+      "type": "paragraph",
+      "html": "tasks.service.ts"
+    },
+    {
+      "type": "code",
+      "lang": "python",
+      "code": "import { Injectable } from '@nestjs/common';import { Task } from './tasks.model';@Injectable()export class TasksService {  private tasks: Task[] = [];  getAllTasks(): Task[] {    return this.tasks;  }}"
+    },
+    {
+      "type": "paragraph",
+      "html": "tasks.controller.ts"
+    },
+    {
+      "type": "code",
+      "lang": "python",
+      "code": "import { Controller, Get } from '@nestjs/common';import { TasksService } from './tasks.service';import { Task } from './tasks.model';@Controller('tasks')export class TasksController {  constructor(private tasksService: TasksService) {}  @Get()  getAllTasks(): Task[] {    return this.tasksService.getAllTasks();  }}"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Create task"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "add uuid"
+    },
+    {
+      "type": "code",
+      "lang": "bash",
+      "code": "yarn add uuidimport { v4 as uuid } from 'uuid';id: uuid(),"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "add service"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "  createTask(title: string, description: string): Task {    const task: Task = {      id: uuid(),      title,      description,      status: TaskStatus.OPEN,    };    this.tasks.push(task);    return task;  }"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "add controller"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "  @Post()  createTask(    @Body('title') title: string,    @Body('description') description: string,  ): Task {    console.log(title, description);    return this.tasksService.createTask(title, description);  }"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Data Transfer Object (DTO)"
+    },
+    {
+      "type": "paragraph",
+      "html": "Transfer data to different layers."
+    },
+    {
+      "type": "paragraph",
+      "html": "http request -&gt; Controller -&gt; Service -&gt; Controller -&gt; http response"
+    },
+    {
+      "type": "image",
+      "src": "https://cdn-images-1.medium.com/max/800/1*X5O2JiEuFBrIWp4osvjqQw.png",
+      "alt": "Make simple CRUD requests with NestJS",
+      "caption": "",
+      "width": 1295,
+      "height": 658
+    },
+    {
+      "type": "paragraph",
+      "html": "It would be necessary to add all of these parts when adding a new element."
+    },
+    {
+      "type": "image",
+      "src": "https://cdn-images-1.medium.com/max/800/1*AB2VqQ1YgI9iFa1I-9WNVQ.png",
+      "alt": "Make simple CRUD requests with NestJS",
+      "caption": "",
+      "width": 1382,
+      "height": 641
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "DTO"
+    },
+    {
+      "type": "code",
+      "lang": "javascript",
+      "code": "export class CreateTaskDto {  title: string;  description: string;}"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "Controller"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "  @Post()  createTask(@Body() createTaskDto: CreateTaskDto): Task {    console.log(createTaskDto.title, createTaskDto.description);    return this.tasksService.createTask(createTaskDto);  }"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "Service"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "  createTask(createTaskDto: CreateTaskDto): Task {    const { title, description } = createTaskDto;    const task: Task = {      id: uuid(),      title,      description,      status: TaskStatus.OPEN,    };    this.tasks.push(task);    return task;  }"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Add get method id"
+    },
+    {
+      "type": "paragraph",
+      "html": "Controller"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "  @Get('/:id')  getTaskById(@Param('id') id: number): Task {    return this.tasksService.getTaskById(id);  }"
+    },
+    {
+      "type": "paragraph",
+      "html": "Service"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "  getTaskById(id: number): Task {    return this.tasks.find((task) => task.id === id);  }"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Delete Task"
+    },
+    {
+      "type": "paragraph",
+      "html": "controller"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "  @Delete('/:id')  deleteTask(@Param('id') id: number): void {    return this.tasksService.deleteTask(id);  }"
+    },
+    {
+      "type": "paragraph",
+      "html": "service"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "  deleteTask(id: number): void {    this.tasks = this.tasks.filter((task) => task.id !== id);  }"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Update Task"
+    },
+    {
+      "type": "image",
+      "src": "https://cdn-images-1.medium.com/max/800/1*69KAvMabdkvDG3y1LQ1nDw.png",
+      "alt": "Make simple CRUD requests with NestJS",
+      "caption": "",
+      "width": 1355,
+      "height": 100
+    },
+    {
+      "type": "paragraph",
+      "html": "controller"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "  @Patch('/:id/status')  updateTaskStatus(    @Param('id') id: string,    @Body('status') status: Task['status'],  ): Task {    return this.tasksService.updateTaskStatus(id, status);  }"
+    },
+    {
+      "type": "paragraph",
+      "html": "service"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "  updateTaskStatus(id: string, status: TaskStatus): Task {    const task = this.getTaskById(id);    console.log(status);    task.status = status;    return task;  }"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Search Task"
+    },
+    {
+      "type": "paragraph",
+      "html": "dto"
+    },
+    {
+      "type": "code",
+      "lang": "python",
+      "code": "import { TaskStatus } from '../tasks.model';export class GetTasksFilterDto {  status?: TaskStatus;  search?: string;}"
+    },
+    {
+      "type": "paragraph",
+      "html": "controller"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "  @Get()  getTasks(@Query() filterDTO: GetTasksFilterDto): Task[] {    if (Object.keys(filterDTO).length) {      return this.tasksService.getTasksWithFilters(filterDTO);    } else {      return this.tasksService.getAllTasks();    }  }"
+    },
+    {
+      "type": "paragraph",
+      "html": "service"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "  getTasksWithFilters(filterDTO: GetTasksFilterDto): Task[] {    const { status, search } = filterDTO;    let tasks = this.getAllTasks();    if (status) {      tasks = tasks.filter((task) => task.status === status);    }    if (search) {      tasks = tasks.filter(        (task) =>          task.title.includes(search) || task.description.includes(search),      );    }    return tasks;  }"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Stackademic 🎓"
+    },
+    {
+      "type": "paragraph",
+      "html": "Thank you for reading until the end. Before you go:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Please consider <strong>clapping</strong> and <strong>following</strong> the writer! 👏",
+        "Follow us <a href=\"https://twitter.com/stackademichq\" target=\"_blank\" rel=\"noreferrer noopener\"><strong>X</strong></a> | <a href=\"https://www.linkedin.com/company/stackademic\" target=\"_blank\" rel=\"noreferrer noopener\"><strong>LinkedIn</strong></a> | <a href=\"https://www.youtube.com/c/stackademic\" target=\"_blank\" rel=\"noreferrer noopener\"><strong>YouTube</strong></a> | <a href=\"https://discord.gg/in-plain-english-709094664682340443\" target=\"_blank\" rel=\"noreferrer noopener\"><strong>Discord</strong></a>",
+        "Visit our other platforms: <a href=\"https://plainenglish.io/\" target=\"_blank\" rel=\"noreferrer noopener\"><strong>In Plain English</strong></a> | <a href=\"https://cofeed.app/\" target=\"_blank\" rel=\"noreferrer noopener\"><strong>CoFeed</strong></a> | <a href=\"https://differ.blog/\" target=\"_blank\" rel=\"noreferrer noopener\"><strong>Differ</strong></a>",
+        "More content at <a href=\"https://stackademic.com/\" target=\"_blank\" rel=\"noreferrer noopener\"><strong>Stackademic.com</strong></a>"
+      ]
+    }
+  ]
+}

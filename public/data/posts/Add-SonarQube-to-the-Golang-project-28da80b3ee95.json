@@ -1,0 +1,301 @@
+{
+  "slug": "Add-SonarQube-to-the-Golang-project-28da80b3ee95",
+  "title": "Add SonarQube to the Golang project",
+  "subtitle": "In modern software development, maintaining high code quality, identifying security vulnerabilities, and ensuring efficient code practices…",
+  "excerpt": "In modern software development, maintaining high code quality, identifying security vulnerabilities, and ensuring efficient code practices…",
+  "date": "2025-09-12",
+  "tags": [],
+  "readingTime": "3 min",
+  "url": "https://medium.com/@mobinshaterian/add-sonarqube-to-the-golang-project-28da80b3ee95",
+  "hero": "https://cdn-images-1.medium.com/max/800/1*d2KJKWri0ya81Hr1Z28UfQ.jpeg",
+  "content": [
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Add SonarQube to the Golang project"
+    },
+    {
+      "type": "paragraph",
+      "html": "In modern software development, maintaining high code quality, identifying security vulnerabilities, and ensuring efficient code practices are critical for building robust and scalable applications. SonarQube, a leading open-source platform for continuous code quality inspection, plays a pivotal role in addressing these needs by analyzing code for bugs, code smells, security hotspots, and other issues across multiple languages — including Go (Golang)."
+    },
+    {
+      "type": "image",
+      "src": "https://cdn-images-1.medium.com/max/800/1*d2KJKWri0ya81Hr1Z28UfQ.jpeg",
+      "alt": "Add SonarQube to the Golang project",
+      "caption": "",
+      "width": 1120,
+      "height": 1120
+    },
+    {
+      "type": "paragraph",
+      "html": "This article provides a practical, step-by-step guide to integrating SonarQube into a Golang project. Whether you’re a developer looking to enhance your code’s maintainability or a team aiming to enforce consistent quality standards, this tutorial will walk you through the essential processes: installing Docker (for running the SonarQube server), setting up prerequisites like Java and the SonarScanner CLI, configuring your project for SonarQube analysis, generating necessary coverage and test reports, and executing the SonarScanner to submit your project’s code quality data to the SonarQube server."
+    },
+    {
+      "type": "paragraph",
+      "html": "By following these steps, you’ll gain visibility into your Go code’s health, enabling proactive fixes and fostering better collaboration. Let’s dive into the process to ensure your Golang project benefits from SonarQube’s powerful code inspection capabilities."
+    },
+    {
+      "type": "paragraph",
+      "html": "Once a clean architecture has been developed using GoLang, integrating SonarQube becomes necessary to enhance the analysis of test coverage and code quality."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "✅ Step 1: Install Docker"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "✅ Step 2: Prerequisites"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "1. Run a SonarQube Server (Optional for Local Testing)"
+    },
+    {
+      "type": "paragraph",
+      "html": "Download and install the <a href=\"https://docs.sonarqube.org/latest/analysis/scan/sonarscanner/?spm=a2ty_o01.29997173.0.0.67f4c92170JDbZ\" target=\"_blank\" rel=\"noreferrer noopener\">SonarScanner CLI&nbsp;</a>:"
+    },
+    {
+      "type": "code",
+      "lang": "bash",
+      "code": "docker run --name sonarqube \\  -p 9000:9000 \\  sonarqube:latest"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "Then access: http://localhost:9000Default login: admin / admin"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "2.SonarScanner CLI"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "Install Java (SonarScanner requires Java)"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "# Update package listsudo apt update# Install OpenJDK 17 (recommended)sudo apt install openjdk-17-jdk -y# Verify Java installationjava -version"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "Download SonarScanner"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "# Download SonarScanner (replace with latest version if needed)wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-5.0.1.3006-linux.zip# Create a directory for SonarScannersudo mkdir -p /opt/sonar-scanner# Unzip the downloaded filesudo unzip sonar-scanner-cli-5.0.1.3006-linux.zip -d /opt/sonar-scanner# Rename folder for easier referencesudo mv /opt/sonar-scanner/sonar-scanner-5.0.1.3006-linux /opt/sonar-scanner/sonar-scanner"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "Set Environment Variables"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "echo 'export SONAR_SCANNER_HOME=/opt/sonar-scanner/sonar-scanner' | sudo tee -a /etc/profileecho 'export PATH=$SONAR_SCANNER_HOME/bin:$PATH' | sudo tee -a /etc/profile"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "Reload the environment:"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "source /etc/profile"
+    },
+    {
+      "type": "paragraph",
+      "html": "💡 Alternatively, add those lines to <code>~/.bashrc</code> if you want it only for your user:"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "cho 'export SONAR_SCANNER_HOME=/opt/sonar-scanner/sonar-scanner' >> ~/.bashrcecho 'export PATH=$SONAR_SCANNER_HOME/bin:$PATH' >> ~/.bashrcsource ~/.bashrc"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "Verify Installation"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "sonar-scanner -v"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "✅ Step 3: Add SonarQube Configuration to Your Project"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "# Required metadatasonar.projectKey=mobintmu_go-simplesonar.projectName=Go Simplesonar.projectVersion=1.0# Source code locationsonar.sources=.# Languagesonar.language=go# Encodingsonar.sourceEncoding=UTF-8# Exclude tests and vendor (optional)sonar.exclusions=**/vendor/**,**/*_test.go# Go-specific: Use golangci-lint to generate report for SonarQubesonar.go.coverage.reportPaths=coverage.outsonar.go.tests.reportPaths=test-report.xml"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "✅ Step 4: Generate LCOV Report for SonarQube (2024+ Compatible), Run Go Tests & Generate Coverage Profile"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "go test -coverprofile=coverage.out ./..."
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "go test ./... -json > report.json"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "✅ Step 5: Run SonarScanner"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "sonar-scanner \\  -Dsonar.projectKey=my-go-project \\  -Dsonar.sources=. \\  -Dsonar.go.coverage.reportPaths=coverage.out \\  -Dsonar.host.url=http://localhost:9000 \\  -Dsonar.login=<your_token>"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "INFO: Start fetching files for the text and secrets analysisINFO: Using Git CLI to retrieve untracked filesINFO: Retrieving language associated files and files included via \"sonar.text.inclusions\" that are tracked by gitINFO: Starting the text and secrets analysisINFO: 9 source files to be analyzed for the text and secrets analysisINFO: 9/9 source files have been analyzed for the text and secrets analysisINFO: 2 files are ignored because they are untracked by gitINFO: Sensor TextAndSecretsSensor [text] (done) | time=281msINFO: ------------- Run sensors on projectINFO: Sensor Zero Coverage SensorINFO: Sensor Zero Coverage Sensor (done) | time=0msINFO: ------------- Gather SCA dependencies on projectINFO: Dependency analysis skippedINFO: CPD Executor Calculating CPD for 5 filesINFO: CPD Executor CPD calculation finished (done) | time=4msINFO: Analysis report generated in 38ms, dir size=261.2 kBINFO: Analysis report compressed in 12ms, zip size=39.6 kBINFO: Analysis report uploaded in 13msINFO: ANALYSIS SUCCESSFUL, you can find the results at: http://127.0.0.1:9000/dashboard?id=go-simpleINFO: Note that you will be able to access the updated dashboard once the server has processed the submitted analysis reportINFO: More about the report processing at http://127.0.0.1:9000/api/ce/task?id=696eINFO: Analysis total time: 1.950 sINFO: ------------------------------------------------------------------------INFO: EXECUTION SUCCESSINFO: ------------------------------------------------------------------------INFO: Total time: 2.619sINFO: Final Memory: 17M/80MINFO: ------------------------------------------------------------------------"
+    },
+    {
+      "type": "embed",
+      "provider": "youtube",
+      "url": "https://www.youtube.com/embed/2IWQW2prcBI?feature=oembed"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Gitginore"
+    },
+    {
+      "type": "paragraph",
+      "html": "Add these files to&nbsp;.gitignore"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "sonar_command.txt.scannerwork/report.jsoncoverage.out"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Result"
+    },
+    {
+      "type": "image",
+      "src": "https://cdn-images-1.medium.com/max/800/1*tVfeQJSVSLdqg5GQh0U8_A.png",
+      "alt": "Add SonarQube to the Golang project",
+      "caption": "",
+      "width": 1046,
+      "height": 629
+    },
+    {
+      "type": "image",
+      "src": "https://cdn-images-1.medium.com/max/800/1*l8Sz1nMzawWLfrIJpZT3Xg.png",
+      "alt": "Add SonarQube to the Golang project",
+      "caption": "",
+      "width": 1475,
+      "height": 446
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Summarize commands:"
+    },
+    {
+      "type": "code",
+      "lang": "bash",
+      "code": "docker run --name sonarqube \\  -p 9000:9000 \\  sonarqube:latestgo test -coverprofile=coverage.out ./...go test ./... -json > report.json```sonar-scanner \\  -Dsonar.projectKey=go-simple \\  -Dsonar.sources=. \\  -Dsonar.host.url=http://127.0.0.1:9000 \\  -Dsonar.token=sqp_XXXXXXX```export SONAR_HOST_URL=http://127.0.0.1:9000export SONAR_TOKEN=sqp_XXXXXX"
+    },
+    {
+      "type": "image",
+      "src": "https://cdn-images-1.medium.com/max/800/1*-L41hUvn52jcQnIPgNcCmg.png",
+      "alt": "Add SonarQube to the Golang project",
+      "caption": "",
+      "width": 1037,
+      "height": 401
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Github Commit codes"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Set up Sonar Local Project"
+    },
+    {
+      "type": "image",
+      "src": "https://cdn-images-1.medium.com/max/800/1*REbZluxFQfmKbcNbjVB7FA.png",
+      "alt": "Add SonarQube to the Golang project",
+      "caption": "",
+      "width": 1484,
+      "height": 504
+    },
+    {
+      "type": "image",
+      "src": "https://cdn-images-1.medium.com/max/800/1*nV52P9JmweC88bYW_8ixkg.png",
+      "alt": "Add SonarQube to the Golang project",
+      "caption": "",
+      "width": 414,
+      "height": 417
+    },
+    {
+      "type": "image",
+      "src": "https://cdn-images-1.medium.com/max/800/1*H0y7XZQEq3qmCR4FiNwFpg.png",
+      "alt": "Add SonarQube to the Golang project",
+      "caption": "",
+      "width": 670,
+      "height": 351
+    },
+    {
+      "type": "image",
+      "src": "https://cdn-images-1.medium.com/max/800/1*UjJphd3SNjsIYuQTPtIRoQ.png",
+      "alt": "Add SonarQube to the Golang project",
+      "caption": "",
+      "width": 902,
+      "height": 607
+    },
+    {
+      "type": "image",
+      "src": "https://cdn-images-1.medium.com/max/800/1*Sq5FB7ZHQZFq5VCkcyca6Q.png",
+      "alt": "Add SonarQube to the Golang project",
+      "caption": "",
+      "width": 281,
+      "height": 340
+    },
+    {
+      "type": "image",
+      "src": "https://cdn-images-1.medium.com/max/800/1*vof14nkeuCqxAYWYKqwyPA.png",
+      "alt": "Add SonarQube to the Golang project",
+      "caption": "",
+      "width": 1067,
+      "height": 360
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Final Docker-Compose file"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "services:  redis:    image: redis:alpine    ports:      - \"6379:6379\"    volumes:      - redis-data:/data    restart: unless-stopped  postgres:    image: postgres:latest    environment:      - POSTGRES_USER=user      - POSTGRES_PASSWORD=pass      - POSTGRES_DB=database    volumes:      - postgres-data:/var/lib/postgresql/data    ports:      - \"5432:5432\"    restart: unless-stopped  sonar:    image: sonarqube:latest      ports:      - \"9000:9000\"    volumes:      - sonar-data:/opt/sonarqube/data      - sonar-extensions:/opt/sonarqube/extensions      - sonar-logs:/opt/sonarqube/logs    restart: unless-stopped    deploy:      resources:        limits:          memory: 2g        reservations:          memory: 2gvolumes:  redis-data:  postgres-data:  sonar-data:  sonar-logs:  sonar-extensions:"
+    }
+  ]
+}

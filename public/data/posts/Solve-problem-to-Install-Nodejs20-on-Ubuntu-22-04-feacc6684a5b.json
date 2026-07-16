@@ -1,0 +1,123 @@
+{
+  "slug": "Solve-problem-to-Install-Nodejs20-on-Ubuntu-22-04-feacc6684a5b",
+  "title": "Solve problem to Install Nodejs20 on Ubuntu 22.04",
+  "subtitle": "How install nodejs 20 on ubuntu",
+  "excerpt": "How install nodejs 20 on ubuntu",
+  "date": "2023-12-11",
+  "tags": [],
+  "readingTime": "1 min",
+  "url": "https://medium.com/@mobinshaterian/solve-problem-to-install-nodejs20-on-ubuntu-22-04-feacc6684a5b",
+  "hero": "https://cdn-images-1.medium.com/max/800/1*bqWgB5YM2A407ormFwgv1w.png",
+  "content": [
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Solve problem to Install Nodejs20 on Ubuntu 22.04"
+    },
+    {
+      "type": "image",
+      "src": "https://cdn-images-1.medium.com/max/800/1*bqWgB5YM2A407ormFwgv1w.png",
+      "alt": "Solve problem to Install Nodejs20 on Ubuntu 22.04",
+      "caption": "",
+      "width": 760,
+      "height": 458
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "SCRIPT DEPRECATION WARNINGThis script, located at https://deb.nodesource.com/setup_X, used to install Node.js is deprecated now and will eventually be made inactive.Please visit the NodeSource distributions Github and follow the instructions to migrate your repo. https://github.com/nodesource/distributionsThe NodeSource Node.js Linux distributions GitHub repository contains information about which versions of Node.js and which Linux distributions are supported and how to install it. https://github.com/nodesource/distributionsSCRIPT DEPRECATION WARNING"
+    },
+    {
+      "type": "code",
+      "lang": "bash",
+      "code": "curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "## You may also need development tools to build native addons:     sudo apt-get install gcc g++ make## To install the Yarn package manager, run:     curl -sL https://dl.yarnpkg.com/debian/pubkey.gpg | gpg --dearmor | sudo tee /usr/share/keyrings/yarnkey.gpg >/dev/null     echo \"deb [signed-by=/usr/share/keyrings/yarnkey.gpg] https://dl.yarnpkg.com/debian stable main\" | sudo tee /etc/apt/sources.list.d/yarn.list     sudo apt-get update && sudo apt-get install yarn"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "Unistall Nodejs"
+    },
+    {
+      "type": "code",
+      "lang": "bash",
+      "code": "sudo apt-get remove nodejssudo apt-get remove npmsudo apt-get purge nodejssudo apt-get updatewhich node"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Install Node js 20"
+    },
+    {
+      "type": "paragraph",
+      "html": "<a href=\"https://github.com/nodesource/distributions#installation-instructions\" target=\"_blank\" rel=\"noreferrer noopener\">https://github.com/nodesource/distributions#debian-and-ubuntu-based-distributions</a>"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "Node.js"
+    },
+    {
+      "type": "quote",
+      "html": "If you have root access, you can omit the ‘sudo’ command as you already have full administrative privileges."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "1. Download and import the Nodesource GPG key"
+    },
+    {
+      "type": "code",
+      "lang": "bash",
+      "code": "sudo apt-get updatesudo apt-get install -y ca-certificates curl gnupgsudo mkdir -p /etc/apt/keyringscurl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | sudo gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "2. Create deb repository"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "NODE_MAJOR=20echo \"deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_$NODE_MAJOR.x nodistro main\" | sudo tee /etc/apt/sources.list.d/nodesource.list"
+    },
+    {
+      "type": "paragraph",
+      "html": "<strong><em>Optional</em></strong>: <code>NODE_MAJOR</code> can be changed depending on the version you need."
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "NODE_MAJOR=16NODE_MAJOR=18NODE_MAJOR=20NODE_MAJOR=21"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "3. Run Update and Install"
+    },
+    {
+      "type": "code",
+      "lang": "bash",
+      "code": "sudo apt-get updatesudo apt-get install nodejs -y"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "node -vv20.5.1"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "dpkg: error processing archive /var/cache/apt/archives/nodejs_20.5.1-deb-1nodesource1_amd64.deb ( — unpack): trying to overwrite ‘/usr/include/node/common.gypi’, which is also in package libnode-dev 12.22.9~dfsg-1ubuntu3.2dpkg-deb: error: paste subprocess was killed by signal (Broken pipe)"
+    },
+    {
+      "type": "code",
+      "lang": "bash",
+      "code": "sudo apt-get --fix-broken installsudo apt autoremovesudo apt-get install -y nodejs"
+    }
+  ]
+}

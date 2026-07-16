@@ -1,0 +1,489 @@
+{
+  "slug": "Designing-a-Scalable-Poller-Dispatcher-Worker-Architecture-in-Go-eb5576116190",
+  "title": "Designing a Scalable Poller–Dispatcher–Worker Architecture in Go",
+  "subtitle": "This architecture establishes a production-grade job processing system in Go by decoupling logic into a Poller (decision-maker), Dispatcher",
+  "excerpt": "This architecture establishes a production-grade job processing system in Go by decoupling logic into a Poller (decision-maker), Dispatcher",
+  "date": "2025-12-30",
+  "tags": [],
+  "readingTime": "5 min",
+  "url": "https://medium.com/@mobinshaterian/designing-a-scalable-poller-dispatcher-worker-architecture-in-go-eb5576116190",
+  "hero": "https://cdn-images-1.medium.com/max/800/1*ad8CdGbXbmt5SSS7LdEKzg.png",
+  "content": [
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Designing a Scalable Poller–Dispatcher–Worker Architecture in Go"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Introduction"
+    },
+    {
+      "type": "paragraph",
+      "html": "Background job processing is a foundational building block in modern backend systems. Whether handling email delivery, data synchronization, cache warming, or event-driven workflows, a well-designed job execution pipeline must be <strong>scalable, testable, and operationally safe</strong>."
+    },
+    {
+      "type": "paragraph",
+      "html": "This article presents a production-ready design for a <strong>Poller–Dispatcher–Worker–Job</strong> architecture in Go, optimized for:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Long-running services",
+        "Deterministic behavior",
+        "Clean lifecycle management",
+        "High testability"
+      ]
+    },
+    {
+      "type": "image",
+      "src": "https://cdn-images-1.medium.com/max/800/1*ad8CdGbXbmt5SSS7LdEKzg.png",
+      "alt": "Designing a Scalable Poller–Dispatcher–Worker Architecture in Go",
+      "caption": "",
+      "width": 1024,
+      "height": 1024
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Go-Worker"
+    },
+    {
+      "type": "paragraph",
+      "html": "Go-worker is an open source project and has a simple impediment of a <strong>Poller–Dispatcher–Worker–Job</strong> architecture in Go."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Core Design Goals"
+    },
+    {
+      "type": "paragraph",
+      "html": "The system is designed around the following principles:"
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "<strong>Separation of responsibilities</strong>",
+        "<strong>Explicit control flow</strong>",
+        "<strong>Safe concurrency</strong>",
+        "<strong>Graceful startup and shutdown</strong>",
+        "<strong>Test-first architecture</strong>"
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "High-Level Architecture"
+    },
+    {
+      "type": "image",
+      "src": "https://cdn-images-1.medium.com/max/800/1*0AFouIjv8-J84RNjbtNktg.png",
+      "alt": "Designing a Scalable Poller–Dispatcher–Worker Architecture in Go",
+      "caption": "",
+      "width": 680,
+      "height": 733
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Component Responsibilities"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "1. Job: The Atomic Unit of Work"
+    },
+    {
+      "type": "paragraph",
+      "html": "A <code>Job</code> represents a single business action."
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "type Job interface { ID() string Service() string Execute(ctx context.Context) error}"
+    },
+    {
+      "type": "paragraph",
+      "html": "<strong>Key characteristics:</strong>"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Stateless or minimally stateful",
+        "Self-contained",
+        "Retry-safe",
+        "Executable independently"
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "2. Worker: Concurrent Job Executor"
+    },
+    {
+      "type": "paragraph",
+      "html": "Workers are long-lived goroutines that process jobs from a channel."
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "type Worker interface { Start(ctx context.Context) Stop()}"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "type SimpleWorker struct { id       int jobQueue <-chan job.Job cancel   context.CancelFunc}func NewSimpleWorker( id int, jobQueue <-chan job.Job,) *SimpleWorker { return &SimpleWorker{  id:       id,  jobQueue: jobQueue, }}func (w *SimpleWorker) Start(ctx context.Context) { ctx, cancel := context.WithCancel(ctx) w.cancel = cancel go func() {  log.Printf(\"[worker-%d] started\\n\", w.id)  for {   //blocker   select {   case <-ctx.Done():    log.Printf(\"[worker-%d] stopped\\n\", w.id)    return   case j := <-w.jobQueue:    w.handleJob(ctx, j)   }  } }()}func (w *SimpleWorker) Stop() { if w.cancel != nil {  w.cancel() }}func (w *SimpleWorker) handleJob(ctx context.Context, j job.Job) { log.Printf(  \"[worker-%d] executing job id=%s service=%s\\n\",  w.id,  j.ID(),  j.Service(), ) if err := j.Execute(ctx); err != nil {  log.Printf(   \"[worker-%d] job failed id=%s error=%v\\n\",   w.id,   j.ID(),   err,  ) }}"
+    },
+    {
+      "type": "paragraph",
+      "html": "<strong>Workers</strong>:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Block on job queues",
+        "Execute jobs synchronously",
+        "Report success or failure",
+        "Never make scheduling decisions"
+      ]
+    },
+    {
+      "type": "paragraph",
+      "html": "<strong>Design rule:</strong>"
+    },
+    {
+      "type": "quote",
+      "html": "<em>Workers execute work — they never decide </em>what<em> work to run.</em>"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "3. Dispatcher: Routing and Backpressure Control"
+    },
+    {
+      "type": "paragraph",
+      "html": "The dispatcher is responsible for:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Managing job queues",
+        "Enforcing concurrency limits",
+        "Routing jobs to the correct worker pool"
+      ]
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "type Dispatcher interface { Start() Stop() Dispatch(j job.Job) error}var ErrServiceNotRegistered = errors.New(\"service not registered\")type Service struct { ctx    context.Context cancel context.CancelFunc mu sync.RWMutex queues  map[string]chan job.Job workers map[string][]worker.Worker}func New() *Service { ctx, cancel := context.WithCancel(context.Background()) return &Service{  ctx:     ctx,  cancel:  cancel,  queues:  make(map[string]chan job.Job),  workers: make(map[string][]worker.Worker), }}func (d *Service) Register( service string, workerCount int, queueSize int,) { d.mu.Lock() defer d.mu.Unlock() if _, exists := d.queues[service]; exists {  fmt.Println(\"service already registered\")  return } queue := make(chan job.Job, queueSize) d.queues[service] = queue var workers []worker.Worker for i := 0; i < workerCount; i++ {  w := worker.NewSimpleWorker(i+1, queue)  workers = append(workers, w) } d.workers[service] = workers}func (d *Service) Start() { d.mu.RLock() defer d.mu.RUnlock() for _, ws := range d.workers {  for _, w := range ws {   w.Start(d.ctx)  } }}func (d *Service) Dispatch(j job.Job) error { // Prevent dispatch after stop select { case <-d.ctx.Done():  return context.Canceled default: } d.mu.RLock() queue, ok := d.queues[j.Service()] d.mu.RUnlock() if !ok {  return ErrServiceNotRegistered } // Safe send select { case queue <- j:  return nil case <-d.ctx.Done():  return context.Canceled }}func (d *Service) Stop() { d.cancel() d.mu.RLock() defer d.mu.RUnlock() for _, q := range d.queues {  close(q) }}func RegisterLifecycle(lc fx.Lifecycle, d *Service) { lc.Append(fx.Hook{  OnStart: func(ctx context.Context) error {   fmt.Println(\"starting dispatcher...\")   d.Start()   return nil  },  OnStop: func(ctx context.Context) error {   fmt.Println(\"stopping dispatcher...\")   d.Stop()   return nil  }, })}func RegisterServices(d *Service) { // Example services d.Register(\"email\", 5, 100)}"
+    },
+    {
+      "type": "paragraph",
+      "html": "<strong>Each service has:</strong>"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Its own buffered queue",
+        "A dedicated worker pool",
+        "Independent scaling characteristics"
+      ]
+    },
+    {
+      "type": "paragraph",
+      "html": "This design allows:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Different SLAs per service",
+        "Backpressure isolation",
+        "Clear failure domains"
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "4. Poller: Time-Based Decision Engine"
+    },
+    {
+      "type": "paragraph",
+      "html": "The poller is the <strong>control plane</strong> of the system."
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "/*Fx App ├── Dispatcher (long-lived) │    └── Worker pools ├── Poller (long-lived background process) │    └── Infinite loop │         ├── Check condition (DB / cache / API) │         └── Dispatch job(s) └── Servers*/type Poller struct { Dispatcher *dispatcher.Service Interval   time.Duration ctx        context.Context cancel     context.CancelFunc OnTick     func(context.Context)}func New( dispatcher *dispatcher.Service,) *Poller { p := &Poller{  Dispatcher: dispatcher,  Interval:   500 * time.Microsecond, } p.OnTick = p.DefaultTick // default behavior return p}func (p *Poller) Run(ctx context.Context) { ticker := time.NewTicker(p.Interval) defer ticker.Stop() for {  fmt.Println(\"poller For loop ...\")  select {  case <-ctx.Done():   return  case <-ticker.C:   p.OnTick(ctx)  } }}func (p *Poller) DefaultTick(ctx context.Context) { // Example condition (replace with DB/cache logic) log.Println(\"DefaultTick is running ...\") if !p.conditionMet(ctx) {  return } j := example.NewExampleJob(\"job-123\", \"email\") _ = p.Dispatcher.Dispatch(j)}func (p *Poller) conditionMet(ctx context.Context) bool { // DB / Redis / API / feature flag / backlog size return true}func RegisterLifecycle(lc fx.Lifecycle, p *Poller) { lc.Append(fx.Hook{  OnStart: func(ctx context.Context) error {   fmt.Println(\"starting dispatcher...\")   p.ctx, p.cancel = context.WithCancel(context.Background())   go p.Run(p.ctx)   return nil  },  OnStop: func(ctx context.Context) error {   fmt.Println(\"stopping poller...\")   if p.cancel != nil {    p.cancel()   }   return nil  }, })}"
+    },
+    {
+      "type": "paragraph",
+      "html": "<strong>Responsibilities</strong>:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Runs on a fixed interval",
+        "Checks conditions (DB, Redis, API, flags)",
+        "Decides <em>whether</em> to create jobs",
+        "Dispatches jobs via the dispatcher"
+      ]
+    },
+    {
+      "type": "paragraph",
+      "html": "<strong>Key rule:</strong>"
+    },
+    {
+      "type": "quote",
+      "html": "<em>The poller decides </em>when<em> and </em>what<em> to run — never </em>how<em>.</em>"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Poller Execution Model"
+    },
+    {
+      "type": "code",
+      "lang": "go",
+      "code": "func (p *Poller) Run(ctx context.Context) { ticker := time.NewTicker(p.Interval) defer ticker.Stop() for {  select {  case <-ctx.Done():   return  case <-ticker.C:   p.OnTick(ctx)  } }}"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Why This Matters"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Single execution path",
+        "No hidden logic",
+        "Fully overridable for tests",
+        "Deterministic timing"
+      ]
+    },
+    {
+      "type": "embed",
+      "provider": "youtube",
+      "url": "https://www.youtube.com/embed/KZps3z5Dyns?feature=oembed"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Lifecycle Management (Uber Fx Friendly)"
+    },
+    {
+      "type": "paragraph",
+      "html": "Each long-lived component follows the same pattern:"
+    },
+    {
+      "type": "code",
+      "lang": "go",
+      "code": "func Register(lc fx.Lifecycle, svc Service) { lc.Append(fx.Hook{  OnStart: func(ctx context.Context) error {   svc.Start()   return nil  },  OnStop: func(ctx context.Context) error {   svc.Stop()   return nil  }, })}"
+    },
+    {
+      "type": "paragraph",
+      "html": "This ensures:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Clean startup ordering",
+        "Graceful shutdown",
+        "No orphan goroutines",
+        "Controlled resource release"
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Backpressure and Safety"
+    },
+    {
+      "type": "paragraph",
+      "html": "The dispatcher enforces safety through:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Bounded queues",
+        "Non-blocking dispatch",
+        "Service-level isolation"
+      ]
+    },
+    {
+      "type": "code",
+      "lang": "go",
+      "code": "func (d *serviceDispatcher) Dispatch(job Job) error { select { case d.queues[job.Service()] <- job:  return nil default:  return ErrQueueFull }}"
+    },
+    {
+      "type": "paragraph",
+      "html": "This prevents:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Memory leaks",
+        "Goroutine explosion",
+        "Cascading failures"
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Testability by Design"
+    },
+    {
+      "type": "paragraph",
+      "html": "The system is designed for <strong>deterministic testing</strong>."
+    },
+    {
+      "type": "paragraph",
+      "html": "<strong>Poller Test Example</strong>"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "p.OnTick = func(ctx context.Context) { tickCount.Add(1)}"
+    },
+    {
+      "type": "paragraph",
+      "html": "<strong>Dispatcher Test Example</strong>"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "err := dispatcher.Dispatch(job)require.NoError(t, err)"
+    },
+    {
+      "type": "paragraph",
+      "html": "<strong>Worker Test Example</strong>"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "job.Execute = func(ctx context.Context) error { executed.Store(true) return nil}"
+    },
+    {
+      "type": "paragraph",
+      "html": "No mocks of time.<br>No sleeps in production logic.<br>No hidden side effects."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Tests"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Operational Benefits"
+    },
+    {
+      "type": "paragraph",
+      "html": "This architecture enables:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Horizontal scalability",
+        "Clear observability boundaries",
+        "Per-service tuning",
+        "Graceful degradation",
+        "Predictable behavior under load"
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Common Anti-Patterns Avoided"
+    },
+    {
+      "type": "image",
+      "src": "https://cdn-images-1.medium.com/max/800/1*wW6QZjDZeWRamdcnN6NGeA.png",
+      "alt": "Designing a Scalable Poller–Dispatcher–Worker Architecture in Go",
+      "caption": "",
+      "width": 557,
+      "height": 255
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "When to Use This Architecture"
+    },
+    {
+      "type": "paragraph",
+      "html": "Ideal for:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Background processing systems",
+        "Scheduled workflows",
+        "Event polling services",
+        "ETL task orchestration",
+        "Microservice sidecars"
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Conclusion"
+    },
+    {
+      "type": "paragraph",
+      "html": "A Poller–Dispatcher–Worker architecture succeeds or fails based on <strong>clarity of responsibility</strong> and <strong>explicit control flow</strong>."
+    },
+    {
+      "type": "paragraph",
+      "html": "By separating:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "<strong>Decision making (Poller)</strong>",
+        "<strong>Routing and scaling (Dispatcher)</strong>",
+        "<strong>Execution (Worker)</strong>",
+        "<strong>Business logic (Job)</strong>"
+      ]
+    },
+    {
+      "type": "paragraph",
+      "html": "This design is simple enough to start small, yet robust enough to scale into production-grade workloads."
+    },
+    {
+      "type": "paragraph",
+      "html": "Your Business — On AutoPilot with <em>DDImedia AI Assistant</em><br>(<a href=\"https://waitlist.ddimedia.ai/join-the-waitlist-aie\" target=\"_blank\" rel=\"noreferrer noopener\">Join Our Waitlist</a>)"
+    },
+    {
+      "type": "paragraph",
+      "html": "Visit us at <a href=\"https://www.datadriveninvestor.com/\" target=\"_blank\" rel=\"noreferrer noopener\"><em>DataDrivenInvestor.com</em></a>"
+    },
+    {
+      "type": "paragraph",
+      "html": "Join our creator ecosystem <a href=\"https://join.datadriveninvestor.com/\" target=\"_blank\" rel=\"noreferrer noopener\"><em>here</em></a>."
+    },
+    {
+      "type": "paragraph",
+      "html": "DDI Official Telegram Channel: <a href=\"https://t.me/+tafUp6ecEys4YjQ1\" target=\"_blank\" rel=\"noreferrer noopener\">https://t.me/+tafUp6ecEys4YjQ1</a>"
+    },
+    {
+      "type": "paragraph",
+      "html": "Follow us on <a href=\"https://www.linkedin.com/company/data-driven-investor\" target=\"_blank\" rel=\"noreferrer noopener\"><em>LinkedIn</em></a>, <a href=\"https://twitter.com/@DDInvestorHQ\" target=\"_blank\" rel=\"noreferrer noopener\"><em>Twitter</em></a>, <a href=\"https://www.youtube.com/c/datadriveninvestor\" target=\"_blank\" rel=\"noreferrer noopener\"><em>YouTube</em></a>, and <a href=\"https://www.facebook.com/datadriveninvestor\" target=\"_blank\" rel=\"noreferrer noopener\"><em>Facebook</em></a>."
+    }
+  ]
+}
