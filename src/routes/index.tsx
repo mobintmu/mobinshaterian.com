@@ -1,7 +1,8 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
+import { useState } from "react";
 import profile from "@/data/profile.json";
-import posts from "@/data/posts.json";
-import { ArrowUpRight, Github, Linkedin, Mail, MapPin, PenLine, Terminal } from "lucide-react";
+import posts from "@/data/posts-index.json";
+import { ArrowUpRight, Github, Linkedin, Mail, MapPin, PenLine, Search, Terminal } from "lucide-react";
 
 export const Route = createFileRoute("/")({
   component: HomePage,
@@ -15,7 +16,9 @@ type Post = {
   tags: string[];
   readingTime: string;
   url: string;
+  hero?: string | null;
 };
+
 
 function HomePage() {
   const sortedPosts = [...(posts as Post[])]
