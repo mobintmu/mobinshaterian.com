@@ -2,7 +2,16 @@ import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
 import profile from "@/data/profile.json";
 import posts from "@/data/posts-index.json";
-import { ArrowUpRight, Github, Linkedin, Mail, MapPin, PenLine, Search, Terminal } from "lucide-react";
+import {
+  ArrowUpRight,
+  Github,
+  Linkedin,
+  Mail,
+  MapPin,
+  PenLine,
+  Search,
+  Terminal,
+} from "lucide-react";
 
 export const Route = createFileRoute("/")({
   component: HomePage,
@@ -18,7 +27,6 @@ type Post = {
   url: string;
   hero?: string | null;
 };
-
 
 function HomePage() {
   const sortedPosts = [...(posts as Post[])]
@@ -117,14 +125,14 @@ function Hero() {
 
         <div className="mt-8 flex flex-wrap gap-3">
           <a
-            href="#contact"
-            className="inline-flex items-center gap-2 rounded-md bg-terminal px-4 py-2 font-mono-plus text-sm font-medium text-primary-foreground transition-colors hover:bg-terminal/90"
+            href={`mailto:${profile.email}`}
+            className="inline-flex items-center gap-2 rounded-md border border-border bg-surface px-4 py-2 font-mono-plus text-sm text-foreground transition-colors hover:border-terminal/50 hover:text-terminal"
           >
-            get in touch
-            <ArrowUpRight className="h-4 w-4" />
+            <Mail className="h-4 w-4" />
+            {profile.email}
           </a>
           <a
-            href={profile.links.github}
+            href={profile.email}
             target="_blank"
             rel="noreferrer noopener"
             className="inline-flex items-center gap-2 rounded-md border border-border bg-surface px-4 py-2 font-mono-plus text-sm text-foreground transition-colors hover:border-terminal/50 hover:text-terminal"
@@ -325,7 +333,6 @@ function Writing({ posts }: { posts: Post[] }) {
     </section>
   );
 }
-
 
 function Skills() {
   return (
