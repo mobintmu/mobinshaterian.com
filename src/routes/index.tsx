@@ -232,10 +232,16 @@ function Experience() {
 }
 
 function Writing({ posts }: { posts: Post[] }) {
+  const navigate = useNavigate();
+  const [q, setQ] = useState("");
+  const submit = (e: React.FormEvent) => {
+    e.preventDefault();
+    navigate({ to: "/blogs", search: { tag: "", q: q.trim() } });
+  };
   return (
     <section className="py-20">
       <SectionHeading id="writing" kbd="ls -lt posts/" title="Writing" />
-      <p className="mb-8 max-w-2xl text-sm text-muted-foreground">
+      <p className="mb-6 max-w-2xl text-sm text-muted-foreground">
         A handful of recent notes. The full archive of 200+ articles lives on{" "}
         <a
           href={profile.links.medium}
@@ -247,34 +253,64 @@ function Writing({ posts }: { posts: Post[] }) {
         </a>
         .
       </p>
+      <form
+        onSubmit={submit}
+        className="mb-8 flex items-center gap-2 rounded-md border border-border bg-surface px-3 py-2"
+      >
+        <Search className="h-4 w-4 text-terminal" />
+        <input
+          type="text"
+          value={q}
+          onChange={(e) => setQ(e.target.value)}
+          placeholder="search all posts by title, tag, or content…"
+          className="w-full bg-transparent font-mono-plus text-sm text-foreground placeholder:text-muted-foreground focus:outline-none"
+        />
+        <button
+          type="submit"
+          className="rounded border border-terminal/40 bg-terminal/5 px-2 py-1 font-mono-plus text-xs text-terminal hover:bg-terminal/10"
+        >
+          search
+        </button>
+      </form>
       <div className="grid gap-4 md:grid-cols-2">
         {posts.map((p) => (
-          <a
+          <Link
             key={p.slug}
-            href={p.url}
-            target="_blank"
-            rel="noreferrer noopener"
-            className="group flex flex-col rounded-lg border border-border bg-surface p-5 transition-all hover:-translate-y-0.5 hover:border-terminal/40"
+            to="/blog/$slug"
+            params={{ slug: p.slug }}
+            className="group flex flex-col overflow-hidden rounded-lg border border-border bg-surface transition-all hover:-translate-y-0.5 hover:border-terminal/40"
           >
-            <div className="mb-3 flex items-center justify-between font-mono-plus text-xs text-muted-foreground">
-              <time dateTime={p.date}>{formatDate(p.date)}</time>
-              <span>{p.readingTime}</span>
+            {p.hero ? (
+              <img
+                src={p.hero}
+                alt=""
+                loading="lazy"
+                className="h-40 w-full border-b border-border object-cover"
+              />
+            ) : null}
+            <div className="flex flex-1 flex-col p-5">
+              <div className="mb-3 flex items-center justify-between font-mono-plus text-xs text-muted-foreground">
+                <time dateTime={p.date}>{formatDate(p.date)}</time>
+                <span>{p.readingTime}</span>
+              </div>
+              <h3 className="mb-2 text-base font-semibold leading-snug group-hover:text-terminal">
+                {p.title}
+              </h3>
+              <p className="mb-4 flex-1 text-sm leading-relaxed text-muted-foreground line-clamp-3">
+                {p.excerpt}
+              </p>
+              <div className="flex flex-wrap gap-1.5">
+                {p.tags.map((t) => (
+                  <span
+                    key={t}
+                    className="rounded border border-border px-1.5 py-0.5 font-mono-plus text-[10px] uppercase tracking-wide text-muted-foreground"
+                  >
+                    {t}
+                  </span>
+                ))}
+              </div>
             </div>
-            <h3 className="mb-2 text-base font-semibold leading-snug group-hover:text-terminal">
-              {p.title}
-            </h3>
-            <p className="mb-4 flex-1 text-sm leading-relaxed text-muted-foreground">{p.excerpt}</p>
-            <div className="flex flex-wrap gap-1.5">
-              {p.tags.map((t) => (
-                <span
-                  key={t}
-                  className="rounded border border-border px-1.5 py-0.5 font-mono-plus text-[10px] uppercase tracking-wide text-muted-foreground"
-                >
-                  {t}
-                </span>
-              ))}
-            </div>
-          </a>
+          </Link>
         ))}
       </div>
       <div className="mt-8 flex justify-center">
@@ -282,13 +318,14 @@ function Writing({ posts }: { posts: Post[] }) {
           to="/blogs"
           className="inline-flex items-center gap-2 rounded-md border border-terminal/40 bg-terminal/5 px-4 py-2 font-mono-plus text-sm text-terminal transition-colors hover:bg-terminal/10"
         >
-          browse all {(posts as Post[]).length} posts · filter by tag
+          browse all posts · filter by tag
           <ArrowUpRight className="h-4 w-4" />
         </Link>
       </div>
     </section>
   );
 }
+
 
 function Skills() {
   return (
