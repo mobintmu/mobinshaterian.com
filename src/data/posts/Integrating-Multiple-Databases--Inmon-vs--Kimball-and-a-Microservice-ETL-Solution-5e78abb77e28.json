@@ -4,7 +4,11 @@
   "subtitle": "Modern enterprises often face the challenge of integrating data from many heterogeneous databases into a consolidated data warehouse for…",
   "excerpt": "Modern enterprises often face the challenge of integrating data from many heterogeneous databases into a consolidated data warehouse for…",
   "date": "2025-11-10",
-  "tags": [],
+  "tags": [
+    "Microservices",
+    "Machine Learning",
+    "Data Engineering"
+  ],
   "readingTime": "8 min",
   "url": "https://medium.com/@mobinshaterian/integrating-multiple-databases-inmon-vs-kimball-and-a-microservice-etl-solution-5e78abb77e28",
   "hero": "https://cdn-images-1.medium.com/max/800/1*vqp7fNt6kPIseVvrHKeeBg.png",

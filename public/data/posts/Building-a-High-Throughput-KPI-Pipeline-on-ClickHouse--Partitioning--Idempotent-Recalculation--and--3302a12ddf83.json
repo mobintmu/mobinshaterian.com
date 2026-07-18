@@ -4,7 +4,12 @@
   "subtitle": "Every hour, 15 million rows of raw network measurement data land in our ClickHouse cluster. From that data we calculate per-cell…",
   "excerpt": "Every hour, 15 million rows of raw network measurement data land in our ClickHouse cluster. From that data we calculate per-cell…",
   "date": "2026-05-25",
-  "tags": [],
+  "tags": [
+    "ClickHouse",
+    "Performance",
+    "Machine Learning",
+    "Data Engineering"
+  ],
   "readingTime": "8 min",
   "url": "https://medium.com/@mobinshaterian/building-a-high-throughput-kpi-pipeline-on-clickhouse-partitioning-idempotent-recalculation-and-3302a12ddf83",
   "hero": "https://cdn-images-1.medium.com/max/800/1*w4lrvaiZs_-0Y5WR_YzYQw.png",

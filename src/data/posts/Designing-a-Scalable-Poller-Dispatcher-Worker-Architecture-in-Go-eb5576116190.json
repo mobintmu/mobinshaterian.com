@@ -4,7 +4,11 @@
   "subtitle": "This architecture establishes a production-grade job processing system in Go by decoupling logic into a Poller (decision-maker), Dispatcher",
   "excerpt": "This architecture establishes a production-grade job processing system in Go by decoupling logic into a Poller (decision-maker), Dispatcher",
   "date": "2025-12-30",
-  "tags": [],
+  "tags": [
+    "Go",
+    "Architecture",
+    "Machine Learning"
+  ],
   "readingTime": "5 min",
   "url": "https://medium.com/@mobinshaterian/designing-a-scalable-poller-dispatcher-worker-architecture-in-go-eb5576116190",
   "hero": "https://cdn-images-1.medium.com/max/800/1*ad8CdGbXbmt5SSS7LdEKzg.png",

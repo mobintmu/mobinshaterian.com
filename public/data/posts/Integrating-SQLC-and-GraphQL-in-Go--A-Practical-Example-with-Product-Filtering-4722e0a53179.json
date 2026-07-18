@@ -4,7 +4,11 @@
   "subtitle": "GraphQL provides a powerful query language for clients, while SQLC generates type‑safe Go code directly from SQL queries",
   "excerpt": "GraphQL provides a powerful query language for clients, while SQLC generates type‑safe Go code directly from SQL queries",
   "date": "2025-12-30",
-  "tags": [],
+  "tags": [
+    "Go",
+    "GraphQL",
+    "Machine Learning"
+  ],
   "readingTime": "3 min",
   "url": "https://medium.com/@mobinshaterian/integrating-sqlc-and-graphql-in-go-a-practical-example-with-product-filtering-4722e0a53179",
   "hero": "https://cdn-images-1.medium.com/max/800/1*HyxyW6v8mW4b53KiQyosWQ.png",

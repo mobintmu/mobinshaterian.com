@@ -4,7 +4,11 @@
   "subtitle": "One of the most critical aspects of building professional Go applications is proper environment configuration management.",
   "excerpt": "One of the most critical aspects of building professional Go applications is proper environment configuration management.",
   "date": "2025-10-30",
-  "tags": [],
+  "tags": [
+    "Go",
+    "Machine Learning",
+    "Testing"
+  ],
   "readingTime": "8 min",
   "url": "https://medium.com/@mobinshaterian/environment-configuration-in-go-managing-dev-test-production-environments-9b333c6d1868",
   "hero": "https://cdn-images-1.medium.com/max/800/1*BhcMymB1i6VwFNZXlz7w7w.png",

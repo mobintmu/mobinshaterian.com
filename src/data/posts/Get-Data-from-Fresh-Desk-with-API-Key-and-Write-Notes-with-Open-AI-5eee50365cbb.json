@@ -4,7 +4,10 @@
   "subtitle": "In this article I want to get data from Fresh Desk via API key. and write note base on RAG open AI system.",
   "excerpt": "In this article I want to get data from Fresh Desk via API key. and write note base on RAG open AI system.",
   "date": "2024-02-28",
-  "tags": [],
+  "tags": [
+    "API",
+    "Machine Learning"
+  ],
   "readingTime": "2 min",
   "url": "https://medium.com/@mobinshaterian/get-data-from-fresh-desk-with-api-key-and-write-note-with-open-ai-5eee50365cbb",
   "hero": "https://cdn-images-1.medium.com/max/800/1*wyL_-BzDEUnnWJQIYveA7g.jpeg",

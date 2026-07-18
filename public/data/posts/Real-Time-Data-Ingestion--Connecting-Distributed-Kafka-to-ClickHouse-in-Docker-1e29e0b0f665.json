@@ -4,7 +4,12 @@
   "subtitle": "Building a high-throughput analytics pipeline requires a database that can ingest millions of rows per second and a message broker that can…",
   "excerpt": "Building a high-throughput analytics pipeline requires a database that can ingest millions of rows per second and a message broker that can…",
   "date": "2026-06-01",
-  "tags": [],
+  "tags": [
+    "Kafka",
+    "ClickHouse",
+    "Docker",
+    "Performance"
+  ],
   "readingTime": "3 min",
   "url": "https://medium.com/@mobinshaterian/real-time-data-ingestion-connecting-distributed-kafka-to-clickhouse-in-docker-1e29e0b0f665",
   "hero": "https://cdn-images-1.medium.com/max/800/1*VjPc3qTw5yfppjX1o0wsrg.png",

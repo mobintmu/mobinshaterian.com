@@ -4,7 +4,11 @@
   "subtitle": "In modern software development, maintaining high code quality, identifying security vulnerabilities, and ensuring efficient code practices…",
   "excerpt": "In modern software development, maintaining high code quality, identifying security vulnerabilities, and ensuring efficient code practices…",
   "date": "2025-09-12",
-  "tags": [],
+  "tags": [
+    "Go",
+    "Security",
+    "Machine Learning"
+  ],
   "readingTime": "3 min",
   "url": "https://medium.com/@mobinshaterian/add-sonarqube-to-the-golang-project-28da80b3ee95",
   "hero": "https://cdn-images-1.medium.com/max/800/1*d2KJKWri0ya81Hr1Z28UfQ.jpeg",

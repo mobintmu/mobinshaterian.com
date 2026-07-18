@@ -4,7 +4,11 @@
   "subtitle": "The shared sandbox deployment strategy provides high feedback velocity at a low cost by using a centralized development environment, yet it…",
   "excerpt": "The shared sandbox deployment strategy provides high feedback velocity at a low cost by using a centralized development environment, yet it…",
   "date": "2026-05-26",
-  "tags": [],
+  "tags": [
+    "DevOps",
+    "Architecture",
+    "Machine Learning"
+  ],
   "readingTime": "12 min",
   "url": "https://medium.com/@mobinshaterian/architectural-optimization-of-shared-sandbox-deployments-in-gitlab-ci-cd-47ccce21fa9d",
   "hero": "https://cdn-images-1.medium.com/max/800/1*ywPVleQANTMIh8XMnLi4wA.png",

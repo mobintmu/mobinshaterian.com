@@ -4,7 +4,10 @@
   "subtitle": "We want to make smart contracts to solve a real problem in the real world.\nImagine a group of people who want to contribute their money to…",
   "excerpt": "We want to make smart contracts to solve a real problem in the real world.\nImagine a group of people who want to contribute their money to…",
   "date": "2023-12-27",
-  "tags": [],
+  "tags": [
+    "Go",
+    "Machine Learning"
+  ],
   "readingTime": "10 min",
   "url": "https://medium.com/@mobinshaterian/make-crowdfunding-smart-contract-using-solidity-and-golang-language-bd5dc7c8f84f",
   "hero": "https://cdn-images-1.medium.com/max/800/1*KU7VLgI009OXS4bfflHmaQ.png",

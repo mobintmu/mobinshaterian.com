@@ -4,7 +4,12 @@
   "subtitle": "What is Go Micro?",
   "excerpt": "What is Go Micro?",
   "date": "2023-05-24",
-  "tags": [],
+  "tags": [
+    "Go",
+    "Microservices",
+    "Architecture",
+    "Machine Learning"
+  ],
   "readingTime": "3 min",
   "url": "https://medium.com/@mobinshaterian/hello-world-in-go-micro-as-the-base-of-golang-in-a-microservice-architecture-5f6fa75af724",
   "hero": "https://cdn-images-1.medium.com/max/800/1*WgbtBRJClMV9kR4fRJY86g.png",

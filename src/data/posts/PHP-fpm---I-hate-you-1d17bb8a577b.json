@@ -4,7 +4,10 @@
   "subtitle": "I have been a PHP developer for many years. Employers want to build every platform with PHP!",
   "excerpt": "I have been a PHP developer for many years. Employers want to build every platform with PHP!",
   "date": "2021-01-11",
-  "tags": [],
+  "tags": [
+    "PHP",
+    "Machine Learning"
+  ],
   "readingTime": "2 min",
   "url": "https://medium.com/@mobinshaterian/php-fpm-i-hate-you-1d17bb8a577b",
   "hero": "/blog-assets/PHP-fpm---I-hate-you-1d17bb8a577b/img-0.png",

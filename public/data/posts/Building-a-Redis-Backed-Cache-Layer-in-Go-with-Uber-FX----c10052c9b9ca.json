@@ -4,7 +4,11 @@
   "subtitle": "Redis is a powerful tool for caching, session management, and ephemeral storage. But integrating it cleanly into a Go project — especially…",
   "excerpt": "Redis is a powerful tool for caching, session management, and ephemeral storage. But integrating it cleanly into a Go project — especially…",
   "date": "2025-10-17",
-  "tags": [],
+  "tags": [
+    "Go",
+    "Redis",
+    "Machine Learning"
+  ],
   "readingTime": "2 min",
   "url": "https://medium.com/@mobinshaterian/building-a-redis-backed-cache-layer-in-go-with-uber-fx-c10052c9b9ca",
   "hero": "https://cdn-images-1.medium.com/max/800/1*9HMsqQlmrJ6igypqAEQ8KA.png",

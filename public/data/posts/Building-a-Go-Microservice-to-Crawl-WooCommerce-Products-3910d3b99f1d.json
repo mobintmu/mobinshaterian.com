@@ -4,7 +4,11 @@
   "subtitle": "In this project, we explored how to design and implement a Go‑based microservice that crawls products from a WooCommerce WordPress site.",
   "excerpt": "In this project, we explored how to design and implement a Go‑based microservice that crawls products from a WooCommerce WordPress site.",
   "date": "2026-01-06",
-  "tags": [],
+  "tags": [
+    "Go",
+    "Microservices",
+    "Machine Learning"
+  ],
   "readingTime": "3 min",
   "url": "https://medium.com/@mobinshaterian/building-a-go-microservice-to-crawl-woocommerce-products-3910d3b99f1d",
   "hero": "https://cdn-images-1.medium.com/max/800/1*UzYkzVS4SlhfzZV-Ap3ycQ.png",

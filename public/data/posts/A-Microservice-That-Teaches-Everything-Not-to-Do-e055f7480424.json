@@ -4,7 +4,11 @@
   "subtitle": "Every engineer eventually encounters a system that becomes a living catalog of anti-patterns. Recently, I reviewed a microservice…",
   "excerpt": "Every engineer eventually encounters a system that becomes a living catalog of anti-patterns. Recently, I reviewed a microservice…",
   "date": "2026-05-03",
-  "tags": [],
+  "tags": [
+    "Microservices",
+    "Machine Learning",
+    "Career"
+  ],
   "readingTime": "6 min",
   "url": "https://medium.com/@mobinshaterian/a-microservice-that-teaches-everything-not-to-do-e055f7480424",
   "hero": "https://cdn-images-1.medium.com/max/800/1*f55lHpCxu3TeUajOIQf4kg.png",

@@ -4,7 +4,10 @@
   "subtitle": "Cakephp is one of the PHP frameworks that famous for agile. in this article demonstrate step by step make Pdf file with Tcpdf library in…",
   "excerpt": "Cakephp is one of the PHP frameworks that famous for agile. in this article demonstrate step by step make Pdf file with Tcpdf library in…",
   "date": "2020-09-17",
-  "tags": [],
+  "tags": [
+    "PHP",
+    "Machine Learning"
+  ],
   "readingTime": "2 min",
   "url": "https://medium.com/@mobinshaterian/make-pdf-in-cakephp-with-utf-8-for-print-in-label-printer-f6d172423eff",
   "hero": "/blog-assets/Make-Pdf-in-Cakephp-with-UTF-8-for-print-in-label-printer-f6d172423eff/img-4.png",

@@ -4,7 +4,9 @@
   "subtitle": "read data from json and write in CSV",
   "excerpt": "read data from json and write in CSV",
   "date": "2024-01-23",
-  "tags": [],
+  "tags": [
+    "Machine Learning"
+  ],
   "readingTime": "2 min",
   "url": "https://medium.com/@mobinshaterian/read-data-from-json-and-normalize-then-write-into-excel-cb7c29d1268b",
   "hero": "https://cdn-images-1.medium.com/max/800/1*ahuQkH6ZJ5bmqvJnpdpFIA.jpeg",

@@ -4,7 +4,11 @@
   "subtitle": "Simple Code of node js",
   "excerpt": "Simple Code of node js",
   "date": "2025-07-15",
-  "tags": [],
+  "tags": [
+    "Node.js",
+    "Machine Learning",
+    "Payments"
+  ],
   "readingTime": "2 min",
   "url": "https://medium.com/@mobinshaterian/impelient-bank-mellat-payment-gateway-in-nestjs-71f67308fa3a",
   "hero": "https://cdn-images-1.medium.com/max/800/1*HdRMG1vmq_pOqPJ1qA8H4g.png",

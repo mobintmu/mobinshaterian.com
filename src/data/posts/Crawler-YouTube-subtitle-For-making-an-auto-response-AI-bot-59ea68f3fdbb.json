@@ -4,7 +4,10 @@
   "subtitle": "In this tutorial, code for downloading YouTube with Python, getting subtitles, and getting to the RAG system.",
   "excerpt": "In this tutorial, code for downloading YouTube with Python, getting subtitles, and getting to the RAG system.",
   "date": "2024-02-20",
-  "tags": [],
+  "tags": [
+    "Python",
+    "Machine Learning"
+  ],
   "readingTime": "2 min",
   "url": "https://medium.com/@mobinshaterian/crawler-youtube-subtitle-for-making-an-auto-response-ai-bot-59ea68f3fdbb",
   "hero": "https://cdn-images-1.medium.com/max/800/1*f9Mo4zUnZPVpnZ_L9FaSQg.jpeg",

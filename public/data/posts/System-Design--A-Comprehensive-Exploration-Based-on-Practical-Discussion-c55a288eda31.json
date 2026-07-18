@@ -4,7 +4,11 @@
   "subtitle": "System design plays a pivotal role in the architecture and performance of modern applications.",
   "excerpt": "System design plays a pivotal role in the architecture and performance of modern applications.",
   "date": "2025-01-28",
-  "tags": [],
+  "tags": [
+    "Architecture",
+    "Performance",
+    "Machine Learning"
+  ],
   "readingTime": "11 min",
   "url": "https://medium.com/@mobinshaterian/system-design-a-comprehensive-exploration-based-on-practical-discussion-c55a288eda31",
   "hero": "https://cdn-images-1.medium.com/max/800/1*r24ZwbyMJlPJJmPy0Z5rcA.jpeg",

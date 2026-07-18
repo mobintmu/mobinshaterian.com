@@ -4,7 +4,10 @@
   "subtitle": "One of the IT ecosystem’s common design system problems is related to designing Inventory systems for high TPS investors. The definition of…",
   "excerpt": "One of the IT ecosystem’s common design system problems is related to designing Inventory systems for high TPS investors. The definition of…",
   "date": "2025-04-28",
-  "tags": [],
+  "tags": [
+    "Performance",
+    "Machine Learning"
+  ],
   "readingTime": "9 min",
   "url": "https://medium.com/@mobinshaterian/how-to-design-a-high-tps-inventory-handle-10k-requests-per-second-92e3c765226d",
   "hero": "https://cdn-images-1.medium.com/max/800/1*26SJpaZ20Q3_k_3Qxw6KqA.jpeg",

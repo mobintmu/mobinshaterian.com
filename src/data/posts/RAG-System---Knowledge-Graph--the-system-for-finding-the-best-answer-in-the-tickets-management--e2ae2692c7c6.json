@@ -4,7 +4,9 @@
   "subtitle": "Improving Customer Service Chatbot with Retrieval-Augmented Generation and Knowledge Graphs",
   "excerpt": "Improving Customer Service Chatbot with Retrieval-Augmented Generation and Knowledge Graphs",
   "date": "2024-06-25",
-  "tags": [],
+  "tags": [
+    "Machine Learning"
+  ],
   "readingTime": "4 min",
   "url": "https://medium.com/@mobinshaterian/rag-system-knowledge-graph-the-system-for-finding-the-best-answer-in-the-tickets-management-e2ae2692c7c6",
   "hero": "https://cdn-images-1.medium.com/max/800/1*cHl4JAnlYSlHJ6bXQAfJgA.png",

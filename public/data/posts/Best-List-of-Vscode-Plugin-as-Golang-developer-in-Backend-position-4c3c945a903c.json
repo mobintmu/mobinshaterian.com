@@ -4,7 +4,10 @@
   "subtitle": "When I was a child, I decided to use only open-source tools. It was a hard decision at the time because many open-source tools weren’t…",
   "excerpt": "When I was a child, I decided to use only open-source tools. It was a hard decision at the time because many open-source tools weren’t…",
   "date": "2022-09-08",
-  "tags": [],
+  "tags": [
+    "Go",
+    "Machine Learning"
+  ],
   "readingTime": "4 min",
   "url": "https://medium.com/@mobinshaterian/best-list-of-vscode-plugin-as-golang-developer-in-backend-position-4c3c945a903c",
   "hero": "/blog-assets/Best-List-of-Vscode-Plugin-as-Golang-developer-in-Backend-position-4c3c945a903c/img-0.png",

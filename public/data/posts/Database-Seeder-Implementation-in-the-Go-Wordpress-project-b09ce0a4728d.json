@@ -4,7 +4,10 @@
   "subtitle": "Overview",
   "excerpt": "Overview",
   "date": "2026-02-23",
-  "tags": [],
+  "tags": [
+    "Go",
+    "Machine Learning"
+  ],
   "readingTime": "7 min",
   "url": "https://medium.com/@mobinshaterian/database-seeder-implementation-in-the-go-wordpress-project-b09ce0a4728d",
   "hero": "https://cdn-images-1.medium.com/max/800/1*UFtuF0Wm1OBApDaDZr2-mw.png",

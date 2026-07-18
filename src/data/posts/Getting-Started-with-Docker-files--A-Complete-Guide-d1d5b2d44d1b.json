@@ -4,7 +4,10 @@
   "subtitle": "Docker has revolutionized how developers build, ship, and run applications",
   "excerpt": "Docker has revolutionized how developers build, ship, and run applications",
   "date": "2025-12-01",
-  "tags": [],
+  "tags": [
+    "Docker",
+    "Machine Learning"
+  ],
   "readingTime": "4 min",
   "url": "https://medium.com/@mobinshaterian/getting-started-with-docker-files-a-complete-guide-d1d5b2d44d1b",
   "hero": "https://cdn-images-1.medium.com/max/800/1*QoexvpDUN_--ehQG5QKvJg.png",

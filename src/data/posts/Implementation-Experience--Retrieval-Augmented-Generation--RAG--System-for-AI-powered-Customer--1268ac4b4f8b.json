@@ -4,7 +4,9 @@
   "subtitle": "In the rapidly evolving customer support landscape, integrating Artificial Intelligence (AI) has become increasingly pivotal. This essay…",
   "excerpt": "In the rapidly evolving customer support landscape, integrating Artificial Intelligence (AI) has become increasingly pivotal. This essay…",
   "date": "2024-06-28",
-  "tags": [],
+  "tags": [
+    "Machine Learning"
+  ],
   "readingTime": "4 min",
   "url": "https://medium.com/@mobinshaterian/implementation-experience-retrieval-augmented-generation-rag-system-for-ai-powered-customer-1268ac4b4f8b",
   "hero": "https://cdn-images-1.medium.com/max/800/1*p64nVKDyHzZRIPYMo8peXQ.jpeg",

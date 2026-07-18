@@ -4,7 +4,10 @@
   "subtitle": "In this article, I will explain the typical of programmers’s personality based on my experiences.",
   "excerpt": "In this article, I will explain the typical of programmers’s personality based on my experiences.",
   "date": "2023-05-08",
-  "tags": [],
+  "tags": [
+    "Machine Learning",
+    "Testing"
+  ],
   "readingTime": "2 min",
   "url": "https://medium.com/@mobinshaterian/i-have-seen-the-various-personalities-of-developers-based-on-the-disc-personality-test-288dfec6b3fa",
   "hero": "https://cdn-images-1.medium.com/max/800/1*jFYpSedzYlhTwH-Vfztpsg.png",

@@ -4,7 +4,10 @@
   "subtitle": "In Gnome editor on Ubuntu (and potentially other editors affected by IBus), the Ctrl+. shortcut intended for showing suggestions might…",
   "excerpt": "In Gnome editor on Ubuntu (and potentially other editors affected by IBus), the Ctrl+. shortcut intended for showing suggestions might…",
   "date": "2024-06-13",
-  "tags": [],
+  "tags": [
+    "Linux",
+    "Machine Learning"
+  ],
   "readingTime": "1 min",
   "url": "https://medium.com/@mobinshaterian/e-appears-instead-of-suggestions-with-ctrl-in-gnome-editor-ubutnu-4f1eeb11e94e",
   "hero": "https://cdn-images-1.medium.com/max/800/1*CZZzQs221lNa2NqzdLcaew.png",

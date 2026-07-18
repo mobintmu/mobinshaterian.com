@@ -4,7 +4,9 @@
   "subtitle": "Sentiment Analysis",
   "excerpt": "Sentiment Analysis",
   "date": "2024-01-25",
-  "tags": [],
+  "tags": [
+    "Machine Learning"
+  ],
   "readingTime": "3 min",
   "url": "https://medium.com/@mobinshaterian/nlp-tutorial-cf3f48ed14fb",
   "hero": "https://cdn-images-1.medium.com/max/800/1*TQRoCi97MUqU0brxu09z0Q.png",

@@ -4,7 +4,12 @@
   "subtitle": "The article demonstrates building a complete, reproducible real-time data streaming and analytics stack using Kafka and ClickHouse.",
   "excerpt": "The article demonstrates building a complete, reproducible real-time data streaming and analytics stack using Kafka and ClickHouse.",
   "date": "2025-12-07",
-  "tags": [],
+  "tags": [
+    "Kafka",
+    "ClickHouse",
+    "Docker",
+    "Machine Learning"
+  ],
   "readingTime": "4 min",
   "url": "https://medium.com/@mobinshaterian/building-a-complete-kafka-clickhouse-streaming-stack-with-docker-compose-98cbfc4bbf0c",
   "hero": "https://cdn-images-1.medium.com/max/800/1*e-ZI0ccrs-sMoO1yqgI3qA.png",

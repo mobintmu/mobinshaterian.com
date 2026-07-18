@@ -4,7 +4,12 @@
   "subtitle": "In the world of data engineering with Go, the OOMKilled (Exit Code 137) error is a common ghost in the machine. It often haunts developers…",
   "excerpt": "In the world of data engineering with Go, the OOMKilled (Exit Code 137) error is a common ghost in the machine. It often haunts developers…",
   "date": "2026-04-20",
-  "tags": [],
+  "tags": [
+    "Go",
+    "Machine Learning",
+    "Data Engineering",
+    "Career"
+  ],
   "readingTime": "3 min",
   "url": "https://medium.com/@mobinshaterian/the-clear-as-you-go-pattern-solving-memory-spikes-in-high-volume-go-data-pipelines-b40b3f7ce2d2",
   "hero": "https://cdn-images-1.medium.com/max/800/1*--C9iWtiJlIDd1eOz3wnUw.png",

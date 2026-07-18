@@ -4,7 +4,10 @@
   "subtitle": "Consider a situation where a third-party endpoint returns two different data structures at the same time. One possible solution to this…",
   "excerpt": "Consider a situation where a third-party endpoint returns two different data structures at the same time. One possible solution to this…",
   "date": "2025-08-15",
-  "tags": [],
+  "tags": [
+    "Go",
+    "Machine Learning"
+  ],
   "readingTime": "4 min",
   "url": "https://medium.com/@mobinshaterian/implementing-a-custom-json-unmarshaller-in-go-to-prevent-nil-exceptions-87c414fbf835",
   "hero": "https://cdn-images-1.medium.com/max/800/1*UsTl8rq0xAfoTEJcWcgGzw.jpeg",

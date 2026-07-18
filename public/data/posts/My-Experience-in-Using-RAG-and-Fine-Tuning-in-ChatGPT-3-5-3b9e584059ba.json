@@ -4,7 +4,9 @@
   "subtitle": "In every company, a group of agents is responsible for answering the client’s questions. My idea is related to ChatGPT automatically…",
   "excerpt": "In every company, a group of agents is responsible for answering the client’s questions. My idea is related to ChatGPT automatically…",
   "date": "2024-05-07",
-  "tags": [],
+  "tags": [
+    "Machine Learning"
+  ],
   "readingTime": "2 min",
   "url": "https://medium.com/@mobinshaterian/my-experience-in-using-rag-and-fine-tuning-in-chatgpt-3-5-3b9e584059ba",
   "hero": "https://cdn-images-1.medium.com/max/800/1*qbphUHY7CdjtqY2dh0KQ_g.jpeg",

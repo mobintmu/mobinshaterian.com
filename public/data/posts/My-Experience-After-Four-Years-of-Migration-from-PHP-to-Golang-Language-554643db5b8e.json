@@ -4,7 +4,12 @@
   "subtitle": "My journey from PHP to Golang has been one of growth, adaptation, and continuous learning. While PHP and Laravel served me well in the…",
   "excerpt": "My journey from PHP to Golang has been one of growth, adaptation, and continuous learning. While PHP and Laravel served me well in the…",
   "date": "2025-01-14",
-  "tags": [],
+  "tags": [
+    "Go",
+    "PHP",
+    "Laravel",
+    "Machine Learning"
+  ],
   "readingTime": "7 min",
   "url": "https://medium.com/@mobinshaterian/my-experience-after-four-years-of-migration-from-php-to-golang-language-554643db5b8e",
   "hero": "https://cdn-images-1.medium.com/max/800/1*Fl9VAm2fme6vhf0nR4yQwQ.png",

@@ -4,7 +4,11 @@
   "subtitle": "In this article, I will explain which package is necessary after installing Ubuntu 22.04 LTS as a Golang developer.",
   "excerpt": "In this article, I will explain which package is necessary after installing Ubuntu 22.04 LTS as a Golang developer.",
   "date": "2022-06-11",
-  "tags": [],
+  "tags": [
+    "Go",
+    "Linux",
+    "Machine Learning"
+  ],
   "readingTime": "5 min",
   "url": "https://medium.com/@mobinshaterian/installing-application-for-golang-developer-after-installing-ubuntu-22-04-lts-5d5570a78340",
   "hero": "/blog-assets/Installing-Application-for-Golang-developer-After-installing-Ubuntu-22-04-LTS-5d5570a78340/img-1.png",

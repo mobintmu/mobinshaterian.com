@@ -4,7 +4,10 @@
   "subtitle": "Writing Tests in NestJS",
   "excerpt": "Writing Tests in NestJS",
   "date": "2024-07-18",
-  "tags": [],
+  "tags": [
+    "Node.js",
+    "Machine Learning"
+  ],
   "readingTime": "3 min",
   "url": "https://medium.com/@mobinshaterian/how-do-you-write-tests-in-nestjs-03149ebeb372",
   "hero": "https://cdn-images-1.medium.com/max/800/1*-uGD4asK1N4Kvb35u-i6xQ.png",

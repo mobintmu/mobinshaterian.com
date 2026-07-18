@@ -4,7 +4,10 @@
   "subtitle": "To increase the swap size in Ubuntu, you begin by disabling the current swap with sudo swapoff -a, optionally, removing the existing swap…",
   "excerpt": "To increase the swap size in Ubuntu, you begin by disabling the current swap with sudo swapoff -a, optionally, removing the existing swap…",
   "date": "2025-07-19",
-  "tags": [],
+  "tags": [
+    "Linux",
+    "Machine Learning"
+  ],
   "readingTime": "1 min",
   "url": "https://medium.com/@mobinshaterian/how-to-increase-the-size-of-the-swap-in-ubuntu-6fdeeef9851b",
   "hero": "https://cdn-images-1.medium.com/max/800/1*gdGRfll7icFAKYbQREQW5A.jpeg",

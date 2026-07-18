@@ -4,7 +4,12 @@
   "subtitle": "Explain way of testing golang application.",
   "excerpt": "Explain way of testing golang application.",
   "date": "2023-03-01",
-  "tags": [],
+  "tags": [
+    "Go",
+    "Performance",
+    "Machine Learning",
+    "Testing"
+  ],
   "readingTime": "14 min",
   "url": "https://medium.com/@mobinshaterian/how-write-a-unit-test-integration-test-and-performance-test-for-the-golang-language-a25ccef115f4",
   "hero": "/blog-assets/How-write-a-Unit-test--Integration-test--and-Performance-test-for-the-Golang-language--a25ccef115f4/img-0.png",

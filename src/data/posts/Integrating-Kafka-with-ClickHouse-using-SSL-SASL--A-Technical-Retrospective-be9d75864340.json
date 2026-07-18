@@ -4,7 +4,11 @@
   "subtitle": "Integrating ClickHouse with a secured Kafka cluster often presents a challenge because of the strict separation between SQL-level settings…",
   "excerpt": "Integrating ClickHouse with a secured Kafka cluster often presents a challenge because of the strict separation between SQL-level settings…",
   "date": "2026-05-30",
-  "tags": [],
+  "tags": [
+    "Kafka",
+    "ClickHouse",
+    "Machine Learning"
+  ],
   "readingTime": "2 min",
   "url": "https://medium.com/@mobinshaterian/integrating-kafka-with-clickhouse-using-ssl-sasl-a-technical-retrospective-be9d75864340",
   "hero": "https://cdn-images-1.medium.com/max/800/1*VqZuRPmlC5E5MgWfgYN28A.png",

@@ -4,7 +4,12 @@
   "subtitle": "The document discusses implementing MongoDB with GraphQL in a NestJS project. It covers:",
   "excerpt": "The document discusses implementing MongoDB with GraphQL in a NestJS project. It covers:",
   "date": "2024-07-27",
-  "tags": [],
+  "tags": [
+    "Node.js",
+    "MongoDB",
+    "GraphQL",
+    "Machine Learning"
+  ],
   "readingTime": "9 min",
   "url": "https://medium.com/@mobinshaterian/mongodb-and-graphql-in-the-nestjs-08b0f6ff5c41",
   "hero": "https://cdn-images-1.medium.com/max/800/1*f5Z37NpVP3MtU6dOTTfopA.jpeg",

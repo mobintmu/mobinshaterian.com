@@ -4,7 +4,10 @@
   "subtitle": "Logging is the backbone of observability in any production-grade system. If you’re building scalable, maintainable Go applications, Uber’s…",
   "excerpt": "Logging is the backbone of observability in any production-grade system. If you’re building scalable, maintainable Go applications, Uber’s…",
   "date": "2025-10-06",
-  "tags": [],
+  "tags": [
+    "Go",
+    "Machine Learning"
+  ],
   "readingTime": "2 min",
   "url": "https://medium.com/@mobinshaterian/adding-zap-logger-to-your-go-project-a-practical-guide-%EF%B8%8F-52091fc2db7d",
   "hero": "https://cdn-images-1.medium.com/max/800/1*9NXIaQR7jUssX8O1s-6lGg.jpeg",

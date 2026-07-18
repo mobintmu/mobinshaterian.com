@@ -4,7 +4,11 @@
   "subtitle": "Redis provides a distributed lock for Kubernetes to manage concurrency and prevent race conditions in scheduled tasks.",
   "excerpt": "Redis provides a distributed lock for Kubernetes to manage concurrency and prevent race conditions in scheduled tasks.",
   "date": "2025-12-03",
-  "tags": [],
+  "tags": [
+    "Redis",
+    "Kubernetes",
+    "Machine Learning"
+  ],
   "readingTime": "2 min",
   "url": "https://medium.com/@mobinshaterian/preventing-race-conditions-in-kubernetes-applications-with-redis-locks-7da00ec8c8dd",
   "hero": "https://cdn-images-1.medium.com/max/800/1*5GoKZiR9Iq5EQNG4ehfyTg.png",

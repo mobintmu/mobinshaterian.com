@@ -4,7 +4,10 @@
   "subtitle": "How install nodejs 20 on ubuntu",
   "excerpt": "How install nodejs 20 on ubuntu",
   "date": "2023-12-11",
-  "tags": [],
+  "tags": [
+    "Linux",
+    "Machine Learning"
+  ],
   "readingTime": "1 min",
   "url": "https://medium.com/@mobinshaterian/solve-problem-to-install-nodejs20-on-ubuntu-22-04-feacc6684a5b",
   "hero": "https://cdn-images-1.medium.com/max/800/1*bqWgB5YM2A407ormFwgv1w.png",

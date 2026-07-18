@@ -4,7 +4,12 @@
   "subtitle": "Setting up a production-ready data pipeline requires balancing high performance with rigorous security. When integrating ClickHouse with a…",
   "excerpt": "Setting up a production-ready data pipeline requires balancing high performance with rigorous security. When integrating ClickHouse with a…",
   "date": "2026-04-23",
-  "tags": [],
+  "tags": [
+    "Kafka",
+    "ClickHouse",
+    "Performance",
+    "Security"
+  ],
   "readingTime": "2 min",
   "url": "https://medium.com/@mobinshaterian/connecting-kafka-to-clickhouse-with-ssl-a-complete-integration-guide-e5a0a5957de3",
   "hero": "https://cdn-images-1.medium.com/max/800/1*SdrefYZIq_r_PPp2MejyRQ.png",

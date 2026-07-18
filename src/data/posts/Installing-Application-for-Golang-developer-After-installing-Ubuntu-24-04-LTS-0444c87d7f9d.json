@@ -4,7 +4,11 @@
   "subtitle": "This document outlines a comprehensive setup guide for Golang developers working on Ubuntu 22.04 LTS. It covers a wide range of essential…",
   "excerpt": "This document outlines a comprehensive setup guide for Golang developers working on Ubuntu 22.04 LTS. It covers a wide range of essential…",
   "date": "2024-09-23",
-  "tags": [],
+  "tags": [
+    "Go",
+    "Linux",
+    "Machine Learning"
+  ],
   "readingTime": "3 min",
   "url": "https://medium.com/@mobinshaterian/installing-application-for-golang-developer-after-installing-ubuntu-24-04-lts-0444c87d7f9d",
   "hero": "https://cdn-images-1.medium.com/max/800/1*wapBGwvQheSagUACbPEnUw.png",

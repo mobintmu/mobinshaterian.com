@@ -4,7 +4,9 @@
   "subtitle": "In this tutorial, the daily FAQ with ranking will be explained.",
   "excerpt": "In this tutorial, the daily FAQ with ranking will be explained.",
   "date": "2024-05-21",
-  "tags": [],
+  "tags": [
+    "Machine Learning"
+  ],
   "readingTime": "1 min",
   "url": "https://medium.com/@mobinshaterian/design-daily-faq-maker-with-ai-25db05f8881e",
   "hero": "https://cdn-images-1.medium.com/max/800/1*bx59XtmcYtWkWI-ad8rViQ.jpeg",

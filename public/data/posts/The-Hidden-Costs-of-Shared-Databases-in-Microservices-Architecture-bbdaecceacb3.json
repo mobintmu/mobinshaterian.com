@@ -4,7 +4,11 @@
   "subtitle": "Shared databases create tight coupling; use database-per-service with event-driven communication instead.Retry",
   "excerpt": "Shared databases create tight coupling; use database-per-service with event-driven communication instead.Retry",
   "date": "2025-11-09",
-  "tags": [],
+  "tags": [
+    "Microservices",
+    "Architecture",
+    "Machine Learning"
+  ],
   "readingTime": "9 min",
   "url": "https://medium.com/@mobinshaterian/the-hidden-costs-of-shared-databases-in-microservices-architecture-bbdaecceacb3",
   "hero": "https://cdn-images-1.medium.com/max/800/1*g2RnOemXF-oYVJ7JIhSrcA.png",

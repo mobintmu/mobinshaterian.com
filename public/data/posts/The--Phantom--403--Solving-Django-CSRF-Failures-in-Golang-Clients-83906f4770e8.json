@@ -4,7 +4,11 @@
   "subtitle": "In the world of backend development, few things are as frustrating as an API that works the first time perfectly but fails mysteriously on…",
   "excerpt": "In the world of backend development, few things are as frustrating as an API that works the first time perfectly but fails mysteriously on…",
   "date": "2026-02-09",
-  "tags": [],
+  "tags": [
+    "Go",
+    "API",
+    "Machine Learning"
+  ],
   "readingTime": "2 min",
   "url": "https://medium.com/@mobinshaterian/the-phantom-403-solving-django-csrf-failures-in-golang-clients-83906f4770e8",
   "hero": "https://cdn-images-1.medium.com/max/800/1*q_AfjJ98q2NaoS5XNSu60g.png",

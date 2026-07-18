@@ -4,7 +4,10 @@
   "subtitle": "When building data-intensive applications in Go, you often find yourself writing repetitive boilerplate code.",
   "excerpt": "When building data-intensive applications in Go, you often find yourself writing repetitive boilerplate code.",
   "date": "2025-12-02",
-  "tags": [],
+  "tags": [
+    "Go",
+    "Machine Learning"
+  ],
   "readingTime": "5 min",
   "url": "https://medium.com/@mobinshaterian/eliminating-code-duplication-in-go-with-go-generate-a-practical-guide-13d40dfa6df1",
   "hero": "https://cdn-images-1.medium.com/max/800/1*JH7o7Rgim1HK8qJ5OfLjDQ.png",

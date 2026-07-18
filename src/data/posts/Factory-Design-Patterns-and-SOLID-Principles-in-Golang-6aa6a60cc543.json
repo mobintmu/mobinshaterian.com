@@ -4,7 +4,11 @@
   "subtitle": "Design patterns and SOLID principles are fundamental concepts in software engineering that can greatly enhance the quality…",
   "excerpt": "Design patterns and SOLID principles are fundamental concepts in software engineering that can greatly enhance the quality…",
   "date": "2024-08-06",
-  "tags": [],
+  "tags": [
+    "Go",
+    "Machine Learning",
+    "Career"
+  ],
   "readingTime": "8 min",
   "url": "https://medium.com/@mobinshaterian/factory-design-patterns-and-solid-principles-in-golang-6aa6a60cc543",
   "hero": "https://cdn-images-1.medium.com/max/800/1*zBhWdEQ_hNWVJ0b-9NhhuA.jpeg",

@@ -4,7 +4,11 @@
   "subtitle": "develop laravel on docker some times make many troubles . in this article reviews troubles of laravel when want composer update.",
   "excerpt": "develop laravel on docker some times make many troubles . in this article reviews troubles of laravel when want composer update.",
   "date": "2020-09-14",
-  "tags": [],
+  "tags": [
+    "Laravel",
+    "Docker",
+    "Machine Learning"
+  ],
   "readingTime": "1 min",
   "url": "https://medium.com/@mobinshaterian/troubles-update-composer-in-laravel-when-develop-in-docker-17e3abeef50d",
   "hero": "/blog-assets/Troubles-update-composer-in-Laravel-when-develop-in-docker-17e3abeef50d/img-2.png",

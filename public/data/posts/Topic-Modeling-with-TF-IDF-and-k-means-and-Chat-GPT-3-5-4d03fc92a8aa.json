@@ -4,7 +4,9 @@
   "subtitle": "In this article, I want to pre-process texts of questions and use the TF-IDF to change them into vector clusters with K-means and then find…",
   "excerpt": "In this article, I want to pre-process texts of questions and use the TF-IDF to change them into vector clusters with K-means and then find…",
   "date": "2024-02-08",
-  "tags": [],
+  "tags": [
+    "Machine Learning"
+  ],
   "readingTime": "4 min",
   "url": "https://medium.com/@mobinshaterian/topic-modeling-with-tf-idf-and-k-means-and-chat-gpt-3-5-4d03fc92a8aa",
   "hero": "https://cdn-images-1.medium.com/max/800/1*H-EW5eHWzw00Bs3X0vpXrQ.png",

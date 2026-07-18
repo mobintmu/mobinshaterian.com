@@ -4,7 +4,10 @@
   "subtitle": "Avoid closure bugs in Go goroutines by passing loop or shared variables as function parameters to ensure safe, race-free execution.",
   "excerpt": "Avoid closure bugs in Go goroutines by passing loop or shared variables as function parameters to ensure safe, race-free execution.",
   "date": "2025-07-19",
-  "tags": [],
+  "tags": [
+    "Go",
+    "Machine Learning"
+  ],
   "readingTime": "1 min",
   "url": "https://medium.com/@mobinshaterian/common-bug-closure-captures-a-variable-from-the-outer-scope-a5ab7bed750b",
   "hero": "https://cdn-images-1.medium.com/max/800/1*1FNg_LwjlgGwfqHexk1UDA.jpeg",

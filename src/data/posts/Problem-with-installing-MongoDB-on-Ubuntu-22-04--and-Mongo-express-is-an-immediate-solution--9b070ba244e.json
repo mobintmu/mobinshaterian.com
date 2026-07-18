@@ -4,7 +4,12 @@
   "subtitle": "At this time, MongoDB is not supported by Ubuntu 22.04 on their official site.",
   "excerpt": "At this time, MongoDB is not supported by Ubuntu 22.04 on their official site.",
   "date": "2022-08-06",
-  "tags": [],
+  "tags": [
+    "Node.js",
+    "MongoDB",
+    "Linux",
+    "Machine Learning"
+  ],
   "readingTime": "2 min",
   "url": "https://medium.com/@mobinshaterian/problem-with-installing-mongodb-on-ubuntu-22-04-and-mongo-express-is-an-immediate-solution-9b070ba244e",
   "hero": "/blog-assets/Problem-with-installing-MongoDB-on-Ubuntu-22-04--and-Mongo-express-is-an-immediate-solution--9b070ba244e/img-0.png",

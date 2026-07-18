@@ -4,7 +4,9 @@
   "subtitle": "Train ChatGPT with your own data.",
   "excerpt": "Train ChatGPT with your own data.",
   "date": "2024-03-12",
-  "tags": [],
+  "tags": [
+    "Machine Learning"
+  ],
   "readingTime": "2 min",
   "url": "https://medium.com/@mobinshaterian/fine-tune-chatgpt-gpt-305606a02605",
   "hero": "https://cdn-images-1.medium.com/max/800/1*ytRq2w4AZrMI_eocKt21fA.jpeg",

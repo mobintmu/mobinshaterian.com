@@ -4,7 +4,12 @@
   "subtitle": "This Docker Compose file sets up a development environment with MongoDB, Redis, and Minio and their respective management interfaces. The…",
   "excerpt": "This Docker Compose file sets up a development environment with MongoDB, Redis, and Minio and their respective management interfaces. The…",
   "date": "2024-07-29",
-  "tags": [],
+  "tags": [
+    "Redis",
+    "MongoDB",
+    "Docker",
+    "Machine Learning"
+  ],
   "readingTime": "1 min",
   "url": "https://medium.com/@mobinshaterian/docker-compose-setup-for-mongodb-redis-and-minio-f364e79162ea",
   "hero": "https://cdn-images-1.medium.com/max/800/1*f-OjtziN6MjN7gn8i9hB1w.jpeg",

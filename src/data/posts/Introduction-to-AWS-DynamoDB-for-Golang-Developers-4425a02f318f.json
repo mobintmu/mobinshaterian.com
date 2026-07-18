@@ -4,7 +4,11 @@
   "subtitle": "Amazon DynamoDB is a powerful, serverless NoSQL database service designed for scalability and high performance. It’s an excellent choice…",
   "excerpt": "Amazon DynamoDB is a powerful, serverless NoSQL database service designed for scalability and high performance. It’s an excellent choice…",
   "date": "2024-08-14",
-  "tags": [],
+  "tags": [
+    "Go",
+    "Performance",
+    "Machine Learning"
+  ],
   "readingTime": "10 min",
   "url": "https://medium.com/@mobinshaterian/introduction-to-aws-dynamodb-for-golang-developers-4425a02f318f",
   "hero": "https://cdn-images-1.medium.com/max/800/1*wQiRHt-ju5-yAnnT7Akzdg.jpeg",

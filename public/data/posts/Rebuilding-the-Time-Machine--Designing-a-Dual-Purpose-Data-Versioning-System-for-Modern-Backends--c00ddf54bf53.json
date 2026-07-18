@@ -4,7 +4,10 @@
   "subtitle": "In traditional software engineering, databases are treated as state machines. When a user updates their profile, a transaction executes an…",
   "excerpt": "In traditional software engineering, databases are treated as state machines. When a user updates their profile, a transaction executes an…",
   "date": "2026-06-23",
-  "tags": [],
+  "tags": [
+    "Machine Learning",
+    "Career"
+  ],
   "readingTime": "5 min",
   "url": "https://medium.com/@mobinshaterian/rebuilding-the-time-machine-designing-a-dual-purpose-data-versioning-system-for-modern-backends-c00ddf54bf53",
   "hero": "https://cdn-images-1.medium.com/max/800/1*MXIV0d7P1w4wUDiD9RC9eQ.png",

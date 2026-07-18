@@ -4,7 +4,11 @@
   "subtitle": "In a recent commit to go-simple, a robust and idiomatic product management module that exemplifies clean architecture, modularity, and…",
   "excerpt": "In a recent commit to go-simple, a robust and idiomatic product management module that exemplifies clean architecture, modularity, and…",
   "date": "2025-09-28",
-  "tags": [],
+  "tags": [
+    "Go",
+    "Architecture",
+    "Machine Learning"
+  ],
   "readingTime": "3 min",
   "url": "https://medium.com/@mobinshaterian/building-modular-product-management-in-go-with-sqlc-uber-fx-and-gin-bfb6dfaada6b",
   "hero": "https://cdn-images-1.medium.com/max/800/1*oiFm9Fz7MHT9clBFIdtByA.png",

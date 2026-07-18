@@ -4,7 +4,10 @@
   "subtitle": "when customer increase in website suddenly face of limitation of hard disk , in this time increasing hard drive is very stressful …",
   "excerpt": "when customer increase in website suddenly face of limitation of hard disk , in this time increasing hard drive is very stressful …",
   "date": "2020-09-13",
-  "tags": [],
+  "tags": [
+    "Linux",
+    "Machine Learning"
+  ],
   "readingTime": "3 min",
   "url": "https://medium.com/@mobinshaterian/increase-hard-disk-of-linux-os-stressful-working-d2dfcc1f208b",
   "hero": "/blog-assets/Increase-hard-disk-of-linux-os---stressful-working-d2dfcc1f208b/img-0.png",

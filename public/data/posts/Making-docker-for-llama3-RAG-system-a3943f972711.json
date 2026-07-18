@@ -4,7 +4,10 @@
   "subtitle": "This document describes how to set up a Docker container for a Retrieval-Augmented Generation (RAG) system using Llama 3 and Ollama.",
   "excerpt": "This document describes how to set up a Docker container for a Retrieval-Augmented Generation (RAG) system using Llama 3 and Ollama.",
   "date": "2024-06-07",
-  "tags": [],
+  "tags": [
+    "Docker",
+    "Machine Learning"
+  ],
   "readingTime": "2 min",
   "url": "https://medium.com/@mobinshaterian/making-docker-for-llama3-rag-system-a3943f972711",
   "hero": "https://cdn-images-1.medium.com/max/800/1*TS9svvfzTiQY5L3xFIatLQ.jpeg",

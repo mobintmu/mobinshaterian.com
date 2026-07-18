@@ -4,7 +4,12 @@
   "subtitle": "Testing is the backbone of reliable software. In Go, writing test files not only ensures correctness but also improves developer…",
   "excerpt": "Testing is the backbone of reliable software. In Go, writing test files not only ensures correctness but also improves developer…",
   "date": "2025-10-06",
-  "tags": [],
+  "tags": [
+    "Go",
+    "API",
+    "Machine Learning",
+    "Testing"
+  ],
   "readingTime": "7 min",
   "url": "https://medium.com/@mobinshaterian/how-to-write-effective-test-files-in-go-for-rest-apis-577e01cdfe36",
   "hero": "https://cdn-images-1.medium.com/max/800/1*1vV0ZFtHac6J8i0OZhqL0g.png",

@@ -4,7 +4,11 @@
   "subtitle": "A guide on how to integrate Zarinpal Payment Gateway in NestJS.",
   "excerpt": "A guide on how to integrate Zarinpal Payment Gateway in NestJS.",
   "date": "2024-08-01",
-  "tags": [],
+  "tags": [
+    "Node.js",
+    "Machine Learning",
+    "Payments"
+  ],
   "readingTime": "4 min",
   "url": "https://medium.com/@mobinshaterian/integrating-zarinpal-payment-gateway-in-nestjs-12017908490d",
   "hero": "https://cdn-images-1.medium.com/max/800/1*hsp-3yoQce39agYt5dyBTQ.jpeg",
