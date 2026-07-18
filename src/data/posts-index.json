@@ -2115,7 +2115,7 @@
     ],
     "readingTime": "14 min",
     "url": "https://medium.com/@mobinshaterian/how-write-a-unit-test-integration-test-and-performance-test-for-the-golang-language-a25ccef115f4",
-    "hero": "/blog-assets/How-write-a-Unit-test--Integration-test--and-Performance-test-for-the-Golang-language--a25ccef115f4/img-0.png"
+    "hero": "https://cdn-images-1.medium.com/max/800/1*I2NRnfrsWl_Pm45_w6NWkw.png"
   },
   {
     "slug": "My-experience-to-build-a-CQRS-system-with-microservices-architecture-in-a-financial-system-to--1deeead8db9d",
@@ -2129,7 +2129,7 @@
     ],
     "readingTime": "5 min",
     "url": "https://medium.com/@mobinshaterian/my-experience-to-build-a-cqrs-system-with-microservices-architecture-in-a-financial-system-to-1deeead8db9d",
-    "hero": "/blog-assets/My-experience-to-build-a-CQRS-system-with-microservices-architecture-in-a-financial-system-to--1deeead8db9d/img-2.png"
+    "hero": "https://cdn-images-1.medium.com/max/800/1*uIIz5dofJ5BVCeSSaSu-xQ.png"
   },
   {
     "slug": "Liquibase-Hello-world-1d792968962f",
@@ -2141,7 +2141,7 @@
     ],
     "readingTime": "1 min",
     "url": "https://medium.com/@mobinshaterian/liquibase-hello-world-1d792968962f",
-    "hero": "/blog-assets/Liquibase-Hello-world-1d792968962f/img-0.png"
+    "hero": "https://cdn-images-1.medium.com/max/800/1*AGZV8qsK2Cv9wNCfRW1Q2g.png"
   },
   {
     "slug": "Ory-Kratos-Hello-world-807d55e9e489",
@@ -2153,7 +2153,7 @@
     ],
     "readingTime": "2 min",
     "url": "https://medium.com/@mobinshaterian/ory-kratos-hello-world-807d55e9e489",
-    "hero": "/blog-assets/Ory-Kratos-Hello-world-807d55e9e489/img-0.png"
+    "hero": "https://cdn-images-1.medium.com/max/800/1*_8j2EzGsZer43dJ8NzzEAQ.png"
   },
   {
     "slug": "Ory-Oathkeeper-Hello-world-8069a1e48d3e",
@@ -2166,7 +2166,7 @@
     ],
     "readingTime": "1 min",
     "url": "https://medium.com/@mobinshaterian/ory-oathkeeper-hello-world-8069a1e48d3e",
-    "hero": "/blog-assets/Ory-Oathkeeper-Hello-world-8069a1e48d3e/img-0.png"
+    "hero": "https://cdn-images-1.medium.com/max/800/1*jcoz1TlOq2M86hexIH2xAw.png"
   },
   {
     "slug": "Ory-Hydra-Hello-world-581ee5c1f023",
@@ -2176,7 +2176,7 @@
     "tags": [],
     "readingTime": "2 min",
     "url": "https://medium.com/@mobinshaterian/ory-hydra-hello-world-581ee5c1f023",
-    "hero": "/blog-assets/Ory-Hydra-Hello-world-581ee5c1f023/img-0.png"
+    "hero": "https://cdn-images-1.medium.com/max/800/1*TFFE6_dhJeQkxnUnE_cWIA.png"
   },
   {
     "slug": "Run-test-case-in-Golnag-with--env-file-520616cbb54a",
@@ -2199,7 +2199,7 @@
     "tags": [],
     "readingTime": "1 min",
     "url": "https://medium.com/@mobinshaterian/redirect-port-from-one-server-to-port-of-another-server-via-iptables-7d77f37d7fa0",
-    "hero": "/blog-assets/Redirect-port-from-one-server-to-port-of-another-server-via-Iptables-7d77f37d7fa0/img-0.png"
+    "hero": "https://cdn-images-1.medium.com/max/800/1*2seMAJoclGqsKHiPMlSImQ.png"
   },
   {
     "slug": "Debug-Golang-with-vscode-e749e9c0c94e",
@@ -2223,7 +2223,7 @@
     ],
     "readingTime": "6 min",
     "url": "https://medium.com/@mobinshaterian/nats-jet-strem-hello-world-d909099c88e4",
-    "hero": "/blog-assets/Nats-Jet-Strem--Hello-World-d909099c88e4/img-0.png"
+    "hero": "https://cdn-images-1.medium.com/max/800/1*H3kuWrFW58SPbqbe14pltw.png"
   },
   {
     "slug": "Install-CakePHP-application-on-server-with-the-traditional-way-on-Ubuntu-22-0-server-3228ae49c3c1",
@@ -2237,7 +2237,7 @@
     ],
     "readingTime": "5 min",
     "url": "https://medium.com/@mobinshaterian/install-cakephp-application-on-server-with-the-traditional-way-on-ubuntu-22-0-server-3228ae49c3c1",
-    "hero": "/blog-assets/Install-CakePHP-application-on-server-with-the-traditional-way-on-Ubuntu-22-0-server-3228ae49c3c1/img-0.png"
+    "hero": "https://cdn-images-1.medium.com/max/800/1*Yo30HmX_znWbnvuEbG1vEw.png"
   },
   {
     "slug": "My-solution-for-designing-a-resilient-system-in-an-event-driven-pipeline-d1396711d423",
@@ -2250,7 +2250,7 @@
     ],
     "readingTime": "2 min",
     "url": "https://medium.com/@mobinshaterian/my-solution-for-designing-a-resilient-system-in-an-event-driven-pipeline-d1396711d423",
-    "hero": "/blog-assets/My-solution-for-designing-a-resilient-system-in-an-event-driven-pipeline-d1396711d423/img-0.png"
+    "hero": "https://cdn-images-1.medium.com/max/800/1*-pko7Vufla7Xi1Wk53C3jA.png"
   },
   {
     "slug": "Best-List-of-Vscode-Plugin-as-Golang-developer-in-Backend-position-4c3c945a903c",
@@ -2263,7 +2263,7 @@
     ],
     "readingTime": "4 min",
     "url": "https://medium.com/@mobinshaterian/best-list-of-vscode-plugin-as-golang-developer-in-backend-position-4c3c945a903c",
-    "hero": "/blog-assets/Best-List-of-Vscode-Plugin-as-Golang-developer-in-Backend-position-4c3c945a903c/img-0.png"
+    "hero": "https://cdn-images-1.medium.com/max/800/1*VDpCccZqafI1lZeG02e2Tw.png"
   },
   {
     "slug": "How-does-a-software-Engineer-avoid-a-lousy-lifestyle-and-a-bad-diet--37742278fbb5",
@@ -2275,7 +2275,7 @@
     ],
     "readingTime": "2 min",
     "url": "https://medium.com/@mobinshaterian/how-does-a-software-engineer-avoid-a-lousy-lifestyle-and-a-bad-diet-37742278fbb5",
-    "hero": "/blog-assets/How-does-a-software-Engineer-avoid-a-lousy-lifestyle-and-a-bad-diet--37742278fbb5/img-0.png"
+    "hero": "https://cdn-images-1.medium.com/max/800/1*0fq6v1k52rPAZiBEqAmjrA.png"
   },
   {
     "slug": "I-struggle-to-read-and-write-100K-requests-in-Postgres-DB--and-my-aggressive-solution-with-Redis--91461a8316a1",
@@ -2288,7 +2288,7 @@
     ],
     "readingTime": "3 min",
     "url": "https://medium.com/@mobinshaterian/i-struggle-to-read-and-write-100k-requests-in-postgres-db-with-my-aggressive-solution-with-redis-91461a8316a1",
-    "hero": "/blog-assets/I-struggle-to-read-and-write-100K-requests-in-Postgres-DB--and-my-aggressive-solution-with-Redis--91461a8316a1/img-0.png"
+    "hero": "https://cdn-images-1.medium.com/max/800/1*FuRIfaWhy_wMrugAoL13ig.png"
   },
   {
     "slug": "Pretty-print-array-in-Golang--4c184f4517f6",
@@ -2313,7 +2313,7 @@
     ],
     "readingTime": "1 min",
     "url": "https://medium.com/@mobinshaterian/struggle-with-export-and-import-in-mongodb-via-mongo-express-c64c0154937",
-    "hero": "/blog-assets/Struggle-with-export-and-import-in-MongoDB-via-mongo-express-c64c0154937/img-0.png"
+    "hero": "https://cdn-images-1.medium.com/max/800/1*ptlVYvX3Ppjw6npeC8o6kg.png"
   },
   {
     "slug": "Problem-with-installing-MongoDB-on-Ubuntu-22-04--and-Mongo-express-is-an-immediate-solution--9b070ba244e",
@@ -2327,7 +2327,7 @@
     ],
     "readingTime": "2 min",
     "url": "https://medium.com/@mobinshaterian/problem-with-installing-mongodb-on-ubuntu-22-04-and-mongo-express-is-an-immediate-solution-9b070ba244e",
-    "hero": "/blog-assets/Problem-with-installing-MongoDB-on-Ubuntu-22-04--and-Mongo-express-is-an-immediate-solution--9b070ba244e/img-0.png"
+    "hero": "https://cdn-images-1.medium.com/max/800/1*jXM8uV1uzcrT1qf0GQoYrQ.png"
   },
   {
     "slug": "Using-Tmux-to-startup-command-run-when-development-software-e63a5f106805",
@@ -2339,7 +2339,7 @@
     ],
     "readingTime": "1 min",
     "url": "https://medium.com/@mobinshaterian/using-tmux-to-startup-command-run-when-development-software-e63a5f106805",
-    "hero": "/blog-assets/Using-Tmux-to-startup-command-run-when-development-software-e63a5f106805/img-0.png"
+    "hero": "https://cdn-images-1.medium.com/max/800/1*Sd1G3r7caSafwve_BLr4JQ.png"
   },
   {
     "slug": "Installing-Application-for-Golang-developer-After-installing-Ubuntu-22-04-LTS-5d5570a78340",
@@ -2353,7 +2353,7 @@
     ],
     "readingTime": "5 min",
     "url": "https://medium.com/@mobinshaterian/installing-application-for-golang-developer-after-installing-ubuntu-22-04-lts-5d5570a78340",
-    "hero": "/blog-assets/Installing-Application-for-Golang-developer-After-installing-Ubuntu-22-04-LTS-5d5570a78340/img-1.png"
+    "hero": "https://cdn-images-1.medium.com/max/800/1*S0Gz5RKPNNAOvDqhTllDmA.png"
   },
   {
     "slug": "Improve-speed-of-Machine-Learning-API--Engine--from-3-requests-per-second-to-10000-requests-per--4d649d246a99",
@@ -2368,7 +2368,7 @@
     ],
     "readingTime": "2 min",
     "url": "https://medium.com/@mobinshaterian/improve-speed-of-machine-learning-api-engine-from-3-requests-per-second-to-10000-requests-per-4d649d246a99",
-    "hero": "/blog-assets/Improve-speed-of-Machine-Learning-API--Engine--from-3-requests-per-second-to-10000-requests-per--4d649d246a99/img-0.jpeg"
+    "hero": "https://cdn-images-1.medium.com/max/800/1*88coeBMjhI5q1p5WSpZoWg.jpeg"
   },
   {
     "slug": "My-first-application-development-with-Golang-as-a-PHP-developer--9c31e37903b8",
@@ -2382,7 +2382,7 @@
     ],
     "readingTime": "2 min",
     "url": "https://medium.com/@mobinshaterian/my-first-application-development-with-golang-as-a-php-developer-9c31e37903b8",
-    "hero": "/blog-assets/My-first-application-development-with-Golang-as-a-PHP-developer--9c31e37903b8/img-0.png"
+    "hero": "https://cdn-images-1.medium.com/max/800/1*1_AsY_DTrHOrTTCM0uWB3w.png"
   },
   {
     "slug": "PHP-fpm---I-hate-you-1d17bb8a577b",
@@ -2395,7 +2395,7 @@
     ],
     "readingTime": "2 min",
     "url": "https://medium.com/@mobinshaterian/php-fpm-i-hate-you-1d17bb8a577b",
-    "hero": "/blog-assets/PHP-fpm---I-hate-you-1d17bb8a577b/img-0.png"
+    "hero": "https://cdn-images-1.medium.com/max/800/1*mt5x80RlRyTLz7iS5aVfTg.png"
   },
   {
     "slug": "Reading-Matlab--mat-format-Dataset-in-Python-f19c024bdb83",
@@ -2408,7 +2408,7 @@
     ],
     "readingTime": "1 min",
     "url": "https://medium.com/@mobinshaterian/reading-matlab-mat-format-dataset-in-python-f19c024bdb83",
-    "hero": "/blog-assets/Reading-Matlab--mat-format-Dataset-in-Python-f19c024bdb83/img-0.png"
+    "hero": "https://cdn-images-1.medium.com/max/800/1*mRfv8Xy1F6263TOJh9p8vg.png"
   },
   {
     "slug": "Images-SEO-Optimization-when-the-quality-of-images-is-very-important-for-customers-or-designers-c1165d184e30",
@@ -2418,7 +2418,7 @@
     "tags": [],
     "readingTime": "1 min",
     "url": "https://medium.com/@mobinshaterian/images-seo-optimization-when-the-quality-of-images-is-very-important-for-customers-or-designers-c1165d184e30",
-    "hero": "/blog-assets/Images-SEO-Optimization-when-the-quality-of-images-is-very-important-for-customers-or-designers-c1165d184e30/img-0.jpeg"
+    "hero": "https://cdn-images-1.medium.com/max/800/1*RlFo5ATm41kVYhFn2yeYCg.jpeg"
   },
   {
     "slug": "Using-Restfull-API-of-Farsava-Deep-learning-Automatic-Speech-Recognition-to-convert-Persian-Speech--1ba75d232212",
@@ -2432,7 +2432,7 @@
     ],
     "readingTime": "2 min",
     "url": "https://medium.com/@mobinshaterian/using-restfull-api-of-farsava-deep-learning-automatic-speech-recognition-to-convert-persian-speech-1ba75d232212",
-    "hero": "/blog-assets/Using-Restfull-API-of-Farsava-Deep-learning-Automatic-Speech-Recognition-to-convert-Persian-Speech--1ba75d232212/img-1.png"
+    "hero": "https://cdn-images-1.medium.com/max/800/1*SPf5-LZAjFnmFbrMKwoQ5Q.png"
   },
   {
     "slug": "Running-Zarinpal-Gateway-on-Laravel-framework-ac9d84674ec6",
@@ -2445,7 +2445,7 @@
     ],
     "readingTime": "6 min",
     "url": "https://medium.com/@mobinshaterian/running-zarinpal-gateway-on-laravel-framework-ac9d84674ec6",
-    "hero": "/blog-assets/Running-Zarinpal-Gateway-on-Laravel-framework-ac9d84674ec6/img-0.png"
+    "hero": "https://cdn-images-1.medium.com/max/1200/1*KetcZbRwwWLucBlkUOMd6g.png"
   },
   {
     "slug": "Installing-Application-for-web-developer-After-installing-Ubuntu-20-04-LTS-e8114c21044c",
@@ -2457,7 +2457,7 @@
     ],
     "readingTime": "5 min",
     "url": "https://medium.com/@mobinshaterian/installing-application-for-web-developer-after-installing-ubuntu-20-04-lts-e8114c21044c",
-    "hero": "/blog-assets/Installing-Application-for-web-developer-After-installing-Ubuntu-20-04-LTS-e8114c21044c/img-1.jpeg"
+    "hero": "https://cdn-images-1.medium.com/max/800/1*nejjtHjXXYU2d1cPA_cMvQ.jpeg"
   },
   {
     "slug": "Make-Pdf-in-Cakephp-with-UTF-8-for-print-in-label-printer-f6d172423eff",
@@ -2469,7 +2469,7 @@
     ],
     "readingTime": "2 min",
     "url": "https://medium.com/@mobinshaterian/make-pdf-in-cakephp-with-utf-8-for-print-in-label-printer-f6d172423eff",
-    "hero": "/blog-assets/Make-Pdf-in-Cakephp-with-UTF-8-for-print-in-label-printer-f6d172423eff/img-4.png"
+    "hero": "https://cdn-images-1.medium.com/max/800/1*lo2M51Dgo74vWEyVTWWa0Q.png"
   },
   {
     "slug": "Troubles-update-composer-in-Laravel-when-develop-in-docker-17e3abeef50d",
@@ -2482,7 +2482,7 @@
     ],
     "readingTime": "1 min",
     "url": "https://medium.com/@mobinshaterian/troubles-update-composer-in-laravel-when-develop-in-docker-17e3abeef50d",
-    "hero": "/blog-assets/Troubles-update-composer-in-Laravel-when-develop-in-docker-17e3abeef50d/img-2.png"
+    "hero": "https://cdn-images-1.medium.com/max/800/1*t2e0BOxObgfpGlfDDfxOHg.png"
   },
   {
     "slug": "Increase-hard-disk-of-linux-os---stressful-working-d2dfcc1f208b",
@@ -2494,6 +2494,6 @@
     ],
     "readingTime": "3 min",
     "url": "https://medium.com/@mobinshaterian/increase-hard-disk-of-linux-os-stressful-working-d2dfcc1f208b",
-    "hero": "/blog-assets/Increase-hard-disk-of-linux-os---stressful-working-d2dfcc1f208b/img-0.png"
+    "hero": "https://cdn-images-1.medium.com/max/800/1*9SxZ_o7aMoebrNfHs1Vvbg.png"
   }
 ]

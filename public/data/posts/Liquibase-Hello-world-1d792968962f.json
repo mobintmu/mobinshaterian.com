@@ -9,7 +9,7 @@
   ],
   "readingTime": "1 min",
   "url": "https://medium.com/@mobinshaterian/liquibase-hello-world-1d792968962f",
-  "hero": "/blog-assets/Liquibase-Hello-world-1d792968962f/img-0.png",
+  "hero": "https://cdn-images-1.medium.com/max/800/1*AGZV8qsK2Cv9wNCfRW1Q2g.png",
   "content": [
     {
       "type": "heading",
@@ -18,7 +18,7 @@
     },
     {
       "type": "image",
-      "src": "/blog-assets/Liquibase-Hello-world-1d792968962f/img-0.png",
+      "src": "https://cdn-images-1.medium.com/max/800/1*AGZV8qsK2Cv9wNCfRW1Q2g.png",
       "alt": "https://www.liquibase.org/",
       "caption": "https://www.liquibase.org/",
       "width": 1004,

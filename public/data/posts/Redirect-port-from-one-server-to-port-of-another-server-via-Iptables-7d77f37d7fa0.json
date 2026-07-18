@@ -7,7 +7,7 @@
   "tags": [],
   "readingTime": "1 min",
   "url": "https://medium.com/@mobinshaterian/redirect-port-from-one-server-to-port-of-another-server-via-iptables-7d77f37d7fa0",
-  "hero": "/blog-assets/Redirect-port-from-one-server-to-port-of-another-server-via-Iptables-7d77f37d7fa0/img-0.png",
+  "hero": "https://cdn-images-1.medium.com/max/800/1*2seMAJoclGqsKHiPMlSImQ.png",
   "content": [
     {
       "type": "heading",
@@ -16,7 +16,7 @@
     },
     {
       "type": "image",
-      "src": "/blog-assets/Redirect-port-from-one-server-to-port-of-another-server-via-Iptables-7d77f37d7fa0/img-0.png",
+      "src": "https://cdn-images-1.medium.com/max/800/1*2seMAJoclGqsKHiPMlSImQ.png",
       "alt": "http://linux-training.be/networking/ch14.html",
       "caption": "http://linux-training.be/networking/ch14.html",
       "width": 1664,

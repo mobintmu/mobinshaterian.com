@@ -7,7 +7,7 @@
   "tags": [],
   "readingTime": "2 min",
   "url": "https://medium.com/@mobinshaterian/ory-hydra-hello-world-581ee5c1f023",
-  "hero": "/blog-assets/Ory-Hydra-Hello-world-581ee5c1f023/img-0.png",
+  "hero": "https://cdn-images-1.medium.com/max/800/1*TFFE6_dhJeQkxnUnE_cWIA.png",
   "content": [
     {
       "type": "heading",
@@ -21,7 +21,7 @@
     },
     {
       "type": "image",
-      "src": "/blog-assets/Ory-Hydra-Hello-world-581ee5c1f023/img-0.png",
+      "src": "https://cdn-images-1.medium.com/max/800/1*TFFE6_dhJeQkxnUnE_cWIA.png",
       "alt": "https://www.ory.sh/",
       "caption": "https://www.ory.sh/",
       "width": 1439,

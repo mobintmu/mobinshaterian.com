@@ -11,7 +11,7 @@
   ],
   "readingTime": "5 min",
   "url": "https://medium.com/@mobinshaterian/my-experience-to-build-a-cqrs-system-with-microservices-architecture-in-a-financial-system-to-1deeead8db9d",
-  "hero": "/blog-assets/My-experience-to-build-a-CQRS-system-with-microservices-architecture-in-a-financial-system-to--1deeead8db9d/img-2.png",
+  "hero": "https://cdn-images-1.medium.com/max/800/1*uIIz5dofJ5BVCeSSaSu-xQ.png",
   "content": [
     {
       "type": "heading",
@@ -28,7 +28,7 @@
     },
     {
       "type": "image",
-      "src": "/blog-assets/My-experience-to-build-a-CQRS-system-with-microservices-architecture-in-a-financial-system-to--1deeead8db9d/img-0.png",
+      "src": "https://cdn-images-1.medium.com/max/800/1*uIIz5dofJ5BVCeSSaSu-xQ.png",
       "alt": "My experience to build a CQRS system with microservices architecture in a financial system to…",
       "caption": "",
       "width": 731,
@@ -62,7 +62,7 @@
     },
     {
       "type": "image",
-      "src": "/blog-assets/My-experience-to-build-a-CQRS-system-with-microservices-architecture-in-a-financial-system-to--1deeead8db9d/img-1.png",
+      "src": "https://cdn-images-1.medium.com/max/800/1*t8JKJjoW090wIy-YzGg0_A.png",
       "alt": "https://www.simform.com/blog/database-devops/",
       "caption": "https://www.simform.com/blog/database-devops/",
       "width": 1434,
@@ -74,7 +74,7 @@
     },
     {
       "type": "image",
-      "src": "/blog-assets/My-experience-to-build-a-CQRS-system-with-microservices-architecture-in-a-financial-system-to--1deeead8db9d/img-2.png",
+      "src": "https://cdn-images-1.medium.com/max/800/1*KqDsSca72ZQ-ahV284wR-A.png",
       "alt": "CQRS design pattern",
       "caption": "CQRS design pattern",
       "width": 726,
@@ -107,7 +107,7 @@
     },
     {
       "type": "image",
-      "src": "/blog-assets/My-experience-to-build-a-CQRS-system-with-microservices-architecture-in-a-financial-system-to--1deeead8db9d/img-3.png",
+      "src": "https://cdn-images-1.medium.com/max/800/1*vT2np4LVDXksmnbCKKTw4g.png",
       "alt": "My experience to build a CQRS system with microservices architecture in a financial system to…",
       "caption": "",
       "width": 591,
@@ -115,7 +115,7 @@
     },
     {
       "type": "image",
-      "src": "/blog-assets/My-experience-to-build-a-CQRS-system-with-microservices-architecture-in-a-financial-system-to--1deeead8db9d/img-4.png",
+      "src": "https://cdn-images-1.medium.com/max/800/1*_xZxKKIVEgoGxovryKmyZw.png",
       "alt": "My experience to build a CQRS system with microservices architecture in a financial system to…",
       "caption": "",
       "width": 664,
@@ -136,7 +136,7 @@
     },
     {
       "type": "image",
-      "src": "/blog-assets/My-experience-to-build-a-CQRS-system-with-microservices-architecture-in-a-financial-system-to--1deeead8db9d/img-5.png",
+      "src": "https://cdn-images-1.medium.com/max/800/1*rmQcK6dw1hEn62OMj-ki1A.png",
       "alt": "https://medium.com/design-microservices-architecture-with-patterns/cqrs-design-pattern-in-microservices-architectures-5d41e359768c",
       "caption": "https://medium.com/design-microservices-architecture-with-patterns/cqrs-design-pattern-in-microservices-architectures-5d41e359768c",
       "width": 711,
