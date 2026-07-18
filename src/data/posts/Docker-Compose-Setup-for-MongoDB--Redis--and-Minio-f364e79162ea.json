@@ -7,8 +7,7 @@
   "tags": [
     "Redis",
     "MongoDB",
-    "Docker",
-    "Machine Learning"
+    "Docker"
   ],
   "readingTime": "1 min",
   "url": "https://medium.com/@mobinshaterian/docker-compose-setup-for-mongodb-redis-and-minio-f364e79162ea",

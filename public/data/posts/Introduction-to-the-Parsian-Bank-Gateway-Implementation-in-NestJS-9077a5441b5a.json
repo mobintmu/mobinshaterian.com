@@ -5,8 +5,7 @@
   "excerpt": "پیاده سازی درگاه پارسیان در نست جی اس",
   "date": "2024-08-22",
   "tags": [
-    "Node.js",
-    "Machine Learning"
+    "Node.js"
   ],
   "readingTime": "5 min",
   "url": "https://medium.com/@mobinshaterian/introduction-to-the-parsian-bank-gateway-implementation-in-nestjs-9077a5441b5a",

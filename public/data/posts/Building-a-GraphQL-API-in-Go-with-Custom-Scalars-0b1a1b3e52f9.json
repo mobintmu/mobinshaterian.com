@@ -7,8 +7,7 @@
   "tags": [
     "Go",
     "API",
-    "GraphQL",
-    "Machine Learning"
+    "GraphQL"
   ],
   "readingTime": "3 min",
   "url": "https://medium.com/@mobinshaterian/building-a-graphql-api-in-go-with-custom-scalars-0b1a1b3e52f9",

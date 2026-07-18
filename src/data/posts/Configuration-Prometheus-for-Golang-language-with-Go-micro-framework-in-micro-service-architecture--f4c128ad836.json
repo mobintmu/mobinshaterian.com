@@ -6,8 +6,7 @@
   "date": "2023-07-05",
   "tags": [
     "Go",
-    "Architecture",
-    "Machine Learning"
+    "Architecture"
   ],
   "readingTime": "1 min",
   "url": "https://medium.com/@mobinshaterian/configuration-prometheus-for-golang-language-with-go-micro-framework-in-micro-service-architecture-f4c128ad836",

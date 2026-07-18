@@ -6,8 +6,7 @@
   "date": "2025-09-26",
   "tags": [
     "Go",
-    "Architecture",
-    "Machine Learning"
+    "Architecture"
   ],
   "readingTime": "5 min",
   "url": "https://medium.com/@mobinshaterian/refactoring-a-go-web-service-with-uber-fx-from-monolith-to-modular-elegance-2789a9ac8ec5",

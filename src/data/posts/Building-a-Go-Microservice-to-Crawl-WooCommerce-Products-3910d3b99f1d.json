@@ -6,8 +6,7 @@
   "date": "2026-01-06",
   "tags": [
     "Go",
-    "Microservices",
-    "Machine Learning"
+    "Microservices"
   ],
   "readingTime": "3 min",
   "url": "https://medium.com/@mobinshaterian/building-a-go-microservice-to-crawl-woocommerce-products-3910d3b99f1d",

@@ -5,8 +5,7 @@
   "excerpt": "This guide demonstrates how to set up and use tmux for multi-port forwarding in Kubernetes environments. Tmux is a terminal multiplexer…",
   "date": "2024-10-10",
   "tags": [
-    "Kubernetes",
-    "Machine Learning"
+    "Kubernetes"
   ],
   "readingTime": "2 min",
   "url": "https://medium.com/@mobinshaterian/running-multi-port-forward-with-tmux-ed5a23bc063a",

@@ -5,8 +5,7 @@
   "excerpt": "In modern backend systems, it’s common to support multiple entry points for similar business logic, such as searching hotels by city…",
   "date": "2025-10-05",
   "tags": [
-    "Go",
-    "Machine Learning"
+    "Go"
   ],
   "readingTime": "4 min",
   "url": "https://medium.com/@mobinshaterian/code-refactoring-eliminating-duplication-with-function-injection-in-go-0de231011296",

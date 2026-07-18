@@ -6,8 +6,7 @@
   "date": "2024-08-14",
   "tags": [
     "Go",
-    "Performance",
-    "Machine Learning"
+    "Performance"
   ],
   "readingTime": "10 min",
   "url": "https://medium.com/@mobinshaterian/introduction-to-aws-dynamodb-for-golang-developers-4425a02f318f",

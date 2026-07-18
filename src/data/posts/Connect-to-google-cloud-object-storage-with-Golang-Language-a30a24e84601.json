@@ -5,8 +5,7 @@
   "excerpt": "Google Cloud Object Storage is the one big and best device for storing sequences of bytes of files. It can handle it easily and store data…",
   "date": "2023-09-14",
   "tags": [
-    "Go",
-    "Machine Learning"
+    "Go"
   ],
   "readingTime": "6 min",
   "url": "https://medium.com/@mobinshaterian/connect-to-google-cloud-object-storage-with-golang-language-a30a24e84601",

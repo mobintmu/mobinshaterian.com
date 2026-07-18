@@ -5,8 +5,7 @@
   "excerpt": "Have you ever needed to search for the term “the” in Elasticsearch, only to find it filtered out due to stopword removal? We encountered…",
   "date": "2025-09-19",
   "tags": [
-    "Elasticsearch",
-    "Machine Learning"
+    "Elasticsearch"
   ],
   "readingTime": "6 min",
   "url": "https://medium.com/@mobinshaterian/the-problem-how-elasticsearchs-stop-word-filtering-broke-our-product-search-ff2973455d45",

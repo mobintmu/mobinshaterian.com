@@ -6,8 +6,7 @@
   "date": "2025-12-14",
   "tags": [
     "Go",
-    "ClickHouse",
-    "Machine Learning"
+    "ClickHouse"
   ],
   "readingTime": "4 min",
   "url": "https://medium.com/@mobinshaterian/adding-clickhouse-to-a-go-project-a-practical-guide-inspired-by-go-simple-5a4cfef93e41",

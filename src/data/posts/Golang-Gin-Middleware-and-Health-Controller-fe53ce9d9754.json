@@ -5,8 +5,7 @@
   "excerpt": "In the previous article, a simple Golang project was demonstrated. In our current work, it is necessary to add a Gin middleware to handle…",
   "date": "2025-08-10",
   "tags": [
-    "Go",
-    "Machine Learning"
+    "Go"
   ],
   "readingTime": "3 min",
   "url": "https://medium.com/@mobinshaterian/golang-gin-middleware-and-health-controller-fe53ce9d9754",

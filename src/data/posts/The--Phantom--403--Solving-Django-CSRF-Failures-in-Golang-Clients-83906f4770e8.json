@@ -6,8 +6,7 @@
   "date": "2026-02-09",
   "tags": [
     "Go",
-    "API",
-    "Machine Learning"
+    "API"
   ],
   "readingTime": "2 min",
   "url": "https://medium.com/@mobinshaterian/the-phantom-403-solving-django-csrf-failures-in-golang-clients-83906f4770e8",
