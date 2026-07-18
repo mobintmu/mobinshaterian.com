@@ -6,8 +6,7 @@
   "date": "2026-05-30",
   "tags": [
     "Kafka",
-    "ClickHouse",
-    "Machine Learning"
+    "ClickHouse"
   ],
   "readingTime": "2 min",
   "url": "https://medium.com/@mobinshaterian/integrating-kafka-with-clickhouse-using-ssl-sasl-a-technical-retrospective-be9d75864340",

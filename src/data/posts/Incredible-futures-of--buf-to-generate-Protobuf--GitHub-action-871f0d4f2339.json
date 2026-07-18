@@ -5,8 +5,7 @@
   "excerpt": "Explore how Buf and GitHub Actions streamline Protobuf generation, format checking, and breaking change detection for smoother API…",
   "date": "2024-08-13",
   "tags": [
-    "API",
-    "Machine Learning"
+    "API"
   ],
   "readingTime": "2 min",
   "url": "https://medium.com/@mobinshaterian/incredible-futures-of-buf-to-generate-protobuf-github-action-871f0d4f2339",

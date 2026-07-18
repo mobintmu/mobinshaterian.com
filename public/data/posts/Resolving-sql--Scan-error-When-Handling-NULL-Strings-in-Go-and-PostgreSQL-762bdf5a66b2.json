@@ -6,8 +6,7 @@
   "date": "2025-08-06",
   "tags": [
     "Go",
-    "Postgres",
-    "Machine Learning"
+    "Postgres"
   ],
   "readingTime": "1 min",
   "url": "https://medium.com/@mobinshaterian/resolving-sql-scan-error-when-handling-null-strings-in-go-and-postgresql-762bdf5a66b2",

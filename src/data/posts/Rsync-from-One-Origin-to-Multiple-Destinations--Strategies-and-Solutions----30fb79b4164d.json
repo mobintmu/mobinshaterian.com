@@ -5,8 +5,7 @@
   "excerpt": "Scale one-to-many rsync using a concurrent fan-out script or a staged mirroring hierarchy to ensure speed and consistency.",
   "date": "2025-12-03",
   "tags": [
-    "Performance",
-    "Machine Learning"
+    "Performance"
   ],
   "readingTime": "2 min",
   "url": "https://medium.com/@mobinshaterian/rsync-from-one-origin-to-multiple-destinations-strategies-and-solutions-30fb79b4164d",

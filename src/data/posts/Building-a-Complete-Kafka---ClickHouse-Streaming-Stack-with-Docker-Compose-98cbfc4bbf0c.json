@@ -7,8 +7,7 @@
   "tags": [
     "Kafka",
     "ClickHouse",
-    "Docker",
-    "Machine Learning"
+    "Docker"
   ],
   "readingTime": "4 min",
   "url": "https://medium.com/@mobinshaterian/building-a-complete-kafka-clickhouse-streaming-stack-with-docker-compose-98cbfc4bbf0c",

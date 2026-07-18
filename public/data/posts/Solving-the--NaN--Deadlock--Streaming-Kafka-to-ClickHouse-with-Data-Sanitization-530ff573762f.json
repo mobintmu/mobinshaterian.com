@@ -6,8 +6,7 @@
   "date": "2026-05-19",
   "tags": [
     "Kafka",
-    "ClickHouse",
-    "Machine Learning"
+    "ClickHouse"
   ],
   "readingTime": "2 min",
   "url": "https://medium.com/@mobinshaterian/solving-the-nan-deadlock-streaming-kafka-to-clickhouse-with-data-sanitization-530ff573762f",

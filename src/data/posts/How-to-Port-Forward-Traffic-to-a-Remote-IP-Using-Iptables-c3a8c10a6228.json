@@ -5,8 +5,7 @@
   "excerpt": "In the world of networking, you often find yourself in a situation where a vital service — like a Swagger API dashboard — is hosted on a…",
   "date": "2026-02-02",
   "tags": [
-    "API",
-    "Machine Learning"
+    "API"
   ],
   "readingTime": "3 min",
   "url": "https://medium.com/@mobinshaterian/how-to-port-forward-traffic-to-a-remote-ip-using-iptables-c3a8c10a6228",

@@ -5,8 +5,7 @@
   "excerpt": "This article provides a structured, step-by-step guide for connecting to a remote Oracle Database on Ubuntu 22.04",
   "date": "2025-11-04",
   "tags": [
-    "Linux",
-    "Machine Learning"
+    "Linux"
   ],
   "readingTime": "2 min",
   "url": "https://medium.com/@mobinshaterian/connect-to-a-remote-oracle-database-with-ubuntu-22-04-b1e2d803d6ec",

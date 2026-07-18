@@ -6,8 +6,7 @@
   "date": "2023-11-28",
   "tags": [
     "Go",
-    "DevOps",
-    "Machine Learning"
+    "DevOps"
   ],
   "readingTime": "2 min",
   "url": "https://medium.com/@mobinshaterian/exclude-endpoints-with-sample-rate-in-open-telemetry-in-the-golang-language-969da599af82",

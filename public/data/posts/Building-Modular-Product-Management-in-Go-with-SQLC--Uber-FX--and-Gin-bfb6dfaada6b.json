@@ -6,8 +6,7 @@
   "date": "2025-09-28",
   "tags": [
     "Go",
-    "Architecture",
-    "Machine Learning"
+    "Architecture"
   ],
   "readingTime": "3 min",
   "url": "https://medium.com/@mobinshaterian/building-modular-product-management-in-go-with-sqlc-uber-fx-and-gin-bfb6dfaada6b",

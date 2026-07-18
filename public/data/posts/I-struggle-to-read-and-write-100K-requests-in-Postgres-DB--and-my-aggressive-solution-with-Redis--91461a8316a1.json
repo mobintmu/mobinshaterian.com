@@ -6,8 +6,7 @@
   "date": "2022-08-15",
   "tags": [
     "Redis",
-    "Postgres",
-    "Machine Learning"
+    "Postgres"
   ],
   "readingTime": "3 min",
   "url": "https://medium.com/@mobinshaterian/i-struggle-to-read-and-write-100k-requests-in-postgres-db-with-my-aggressive-solution-with-redis-91461a8316a1",

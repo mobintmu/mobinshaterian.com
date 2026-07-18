@@ -5,8 +5,7 @@
   "excerpt": "In such a way that traces and metrics are emitted to the console.",
   "date": "2023-11-15",
   "tags": [
-    "Go",
-    "Machine Learning"
+    "Go"
   ],
   "readingTime": "6 min",
   "url": "https://medium.com/@mobinshaterian/using-open-telemetry-in-golang-ef282c236e77",

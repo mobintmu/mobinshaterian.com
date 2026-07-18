@@ -6,8 +6,7 @@
   "date": "2025-12-03",
   "tags": [
     "Redis",
-    "Kubernetes",
-    "Machine Learning"
+    "Kubernetes"
   ],
   "readingTime": "2 min",
   "url": "https://medium.com/@mobinshaterian/preventing-race-conditions-in-kubernetes-applications-with-redis-locks-7da00ec8c8dd",

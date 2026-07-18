@@ -5,8 +5,7 @@
   "excerpt": "Most ClickHouse deployments start simple: one server, one disk, one table. That works fine until the day you realise you are paying NVMe…",
   "date": "2026-05-30",
   "tags": [
-    "ClickHouse",
-    "Machine Learning"
+    "ClickHouse"
   ],
   "readingTime": "11 min",
   "url": "https://medium.com/@mobinshaterian/clickhouse-tiered-storage-volumes-storage-policies-and-ttl-from-scratch-to-production-8758d8f3f066",

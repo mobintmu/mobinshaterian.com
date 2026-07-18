@@ -4,9 +4,7 @@
   "subtitle": "When managing distributed systems or local development environments, you often encounter a common networking hurdle: needing to access a…",
   "excerpt": "When managing distributed systems or local development environments, you often encounter a common networking hurdle: needing to access a…",
   "date": "2026-02-09",
-  "tags": [
-    "Machine Learning"
-  ],
+  "tags": [],
   "readingTime": "2 min",
   "url": "https://medium.com/@mobinshaterian/bridging-networks-using-nginx-as-a-reverse-proxy-for-port-redirection-b8e1f515b549",
   "hero": "https://cdn-images-1.medium.com/max/800/1*E7PXfOBeCrunRsLAyMnxBQ.png",

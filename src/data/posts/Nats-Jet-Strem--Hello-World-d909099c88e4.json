@@ -5,8 +5,7 @@
   "excerpt": "Run simple Nats Jet Stream example",
   "date": "2022-12-28",
   "tags": [
-    "NATS",
-    "Machine Learning"
+    "NATS"
   ],
   "readingTime": "6 min",
   "url": "https://medium.com/@mobinshaterian/nats-jet-strem-hello-world-d909099c88e4",
