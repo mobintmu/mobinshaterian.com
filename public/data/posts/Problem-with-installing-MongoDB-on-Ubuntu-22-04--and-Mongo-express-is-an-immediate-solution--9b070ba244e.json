@@ -11,7 +11,7 @@
   ],
   "readingTime": "2 min",
   "url": "https://medium.com/@mobinshaterian/problem-with-installing-mongodb-on-ubuntu-22-04-and-mongo-express-is-an-immediate-solution-9b070ba244e",
-  "hero": "/blog-assets/Problem-with-installing-MongoDB-on-Ubuntu-22-04--and-Mongo-express-is-an-immediate-solution--9b070ba244e/img-0.png",
+  "hero": "https://cdn-images-1.medium.com/max/800/1*jXM8uV1uzcrT1qf0GQoYrQ.png",
   "content": [
     {
       "type": "paragraph",
@@ -19,7 +19,7 @@
     },
     {
       "type": "image",
-      "src": "/blog-assets/Problem-with-installing-MongoDB-on-Ubuntu-22-04--and-Mongo-express-is-an-immediate-solution--9b070ba244e/img-0.png",
+      "src": "https://cdn-images-1.medium.com/max/800/1*jXM8uV1uzcrT1qf0GQoYrQ.png",
       "alt": "Mongo-express https://hub.docker.com/_/mongo-express",
       "caption": "Mongo-express https://hub.docker.com/_/mongo-express",
       "width": 690,
@@ -103,7 +103,7 @@
     },
     {
       "type": "image",
-      "src": "/blog-assets/Problem-with-installing-MongoDB-on-Ubuntu-22-04--and-Mongo-express-is-an-immediate-solution--9b070ba244e/img-1.png",
+      "src": "https://cdn-images-1.medium.com/max/800/1*8MvW0s6C5k-HQXBQmdW5Bg.png",
       "alt": "Problem with installing MongoDB on Ubuntu 22.04, and Mongo-express is an immediate solution.",
       "caption": "",
       "width": 1224,

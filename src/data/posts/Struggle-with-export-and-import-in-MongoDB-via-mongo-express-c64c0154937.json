@@ -10,7 +10,7 @@
   ],
   "readingTime": "1 min",
   "url": "https://medium.com/@mobinshaterian/struggle-with-export-and-import-in-mongodb-via-mongo-express-c64c0154937",
-  "hero": "/blog-assets/Struggle-with-export-and-import-in-MongoDB-via-mongo-express-c64c0154937/img-0.png",
+  "hero": "https://cdn-images-1.medium.com/max/800/1*ptlVYvX3Ppjw6npeC8o6kg.png",
   "content": [
     {
       "type": "paragraph",
@@ -18,7 +18,7 @@
     },
     {
       "type": "image",
-      "src": "/blog-assets/Struggle-with-export-and-import-in-MongoDB-via-mongo-express-c64c0154937/img-0.png",
+      "src": "https://cdn-images-1.medium.com/max/800/1*ptlVYvX3Ppjw6npeC8o6kg.png",
       "alt": "Export and Import Button in mongo-express",
       "caption": "Export and Import Button in mongo-express",
       "width": 290,
@@ -43,7 +43,7 @@
     },
     {
       "type": "image",
-      "src": "/blog-assets/Struggle-with-export-and-import-in-MongoDB-via-mongo-express-c64c0154937/img-1.png",
+      "src": "https://cdn-images-1.medium.com/max/800/1*A1I00-d6CLc4XhV9KLg2sA.png",
       "alt": "Struggle with export and import in MongoDB via mongo-express",
       "caption": "",
       "width": 327,
@@ -60,7 +60,7 @@
     },
     {
       "type": "image",
-      "src": "/blog-assets/Struggle-with-export-and-import-in-MongoDB-via-mongo-express-c64c0154937/img-2.png",
+      "src": "https://cdn-images-1.medium.com/max/800/1*I-DkJjM6lFuLg34YaYb0Ww.png",
       "alt": "Struggle with export and import in MongoDB via mongo-express",
       "caption": "",
       "width": 584,
@@ -72,7 +72,7 @@
     },
     {
       "type": "image",
-      "src": "/blog-assets/Struggle-with-export-and-import-in-MongoDB-via-mongo-express-c64c0154937/img-3.png",
+      "src": "https://cdn-images-1.medium.com/max/800/1*mis8Iz8-ksSdHhlLPiomdA.png",
       "alt": "Struggle with export and import in MongoDB via mongo-express",
       "caption": "",
       "width": 285,
@@ -113,7 +113,7 @@
     },
     {
       "type": "image",
-      "src": "/blog-assets/Struggle-with-export-and-import-in-MongoDB-via-mongo-express-c64c0154937/img-4.png",
+      "src": "https://cdn-images-1.medium.com/max/800/1*Lj-QM_G0G26PfOqoD0cPtw.png",
       "alt": "Struggle with export and import in MongoDB via mongo-express",
       "caption": "",
       "width": 604,

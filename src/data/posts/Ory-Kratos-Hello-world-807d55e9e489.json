@@ -9,7 +9,7 @@
   ],
   "readingTime": "2 min",
   "url": "https://medium.com/@mobinshaterian/ory-kratos-hello-world-807d55e9e489",
-  "hero": "/blog-assets/Ory-Kratos-Hello-world-807d55e9e489/img-0.png",
+  "hero": "https://cdn-images-1.medium.com/max/800/1*_8j2EzGsZer43dJ8NzzEAQ.png",
   "content": [
     {
       "type": "heading",
@@ -35,7 +35,7 @@
     },
     {
       "type": "image",
-      "src": "/blog-assets/Ory-Kratos-Hello-world-807d55e9e489/img-0.png",
+      "src": "https://cdn-images-1.medium.com/max/800/1*_8j2EzGsZer43dJ8NzzEAQ.png",
       "alt": "Ory Kratos Hello world",
       "caption": "",
       "width": 605,
@@ -47,7 +47,7 @@
     },
     {
       "type": "image",
-      "src": "/blog-assets/Ory-Kratos-Hello-world-807d55e9e489/img-1.png",
+      "src": "https://cdn-images-1.medium.com/max/800/1*70Eb1sFcFqUpK9tKRKErFA.png",
       "alt": "Oathkeeper",
       "caption": "Oathkeeper",
       "width": 974,
@@ -55,7 +55,7 @@
     },
     {
       "type": "image",
-      "src": "/blog-assets/Ory-Kratos-Hello-world-807d55e9e489/img-2.png",
+      "src": "https://cdn-images-1.medium.com/max/800/1*-mW9ldMPnHgLPfYqTq9tpA.png",
       "alt": "kind of types that Oathkeeper support",
       "caption": "kind of types that Oathkeeper support",
       "width": 974,
@@ -63,7 +63,7 @@
     },
     {
       "type": "image",
-      "src": "/blog-assets/Ory-Kratos-Hello-world-807d55e9e489/img-3.png",
+      "src": "https://cdn-images-1.medium.com/max/800/1*oEfsWiiZT8XdJB5D8vVZLQ.png",
       "alt": "identical proxy flow",
       "caption": "identical proxy flow",
       "width": 974,
@@ -88,7 +88,7 @@
     },
     {
       "type": "image",
-      "src": "/blog-assets/Ory-Kratos-Hello-world-807d55e9e489/img-4.png",
+      "src": "https://cdn-images-1.medium.com/max/800/1*P5LVd8Yw8plLSnTFUUchyA.png",
       "alt": "Ory Kratos Hello world",
       "caption": "",
       "width": 1207,
@@ -96,7 +96,7 @@
     },
     {
       "type": "image",
-      "src": "/blog-assets/Ory-Kratos-Hello-world-807d55e9e489/img-5.png",
+      "src": "https://cdn-images-1.medium.com/max/800/1*Yl7t604lrbFfiJpJNS477Q.png",
       "alt": "Ory Kratos Hello world",
       "caption": "",
       "width": 1207,
