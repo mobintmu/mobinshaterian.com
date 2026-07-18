@@ -4,7 +4,10 @@
   "subtitle": "In today’s complex organizations, system teams face a myriad of challenges that go far beyond technical implementation. These challenges…",
   "excerpt": "In today’s complex organizations, system teams face a myriad of challenges that go far beyond technical implementation. These challenges…",
   "date": "2024-11-07",
-  "tags": [],
+  "tags": [
+    "Go",
+    "Machine Learning"
+  ],
   "readingTime": "2 min",
   "url": "https://medium.com/@mobinshaterian/the-hidden-challenges-of-system-teams-in-software-companies-balancing-people-process-and-cfc16a6e1790",
   "hero": "https://cdn-images-1.medium.com/max/800/1*zuc24fvIW5w9Di7Npe7w7g.jpeg",

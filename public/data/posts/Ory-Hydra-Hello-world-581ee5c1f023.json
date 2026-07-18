@@ -4,7 +4,9 @@
   "subtitle": "Run ORY HYDRA service",
   "excerpt": "Run ORY HYDRA service",
   "date": "2023-02-03",
-  "tags": [],
+  "tags": [
+    "Machine Learning"
+  ],
   "readingTime": "2 min",
   "url": "https://medium.com/@mobinshaterian/ory-hydra-hello-world-581ee5c1f023",
   "hero": "/blog-assets/Ory-Hydra-Hello-world-581ee5c1f023/img-0.png",

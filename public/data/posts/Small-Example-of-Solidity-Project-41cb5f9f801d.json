@@ -4,7 +4,9 @@
   "subtitle": "I want to review all the techniques used in this small solidity project in this article.",
   "excerpt": "I want to review all the techniques used in this small solidity project in this article.",
   "date": "2023-12-14",
-  "tags": [],
+  "tags": [
+    "Machine Learning"
+  ],
   "readingTime": "12 min",
   "url": "https://medium.com/@mobinshaterian/small-example-of-solidity-project-41cb5f9f801d",
   "hero": "https://cdn-images-1.medium.com/max/800/1*y_UjKC9cJ9Xez2Rb5O9f8g.png",

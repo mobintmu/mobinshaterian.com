@@ -4,7 +4,11 @@
   "subtitle": "delegate authentication to the API Gateway level using Kratos and Oathkeeper",
   "excerpt": "delegate authentication to the API Gateway level using Kratos and Oathkeeper",
   "date": "2023-02-06",
-  "tags": [],
+  "tags": [
+    "API",
+    "Security",
+    "Machine Learning"
+  ],
   "readingTime": "1 min",
   "url": "https://medium.com/@mobinshaterian/ory-oathkeeper-hello-world-8069a1e48d3e",
   "hero": "/blog-assets/Ory-Oathkeeper-Hello-world-8069a1e48d3e/img-0.png",

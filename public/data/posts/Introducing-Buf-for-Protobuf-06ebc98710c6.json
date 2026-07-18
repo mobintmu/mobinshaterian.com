@@ -4,7 +4,10 @@
   "subtitle": "Buf is an innovative tool that revolutionizes API development by promoting a schema-driven approach using Protocol Buffers (Protobuf). As…",
   "excerpt": "Buf is an innovative tool that revolutionizes API development by promoting a schema-driven approach using Protocol Buffers (Protobuf). As…",
   "date": "2024-08-12",
-  "tags": [],
+  "tags": [
+    "API",
+    "Machine Learning"
+  ],
   "readingTime": "5 min",
   "url": "https://medium.com/@mobinshaterian/buf-protobuf-06ebc98710c6",
   "hero": "https://cdn-images-1.medium.com/max/800/1*Z84e1iFw5VCdnpLV0azz9w.jpeg",

@@ -4,7 +4,11 @@
   "subtitle": "https://platform.openai.com/api-keys",
   "excerpt": "https://platform.openai.com/api-keys",
   "date": "2024-01-22",
-  "tags": [],
+  "tags": [
+    "API",
+    "Performance",
+    "Machine Learning"
+  ],
   "readingTime": "2 min",
   "url": "https://medium.com/@mobinshaterian/open-ai-tutorial-bbd89b9bd242",
   "hero": "https://cdn-images-1.medium.com/max/800/1*trw0TJQHI8UAOG2zgOV2eA.png",

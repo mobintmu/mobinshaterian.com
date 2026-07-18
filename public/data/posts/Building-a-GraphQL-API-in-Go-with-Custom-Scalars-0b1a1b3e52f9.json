@@ -4,7 +4,12 @@
   "subtitle": "GraphQL has become a powerful alternative to REST APIs, offering clients the ability to request exactly the data they need. In Go, the…",
   "excerpt": "GraphQL has become a powerful alternative to REST APIs, offering clients the ability to request exactly the data they need. In Go, the…",
   "date": "2025-12-26",
-  "tags": [],
+  "tags": [
+    "Go",
+    "API",
+    "GraphQL",
+    "Machine Learning"
+  ],
   "readingTime": "3 min",
   "url": "https://medium.com/@mobinshaterian/building-a-graphql-api-in-go-with-custom-scalars-0b1a1b3e52f9",
   "hero": "https://cdn-images-1.medium.com/max/800/1*WlVGDJC4kBCrpprBT_BkPA.png",

@@ -4,7 +4,10 @@
   "subtitle": "Overview",
   "excerpt": "Overview",
   "date": "2026-02-22",
-  "tags": [],
+  "tags": [
+    "Go",
+    "Machine Learning"
+  ],
   "readingTime": "4 min",
   "url": "https://medium.com/@mobinshaterian/building-a-category-config-product-management-system-in-go-a-deep-dive-5100ef95f814",
   "hero": "https://cdn-images-1.medium.com/max/800/1*1R3bFlysYaKs3jyf9MtVzg.png",

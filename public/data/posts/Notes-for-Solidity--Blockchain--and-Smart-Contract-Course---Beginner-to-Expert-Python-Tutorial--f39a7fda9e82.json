@@ -4,7 +4,10 @@
   "subtitle": "Solidity, Blockchain, and Smart Contract Course — Beginner to Expert Python Tutorial by patrick collins",
   "excerpt": "Solidity, Blockchain, and Smart Contract Course — Beginner to Expert Python Tutorial by patrick collins",
   "date": "2023-12-06",
-  "tags": [],
+  "tags": [
+    "Python",
+    "Machine Learning"
+  ],
   "readingTime": "4 min",
   "url": "https://medium.com/@mobinshaterian/notes-for-solidity-blockchain-and-smart-contract-course-beginner-to-expert-python-tutorial-f39a7fda9e82",
   "hero": "https://cdn-images-1.medium.com/max/800/1*dvEnzne1KK3OVoQcX4duvA.png",

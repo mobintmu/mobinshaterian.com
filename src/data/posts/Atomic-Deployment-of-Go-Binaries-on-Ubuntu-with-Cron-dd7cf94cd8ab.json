@@ -4,7 +4,12 @@
   "subtitle": "This article presents a production-ready deployment strategy for Go applications on Ubuntu servers using GitLab CI/CD and cron scheduling.",
   "excerpt": "This article presents a production-ready deployment strategy for Go applications on Ubuntu servers using GitLab CI/CD and cron scheduling.",
   "date": "2025-11-26",
-  "tags": [],
+  "tags": [
+    "Go",
+    "Linux",
+    "DevOps",
+    "Machine Learning"
+  ],
   "readingTime": "6 min",
   "url": "https://medium.com/@mobinshaterian/atomic-deployment-of-go-binaries-on-ubuntu-with-cron-dd7cf94cd8ab",
   "hero": "https://cdn-images-1.medium.com/max/800/1*FWUZycSzUuMcuR44DVW3mA.png",

@@ -4,7 +4,10 @@
   "subtitle": "In this article, I am going to deploy a smart contract to go and go-Ethereum on the local block chain.",
   "excerpt": "In this article, I am going to deploy a smart contract to go and go-Ethereum on the local block chain.",
   "date": "2023-12-19",
-  "tags": [],
+  "tags": [
+    "Go",
+    "Machine Learning"
+  ],
   "readingTime": "9 min",
   "url": "https://medium.com/@mobinshaterian/deploy-smart-contract-and-connect-with-go-ethereum-935f4290249f",
   "hero": "https://cdn-images-1.medium.com/max/800/1*zbZbzJsILxLMVURK608fOg.png",

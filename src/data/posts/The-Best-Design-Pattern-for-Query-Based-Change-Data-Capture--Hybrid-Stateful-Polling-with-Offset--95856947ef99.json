@@ -4,7 +4,10 @@
   "subtitle": "In today’s data-driven architectures, keeping downstream systems synchronized with source databases in near real time is no longer optional…",
   "excerpt": "In today’s data-driven architectures, keeping downstream systems synchronized with source databases in near real time is no longer optional…",
   "date": "2025-10-16",
-  "tags": [],
+  "tags": [
+    "Architecture",
+    "Machine Learning"
+  ],
   "readingTime": "21 min",
   "url": "https://medium.com/@mobinshaterian/the-best-design-pattern-for-query-based-change-data-capture-hybrid-stateful-polling-with-offset-95856947ef99",
   "hero": "https://cdn-images-1.medium.com/max/800/1*n84qM5RROI2V5Li9AXOcFA.png",

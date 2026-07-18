@@ -4,7 +4,11 @@
   "subtitle": "In Go applications using PostgreSQL, it’s common to map query results into struct fields using the Scan method. However, when database…",
   "excerpt": "In Go applications using PostgreSQL, it’s common to map query results into struct fields using the Scan method. However, when database…",
   "date": "2025-08-06",
-  "tags": [],
+  "tags": [
+    "Go",
+    "Postgres",
+    "Machine Learning"
+  ],
   "readingTime": "1 min",
   "url": "https://medium.com/@mobinshaterian/resolving-sql-scan-error-when-handling-null-strings-in-go-and-postgresql-762bdf5a66b2",
   "hero": "https://cdn-images-1.medium.com/max/800/1*SCDT-ktPArw_4Iw-MpkvRw.jpeg",

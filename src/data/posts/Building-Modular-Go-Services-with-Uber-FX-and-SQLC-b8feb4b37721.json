@@ -4,7 +4,11 @@
   "subtitle": "In the journey toward scalable, maintainable Go applications, few things matter more than clean architecture, lifecycle clarity, and…",
   "excerpt": "In the journey toward scalable, maintainable Go applications, few things matter more than clean architecture, lifecycle clarity, and…",
   "date": "2025-09-27",
-  "tags": [],
+  "tags": [
+    "Go",
+    "Architecture",
+    "Machine Learning"
+  ],
   "readingTime": "2 min",
   "url": "https://medium.com/@mobinshaterian/%EF%B8%8F-building-modular-go-services-with-uber-fx-and-sqlc-b8feb4b37721",
   "hero": "https://cdn-images-1.medium.com/max/800/1*DFfH9IUvng0kAxUTw3zbTQ.png",

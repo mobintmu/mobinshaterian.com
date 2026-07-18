@@ -4,7 +4,9 @@
   "subtitle": "Building a Knowledge Base is usually hard work for the company, and developers are always scared of writing documents. I found an effective…",
   "excerpt": "Building a Knowledge Base is usually hard work for the company, and developers are always scared of writing documents. I found an effective…",
   "date": "2024-04-11",
-  "tags": [],
+  "tags": [
+    "Machine Learning"
+  ],
   "readingTime": "2 min",
   "url": "https://medium.com/@mobinshaterian/data-driven-approach-to-building-an-effective-knowledge-base-based-on-artificial-intelligence-ef3ef169f138",
   "hero": "https://cdn-images-1.medium.com/max/800/1*SrsnYpKOEhExrcewZM7XzA.jpeg",

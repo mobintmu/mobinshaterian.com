@@ -4,7 +4,9 @@
   "subtitle": "Modern databases rely on two foundational components: storage engines and indexing strategies",
   "excerpt": "Modern databases rely on two foundational components: storage engines and indexing strategies",
   "date": "2025-01-13",
-  "tags": [],
+  "tags": [
+    "Machine Learning"
+  ],
   "readingTime": "14 min",
   "url": "https://medium.com/@mobinshaterian/database-deep-dive-exploring-storage-engines-and-indexing-strategies-lsm-trees-vs-b-trees-268ac1d24056",
   "hero": "https://cdn-images-1.medium.com/max/800/1*ExVaWJ2znYcNKFDvIHPQaw.png",

@@ -4,7 +4,9 @@
   "subtitle": "The emergence of generative AI has led many businesses to anticipate that developers could eventually be replaced by intelligent machines…",
   "excerpt": "The emergence of generative AI has led many businesses to anticipate that developers could eventually be replaced by intelligent machines…",
   "date": "2025-08-08",
-  "tags": [],
+  "tags": [
+    "Machine Learning"
+  ],
   "readingTime": "4 min",
   "url": "https://medium.com/@mobinshaterian/the-devil-is-in-the-details-meaning-in-software-development-9349cd490122",
   "hero": "https://cdn-images-1.medium.com/max/800/1*qnCmUu19C4aYJCG8jXvyNQ.jpeg",

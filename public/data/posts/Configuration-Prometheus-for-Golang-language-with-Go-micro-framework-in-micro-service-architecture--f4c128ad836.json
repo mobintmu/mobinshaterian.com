@@ -4,7 +4,11 @@
   "subtitle": "Generally monitoring micro-service is so essential. When the error occurred, we can’t easily find the issue in the whole system. Sometimes…",
   "excerpt": "Generally monitoring micro-service is so essential. When the error occurred, we can’t easily find the issue in the whole system. Sometimes…",
   "date": "2023-07-05",
-  "tags": [],
+  "tags": [
+    "Go",
+    "Architecture",
+    "Machine Learning"
+  ],
   "readingTime": "1 min",
   "url": "https://medium.com/@mobinshaterian/configuration-prometheus-for-golang-language-with-go-micro-framework-in-micro-service-architecture-f4c128ad836",
   "hero": "https://cdn-images-1.medium.com/max/800/1*oXYQxSGVRyJubhvkgWZhug.png",

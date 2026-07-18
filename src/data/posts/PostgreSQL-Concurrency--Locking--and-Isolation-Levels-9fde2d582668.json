@@ -4,7 +4,10 @@
   "subtitle": "1. Optimistic vs. Pessimistic Locking:\n — Pessimistic: Assumes worst-case scenario\n — Optimistic: Assumes best-case scenario",
   "excerpt": "1. Optimistic vs. Pessimistic Locking:\n — Pessimistic: Assumes worst-case scenario\n — Optimistic: Assumes best-case scenario",
   "date": "2024-08-28",
-  "tags": [],
+  "tags": [
+    "Postgres",
+    "Machine Learning"
+  ],
   "readingTime": "6 min",
   "url": "https://medium.com/@mobinshaterian/postgresql-concurrency-locking-and-isolation-levels-9fde2d582668",
   "hero": "https://cdn-images-1.medium.com/max/800/1*Prhs8vu83OET5xc7O8DgWA.png",

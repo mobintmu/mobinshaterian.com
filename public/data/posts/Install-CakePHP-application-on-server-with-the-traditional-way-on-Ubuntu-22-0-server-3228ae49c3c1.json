@@ -4,7 +4,12 @@
   "subtitle": "In this article, I want to make a Monolithic Server to run the Cakephp application. I know that Microservices and central systems are…",
   "excerpt": "In this article, I want to make a Monolithic Server to run the Cakephp application. I know that Microservices and central systems are…",
   "date": "2022-12-04",
-  "tags": [],
+  "tags": [
+    "Linux",
+    "Microservices",
+    "Architecture",
+    "Machine Learning"
+  ],
   "readingTime": "5 min",
   "url": "https://medium.com/@mobinshaterian/install-cakephp-application-on-server-with-the-traditional-way-on-ubuntu-22-0-server-3228ae49c3c1",
   "hero": "/blog-assets/Install-CakePHP-application-on-server-with-the-traditional-way-on-Ubuntu-22-0-server-3228ae49c3c1/img-0.png",

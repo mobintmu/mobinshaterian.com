@@ -4,7 +4,10 @@
   "subtitle": "In this tutorial, I will explain how to make a ssh key for different repositories.",
   "excerpt": "In this tutorial, I will explain how to make a ssh key for different repositories.",
   "date": "2023-07-31",
-  "tags": [],
+  "tags": [
+    "Linux",
+    "Machine Learning"
+  ],
   "readingTime": "1 min",
   "url": "https://medium.com/@mobinshaterian/how-make-multiply-ssh-key-in-ubuntu-e224a5156752",
   "hero": "https://cdn-images-1.medium.com/max/800/1*43KUc_SAu5rc_f7t024ekA.png",

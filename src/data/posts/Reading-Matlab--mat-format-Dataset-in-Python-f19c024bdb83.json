@@ -4,7 +4,10 @@
   "subtitle": "Cuff-Less Blood Pressure Estimation Data Set has a Matlab Dataset and I won’t use it in python code.",
   "excerpt": "Cuff-Less Blood Pressure Estimation Data Set has a Matlab Dataset and I won’t use it in python code.",
   "date": "2020-12-21",
-  "tags": [],
+  "tags": [
+    "Python",
+    "Machine Learning"
+  ],
   "readingTime": "1 min",
   "url": "https://medium.com/@mobinshaterian/reading-matlab-mat-format-dataset-in-python-f19c024bdb83",
   "hero": "/blog-assets/Reading-Matlab--mat-format-Dataset-in-Python-f19c024bdb83/img-0.png",

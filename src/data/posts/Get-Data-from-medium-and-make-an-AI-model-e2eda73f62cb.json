@@ -4,7 +4,9 @@
   "subtitle": "In this tutorial I am going to get data from medium a make my version AI bot.",
   "excerpt": "In this tutorial I am going to get data from medium a make my version AI bot.",
   "date": "2024-02-23",
-  "tags": [],
+  "tags": [
+    "Machine Learning"
+  ],
   "readingTime": "1 min",
   "url": "https://medium.com/@mobinshaterian/get-data-from-medium-and-make-an-ai-model-e2eda73f62cb",
   "hero": "https://cdn-images-1.medium.com/max/800/1*VPLYUecubOuFJtCGgNNFKA.jpeg",

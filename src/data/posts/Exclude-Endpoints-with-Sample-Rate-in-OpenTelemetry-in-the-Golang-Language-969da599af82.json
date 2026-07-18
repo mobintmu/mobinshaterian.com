@@ -4,7 +4,11 @@
   "subtitle": "Open telemetry is one of the best systems for tracing system requests in Golang. Our DevOps team (Mohsen Mottaghi) gathers all requests…",
   "excerpt": "Open telemetry is one of the best systems for tracing system requests in Golang. Our DevOps team (Mohsen Mottaghi) gathers all requests…",
   "date": "2023-11-28",
-  "tags": [],
+  "tags": [
+    "Go",
+    "DevOps",
+    "Machine Learning"
+  ],
   "readingTime": "2 min",
   "url": "https://medium.com/@mobinshaterian/exclude-endpoints-with-sample-rate-in-open-telemetry-in-the-golang-language-969da599af82",
   "hero": "https://cdn-images-1.medium.com/max/800/1*NC2QXAjoyj8z80gA3nBCeg.png",

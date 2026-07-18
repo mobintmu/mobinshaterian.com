@@ -4,7 +4,9 @@
   "subtitle": "In the complex world of software development, technical challenges often take center stage. However, a more nuanced challenge lies beneath…",
   "excerpt": "In the complex world of software development, technical challenges often take center stage. However, a more nuanced challenge lies beneath…",
   "date": "2025-01-10",
-  "tags": [],
+  "tags": [
+    "Machine Learning"
+  ],
   "readingTime": "5 min",
   "url": "https://medium.com/@mobinshaterian/the-human-side-of-bug-fixing-in-software-development-tell-me-youre-good-enough-so-i-can-fix-the-d9510fb6dfce",
   "hero": "https://cdn-images-1.medium.com/max/800/1*geRrfJRC7I2soe_Mozh4gw.jpeg",

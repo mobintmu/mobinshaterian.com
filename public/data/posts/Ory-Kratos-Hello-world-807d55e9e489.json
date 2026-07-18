@@ -4,7 +4,10 @@
   "subtitle": "how design Role based access control in authorization systems?",
   "excerpt": "how design Role based access control in authorization systems?",
   "date": "2023-02-09",
-  "tags": [],
+  "tags": [
+    "Security",
+    "Machine Learning"
+  ],
   "readingTime": "2 min",
   "url": "https://medium.com/@mobinshaterian/ory-kratos-hello-world-807d55e9e489",
   "hero": "/blog-assets/Ory-Kratos-Hello-world-807d55e9e489/img-0.png",

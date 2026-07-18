@@ -4,7 +4,9 @@
   "subtitle": "An allergy occurs when the immune system overreacts to harmless substances (allergens), driven by Immunoglobulin E (IgE). IgE triggers…",
   "excerpt": "An allergy occurs when the immune system overreacts to harmless substances (allergens), driven by Immunoglobulin E (IgE). IgE triggers…",
   "date": "2025-05-23",
-  "tags": [],
+  "tags": [
+    "Machine Learning"
+  ],
   "readingTime": "7 min",
   "url": "https://medium.com/@mobinshaterian/the-role-of-ige-in-allergic-and-chronic-sinusitis-mechanisms-treatments-and-impact-on-5578822607ff",
   "hero": "https://cdn-images-1.medium.com/max/800/1*Hp8I7OMEpnAyWQoBCUpVPA.jpeg",

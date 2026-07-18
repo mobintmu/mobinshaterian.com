@@ -4,7 +4,12 @@
   "subtitle": "In the previous post, a Swagger file was created to provide clearer documentation. At this stage, the focus is on designing a product…",
   "excerpt": "In the previous post, a Swagger file was created to provide clearer documentation. At this stage, the focus is on designing a product…",
   "date": "2025-08-23",
-  "tags": [],
+  "tags": [
+    "Go",
+    "Architecture",
+    "API",
+    "Machine Learning"
+  ],
   "readingTime": "4 min",
   "url": "https://medium.com/@mobinshaterian/building-a-clean-secure-and-scalable-go-web-api-a-layered-architecture-guide-ee3afe4aa58d",
   "hero": "https://cdn-images-1.medium.com/max/800/1*EyoadzC84Fozo1FBp1saVg.jpeg",

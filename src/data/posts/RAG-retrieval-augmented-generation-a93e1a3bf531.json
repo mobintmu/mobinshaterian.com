@@ -4,7 +4,9 @@
   "subtitle": "retrieval-augmented generation",
   "excerpt": "retrieval-augmented generation",
   "date": "2024-01-31",
-  "tags": [],
+  "tags": [
+    "Machine Learning"
+  ],
   "readingTime": "3 min",
   "url": "https://medium.com/@mobinshaterian/rag-retrieval-augmented-generation-a93e1a3bf531",
   "hero": "https://cdn-images-1.medium.com/max/800/1*2fgyWfZ5s-eFqvqkdfyZOw.png",

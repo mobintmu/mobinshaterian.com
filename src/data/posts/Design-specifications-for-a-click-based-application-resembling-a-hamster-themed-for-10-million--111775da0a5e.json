@@ -4,7 +4,10 @@
   "subtitle": "Design specs for 10M-user app: tackles 100K clicks/sec with Redis, WebSockets, load balancing, and NoSQL. Focuses on scalability and…",
   "excerpt": "Design specs for 10M-user app: tackles 100K clicks/sec with Redis, WebSockets, load balancing, and NoSQL. Focuses on scalability and…",
   "date": "2024-08-10",
-  "tags": [],
+  "tags": [
+    "Redis",
+    "Machine Learning"
+  ],
   "readingTime": "7 min",
   "url": "https://medium.com/@mobinshaterian/design-specifications-for-a-click-based-application-resembling-a-hamster-themed-for-10-million-111775da0a5e",
   "hero": "https://cdn-images-1.medium.com/max/800/1*YZAn9L001TW4vAuvx2UrOQ.png",

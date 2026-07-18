@@ -4,7 +4,11 @@
   "subtitle": "In this tutorial, I want to write a Python code for the extraction of a customer tickets list with FreshDesk API.",
   "excerpt": "In this tutorial, I want to write a Python code for the extraction of a customer tickets list with FreshDesk API.",
   "date": "2024-05-08",
-  "tags": [],
+  "tags": [
+    "Python",
+    "API",
+    "Machine Learning"
+  ],
   "readingTime": "1 min",
   "url": "https://medium.com/@mobinshaterian/find-a-list-of-tickets-for-the-customers-in-freshdesk-f4bf843c55ff",
   "hero": "https://cdn-images-1.medium.com/max/800/1*P3DGYf7PUCR_40uGaKsl5Q.jpeg",

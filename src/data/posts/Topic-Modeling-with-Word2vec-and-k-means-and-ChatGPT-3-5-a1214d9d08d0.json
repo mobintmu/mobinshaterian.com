@@ -4,7 +4,9 @@
   "subtitle": "In this article I am going to convert texts into vectors. And find best topics for them based on ChatGPT.",
   "excerpt": "In this article I am going to convert texts into vectors. And find best topics for them based on ChatGPT.",
   "date": "2024-02-15",
-  "tags": [],
+  "tags": [
+    "Machine Learning"
+  ],
   "readingTime": "4 min",
   "url": "https://medium.com/@mobinshaterian/topic-modeling-with-word2vec-and-k-means-and-chatgpt-3-5-a1214d9d08d0",
   "hero": "https://cdn-images-1.medium.com/max/800/1*YiG3oVaj9a6Pjs06NZUtvw.png",

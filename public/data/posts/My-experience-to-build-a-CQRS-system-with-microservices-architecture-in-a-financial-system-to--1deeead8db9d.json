@@ -4,7 +4,12 @@
   "subtitle": "In the last 6 months, I made enormous system for online payment and settlement with bank for handle 10k TPS. In this article I will explain…",
   "excerpt": "In the last 6 months, I made enormous system for online payment and settlement with bank for handle 10k TPS. In this article I will explain…",
   "date": "2023-02-23",
-  "tags": [],
+  "tags": [
+    "Microservices",
+    "Architecture",
+    "Performance",
+    "Machine Learning"
+  ],
   "readingTime": "5 min",
   "url": "https://medium.com/@mobinshaterian/my-experience-to-build-a-cqrs-system-with-microservices-architecture-in-a-financial-system-to-1deeead8db9d",
   "hero": "/blog-assets/My-experience-to-build-a-CQRS-system-with-microservices-architecture-in-a-financial-system-to--1deeead8db9d/img-2.png",

@@ -4,7 +4,12 @@
   "subtitle": "we’ll walk through the complete process of migrating a Go application from a REST API with gRPC to a modern GraphQL Go base",
   "excerpt": "we’ll walk through the complete process of migrating a Go application from a REST API with gRPC to a modern GraphQL Go base",
   "date": "2025-12-14",
-  "tags": [],
+  "tags": [
+    "Go",
+    "API",
+    "gRPC",
+    "GraphQL"
+  ],
   "readingTime": "6 min",
   "url": "https://medium.com/@mobinshaterian/complete-guide-migrating-from-rest-grpc-to-graphql-in-go-96c53025d9dc",
   "hero": "https://cdn-images-1.medium.com/max/800/1*f7CUhDU_ZXYRTPkXzWbDBg.png",

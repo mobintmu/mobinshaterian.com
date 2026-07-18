@@ -4,7 +4,10 @@
   "subtitle": "The simplest way to print an array or even interface in Golang is to write the below function.",
   "excerpt": "The simplest way to print an array or even interface in Golang is to write the below function.",
   "date": "2022-08-13",
-  "tags": [],
+  "tags": [
+    "Go",
+    "Machine Learning"
+  ],
   "readingTime": "1 min",
   "url": "https://medium.com/@mobinshaterian/pretty-print-array-in-golang-4c184f4517f6",
   "hero": null,

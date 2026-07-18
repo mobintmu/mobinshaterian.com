@@ -4,7 +4,9 @@
   "subtitle": "You can connect the Remix into your Ganache in your local machine:",
   "excerpt": "You can connect the Remix into your Ganache in your local machine:",
   "date": "2024-01-09",
-  "tags": [],
+  "tags": [
+    "Machine Learning"
+  ],
   "readingTime": "14 min",
   "url": "https://medium.com/@mobinshaterian/solidity-principle-06faaeb07b57",
   "hero": "https://cdn-images-1.medium.com/max/800/1*xSsjDC-nCuUWS6bsfetcRQ.png",

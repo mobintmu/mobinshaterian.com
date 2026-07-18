@@ -4,7 +4,11 @@
   "subtitle": "If you’re seeing this error when running docker ps:",
   "excerpt": "If you’re seeing this error when running docker ps:",
   "date": "2025-09-26",
-  "tags": [],
+  "tags": [
+    "Docker",
+    "Linux",
+    "Machine Learning"
+  ],
   "readingTime": "2 min",
   "url": "https://medium.com/@mobinshaterian/how-to-fix-cannot-connect-to-docker-daemon-error-on-ubuntu-linux-a2f25a79d786",
   "hero": "https://cdn-images-1.medium.com/max/800/1*kPAm4QA836msrxtBotZzwQ.png",

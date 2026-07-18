@@ -4,7 +4,10 @@
   "subtitle": "Background",
   "excerpt": "Background",
   "date": "2026-05-26",
-  "tags": [],
+  "tags": [
+    "Machine Learning",
+    "Data Engineering"
+  ],
   "readingTime": "7 min",
   "url": "https://medium.com/@mobinshaterian/how-we-rebuilt-a-telecom-kpi-platform-to-handle-billions-of-records-from-json-blobs-to-flat-1a4eb6b27574",
   "hero": "https://cdn-images-1.medium.com/max/800/1*hAtWoeVn3W-PqynVKCzrBA.png",

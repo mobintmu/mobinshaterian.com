@@ -4,7 +4,12 @@
   "subtitle": "When building a GraphQL API in Go using gqlgen and Gin, the built-in playground.Handler is the standard way to serve the GraphiQL UI. Out…",
   "excerpt": "When building a GraphQL API in Go using gqlgen and Gin, the built-in playground.Handler is the standard way to serve the GraphiQL UI. Out…",
   "date": "2026-06-09",
-  "tags": [],
+  "tags": [
+    "Go",
+    "API",
+    "GraphQL",
+    "Machine Learning"
+  ],
   "readingTime": "5 min",
   "url": "https://medium.com/@mobinshaterian/serving-an-offline-graphql-playground-in-go-avoiding-the-gin-static-file-pitfalls-dd907b2ab087",
   "hero": "https://cdn-images-1.medium.com/max/800/1*OF20NMePBD6Cj77n-hfJjQ.png",

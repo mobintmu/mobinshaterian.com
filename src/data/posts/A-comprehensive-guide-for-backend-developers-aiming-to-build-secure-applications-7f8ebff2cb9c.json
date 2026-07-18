@@ -4,7 +4,9 @@
   "subtitle": "In this article, I am going to share tips related to creating a secure application. As you know, I have a back-end developer background…",
   "excerpt": "In this article, I am going to share tips related to creating a secure application. As you know, I have a back-end developer background…",
   "date": "2025-07-04",
-  "tags": [],
+  "tags": [
+    "Machine Learning"
+  ],
   "readingTime": "10 min",
   "url": "https://medium.com/@mobinshaterian/a-comprehensive-guide-for-backend-developers-aiming-to-build-secure-applications-7f8ebff2cb9c",
   "hero": "https://cdn-images-1.medium.com/max/800/1*zt61IKZOj2HHeDu3xeyMSg.jpeg",

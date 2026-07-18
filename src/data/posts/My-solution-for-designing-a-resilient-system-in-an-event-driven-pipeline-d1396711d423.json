@@ -4,7 +4,11 @@
   "subtitle": "I designed event-driven architecture for our fintech software. It consisted of three parts. Part one had a sync process, and Parts two and…",
   "excerpt": "I designed event-driven architecture for our fintech software. It consisted of three parts. Part one had a sync process, and Parts two and…",
   "date": "2022-09-12",
-  "tags": [],
+  "tags": [
+    "Architecture",
+    "Machine Learning",
+    "Data Engineering"
+  ],
   "readingTime": "2 min",
   "url": "https://medium.com/@mobinshaterian/my-solution-for-designing-a-resilient-system-in-an-event-driven-pipeline-d1396711d423",
   "hero": "/blog-assets/My-solution-for-designing-a-resilient-system-in-an-event-driven-pipeline-d1396711d423/img-0.png",

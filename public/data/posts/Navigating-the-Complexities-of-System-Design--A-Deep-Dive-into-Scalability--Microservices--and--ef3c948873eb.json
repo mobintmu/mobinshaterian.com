@@ -4,7 +4,10 @@
   "subtitle": "System design is a critical challenge in modern software development, where applications must serve millions of users.",
   "excerpt": "System design is a critical challenge in modern software development, where applications must serve millions of users.",
   "date": "2025-01-18",
-  "tags": [],
+  "tags": [
+    "Microservices",
+    "Machine Learning"
+  ],
   "readingTime": "5 min",
   "url": "https://medium.com/@mobinshaterian/navigating-the-complexities-of-system-design-a-deep-dive-into-scalability-microservices-and-ef3c948873eb",
   "hero": "https://cdn-images-1.medium.com/max/800/1*IVcUa0qqTb3de6UkzuVTqQ.jpeg",

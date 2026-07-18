@@ -4,7 +4,10 @@
   "subtitle": "When dealing with corporate networks, restrictive firewalls, or filtered DNS resolvers, sometimes a specific subdomain gets blocked",
   "excerpt": "When dealing with corporate networks, restrictive firewalls, or filtered DNS resolvers, sometimes a specific subdomain gets blocked",
   "date": "2025-10-27",
-  "tags": [],
+  "tags": [
+    "Linux",
+    "Machine Learning"
+  ],
   "readingTime": "2 min",
   "url": "https://medium.com/@mobinshaterian/fixing-blocked-subdomain-dns-with-dnsmasq-on-ubuntu-b25cc19e9877",
   "hero": "https://cdn-images-1.medium.com/max/800/1*aFw8b3Yqt39DmOaMc9jJXQ.png",

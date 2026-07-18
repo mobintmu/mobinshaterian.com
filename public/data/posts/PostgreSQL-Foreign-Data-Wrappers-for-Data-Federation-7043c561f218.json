@@ -4,7 +4,10 @@
   "subtitle": "Foreign Data Wrappers (FDWs) are a powerful feature in PostgreSQL that enables the database to act as a federated data hub ,…",
   "excerpt": "Foreign Data Wrappers (FDWs) are a powerful feature in PostgreSQL that enables the database to act as a federated data hub ,…",
   "date": "2025-11-22",
-  "tags": [],
+  "tags": [
+    "Postgres",
+    "Machine Learning"
+  ],
   "readingTime": "11 min",
   "url": "https://medium.com/@mobinshaterian/postgresql-foreign-data-wrappers-for-data-federation-7043c561f218",
   "hero": "https://cdn-images-1.medium.com/max/800/1*wqfzF84hDxW_41WgAUFF9Q.png",

@@ -4,7 +4,12 @@
   "subtitle": "Building a CRUD API with NestJS, PostgreSQL, and Liquibase",
   "excerpt": "Building a CRUD API with NestJS, PostgreSQL, and Liquibase",
   "date": "2024-06-27",
-  "tags": [],
+  "tags": [
+    "Node.js",
+    "Postgres",
+    "Docker",
+    "API"
+  ],
   "readingTime": "6 min",
   "url": "https://medium.com/@mobinshaterian/nestjs-postgresql-database-with-docker-compose-and-liquibase-faec0b09d944",
   "hero": "https://cdn-images-1.medium.com/max/800/1*j2IUBxzA0q9_OE6O5uuKKQ.jpeg",

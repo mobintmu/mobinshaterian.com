@@ -4,7 +4,9 @@
   "subtitle": "cypher structure",
   "excerpt": "cypher structure",
   "date": "2025-07-15",
-  "tags": [],
+  "tags": [
+    "Machine Learning"
+  ],
   "readingTime": "1 min",
   "url": "https://medium.com/@mobinshaterian/neo4j-knowledge-graph-a4a11a46f7b8",
   "hero": "https://cdn-images-1.medium.com/max/800/1*2QZ-mbJA1pl_5wAaxR87SA.png",

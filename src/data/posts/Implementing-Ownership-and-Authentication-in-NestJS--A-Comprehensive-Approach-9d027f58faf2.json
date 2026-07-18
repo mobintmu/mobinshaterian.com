@@ -4,7 +4,11 @@
   "subtitle": "The document discusses implementing ownership and authentication in NestJS, focusing on many-to-one/one-to-many relationships, custom…",
   "excerpt": "The document discusses implementing ownership and authentication in NestJS, focusing on many-to-one/one-to-many relationships, custom…",
   "date": "2024-07-03",
-  "tags": [],
+  "tags": [
+    "Node.js",
+    "Security",
+    "Machine Learning"
+  ],
   "readingTime": "8 min",
   "url": "https://medium.com/@mobinshaterian/implementing-ownership-and-authentication-in-nestjs-a-comprehensive-approach-9d027f58faf2",
   "hero": "https://cdn-images-1.medium.com/max/800/1*yf_Uw0KcgNQIDZ599AW0Kg.jpeg",

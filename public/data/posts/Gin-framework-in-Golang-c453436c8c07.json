@@ -4,7 +4,11 @@
   "subtitle": "https://gin-gonic.com/",
   "excerpt": "https://gin-gonic.com/",
   "date": "2023-11-07",
-  "tags": [],
+  "tags": [
+    "Go",
+    "Performance",
+    "Machine Learning"
+  ],
   "readingTime": "1 min",
   "url": "https://medium.com/@mobinshaterian/gin-framework-in-golang-c453436c8c07",
   "hero": "https://cdn-images-1.medium.com/max/800/1*NwnROdIFvkD0MdjEDQfoPg.png",

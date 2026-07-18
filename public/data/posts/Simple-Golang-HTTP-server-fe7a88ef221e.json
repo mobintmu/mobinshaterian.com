@@ -4,7 +4,11 @@
   "subtitle": "In this article, I guide you through the process of building a simple HTTP server in Golang using a structured three-layer architecture…",
   "excerpt": "In this article, I guide you through the process of building a simple HTTP server in Golang using a structured three-layer architecture…",
   "date": "2025-08-09",
-  "tags": [],
+  "tags": [
+    "Go",
+    "Architecture",
+    "Machine Learning"
+  ],
   "readingTime": "5 min",
   "url": "https://medium.com/@mobinshaterian/simple-golang-http-server-fe7a88ef221e",
   "hero": "https://cdn-images-1.medium.com/max/800/1*RloMC_42dRvXvlR9nViw-A.jpeg",

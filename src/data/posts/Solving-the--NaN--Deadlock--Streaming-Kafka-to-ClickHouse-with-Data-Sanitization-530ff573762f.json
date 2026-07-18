@@ -4,7 +4,11 @@
   "subtitle": "Integrating high-velocity streaming data into ClickHouse often feels like a “set it and forget it” task — until it isn’t. Recently, we…",
   "excerpt": "Integrating high-velocity streaming data into ClickHouse often feels like a “set it and forget it” task — until it isn’t. Recently, we…",
   "date": "2026-05-19",
-  "tags": [],
+  "tags": [
+    "Kafka",
+    "ClickHouse",
+    "Machine Learning"
+  ],
   "readingTime": "2 min",
   "url": "https://medium.com/@mobinshaterian/solving-the-nan-deadlock-streaming-kafka-to-clickhouse-with-data-sanitization-530ff573762f",
   "hero": "https://cdn-images-1.medium.com/max/800/1*TKElNPazRoBASd_W3gia9g.png",

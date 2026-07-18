@@ -4,7 +4,10 @@
   "subtitle": "In this article I am going to explain, how can run script on scheduled time. be careful, this script is not proper for run on kubernetis…",
   "excerpt": "In this article I am going to explain, how can run script on scheduled time. be careful, this script is not proper for run on kubernetis…",
   "date": "2024-03-01",
-  "tags": [],
+  "tags": [
+    "Python",
+    "Machine Learning"
+  ],
   "readingTime": "1 min",
   "url": "https://medium.com/@mobinshaterian/run-cronjob-in-python-1d0616113a77",
   "hero": "https://cdn-images-1.medium.com/max/800/1*pW6wsCa45-86UvdOx1xIRQ.jpeg",

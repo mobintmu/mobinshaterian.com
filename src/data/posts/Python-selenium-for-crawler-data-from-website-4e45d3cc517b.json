@@ -4,7 +4,10 @@
   "subtitle": "Pre-requisites to run Selenium Python",
   "excerpt": "Pre-requisites to run Selenium Python",
   "date": "2024-01-26",
-  "tags": [],
+  "tags": [
+    "Python",
+    "Machine Learning"
+  ],
   "readingTime": "1 min",
   "url": "https://medium.com/@mobinshaterian/python-selenium-for-crawler-data-from-website-4e45d3cc517b",
   "hero": "https://cdn-images-1.medium.com/max/800/1*w6UIz7x84XPiD4DLdnD4gA.png",

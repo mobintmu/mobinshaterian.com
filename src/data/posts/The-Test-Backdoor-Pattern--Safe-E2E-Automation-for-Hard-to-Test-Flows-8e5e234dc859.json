@@ -4,7 +4,11 @@
   "subtitle": "End-to-End (E2E) testing ensures that systems work cohesively from the user interface down to the database. However, modern security…",
   "excerpt": "End-to-End (E2E) testing ensures that systems work cohesively from the user interface down to the database. However, modern security…",
   "date": "2026-05-26",
-  "tags": [],
+  "tags": [
+    "Security",
+    "Machine Learning",
+    "Testing"
+  ],
   "readingTime": "3 min",
   "url": "https://medium.com/@mobinshaterian/the-test-backdoor-pattern-safe-e2e-automation-for-hard-to-test-flows-8e5e234dc859",
   "hero": "https://cdn-images-1.medium.com/max/800/1*ULdO-nBpLZpYrpqtTWl7GQ.png",

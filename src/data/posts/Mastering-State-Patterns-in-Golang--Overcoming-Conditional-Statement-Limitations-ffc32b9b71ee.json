@@ -4,7 +4,10 @@
   "subtitle": "State is a behavioral design pattern that allows an object to change its behavior when its internal state changes. The State Pattern is a…",
   "excerpt": "State is a behavioral design pattern that allows an object to change its behavior when its internal state changes. The State Pattern is a…",
   "date": "2025-07-28",
-  "tags": [],
+  "tags": [
+    "Go",
+    "Machine Learning"
+  ],
   "readingTime": "12 min",
   "url": "https://medium.com/@mobinshaterian/mastering-state-patterns-in-golang-overcoming-conditional-statement-limitations-ffc32b9b71ee",
   "hero": "https://cdn-images-1.medium.com/max/800/1*kv7uu-1rplVZcFSpegQdlQ.jpeg",

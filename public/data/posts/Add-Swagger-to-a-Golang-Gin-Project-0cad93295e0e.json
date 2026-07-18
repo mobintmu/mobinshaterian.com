@@ -4,7 +4,10 @@
   "subtitle": "In the earlier stage of the project, we implemented middleware components and a health monitoring controller. In this tutorial, I will…",
   "excerpt": "In the earlier stage of the project, we implemented middleware components and a health monitoring controller. In this tutorial, I will…",
   "date": "2025-08-15",
-  "tags": [],
+  "tags": [
+    "Go",
+    "Machine Learning"
+  ],
   "readingTime": "2 min",
   "url": "https://medium.com/@mobinshaterian/add-swagger-to-a-golang-gin-project-0cad93295e0e",
   "hero": "https://cdn-images-1.medium.com/max/800/1*d4oQBmzQJNplvQ6vaCScZA.jpeg",

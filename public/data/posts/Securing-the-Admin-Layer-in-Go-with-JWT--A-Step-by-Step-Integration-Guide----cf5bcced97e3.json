@@ -4,7 +4,11 @@
   "subtitle": "In modern web applications, securing administrative endpoints is essential. In this article, we’ll walk through how to integrate JWT",
   "excerpt": "In modern web applications, securing administrative endpoints is essential. In this article, we’ll walk through how to integrate JWT",
   "date": "2025-10-13",
-  "tags": [],
+  "tags": [
+    "Go",
+    "Security",
+    "Machine Learning"
+  ],
   "readingTime": "4 min",
   "url": "https://medium.com/@mobinshaterian/securing-the-admin-layer-in-go-with-jwt-a-step-by-step-integration-guide-cf5bcced97e3",
   "hero": "https://cdn-images-1.medium.com/max/800/1*Z1n1Pu3MHvCyouteWQ0EAQ.png",

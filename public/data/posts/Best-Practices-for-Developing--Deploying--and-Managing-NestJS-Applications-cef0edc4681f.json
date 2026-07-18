@@ -4,7 +4,10 @@
   "subtitle": "The document covers several important aspects of developing, deploying, and managing a NestJS application:",
   "excerpt": "The document covers several important aspects of developing, deploying, and managing a NestJS application:",
   "date": "2024-07-12",
-  "tags": [],
+  "tags": [
+    "Node.js",
+    "Machine Learning"
+  ],
   "readingTime": "3 min",
   "url": "https://medium.com/@mobinshaterian/best-practices-for-developing-deploying-and-managing-nestjs-applications-cef0edc4681f",
   "hero": "https://cdn-images-1.medium.com/max/800/1*t6MRccg0DYorLSbt5vt6_Q.jpeg",

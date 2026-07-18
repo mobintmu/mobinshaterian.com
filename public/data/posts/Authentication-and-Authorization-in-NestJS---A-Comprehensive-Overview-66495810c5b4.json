@@ -4,7 +4,11 @@
   "subtitle": "NestJS, a progressive Node.js framework, offers robust capabilities for implementing authentication and authorization in web applications…",
   "excerpt": "NestJS, a progressive Node.js framework, offers robust capabilities for implementing authentication and authorization in web applications…",
   "date": "2024-07-01",
-  "tags": [],
+  "tags": [
+    "Node.js",
+    "Security",
+    "Machine Learning"
+  ],
   "readingTime": "8 min",
   "url": "https://medium.com/@mobinshaterian/authentication-and-authorization-in-nestjs-a-comprehensive-overview-66495810c5b4",
   "hero": "https://cdn-images-1.medium.com/max/800/1*u_0KhLB7v26vYkXvpTtqig.jpeg",

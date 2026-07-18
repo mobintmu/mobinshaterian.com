@@ -4,7 +4,10 @@
   "subtitle": "Make .vscode directory in your project.",
   "excerpt": "Make .vscode directory in your project.",
   "date": "2023-01-10",
-  "tags": [],
+  "tags": [
+    "Go",
+    "Machine Learning"
+  ],
   "readingTime": "1 min",
   "url": "https://medium.com/@mobinshaterian/debug-golang-with-vscode-e749e9c0c94e",
   "hero": null,

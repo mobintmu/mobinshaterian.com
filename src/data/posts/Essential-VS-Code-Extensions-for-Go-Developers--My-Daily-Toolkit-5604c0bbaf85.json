@@ -4,7 +4,10 @@
   "subtitle": "As a Go developer, having the right set of Visual Studio Code extensions can dramatically boost your productivity, code quality.",
   "excerpt": "As a Go developer, having the right set of Visual Studio Code extensions can dramatically boost your productivity, code quality.",
   "date": "2025-10-25",
-  "tags": [],
+  "tags": [
+    "Go",
+    "Machine Learning"
+  ],
   "readingTime": "11 min",
   "url": "https://medium.com/@mobinshaterian/essential-vs-code-extensions-for-go-developers-my-daily-toolkit-5604c0bbaf85",
   "hero": "https://cdn-images-1.medium.com/max/800/1*IoyJ2AVlVYBAj-U25dE-3Q.png",

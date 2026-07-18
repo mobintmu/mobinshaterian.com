@@ -4,7 +4,9 @@
   "subtitle": "The Problem",
   "excerpt": "The Problem",
   "date": "2026-06-08",
-  "tags": [],
+  "tags": [
+    "Machine Learning"
+  ],
   "readingTime": "2 min",
   "url": "https://medium.com/@mobinshaterian/tunneling-tcp-connections-over-ssh-using-socat-and-nc-fb142a2d6034",
   "hero": "https://cdn-images-1.medium.com/max/800/1*2FWBNb3ILSzGpRdRXeeWfw.png",

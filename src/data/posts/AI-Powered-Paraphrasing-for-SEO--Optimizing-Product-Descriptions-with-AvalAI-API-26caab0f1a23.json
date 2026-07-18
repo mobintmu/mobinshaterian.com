@@ -4,7 +4,10 @@
   "subtitle": "Have you ever retrieved product descriptions and worried that they might trigger negative SEO consequences from Google, such as duplicate…",
   "excerpt": "Have you ever retrieved product descriptions and worried that they might trigger negative SEO consequences from Google, such as duplicate…",
   "date": "2025-09-25",
-  "tags": [],
+  "tags": [
+    "API",
+    "Machine Learning"
+  ],
   "readingTime": "6 min",
   "url": "https://medium.com/@mobinshaterian/ai-powered-paraphrasing-for-seo-optimizing-product-descriptions-with-avalai-api-26caab0f1a23",
   "hero": "https://cdn-images-1.medium.com/max/800/1*LlhF_BahP8XOtooA2pMicw.png",

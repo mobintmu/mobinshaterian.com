@@ -4,7 +4,11 @@
   "subtitle": "one of the most common things using in a web developer is a gateway for making money from customers.",
   "excerpt": "one of the most common things using in a web developer is a gateway for making money from customers.",
   "date": "2020-09-23",
-  "tags": [],
+  "tags": [
+    "Laravel",
+    "Machine Learning",
+    "Payments"
+  ],
   "readingTime": "6 min",
   "url": "https://medium.com/@mobinshaterian/running-zarinpal-gateway-on-laravel-framework-ac9d84674ec6",
   "hero": "/blog-assets/Running-Zarinpal-Gateway-on-Laravel-framework-ac9d84674ec6/img-0.png",

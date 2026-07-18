@@ -4,7 +4,10 @@
   "subtitle": "When building APIs in Go, developers often use the omitempty tag to produce clean JSON outputs. However, fields sometimes mysteriously…",
   "excerpt": "When building APIs in Go, developers often use the omitempty tag to produce clean JSON outputs. However, fields sometimes mysteriously…",
   "date": "2025-07-25",
-  "tags": [],
+  "tags": [
+    "Go",
+    "Machine Learning"
+  ],
   "readingTime": "1 min",
   "url": "https://medium.com/@mobinshaterian/common-bug-in-calculate-understanding-omitempty-and-integer-division-in-go-d8c5b8da86a1",
   "hero": "https://cdn-images-1.medium.com/max/800/1*iyBii13_o3jD3XVibu80Ww.jpeg",

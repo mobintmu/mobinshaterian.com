@@ -4,7 +4,10 @@
   "subtitle": "This report summarizes data validation and transformation techniques in NestJS, a framework for building Node.js server-side applications.",
   "excerpt": "This report summarizes data validation and transformation techniques in NestJS, a framework for building Node.js server-side applications.",
   "date": "2024-06-26",
-  "tags": [],
+  "tags": [
+    "Node.js",
+    "Machine Learning"
+  ],
   "readingTime": "1 min",
   "url": "https://medium.com/@mobinshaterian/nestjs-data-validation-and-transformation-ce99115c760d",
   "hero": "https://cdn-images-1.medium.com/max/800/1*gwMTI2OlRutMoFGDYh7m4g.jpeg",
