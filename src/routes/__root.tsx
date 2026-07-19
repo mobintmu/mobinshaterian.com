@@ -11,23 +11,35 @@ import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
+import profile from "../data/profile.json";
 
 function NotFoundComponent() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background px-4">
-      <div className="max-w-md text-center">
-        <h1 className="text-7xl font-bold text-foreground">404</h1>
-        <h2 className="mt-4 text-xl font-semibold text-foreground">Page not found</h2>
-        <p className="mt-2 text-sm text-muted-foreground">
-          The page you're looking for doesn't exist or has been moved.
+    <div className="flex min-h-screen flex-col items-center justify-center bg-background px-4 text-center">
+      <div className="max-w-lg">
+        <h1 className="text-[8rem] font-bold leading-none tracking-tighter text-foreground md:text-[10rem]">
+          404
+        </h1>
+        <h2 className="mt-2 text-2xl font-semibold text-foreground">Page not found</h2>
+        <p className="mt-4 text-base text-muted-foreground">
+          Do you need technical support? Contact me.
         </p>
-        <div className="mt-6">
+        <div className="mt-8 flex flex-col items-center gap-4">
           <Link
             to="/"
-            className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
+            className="inline-flex items-center justify-center rounded-md bg-primary px-6 py-3 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
           >
             Go home
           </Link>
+          <div className="flex flex-wrap justify-center gap-3 text-sm text-muted-foreground">
+            <a href={`mailto:${profile.email}`} className="hover:text-foreground hover:underline">
+              {profile.email}
+            </a>
+            <span className="hidden sm:inline">·</span>
+            <a href={`tel:${profile.phone.replace(/\s/g, "")}`} className="hover:text-foreground hover:underline">
+              {profile.phone}
+            </a>
+          </div>
         </div>
       </div>
     </div>
