@@ -150,6 +150,15 @@ function RootShell({ children }: { children: ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+  const router = useRouter();
+
+  useEffect(() => {
+    const redirect = sessionStorage.getItem('gh-redirect-path');
+    if (redirect) {
+      sessionStorage.removeItem('gh-redirect-path');
+      router.navigate({ to: redirect });
+    }
+  }, [router]);
 
   return (
     <QueryClientProvider client={queryClient}>
