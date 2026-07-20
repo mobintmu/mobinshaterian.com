@@ -35,10 +35,6 @@ function NotFoundComponent() {
             <a href={`mailto:${profile.email}`} className="hover:text-foreground hover:underline">
               {profile.email}
             </a>
-            <span className="hidden sm:inline">·</span>
-            <a href={`tel:${profile.phone.replace(/\s/g, "")}`} className="hover:text-foreground hover:underline">
-              {profile.phone}
-            </a>
           </div>
         </div>
       </div>
@@ -138,6 +134,11 @@ function RootShell({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
       <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `if(window.location.pathname==="/blogs/"){window.history.replaceState(window.history.state,"","/blogs"+window.location.search+window.location.hash)}`,
+          }}
+        />
         <HeadContent />
       </head>
       <body>
@@ -153,9 +154,9 @@ function RootComponent() {
   const router = useRouter();
 
   useEffect(() => {
-    const redirect = sessionStorage.getItem('gh-redirect-path');
+    const redirect = sessionStorage.getItem("gh-redirect-path");
     if (redirect) {
-      sessionStorage.removeItem('gh-redirect-path');
+      sessionStorage.removeItem("gh-redirect-path");
       router.navigate({ to: redirect });
     }
   }, [router]);
