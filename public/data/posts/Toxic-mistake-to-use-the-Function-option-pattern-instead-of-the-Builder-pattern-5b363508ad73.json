@@ -1,37 +1,32 @@
 {
   "slug": "Toxic-mistake-to-use-the-Function-option-pattern-instead-of-the-Builder-pattern-5b363508ad73",
   "title": "Toxic mistake to use the Function option pattern instead of the Builder pattern",
-  "subtitle": "Both the funcion option pattern and builder pattern are super operative design patterns. But as a software engineer, it is so important to…",
-  "excerpt": "Both the funcion option pattern and builder pattern are super operative design patterns. But as a software engineer, it is so important to…",
+  "subtitle": "Both the function option pattern and builder pattern are super operative design patterns. But as a software engineer, it is so important to use this pattern in the right conditions.",
+  "excerpt": "Both the function option pattern and builder pattern are super operative design patterns. But as a software engineer, it is so important to use this pattern in the right conditions.",
   "date": "2023-11-09",
   "tags": [
     "Career"
   ],
   "readingTime": "2 min",
-  "url": "https://medium.com/@mobinshaterian/toxic-mistake-to-use-the-function-option-pattern-instead-of-the-builder-pattern-5b363508ad73",
-  "hero": "https://cdn-images-1.medium.com/max/800/1*T9ABy9Z2S0xW84x0frM7yg.png",
+  "url": "https://www.linkedin.com/pulse/toxic-mistake-use-function-option-pattern-instead-mobin-shaterian-zoydf",
+  "hero": "https://media.licdn.com/dms/image/v2/D4D12AQF8M_JHRxuz4Q/article-cover_image-shrink_600_2000/article-cover_image-shrink_600_2000/0/1699510694591?e=2147483647&v=beta&t=d8Bsy2Ksmgr3SpfQjCYp6RPF75A5tF5pkN5ll1omEw4",
   "content": [
     {
-      "type": "heading",
-      "level": 2,
-      "text": "Toxic mistake to use the Function option pattern instead of the Builder pattern"
+      "type": "paragraph",
+      "html": "Both the function option pattern and builder pattern are super operative design patterns. But as a software engineer, it is so important to use this pattern in the right conditions. In this article, I want to say that using the function option instead of the builder pattern is wrong."
     },
     {
       "type": "paragraph",
-      "html": "Both the funcion option pattern and builder pattern are super operative design patterns. But as a software engineer, it is so important to use this pattern in the right conditions. In this article, I want to say that using the function option instead of the builder pattern is totally wrong."
-    },
-    {
-      "type": "paragraph",
-      "html": "<a href=\"https://medium.com/@MTrax/golang-options-vs-builder-pattern-4123bfcc3c5c\" target=\"_blank\" rel=\"noreferrer noopener\"><strong>The Options pattern can be a good alternative to the Builder pattern for creating objects with many optional parameters, especially if the object has fewer parameters</strong>.</a>"
+      "html": "<a href=\"https://medium.com/@MTrax/golang-options-vs-builder-pattern-4123bfcc3c5c\" target=\"_blank\" rel=\"noreferrer noopener\"><strong>The Options pattern can be a good alternative to the Builder pattern for creating objects with many optional parameters, especially if the object has fewer parameters.</strong></a>"
     },
     {
       "type": "heading",
       "level": 2,
-      "text": "When using Function option pattern"
+      "text": "When using the Function option pattern"
     },
     {
       "type": "paragraph",
-      "html": "when we have a lot of parameter that they are optional, it is much better to use this pattern."
+      "html": "when we have a lot of parameters that they are optional, it is much better to use this pattern."
     },
     {
       "type": "heading",
@@ -40,16 +35,20 @@
     },
     {
       "type": "paragraph",
-      "html": "<a href=\"https://devcharmander.medium.com/design-patterns-in-golang-the-builder-dac468a71194\" target=\"_blank\" rel=\"noreferrer noopener\">The motivation behind the Builder pattern is to create a complex object piece-by-piece. Our goal in this blog is to provide APIs to create complex objects step-by-step.</a>"
+      "html": "<a href=\"https://devcharmander.medium.com/design-patterns-in-golang-the-builder-dac468a71194\" target=\"_blank\" rel=\"noreferrer noopener\">The motivation behind the Builder pattern is to create a complex object piece by piece. Our goal in this blog is to provide APIs to create complex objects step-by-step.</a>"
     },
     {
       "type": "heading",
       "level": 2,
-      "text": "Golang Builder Design Pattern"
+      "text": "Golang Builder Design Pattern"
     },
     {
       "type": "paragraph",
       "html": "<a href=\"https://refactoring.guru/design-patterns/builder\" target=\"_blank\" rel=\"noreferrer noopener\"><strong>Builder</strong> is a creational design pattern that lets you construct complex objects step by step. The pattern allows you to produce different types and representations of an object using the same construction code.</a>"
+    },
+    {
+      "type": "paragraph",
+      "html": "I saw that some developers used the function option pattern for sending many optional parameters as input and it is true. But when we need to set a parameter and it is essential why get these parameters as an optional function design pattern? For example, we need to build a house. In simplest abstraction, we need a roof, wall, and door. Although we can set a default value for all of these three elements and get them by function option pattern in many cases, we don’t have a default value for them. In this case, it is much better to use the builder pattern and after defining all parameters, build a decided apartment, even in the builder pattern we can check everything will be ok. For example, we can check a The door matches the window."
     },
     {
       "type": "embed",
@@ -59,42 +58,6 @@
     {
       "type": "paragraph",
       "html": "<a href=\"https://www.reddit.com/r/golang/comments/waagos/option_pattern_vs_builder_pattern_which_one_is/\" target=\"_blank\" rel=\"noreferrer noopener\">With the builder pattern, you enable the user to mutate the type at any time. This can sometimes make it more difficult to reason about the data. This might be fine for a container holding data, but not for something like a server/service that needs to be immutable after creation.</a>"
-    },
-    {
-      "type": "paragraph",
-      "html": "I saw that some developers used the function option pattern for sending many optional parameters as input and it is true. But when we need to set a parameter and it is essential why get these parameters as an optional function design pattern?&nbsp;<br>For example, we need to build a house. In simplest abstraction, we need a roof, wall, and door.<br>Although we can set a default value for all of these three elements and get them by function option pattern in many cases, we don’t have a default value for them.<br>&nbsp;In this case, it is much better to use the builder pattern and after defining all parameters, build a decided apartment, even in the builder pattern we can check everything will be ok. For example, we can check a The door matches the window."
-    },
-    {
-      "type": "image",
-      "src": "https://cdn-images-1.medium.com/max/800/1*T9ABy9Z2S0xW84x0frM7yg.png",
-      "alt": "Toxic mistake to use the Function option pattern instead of the Builder pattern",
-      "caption": "",
-      "width": 539,
-      "height": 432
-    },
-    {
-      "type": "paragraph",
-      "html": "Subscribe to DDIntel <a href=\"https://www.ddintel.com/\" target=\"_blank\" rel=\"noreferrer noopener\">Here</a>."
-    },
-    {
-      "type": "paragraph",
-      "html": "Have a unique story to share? Submit to DDIntel <a href=\"https://datadriveninvestor.com/ddintelsubmission\" target=\"_blank\" rel=\"noreferrer noopener\">here</a>."
-    },
-    {
-      "type": "paragraph",
-      "html": "Join our creator ecosystem <a href=\"https://join.datadriveninvestor.com/\" target=\"_blank\" rel=\"noreferrer noopener\">here</a>."
-    },
-    {
-      "type": "paragraph",
-      "html": "<a href=\"https://ddintel.datadriveninvestor.com/\" target=\"_blank\" rel=\"noreferrer noopener\"><em>DDIntel</em> </a>captures the more notable pieces from our <a href=\"https://www.datadriveninvestor.com/\" target=\"_blank\" rel=\"noreferrer noopener\"><em>main site</em></a> and our popular <a href=\"https://medium.datadriveninvestor.com/\" target=\"_blank\" rel=\"noreferrer noopener\"><em>DDI Medium publication</em></a>. Check us out for more insightful work from our community."
-    },
-    {
-      "type": "paragraph",
-      "html": "DDI Official Telegram Channel: <a href=\"https://t.me/+tafUp6ecEys4YjQ1\" target=\"_blank\" rel=\"noreferrer noopener\">https://t.me/+tafUp6ecEys4YjQ1</a>"
-    },
-    {
-      "type": "paragraph",
-      "html": "Follow us on <a href=\"https://www.linkedin.com/company/data-driven-investor\" target=\"_blank\" rel=\"noreferrer noopener\"><em>LinkedIn</em></a>, <a href=\"https://twitter.com/@DDInvestorHQ\" target=\"_blank\" rel=\"noreferrer noopener\"><em>Twitter</em></a>, <a href=\"https://www.youtube.com/c/datadriveninvestor\" target=\"_blank\" rel=\"noreferrer noopener\"><em>YouTube</em></a>, and <a href=\"https://www.facebook.com/datadriveninvestor\" target=\"_blank\" rel=\"noreferrer noopener\"><em>Facebook</em></a>."
     }
   ]
 }

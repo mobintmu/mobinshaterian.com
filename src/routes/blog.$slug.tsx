@@ -94,8 +94,20 @@ function formatDate(iso: string) {
   return d.toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });
 }
 
+function sourceName(url: string) {
+  try {
+    const hostname = new URL(url).hostname;
+    if (hostname.includes("linkedin.com")) return "LinkedIn";
+    if (hostname.includes("medium.com")) return "Medium";
+  } catch {
+    // Keep a useful generic label when an imported URL is malformed.
+  }
+  return "the original source";
+}
+
 function BlogPostPage() {
   const { post } = Route.useLoaderData();
+  const canonicalSource = sourceName(post.url);
   const articles = postsIndex as IndexEntry[];
   const currentIndex = articles.findIndex((article) => article.slug === post.slug);
   const previousPost = currentIndex >= 0 ? articles[currentIndex + 1] : undefined;
@@ -181,7 +193,7 @@ function BlogPostPage() {
             $ open --canonical
           </p>
           <p className="mt-2 text-sm text-muted-foreground">
-            Also published on Medium — the canonical source.
+            Also published on {canonicalSource} — the canonical source.
           </p>
           <a
             href={post.url}
@@ -189,7 +201,7 @@ function BlogPostPage() {
             rel="noreferrer noopener"
             className="mt-4 inline-flex items-center gap-2 rounded border border-terminal bg-terminal/10 px-4 py-2 font-mono-plus text-sm text-terminal transition-colors hover:bg-terminal/20"
           >
-            View on Medium
+            View on {canonicalSource}
             <ExternalLink className="h-3.5 w-3.5" />
           </a>
         </div>
