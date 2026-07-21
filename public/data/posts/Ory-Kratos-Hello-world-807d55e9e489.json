@@ -110,12 +110,12 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "git clone https://github.com/ory/kratos.gitcd kratosgit checkout <version-you-want>docker-compose -f quickstart.yml -f quickstart-standalone.yml up --build --force-recreate# If you have SELinux, run:docker-compose -f quickstart.yml -f quickstart-selinux.yml -f quickstart-standalone.yml up --build --force-recreate"
+      "code": "git clone https://github.com/ory/kratos.gitcd kratosgit checkout <version-you-want>docker-compose -f\nquickstart.yml -f quickstart-standalone.yml up --build --force-recreate# If you have SELinux,\nrun:docker-compose -f quickstart.yml -f quickstart-selinux.yml -f quickstart-standalone.yml up\n--build --force-recreate"
     },
     {
       "type": "code",
       "lang": "text",
-      "code": "Ory Kratos    Public (\"Browser\") API (port 4433)    Admin API (port 4434) - This is only made public so we can test via the CLI."
+      "code": "Ory Kratos    Public (\"Browser\") API (port 4433)    Admin API (port 4434) - This is only made public\nso we can test via the CLI."
     },
     {
       "type": "paragraph",
@@ -123,12 +123,12 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "docker-compose -f quickstart.yml -f contrib/quickstart/kratos/cloud/quickstart.yml up --build --force-recreate"
+      "lang": "bash",
+      "code": "docker-compose -f quickstart.yml -f contrib/quickstart/kratos/cloud/quickstart.yml up --build\n--force-recreate"
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "bash",
       "code": "docker-compose -f quickstart.yml -f quickstart-postgres.yml up --build --force-recreate"
     }
   ]

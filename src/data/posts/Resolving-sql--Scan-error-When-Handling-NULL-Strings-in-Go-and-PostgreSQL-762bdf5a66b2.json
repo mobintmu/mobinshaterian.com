@@ -48,7 +48,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "javascript",
       "code": "var code sql.NullString"
     },
     {
@@ -76,7 +76,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "func (s Storage) scan(scanner db.Scanner) (*Book, error) {    var b Booking    var discountCode sql.NullString    err := scanner.Scan(        &b.ID,        &discountCode,    )    if err != nil {        return nil, serr.DB(\"scan\", \"books\", err)    }    if discountCode.Valid {        b.DiscountCode = discountCode.String    }    return &b, nil}"
+      "code": "func (s Storage) scan(scanner db.Scanner) (*Book, error) {\n    var b Booking\n    var discountCode sql.NullString\n    err := scanner.Scan(&b.ID, &discountCode,\n    )\n    if err != nil {\n        return nil, serr.DB(\"scan\", \"books\", err)\n    }\n    if discountCode.Valid {\n        b.DiscountCode = discountCode.String\n    }\n    return &b, nil\n}"
     },
     {
       "type": "heading",

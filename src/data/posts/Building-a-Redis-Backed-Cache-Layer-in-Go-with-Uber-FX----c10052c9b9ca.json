@@ -41,7 +41,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "internal/├── storage/│   ├── cache/│   │   ├── client.go        // Redis connection setup│   │   ├── store.go         // Cache logic (set/get/delete)│   │   └── module.go        // Uber FX integration"
+      "code": "internal/├── storage/│   ├── cache/│   │   ├── client.go        // Redis connection setup│   │   ├──\nstore.go         // Cache logic (set/get/delete)│   │   └── module.go        // Uber FX integration"
     },
     {
       "type": "heading",
@@ -51,7 +51,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "package cacheimport \"github.com/redis/go-redis/v9\"func NewClient() *redis.Client {    return redis.NewClient(&redis.Options{        Addr: \"localhost:6379\",        DB:   0,    })}"
+      "code": "package cacheimport \"github.com/redis/go-redis/v9\"func NewClient() *redis.Client {\n    return redis.NewClient(&redis.Options{\n        Addr: \"localhost:6379\", DB: 0,\n    })\n}"
     },
     {
       "type": "paragraph",
@@ -69,7 +69,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "package cacheimport (    \"context\"    \"encoding/json\"    \"strings\"    \"time\"    \"github.com/redis/go-redis/v9\")type Store struct {    client *redis.Client}func NewStore(client *redis.Client) *Store {    return &Store{client: client}}func (s *Store) Set(ctx context.Context, key string, value interface{}, ttl time.Duration) error {    data, err := json.Marshal(value)    if err != nil {        return err    }    return s.client.Set(ctx, key, data, ttl).Err()}func (s *Store) Get(ctx context.Context, key string, dest interface{}) error {    data, err := s.client.Get(ctx, key).Bytes()    if err != nil {        return err    }    return json.Unmarshal(data, dest)}func (s *Store) Delete(ctx context.Context, key string) error {    return s.client.Del(ctx, key).Err()}func (s *Store) Exists(ctx context.Context, key string) (bool, error) {    count, err := s.client.Exists(ctx, key).Result()    return count > 0, err}"
+      "code": "package cache\nimport (\n\"context\"\n\"encoding/json\"\n\"strings\"\n\"time\"\n\"github.com/redis/go-redis/v9\"\n)\ntype Store struct {\n    client *redis.Client\n}\nfunc NewStore(client *redis.Client) *Store {\n    return &Store{\n        client: client\n    }\n}\nfunc (s *Store) Set(ctx context.Context, key string, value interface{\n}, ttl time.Duration) error {\n    data, err := json.Marshal(value)\n    if err != nil {\n        return err\n    }\n    return s.client.Set(ctx, key, data, ttl).Err()\n}\nfunc (s *Store) Get(ctx context.Context, key string, dest interface{\n}) error {\n    data, err := s.client.Get(ctx, key).Bytes()\n    if err != nil {\n        return err\n    }\n    return json.Unmarshal(data, dest)\n}\nfunc (s *Store) Delete(ctx context.Context, key string) error {\n    return s.client.Del(ctx, key).Err()\n}\nfunc (s *Store) Exists(ctx context.Context, key string) (bool, error) {\n    count, err := s.client.Exists(ctx, key).Result()\n    return count > 0, err\n}"
     },
     {
       "type": "heading",
@@ -83,7 +83,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "func Key(parts ...string) string {    return strings.Join(parts, \":\")}"
+      "code": "func Key(parts...string) string {\n    return strings.Join(parts, \":\")\n}"
     },
     {
       "type": "paragraph",
@@ -106,7 +106,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "package cacheimport \"go.uber.org/fx\"var Module = fx.Options(    fx.Provide(NewClient),    fx.Provide(NewStore),)"
+      "code": "package cacheimport \"go.uber.org/fx\"var Module = fx.Options(\nfx.Provide(NewClient),\nfx.Provide(NewStore),)"
     },
     {
       "type": "paragraph",
@@ -124,8 +124,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "type Product struct {    ID    string    Name  string    Price float64}var p Productif err := store.Get(ctx, Key(\"product\", \"123\"), &p); err == nil {    return p, nil}"
+      "lang": "go",
+      "code": "type Product struct {\n    ID string\n    Name string\n    Price float64\n}\nvar p Productif err := store.Get(ctx, Key(\"product\", \"123\"), &p);\nerr == nil {\n    return p, nil\n}"
     },
     {
       "type": "heading",

@@ -57,7 +57,7 @@
     {
       "type": "code",
       "lang": "bash",
-      "code": "sudo apt updatesudo apt install -f"
+      "code": "sudo\napt update\nsudo\napt install -f"
     },
     {
       "type": "heading",
@@ -115,7 +115,7 @@
     {
       "type": "code",
       "lang": "bash",
-      "code": "sudo apt  install htop"
+      "code": "sudo\napt  install htop"
     },
     {
       "type": "heading",
@@ -135,7 +135,7 @@
     {
       "type": "code",
       "lang": "bash",
-      "code": "sudo apt-get install proxychainssudo gedit/etc/proxychains.conf"
+      "code": "sudo\napt-get install proxychains\nsudo gedit/etc/proxychains.conf"
     },
     {
       "type": "paragraph",
@@ -149,7 +149,7 @@
     {
       "type": "code",
       "lang": "bash",
-      "code": "sudo apt install libreoffice"
+      "code": "sudo\napt install libreoffice"
     },
     {
       "type": "heading",
@@ -159,12 +159,12 @@
     {
       "type": "code",
       "lang": "bash",
-      "code": "sudo apt  install gedit"
+      "code": "sudo\napt  install gedit"
     },
     {
       "type": "code",
       "lang": "bash",
-      "code": "sudo apt install dbus-x11"
+      "code": "sudo\napt install dbus-x11"
     },
     {
       "type": "heading",
@@ -174,17 +174,17 @@
     {
       "type": "code",
       "lang": "bash",
-      "code": "sudo add-apt-repository universesudo apt install software-properties-commonsudo apt install dnsmasq"
+      "code": "sudo add-apt-repository universe\nsudo\napt install software-properties-common\nsudo\napt install dnsmasq"
     },
     {
       "type": "code",
       "lang": "text",
-      "code": "dnsmasq --versionDnsmasq version 2.90  Copyright (c) 2000-2024 Simon KelleyCompile time options: IPv6 GNU-getopt DBus no-UBus i18n IDN2 DHCP DHCPv6 no-Lua TFTP conntrack ipset nftset auth cryptohash DNSSEC loop-detect inotify dumpfile"
+      "code": "dnsmasq --versionDnsmasq version 2.90  Copyright (c) 2000-2024 Simon KelleyCompile time options:\nIPv6 GNU-getopt DBus no-UBus i18n IDN2 DHCP DHCPv6 no-Lua TFTP conntrack ipset nftset auth\ncryptohash DNSSEC loop-detect inotify dumpfile"
     },
     {
       "type": "code",
       "lang": "text",
-      "code": "This software comes with ABSOLUTELY NO WARRANTY.Dnsmasq is free software, and you are welcome to redistribute itunder the terms of the GNU General Public License, version 2 or 3."
+      "code": "This software comes with ABSOLUTELY NO WARRANTY.Dnsmasq is free software, and you are welcome to\nredistribute itunder the terms of the GNU General Public License, version 2 or 3."
     },
     {
       "type": "heading",
@@ -219,7 +219,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "# Special DNS for specific domainsserver=/mysite.ir/1.1.1.1server=/youtube.com/4.4.4.4server=/shecan.ir/178.22.122.101server=/ir/1.1.1.1"
+      "code": "# Special DNS for specific\ndomainsserver=/mysite.ir/1.1.1.1server=/youtube.com/4.4.4.4server=/shecan.ir/178.22.122.101server=/ir/1.1.1.1"
     },
     {
       "type": "code",
@@ -239,7 +239,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "# Logging (optional — logs go to journal/syslog by default)log-querieslog-facility=/var/log/dnsmasq.log"
+      "code": "# Logging (optional — logs go to journal/syslog by\ndefault)log-querieslog-facility=/var/log/dnsmasq.log"
     },
     {
       "type": "heading",
@@ -287,7 +287,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "# Stop and disable systemd-resolvedsudo systemctl stop systemd-resolvedsudo systemctl disable systemd-resolved"
+      "code": "# Stop and disable systemd-resolvedsudo systemctl stop systemd-resolvedsudo systemctl disable\nsystemd-resolved"
     },
     {
       "type": "code",
@@ -307,7 +307,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "# Create a new static file with DNSMasq as the resolverecho \"nameserver 127.0.0.1\" | sudo tee /etc/resolv.conf"
+      "code": "# Create a new static file with DNSMasq as the resolverecho \"nameserver 127.0.0.1\" | sudo tee\n/etc/resolv.conf"
     },
     {
       "type": "heading",
@@ -355,7 +355,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "dig @127.0.0.1 datadriveninvestor.comsudo tail -f /var/log/dnsmasq.logsudo cat  /etc/dnsmasq.d/99-split-dns.conf"
+      "code": "dig @127.0.0.1 datadriveninvestor.comsudo tail -f /var/log/dnsmasq.logsudo cat\n/etc/dnsmasq.d/99-split-dns.conf"
     },
     {
       "type": "heading",
@@ -422,8 +422,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "mkdir $HOME/go/srcmkdir $HOME/go/pkgmkdir $HOME/go/bin"
+      "lang": "bash",
+      "code": "mkdir $HOME/go/src\nmkdir $HOME/go/pkg\nmkdir $HOME/go/bin"
     },
     {
       "type": "heading",
@@ -452,7 +452,7 @@
     {
       "type": "code",
       "lang": "bash",
-      "code": "sudo apt install safeeyes"
+      "code": "sudo\napt install safeeyes"
     },
     {
       "type": "heading",
@@ -476,7 +476,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "# Install to $(go env GOPATH)/bin (common and recommended)curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(go env GOPATH)/bin v1.59.1"
+      "code": "# Install to $(go env GOPATH)/bin (common and recommended)curl -sSfL\nhttps://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(go env\nGOPATH)/bin v1.59.1"
     },
     {
       "type": "code",
@@ -489,8 +489,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "{  \"go.lintTool\": \"golangci-lint\",  \"go.lintOnSave\": \"file\",  \"go.lintFlags\": [    \"--fast\"  ]}"
+      "lang": "json",
+      "code": "{\n  \"go.lintTool\": \"golangci-lint\",\n  \"go.lintOnSave\": \"file\",\n  \"go.lintFlags\": [\n    \"--fast\"\n  ]\n}"
     },
     {
       "type": "heading",
@@ -509,7 +509,7 @@
     {
       "type": "code",
       "lang": "bash",
-      "code": "sudo apt install calcsudo apt-get install unrarsudo apt-get install iotopsudo apt-get install vimsudo apt-get install curlsudo apt-get install build-essentialsudo snap install vlcsudo apt install net-tools"
+      "code": "sudo\napt install calc\nsudo\napt-get install unrar\nsudo\napt-get install iotop\nsudo\napt-get install vim\nsudo\napt-get install curl\nsudo\napt-get install build-essential\nsudo snap install vlc\nsudo\napt install net-tools"
     },
     {
       "type": "heading",
@@ -543,12 +543,12 @@
     {
       "type": "code",
       "lang": "bash",
-      "code": "sudo apt-get install openconnect network-manager-openconnect network-manager-openconnect-gnome"
+      "code": "sudo\napt-get install openconnect network-manager-openconnect network-manager-openconnect-gnome"
     },
     {
       "type": "code",
       "lang": "text",
-      "code": "openssl pkcs12 -in user.pfx -out exported.pem -nokeysopenssl pkcs12 -in user.pfx -out exported.key -nocerts"
+      "code": "openssl pkcs12 -in user.pfx -out exported.pem -nokeysopenssl pkcs12 -in user.pfx -out exported.key\n-nocerts"
     },
     {
       "type": "image",
@@ -594,7 +594,7 @@
     {
       "type": "code",
       "lang": "bash",
-      "code": "sudo apt updatesudo apt install -y ca-certificates curl gnupg"
+      "code": "sudo\napt update\nsudo\napt install -y ca-certificates\ncurl gnupg"
     },
     {
       "type": "heading",
@@ -604,7 +604,7 @@
     {
       "type": "code",
       "lang": "bash",
-      "code": "curl -fsSL https://deb.nodesource.com/setup_22.x | sudo -E bash -"
+      "code": "curl -fsSL https://deb.nodesource.com/setup_22.x |\nsudo -E bash -"
     },
     {
       "type": "heading",
@@ -614,7 +614,7 @@
     {
       "type": "code",
       "lang": "bash",
-      "code": "sudo apt install -y nodejs"
+      "code": "sudo\napt install -y nodejs"
     },
     {
       "type": "heading",
@@ -641,8 +641,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "{  \"sonarlint.pathToNodeExecutable\": \"/usr/bin/node\"}"
+      "lang": "json",
+      "code": "{\n  \"sonarlint.pathToNodeExecutable\": \"/usr/bin/node\"\n}"
     },
     {
       "type": "heading",
@@ -657,7 +657,7 @@
     {
       "type": "code",
       "lang": "bash",
-      "code": "sudo apt updatesudo apt install virtualbox virtualbox-ext-pack -y2"
+      "code": "sudo\napt update\nsudo\napt install virtualbox virtualbox-ext-pack -y2"
     },
     {
       "type": "heading",
@@ -667,7 +667,7 @@
     {
       "type": "code",
       "lang": "bash",
-      "code": "sudo apt --fix-broken install"
+      "code": "sudo\napt --fix-broken install"
     },
     {
       "type": "heading",

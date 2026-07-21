@@ -25,13 +25,13 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "// SPDX-License-Identifier: GPL-3.0 pragma solidity >=0.4.22 <0.9.0;  /// @title A contract for demonstrate Value types/// @author Jitendra Kumar/// @notice For now, this contract just show how Value types works in soliditycontract Types {     // Initializing Bool variable    bool public boolean = false;         // Initializing Integer variable    int32 public int_var = -60313;     // Initializing String variable    string public str = \"GeeksforGeeks\";     // Initializing Byte variable    bytes1 public b = \"a\";         // Defining an enumerator    enum my_enum { geeks_, _for, _geeks }     // Defining a function to return    // values stored in an enumerator    function Enum() public pure returns(    my_enum) {        return my_enum._geeks;    }}"
+      "lang": "solidity",
+      "code": "// SPDX-License-Identifier: GPL-3.0 pragma solidity >=0.4.22 <0.9.0;\n///\n@title A contract for demonstrate Value types///\n@author Jitendra Kumar///\n@notice For now, this contract just show how Value types works in soliditycontract Types {\n  // Initializing Bool\n  variable bool public boolean = false;\n  // Initializing Integer\n  variable int32 public int_var = -60313;\n  // Initializing String\n  variable string public str = \"GeeksforGeeks\";\n  // Initializing Byte\n  variable bytes1 public b = \"a\";\n  // Defining an enumerator enum my_enum {\n    geeks_, _for, _geeks\n  }\n  // Defining a\n  function to return // values stored in an enumerator\n  function Enum() public pure returns(my_enum) {\n    return my_enum._geeks;\n  }\n}"
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "// SPDX-License-Identifier: GPL-3.0 pragma solidity >=0.4.22 <0.9.0;  /// @title A contract for demonstrate Reference types/// @author Jitendra Kumar/// @notice For now, this contract just show how Reference types works in soliditycontract mapping_example {     // Defining an array    uint[5] public array    = [uint(1), 2, 3, 4, 5] ;         // Defining a Structure    struct student {        string name;        string subject;        uint8 marks;    }     // Creating a structure object    student public std1;     // Defining a function to return    // values of the elements of the structure    function structure() public returns(    string memory, string memory, uint){        std1.name = \"John\";        std1.subject = \"Chemistry\";        std1.marks = 88;        return (        std1.name, std1.subject, std1.marks);    }         // Creating a mapping    mapping (address => student) result;    address[] student_result;}"
+      "lang": "solidity",
+      "code": "// SPDX-License-Identifier: GPL-3.0 pragma solidity >=0.4.22 <0.9.0;\n///\n@title A contract for demonstrate Reference types///\n@author Jitendra Kumar///\n@notice For now, this contract just show how Reference types works in soliditycontract\nmapping_example {\n  // Defining an array uint[5] public array = [uint(1), 2, 3, 4, 5];\n  // Defining a Structure struct student {\n    string name;\n    string subject;\n    uint8 marks;\n  }\n  // Creating a structure object student public std1;\n  // Defining a\n  function to return // values of the elements of the structure\n  function structure() public returns(string memory, string memory, uint){\n    std1.name = \"John\";\n    std1.subject = \"Chemistry\";\n    std1.marks = 88;\n    return (std1.name, std1.subject, std1.marks);\n  }\n  // Creating a mapping mapping (address => student) result;\n  address[] student_result;\n}"
     },
     {
       "type": "heading",
@@ -71,8 +71,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "// Solidity program to implement // the fixed-size arrays// SPDX-License-Identifier: MITpragma solidity ^0.8.0; contract FixedSizeArrayExample {  uint[5] fixedSizeArray;     function populateArray() public  {    for (uint i = 0; i < 5; i++)     {      fixedSizeArray[i] = i + 1;    }  }   function getArray() public view returns (uint[5] memory)   {    return fixedSizeArray;  }}"
+      "lang": "solidity",
+      "code": "// Solidity program to implement // the fixed-size arrays// SPDX-License-Identifier: MITpragma\nsolidity ^0.8.0;\ncontract FixedSizeArrayExample {\n  uint[5] fixedSizeArray;\n  function populateArray() public {\n    for (uint i = 0;\n    i < 5;\n    i++) {\n      fixedSizeArray[i] = i + 1;\n    }\n  }\n  function getArray() public view returns (uint[5] memory) {\n    return fixedSizeArray;\n  }\n}"
     },
     {
       "type": "heading",
@@ -81,8 +81,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "// Solidity program to implement // the Dynamic-Size Arrays// SPDX-License-Identifier: MITpragma solidity ^0.8.0; contract DynamicSizeArrayExample {  uint[] dynamicSizeArray;   function addElement(uint _value) public  {    dynamicSizeArray.push(_value);  }     function getArray() public view returns (uint[] memory)   {    return dynamicSizeArray;  }}"
+      "lang": "solidity",
+      "code": "// Solidity program to implement // the Dynamic-Size Arrays// SPDX-License-Identifier: MITpragma\nsolidity ^0.8.0;\ncontract DynamicSizeArrayExample {\n  uint[] dynamicSizeArray;\n  function addElement(uint _value) public {\n    dynamicSizeArray.push(_value);\n  }\n  function getArray() public view returns (uint[] memory) {\n    return dynamicSizeArray;\n  }\n}"
     },
     {
       "type": "heading",
@@ -91,8 +91,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "// Solidity program to implement// the array memberspragma solidity ^0.5.0; // Creating a contractcontract Types {         // Declaring an array    uint[] data = [10, 20, 30, 40, 50];         // Defining a function to find the length     // of the array    function array_length() public returns(uint)     {        uint x = data.length;        return x;    }         // Defining the function to push values to the array    function array_push() public returns(uint[] memory)    {          data.push(60);          data.push(70);          data.push(80);             return data;      }           // Defining a function to pop values from the array    function array_pop() public returns(uint[] memory)    {          data.pop();         return data;      }}"
+      "lang": "solidity",
+      "code": "// Solidity program to implement// the array memberspragma solidity ^0.5.0;\n// Creating a contractcontract Types {\n  // Declaring an array uint[] data = [10, 20, 30, 40, 50];\n  // Defining a\n  function to find the length // of the array\n  function array_length() public returns(uint) {\n    uint x = data.length;\n    return x;\n  }\n  // Defining the\n  function to push values to the array function array_push() public returns(uint[] memory) {\n    data.push(60);\n    data.push(70);\n    data.push(80);\n    return data;\n  }\n  // Defining a\n  function to pop values from the array function array_pop() public returns(uint[] memory) {\n    data.pop();\n    return data;\n  }\n}"
     },
     {
       "type": "heading",
@@ -101,8 +101,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "// Solidity program to implement // the byte arrayspragma solidity ^0.8.0; contract ByteArrayExample {     bytes3 fixedSizeByteArray;  bytes dynamicSizeByteArray;   constructor()   {    // \"abc\"    fixedSizeByteArray = 0x616263;          // \"defghi\"    dynamicSizeByteArray = hex\"646566676869\";   }   function getFixedSizeByteArray() public view returns (bytes3)   {    return fixedSizeByteArray;  }   function getDynamicSizeByteArray() public view returns (bytes memory)   {    return dynamicSizeByteArray;  }}"
+      "lang": "solidity",
+      "code": "// Solidity program to implement // the byte arrayspragma solidity ^0.8.0;\ncontract ByteArrayExample {\n  bytes3 fixedSizeByteArray;\n  bytes dynamicSizeByteArray;\n  constructor() {\n    // \"abc\" fixedSizeByteArray = 0x616263;\n    // \"defghi\" dynamicSizeByteArray = hex\"646566676869\";\n  }\n  function getFixedSizeByteArray() public view returns (bytes3) {\n    return fixedSizeByteArray;\n  }\n  function getDynamicSizeByteArray() public view returns (bytes memory) {\n    return dynamicSizeByteArray;\n  }\n}"
     },
     {
       "type": "heading",
@@ -115,8 +115,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "// Solidity program to implement Structspragma solidity ^0.8.0; contract StructsExample {  struct Person   {    string name;    uint age;  }     Person[] public people;   function addPerson(string memory _name,                      uint _age) public  {    Person memory newPerson = Person(_name, _age);    people.push(newPerson);  }   function getPerson(uint index) public view returns (string memory,                                                       uint)   {    Person memory person = people[index];    return (person.name, person.age);  }}"
+      "lang": "solidity",
+      "code": "// Solidity program to implement Structspragma solidity ^0.8.0;\ncontract StructsExample {\n  struct Person {\n    string name;\n    uint age;\n  }\n  Person[] public people;\n  function addPerson(string memory _name, uint _age) public {\n    Person memory newPerson = Person(_name, _age);\n    people.push(newPerson);\n  }\n  function getPerson(uint index) public view returns (string memory, uint) {\n    Person memory person = people[index];\n    return (person.name, person.age);\n  }\n}"
     },
     {
       "type": "paragraph",
@@ -133,8 +133,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "// Solidity program to implement // the Mappingspragma solidity ^0.8.0; contract MappingsExample {  mapping(address => uint) public balances;   function updateBalance(address _account,                          uint _newBalance) public  {    balances[_account] = _newBalance;  }   function getBalance(address _account) public view returns (uint)   {    return balances[_account];  }}"
+      "lang": "solidity",
+      "code": "// Solidity program to implement // the Mappingspragma solidity ^0.8.0;\ncontract MappingsExample {\n  mapping(address => uint) public balances;\n  function updateBalance(address _account, uint _newBalance) public {\n    balances[_account] = _newBalance;\n  }\n  function getBalance(address _account) public view returns (uint) {\n    return balances[_account];\n  }\n}"
     },
     {
       "type": "heading",
@@ -178,8 +178,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "//SPDX-License-Identifier: MITpragma solidity ^0.8.0;contract Payable{   mapping(address => uint256) balances;      function deposit() external payable {     require(msg.value > 0, \"Zero ether not allowed\");     balances[msg.sender] = balances[msg.sender] + msg.value;   }}"
+      "lang": "solidity",
+      "code": "//SPDX-License-Identifier: MITpragma solidity ^0.8.0;\ncontract Payable{\n  mapping(address => uint256) balances;\n  function deposit() external payable {\n    require(msg.value > 0, \"Zero ether not allowed\");\n    balances[msg.sender] = balances[msg.sender] + msg.value;\n  }\n}"
     },
     {
       "type": "heading",
@@ -193,7 +193,7 @@
     {
       "type": "code",
       "lang": "javascript",
-      "code": "function deposit() payable external {    // no need to write anything here!}"
+      "code": "function deposit() payable external {\n  // no need to write anything here!\n}"
     },
     {
       "type": "paragraph",
@@ -206,7 +206,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "receive() external payable {    // this built-in function doesn't require any calldata,    // it will get called if the data field is empty and     // the value field is not empty.    // this allows the smart contract to receive ether just like a     // regular user account controlled by a private key would.}"
+      "code": "receive() external payable {    // this built-in function\ndoesn't require any calldata,    // it will get called if the data field is empty and     // the value field is not empty.    // this allows the smart contract to receive ether just like a     // regular user account controlled by a private key would.}"
     },
     {
       "type": "heading",
@@ -219,8 +219,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "pragma solidity ^0.8.4; contract Bank { mapping(address => uint) balance;address owner; constructor() { owner = msg.sender; // address that deploys contract will be the owner } function addBalance(uint _toAdd) public returns(uint) { require(msg.sender == owner); balance[msg.sender] += _toAdd;  return balance[msg.sender]; } function getBalance() public view returns(uint) { return balance[msg.sender]; } function transfer(address recipient, uint amount) public { require(balance[msg.sender]>=amount, \"Insufficient Balance\"); require(msg.sender != recipient, \"You can't send money to yourself!\"); _transfer(msg.sender, recipient, amount); } function _transfer(address from, address to, uint amount) private { balance[from] -= amount; balance[to] += amount; }}"
+      "lang": "solidity",
+      "code": "pragma solidity ^0.8.4;\ncontract Bank {\n  mapping(address => uint) balance;\n  address owner;\n  constructor() {\n    owner = msg.sender;\n    // address that deploys contract will be the owner\n  }\n  function addBalance(uint _toAdd) public returns(uint) {\n    require(msg.sender == owner);\n    balance[msg.sender] += _toAdd;\n    return balance[msg.sender];\n  }\n  function getBalance() public view returns(uint) {\n    return balance[msg.sender];\n  }\n  function transfer(address recipient, uint amount) public {\n    require(balance[msg.sender]>=amount, \"Insufficient Balance\");\n    require(msg.sender != recipient, \"You can't send money to yourself!\");\n    _transfer(msg.sender, recipient, amount);\n  }\n  function _transfer(address from, address to, uint amount) private {\n    balance[from] -= amount;\n    balance[to] += amount;\n  }\n}"
     },
     {
       "type": "heading",
@@ -234,7 +234,7 @@
     {
       "type": "code",
       "lang": "javascript",
-      "code": "function withdraw(uint amount) public {    require(balances[msg.sender] >= amount, \"Insufficient balance\");    balances[msg.sender] -= amount;    if (!msg.sender.send(amount)) {        revert(\"Failed to send funds\");    }}"
+      "code": "function withdraw(uint amount) public {\n  require(balances[msg.sender] >= amount, \"Insufficient balance\");\n  balances[msg.sender] -= amount;\n  if (!msg.sender.send(amount)) {\n    revert(\"Failed to send funds\");\n  }\n}"
     },
     {
       "type": "heading",
@@ -273,8 +273,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "//SPDX-License-Identifier: GPL-3.0pragma solidity >=0.8.7;contract RandomNumber {  uint randNo = 0;   function setNumber() external {        randNo= uint (keccak256(abi.encodePacked (msg.sender, block.timestamp, randNo)));     }    function getNumber() external view returns (uint) {    return randNo;     }}"
+      "lang": "solidity",
+      "code": "//SPDX-License-Identifier: GPL-3.0pragma solidity >=0.8.7;\ncontract RandomNumber {\n  uint randNo = 0;\n  function setNumber() external {\n    randNo= uint (keccak256(abi.encodePacked (msg.sender, block.timestamp, randNo)));\n  }\n  function getNumber() external view returns (uint) {\n    return randNo;\n  }\n}"
     },
     {
       "type": "paragraph",
@@ -373,7 +373,7 @@
     {
       "type": "code",
       "lang": "javascript",
-      "code": "function getContractBalance(address ContractAddress) public view returns(uint){    return ContractAddress.balance;}"
+      "code": "function getContractBalance(address ContractAddress) public view returns(uint){\n  return ContractAddress.balance;\n}"
     },
     {
       "type": "heading",
@@ -387,8 +387,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "contract Helper {function getBalance() returns (uint bal) {return this.balance;  }}"
+      "lang": "solidity",
+      "code": "contract Helper {\n  function getBalance() returns (uint bal) {\n    return this.balance;\n  }\n}"
     },
     {
       "type": "heading",
@@ -398,7 +398,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "address[] myArray = new address[](0); //dynamic arraymyArray = new address[2](0); //fix array "
+      "code": "address[] myArray = new address[](0); //dynamic arraymyArray = new address[2](0); //fix array"
     },
     {
       "type": "heading",
@@ -412,7 +412,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "contract Owner {   modifier onlyOwner {      require(msg.sender == owner);      _;   }   modifier costs(uint price) {      if (msg.value >= price) {         _;      }   }}"
+      "code": "contract Owner {   modifier onlyOwner {      require(msg.sender == owner);      _;   }   modifier\ncosts(uint price) {      if (msg.value >= price) {         _;      }   }}"
     },
     {
       "type": "heading",
@@ -440,7 +440,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "    try {      await enterPlayerInLottery(lottery, accounts[4], web3, 0);      assert(false);    } catch (error) {      assert(error);    }"
+      "code": "try {      await enterPlayerInLottery(lottery, accounts[4], web3, 0);      assert(false);    } catch\n(error) {      assert(error);    }"
     },
     {
       "type": "heading",

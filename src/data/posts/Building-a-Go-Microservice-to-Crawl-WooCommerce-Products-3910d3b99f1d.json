@@ -50,7 +50,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "func NewApp() *fx.App {    return fx.New(        fx.Provide(            logger.NewLogger,            config.NewConfig,            sql.InitialDB,            health.New,            server.NewGinEngine,            server.CreateHTTPServer,            server.CreateGRPCServer,            migrate.NewRunner,            sqlc.New,            cache.NewClient,            cache.NewCacheStore,            productController.NewAdmin,            productController.NewClient,            productController.NewGRPC,            productService.New,            crawler.New,            dispatcher.New,            poller.New,        ),        fx.Invoke(            dispatcher.RegisterServices,            dispatcher.RegisterLifecycle,            poller.RegisterLifecycle,            server.RegisterRoutes,            server.StartHTTPServer,            server.StartGRPCServer,            migrate.RunMigrations,            logger.RegisterLoggerLifecycle,            server.GRPCLifeCycle,        ),    )}"
+      "code": "func NewApp() *fx.App {\n    return fx.New(fx.Provide(logger.NewLogger, config.NewConfig, sql.InitialDB, health.New,\n    server.NewGinEngine, server.CreateHTTPServer, server.CreateGRPCServer, migrate.NewRunner,\n    sqlc.New, cache.NewClient, cache.NewCacheStore, productController.NewAdmin,\n    productController.NewClient, productController.NewGRPC, productService.New, crawler.New,\n    dispatcher.New, poller.New,), fx.Invoke(dispatcher.RegisterServices,\n    dispatcher.RegisterLifecycle, poller.RegisterLifecycle, server.RegisterRoutes,\n    server.StartHTTPServer, server.StartGRPCServer, migrate.RunMigrations,\n    logger.RegisterLoggerLifecycle, server.GRPCLifeCycle,),\n    )\n}"
     },
     {
       "type": "paragraph",
@@ -72,8 +72,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "type Product struct {    Title string    Price string    Link  string    Image string}type Service struct {    products        []Product    cleanedProducts []Product}"
+      "lang": "go",
+      "code": "type Product struct {\n    Title string\n    Price string\n    Link string\n    Image string\n}\ntype Service struct {\n    products []Product\n    cleanedProducts []Product\n}"
     },
     {
       "type": "heading",
@@ -87,7 +87,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "func (s *Service) ListProducts() error {    c := colly.NewCollector(        colly.AllowedDomains(\"badomjip.com\"),    )    products := []Product{}    c.OnHTML(\"div.product-grid-item\", func(e *colly.HTMLElement) {        p := Product{            Title: e.ChildText(\"h3.wd-entities-title a\"),            Price: e.ChildText(\"span.price\"),            Link:  e.ChildAttr(\"a.product-image-link\", \"href\"),            Image: e.ChildAttr(\"a.product-image-link img\", \"src\"),        }        products = append(products, p)    })    err := c.Visit(\"https://badomjip.com/product-category/%d9%be%da%a9%db%8c%d8%ac%d9%87%d8%a7/\")    if err != nil {        return err    }    s.products = products    s.cleanUP()    return nil}"
+      "code": "func (s *Service) ListProducts() error {\n    c := colly.NewCollector(colly.AllowedDomains(\"badomjip.com\"),\n    )\n    products := []Product{\n    }\n    c.OnHTML(\"div.product-grid-item\", func(e *colly.HTMLElement) {\n        p := Product{\n            Title: e.ChildText(\"h3.wd-entities-title a\"), Price: e.ChildText(\"span.price\"), Link:\n            e.ChildAttr(\"a.product-image-link\", \"href\"), Image:\n            e.ChildAttr(\"a.product-image-link img\", \"src\"),\n        }\n        products = append(products, p)\n    })\n    err := c.Visit(\"https://badomjip.com/product-category/%d9%be%da%a9%db%8c%d8%ac%d9%87%d8%a7/\")\n    if err != nil {\n        return err\n    }\n    s.products = products\n    s.cleanUP()\n    return nil\n}"
     },
     {
       "type": "heading",
@@ -109,7 +109,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "func (s *Service) cleanUP() {    cleaned := make([]Product, 0, len(s.products))    reTags := regexp.MustCompile(`<[^>]*>`)    for _, p := range s.products {        title := reTags.ReplaceAllString(p.Title, \"\")        title = strings.TrimSpace(title)        priceStr := strings.ReplaceAll(p.Price, \"تومان\", \"\")        priceStr = strings.ReplaceAll(priceStr, \",\", \"\")        priceStr = strings.TrimSpace(priceStr)        reDigits := regexp.MustCompile(`\\D`)        priceStr = reDigits.ReplaceAllString(priceStr, \"\")        var priceInt int        if priceStr != \"\" {            if val, err := strconv.Atoi(priceStr); err == nil {                priceInt = val            }        }        cleaned = append(cleaned, Product{            Title: title,            Price: strconv.Itoa(priceInt),            Link:  p.Link,            Image: p.Image,        })    }    s.cleanedProducts = cleaned}"
+      "code": "func (s *Service) cleanUP() {\n    cleaned := make([]Product, 0, len(s.products))\n    reTags := regexp.MustCompile(`<[^>]*>`)\n    for _, p := range s.products {\n        title := reTags.ReplaceAllString(p.Title, \"\") title = strings.TrimSpace(title) priceStr :=\n        strings.ReplaceAll(p.Price, \"تومان\", \"\") priceStr = strings.ReplaceAll(priceStr, \",\", \"\")\n        priceStr = strings.TrimSpace(priceStr) reDigits := regexp.MustCompile(`\\D`) priceStr =\n        reDigits.ReplaceAllString(priceStr, \"\"\n        )\n        var priceInt int if priceStr != \"\" {\n            if val, err := strconv.Atoi(priceStr);\n            err == nil {\n                priceInt = val\n            }\n        }\n        cleaned = append(cleaned, Product{\n            Title: title, Price: strconv.Itoa(priceInt), Link: p.Link, Image: p.Image,\n        })\n    }\n    s.cleanedProducts = cleaned\n}"
     },
     {
       "type": "heading",
@@ -123,7 +123,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "func TestListProductsIntegration(t *testing.T) {    svc := crawler.New()    err := svc.ListProducts()    if err != nil {        t.Fatalf(\"ListProducts failed: %v\", err)    }    products := svc.CleanedProducts()    if len(products) == 0 {        t.Fatalf(\"expected at least 1 product, got 0\")    }    p := products[0]    if p.Title == \"\" {        t.Errorf(\"product title should not be empty\")    }    if p.Price == \"\" {        t.Errorf(\"product price should not be empty\")    }    if p.Link == \"\" {        t.Errorf(\"product link should not be empty\")    }    if p.Image == \"\" {        t.Errorf(\"product image should not be empty\")    }}"
+      "code": "func TestListProductsIntegration(t *testing.T) {\n    svc := crawler.New()\n    err := svc.ListProducts()\n    if err != nil {\n        t.Fatalf(\"ListProducts failed: %v\", err)\n    }\n    products := svc.CleanedProducts()\n    if len(products) == 0 {\n        t.Fatalf(\"expected at least 1 product, got 0\")\n    }\n    p := products[0]\n    if p.Title == \"\" {\n        t.Errorf(\"product title should not be empty\")\n    }\n    if p.Price == \"\" {\n        t.Errorf(\"product price should not be empty\")\n    }\n    if p.Link == \"\" {\n        t.Errorf(\"product link should not be empty\")\n    }\n    if p.Image == \"\" {\n        t.Errorf(\"product image should not be empty\")\n    }\n}"
     },
     {
       "type": "paragraph",

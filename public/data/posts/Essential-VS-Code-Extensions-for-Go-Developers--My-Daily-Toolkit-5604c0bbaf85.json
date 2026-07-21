@@ -740,47 +740,47 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "{  \"http.proxy\": \"http://127.0.0.1:2080\",  \"workbench.iconTheme\": \"material-icon-theme\",  \"workbench.editor.enablePreview\": false,"
+      "code": "{  \"http.proxy\": \"http://127.0.0.1:2080\",  \"workbench.iconTheme\": \"material-icon-theme\",\n\"workbench.editor.enablePreview\": false,"
     },
     {
       "type": "code",
       "lang": "text",
-      "code": "  \"files.autoSave\": \"afterDelay\",  \"files.autoSaveDelay\": 10000,"
+      "code": "\"files.autoSave\": \"afterDelay\",  \"files.autoSaveDelay\": 10000,"
     },
     {
       "type": "code",
       "lang": "text",
-      "code": "  \"editor.defaultFormatter\": \"esbenp.prettier-vscode\",  \"editor.largeFileOptimizations\": false,  \"editor.minimap.showSlider\": \"always\",  \"editor.minimap.size\": \"fit\","
+      "code": "\"editor.defaultFormatter\": \"esbenp.prettier-vscode\",  \"editor.largeFileOptimizations\": false,\n\"editor.minimap.showSlider\": \"always\",  \"editor.minimap.size\": \"fit\","
     },
     {
       "type": "code",
       "lang": "text",
-      "code": "  \"[javascript]\": {    \"editor.defaultFormatter\": \"esbenp.prettier-vscode\"  },  \"[json]\": {    \"editor.defaultFormatter\": \"esbenp.prettier-vscode\"  },  \"[go]\": {    \"editor.defaultFormatter\": \"golang.go\",    \"editor.formatOnSave\": true  },"
+      "code": "\"[javascript]\": {    \"editor.defaultFormatter\": \"esbenp.prettier-vscode\"  },  \"[json]\": {\n\"editor.defaultFormatter\": \"esbenp.prettier-vscode\"  },  \"[go]\": {    \"editor.defaultFormatter\":\n\"golang.go\",    \"editor.formatOnSave\": true  },"
     },
     {
       "type": "code",
       "lang": "text",
-      "code": "  \"git.autofetch\": true,"
+      "code": "\"git.autofetch\": true,"
     },
     {
       "type": "code",
       "lang": "text",
-      "code": "  \"gitlens.ai.model\": \"vscode\",  \"gitlens.ai.vscode.model\": \"claude-3-5-sonnet-20240620\",  \"go.toolsManagement.autoUpdate\": true,"
+      "code": "\"gitlens.ai.model\": \"vscode\",  \"gitlens.ai.vscode.model\": \"claude-3-5-sonnet-20240620\",\n\"go.toolsManagement.autoUpdate\": true,"
     },
     {
       "type": "code",
       "lang": "text",
-      "code": "  \"database-client.autoSync\": true,"
+      "code": "\"database-client.autoSync\": true,"
     },
     {
       "type": "code",
       "lang": "text",
-      "code": "  \"security.workspace.trust.untrustedFiles\": \"open\","
+      "code": "\"security.workspace.trust.untrustedFiles\": \"open\","
     },
     {
       "type": "code",
       "lang": "text",
-      "code": "  \"explorer.confirmDelete\": false,  \"settingsSync.ignoredExtensions\": []}"
+      "code": "\"explorer.confirmDelete\": false,  \"settingsSync.ignoredExtensions\": []}"
     },
     {
       "type": "heading",

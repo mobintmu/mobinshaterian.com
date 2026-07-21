@@ -48,7 +48,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "ping datadriveninvestor.comPING datadriveninvestor.com (104.26.0.23) 56(84) bytes of data.ping medium.datadriveninvestor.comPING medium.datadriveninvestor.com (162.159.153.4) 56(84) bytes of data."
+      "code": "ping datadriveninvestor.comPING datadriveninvestor.com (104.26.0.23) 56(84) bytes of data.ping\nmedium.datadriveninvestor.comPING medium.datadriveninvestor.com (162.159.153.4) 56(84) bytes of\ndata."
     },
     {
       "type": "paragraph",
@@ -79,7 +79,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "# Listen only on loopbackinterface=lobind-interfaceslisten-address=127.0.0.1# Special DNS serversserver=/google.com/10.131.57.151server=/datadriveninvestor.com/76.76.2.11"
+      "code": "# Listen only on loopbackinterface=lobind-interfaceslisten-address=127.0.0.1# Special DNS\nserversserver=/google.com/10.131.57.151server=/datadriveninvestor.com/76.76.2.11"
     },
     {
       "type": "paragraph",
@@ -122,7 +122,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "# Listen only on loopbackinterface=lobind-interfaceslisten-address=127.0.0.1# Override blocked subdomainaddress=/medium.datadriveninvestor.com/104.26.0.23# Custom DNS servers for domainsserver=/datadriveninvestor.com/76.76.2.11server=/medium.com/76.76.2.11# Default and fallback DNS serversserver=9.9.9.9server=8.8.8.8# Security & performancedomain-neededbogus-privno-resolvno-pollcache-size=1000"
+      "code": "# Listen only on loopbackinterface=lobind-interfaceslisten-address=127.0.0.1# Override blocked\nsubdomainaddress=/medium.datadriveninvestor.com/104.26.0.23# Custom DNS servers for\ndomainsserver=/datadriveninvestor.com/76.76.2.11server=/medium.com/76.76.2.11# Default and fallback\nDNS serversserver=9.9.9.9server=8.8.8.8# Security &\nperformancedomain-neededbogus-privno-resolvno-pollcache-size=1000"
     },
     {
       "type": "heading",
@@ -163,7 +163,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "ping medium.datadriveninvestor.comPING medium.datadriveninvestor.com (104.26.0.23) 56(84) bytes of data."
+      "code": "ping medium.datadriveninvestor.comPING medium.datadriveninvestor.com (104.26.0.23) 56(84) bytes of\ndata."
     },
     {
       "type": "heading",
@@ -178,7 +178,7 @@
     {
       "type": "code",
       "lang": "bash",
-      "code": "sudo cat /etc/resolv.conf#nameserver 127.0.0.53#options edns0 trust-ad#search mtnirancell.irnameserver 127.0.0.1nameserver 8.8.8.8nameserver 1.1.1.1"
+      "code": "sudo cat /etc/resolv.conf#nameserver 127.0.0.53#options edns0 trust-ad#search\nmtnirancell.irnameserver 127.0.0.1nameserver 8.8.8.8nameserver 1.1.1.1"
     },
     {
       "type": "heading",

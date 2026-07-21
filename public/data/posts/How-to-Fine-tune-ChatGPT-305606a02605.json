@@ -51,7 +51,7 @@
     {
       "type": "code",
       "lang": "json",
-      "code": "{\"messages\": [{\"role\": \"system\", \"content\": \"Marv is a factual chatbot that is also sarcastic.\"}, {\"role\": \"user\", \"content\": \"What's the capital of France?\"}, {\"role\": \"assistant\", \"content\": \"Paris, as if everyone doesn't know that already.\"}]}{\"messages\": [{\"role\": \"system\", \"content\": \"Marv is a factual chatbot that is also sarcastic.\"}, {\"role\": \"user\", \"content\": \"Who wrote 'Romeo and Juliet'?\"}, {\"role\": \"assistant\", \"content\": \"Oh, just some guy named William Shakespeare. Ever heard of him?\"}]}{\"messages\": [{\"role\": \"system\", \"content\": \"Marv is a factual chatbot that is also sarcastic.\"}, {\"role\": \"user\", \"content\": \"How far is the Moon from Earth?\"}, {\"role\": \"assistant\", \"content\": \"Around 384,400 kilometers. Give or take a few, like that really matters.\"}]}"
+      "code": "{\"messages\": [{\"role\": \"system\", \"content\": \"Marv is a factual chatbot that is also sarcastic.\"},\n{\"role\": \"user\", \"content\": \"What's the capital of France?\"}, {\"role\": \"assistant\", \"content\":\n\"Paris, as if everyone doesn't know that already.\"}]}{\"messages\": [{\"role\": \"system\", \"content\":\n\"Marv is a factual chatbot that is also sarcastic.\"}, {\"role\": \"user\", \"content\":\n\"Who wrote 'Romeo and Juliet'?\"}, {\"role\": \"assistant\", \"content\":\n\"Oh, just some guy named William Shakespeare. Ever heard of him?\"}]}{\"messages\": [{\"role\": \"system\",\n\"content\": \"Marv is a factual chatbot that is also sarcastic.\"}, {\"role\": \"user\", \"content\":\n\"How far is the Moon from Earth?\"}, {\"role\": \"assistant\", \"content\":\n\"Around 384,400 kilometers. Give or take a few, like that really matters.\"}]}"
     },
     {
       "type": "heading",
@@ -61,7 +61,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "json_string = \"\"for index, row in data.iterrows():    message = str(row['Subject']) + \"   \" +  str(row['Description'])    answer = str(row['Answer'])    prompt = \"You are a formal chat bot assistant.\"    json_text = '{\"messages\": [{\"role\": \"system\", \"content\":\"'+prompt +'\"}, {\"role\": \"user\", \"content\":\"'+message+'\" }, {\"role\": \"assistant\", \"content\":\"'+answer+'\"} ]}'    json_string = json_string + json_text  + \"\\n\""
+      "code": "json_string = \"\"for index, row in data.iterrows():    message = str(row['Subject']) + \"   \" +\nstr(row['Description'])    answer = str(row['Answer'])    prompt =\n\"You are a formal chat bot assistant.\"    json_text =\n'{\"messages\": [{\"role\": \"system\", \"content\":\"'+prompt\n+'\"}, {\"role\": \"user\", \"content\":\"'+message+'\" }, {\"role\": \"assistant\", \"content\":\"'+answer+'\"} ]}'\njson_string = json_string + json_text  + \"\\n\""
     },
     {
       "type": "code",
@@ -89,12 +89,12 @@
     {
       "type": "code",
       "lang": "python",
-      "code": "from openai import OpenAIclient = OpenAI()client.files.create(  file=open(\"mydata.jsonl\", \"rb\"),  purpose=\"fine-tune\")"
+      "code": "from openai\nimport OpenAIclient = OpenAI()client.files.create(  file=open(\"mydata.jsonl\", \"rb\"),\npurpose=\"fine-tune\")"
     },
     {
       "type": "code",
       "lang": "text",
-      "code": "FileObject(id='file-KAdfdfgefd*****', bytes=54530, created_at=1710157205, filename='out.json', object='file', purpose='fine-tune', status='processed', status_details=None)"
+      "code": "FileObject(id='file-KAdfdfgefd*****', bytes=54530, created_at=1710157205, filename='out.json',\nobject='file', purpose='fine-tune', status='processed', status_details=None)"
     },
     {
       "type": "heading",
@@ -109,7 +109,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "SyncCursorPage[FineTuningJob](data=[FineTuningJob(id='ftjob-zde************', created_at=1710169666, error=Error(code=None, message=None, param=None, error=None), fine_tuned_model=None, finished_at=None, hyperparameters=Hyperparameters(n_epochs=3, batch_size=1, learning_rate_multiplier=2), model='gpt-3.5-turbo-0125', object='fine_tuning.job', organization_id='org-nUFI**************', result_files=[], status='queued', trained_tokens=None, training_file='file-TlDij************', validation_file=None, user_provided_suffix=None)], object='list', has_more=True)"
+      "code": "SyncCursorPage[FineTuningJob](data=[FineTuningJob(id='ftjob-zde************', created_at=1710169666,\nerror=Error(code=None, message=None, param=None, error=None), fine_tuned_model=None,\nfinished_at=None, hyperparameters=Hyperparameters(n_epochs=3, batch_size=1,\nlearning_rate_multiplier=2), model='gpt-3.5-turbo-0125', object='fine_tuning.job',\norganization_id='org-nUFI**************', result_files=[], status='queued', trained_tokens=None,\ntraining_file='file-TlDij************', validation_file=None, user_provided_suffix=None)],\nobject='list', has_more=True)"
     },
     {
       "type": "heading",
@@ -124,7 +124,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "FineTuningJob(id='ftjob-zde***********', created_at=1710169666, error=Error(code=None, message=None, param=None, error=None), fine_tuned_model=None, finished_at=None, hyperparameters=Hyperparameters(n_epochs=3, batch_size=1, learning_rate_multiplier=2), model='gpt-3.5-turbo-0125', object='fine_tuning.job', organization_id='org-nUFIO0I7*********', result_files=[], status='queued', trained_tokens=None, training_file='file-TlDi****', validation_file=None, user_provided_suffix=None)"
+      "code": "FineTuningJob(id='ftjob-zde***********', created_at=1710169666, error=Error(code=None, message=None,\nparam=None, error=None), fine_tuned_model=None, finished_at=None,\nhyperparameters=Hyperparameters(n_epochs=3, batch_size=1, learning_rate_multiplier=2),\nmodel='gpt-3.5-turbo-0125', object='fine_tuning.job', organization_id='org-nUFIO0I7*********',\nresult_files=[], status='queued', trained_tokens=None, training_file='file-TlDi****',\nvalidation_file=None, user_provided_suffix=None)"
     },
     {
       "type": "heading",
@@ -158,7 +158,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "completion = client.chat.completions.create(  model=res.fine_tuned_model,  messages=[    {\"role\": \"system\", \"content\": \"You are a formal chat bot.\"},    {\"role\": \"user\", \"content\": \"Hello\"}  ])print(completion.choices[0].message.content) "
+      "code": "completion = client.chat.completions.create(  model=res.fine_tuned_model,  messages=[    {\"role\":\n\"system\", \"content\": \"You are a formal chat bot.\"},    {\"role\": \"user\", \"content\": \"Hello\"}\n])print(completion.choices[0].message.content)"
     },
     {
       "type": "heading",

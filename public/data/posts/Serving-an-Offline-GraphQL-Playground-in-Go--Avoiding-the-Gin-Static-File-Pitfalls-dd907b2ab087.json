@@ -25,7 +25,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "https://cdn.jsdelivr.net/npm/react@18.2.0/umd/react.production.min.jshttps://cdn.jsdelivr.net/npm/react-dom@18.2.0/umd/react-dom.production.min.jshttps://cdn.jsdelivr.net/npm/graphiql@4.1.2/graphiql.min.csshttps://cdn.jsdelivr.net/npm/graphiql@4.1.2/graphiql.min.js"
+      "code": "https://cdn.jsdelivr.net/npm/react@18.2.0/umd/react.production.min.js\nhttps://cdn.jsdelivr.net/npm/react-dom@18.2.0/umd/react-dom.production.min.js\nhttps://cdn.jsdelivr.net/npm/graphiql@4.1.2/graphiql.min.css\nhttps://cdn.jsdelivr.net/npm/graphiql@4.1.2/graphiql.min.js"
     },
     {
       "type": "paragraph",
@@ -72,7 +72,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "package serverimport (    \"html/template\"    \"net/http\"    \"github.com/gin-gonic/gin\")var playgroundTmpl = template.Must(template.New(\"playground\").Parse(`<!DOCTYPE html><html>  <head>    <title>GraphQL Playground</title>    <meta charset=\"utf-8\" />    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\" />    <link rel=\"stylesheet\" href=\"/static/graphiql.min.css\" />  </head>  <body style=\"margin:0;\">    <div id=\"graphiql\" style=\"height:100vh;\"></div>    <script src=\"/static/react.production.min.js\"></script>    <script src=\"/static/react-dom.production.min.js\"></script>    <script src=\"/static/graphiql.min.js\"></script>    <script>      const fetcher = GraphiQL.createFetcher({ url: '{{.Endpoint}}' });      ReactDOM.render(        React.createElement(GraphiQL, { fetcher }),        document.getElementById('graphiql'),      );    </script>  </body></html>`))func PlaygroundHandler(endpoint string) gin.HandlerFunc {    return func(c *gin.Context) {        c.Header(\"Content-Type\", \"text/html; charset=utf-8\")        c.Status(http.StatusOK)        playgroundTmpl.Execute(c.Writer, map[string]string{            \"Endpoint\": endpoint,        })    }}"
+      "code": "package server\n\nimport (\n    \"html/template\"\n    \"net/http\"\n\n    \"github.com/gin-gonic/gin\"\n)\n\nvar playgroundTmpl = template.Must(template.New(\"playground\").Parse(`<!DOCTYPE html>\n<html>\n  <head>\n    <title>GraphQL Playground</title>\n    <meta charset=\"utf-8\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\" />\n    <link rel=\"stylesheet\" href=\"/static/graphiql.min.css\" />\n  </head>\n  <body style=\"margin:0;\">\n    <div id=\"graphiql\" style=\"height:100vh;\"></div>\n    <script src=\"/static/react.production.min.js\"></script>\n    <script src=\"/static/react-dom.production.min.js\"></script>\n    <script src=\"/static/graphiql.min.js\"></script>\n    <script>\n      const fetcher = GraphiQL.createFetcher({ url: '{{.Endpoint}}' });\n      ReactDOM.render(\n        React.createElement(GraphiQL, { fetcher }),\n        document.getElementById('graphiql'),\n      );\n    </script>\n  </body>\n</html>`))\n\nfunc PlaygroundHandler(endpoint string) gin.HandlerFunc {\n    return func(c *gin.Context) {\n        c.Header(\"Content-Type\", \"text/html; charset=utf-8\")\n        c.Status(http.StatusOK)\n        playgroundTmpl.Execute(c.Writer, map[string]string{\n            \"Endpoint\": endpoint,\n        })\n    }\n}"
     },
     {
       "type": "paragraph",
@@ -80,8 +80,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "// Legacy Implementation (CDN Dependent):// engine.GET(\"/playground\", gin.WrapH(playground.Handler(\"GraphQL Playground\", \"/query\")))// Current Implementation (Self-Hosted):engine.GET(\"/playground\", PlaygroundHandler(\"/query\"))"
+      "lang": "go",
+      "code": "// Legacy Implementation (CDN Dependent):\n// engine.GET(\"/playground\", gin.WrapH(playground.Handler(\"GraphQL Playground\", \"/query\")))\n\n// Current Implementation (Self-Hosted):\nengine.GET(\"/playground\", PlaygroundHandler(\"/query\"))"
     },
     {
       "type": "paragraph",
@@ -98,8 +98,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "mkdir -p ./staticcurl -L -o ./static/react.production.min.js \\  https://cdn.jsdelivr.net/npm/react@18.2.0/umd/react.production.min.jscurl -L -o ./static/react-dom.production.min.js \\  https://cdn.jsdelivr.net/npm/react-dom@18.2.0/umd/react-dom.production.min.jscurl -L -o ./static/graphiql.min.css \\  https://cdn.jsdelivr.net/npm/graphiql@4.1.2/graphiql.min.csscurl -L -o ./static/graphiql.min.js \\  https://cdn.jsdelivr.net/npm/graphiql@4.1.2/graphiql.min.js"
+      "lang": "bash",
+      "code": "mkdir -p ./static\n\ncurl -L -o ./static/react.production.min.js \\\n  https://cdn.jsdelivr.net/npm/react@18.2.0/umd/react.production.min.js\n\ncurl -L -o ./static/react-dom.production.min.js \\\n  https://cdn.jsdelivr.net/npm/react-dom@18.2.0/umd/react-dom.production.min.js\n\ncurl -L -o ./static/graphiql.min.css \\\n  https://cdn.jsdelivr.net/npm/graphiql@4.1.2/graphiql.min.css\n\ncurl -L -o ./static/graphiql.min.js \\\n  https://cdn.jsdelivr.net/npm/graphiql@4.1.2/graphiql.min.js"
     },
     {
       "type": "paragraph",
@@ -108,7 +108,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "static/  react.production.min.js       (~10 KB)  react-dom.production.min.js   (~130 KB)  graphiql.min.css              (~418 KB)  graphiql.min.js               (~1.0 MB)"
+      "code": "static/\n├── react.production.min.js       (~10 KB)\n├── react-dom.production.min.js   (~130 KB)\n├── graphiql.min.css              (~418 KB)\n└── graphiql.min.js               (~1.0 MB)"
     },
     {
       "type": "heading",
@@ -122,7 +122,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "func RegisterStaticRoutes(r *gin.Engine, cfg *config.Config) {    r.Static(\"/static\", cfg.StaticCacheDir)}"
+      "code": "func RegisterStaticRoutes(r *gin.Engine, cfg *config.Config) {\n    r.Static(\"/static\", cfg.StaticCacheDir)\n}"
     },
     {
       "type": "paragraph",
@@ -130,13 +130,13 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "// config/config.gotype Config struct {    HTTPPort       int    HTTPAddress    string    StaticCacheDir string}func buildConfig(v *viper.Viper) *Config {    return &Config{        StaticCacheDir: v.GetString(\"STATIC_CACHE_DIR\"),    }}"
+      "lang": "go",
+      "code": "// config/config.go\ntype Config struct {\n    HTTPPort      int\n    HTTPAddress   string\n    StaticCacheDir string\n}\n\nfunc buildConfig(v *viper.Viper) *Config {\n    return &Config{\n        StaticCacheDir: v.GetString(\"STATIC_CACHE_DIR\"),\n    }\n}"
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "# .env.developmentAPP_STATIC_CACHE_DIR=/home/user/projects/graphql_api/static"
+      "lang": "dotenv",
+      "code": "# .env.development\nAPP_STATIC_CACHE_DIR=/home/user/projects/graphql_api/static"
     },
     {
       "type": "paragraph",
@@ -184,8 +184,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "// BROKEN: Global scope blocks r.Static() execution mechanicsfunc NewGinEngine() *gin.Engine {    r := gin.New()    r.Use(        gin.Logger(),        gin.Recovery(),        timeout.New(timeout.WithTimeout(60*time.Second)),     )    return r}// REMEDY: Clean core execution enginefunc NewGinEngine() *gin.Engine {    r := gin.New()    r.Use(gin.Logger(), gin.Recovery())    return r}"
+      "lang": "go",
+      "code": "// BROKEN: Global scope blocks r.Static() execution mechanics\nfunc NewGinEngine() *gin.Engine {\n    r := gin.New()\n    r.Use(\n        gin.Logger(),\n        gin.Recovery(),\n        timeout.New(timeout.WithTimeout(60*time.Second)),\n    )\n    return r\n}\n\n// REMEDY: Clean core execution engine\nfunc NewGinEngine() *gin.Engine {\n    r := gin.New()\n    r.Use(gin.Logger(), gin.Recovery())\n    return r\n}"
     },
     {
       "type": "paragraph",
@@ -194,7 +194,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "func RegisterRoutes(engine *gin.Engine, cfg *config.Config, graphqlHandler http.Handler) {    // Static asset delivery — Zero execution wrapping, served directly from disk    RegisterStaticRoutes(engine, cfg)    // Functional API Routes — Execution boundaries protected by isolated middleware    api := engine.Group(\"/\")    api.Use(timeout.New(timeout.WithTimeout(60 * time.Second)))        api.POST(\"/query\", gin.WrapH(graphqlHandler))    api.GET(\"/playground\", PlaygroundHandler(\"/query\"))}"
+      "code": "func RegisterRoutes(engine *gin.Engine, cfg *config.Config, graphqlHandler http.Handler) {\n    // Static asset delivery — Zero execution wrapping, served directly from disk\n    RegisterStaticRoutes(engine, cfg)\n\n    // Functional API Routes — Execution boundaries protected by isolated middleware\n    api := engine.Group(\"/\")\n    api.Use(timeout.New(timeout.WithTimeout(60 * time.Second)))\n\n    api.POST(\"/query\", gin.WrapH(graphqlHandler))\n    api.GET(\"/playground\", PlaygroundHandler(\"/query\"))\n}"
     },
     {
       "type": "heading",
@@ -211,8 +211,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "for _, r := range engine.Routes() {    log.Printf(\"Route Registered: %s %s\", r.Method, r.Path)}"
+      "lang": "go",
+      "code": "for _, r := range engine.Routes() {\n    log.Printf(\"Route Registered: %s %s\", r.Method, r.Path)\n}"
     },
     {
       "type": "paragraph",
@@ -224,8 +224,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "files := []string{    cfg.StaticCacheDir + \"/react.production.min.js\",    cfg.StaticCacheDir + \"/graphiql.min.css\",}for _, f := range files {    if _, err := os.Stat(f); err != nil {        log.Fatalf(\"Fatal: Missing asset visibility at path: %s\", f)    }}"
+      "lang": "go",
+      "code": "files := []string{\n    cfg.StaticCacheDir + \"/react.production.min.js\",\n    cfg.StaticCacheDir + \"/graphiql.min.css\",\n}\n\nfor _, f := range files {\n    if _, err := os.Stat(f); err != nil {\n        log.Fatalf(\"Fatal: Missing asset visibility at path: %s\", f)\n    }\n}"
     },
     {
       "type": "paragraph",
@@ -247,7 +247,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "project/  static/    react.production.min.js    react-dom.production.min.js    graphiql.min.css    graphiql.min.js  internal/    server/      gin.go              // Engine initialization (No global timeout middleware)      routes.go           // Route group grouping & scope segregation      static.go           // Local asset serving handlers      playground.go       // Custom HTML isolated handler  cmd/    server/      main.go  .env.development"
+      "code": "project/\n├── static/\n│   ├── react.production.min.js\n│   ├── react-dom.production.min.js\n│   ├── graphiql.min.css\n│   └── graphiql.min.js\n├── internal/\n│   └── server/\n│       ├── gin.go          // Engine initialization (No global timeout middleware)\n│       ├── routes.go       // Route group grouping & scope segregation\n│       ├── static.go       // Local asset serving handlers\n│       └── playground.go   // Custom HTML isolated handler\n├── cmd/\n│   └── server/\n│       └── main.go\n└── .env.development"
     },
     {
       "type": "heading",

@@ -62,7 +62,7 @@
     {
       "type": "code",
       "lang": "python",
-      "code": "import osfrom dotenv import load_dotenvload_dotenv()MY_ENV_VAR = os.getenv('MY_ENV_VAR')"
+      "code": "import os\nfrom dotenv\nimport load_dotenvload_dotenv()MY_ENV_VAR = os.getenv('MY_ENV_VAR')"
     },
     {
       "type": "paragraph",
@@ -111,7 +111,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}"
+      "code": "Error code: 429 - {'error': {'message':\n'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}"
     },
     {
       "type": "paragraph",
@@ -174,7 +174,7 @@
     {
       "type": "code",
       "lang": "python",
-      "code": "from openai import OpenAIimport oskey = \"sk-Fh ...\"prompt = 'what is the capital of USA?'client = OpenAI(    api_key = key)chat_completion = client.chat.completions.create(    model=\"gpt-3.5-turbo\",    messages=[{\"role\": \"user\", \"content\": prompt}])"
+      "code": "from openai\nimport OpenAI\nimport oskey = \"sk-Fh ...\"prompt = 'what is the capital of USA?'client = OpenAI(\n    api_key = key)chat_completion = client.chat.completions.create(\n    model=\"gpt-3.5-turbo\",\n    messages=[{\"role\": \"user\", \"content\": prompt}])"
     },
     {
       "type": "code",
@@ -184,7 +184,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "ChatCompletion(id='chatcmpl-9aYk3coc90XEJ5NrPNhFQAZZW0uJe', choices=[Choice(finish_reason='stop', index=0, logprobs=None, message=ChatCompletionMessage(content='The capital of the United States of America is Washington, D.C.', role='assistant', function_call=None, tool_calls=None))], created=1705392343, model='gpt-3.5-turbo-0613', object='chat.completion', system_fingerprint=None, usage=CompletionUsage(completion_tokens=14, prompt_tokens=14, total_tokens=28))"
+      "code": "ChatCompletion(id='chatcmpl-9aYk3coc90XEJ5NrPNhFQAZZW0uJe', choices=[Choice(finish_reason='stop',\nindex=0, logprobs=None,\nmessage=ChatCompletionMessage(content='The capital of the United States of America is Washington, D.C.', role='assistant', function_call=None, tool_calls=None))], created=1705392343, model='gpt-3.5-turbo-0613', object='chat.completion', system_fingerprint=None, usage=CompletionUsage(completion_tokens=14, prompt_tokens=14, total_tokens=28))"
     },
     {
       "type": "heading",

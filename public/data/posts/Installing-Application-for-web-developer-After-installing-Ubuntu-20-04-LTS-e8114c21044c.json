@@ -56,7 +56,7 @@
     {
       "type": "code",
       "lang": "bash",
-      "code": "sudo apt-get update"
+      "code": "sudo\napt-get update"
     },
     {
       "type": "heading",
@@ -66,7 +66,7 @@
     {
       "type": "code",
       "lang": "bash",
-      "code": "sudo apt-get install gitsudo apt-get install htopsudo apt-get install sshuttlesudo apt-get install iotopsudo apt-get install vimsudo apt-get install curl"
+      "code": "sudo\napt-get install git\nsudo\napt-get install htop\nsudo\napt-get install sshuttle\nsudo\napt-get install iotop\nsudo\napt-get install vim\nsudo\napt-get install curl"
     },
     {
       "type": "heading",
@@ -92,7 +92,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "https://www.fontyab.com/download?id=7782https://soft98.ir/graphic/font/14282-Font-Collection-Farsi.html"
+      "code": "https://www.fontyab.com/download?id=7782\nhttps://soft98.ir/graphic/font/14282-Font-Collection-Farsi.html"
     },
     {
       "type": "heading",
@@ -101,13 +101,13 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "bash",
       "code": "wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb"
     },
     {
       "type": "code",
       "lang": "bash",
-      "code": "sudo apt install ./google-chrome-stable_current_amd64.deb"
+      "code": "sudo\napt install ./google-chrome-stable_current_amd64.deb"
     },
     {
       "type": "heading",
@@ -121,7 +121,7 @@
     {
       "type": "code",
       "lang": "bash",
-      "code": "sudo apt install — assume-yes chromium-browser"
+      "code": "sudo\napt install — assume-yes chromium-browser"
     },
     {
       "type": "heading",
@@ -171,12 +171,12 @@
     {
       "type": "code",
       "lang": "bash",
-      "code": "sudo apt update"
+      "code": "sudo\napt update"
     },
     {
       "type": "code",
       "lang": "bash",
-      "code": "sudo apt install -y default-jdk"
+      "code": "sudo\napt install -y default-jdk"
     },
     {
       "type": "paragraph",
@@ -198,12 +198,12 @@
     {
       "type": "code",
       "lang": "bash",
-      "code": "sudo apt update"
+      "code": "sudo\napt update"
     },
     {
       "type": "code",
       "lang": "bash",
-      "code": "sudo apt install apache2"
+      "code": "sudo\napt install apache2"
     },
     {
       "type": "paragraph",
@@ -212,12 +212,12 @@
     {
       "type": "code",
       "lang": "bash",
-      "code": "sudo apt-get update"
+      "code": "sudo\napt-get update"
     },
     {
       "type": "code",
       "lang": "bash",
-      "code": "sudo apt-get install mysql-server"
+      "code": "sudo\napt-get install mysql-server"
     },
     {
       "type": "paragraph",
@@ -235,7 +235,7 @@
     {
       "type": "code",
       "lang": "bash",
-      "code": "sudo apt updatesudo apt-get  install php php-cli php-fpm php-json php-pdo php-mysql php-zip php-gd  php-mbstring php-curl php-xml php-pear php-bcmath"
+      "code": "sudo\napt update\nsudo\napt-get  install php php-cli php-fpm php-json php-pdo php-mysql php-zip php-gd  php-mbstring php-\ncurl php-xml php-pear php-bcmath"
     },
     {
       "type": "paragraph",
@@ -244,7 +244,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "$ php --versionPHP 7.4.3 (cli) (built: Mar 26 2020 20:24:23) ( NTS )Copyright (c) The PHP GroupZend Engine v3.4.0, Copyright (c) Zend Technologies    with Zend OPcache v7.4.3, Copyright (c), by Zend Technologies"
+      "code": "$ php --versionPHP 7.4.3 (cli) (built: Mar 26 2020 20:24:23) ( NTS )Copyright (c) The PHP GroupZend\nEngine v3.4.0, Copyright (c) Zend Technologies    with Zend OPcache v7.4.3, Copyright (c), by Zend\nTechnologies"
     },
     {
       "type": "paragraph",
@@ -265,7 +265,7 @@
     {
       "type": "code",
       "lang": "bash",
-      "code": "sudo apt updatesudo apt install phpmyadmin"
+      "code": "sudo\napt update\nsudo\napt install phpmyadmin"
     },
     {
       "type": "image",
@@ -323,7 +323,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "<Directory /var/www/>        Options Indexes FollowSymLinks        AllowOverride All        Require all granted</Directory>"
+      "code": "<Directory /var/www/>        Options Indexes FollowSymLinks        AllowOverride All        Require\nall granted</Directory>"
     },
     {
       "type": "paragraph",
@@ -440,7 +440,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "<VirtualHost *:8001> ServerAdmin webmaster@localhost DocumentRoot /var/www/html/folder ErrorLog /var/www/html/folder/error.log CustomLog ${APACHE_LOG_DIR}/access.log combined</VirtualHost>"
+      "code": "<VirtualHost *:8001> ServerAdmin webmaster@localhost DocumentRoot /var/www/html/folder ErrorLog\n/var/www/html/folder/error.log CustomLog ${APACHE_LOG_DIR}/access.log combined</VirtualHost>"
     },
     {
       "type": "paragraph",
@@ -462,7 +462,7 @@
     {
       "type": "code",
       "lang": "bash",
-      "code": "sudo apt-get install php-intlsudo apt-get install php-mbstringsudo a2enmod proxy_fcgi setenvifsudo a2enconf php7.4-fpmsudo service apache2 restartsudo apt install php7.4-intlsudo a2enmod rewrite"
+      "code": "sudo\napt-get install php-intl\nsudo\napt-get install php-mbstring\nsudo a2enmod proxy_fcgi setenvif\nsudo a2enconf php7.4-fpm\nsudo service apache2 restart\nsudo\napt install php7.4-intl\nsudo a2enmod rewrite"
     },
     {
       "type": "heading",
@@ -497,22 +497,22 @@
     {
       "type": "code",
       "lang": "bash",
-      "code": "sudo apt-get updatesudo apt-get install \\    apt-transport-https \\    ca-certificates \\    curl \\    gnupg-agent \\    software-properties-common"
+      "code": "sudo\napt-get update\nsudo\napt-get install \\\n  apt-transport-https \\\n  ca-certificates \\\n\ncurl \\\n  gnupg-agent \\\n  software-properties-common"
     },
     {
       "type": "code",
       "lang": "bash",
-      "code": "curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -"
+      "code": "curl -fsSL https://download.docker.com/linux/ubuntu/gpg |\nsudo apt-key add -"
     },
     {
       "type": "code",
       "lang": "bash",
-      "code": "sudo apt-key fingerprint 0EBFCD88pub   rsa4096 2017-02-22 [SCEA]      9DC8 5822 9FC7 DD38 854A  E2D8 8D81 803C 0EBF CD88uid           [ unknown] Docker Release (CE deb) <docker@docker.com>sub   rsa4096 2017-02-22 [S]"
+      "code": "sudo apt-key fingerprint 0EBFCD88pub   rsa4096 2017-02-22 [SCEA]      9DC8 5822 9FC7 DD38 854A  E2D8\n8D81 803C 0EBF CD88uid           [ unknown] Docker Release (CE deb) <docker@docker.com>sub   rsa4096\n2017-02-22 [S]"
     },
     {
       "type": "code",
       "lang": "bash",
-      "code": "sudo apt-get updatesudo apt-get install dockersudo apt-get install docker.io"
+      "code": "sudo\napt-get update\nsudo\napt-get install docker\nsudo\napt-get install docker.io"
     },
     {
       "type": "paragraph",
@@ -521,7 +521,7 @@
     {
       "type": "code",
       "lang": "bash",
-      "code": "sudo groupadd dockersudo gpasswd -a $USER dockernewgrp docker"
+      "code": "sudo groupadd docker\nsudo gpasswd -a $USER dockernewgrp docker"
     },
     {
       "type": "code",
@@ -531,7 +531,7 @@
     {
       "type": "code",
       "lang": "bash",
-      "code": "docker psCONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES"
+      "code": "docker psCONTAINER ID        IMAGE               COMMAND             CREATED             STATUS\nPORTS               NAMES"
     },
     {
       "type": "heading",
@@ -541,7 +541,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-compose-on-ubuntu-20-04"
+      "code": "https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-compose-on-ubuntu-20-\n04"
     },
     {
       "type": "heading",
@@ -583,17 +583,17 @@
     {
       "type": "code",
       "lang": "bash",
-      "code": "sudo apt install postgresqlsudo apt install pgadmin3"
+      "code": "sudo\napt install postgresql\nsudo\napt install pgadmin3"
     },
     {
       "type": "code",
       "lang": "bash",
-      "code": "sudo apt install postgresql postgresql-contrib"
+      "code": "sudo\napt install postgresql postgresql-contrib"
     },
     {
       "type": "code",
       "lang": "bash",
-      "code": "docker pull dpage/pgadmin4docker run -p 80:80 \\    -e 'PGADMIN_DEFAULT_EMAIL=user@domain.com' \\    -e 'PGADMIN_DEFAULT_PASSWORD=SuperSecret' \\    -d dpage/pgadmin4"
+      "code": "docker pull dpage/pgadmin4\ndocker run -p 80:80 \\\n  -e 'PGADMIN_DEFAULT_EMAIL=user@domain.com' \\\n  -e 'PGADMIN_DEFAULT_PASSWORD=SuperSecret' \\\n  -d dpage/pgadmin4"
     },
     {
       "type": "heading",
@@ -634,12 +634,12 @@
     {
       "type": "code",
       "lang": "bash",
-      "code": "sudo apt-get update"
+      "code": "sudo\napt-get update"
     },
     {
       "type": "code",
       "lang": "bash",
-      "code": "sudo apt-get install bingwallpaper"
+      "code": "sudo\napt-get install bingwallpaper"
     },
     {
       "type": "paragraph",
@@ -676,7 +676,7 @@
     {
       "type": "code",
       "lang": "bash",
-      "code": "sudo apt install network-manager-l2tpsudo add-apt-repository ppa:nm-l2tp/network-manager-l2tpsudo apt -y install network-manager-l2tpsudo apt-get install network-manager-l2tp-gnomesudo apt install --install-suggests network-manager-l2tp-gnome"
+      "code": "sudo\napt install network-manager-l2tp\nsudo add-apt-repository ppa:nm-l2tp/network-manager-l2tp\nsudo\napt -y install network-manager-l2tp\nsudo\napt-get install network-manager-l2tp-gnome\nsudo\napt install --install-suggests network-manager-l2tp-gnome"
     },
     {
       "type": "code",
@@ -700,7 +700,7 @@
     {
       "type": "code",
       "lang": "bash",
-      "code": "sudo apt install mongo-tools"
+      "code": "sudo\napt install mongo-tools"
     },
     {
       "type": "heading",
@@ -710,7 +710,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "https://go.dev/dl/https://go.dev/doc/install"
+      "code": "https://go.dev/dl/\nhttps://go.dev/doc/install"
     },
     {
       "type": "heading",
@@ -735,7 +735,7 @@
     {
       "type": "code",
       "lang": "bash",
-      "code": "sudo apt install redis-server"
+      "code": "sudo\napt install redis-server"
     },
     {
       "type": "code",
@@ -770,7 +770,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "https://linuxhint.com/install_mongodb_ubuntu_20_04/https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/"
+      "code": "https://linuxhint.com/install_mongodb_ubuntu_20_04/\nhttps://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/"
     },
     {
       "type": "heading",

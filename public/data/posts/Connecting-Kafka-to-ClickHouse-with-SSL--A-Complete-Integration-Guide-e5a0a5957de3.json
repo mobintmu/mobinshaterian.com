@@ -69,7 +69,7 @@
     {
       "type": "code",
       "lang": "bash",
-      "code": "sudo mkdir -p /etc/clickhouse-server/certssudo cp your-ca.pem /etc/clickhouse-server/certs/kafka-ca.pemsudo chown clickhouse:clickhouse /etc/clickhouse-server/certs/kafka-ca.pemsudo chmod 440 /etc/clickhouse-server/certs/kafka-ca.pem"
+      "code": "sudo\nmkdir -p /etc/clickhouse-server/certs\nsudo cp your-ca.pem /etc/clickhouse-server/certs/kafka-ca.pem\nsudo\nchown clickhouse:clickhouse /etc/clickhouse-server/certs/kafka-ca.pem\nsudo\nchmod 440 /etc/clickhouse-server/certs/kafka-ca.pem"
     },
     {
       "type": "heading",
@@ -86,8 +86,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "<clickhouse>    <kafka>        <ssl_ca_location>/etc/clickhouse-server/certs/kafka-ca.pem</ssl_ca_location>        <security_protocol>sasl_ssl</security_protocol>        <sasl_mechanism>scram-sha-512</sasl_mechanism>        <sasl_username>your_kafka_user</sasl_username>        <sasl_password>your_kafka_password</sasl_password>    </kafka></clickhouse>"
+      "lang": "xml",
+      "code": "<clickhouse>\n<kafka>\n<ssl_ca_location>/etc/clickhouse-server/certs/kafka-ca.pem</ssl_ca_location>\n<security_protocol>sasl_ssl</security_protocol>\n<sasl_mechanism>scram-sha-512</sasl_mechanism>\n<sasl_username>your_kafka_user</sasl_username>\n<sasl_password>your_kafka_password</sasl_password>\n</kafka>\n</clickhouse>"
     },
     {
       "type": "paragraph",
@@ -105,7 +105,7 @@
     {
       "type": "code",
       "lang": "bash",
-      "code": "sudo systemctl restart clickhouse-serveropenssl s_client -connect <broker-ip>:9093 -CAfile /etc/clickhouse-server/certs/kafka-ca.pem"
+      "code": "sudo systemctl restart clickhouse-serveropenssl s_client -connect <broker-ip>:9093 -CAfile\n/etc/clickhouse-server/certs/kafka-ca.pem"
     },
     {
       "type": "heading",
@@ -128,7 +128,7 @@
     {
       "type": "code",
       "lang": "sql",
-      "code": "CREATE TABLE events_destination (    event_id    UInt64,    event_name  String,    event_time  DateTime,    payload     String,    ingested_at DateTime DEFAULT now()) ENGINE = MergeTree()ORDER BY (event_time, event_id);"
+      "code": "CREATE TABLE events_destination (    event_id    UInt64,    event_name  String,    event_time\nDateTime,    payload     String,    ingested_at DateTime DEFAULT now()) ENGINE = MergeTree()\nORDER BY (event_time, event_id);"
     },
     {
       "type": "heading",
@@ -142,7 +142,7 @@
     {
       "type": "code",
       "lang": "sql",
-      "code": "CREATE TABLE kafka_queue_stream (    event_id    UInt64,    event_name  String,    event_time  DateTime,    payload     String) ENGINE = KafkaSETTINGS    kafka_broker_list = 'ip:9093,ip:9093',    kafka_topic_list = 'your_topic_name',    kafka_group_name = 'clickhouse_consumer_v1',    kafka_format = 'JSONEachRow',    kafka_num_consumers = 4, -- Matches Kafka partitions for parallel reading    kafka_skip_broken_messages = 1;"
+      "code": "CREATE TABLE kafka_queue_stream (    event_id    UInt64,    event_name  String,    event_time\nDateTime,    payload     String) ENGINE = KafkaSETTINGS    kafka_broker_list = 'ip:9093,ip:9093',\nkafka_topic_list = 'your_topic_name',    kafka_group_name = 'clickhouse_consumer_v1',\nkafka_format = 'JSONEachRow',    kafka_num_consumers = 4, -- Matches Kafka partitions for parallel\nreading    kafka_skip_broken_messages = 1;"
     },
     {
       "type": "heading",
@@ -156,7 +156,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "CREATE MATERIALIZED VIEW kafka_ingest_mv TO events_destination ASSELECT event_id, event_name, event_time, payloadFROM kafka_queue_stream;"
+      "code": "CREATE MATERIALIZED VIEW kafka_ingest_mv TO events_destination ASSELECT event_id, event_name,\nevent_time, payloadFROM kafka_queue_stream;"
     },
     {
       "type": "heading",

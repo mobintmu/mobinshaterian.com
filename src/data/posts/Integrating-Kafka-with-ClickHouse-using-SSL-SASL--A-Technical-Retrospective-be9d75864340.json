@@ -44,7 +44,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "-- This results in a DB::Exception: Unknown settingSETTINGS    kafka_security_protocol = 'SASL_SSL',    kafka_ssl_ca_cert = '/etc/ssl/certs/ca-cert.pem',    ..."
+      "code": "-- This results in a DB::Exception: Unknown settingSETTINGS    kafka_security_protocol = 'SASL_SSL',\nkafka_ssl_ca_cert = '/etc/ssl/certs/ca-cert.pem',    ..."
     },
     {
       "type": "paragraph",
@@ -123,8 +123,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "<clickhouse>    <kafka>        <ssl_ca_location>/etc/clickhouse-server/certs/kafka-ca.pem</ssl_ca_location>        <security_protocol>SASL_SSL</security_protocol>        <sasl_mechanism>SCRAM-SHA-512</sasl_mechanism>    </kafka></clickhouse>"
+      "lang": "xml",
+      "code": "<clickhouse>\n<kafka>\n<ssl_ca_location>/etc/clickhouse-server/certs/kafka-ca.pem</ssl_ca_location>\n<security_protocol>SASL_SSL</security_protocol>\n<sasl_mechanism>SCRAM-SHA-512</sasl_mechanism>\n</kafka>\n</clickhouse>"
     },
     {
       "type": "paragraph",
@@ -137,7 +137,7 @@
     {
       "type": "code",
       "lang": "sql",
-      "code": "CREATE TABLE kafka_raw (    timestamp  DateTime,    server     String,    metric     String,    value      Float64) ENGINE = KafkaSETTINGS    kafka_brokers = 'ip:9093',    kafka_topic_list = 'measurements-test-1',    kafka_group_name = 'clickhouse-consumer',    kafka_format = 'JSONEachRow',    kafka_num_consumers = 4; -- Adjusted for performance"
+      "code": "CREATE TABLE kafka_raw (    timestamp  DateTime,    server     String,    metric     String,\nvalue      Float64) ENGINE = KafkaSETTINGS    kafka_brokers = 'ip:9093',    kafka_topic_list =\n'measurements-test-1',    kafka_group_name = 'clickhouse-consumer',    kafka_format = 'JSONEachRow',\nkafka_num_consumers = 4; -- Adjusted for performance"
     },
     {
       "type": "paragraph",

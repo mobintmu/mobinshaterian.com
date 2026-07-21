@@ -39,12 +39,12 @@
     {
       "type": "code",
       "lang": "python",
-      "code": "from freshdesk.api import APIfrom dotenv import load_dotenvimport osload_dotenv()a = API(os.getenv('FRESHDESK_DOMAIN'), os.getenv('FRESHDESK_API_KEY') , version=2)ticket_number = 100ticket = a.tickets.get_ticket(ticket_number, \"requester\")ticket.requester"
+      "code": "from freshdesk.api\nimport API\nfrom dotenv\nimport load_dotenv\nimport osload_dotenv()a = API(os.getenv('FRESHDESK_DOMAIN'), os.getenv('FRESHDESK_API_KEY') ,\nversion=2)ticket_number = 100ticket = a.tickets.get_ticket(ticket_number,\n\"requester\")ticket.requester"
     },
     {
       "type": "code",
       "lang": "text",
-      "code": "{'id': 200003266492, 'name': 'Customer name ', 'email': 'test@gmail.com', 'mobile': None, 'phone': None}"
+      "code": "{'id': 200003266492, 'name': 'Customer name ', 'email': 'test@gmail.com', 'mobile': None, 'phone':\nNone}"
     },
     {
       "type": "paragraph",

@@ -667,7 +667,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "return Redirect::to(\"https://www.zarinpal.com/pg/StartPay/\" . $result['data'][\"authority\"]);"
+      "code": "return Redirect::to(\"\nhttps://www.zarinpal.com/pg/StartPay/\" . $result['data'][\"authority\"]);"
     },
     {
       "type": "code",
@@ -761,7 +761,7 @@
     {
       "type": "code",
       "lang": "php",
-      "code": "$Authority = $_GET['Authority'];$Status = $_GET['Status'];"
+      "code": "$Authority = $_GET['Authority'];\n$Status = $_GET['Status'];"
     },
     {
       "type": "code",
@@ -1099,7 +1099,7 @@
     {
       "type": "code",
       "lang": "php",
-      "code": "$message = \".خطا از سمت زرین پال. \" . \"عملیات با شکست روبه رو شد\" .$result['errors']['message'];"
+      "code": "$message = \".خطا از سمت زرین پال. \".\"عملیات با شکست روبه رو شد\".$result['errors']['message'];"
     },
     {
       "type": "code",
@@ -1214,17 +1214,17 @@
     {
       "type": "code",
       "lang": "php",
-      "code": "$message = \"پرداخت با موفقیت انجام شد. شد پیگیری\" .$result['data']['ref_id'] . \" \";"
+      "code": "$message = \"پرداخت با موفقیت انجام شد. شد پیگیری\".$result['data']['ref_id'].\"\n    \";"
     },
     {
       "type": "code",
       "lang": "php",
-      "code": "$message .= \"  -  \";"
+      "code": "$message.= \"  -  \";"
     },
     {
       "type": "code",
       "lang": "php",
-      "code": "$message .= $packageprice->hour . \" ساعت حساب کاربری شما شارژ شد\";"
+      "code": "$message.= $packageprice->hour.\" ساعت حساب کاربری شما شارژ شد\";"
     },
     {
       "type": "code",
@@ -1254,12 +1254,12 @@
     {
       "type": "code",
       "lang": "php",
-      "code": "$message = \"تراکنش شما در سیستم قبلا ثبت شده است و کد پیگیری :\" .$result['data']['ref_id'];"
+      "code": "$message = \"تراکنش شما در سیستم قبلا ثبت شده است و کد پیگیری :\".$result['data']['ref_id'];"
     },
     {
       "type": "code",
       "lang": "text",
-      "code": "return view('/customer/payment/paymentcallbakzarinpall')->with('message', $message)->with('error' , $error);"
+      "code": "return view('/customer/payment/paymentcallbakzarinpall')->with('message', $message)->with('error' ,\n$error);"
     },
     {
       "type": "code",

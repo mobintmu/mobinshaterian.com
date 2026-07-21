@@ -75,7 +75,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "internal/├── model/       → Data structures (e.g., Product)├── repository/  → Data access (DB, in-memory store)├── service/     → Business logic├── controller/  → HTTP handlers└── dto/         → Data Transfer Objects (for API responses)"
+      "code": "internal/├── model/       → Data structures (e.g., Product)├── repository/  → Data access (DB,\nin-memory store)├── service/     → Business logic├── controller/  → HTTP handlers└── dto/         →\nData Transfer Objects (for API responses)"
     },
     {
       "type": "paragraph",
@@ -101,7 +101,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "// ❌ In service/product.gotype Product struct {    ID    string    Name  string    Price float64}// ❌ In repository/product.gotype Product struct {    ID    string    Name  string    Price float64}"
+      "code": "// ❌ In service/product.gotype Product struct {    ID    string    Name  string    Price float64}//\n❌ In repository/product.gotype Product struct {    ID    string    Name  string    Price float64}"
     },
     {
       "type": "paragraph",
@@ -139,7 +139,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "package modeltype Product struct {    ID        string    `json:\"id\"`    Name      string    `json:\"name\"`    Price     float64   `json:\"price\"`    CostPrice float64   `json:\"-\"`  // Internal field    Inventory int       `json:\"-\"`  // Hidden by default    CreatedAt time.Time `json:\"created_at\"`}"
+      "code": "package modeltype Product struct {\n    ID string\n    `json:\"id\"`\n    Name string\n    `json:\"name\"`\n    Price float64 `json:\"price\"`\n    CostPrice float64 `json:\"-\"` // Internal field\n    Inventory int `json:\"-\"` // Hidden by default\n    CreatedAt time.Time `json:\"created_at\"`\n}"
     },
     {
       "type": "paragraph",
@@ -148,7 +148,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "import \"your-module/internal/model\"func (s *ProductService) GetProduct(id string) (model.Product, error) { ... }"
+      "code": "import \"your-module/internal/model\"func (s *ProductService) GetProduct(id string) (model.Product,\nerror) {\n    ...\n}"
     },
     {
       "type": "paragraph",
@@ -179,7 +179,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "package dtotype ClientProductResponse struct {    ID    string  `json:\"id\"`    Name  string  `json:\"name\"`    Price float64 `json:\"price\"`}type AdminProductResponse struct {    ID        string    `json:\"id\"`    Name      string    `json:\"name\"`    Price     float64   `json:\"price\"`    CostPrice float64   `json:\"cost_price\"`    Inventory int       `json:\"inventory\"`    CreatedAt time.Time `json:\"created_at\"`}"
+      "code": "package dtotype ClientProductResponse struct {\n    ID string `json:\"id\"`\n    Name string `json:\"name\"`\n    Price float64 `json:\"price\"`\n}\ntype AdminProductResponse struct {\n    ID string\n    `json:\"id\"`\n    Name string\n    `json:\"name\"`\n    Price float64 `json:\"price\"`\n    CostPrice float64 `json:\"cost_price\"`\n    Inventory int `json:\"inventory\"`\n    CreatedAt time.Time `json:\"created_at\"`\n}"
     },
     {
       "type": "paragraph",
@@ -188,7 +188,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "func ToClientProduct(p model.Product) ClientProductResponse { ... }func ToAdminProduct(p model.Product) AdminProductResponse { ... }"
+      "code": "func ToClientProduct(p model.Product) ClientProductResponse {\n    ...\n}\nfunc ToAdminProduct(p model.Product) AdminProductResponse {\n    ...\n}"
     },
     {
       "type": "paragraph",
@@ -215,7 +215,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "Database/In-Memory       ↓repository → Returns model.Product       ↓service    → Applies business rules       ↓controller → Converts to dto.AdminProductResponse or dto.ClientProductResponse       ↓HTTP Response (JSON)"
+      "code": "Database/In-Memory       ↓repository → Returns model.Product       ↓service    → Applies business\nrules       ↓controller → Converts to dto.AdminProductResponse or dto.ClientProductResponse\n↓HTTP Response (JSON)"
     },
     {
       "type": "paragraph",
@@ -276,7 +276,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "internal/product/├── model/│   └── product.go              → Full domain model├── dto/│   ├── client_product.go       → Public fields│   └── admin_product.go        → All fields├── controller/│   ├── client_controller.go    → Returns ClientProduct│   └── admin_controller.go     → Returns AdminProduct└── service/    └── product_service.go      → Business logic (used by both)"
+      "code": "internal/product/├── model/│   └── product.go              → Full domain model├── dto/│   ├──\nclient_product.go       → Public fields│   └── admin_product.go        → All fields├── controller/│\n├── client_controller.go    → Returns ClientProduct│   └── admin_controller.go     → Returns\nAdminProduct└── service/    └── product_service.go      → Business logic (used by both)"
     },
     {
       "type": "paragraph",

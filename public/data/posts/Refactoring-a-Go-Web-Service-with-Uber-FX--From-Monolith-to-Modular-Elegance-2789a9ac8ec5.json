@@ -64,7 +64,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "func main() {    fx.New(        fx.Provide(            config.NewConfig,            health.New,            server.NewGinEngine,            server.CreateHTTPServer,        ),        fx.Invoke(            server.RegisterRoutes,            server.StartHTTPServer,        ),    ).Run()}"
+      "code": "func main() {\n    fx.New(fx.Provide(config.NewConfig, health.New, server.NewGinEngine, server.CreateHTTPServer,),\n    fx.Invoke(server.RegisterRoutes, server.StartHTTPServer,),\n    ).Run()\n}"
     },
     {
       "type": "paragraph",
@@ -87,7 +87,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "fx.Provide(    config.NewConfig,       // returns *Config    server.NewGinEngine,    // returns *gin.Engine)"
+      "code": "fx.Provide(    config.NewConfig,       // returns *Config    server.NewGinEngine,    // returns\n*gin.Engine)"
     },
     {
       "type": "paragraph",
@@ -165,7 +165,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "func CreateHTTPServer(engine *gin.Engine, cfg *config.Config) *http.Server {    return &http.Server{        Addr:    fmt.Sprintf(\"%s:%d\", cfg.HTTPAddress, cfg.HTTPPort),        Handler: engine,    }}func StartHTTPServer(lc fx.Lifecycle, srv *http.Server) {    lc.Append(fx.Hook{        OnStart: func(ctx context.Context) error {            log.Printf(\"🚀 HTTP server starting on %s\", srv.Addr)            go func() {                if err := srv.ListenAndServe(); err != nil && err != http.ErrServerClosed {                    log.Fatalf(\"server error: %v\", err)                }            }()            return nil        },        OnStop: func(ctx context.Context) error {            log.Println(\"🛑 Shutting down HTTP server...\")            shutdownCtx, cancel := context.WithTimeout(ctx, 5*time.Second)            defer cancel()            return srv.Shutdown(shutdownCtx)        },    })}"
+      "code": "func CreateHTTPServer(engine *gin.Engine, cfg *config.Config) *http.Server {\n    return &http.Server{\n        Addr:\n        fmt.Sprintf(\"%s:%d\", cfg.HTTPAddress, cfg.HTTPPort), Handler: engine,\n    }\n}\nfunc StartHTTPServer(lc fx.Lifecycle, srv *http.Server) {\n    lc.Append(fx.Hook{\n        OnStart: func(ctx context.Context) error {\n            log.Printf(\"🚀 HTTP server starting on %s\", srv.Addr) go func() {\n                if err := srv.ListenAndServe();\n                err != nil && err != http.ErrServerClosed {\n                    log.Fatalf(\"server error: %v\", err)\n                }\n            }\n            () return nil\n        }, OnStop: func(ctx context.Context) error {\n            log.Println(\"🛑 Shutting down HTTP server...\") shutdownCtx, cancel :=\n            context.WithTimeout(ctx, 5*time.Second) defer cancel() return srv.Shutdown(shutdownCtx)\n        },\n    })\n}"
     },
     {
       "type": "heading",
@@ -179,7 +179,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "func RegisterRoutes(engine *gin.Engine, health *health.Health, cfg *config.Config) { log.Println(\"🚀 Registering routes...\") engine.GET(\"/health\", health.Handle) //  Set Swagger metadata dynamically docs.SwaggerInfo.Title = \"My API\" docs.SwaggerInfo.Version = \"1.0\" docs.SwaggerInfo.Description = \"This is a sample API with Gin and Swagger.\" docs.SwaggerInfo.Host = fmt.Sprintf(\"%s:%d\", cfg.HTTPAddress, cfg.HTTPPort) docs.SwaggerInfo.BasePath = \"/\" docs.SwaggerInfo.Schemes = []string{\"http\"} // or {\"https\"} in production engine.GET(\"/swagger/*any\", ginSwagger.WrapHandler(swaggerFiles.Handler))}"
+      "code": "func RegisterRoutes(engine *gin.Engine, health *health.Health, cfg *config.Config) {\n    log.Println(\"🚀 Registering routes...\") engine.GET(\"/health\", health.Handle) // Set Swagger\n    metadata dynamically docs.SwaggerInfo.Title = \"My API\" docs.SwaggerInfo.Version = \"1.0\"\n    docs.SwaggerInfo.Description = \"This is a sample API with Gin and Swagger.\"\n    docs.SwaggerInfo.Host = fmt.Sprintf(\"%s:%d\", cfg.HTTPAddress, cfg.HTTPPort)\n    docs.SwaggerInfo.BasePath = \"/\" docs.SwaggerInfo.Schemes = []string{\n        \"http\"\n    }\n    // or {\n        \"https\"\n    }\n    in production engine.GET(\"/swagger/*any\", ginSwagger.WrapHandler(swaggerFiles.Handler))\n}"
     },
     {
       "type": "heading",
@@ -192,8 +192,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "type Config struct {    HTTPAddress string    HTTPPort    int}func NewConfig() *Config {    return &Config{        HTTPAddress: \"127.0.0.1\",        HTTPPort:    4000,    }}"
+      "lang": "go",
+      "code": "type Config struct {\n    HTTPAddress string\n    HTTPPort int\n}\nfunc NewConfig() *Config {\n    return &Config{\n        HTTPAddress: \"127.0.0.1\", HTTPPort:\n        4000,\n    }\n}"
     },
     {
       "type": "paragraph",
@@ -219,7 +219,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "func StartHTTPServer() *fx.App { a := app.NewApp() go a.Run() time.Sleep(300 * time.Millisecond) // give server time to start return a}func WithTestServer(t *testing.T, testFunc func()) { a := StartHTTPServer() defer a.Stop(context.Background()) testFunc()}func TestHealthEndpoint(t *testing.T) { t.Parallel() WithTestServer(t, func() {  cfg, err := config.NewConfig()  if err != nil {   t.Fatalf(\"Failed to load config: %v\", err)  }  addr := fmt.Sprintf(\"http://%s:%d\", cfg.HTTPAddress, cfg.HTTPPort)  resp, err := http.Get(addr + \"/health\")  if err != nil {   t.Fatalf(\"Failed to send GET request: %v\", err)  }  defer resp.Body.Close()  if resp.StatusCode != http.StatusOK {   t.Errorf(\"Expected status 200 OK, got %d\", resp.StatusCode)  }  body, err := io.ReadAll(resp.Body)  if err != nil {   t.Fatalf(\"Failed to read response body: %v\", err)  }  // Parse JSON  var data map[string]string  err = json.Unmarshal(body, &data)  if err != nil {   t.Fatalf(\"Expected JSON response, got error: %v\", err)  }  // Validate the message  message, ok := data[\"message\"]  if !ok {   t.Fatalf(\"Missing 'message' field in response: %v\", data)  }  if message != \"OK\" {   t.Errorf(\"Expected message 'hello world', got '%s'\", message)  } })}"
+      "code": "func StartHTTPServer() *fx.App {\n    a := app.NewApp() go a.Run() time.Sleep(300 * time.Millisecond) // give server time to start\n    return a\n}\nfunc WithTestServer(t *testing.T, testFunc func()) {\n    a := StartHTTPServer() defer a.Stop(context.Background()) testFunc()\n}\nfunc TestHealthEndpoint(t *testing.T) {\n    t.Parallel() WithTestServer(t, func() {\n        cfg, err := config.NewConfig() if err != nil {\n            t.Fatalf(\"Failed to load config: %v\", err)\n        }\n        addr := fmt.Sprintf(\"http://%s:%d\", cfg.HTTPAddress, cfg.HTTPPort) resp, err :=\n        http.Get(addr + \"/health\") if err != nil {\n            t.Fatalf(\"Failed to send GET request: %v\", err)\n        }\n        defer resp.Body.Close() if resp.StatusCode != http.StatusOK {\n            t.Errorf(\"Expected status 200 OK, got %d\", resp.StatusCode)\n        }\n        body, err := io.ReadAll(resp.Body) if err != nil {\n            t.Fatalf(\"Failed to read response body: %v\", err)\n        }\n        // Parse JSON\n        var data map[string]string err = json.Unmarshal(body, &data) if err != nil {\n            t.Fatalf(\"Expected JSON response, got error: %v\", err)\n        }\n        // Validate the message message, ok := data[\"message\"] if !ok {\n            t.Fatalf(\"Missing 'message' field in response: %v\", data)\n        }\n        if message != \"OK\" {\n            t.Errorf(\"Expected message 'hello world', got '%s'\", message)\n        }\n    })\n}"
     },
     {
       "type": "heading",

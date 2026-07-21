@@ -87,8 +87,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "type Config struct {    // existing fields...    JWTSecret      string    JWTExpiryHours int}"
+      "lang": "go",
+      "code": "type Config struct {\n    // existing fields...\n    JWTSecret string\n    JWTExpiryHours int\n}"
     },
     {
       "type": "paragraph",
@@ -97,7 +97,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "v.SetDefault(\"JWT_SECRET\", \"your-secret-key\")v.SetDefault(\"JWT_EXPIRY_HOURS\", 72)cfg := &Config{    // existing fields...    JWTSecret:      v.GetString(\"JWT_SECRET\"),    JWTExpiryHours: v.GetInt(\"JWT_EXPIRY_HOURS\"),}"
+      "code": "v.SetDefault(\"JWT_SECRET\", \"your-secret-key\")v.SetDefault(\"JWT_EXPIRY_HOURS\", 72)cfg := &Config{\n// existing fields...    JWTSecret:      v.GetString(\"JWT_SECRET\"),    JWTExpiryHours:\nv.GetInt(\"JWT_EXPIRY_HOURS\"),}"
     },
     {
       "type": "heading",
@@ -111,7 +111,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "func GenerateToken(cfg *config.Config, adminID string) (string, error) {    claims := jwt.MapClaims{        \"admin_id\": adminID,        \"exp\":      time.Now().Add(time.Hour * time.Duration(cfg.JWTExpiryHours)).Unix(),    }    token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)    return token.SignedString([]byte(cfg.JWTSecret))}"
+      "code": "func GenerateToken(cfg *config.Config, adminID string) (string, error) {\n    claims := jwt.MapClaims{\n        \"admin_id\": adminID, \"exp\": time.Now().Add(time.Hour *\n        time.Duration(cfg.JWTExpiryHours)).Unix(),\n    }\n    token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)\n    return token.SignedString([]byte(cfg.JWTSecret))\n}"
     },
     {
       "type": "heading",
@@ -125,7 +125,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "func JWTAuth(cfg *config.Config) gin.HandlerFunc {    return func(c *gin.Context) {        authHeader := c.GetHeader(\"Authorization\")        if authHeader == \"\" || !strings.HasPrefix(authHeader, \"Bearer \") {            c.AbortWithStatusJSON(http.StatusUnauthorized, gin.H{\"error\": \"Missing or invalid token\"})            return        }        tokenStr := strings.TrimPrefix(authHeader, \"Bearer \")        token, err := jwt.Parse(tokenStr, func(token *jwt.Token) (interface{}, error) {            return []byte(cfg.JWTSecret), nil        })        if err != nil || !token.Valid {            c.AbortWithStatusJSON(http.StatusUnauthorized, gin.H{\"error\": \"Invalid token\"})            return        }        c.Next()    }}"
+      "code": "func JWTAuth(cfg *config.Config) gin.HandlerFunc {\n    return func(c *gin.Context) {\n        authHeader := c.GetHeader(\"Authorization\") if authHeader == \"\" ||\n        !strings.HasPrefix(authHeader, \"Bearer \") {\n            c.AbortWithStatusJSON(http.StatusUnauthorized, gin.H{\n                \"error\": \"Missing or invalid token\"\n            }) return\n        }\n        tokenStr := strings.TrimPrefix(authHeader, \"Bearer \") token, err := jwt.Parse(tokenStr,\n        func(token *jwt.Token) (interface{\n        }, error) {\n            return []byte(cfg.JWTSecret), nil\n        }) if err != nil || !token.Valid {\n            c.AbortWithStatusJSON(http.StatusUnauthorized, gin.H{\n                \"error\": \"Invalid token\"\n            }) return\n        }\n        c.Next()\n    }\n}"
     },
     {
       "type": "heading",
@@ -139,7 +139,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "func (c *AdminProduct) RegisterRoutes(rg *gin.RouterGroup, cfg *config.Config) {    auth := middleware.JWTAuth(cfg)    rg.POST(\"/\", auth, c.CreateProduct)    rg.PUT(\"/:id\", auth, c.UpdateProduct)    rg.DELETE(\"/:id\", auth, c.DeleteProduct)    rg.GET(\"/:id\", auth, c.GetProductByID)    rg.GET(\"/\", auth, c.ListProducts)}"
+      "code": "func (c *AdminProduct) RegisterRoutes(rg *gin.RouterGroup, cfg *config.Config) {\n    auth := middleware.JWTAuth(cfg)\n    rg.POST(\"/\", auth, c.CreateProduct)\n    rg.PUT(\"/:id\", auth, c.UpdateProduct)\n    rg.DELETE(\"/:id\", auth, c.DeleteProduct)\n    rg.GET(\"/:id\", auth, c.GetProductByID)\n    rg.GET(\"/\", auth, c.ListProducts)\n}"
     },
     {
       "type": "heading",
@@ -178,7 +178,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "req, _ := http.NewRequest(http.MethodGet, fmt.Sprintf(\"%s/%d\", addr, product.ID), nil)req.Header.Set(\"Authorization\", \"Bearer \"+token)"
+      "code": "req, _ := http.NewRequest(http.MethodGet, fmt.Sprintf(\"%s/%d\", addr, product.ID),\nnil)req.Header.Set(\"Authorization\", \"Bearer \"+token)"
     },
     {
       "type": "heading",
@@ -188,7 +188,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "req, _ := http.NewRequest(http.MethodPut, fmt.Sprintf(\"%s/%d\", addr, product.ID), body)req.Header.Set(\"Authorization\", \"Bearer \"+token)"
+      "code": "req, _ := http.NewRequest(http.MethodPut, fmt.Sprintf(\"%s/%d\", addr, product.ID),\nbody)req.Header.Set(\"Authorization\", \"Bearer \"+token)"
     },
     {
       "type": "heading",
@@ -198,7 +198,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "req, _ := http.NewRequest(http.MethodDelete, fmt.Sprintf(\"%s/%d\", addr, product.ID), nil)req.Header.Set(\"Authorization\", \"Bearer \"+token)"
+      "code": "req, _ := http.NewRequest(http.MethodDelete, fmt.Sprintf(\"%s/%d\", addr, product.ID),\nnil)req.Header.Set(\"Authorization\", \"Bearer \"+token)"
     },
     {
       "type": "heading",
@@ -208,7 +208,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "req, _ := http.NewRequest(http.MethodGet, fmt.Sprintf(\"%s/%d\", addr, product.ID), nil)req.Header.Set(\"Authorization\", \"Bearer \"+token)"
+      "code": "req, _ := http.NewRequest(http.MethodGet, fmt.Sprintf(\"%s/%d\", addr, product.ID),\nnil)req.Header.Set(\"Authorization\", \"Bearer \"+token)"
     },
     {
       "type": "heading",
@@ -258,7 +258,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "// @securityDefinitions.apikey BearerAuth// @in header// @name Authorization// @description Enter your JWT token in the format: Bearer <token>"
+      "code": "// @securityDefinitions.apikey BearerAuth// @in header// @name Authorization// @description Enter\nyour JWT token in the format: Bearer <token>"
     },
     {
       "type": "heading",
@@ -295,7 +295,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "// @Summary Create a new product// @Description Admin-only endpoint to create a product// @Tags Admin// @Accept json// @Produce json// @Param product body dto.AdminCreateProductRequest true \"Product info\"// @Success 201 {object} dto.ProductResponse// @Security BearerAuth// @Router /admin/products [post]"
+      "code": "// @Summary Create a new product// @Description Admin-only endpoint to create a product// @Tags\nAdmin// @Accept json// @Produce json// @Param product body dto.AdminCreateProductRequest true\n\"Product info\"// @Success 201 {object} dto.ProductResponse// @Security BearerAuth// @Router\n/admin/products [post]"
     },
     {
       "type": "paragraph",
@@ -313,7 +313,7 @@
     {
       "type": "code",
       "lang": "python",
-      "code": "import ginSwagger \"github.com/swaggo/gin-swagger\"import swaggerFiles \"github.com/swaggo/files\"r.GET(\"/swagger/*any\", ginSwagger.WrapHandler(swaggerFiles.Handler))"
+      "code": "import ginSwagger \"github.com/swaggo/gin-swagger\"\nimport swaggerFiles \"github.com/swaggo/files\"r.GET(\"/swagger/*any\",\nginSwagger.WrapHandler(swaggerFiles.Handler))"
     },
     {
       "type": "heading",

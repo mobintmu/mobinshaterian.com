@@ -531,7 +531,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "solidity",
       "code": "pragma solidity ^0.6.0;"
     },
     {
@@ -731,8 +731,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "// SPDX-License-Identifier: MITpragma solidity ^0.6.0;contract SimpleStorage {        // this will get initialized to 0!    uint256 favoriteNumber;    bool favoriteBool;        struct People {        uint256 favoriteNumber;        string name;    }        People[] public people;    mapping(string => uint256) public nameToFavoriteNumber;        function store(uint256 _favoriteNumber) public {        favoriteNumber = _favoriteNumber;    }        function retrieve() public view returns(uint256) {        return favoriteNumber;    }        function addPerson(string memory _name, uint256 _favoriteNumber) public{        people.push(People(_favoriteNumber, _name));        nameToFavoriteNumber[_name] = _favoriteNumber;    }        }"
+      "lang": "solidity",
+      "code": "// SPDX-License-Identifier: MITpragma solidity ^0.6.0;\ncontract SimpleStorage {\n  // this will get initialized to 0! uint256 favoriteNumber;\n  bool favoriteBool;\n  struct People {\n    uint256 favoriteNumber;\n    string name;\n  }\n  People[] public people;\n  mapping(string => uint256) public nameToFavoriteNumber;\n  function store(uint256 _favoriteNumber) public {\n    favoriteNumber = _favoriteNumber;\n  }\n  function retrieve() public view returns(uint256) {\n    return favoriteNumber;\n  }\n  function addPerson(string memory _name, uint256 _favoriteNumber) public{\n    people.push(People(_favoriteNumber, _name));\n    nameToFavoriteNumber[_name] = _favoriteNumber;\n  }\n}"
     },
     {
       "type": "paragraph",

@@ -63,12 +63,12 @@
     {
       "type": "code",
       "lang": "bash",
-      "code": "docker run --name sonarqube \\  -p 9000:9000 \\  sonarqube:latest"
+      "code": "docker run --name sonarqube \\\n  -p 9000:9000 \\\n  sonarqube:latest"
     },
     {
       "type": "code",
       "lang": "text",
-      "code": "Then access: http://localhost:9000Default login: admin / admin"
+      "code": "Then access:\nhttp://localhost:9000Default login: admin / admin"
     },
     {
       "type": "heading",
@@ -83,7 +83,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "# Update package listsudo apt update# Install OpenJDK 17 (recommended)sudo apt install openjdk-17-jdk -y# Verify Java installationjava -version"
+      "code": "# Update package listsudo apt update# Install OpenJDK 17 (recommended)sudo apt install\nopenjdk-17-jdk -y# Verify Java installationjava -version"
     },
     {
       "type": "heading",
@@ -93,7 +93,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "# Download SonarScanner (replace with latest version if needed)wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-5.0.1.3006-linux.zip# Create a directory for SonarScannersudo mkdir -p /opt/sonar-scanner# Unzip the downloaded filesudo unzip sonar-scanner-cli-5.0.1.3006-linux.zip -d /opt/sonar-scanner# Rename folder for easier referencesudo mv /opt/sonar-scanner/sonar-scanner-5.0.1.3006-linux /opt/sonar-scanner/sonar-scanner"
+      "code": "# Download SonarScanner (replace with latest version if needed)wget\nhttps://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-5.0.1.3006-linux.zip# Create a directory for SonarScannersudo mkdir -p /opt/sonar-scanner# Unzip the downloaded filesudo unzip sonar-scanner-cli-5.0.1.3006-linux.zip -d /opt/sonar-scanner# Rename folder for easier referencesudo mv /opt/sonar-scanner/sonar-scanner-5.0.1.3006-linux /opt/sonar-scanner/sonar-scanner"
     },
     {
       "type": "heading",
@@ -103,7 +103,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "echo 'export SONAR_SCANNER_HOME=/opt/sonar-scanner/sonar-scanner' | sudo tee -a /etc/profileecho 'export PATH=$SONAR_SCANNER_HOME/bin:$PATH' | sudo tee -a /etc/profile"
+      "code": "echo 'export SONAR_SCANNER_HOME=/opt/sonar-scanner/sonar-scanner' | sudo tee -a /etc/profileecho\n'export PATH=$SONAR_SCANNER_HOME/bin:$PATH' | sudo tee -a /etc/profile"
     },
     {
       "type": "heading",
@@ -122,7 +122,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "cho 'export SONAR_SCANNER_HOME=/opt/sonar-scanner/sonar-scanner' >> ~/.bashrcecho 'export PATH=$SONAR_SCANNER_HOME/bin:$PATH' >> ~/.bashrcsource ~/.bashrc"
+      "code": "cho 'export SONAR_SCANNER_HOME=/opt/sonar-scanner/sonar-scanner' >> ~/.bashrcecho\n'export PATH=$SONAR_SCANNER_HOME/bin:$PATH' >> ~/.bashrcsource ~/.bashrc"
     },
     {
       "type": "heading",
@@ -142,7 +142,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "# Required metadatasonar.projectKey=mobintmu_go-simplesonar.projectName=Go Simplesonar.projectVersion=1.0# Source code locationsonar.sources=.# Languagesonar.language=go# Encodingsonar.sourceEncoding=UTF-8# Exclude tests and vendor (optional)sonar.exclusions=**/vendor/**,**/*_test.go# Go-specific: Use golangci-lint to generate report for SonarQubesonar.go.coverage.reportPaths=coverage.outsonar.go.tests.reportPaths=test-report.xml"
+      "code": "# Required metadatasonar.projectKey=mobintmu_go-simplesonar.projectName=Go\nSimplesonar.projectVersion=1.0# Source code locationsonar.sources=.# Languagesonar.language=go#\nEncodingsonar.sourceEncoding=UTF-8# Exclude tests and vendor\n(optional)sonar.exclusions=**/vendor/**,**/*_test.go# Go-specific: Use golangci-lint to generate\nreport for\nSonarQubesonar.go.coverage.reportPaths=coverage.outsonar.go.tests.reportPaths=test-report.xml"
     },
     {
       "type": "heading",
@@ -151,12 +151,12 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "bash",
       "code": "go test -coverprofile=coverage.out ./..."
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "bash",
       "code": "go test ./... -json > report.json"
     },
     {
@@ -167,12 +167,12 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "sonar-scanner \\  -Dsonar.projectKey=my-go-project \\  -Dsonar.sources=. \\  -Dsonar.go.coverage.reportPaths=coverage.out \\  -Dsonar.host.url=http://localhost:9000 \\  -Dsonar.login=<your_token>"
+      "code": "sonar-scanner \\  -Dsonar.projectKey=my-go-project \\  -Dsonar.sources=. \\\n-Dsonar.go.coverage.reportPaths=coverage.out \\  -Dsonar.host.url=http://localhost:9000 \\\n-Dsonar.login=<your_token>"
     },
     {
       "type": "code",
       "lang": "text",
-      "code": "INFO: Start fetching files for the text and secrets analysisINFO: Using Git CLI to retrieve untracked filesINFO: Retrieving language associated files and files included via \"sonar.text.inclusions\" that are tracked by gitINFO: Starting the text and secrets analysisINFO: 9 source files to be analyzed for the text and secrets analysisINFO: 9/9 source files have been analyzed for the text and secrets analysisINFO: 2 files are ignored because they are untracked by gitINFO: Sensor TextAndSecretsSensor [text] (done) | time=281msINFO: ------------- Run sensors on projectINFO: Sensor Zero Coverage SensorINFO: Sensor Zero Coverage Sensor (done) | time=0msINFO: ------------- Gather SCA dependencies on projectINFO: Dependency analysis skippedINFO: CPD Executor Calculating CPD for 5 filesINFO: CPD Executor CPD calculation finished (done) | time=4msINFO: Analysis report generated in 38ms, dir size=261.2 kBINFO: Analysis report compressed in 12ms, zip size=39.6 kBINFO: Analysis report uploaded in 13msINFO: ANALYSIS SUCCESSFUL, you can find the results at: http://127.0.0.1:9000/dashboard?id=go-simpleINFO: Note that you will be able to access the updated dashboard once the server has processed the submitted analysis reportINFO: More about the report processing at http://127.0.0.1:9000/api/ce/task?id=696eINFO: Analysis total time: 1.950 sINFO: ------------------------------------------------------------------------INFO: EXECUTION SUCCESSINFO: ------------------------------------------------------------------------INFO: Total time: 2.619sINFO: Final Memory: 17M/80MINFO: ------------------------------------------------------------------------"
+      "code": "INFO: Start fetching files for the text and secrets analysisINFO: Using Git CLI to retrieve\nuntracked filesINFO: Retrieving language associated files and files included via\n\"sonar.text.inclusions\" that are tracked by gitINFO: Starting the text and secrets analysisINFO: 9\nsource files to be analyzed for the text and secrets analysisINFO: 9/9 source files have been\nanalyzed for the text and secrets analysisINFO: 2 files are ignored because they are untracked by\ngitINFO: Sensor TextAndSecretsSensor [text] (done) | time=281msINFO: ------------- Run sensors on\nprojectINFO: Sensor Zero Coverage SensorINFO: Sensor Zero Coverage Sensor (done) | time=0msINFO:\n------------- Gather SCA dependencies on projectINFO: Dependency analysis skippedINFO: CPD Executor\nCalculating CPD for 5 filesINFO: CPD Executor CPD calculation finished (done) | time=4msINFO:\nAnalysis report generated in 38ms, dir size=261.2 kBINFO: Analysis report compressed in 12ms, zip\nsize=39.6 kBINFO: Analysis report uploaded in 13msINFO: ANALYSIS SUCCESSFUL, you can find the\nresults at: http://127.0.0.1:9000/dashboard?id=go-simpleINFO: Note that you will be able to access\nthe updated dashboard once the server has processed the submitted analysis reportINFO: More about\nthe report processing at http://127.0.0.1:9000/api/ce/task?id=696eINFO: Analysis total time: 1.950\nsINFO: ------------------------------------------------------------------------INFO: EXECUTION\nSUCCESSINFO: ------------------------------------------------------------------------INFO: Total\ntime: 2.619sINFO: Final Memory: 17M/80MINFO:\n------------------------------------------------------------------------"
     },
     {
       "type": "embed",
@@ -222,7 +222,7 @@
     {
       "type": "code",
       "lang": "bash",
-      "code": "docker run --name sonarqube \\  -p 9000:9000 \\  sonarqube:latestgo test -coverprofile=coverage.out ./...go test ./... -json > report.json```sonar-scanner \\  -Dsonar.projectKey=go-simple \\  -Dsonar.sources=. \\  -Dsonar.host.url=http://127.0.0.1:9000 \\  -Dsonar.token=sqp_XXXXXXX```export SONAR_HOST_URL=http://127.0.0.1:9000export SONAR_TOKEN=sqp_XXXXXX"
+      "code": "docker run --name sonarqube \\\n  -p 9000:9000 \\\n  sonarqube:latest\ngo test -coverprofile=coverage.out ./...\ngo test ./... -json > report.json```sonar-scanner \\\n  -Dsonar.projectKey=go-simple \\\n  -Dsonar.sources=. \\\n  -Dsonar.host.url=http://127.0.0.1:9000 \\\n  -Dsonar.token=sqp_XXXXXXX```export SONAR_HOST_URL=http://127.0.0.1:9000export SONAR_TOKEN=sqp_XXXXXX"
     },
     {
       "type": "image",
@@ -297,8 +297,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "services:  redis:    image: redis:alpine    ports:      - \"6379:6379\"    volumes:      - redis-data:/data    restart: unless-stopped  postgres:    image: postgres:latest    environment:      - POSTGRES_USER=user      - POSTGRES_PASSWORD=pass      - POSTGRES_DB=database    volumes:      - postgres-data:/var/lib/postgresql/data    ports:      - \"5432:5432\"    restart: unless-stopped  sonar:    image: sonarqube:latest      ports:      - \"9000:9000\"    volumes:      - sonar-data:/opt/sonarqube/data      - sonar-extensions:/opt/sonarqube/extensions      - sonar-logs:/opt/sonarqube/logs    restart: unless-stopped    deploy:      resources:        limits:          memory: 2g        reservations:          memory: 2gvolumes:  redis-data:  postgres-data:  sonar-data:  sonar-logs:  sonar-extensions:"
+      "lang": "yaml",
+      "code": "services:\n  redis:\n    image: redis:alpine\n    ports:\n      - \"6379:6379\"\n    volumes:\n      - redis-data:/data\n    restart: unless-stopped\n  postgres:\n    image: postgres:latest\n    environment:\n      - POSTGRES_USER=user\n      - POSTGRES_PASSWORD=pass\n      - POSTGRES_DB=database\n    volumes:\n      - postgres-data:/var/lib/postgresql/data\n    ports:\n      - \"5432:5432\"\n    restart: unless-stopped\n  sonar:\n    image: sonarqube:latest\n      ports:\n      - \"9000:9000\"\n    volumes:\n      - sonar-data:/opt/sonarqube/data\n      - sonar-extensions:/opt/sonarqube/extensions\n      - sonar-logs:/opt/sonarqube/logs\n    restart: unless-stopped\n    deploy:\n      resources:\n        limits:\n          memory: 2g\n        reservations:\n          memory: 2gvolumes:\n  redis-data:\n  postgres-data:\n  sonar-data:\n  sonar-logs:\n  sonar-extensions:"
     }
   ]
 }

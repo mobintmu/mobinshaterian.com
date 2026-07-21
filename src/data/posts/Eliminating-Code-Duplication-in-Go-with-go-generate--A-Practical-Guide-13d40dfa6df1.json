@@ -117,8 +117,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "type FilterSetter interface {    SetStringField(name string, value *string)    SetIntField(name string, value *int)}"
+      "lang": "go",
+      "code": "type FilterSetter interface {\n    SetStringField(name string, value *string)\n    SetIntField(name string, value *int)\n}"
     },
     {
       "type": "paragraph",
@@ -194,8 +194,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "type FieldMapping struct {    FilterName    string  // Name in the filter input    SqlcFieldOut  string  // Name in SQL parameter struct    FieldType     string  // \"string\", \"int64\", \"float64\", \"time\"    MinField      string  // For range queries    MaxField      string  // For range queries}type ModelFieldMapping struct {    DBField      string  // Name in database record    ModelField   string  // Name in API response model    FieldType    string    ConvertFunc  string  // Conversion function to apply}"
+      "lang": "go",
+      "code": "type FieldMapping struct {\n    FilterName\n    string // Name in the filter input\n    SqlcFieldOut string // Name in SQL parameter struct\n    FieldType string // \"string\", \"int64\", \"float64\", \"time\"\n    MinField string // For range queries\n    MaxField string // For range queries\n}\ntype ModelFieldMapping struct {\n    DBField string // Name in database record\n    ModelField string // Name in API response model\n    FieldType\n    string\n    ConvertFunc string // Conversion\n    function to apply\n}"
     },
     {
       "type": "heading",
@@ -208,8 +208,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "var fields = []FieldMapping{    {FilterName: \"Name\", SqlcFieldOut: \"Name\", FieldType: \"string\"},    {FilterName: \"CreatedAt\", SqlcFieldOut: \"StartCreatedAt\",      FieldType: \"time\", MaxField: \"EndCreatedAt\"},    // ... etc}var modelFields = []ModelFieldMapping{    {DBField: \"Name\", ModelField: \"Name\", ConvertFunc: \"utils.NullStringToPointer\"},    {DBField: \"CreatedAt\", ModelField: \"CreatedAt\", ConvertFunc: \"utils.NullTimeToTime\"},    // ... etc}"
+      "lang": "go",
+      "code": "var fields = []FieldMapping{\n    {\n        FilterName: \"Name\", SqlcFieldOut: \"Name\", FieldType: \"string\"\n    },\n    {\n        FilterName: \"CreatedAt\", SqlcFieldOut: \"StartCreatedAt\", FieldType: \"time\", MaxField:\n        \"EndCreatedAt\"\n    },\n    //...etc\n}\nvar modelFields = []ModelFieldMapping{\n    {\n        DBField: \"Name\", ModelField: \"Name\", ConvertFunc: \"utils.NullStringToPointer\"\n    },\n    {\n        DBField: \"CreatedAt\", ModelField: \"CreatedAt\", ConvertFunc: \"utils.NullTimeToTime\"\n    },\n    //...etc\n}"
     },
     {
       "type": "paragraph",
@@ -227,7 +227,7 @@
     {
       "type": "code",
       "lang": "javascript",
-      "code": "const template = `// Code generated; DO NOT EDIT.package servicefunc (s *Service) GraphqlFilterToListParams(filter *model.Filter) sqlc.ListParams {    params := sqlc.ListParams{}        if filter != nil {{{- range .FilterFields}}{{- if eq .FieldType \"string\"}}        params.{{.SqlcFieldOut}} = utils.ToNullString(filter.{{.FilterName}}){{- else if eq .FieldType \"time\"}}        params.{{.SqlcFieldOut}} = utils.ToNullTime(filter.{{.FilterName}})        params.{{.MaxField}} = utils.ToNullTime(filter.{{.MaxField}}){{- end}}{{- end}}    }    return params}`"
+      "code": "const template =\n`// Code generated; DO NOT EDIT.package servicefunc (s *Service) GraphqlFilterToListParams(filter *model.Filter) sqlc.ListParams {    params := sqlc.ListParams{}        if filter != nil {{{- range .FilterFields}}{{- if eq .FieldType \"string\"}}        params.{{.SqlcFieldOut}} = utils.ToNullString(filter.{{.FilterName}}){{- else if eq .FieldType \"time\"}}        params.{{.SqlcFieldOut}} = utils.ToNullTime(filter.{{.FilterName}})        params.{{.MaxField}} = utils.ToNullTime(filter.{{.MaxField}}){{- end}}{{- end}}    }    return params}`"
     },
     {
       "type": "heading",
@@ -241,7 +241,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "package service//go:generate go run ../../../cmd/gen/generator.go"
+      "code": "package service//go:generate go run../../../cmd/gen/generator.go"
     },
     {
       "type": "paragraph",
@@ -269,7 +269,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "Service.go├── graphqlFilterToListProductParams()     [200 lines]├── graphqlFilterToCountProductParams()    [195 lines - 95% duplicate]└── dbGsmToGraphQLProduct()                [150 lines]"
+      "code": "Service.go├── graphqlFilterToListProductParams()     [200 lines]├──\ngraphqlFilterToCountProductParams()    [195 lines - 95% duplicate]└── dbGsmToGraphQLProduct()\n[150 lines]"
     },
     {
       "type": "paragraph",
@@ -283,7 +283,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "Generator└── fields = []FieldMapping{...}     [1 definition]└── modelFields = []ModelFieldMapping{...}Generated:└── filter_mapper.gen.go              [auto-generated from single source]    ├── GraphqlFilterToListProductParams()    ├── GraphqlFilterToCountProductParams()    └── dbGsmToGraphQLProduct()"
+      "code": "Generator└── fields = []FieldMapping{...}     [1 definition]└── modelFields =\n[]ModelFieldMapping{...}Generated:└── filter_mapper.gen.go              [auto-generated from single\nsource]    ├── GraphqlFilterToListProductParams()    ├── GraphqlFilterToCountProductParams()    └──\ndbGsmToGraphQLProduct()"
     },
     {
       "type": "paragraph",
@@ -354,7 +354,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "// Generated code - no reflection, pure assignmentfunc (s *Service) dbToGraphQL(db *sqlc.Record) *model.Record {    return &model.Record{        Field1: utils.NullStringToPointer(db.Field1),        Field2: utils.NullTimeToTime(db.Field2),        // ... etc    }}"
+      "code": "// Generated code - no reflection, pure assignmentfunc (s *Service) dbToGraphQL(db *sqlc.Record)\n*model.Record {    return &model.Record{        Field1: utils.NullStringToPointer(db.Field1),\nField2: utils.NullTimeToTime(db.Field2),        // ... etc    }}"
     },
     {
       "type": "paragraph",
@@ -426,8 +426,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "var fields = []FieldMapping{    // Database uses snake_case, GraphQL uses camelCase    {FilterName: \"StatusCode\", SqlcFieldOut: \"status_code\", ...},}"
+      "lang": "go",
+      "code": "var fields = []FieldMapping{\n    // Database uses snake_case, GraphQL uses camelCase\n    {\n        FilterName: \"StatusCode\", SqlcFieldOut: \"status_code\",...\n    },\n}"
     },
     {
       "type": "heading",

@@ -4,6 +4,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import * as cheerio from "cheerio";
+import { detectCodeLanguage } from "./code-language.mjs";
 
 const POSTS_DIR = process.argv[2] || "/tmp/medium/posts";
 const OUT_POSTS = "src/data/posts";
@@ -97,21 +98,6 @@ function preformattedText($, el) {
     .replace(/^\n+|\n+$/g, "");
 }
 
-function detectLang(code) {
-  const c = code.toLowerCase();
-  if (/^\s*(package |func |import \(|import ")/m.test(code)) return "go";
-  if (/^\s*(#include|std::|int main\()/m.test(code)) return "cpp";
-  if (/^\s*(def |import |from .+ import|print\()/m.test(code)) return "python";
-  if (/^\s*(<\?php|\$[a-z_])/i.test(code)) return "php";
-  if (/^\s*(SELECT |INSERT |UPDATE |CREATE TABLE)/i.test(code)) return "sql";
-  if (/^\s*(FROM |RUN |COPY |CMD )/m.test(code)) return "dockerfile";
-  if (/^\s*(const |let |function |import .+ from|export )/m.test(code)) return "javascript";
-  if (/^\s*(export |apt |sudo |cd |ls |curl |docker |npm |yarn |bun )/m.test(code)) return "bash";
-  if (/^\s*\{[\s\S]*"[a-z_]+"\s*:/i.test(code)) return "json";
-  if (/^\s*(apiVersion:|kind:)/m.test(code)) return "yaml";
-  return "text";
-}
-
 async function parseFile(filename) {
   const html = fs.readFileSync(path.join(POSTS_DIR, filename), "utf8");
   const $ = cheerio.load(html);
@@ -156,7 +142,7 @@ async function parseFile(filename) {
       plain.push(text);
     } else if (tag === "pre") {
       const code = preformattedText($, node);
-      blocks.push({ type: "code", lang: detectLang(code), code });
+      blocks.push({ type: "code", lang: detectCodeLanguage(code), code });
       plain.push(code);
     } else if (tag === "blockquote") {
       const text = $(node).text().trim();

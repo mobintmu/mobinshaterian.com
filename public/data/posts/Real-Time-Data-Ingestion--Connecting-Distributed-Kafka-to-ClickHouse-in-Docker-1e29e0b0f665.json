@@ -83,8 +83,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "services:  clickhouse:    image: clickhouse/clickhouse-server:24.8    container_name: clickhouse    ports:      - \"9000:9000\"  # Native protocol      - \"8123:8123\"  # HTTP protocol    environment:      - CLICKHOUSE_DB=default      - CLICKHOUSE_USER=default      - CLICKHOUSE_PASSWORD=pass      - CLICKHOUSE_DEFAULT_ACCESS_MANAGEMENT=1    volumes:      - ./ch_data:/var/lib/clickhouse    networks:      - analytics_net    ulimits:      nofile:        soft: 262144        hard: 262144networks:  analytics_net:    driver: bridge"
+      "lang": "yaml",
+      "code": "services:\n  clickhouse:\n    image: clickhouse/clickhouse-server:24.8\n    container_name: clickhouse\n    ports:\n      - \"9000:9000\"\n  # Native protocol\n      - \"8123:8123\"\n  # HTTP protocol\n    environment:\n      - CLICKHOUSE_DB=default\n      - CLICKHOUSE_USER=default\n      - CLICKHOUSE_PASSWORD=pass\n      - CLICKHOUSE_DEFAULT_ACCESS_MANAGEMENT=1\n    volumes:\n      - ./ch_data:/var/lib/clickhouse\n    networks:\n      - analytics_net\n    ulimits:\n      nofile:\n        soft: 262144\n        hard: 262144networks:\n  analytics_net:\n    driver: bridge"
     },
     {
       "type": "heading",
@@ -102,7 +102,7 @@
     {
       "type": "code",
       "lang": "sql",
-      "code": "CREATE TABLE events_destination (    event_id UInt64,    event_name String,    event_time DateTime,    payload String,    ingested_at DateTime DEFAULT now()) ENGINE = MergeTree()ORDER BY (event_time, event_id);"
+      "code": "CREATE TABLE events_destination (    event_id UInt64,    event_name String,    event_time DateTime,\npayload String,    ingested_at DateTime DEFAULT now()) ENGINE = MergeTree()\nORDER BY (event_time, event_id);"
     },
     {
       "type": "paragraph",
@@ -115,7 +115,7 @@
     {
       "type": "code",
       "lang": "sql",
-      "code": "CREATE TABLE kafka_queue_stream (    event_id UInt64,    event_name String,    event_time DateTime,    payload String) ENGINE = KafkaSETTINGS     kafka_broker_list = '1.1.1.1:9092,1.1.1.2:9092',    kafka_topic_list = 'your_topic_name',    kafka_group_name = 'clickhouse_consumer_v1',    kafka_format = 'JSONEachRow',    kafka_skip_broken_messages = 1;"
+      "code": "CREATE TABLE kafka_queue_stream (    event_id UInt64,    event_name String,    event_time DateTime,\npayload String) ENGINE = KafkaSETTINGS     kafka_broker_list = '1.1.1.1:9092,1.1.1.2:9092',\nkafka_topic_list = 'your_topic_name',    kafka_group_name = 'clickhouse_consumer_v1',\nkafka_format = 'JSONEachRow',    kafka_skip_broken_messages = 1;"
     },
     {
       "type": "paragraph",
@@ -128,7 +128,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "CREATE MATERIALIZED VIEW kafka_ingest_mv TO events_destination ASSELECT     event_id,     event_name,     event_time,     payloadFROM kafka_queue_stream;"
+      "code": "CREATE MATERIALIZED VIEW kafka_ingest_mv TO events_destination ASSELECT     event_id,\nevent_name,     event_time,     payloadFROM kafka_queue_stream;"
     },
     {
       "type": "heading",
@@ -147,7 +147,7 @@
     {
       "type": "code",
       "lang": "bash",
-      "code": "docker exec -it clickhouse curl -v 1.1.1.1:9092"
+      "code": "docker exec -it clickhouse\ncurl -v 1.1.1.1:9092"
     },
     {
       "type": "heading",

@@ -35,7 +35,7 @@
     {
       "type": "code",
       "lang": "json",
-      "code": "{  \"galleries\": [    { \"id\": 1, \"media\": \"/path/1.jpg\"},    { \"id\": 2, \"media\": \"/path/2.jpg\"}  ]}"
+      "code": "{\n  \"galleries\": [\n    {\n      \"id\": 1,\n      \"media\": \"/path/1.jpg\"\n    },\n    {\n      \"id\": 2,\n      \"media\": \"/path/2.jpg\"\n    }\n  ]\n}"
     },
     {
       "type": "heading",
@@ -45,7 +45,7 @@
     {
       "type": "code",
       "lang": "json",
-      "code": "{  \"galleries\": {    \"type-one\": [      { \"id\": 1, \"media\": \"/path/en1.jpg\"}    ],    \"type-two\": [      { \"id\": 2, \"media\": \"/path/fa1.jpg\"}    ]  }}"
+      "code": "{\n  \"galleries\": {\n    \"type-one\": [\n      {\n        \"id\": 1,\n        \"media\": \"/path/en1.jpg\"\n      }\n    ],\n    \"type-two\": [\n      {\n        \"id\": 2,\n        \"media\": \"/path/fa1.jpg\"\n      }\n    ]\n  }\n}"
     },
     {
       "type": "paragraph",
@@ -53,18 +53,18 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "type MyData struct {    Galleries []GalleryItem `json:\"galleries\"` // works only for flat arrays}"
+      "lang": "go",
+      "code": "type MyData struct {\n    Galleries []GalleryItem `json:\"galleries\"` // works only for flat arrays\n}"
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "type MyData struct {    Galleries Galleries `json:\"galleries\"` // works only for object form}"
+      "lang": "go",
+      "code": "type MyData struct {\n    Galleries Galleries `json:\"galleries\"` // works only for object form\n}"
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "type Galleries struct {    Flat []GalleryItem              // when galleries is a flat array}"
+      "lang": "go",
+      "code": "type Galleries struct {\n    Flat []GalleryItem // when galleries is a flat array\n}"
     },
     {
       "type": "heading",
@@ -77,8 +77,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "type MyData struct {    Galleries interface{} `json:\"galleries\"`}"
+      "lang": "go",
+      "code": "type MyData struct {\n    Galleries interface{\n    }\n    `json:\"galleries\"`\n}"
     },
     {
       "type": "paragraph",
@@ -99,8 +99,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "type MyData struct {    Galleries Galleries `json:\"galleries\"`}type Galleries struct {    Flat []GalleryItem              // when galleries is a flat array    Map  map[string][]GalleryItem   // when galleries is an object with arbitrary keys}type GalleryItem struct {    ID    int    `json:\"id\"`    Media string `json:\"media\"`}func (hg *MyData) UnmarshalJSON(data []byte) error {    // Try flat slice    var flat []GalleryItem    if err := json.Unmarshal(data, &flat); err == nil {        hg.Flat = flat        return nil    }    // Try map[string][]GalleryItem    var multi map[string][]GalleryItem    if err := json.Unmarshal(data, &multi); err == nil {        hg.Map = multi        return nil    }    return fmt.Errorf(\"invalid galleries format\")}"
+      "lang": "go",
+      "code": "type MyData struct {\n    Galleries Galleries `json:\"galleries\"`\n}\ntype Galleries struct {\n    Flat []GalleryItem // when galleries is a flat array\n    Map map[string][]GalleryItem // when galleries is an object with arbitrary keys\n}\ntype GalleryItem struct {\n    ID int\n    `json:\"id\"`\n    Media string `json:\"media\"`\n}\nfunc (hg *MyData) UnmarshalJSON(data []byte) error {\n    // Try flat slice\n    var flat []GalleryItem\n    if err := json.Unmarshal(data, &flat);\n    err == nil {\n        hg.Flat = flat return nil\n    }\n    // Try map[string][]GalleryItem\n    var multi map[string][]GalleryItem\n    if err := json.Unmarshal(data, &multi);\n    err == nil {\n        hg.Map = multi return nil\n    }\n    return fmt.Errorf(\"invalid galleries format\")\n}"
     },
     {
       "type": "embed",
@@ -115,7 +115,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "import (    \"encoding/json\"    \"testing\")func TestMyData_FlatGalleries(t *testing.T) {    jsonData := `{      \"galleries\": [        { \"id\": 1, \"media\": \"/path/1.jpg\"},        { \"id\": 2, \"media\": \"/path/2.jpg\"}      ]    }`    var data MyData    if err := json.Unmarshal([]byte(jsonData), &data); err != nil {        t.Fatalf(\"unexpected error: %v\", err)    }    if len(data.Galleries.Flat) != 2 {        t.Errorf(\"expected 2 flat galleries, got %d\", len(data.Galleries.Flat))    }    if data.Galleries.Map != nil {        t.Errorf(\"expected Map to be nil, got %+v\", data.Galleries.Map)    }}func TestMyData_MapGalleries(t *testing.T) {    jsonData := `{      \"galleries\": {        \"type-one\": [          { \"id\": 1, \"media\": \"/path/en1.jpg\"}        ],        \"type-two\": [          { \"id\": 2, \"media\": \"/path/fa1.jpg\"}        ]      }    }`    var data MyData    if err := json.Unmarshal([]byte(jsonData), &data); err != nil {        t.Fatalf(\"unexpected error: %v\", err)    }    if data.Galleries.Flat != nil {        t.Errorf(\"expected Flat to be nil, got %+v\", data.Galleries.Flat)    }    if len(data.Galleries.Map) != 2 {        t.Errorf(\"expected 2 keys in Map, got %d\", len(data.Galleries.Map))    }    if data.Galleries.Map[\"type-one\"][0].Media != \"/path/en1.jpg\" {        t.Errorf(\"unexpected type-one media: %+v\", data.Galleries.Map[\"type-one\"])    }    if data.Galleries.Map[\"type-two\"][0].Media != \"/path/fa1.jpg\" {        t.Errorf(\"unexpected type-two media: %+v\", data.Galleries.Map[\"type-two\"])    }}"
+      "code": "import (\n\"encoding/json\"\n\"testing\"\n)\nfunc TestMyData_FlatGalleries(t *testing.T) {\n    jsonData :=\n    `{      \"galleries\": [        { \"id\": 1, \"media\": \"/path/1.jpg\"},        { \"id\": 2, \"media\": \"/path/2.jpg\"}      ]    }`\n    var data MyData\n    if err := json.Unmarshal([]byte(jsonData), &data);\n    err != nil {\n        t.Fatalf(\"unexpected error: %v\", err)\n    }\n    if len(data.Galleries.Flat) != 2 {\n        t.Errorf(\"expected 2 flat galleries, got %d\", len(data.Galleries.Flat))\n    }\n    if data.Galleries.Map != nil {\n        t.Errorf(\"expected Map to be nil, got %+v\", data.Galleries.Map)\n    }\n}\nfunc TestMyData_MapGalleries(t *testing.T) {\n    jsonData :=\n    `{      \"galleries\": {        \"type-one\": [          { \"id\": 1, \"media\": \"/path/en1.jpg\"}        ],        \"type-two\": [          { \"id\": 2, \"media\": \"/path/fa1.jpg\"}        ]      }    }`\n    var data MyData\n    if err := json.Unmarshal([]byte(jsonData), &data);\n    err != nil {\n        t.Fatalf(\"unexpected error: %v\", err)\n    }\n    if data.Galleries.Flat != nil {\n        t.Errorf(\"expected Flat to be nil, got %+v\", data.Galleries.Flat)\n    }\n    if len(data.Galleries.Map) != 2 {\n        t.Errorf(\"expected 2 keys in Map, got %d\", len(data.Galleries.Map))\n    }\n    if data.Galleries.Map[\"type-one\"][0].Media != \"/path/en1.jpg\" {\n        t.Errorf(\"unexpected type-one media: %+v\", data.Galleries.Map[\"type-one\"])\n    }\n    if data.Galleries.Map[\"type-two\"][0].Media != \"/path/fa1.jpg\" {\n        t.Errorf(\"unexpected type-two media: %+v\", data.Galleries.Map[\"type-two\"])\n    }\n}"
     },
     {
       "type": "heading",

@@ -46,7 +46,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "Post \"https://host/engine/\": dial tcp: host: no such host{\"time\":\"2021-03-15T05:34:26.350582953Z\",\"level\":\"ERROR\",\"prefix\":\"-\",\"line\":\"288\",\"message\":\"Engine Error  Result : Post \\\"https://host/engine/\\\": dial tcp: host: no such host\"}"
+      "code": "Post \"https://host/engine/\": dial tcp: host: no such\nhost{\"time\":\"2021-03-15T05:34:26.350582953Z\",\"level\":\"ERROR\",\"prefix\":\"-\",\"line\":\"288\",\"message\":\"Engine Error  Result : Post \\\"https://host/engine/\\\": dial tcp: host: no such host\"}"
     },
     {
       "type": "heading",
@@ -111,7 +111,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "$ redis-benchmark -t set,lpush -n 100000 -qSET: 74239.05 requests per secondLPUSH: 79239.30 requests per second"
+      "code": "$ redis-benchmark -t set,lpush -n 100000 -qSET: 74239.05 requests per secondLPUSH: 79239.30 requests\nper second"
     },
     {
       "type": "image",

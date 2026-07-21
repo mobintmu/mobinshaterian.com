@@ -74,7 +74,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "bash",
       "code": "go install github.com/swaggo/swag/cmd/swag@latestswag init"
     },
     {
@@ -84,8 +84,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "// @title   title// @version  2.0// @description This is a sample server corepass server.// @termsOfService http://swagger.io/terms/// @contact.name API Support// @contact.url http://www.swagger.io/support// @contact.email support@swagger.io// @license.name Apache 2.0// @license.url http://www.apache.org/licenses/LICENSE-2.0.html//  @query.collection.format multi// @securityDefinitions.basic  BasicAuth// @externalDocs.description  OpenAPI// @externalDocs.url          https://swagger.io/resources/open-api/func InitialSwagger() { // programmatically set swagger info // docs.SwaggerInfo.Host = config.ServerHttpAddress() docs.SwaggerInfo.Schemes = []string{\"https\", \"http\"} r := mux.NewRouter() r.PathPrefix(\"/swagger/\").Handler(httpSwagger.Handler(  httpSwagger.URL(\"/swagger/doc.json\"), //The url pointing to API definition  httpSwagger.DeepLinking(true),  httpSwagger.DocExpansion(\"none\"),  httpSwagger.DomID(\"swagger-ui\"), )).Methods(http.MethodGet) go http.ListenAndServe(config.SwaggerUrl(), r) logger.Info(\"Swagger Server Server : \", config.SwaggerUrl())}"
+      "lang": "go",
+      "code": "//\n@title title//\n@version 2.0//\n@description This is a sample server corepass server.//\n@termsOfService http://swagger.io/terms///\n@contact.name API Support//\n@contact.url http://www.swagger.io/support//\n@contact.email support@swagger.io//\n@license.name Apache 2.0//\n@license.url http://www.apache.org/licenses/LICENSE-2.0.html//\n@query.collection.format multi//\n@securityDefinitions.basic BasicAuth//\n@externalDocs.description OpenAPI//\n@externalDocs.url https://swagger.io/resources/open-api/\nfunc InitialSwagger() {\n    // programmatically set swagger info // docs.SwaggerInfo.Host = config.ServerHttpAddress()\n    docs.SwaggerInfo.Schemes = []string{\n        \"https\", \"http\"\n    }\n    r := mux.NewRouter()\n    r.PathPrefix(\"/swagger/\").Handler(httpSwagger.Handler(httpSwagger.URL(\"/swagger/doc.json\"),\n    //The url pointing to API definition httpSwagger.DeepLinking(true),\n    httpSwagger.DocExpansion(\"none\"), httpSwagger.DomID(\"swagger-ui\"),)).Methods(http.MethodGet) go\n    http.ListenAndServe(config.SwaggerUrl(), r) logger.Info(\"Swagger Server Server : \",\n    config.SwaggerUrl())\n}"
     },
     {
       "type": "heading",
@@ -104,7 +104,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "// ShowAccount godoc// @Summary      Show an account// @Description  get string by ID// @Tags         accounts// @Accept       json// @Produce      json// @Param        id   path      int  true  \"Account ID\"// @Success      200  {object}  model.Account// @Failure      400  {object}  httputil.HTTPError// @Failure      404  {object}  httputil.HTTPError// @Failure      500  {object}  httputil.HTTPError// @Router       /accounts/{id} [get]"
+      "code": "// ShowAccount godoc// @Summary      Show an account// @Description  get string by ID// @Tags\naccounts// @Accept       json// @Produce      json// @Param        id   path      int  true\n\"Account ID\"// @Success      200  {object}  model.Account// @Failure      400  {object}\nhttputil.HTTPError// @Failure      404  {object}  httputil.HTTPError// @Failure      500  {object}\nhttputil.HTTPError// @Router       /accounts/{id} [get]"
     },
     {
       "type": "heading",
@@ -114,7 +114,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "// @Param   enumstring  query     string     false  \"string enums\"       Enums(A, B, C)// @Param   enumint     query     int        false  \"int enums\"          Enums(1, 2, 3)// @Param   enumnumber  query     number     false  \"int enums\"          Enums(1.1, 1.2, 1.3)// @Param   string      query     string     false  \"string valid\"       minlength(5)  maxlength(10)// @Param   int         query     int        false  \"int valid\"          minimum(1)    maximum(10)// @Param   default     query     string     false  \"string default\"     default(A)// @Param   example     query     string     false  \"string example\"     example(string)// @Param   collection  query     []string   false  \"string collection\"  collectionFormat(multi)// @Param   extensions  query     []string   false  \"string collection\"  extensions(x-example=test,x-nullable)"
+      "code": "// @Param   enumstring  query     string     false  \"string enums\"       Enums(A, B, C)// @Param\nenumint     query     int        false  \"int enums\"          Enums(1, 2, 3)// @Param   enumnumber\nquery     number     false  \"int enums\"          Enums(1.1, 1.2, 1.3)// @Param   string      query\nstring     false  \"string valid\"       minlength(5)  maxlength(10)// @Param   int         query\nint        false  \"int valid\"          minimum(1)    maximum(10)// @Param   default     query\nstring     false  \"string default\"     default(A)// @Param   example     query     string     false\n\"string example\"     example(string)// @Param   collection  query     []string   false\n\"string collection\"  collectionFormat(multi)// @Param   extensions  query     []string   false\n\"string collection\"  extensions(x-example=test,x-nullable)"
     },
     {
       "type": "heading",

@@ -51,13 +51,13 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "POST /product-index/_search{  \"query\": {    \"bool\": {      \"must\": [{\"term\": {\"status\": true}}],      \"should\": [        {\"match_phrase\": {\"product_name\": \"the\"}}      ],      \"minimum_should_match\": 1    }  },  \"size\": 10}"
+      "lang": "http",
+      "code": "POST /product-index/_search{  \"query\": {    \"bool\": {      \"must\": [{\"term\": {\"status\": true}}],\n\"should\": [        {\"match_phrase\": {\"product_name\": \"the\"}}      ],      \"minimum_should_match\": 1\n}  },  \"size\": 10}"
     },
     {
       "type": "code",
       "lang": "json",
-      "code": "{  \"took\": 1,  \"timed_out\": false,  \"_shards\": {    \"total\": 1,    \"successful\": 1,    \"skipped\": 0,    \"failed\": 0  },  \"hits\": {    \"total\": {      \"value\": 0,      \"relation\": \"eq\"    },    \"max_score\": null,    \"hits\": []  }}"
+      "code": "{\n  \"took\": 1,\n  \"timed_out\": false,\n  \"_shards\": {\n    \"total\": 1,\n    \"successful\": 1,\n    \"skipped\": 0,\n    \"failed\": 0\n  },\n  \"hits\": {\n    \"total\": {\n      \"value\": 0,\n      \"relation\": \"eq\"\n    },\n    \"max_score\": null,\n    \"hits\": []\n  }\n}"
     },
     {
       "type": "heading",
@@ -70,13 +70,13 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "POST /product-index-v2/_search{  \"query\": {    \"bool\": {      \"must\": [{\"term\": {\"status\": true}}],      \"should\": [        {\"match_phrase\": {\"product_name\": \"the\"}}      ],      \"minimum_should_match\": 1    }  },  \"size\": 10}"
+      "lang": "http",
+      "code": "POST /product-index-v2/_search{  \"query\": {    \"bool\": {      \"must\": [{\"term\": {\"status\": true}}],\n\"should\": [        {\"match_phrase\": {\"product_name\": \"the\"}}      ],      \"minimum_should_match\": 1\n}  },  \"size\": 10}"
     },
     {
       "type": "code",
       "lang": "json",
-      "code": "{  \"took\": 6,  \"timed_out\": false,  \"_shards\": {    \"total\": 1,    \"successful\": 1,    \"skipped\": 0,    \"failed\": 0  },  \"hits\": {    \"total\": {      \"value\": 2,      \"relation\": \"eq\"    },    \"max_score\": 8.438612,    \"hits\": [      {        \"_index\": \"product-index-v2\",        \"_id\": \"118\",        \"_score\": 8.438612,        \"_source\": {          \"id\": 2234,          \"product_name\": \"the\",          \"url_en\": \"product-the\",          \"status\": true,        }      }    ]  }}"
+      "code": "{  \"took\": 6,  \"timed_out\": false,  \"_shards\": {    \"total\": 1,    \"successful\": 1,    \"skipped\": 0,\n\"failed\": 0  },  \"hits\": {    \"total\": {      \"value\": 2,      \"relation\": \"eq\"    },\n\"max_score\": 8.438612,    \"hits\": [      {        \"_index\": \"product-index-v2\",        \"_id\": \"118\",\n\"_score\": 8.438612,        \"_source\": {          \"id\": 2234,          \"product_name\": \"the\",\n\"url_en\": \"product-the\",          \"status\": true,        }      }    ]  }}"
     },
     {
       "type": "heading",
@@ -89,23 +89,23 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "http",
       "code": "GET /product-index/_mapping/field/product_name"
     },
     {
       "type": "code",
       "lang": "json",
-      "code": "{  \"hotel-index\": {    \"mappings\": {      \"name_fa\": {        \"full_name\": \"product-index\",        \"mapping\": {          \"product_name\": {            \"type\": \"text\",            \"analyzer\": \"default\",            \"search_analyzer\": \"rebuilt\"          }        }      }    }  }}"
+      "code": "{\n  \"hotel-index\": {\n    \"mappings\": {\n      \"name_fa\": {\n        \"full_name\": \"product-index\",\n        \"mapping\": {\n          \"product_name\": {\n            \"type\": \"text\",\n            \"analyzer\": \"default\",\n            \"search_analyzer\": \"rebuilt\"\n          }\n        }\n      }\n    }\n  }\n}"
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "http",
       "code": "GET /product-index/_mapping"
     },
     {
       "type": "code",
       "lang": "text",
-      "code": "        \"name_fa\": {          \"type\": \"text\",          \"analyzer\": \"default\",          \"search_analyzer\": \"rebuilt\"        },"
+      "code": "\"name_fa\": {          \"type\": \"text\",          \"analyzer\": \"default\",          \"search_analyzer\":\n\"rebuilt\"        },"
     },
     {
       "type": "paragraph",
@@ -113,13 +113,13 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "http",
       "code": "GET /product-index/_settings?include_defaults=true"
     },
     {
       "type": "code",
       "lang": "text",
-      "code": "\"analyzer\": {            \"rebuilt\": {              \"filter\": [                \"english_possessive_stemmer\",                \"lowercase\",                \"english_stop\",                \"english_keywords\",                \"english_stemmer\"              ],              \"tokenizer\": \"standard\"            }          },"
+      "code": "\"analyzer\": {            \"rebuilt\": {              \"filter\": [\n\"english_possessive_stemmer\",                \"lowercase\",                \"english_stop\",\n\"english_keywords\",                \"english_stemmer\"              ],              \"tokenizer\":\n\"standard\"            }          },"
     },
     {
       "type": "heading",
@@ -132,8 +132,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "PUT /product-index-v2{  \"settings\": {    \"analysis\": {      \"filter\": {        \"custom_english_stop\": {          \"type\": \"stop\",          \"stopwords\": [            \"a\", \"an\", \"and\", \"or\", \"but\", \"in\", \"on\", \"at\", \"to\", \"for\",             \"of\", \"with\", \"by\", \"is\", \"are\", \"was\", \"were\", \"be\", \"this\", \"that\"          ]          // You can also load from a file: \"stopwords_path\": \"analysis/stopwords/english_custom.txt\"        }      },      \"analyzer\": {        \"rebuilt_custom\": {          \"tokenizer\": \"standard\",          \"filter\": [            \"lowercase\",            \"custom_english_stop\",   // ← Your custom stop filter            \"english_possessive_stemmer\",            \"english_stemmer\"          ]        }      }    }  },  \"mappings\": {    \"properties\": {      \"product_name\": {        \"type\": \"text\",        \"analyzer\": \"rebuilt_custom\",     // ← Use your custom analyzer        \"search_analyzer\": \"rebuilt_custom\"      }    }  }}"
+      "lang": "http",
+      "code": "PUT /product-index-v2{  \"settings\": {    \"analysis\": {      \"filter\": {\n\"custom_english_stop\": {          \"type\": \"stop\",          \"stopwords\": [            \"a\", \"an\",\n\"and\", \"or\", \"but\", \"in\", \"on\", \"at\", \"to\", \"for\",             \"of\", \"with\", \"by\", \"is\", \"are\",\n\"was\", \"were\", \"be\", \"this\", \"that\"          ]          // You can also load from a file:\n\"stopwords_path\": \"analysis/stopwords/english_custom.txt\"        }      },      \"analyzer\": {\n\"rebuilt_custom\": {          \"tokenizer\": \"standard\",          \"filter\": [            \"lowercase\",\n\"custom_english_stop\",   // ← Your custom stop filter            \"english_possessive_stemmer\",\n\"english_stemmer\"          ]        }      }    }  },  \"mappings\": {    \"properties\": {\n\"product_name\": {        \"type\": \"text\",        \"analyzer\": \"rebuilt_custom\",     // ← Use your\ncustom analyzer        \"search_analyzer\": \"rebuilt_custom\"      }    }  }}"
     },
     {
       "type": "embed",
@@ -151,7 +151,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "http",
       "code": "GET /product-index-v2/_settings?include_defaults=true"
     },
     {
@@ -165,8 +165,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "POST /product-index-v2/_analyze{  \"analyzer\": \"rebuilt_custom\",  \"text\": \"The quick brown fox jumps over the lazy dog\"}"
+      "lang": "http",
+      "code": "POST /product-index-v2/_analyze{  \"analyzer\": \"rebuilt_custom\",  \"text\":\n\"The quick brown fox jumps over the lazy dog\"}"
     },
     {
       "type": "heading",

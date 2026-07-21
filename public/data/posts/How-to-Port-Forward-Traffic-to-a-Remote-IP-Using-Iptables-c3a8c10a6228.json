@@ -102,12 +102,12 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "# 1. Allow established connections back insudo iptables -I FORWARD 1 -m state --state RELATED,ESTABLISHED -j ACCEPT"
+      "code": "# 1. Allow established connections back insudo iptables -I FORWARD 1 -m state --state\nRELATED,ESTABLISHED -j ACCEPT"
     },
     {
       "type": "code",
       "lang": "text",
-      "code": "# 2. Allow new requests to the target destinationsudo iptables -I FORWARD 2 -p tcp -d ip_gateway --dport 4000 -j ACCEPT"
+      "code": "# 2. Allow new requests to the target destinationsudo iptables -I FORWARD 2 -p tcp -d ip_gateway\n--dport 4000 -j ACCEPT"
     },
     {
       "type": "heading",

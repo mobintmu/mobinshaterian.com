@@ -46,7 +46,7 @@
     {
       "type": "code",
       "lang": "bash",
-      "code": "curl -v -u apikey:X -H \"Content-Type: application/json\" -X GET 'https://domain.freshdesk.com/api/v2/tickets' "
+      "code": "curl -v -u apikey:X -H \"Content-Type: application/json\" -X GET\n'https://domain.freshdesk.com/api/v2/tickets'"
     },
     {
       "type": "paragraph",
@@ -55,7 +55,7 @@
     {
       "type": "code",
       "lang": "bash",
-      "code": " curl -v -u abcdefghij1234567890:X -H \"Content-Type: application/json\" -X GET 'https://domain.freshdesk.com/api/v2/tickets' "
+      "code": "curl -v -u abcdefghij1234567890:X -H \"Content-Type: application/json\" -X GET\n'https://domain.freshdesk.com/api/v2/tickets'"
     },
     {
       "type": "paragraph",
@@ -78,7 +78,7 @@
     {
       "type": "code",
       "lang": "python",
-      "code": "from freshdesk.api import APIfd_api = API('domain.freshdesk.com', 'i***************' , version=2)new_tickets = fd_api.tickets.list_tickets( page=1, per_page=100)"
+      "code": "from freshdesk.api\nimport APIfd_api = API('domain.freshdesk.com', 'i***************' , version=2)new_tickets =\nfd_api.tickets.list_tickets( page=1, per_page=100)"
     },
     {
       "type": "heading",

@@ -45,7 +45,7 @@
     {
       "type": "code",
       "lang": "python",
-      "code": "import  SDKTrace \"go.opentelemetry.io/otel/sdk/trace\" sentryOtel \"github.com/getsentry/sentry-go/otel\""
+      "code": "import  SDKTrace \"go.opentelemetry.io/otel/sdk/trace\" sentryOtel\n\"github.com/getsentry/sentry-go/otel\""
     },
     {
       "type": "heading",
@@ -55,7 +55,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": " tp := SDKTrace.NewTracerProvider(  SDKTrace.WithSpanProcessor(sentryOtel.NewSentrySpanProcessor()), ) otel.SetTracerProvider(tp) otel.SetTextMapPropagator(sentryOtel.NewSentryPropagator()) entity.TracerMain = tp.Tracer(service)"
+      "code": "tp := SDKTrace.NewTracerProvider(  SDKTrace.WithSpanProcessor(sentryOtel.NewSentrySpanProcessor()),\n) otel.SetTracerProvider(tp) otel.SetTextMapPropagator(sentryOtel.NewSentryPropagator())\nentity.TracerMain = tp.Tracer(service)"
     },
     {
       "type": "heading",
@@ -65,7 +65,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": " srv := micro.NewService(  ...  //Tracking  micro.WrapClient(opentelemetry.NewClientWrapper(opentelemetry.WithTraceProvider(tp))),  micro.WrapCall(opentelemetry.NewCallWrapper(opentelemetry.WithTraceProvider(tp))),  micro.WrapHandler(opentelemetry.NewHandlerWrapper(opentelemetry.WithTraceProvider(tp))),  micro.WrapSubscriber(opentelemetry.NewSubscriberWrapper(opentelemetry.WithTraceProvider(tp))),)"
+      "code": "srv := micro.NewService(  ...  //Tracking\nmicro.WrapClient(opentelemetry.NewClientWrapper(opentelemetry.WithTraceProvider(tp))),\nmicro.WrapCall(opentelemetry.NewCallWrapper(opentelemetry.WithTraceProvider(tp))),\nmicro.WrapHandler(opentelemetry.NewHandlerWrapper(opentelemetry.WithTraceProvider(tp))),\nmicro.WrapSubscriber(opentelemetry.NewSubscriberWrapper(opentelemetry.WithTraceProvider(tp))),)"
     },
     {
       "type": "heading",
@@ -79,7 +79,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "import ( \"go.opentelemetry.io/otel\" sdktrace \"go.opentelemetry.io/otel/sdk/trace\" \"github.com/getsentry/sentry-go\" \"github.com/getsentry/sentry-go/otel\" // ...)sentry.Init(sentry.ClientOptions{ Dsn:              \"__DSN__\", EnableTracing:    true, TracesSampleRate: 1.0, Debug:            true,})tp := sdktrace.NewTracerProvider( sdktrace.WithSpanProcessor(sentryotel.NewSentrySpanProcessor()),)otel.SetTracerProvider(tp)otel.SetTextMapPropagator(sentryotel.NewSentryPropagator()"
+      "code": "import (\n\"go.opentelemetry.io/otel\" sdktrace \"go.opentelemetry.io/otel/sdk/trace\"\n\"github.com/getsentry/sentry-go\"\n\"github.com/getsentry/sentry-go/otel\" //...)sentry.Init(sentry.ClientOptions{\n    Dsn: \"__DSN__\", EnableTracing:\n    true, TracesSampleRate: 1.0, Debug: true,\n})tp :=\nsdktrace.NewTracerProvider(sdktrace.WithSpanProcessor(sentryotel.NewSentrySpanProcessor()),)otel.SetTracerProvider(tp)otel.SetTextMapPropagator(sentryotel.NewSentryPropagator()"
     },
     {
       "type": "heading",
@@ -140,7 +140,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": " span.SetStatus(codes.Error, \"operationThatCouldFail failed\")"
+      "code": "span.SetStatus(codes.Error, \"operationThatCouldFail failed\")"
     },
     {
       "type": "heading",

@@ -99,8 +99,8 @@
     },
     {
       "type": "code",
-      "lang": "python",
-      "code": "import { NestFactory } from '@nestjs/core';import { AppModule } from './app.module';import { ValidationPipe } from '@nestjs/common';async function bootstrap() {  const app = await NestFactory.create(AppModule);  app.useGlobalPipes(new ValidationPipe());  await app.listen(3000);}bootstrap();"
+      "lang": "typescript",
+      "code": "import {\n  NestFactory\n}\nfrom '@nestjs/core';\nimport {\n  AppModule\n}\nfrom './app.module';\nimport {\n  ValidationPipe\n}\nfrom '@nestjs/common';\nasync function bootstrap() {\n  const app = await NestFactory.create(AppModule);\n  app.useGlobalPipes(new ValidationPipe());\n  await app.listen(3000);\n}\nbootstrap();"
     },
     {
       "type": "paragraph",
@@ -108,8 +108,8 @@
     },
     {
       "type": "code",
-      "lang": "python",
-      "code": "import { IsNotEmpty } from 'class-validator';export class CreateTaskDto {  @IsNotEmpty()  title: string;  @IsNotEmpty()  description: string;}"
+      "lang": "typescript",
+      "code": "import {\n  IsNotEmpty\n}\nfrom 'class-validator';\nexport class CreateTaskDto {\n  @IsNotEmpty() title: string;\n  @IsNotEmpty() description: string;\n}"
     },
     {
       "type": "heading",
@@ -123,7 +123,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "  getTaskById(id: string): Task {    const found = this.tasks.find((task) => task.id === id);    if (!found) {      throw new NotFoundException(`Task with ID \"${id}\" not found`);    }    return found;  }"
+      "code": "getTaskById(id: string): Task {    const found = this.tasks.find((task) => task.id === id);    if\n(!found) {      throw new NotFoundException(`Task with ID \"${id}\" not found`);    }    return found;\n}"
     },
     {
       "type": "heading",
@@ -133,7 +133,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "  deleteTask(id: string): void {    const found = this.getTaskById(id);    this.tasks = this.tasks.filter((task) => task.id !== found.id);  }"
+      "code": "deleteTask(id: string): void {    const found = this.getTaskById(id);    this.tasks =\nthis.tasks.filter((task) => task.id !== found.id);  }"
     },
     {
       "type": "heading",
@@ -143,7 +143,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "  updateTaskStatus(id: string, status: TaskStatus): Task {    const task = this.getTaskById(id);    task.status = status;    return task;  }"
+      "code": "updateTaskStatus(id: string, status: TaskStatus): Task {    const task = this.getTaskById(id);\ntask.status = status;    return task;  }"
     },
     {
       "type": "heading",
@@ -156,8 +156,8 @@
     },
     {
       "type": "code",
-      "lang": "python",
-      "code": "import { IsEnum } from 'class-validator';import { TaskStatus } from '../tasks.model';export class UpdateTaskStatus {  @IsEnum(TaskStatus)  status: TaskStatus;}"
+      "lang": "typescript",
+      "code": "import {\n  IsEnum\n}\nfrom 'class-validator';\nimport {\n  TaskStatus\n}\nfrom '../tasks.model';\nexport class UpdateTaskStatus {\n  @IsEnum(TaskStatus) status: TaskStatus;\n}"
     },
     {
       "type": "paragraph",
@@ -165,8 +165,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "  @Patch('/:id/status')  updateTaskStatus(    @Param('id') id: string,    @Body() updateTaskStatusDto: UpdateTaskStatusDto,  ): Task {    const { status } = updateTaskStatusDto;    return this.tasksService.updateTaskStatus(id, status);  }"
+      "lang": "typescript",
+      "code": "@Patch('/:id/status') updateTaskStatus(@Param('id') id: string, @Body() updateTaskStatusDto:\nUpdateTaskStatusDto,): Task {\n  const {\n    status\n  }\n  = updateTaskStatusDto;\n  return this.tasksService.updateTaskStatus(id, status);\n}"
     },
     {
       "type": "heading",
@@ -179,8 +179,8 @@
     },
     {
       "type": "code",
-      "lang": "python",
-      "code": "import { IsEnum, IsOptional, IsString } from 'class-validator';import { TaskStatus } from '../tasks.model';export class GetTasksFilterDto {  @IsOptional()  @IsEnum(TaskStatus)  status?: TaskStatus;  @IsOptional()  @IsString()  search?: string;}"
+      "lang": "typescript",
+      "code": "import {\n  IsEnum, IsOptional, IsString\n}\nfrom 'class-validator';\nimport {\n  TaskStatus\n}\nfrom '../tasks.model';\nexport class GetTasksFilterDto {\n  @IsOptional() @IsEnum(TaskStatus) status?: TaskStatus;\n  @IsOptional() @IsString() search?: string;\n}"
     }
   ]
 }

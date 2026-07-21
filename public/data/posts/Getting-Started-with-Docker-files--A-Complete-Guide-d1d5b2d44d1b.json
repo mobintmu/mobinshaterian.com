@@ -92,7 +92,7 @@
     {
       "type": "code",
       "lang": "dockerfile",
-      "code": "FROM golang:1.25-alpineWORKDIR /appCOPY . .RUN go mod downloadRUN go build -o myapp .EXPOSE 8080CMD [\"./myapp\"]"
+      "code": "FROM golang:1.25-alpineWORKDIR /appCOPY . .RUN go mod downloadRUN\ngo build -o myapp .EXPOSE 8080CMD [\"./myapp\"]"
     },
     {
       "type": "heading",
@@ -119,7 +119,7 @@
     {
       "type": "code",
       "lang": "dockerfile",
-      "code": "FROM golang:1.21-alpine AS builderWORKDIR /appCOPY . .RUN go build -o myapp .FROM alpine:latestCOPY --from=builder /app/myapp /root/CMD [\"./myapp\"]"
+      "code": "FROM golang:1.21-alpine AS builderWORKDIR /appCOPY . .RUN\ngo build -o myapp .FROM alpine:latestCOPY --from=builder /app/myapp /root/CMD [\"./myapp\"]"
     },
     {
       "type": "paragraph",

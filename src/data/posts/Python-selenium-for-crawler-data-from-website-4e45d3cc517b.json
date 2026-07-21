@@ -29,7 +29,7 @@
     {
       "type": "code",
       "lang": "python",
-      "code": "from selenium import webdriverfrom selenium.webdriver.common.keys import Keys"
+      "code": "from selenium\nimport webdriver\nfrom selenium.webdriver.common.keys\nimport Keys"
     },
     {
       "type": "image",
@@ -64,7 +64,7 @@
     {
       "type": "code",
       "lang": "bash",
-      "code": "apt updateapt upgrade"
+      "code": "apt update\napt upgrade"
     },
     {
       "type": "heading",
@@ -73,7 +73,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "bash",
       "code": "wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb"
     },
     {
@@ -120,7 +120,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "bash",
       "code": "wget https://chromedriver.storage.googleapis.com/92.0.4515.107/chromedriver_linux64.zip"
     },
     {
@@ -131,7 +131,7 @@
     {
       "type": "code",
       "lang": "bash",
-      "code": "sudo mv chromedriver /usr/bin/chromedriversudo chown root:root /usr/bin/chromedriversudo chmod +x /usr/bin/chromedriver"
+      "code": "sudo mv chromedriver /usr/bin/chromedriver\nsudo\nchown root:root /usr/bin/chromedriver\nsudo\nchmod +x /usr/bin/chromedriver"
     },
     {
       "type": "heading",
@@ -151,7 +151,7 @@
     {
       "type": "code",
       "lang": "python",
-      "code": "from selenium import webdriverfrom selenium.webdriver.chrome.service import Serviceservice = Service(executable_path=r'/usr/bin/chromedriver')options = webdriver.ChromeOptions()# options.add_argument('--headless')# options.add_argument('--no-sandbox')options.add_argument('--disable-dev-shm-usage')driver = webdriver.Chrome(service=service, options=options)driver.get(\"https://google.com/\")print(driver.title)driver.quit()"
+      "code": "from selenium\nimport webdriver\nfrom selenium.webdriver.chrome.service\nimport Serviceservice = Service(executable_path=r'/usr/bin/chromedriver')options =\nwebdriver.ChromeOptions()# options.add_argument('--headless')#\noptions.add_argument('--no-sandbox')options.add_argument('--disable-dev-shm-usage')driver =\nwebdriver.Chrome(service=service,\noptions=options)driver.get(\"https://google.com/\")print(driver.title)driver.quit()"
     }
   ]
 }

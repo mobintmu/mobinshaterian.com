@@ -72,7 +72,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "internal/  storage/    sql/      migrations/          ← schema only (existing)        001_create_websites.up.sql        002_create_configs.up.sql      seeds/               ← data only (new)        001_seed_websites.sql        002_seed_configs.sql  db/    migrate/      runner.go            ← existing migration runner      seeder.go            ← new seeder"
+      "code": "internal/  storage/    sql/      migrations/          ← schema only (existing)\n001_create_websites.up.sql        002_create_configs.up.sql      seeds/               ← data only\n(new)        001_seed_websites.sql        002_seed_configs.sql  db/    migrate/      runner.go\n← existing migration runner      seeder.go            ← new seeder"
     },
     {
       "type": "heading",
@@ -94,8 +94,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "type Seeder struct {    db *sql.DB}func NewSeeder(dbtx sqlc.DBTX) *Seeder {    db, ok := dbtx.(*sql.DB)    if !ok {        log.Fatal(\"seeder requires *sql.DB, got incompatible type\")    }    return &Seeder{db: db}}"
+      "lang": "go",
+      "code": "type Seeder struct {\n    db *sql.DB\n}\nfunc NewSeeder(dbtx sqlc.DBTX) *Seeder {\n    db, ok := dbtx.(*sql.DB)\n    if !ok {\n        log.Fatal(\"seeder requires *sql.DB, got incompatible type\")\n    }\n    return &Seeder{\n        db: db\n    }\n}"
     },
     {
       "type": "heading",
@@ -109,7 +109,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "func RunSeeder(seeder *Seeder, cfg *config.Config) {    if cfg.IsTest() {        return    }    if err := seeder.SeederRun(); err != nil {        panic(err)    }}"
+      "code": "func RunSeeder(seeder *Seeder, cfg *config.Config) {\n    if cfg.IsTest() {\n        return\n    }\n    if err := seeder.SeederRun();\n    err != nil {\n        panic(err)\n    }\n}"
     },
     {
       "type": "heading",
@@ -123,7 +123,7 @@
     {
       "type": "code",
       "lang": "sql",
-      "code": "CREATE TABLE IF NOT EXISTS seed_history (    id         SERIAL PRIMARY KEY,    seed_name  TEXT NOT NULL UNIQUE,    applied_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP NOT NULL)"
+      "code": "CREATE TABLE IF NOT EXISTS seed_history (    id         SERIAL PRIMARY KEY,    seed_name  TEXT NOT\nNULL UNIQUE,    applied_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP NOT NULL)"
     },
     {
       "type": "paragraph",
@@ -158,7 +158,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "package migrateimport (    \"database/sql\"    \"fmt\"    \"go-wordpress/internal/storage/sql/sqlc\"    \"log\"    \"os\"    \"sort\"    \"strings\")type Seeder struct {    db *sql.DB}func NewSeeder(dbtx sqlc.DBTX) *Seeder {    db, ok := dbtx.(*sql.DB)    if !ok {        log.Fatal(\"seeder requires *sql.DB, got incompatible type\")    }    return &Seeder{db: db}}func RunSeeder(seeder *Seeder, cfg *config.Config) {    if cfg.IsTest() {        return    }    if err := seeder.SeederRun(); err != nil {        panic(err)    }}func (s *Seeder) SeederRun() error {    _, err := s.db.Exec(`        CREATE TABLE IF NOT EXISTS seed_history (            id         SERIAL PRIMARY KEY,            seed_name  TEXT NOT NULL UNIQUE,            applied_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP NOT NULL        )    `)    if err != nil {        return fmt.Errorf(\"failed to create seed_history table: %w\", err)    }    entries, err := os.ReadDir(\"internal/storage/sql/seeds\")    if err != nil {        return fmt.Errorf(\"failed to read seeds directory: %w\", err)    }    sort.Slice(entries, func(i, j int) bool {        return entries[i].Name() < entries[j].Name()    })    for _, entry := range entries {        if !strings.HasSuffix(entry.Name(), \".sql\") {            continue        }        seedName := entry.Name()        var exists bool        err := s.db.QueryRow(            \"SELECT EXISTS(SELECT 1 FROM seed_history WHERE seed_name = $1)\",            seedName,        ).Scan(&exists)        if err != nil {            return fmt.Errorf(\"failed to check seed history for %s: %w\", seedName, err)        }        if exists {            log.Printf(\"⏭️  Seed already applied, skipping: %s\", seedName)            continue        }        content, err := os.ReadFile(\"internal/storage/sql/seeds/\" + seedName)        if err != nil {            return fmt.Errorf(\"failed to read seed file %s: %w\", seedName, err)        }        tx, err := s.db.Begin()        if err != nil {            return fmt.Errorf(\"failed to begin transaction for %s: %w\", seedName, err)        }        if _, err := tx.Exec(string(content)); err != nil {            tx.Rollback()            return fmt.Errorf(\"failed to execute seed %s: %w\", seedName, err)        }        if _, err := tx.Exec(            \"INSERT INTO seed_history (seed_name) VALUES ($1)\", seedName,        ); err != nil {            tx.Rollback()            return fmt.Errorf(\"failed to record seed %s: %w\", seedName, err)        }        if err := tx.Commit(); err != nil {            return fmt.Errorf(\"failed to commit seed %s: %w\", seedName, err)        }        log.Printf(\"✅ Seed applied: %s\", seedName)    }    log.Println(\"✅ All seeds applied successfully\")    return nil}"
+      "code": "package migrate\nimport (\n\"database/sql\"\n\"fmt\"\n\"go-wordpress/internal/storage/sql/sqlc\"\n\"log\"\n\"os\"\n\"sort\"\n\"strings\"\n)\ntype Seeder struct {\n    db *sql.DB\n}\nfunc NewSeeder(dbtx sqlc.DBTX) *Seeder {\n    db, ok := dbtx.(*sql.DB)\n    if !ok {\n        log.Fatal(\"seeder requires *sql.DB, got incompatible type\")\n    }\n    return &Seeder{\n        db: db\n    }\n}\nfunc RunSeeder(seeder *Seeder, cfg *config.Config) {\n    if cfg.IsTest() {\n        return\n    }\n    if err := seeder.SeederRun();\n    err != nil {\n        panic(err)\n    }\n}\nfunc (s *Seeder) SeederRun() error {\n    _, err :=\n    s.db.Exec(`        CREATE TABLE IF NOT EXISTS seed_history (            id         SERIAL PRIMARY KEY,            seed_name  TEXT NOT NULL UNIQUE,            applied_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP NOT NULL        )    `)\n    if err != nil {\n        return fmt.Errorf(\"failed to create seed_history table: %w\", err)\n    }\n    entries, err := os.ReadDir(\"internal/storage/sql/seeds\")\n    if err != nil {\n        return fmt.Errorf(\"failed to read seeds directory: %w\", err)\n    }\n    sort.Slice(entries, func(i, j int) bool {\n        return entries[i].Name() < entries[j].Name()\n    })\n    for _, entry := range entries {\n        if !strings.HasSuffix(entry.Name(), \".sql\") {\n            continue\n        }\n        seedName := entry.Name(\n        )\n        var exists bool err :=\n        s.db.QueryRow(\"SELECT EXISTS(SELECT 1 FROM seed_history WHERE seed_name = $1)\",\n        seedName,).Scan(&exists) if err != nil {\n            return fmt.Errorf(\"failed to check seed history for %s: %w\", seedName, err)\n        }\n        if exists {\n            log.Printf(\"⏭️  Seed already applied, skipping: %s\", seedName) continue\n        }\n        content, err := os.ReadFile(\"internal/storage/sql/seeds/\" + seedName) if err != nil {\n            return fmt.Errorf(\"failed to read seed file %s: %w\", seedName, err)\n        }\n        tx, err := s.db.Begin() if err != nil {\n            return fmt.Errorf(\"failed to begin transaction for %s: %w\", seedName, err)\n        }\n        if _, err := tx.Exec(string(content));\n        err != nil {\n            tx.Rollback() return fmt.Errorf(\"failed to execute seed %s: %w\", seedName, err)\n        }\n        if _, err := tx.Exec(\"INSERT INTO seed_history (seed_name) VALUES ($1)\", seedName,);\n        err != nil {\n            tx.Rollback() return fmt.Errorf(\"failed to record seed %s: %w\", seedName, err)\n        }\n        if err := tx.Commit();\n        err != nil {\n            return fmt.Errorf(\"failed to commit seed %s: %w\", seedName, err)\n        }\n        log.Printf(\"✅ Seed applied: %s\", seedName)\n    }\n    log.Println(\"✅ All seeds applied successfully\")\n    return nil\n}"
     },
     {
       "type": "heading",
@@ -186,7 +186,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "fx.Provide(    migrate.NewRunner,  // migration runner    migrate.NewSeeder,  // seeder    ...),fx.Invoke(    migrate.RunMigrations,  // schema first    migrate.RunSeeder,      // data second    ...),"
+      "code": "fx.Provide(    migrate.NewRunner,  // migration runner    migrate.NewSeeder,  // seeder\n...),fx.Invoke(    migrate.RunMigrations,  // schema first    migrate.RunSeeder,      // data second\n...),"
     },
     {
       "type": "heading",
@@ -205,7 +205,7 @@
     {
       "type": "code",
       "lang": "sql",
-      "code": "INSERT INTO websites (name, domain, status, created_at, updated_at)VALUES    ('hosseinibrothers', 'hosseinibrothers.ir', 'active', NOW(), NOW()),    ('badomjip', 'badomjip.com', 'active', NOW(), NOW())ON CONFLICT (domain) DO NOTHING;"
+      "code": "INSERT INTO websites (name, domain, status, created_at, updated_at)\nVALUES    ('hosseinibrothers', 'hosseinibrothers.ir', 'active', NOW(), NOW()),    ('badomjip',\n'badomjip.com', 'active', NOW(), NOW())ON CONFLICT (domain) DO NOTHING;"
     },
     {
       "type": "heading",
@@ -237,7 +237,7 @@
     {
       "type": "code",
       "lang": "sql",
-      "code": "INSERT INTO configs (website_id, key, value, status, created_at, updated_at)SELECT    w.id,    'scraper_config',    '{        \"domain\": \"badomjip.com\",        \"start_url\": \"https://badomjip.com/\",        \"product_list\": {            \"item\": \"div.product-grid-item\",            \"fields\": {                \"title\": { \"selector\": \"h3.wd-entities-title a\", \"attr\": \"\" },                \"price\": { \"selector\": \"span.price\", \"attr\": \"\" },                \"link\":  { \"selector\": \"a.product-image-link\", \"attr\": \"href\" },                \"image\": { \"selector\": \"a.product-image-link img\", \"attr\": \"src\" }            }        },        \"pagination\": { \"next\": \"a.next.page-numbers\" },        \"product_detail\": {            \"description\": {                \"selector\": \"div.woocommerce-product-details__short-description, div.woocommerce-Tabs-panel--description\"            }        }    }'::json,    'active',    NOW(),    NOW()FROM websites wWHERE w.domain = 'badomjip.com'ON CONFLICT DO NOTHING;INSERT INTO configs (website_id, key, value, status, created_at, updated_at)SELECT    w.id,    'scraper_config',    '{        \"domain\": \"hosseinibrothers.ir\",        \"start_url\": \"https://hosseinibrothers.ir/\",        \"product_list\": {            \"item\": \"div.js-product-miniature\",            \"fields\": {                \"title\": { \"selector\": \"a.stsb_mini_product_name\", \"attr\": \"\" },                \"price\": { \"selector\": \"div.stsb_pm_price\", \"attr\": \"\" },                \"link\":  { \"selector\": \"a.stsb_mini_product_name\", \"attr\": \"href\" },                \"image\": { \"selector\": \"img.stsb_pm_image\", \"attr\": \"src\" }            }        },        \"pagination\": { \"next\": \"a[rel=''next'']\" },        \"product_detail\": {            \"description\": {                \"selector\": \"div.stsb_pro_summary p, div.stsb_read_more_box p\"            }        }    }'::json,    'active',    NOW(),    NOW()FROM websites wWHERE w.domain = 'hosseinibrothers.ir'ON CONFLICT DO NOTHING;"
+      "code": "INSERT INTO configs (website_id, key, value, status, created_at, updated_at)\nSELECT    w.id,    'scraper_config',\n'{        \"domain\": \"badomjip.com\",        \"start_url\": \"https://badomjip.com/\",        \"product_list\": {            \"item\": \"div.product-grid-item\",            \"fields\": {                \"title\": { \"selector\": \"h3.wd-entities-title a\", \"attr\": \"\" },                \"price\": { \"selector\": \"span.price\", \"attr\": \"\" },                \"link\":  { \"selector\": \"a.product-image-link\", \"attr\": \"href\" },                \"image\": { \"selector\": \"a.product-image-link img\", \"attr\": \"src\" }            }        },        \"pagination\": { \"next\": \"a.next.page-numbers\" },        \"product_detail\": {            \"description\": {                \"selector\": \"div.woocommerce-product-details__short-description, div.woocommerce-Tabs-panel--description\"            }        }    }'::json,    'active',    NOW(),    NOW()\nFROM websites w\nWHERE w.domain = 'badomjip.com'ON CONFLICT DO NOTHING;\nINSERT INTO configs (website_id, key, value, status, created_at, updated_at)\nSELECT    w.id,    'scraper_config',\n'{        \"domain\": \"hosseinibrothers.ir\",        \"start_url\": \"https://hosseinibrothers.ir/\",        \"product_list\": {            \"item\": \"div.js-product-miniature\",            \"fields\": {                \"title\": { \"selector\": \"a.stsb_mini_product_name\", \"attr\": \"\" },                \"price\": { \"selector\": \"div.stsb_pm_price\", \"attr\": \"\" },                \"link\":  { \"selector\": \"a.stsb_mini_product_name\", \"attr\": \"href\" },                \"image\": { \"selector\": \"img.stsb_pm_image\", \"attr\": \"src\" }            }        },        \"pagination\": { \"next\": \"a[rel=''next'']\" },        \"product_detail\": {            \"description\": {                \"selector\": \"div.stsb_pro_summary p, div.stsb_read_more_box p\"            }        }    }'::json,    'active',    NOW(),    NOW()\nFROM websites w\nWHERE w.domain = 'hosseinibrothers.ir'ON CONFLICT DO NOTHING;"
     },
     {
       "type": "heading",

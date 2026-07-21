@@ -83,7 +83,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "describe('Example', () => {  it('should be an example test', () => {    expect(true).toBe(true);  });});"
+      "code": "describe('Example', () => {  it('should be an example test', () => {    expect(true).toBe(true);\n});});"
     },
     {
       "type": "image",
@@ -101,7 +101,7 @@
     {
       "type": "code",
       "lang": "javascript",
-      "code": "function addNumbers(num1, num2) {  return num1 + num2;}describe('addNumbers', () => {  it('should add two numbers', () => {    expect(addNumbers(1, 2)).toBe(3);  });});"
+      "code": "function addNumbers(num1, num2) {\n  return num1 + num2;\n}\ndescribe('addNumbers', () => {\n  it('should add two numbers', () => {\n    expect(addNumbers(1, 2)).toBe(3);\n  });\n});"
     },
     {
       "type": "image",
@@ -122,8 +122,8 @@
     },
     {
       "type": "code",
-      "lang": "python",
-      "code": "import { Test } from '@nestjs/testing';import { TaskRepository } from './task.repository';import { TasksService } from './tasks.service';const mockTaskRepository = () => ({  getTasks: jest.fn(),  findOne: jest.fn(),  createTask: jest.fn(),  delete: jest.fn(),  updateTask: jest.fn(),});const mockUser = {  id: 'someId',  username: 'Test user',  password: 'password',  tasks: [],  created_at: new Date(),};describe('TasksService', () => {  let tasksService: TasksService;  let taskRepository: TaskRepository;  beforeEach(async () => {    const module = await Test.createTestingModule({      providers: [        TasksService,        { provide: TaskRepository, useFactory: mockTaskRepository },      ],    }).compile();    tasksService = module.get<TasksService>(TasksService);    taskRepository = module.get<TaskRepository>(TaskRepository);  });  describe('getTasks', () => {    it('gets all tasks from the repository', async () => {      expect(taskRepository.getTasks).not.toHaveBeenCalled();      taskRepository.getTasks = jest.fn().mockResolvedValue('someValue');      const result = await tasksService.getTasks(null, mockUser);      expect(result).toEqual('someValue');    });  });});"
+      "lang": "typescript",
+      "code": "import {\n  Test\n}\nfrom '@nestjs/testing';\nimport {\n  TaskRepository\n}\nfrom './task.repository';\nimport {\n  TasksService\n}\nfrom './tasks.service';\nconst mockTaskRepository = () => ({\n  getTasks: jest.fn(), findOne: jest.fn(), createTask: jest.fn(), delete: jest.fn(), updateTask:\n  jest.fn(),\n});\nconst mockUser = {\n  id: 'someId', username: 'Test user', password: 'password', tasks: [], created_at: new Date(),\n};\ndescribe('TasksService', () => {\n  let tasksService: TasksService;\n  let taskRepository: TaskRepository;\n  beforeEach(async () => {\n    const module = await Test.createTestingModule({\n      providers: [TasksService, {\n        provide: TaskRepository, useFactory: mockTaskRepository\n      },],\n    }).compile();\n    tasksService = module.get<TasksService>(TasksService);\n    taskRepository = module.get<TaskRepository>(TaskRepository);\n  });\n  describe('getTasks', () => {\n    it('gets all tasks from the repository', async () => {\n      expect(taskRepository.getTasks).not.toHaveBeenCalled();\n      taskRepository.getTasks = jest.fn().mockResolvedValue('someValue');\n      const result = await tasksService.getTasks(null, mockUser);\n      expect(result).toEqual('someValue');\n    });\n  });\n});"
     },
     {
       "type": "heading",
@@ -132,8 +132,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "  describe('getTaskById', () => {    it('calls taskRepository.findOne() and successfully retrieve and return the task', async () => {      const mockTask = { title: 'Test task', description: 'Test desc' };      taskRepository.getTaskById = jest.fn().mockResolvedValue(mockTask);      const result = await tasksService.getTaskById('someId', mockUser);      expect(result).toEqual(mockTask);    });  });"
+      "lang": "javascript",
+      "code": "describe('getTaskById', () => {\nit('calls taskRepository.findOne() and successfully retrieve and return the task', async () => {\nconst mockTask = { title: 'Test task', description: 'Test desc' };      taskRepository.getTaskById =\njest.fn().mockResolvedValue(mockTask);      const result = await tasksService.getTaskById('someId',\nmockUser);      expect(result).toEqual(mockTask);    });  });"
     },
     {
       "type": "image",

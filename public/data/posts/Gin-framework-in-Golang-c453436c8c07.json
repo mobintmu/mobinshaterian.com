@@ -43,12 +43,12 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "func PrometheusMiddleware() gin.HandlerFunc { return func(c *gin.Context) {  path := c.FullPath()  timer := prometheus.NewTimer(MonitoringHttpDuration.WithLabelValues(path))  c.Next()  timer.ObserveDuration() }}"
+      "code": "func PrometheusMiddleware() gin.HandlerFunc {\n    return func(c *gin.Context) {\n        path := c.FullPath() timer :=\n        prometheus.NewTimer(MonitoringHttpDuration.WithLabelValues(path)) c.Next()\n        timer.ObserveDuration()\n    }\n}"
     },
     {
       "type": "code",
       "lang": "go",
-      "code": "package mainimport (    \"github.com/gin-gonic/gin\"    \"github.com/prometheus/client_golang/prometheus\"    \"github.com/prometheus/client_golang/prometheus/promhttp\")var cpuTemp = prometheus.NewGauge(prometheus.GaugeOpts{    Name: \"cpu_temperature_celsius\",    Help: \"Current temperature of the CPU.\",})func init() {    prometheus.MustRegister(cpuTemp)}func prometheusHandler() gin.HandlerFunc {    h := promhttp.Handler()    return func(c *gin.Context) {        h.ServeHTTP(c.Writer, c.Request)    }}func main() {    cpuTemp.Set(65.3)    r := gin.New()    r.GET(\"/\", func(c *gin.Context) {        c.JSON(200, \"Hello world!\")    })    r.GET(\"/metrics\", prometheusHandler())    r.Run()}"
+      "code": "package main\nimport (\n\"github.com/gin-gonic/gin\"\n\"github.com/prometheus/client_golang/prometheus\"\n\"github.com/prometheus/client_golang/prometheus/promhttp\"\n)\nvar cpuTemp = prometheus.NewGauge(prometheus.GaugeOpts{\n    Name: \"cpu_temperature_celsius\",\n    Help: \"Current temperature of the CPU.\",\n}\n)\nfunc init() {\n    prometheus.MustRegister(cpuTemp)\n}\nfunc prometheusHandler() gin.HandlerFunc {\n    h := promhttp.Handler()\n    return func(c *gin.Context) {\n        h.ServeHTTP(c.Writer, c.Request)\n    }\n}\nfunc main() {\n    cpuTemp.Set(65.3)\n    r := gin.New()\n    r.GET(\"/\", func(c *gin.Context) {\n        c.JSON(200, \"Hello world!\")\n    })\n    r.GET(\"/metrics\", prometheusHandler())\n    r.Run()\n}"
     },
     {
       "type": "heading",

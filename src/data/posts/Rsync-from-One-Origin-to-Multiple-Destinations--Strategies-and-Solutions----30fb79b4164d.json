@@ -132,7 +132,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "rsync -av /origin /stagingfor dest in user@server1:/data user@server2:/data; do    rsync -avz /staging $destdone"
+      "code": "rsync -av /origin /stagingfor dest in user@server1:/data user@server2:/data; do    rsync -avz\n/staging $destdone"
     },
     {
       "type": "list",
@@ -155,7 +155,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "#!/bin/bashset -ersync -av /origin /stagingfor dest in user@server1:/data user@server2:/data; do    echo \"Syncing to $dest...\"    rsync -avz --delete /staging $dest || {        echo \"Failed to sync $dest\"        exit 1    }doneecho \"All destinations updated successfully.\""
+      "code": "#!/bin/bashset -ersync -av /origin /stagingfor dest in user@server1:/data user@server2:/data; do\necho \"Syncing to $dest...\"    rsync -avz --delete /staging $dest || {        echo\n\"Failed to sync $dest\"        exit 1    }doneecho \"All destinations updated successfully.\""
     },
     {
       "type": "list",

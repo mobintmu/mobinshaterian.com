@@ -93,8 +93,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "type Category struct {    Name             string    Link             string    Products         []Product       // Raw, uncleaned products    CleanedProducts  []ProductClean  // Validated, normalized products}"
+      "lang": "go",
+      "code": "type Category struct {\n    Name string\n    Link string\n    Products []Product // Raw, uncleaned products\n    CleanedProducts []ProductClean // Validated, normalized products\n}"
     },
     {
       "type": "paragraph",
@@ -125,8 +125,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "type Website struct {    Domain       string    Categories   []Category    StartURLs    []string              `json:\"start_urls\"`    ProductList  ProductListConfig     `json:\"product_list\"`    Pagination   *PaginationConfig     `json:\"pagination,omitempty\"`    ProductDetail ProductDetailConfig  `json:\"product_detail\"`}"
+      "lang": "go",
+      "code": "type Website struct {\n    Domain string\n    Categories []Category\n    StartURLs []string `json:\"start_urls\"`\n    ProductList ProductListConfig `json:\"product_list\"`\n    Pagination *PaginationConfig `json:\"pagination,omitempty\"`\n    ProductDetail ProductDetailConfig `json:\"product_detail\"`\n}"
     },
     {
       "type": "paragraph",
@@ -160,8 +160,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "type FieldConfig struct {    Selector string `json:\"selector\"`    Attr     string `json:\"attr\"`}"
+      "lang": "go",
+      "code": "type FieldConfig struct {\n    Selector string `json:\"selector\"`\n    Attr string `json:\"attr\"`\n}"
     },
     {
       "type": "list",
@@ -187,7 +187,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "// Extract attribute valueLink: e.ChildAttr(s.web.ProductList.Fields[\"link\"].Selector,                   s.web.ProductList.Fields[\"link\"].Attr)"
+      "code": "// Extract attribute valueLink: e.ChildAttr(s.web.ProductList.Fields[\"link\"].Selector,\ns.web.ProductList.Fields[\"link\"].Attr)"
     },
     {
       "type": "heading",
@@ -200,8 +200,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "type ProductListConfig struct {    Item   string                    `json:\"item\"`    Fields map[string]FieldConfig    `json:\"fields\"`}"
+      "lang": "go",
+      "code": "type ProductListConfig struct {\n    Item string `json:\"item\"`\n    Fields map[string]FieldConfig\n    `json:\"fields\"`\n}"
     },
     {
       "type": "list",
@@ -222,7 +222,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "\"product_list\": {    \"item\": \"div.product-grid-item\",    \"fields\": {        \"title\": {            \"selector\": \"h3.wd-entities-title a\",            \"attr\": \"\"        },        \"price\": {            \"selector\": \"span.price\",            \"attr\": \"\"        },        \"link\": {            \"selector\": \"a.product-image-link\",            \"attr\": \"href\"        },        \"image\": {            \"selector\": \"a.product-image-link img\",            \"attr\": \"src\"        }    }}"
+      "code": "\"product_list\": {    \"item\": \"div.product-grid-item\",    \"fields\": {        \"title\": {\n\"selector\": \"h3.wd-entities-title a\",            \"attr\": \"\"        },        \"price\": {\n\"selector\": \"span.price\",            \"attr\": \"\"        },        \"link\": {            \"selector\":\n\"a.product-image-link\",            \"attr\": \"href\"        },        \"image\": {            \"selector\":\n\"a.product-image-link img\",            \"attr\": \"src\"        }    }}"
     },
     {
       "type": "heading",
@@ -235,8 +235,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "type PaginationConfig struct {    Next string `json:\"next\"`}"
+      "lang": "go",
+      "code": "type PaginationConfig struct {\n    Next string `json:\"next\"`\n}"
     },
     {
       "type": "list",
@@ -256,7 +256,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "c.OnHTML(s.web.Pagination.Next, func(e *colly.HTMLElement) {    nextPage := e.Attr(\"href\")    s.logger.Info(\"Visiting next page\", zap.String(\"url\", nextPage))    e.Request.Visit(nextPage)})"
+      "code": "c.OnHTML(s.web.Pagination.Next, func(e *colly.HTMLElement) {    nextPage := e.Attr(\"href\")\ns.logger.Info(\"Visiting next page\", zap.String(\"url\", nextPage))    e.Request.Visit(nextPage)})"
     },
     {
       "type": "heading",
@@ -269,8 +269,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "type ProductDetailConfig struct {    Description FieldConfig `json:\"description\"`}"
+      "lang": "go",
+      "code": "type ProductDetailConfig struct {\n    Description FieldConfig `json:\"description\"`\n}"
     },
     {
       "type": "paragraph",
@@ -292,8 +292,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "type Service struct {    web    *Website    logger *zap.Logger    mu     sync.Mutex}"
+      "lang": "go",
+      "code": "type Service struct {\n    web *Website\n    logger *zap.Logger\n    mu sync.Mutex\n}"
     },
     {
       "type": "list",
@@ -320,7 +320,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "func (s *Service) Run() error {    if err := s.ListProducts(); err != nil {        s.logger.Error(\"ListProducts failed\", zap.Error(err))        return err    }        if err := s.FetchDescriptions(); err != nil {        s.logger.Error(\"FetchDescriptions failed\", zap.Error(err))        return err    }        s.cleanUP()    return nil}"
+      "code": "func (s *Service) Run() error {\n    if err := s.ListProducts();\n    err != nil {\n        s.logger.Error(\"ListProducts failed\", zap.Error(err)) return err\n    }\n    if err := s.FetchDescriptions();\n    err != nil {\n        s.logger.Error(\"FetchDescriptions failed\", zap.Error(err)) return err\n    }\n    s.cleanUP()\n    return nil\n}"
     },
     {
       "type": "paragraph",
@@ -361,7 +361,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "func (s *Service) ListProducts() error {    for index, cat := range s.web.Categories {        c := colly.NewCollector(            colly.AllowedDomains(s.web.Domain),        )                products := []Product{}                // Use configured selectors from web.ProductList        c.OnHTML(s.web.ProductList.Item, func(e *colly.HTMLElement) {            p := Product{                Title:  e.ChildText(s.web.ProductList.Fields[\"title\"].Selector),                Price:  e.ChildText(s.web.ProductList.Fields[\"price\"].Selector),                Link:   e.ChildAttr(s.web.ProductList.Fields[\"link\"].Selector,                                    s.web.ProductList.Fields[\"link\"].Attr),                Image:  e.ChildAttr(s.web.ProductList.Fields[\"image\"].Selector,                                    s.web.ProductList.Fields[\"image\"].Attr),            }                        if p.Link != \"\" {                products = append(products, p)            } else {                s.logger.Debug(\"Product link is not valid\", zap.Any(\"product\", p))            }        })                // Handle Pagination        c.OnHTML(s.web.Pagination.Next, func(e *colly.HTMLElement) {            nextPage := e.Attr(\"href\")            s.logger.Info(\"Visiting next page\", zap.String(\"url\", nextPage))            e.Request.Visit(nextPage)        })                err := c.Visit(cat.Link)        if err != nil {            return err        }                s.web.Categories[index].Products = products    }    return nil}"
+      "code": "func (s *Service) ListProducts() error {\n    for index, cat := range s.web.Categories {\n        c := colly.NewCollector(colly.AllowedDomains(s.web.Domain),) products := []Product{\n        }\n        // Use configured selectors from web.ProductList c.OnHTML(s.web.ProductList.Item,\n        func(e *colly.HTMLElement) {\n            p := Product{\n                Title: e.ChildText(s.web.ProductList.Fields[\"title\"].Selector), Price:\n                e.ChildText(s.web.ProductList.Fields[\"price\"].Selector), Link:\n                e.ChildAttr(s.web.ProductList.Fields[\"link\"].Selector,\n                s.web.ProductList.Fields[\"link\"].Attr), Image:\n                e.ChildAttr(s.web.ProductList.Fields[\"image\"].Selector,\n                s.web.ProductList.Fields[\"image\"].Attr),\n            }\n            if p.Link != \"\" {\n                products = append(products, p)\n            }\n            else {\n                s.logger.Debug(\"Product link is not valid\", zap.Any(\"product\", p))\n            }\n        }) // Handle Pagination c.OnHTML(s.web.Pagination.Next,\n        func(e *colly.HTMLElement) {\n            nextPage := e.Attr(\"href\") s.logger.Info(\"Visiting next page\", zap.String(\"url\",\n            nextPage)) e.Request.Visit(nextPage)\n        }) err := c.Visit(cat.Link) if err != nil {\n            return err\n        }\n        s.web.Categories[index].Products = products\n    }\n    return nil\n}"
     },
     {
       "type": "paragraph",
@@ -394,7 +394,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "func (s *Service) FetchDescriptions() error {    for index, cat := range s.web.Categories {        c := colly.NewCollector(            colly.AllowedDomains(s.web.Domain),            colly.Async(true), // ENABLE ASYNC        )                // Control parallelism        c.Limit(&colly.LimitRule{            DomainGlob: s.web.Domain,            Parallelism: 4,           // number of concurrent requests            Delay:      800 * time.Millisecond,        })                // Extract description from product page        c.OnHTML(            s.web.ProductDetail.Description.Selector,            func(e *colly.HTMLElement) {                desc := strings.TrimSpace(e.Text)                                idxAny := e.Request.Ctx.Get(\"index\")                idx, _ := strconv.Atoi(idxAny)                                if desc == \"\" {                    s.logger.Warn(\"empty description\", zap.String(\"url\", e.Request.URL.String()))                    return                }                                s.mu.Lock()                s.web.Categories[index].Products[idx].Description = desc                s.mu.Unlock()            },        )                for i := range cat.Products {            if s.web.Categories[index].Products[i].Link == \"\" {                continue            }                        ctx := colly.NewContext()            ctx.Put(\"index\", strconv.Itoa(i))                        if err := c.Request(                \"GET\",                s.web.Categories[index].Products[i].Link,                nil,                ctx,                nil,            ); err != nil {                s.logger.Warn(                    \"Failed to visit product\",                    zap.String(\"url\", s.web.Categories[index].Products[i].Link),                    zap.Error(err),                )            }        }                c.Wait()    }    return nil}"
+      "code": "func (s *Service) FetchDescriptions() error {\n    for index, cat := range s.web.Categories {\n        c := colly.NewCollector(colly.AllowedDomains(s.web.Domain), colly.Async(true), // ENABLE\n        ASYNC) // Control parallelism c.Limit(&colly.LimitRule{\n            DomainGlob: s.web.Domain, Parallelism: 4, // number of concurrent requests Delay: 800 *\n            time.Millisecond,\n        }) // Extract description from product page\n        c.OnHTML(s.web.ProductDetail.Description.Selector,\n        func(e *colly.HTMLElement) {\n            desc := strings.TrimSpace(e.Text) idxAny := e.Request.Ctx.Get(\"index\") idx, _ :=\n            strconv.Atoi(idxAny) if desc == \"\" {\n                s.logger.Warn(\"empty description\", zap.String(\"url\", e.Request.URL.String())) return\n            }\n            s.mu.Lock() s.web.Categories[index].Products[idx].Description = desc s.mu.Unlock()\n        },) for i := range cat.Products {\n            if s.web.Categories[index].Products[i].Link == \"\" {\n                continue\n            }\n            ctx := colly.NewContext() ctx.Put(\"index\", strconv.Itoa(i)) if err := c.Request(\"GET\",\n            s.web.Categories[index].Products[i].Link, nil, ctx, nil,);\n            err != nil {\n                s.logger.Warn(\"Failed to visit product\", zap.String(\"url\",\n                s.web.Categories[index].Products[i].Link), zap.Error(err),)\n            }\n        }\n        c.Wait()\n    }\n    return nil\n}"
     },
     {
       "type": "paragraph",
@@ -427,7 +427,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "func (s *Service) cleanUP() {    for index, cat := range s.web.Categories {        cleaned := make([]ProductClean, 0, len(cat.Products))                // regex to strip HTML tags        reTags := regexp.MustCompile(`<[^>]*>`)                for _, p := range cat.Products {            // --- Clean Title ---            title := reTags.ReplaceAllString(p.Title, \"\")            title = strings.TrimSpace(title)                        // --- Clean Price ---            priceStr := p.Price            // remove currency word            priceStr = strings.ReplaceAll(priceStr, \"تومان\", \"\")            // remove commas and non-digits            priceStr = strings.ReplaceAll(priceStr, \",\", \"\")            priceStr = strings.TrimSpace(priceStr)                        // keep only digits            reDigits := regexp.MustCompile(`\\D`)            priceStr = reDigits.ReplaceAllString(priceStr, \"\")                        priceStr = convertPersianDigits(priceStr)                        var priceInt int            if priceStr != \"\" {                if val, err := strconv.Atoi(priceStr); err == nil {                    priceInt = val                }            }                        // --- Build cleaned product ---            cleaned = append(cleaned, ProductClean{                Title:       title,                Price:       int64(priceInt),                Link:        p.Link,                Image:       p.Image,                Description: p.Description,            })        }        s.web.Categories[index].CleanedProducts = cleaned    }}"
+      "code": "func (s *Service) cleanUP() {\n    for index, cat := range s.web.Categories {\n        cleaned := make([]ProductClean, 0, len(cat.Products)) // regex to strip HTML tags reTags :=\n        regexp.MustCompile(`<[^>]*>`) for _, p := range cat.Products {\n            // --- Clean Title --- title := reTags.ReplaceAllString(p.Title, \"\") title =\n            strings.TrimSpace(title) // --- Clean Price --- priceStr := p.Price // remove currency\n            word priceStr = strings.ReplaceAll(priceStr, \"تومان\", \"\") // remove commas and\n            non-digits priceStr = strings.ReplaceAll(priceStr, \",\", \"\") priceStr =\n            strings.TrimSpace(priceStr) // keep only digits reDigits := regexp.MustCompile(`\\D`)\n            priceStr = reDigits.ReplaceAllString(priceStr, \"\") priceStr =\n            convertPersianDigits(priceStr\n            )\n            var priceInt int if priceStr != \"\" {\n                if val, err := strconv.Atoi(priceStr);\n                err == nil {\n                    priceInt = val\n                }\n            }\n            // --- Build cleaned product --- cleaned = append(cleaned, ProductClean{\n                Title: title, Price: int64(priceInt), Link: p.Link, Image: p.Image, Description:\n                p.Description,\n            })\n        }\n        s.web.Categories[index].CleanedProducts = cleaned\n    }\n}"
     },
     {
       "type": "paragraph",
@@ -450,7 +450,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "func convertPersianDigits(str string) string {      persianDigits := []string{\"۰\", \"۱\", \"۲\", \"۳\", \"۴\", \"۵\", \"۶\", \"۷\", \"۸\", \"۹\"}      for i, digit := range persianDigits {          str = strings.ReplaceAll(str, digit, strconv.Itoa(i))      }      return str  }"
+      "code": "func convertPersianDigits(str string) string {\n    persianDigits := []string{\n        \"۰\", \"۱\", \"۲\", \"۳\", \"۴\", \"۵\", \"۶\", \"۷\", \"۸\", \"۹\"\n    }\n    for i, digit := range persianDigits {\n        str = strings.ReplaceAll(str, digit, strconv.Itoa(i))\n    }\n    return str\n}"
     },
     {
       "type": "paragraph",
@@ -494,7 +494,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "func TestBadomjip(t *testing.T) {    logger, err := zap.NewDevelopment()    if err != nil {        t.Fatalf(\"failed to create logger: %v\", err)    }    defer logger.Sync()        web := crawler.NewWebsite(\"badomjip.json\")    cr := crawler.New(logger, web)    if err := cr.Run(); err != nil {        t.Fatalf(\"failed to run service: %v\", err)    }        categories := cr.CleanedProducts()    if len(categories) == 0 {        t.Fatalf(\"expected at least 1 category, got 0\")    }        // Check first category    cleanedProducts := categories[0].CleanedProducts    if len(cleanedProducts) == 0 {        t.Fatalf(\"expected at least 1 product, got 0\")    }        // Basic sanity checks on first product    p := cleanedProducts[0]    if p.Title == \"\" {        t.Errorf(\"product title should not be empty\")    }    if p.Price == 0 {        t.Errorf(\"product price should not be 0\")    }    if p.Link == \"\" {        t.Errorf(\"product link should not be empty\")    }    if p.Image == \"\" {        t.Errorf(\"product image should not be empty\")    }}"
+      "code": "func TestBadomjip(t *testing.T) {\n    logger, err := zap.NewDevelopment()\n    if err != nil {\n        t.Fatalf(\"failed to create logger: %v\", err)\n    }\n    defer logger.Sync() web := crawler.NewWebsite(\"badomjip.json\")\n    cr := crawler.New(logger, web)\n    if err := cr.Run();\n    err != nil {\n        t.Fatalf(\"failed to run service: %v\", err)\n    }\n    categories := cr.CleanedProducts()\n    if len(categories) == 0 {\n        t.Fatalf(\"expected at least 1 category, got 0\")\n    }\n    // Check first category\n    cleanedProducts := categories[0].CleanedProducts\n    if len(cleanedProducts) == 0 {\n        t.Fatalf(\"expected at least 1 product, got 0\")\n    }\n    // Basic sanity checks on first product\n    p := cleanedProducts[0]\n    if p.Title == \"\" {\n        t.Errorf(\"product title should not be empty\")\n    }\n    if p.Price == 0 {\n        t.Errorf(\"product price should not be 0\")\n    }\n    if p.Link == \"\" {\n        t.Errorf(\"product link should not be empty\")\n    }\n    if p.Image == \"\" {\n        t.Errorf(\"product image should not be empty\")\n    }\n}"
     },
     {
       "type": "paragraph",
@@ -551,7 +551,7 @@
     {
       "type": "code",
       "lang": "json",
-      "code": "{    \"domain\": \"badomjip.com\",    \"start_urls\": [        \"https://badomjip.com/product-category/%d9%be%da%a9%db%8c%d8%ac%d9%87%d8%a7/\"    ],    \"categories\": [        {            \"name\": \"پکیجها\",            \"link\": \"https://badomjip.com/product-category/%d9%be%da%a9%db%8c%d8%ac%d9%87%d8%a7/\"        }    ],    \"product_list\": {        \"item\": \"div.product-grid-item\",        \"fields\": {            \"title\": {                \"selector\": \"h3.wd-entities-title a\",                \"attr\": \"\"            },            \"price\": {                \"selector\": \"span.price\",                \"attr\": \"\"            },            \"link\": {                \"selector\": \"a.product-image-link\",                \"attr\": \"href\"            },            \"image\": {                \"selector\": \"a.product-image-link img\",                \"attr\": \"src\"            }        }    },    \"pagination\": {        \"next\": \"a.next.page-numbers\"    },    \"product_detail\": {        \"description\": {            \"selector\": \"div.woocommerce-product-details__short-description, div.woocommerce-Tabs-panel--description\"        }    }}"
+      "code": "{\n  \"domain\": \"badomjip.com\",\n  \"start_urls\": [\n    \"https://badomjip.com/product-category/%d9%be%da%a9%db%8c%d8%ac%d9%87%d8%a7/\"\n  ],\n  \"categories\": [\n    {\n      \"name\": \"پکیجها\",\n      \"link\": \"https://badomjip.com/product-category/%d9%be%da%a9%db%8c%d8%ac%d9%87%d8%a7/\"\n    }\n  ],\n  \"product_list\": {\n    \"item\": \"div.product-grid-item\",\n    \"fields\": {\n      \"title\": {\n        \"selector\": \"h3.wd-entities-title a\",\n        \"attr\": \"\"\n      },\n      \"price\": {\n        \"selector\": \"span.price\",\n        \"attr\": \"\"\n      },\n      \"link\": {\n        \"selector\": \"a.product-image-link\",\n        \"attr\": \"href\"\n      },\n      \"image\": {\n        \"selector\": \"a.product-image-link img\",\n        \"attr\": \"src\"\n      }\n    }\n  },\n  \"pagination\": {\n    \"next\": \"a.next.page-numbers\"\n  },\n  \"product_detail\": {\n    \"description\": {\n      \"selector\": \"div.woocommerce-product-details__short-description, div.woocommerce-Tabs-panel--description\"\n    }\n  }\n}"
     },
     {
       "type": "paragraph",
@@ -582,7 +582,7 @@
     {
       "type": "code",
       "lang": "json",
-      "code": "{    \"domain\": \"hosseinibrothers.ir\",    \"start_urls\": [        \"https://hosseinibrothers.ir/%D8%AE%D8%B4%DA%A9%D8%A8%D8%A7%D8%B1/\"    ],    \"categories\": [        {            \"name\": \"خشکبار\",            \"link\": \"https://hosseinibrothers.ir/%D8%AE%D8%B4%DA%A9%D8%A8%D8%A7%D8%B1/\"        },        {            \"name\": \"زعفران\",            \"link\": \"https://hosseinibrothers.ir/%D8%B2%D8%B9%D9%81%D8%B1%D8%A7%D9%86/\"        },        {            \"name\": \"تنقلات\",            \"link\": \"https://hosseinibrothers.ir/%D8%AA%D9%86%D9%82%D9%84%D8%A7%D8%AA/\"        }    ],    \"product_list\": {        \"item\": \"div.js-product-miniature\",        \"fields\": {            \"title\": {                \"selector\": \"a.stsb_mini_product_name\",                \"attr\": \"\"            },            \"price\": {                \"selector\": \"div.stsb_pm_price\",                \"attr\": \"\"            },            \"link\": {                \"selector\": \"a.stsb_mini_product_name\",                \"attr\": \"href\"            },            \"image\": {                \"selector\": \"img.stsb_pm_image\",                \"attr\": \"src\"            }        }    },    \"pagination\": {        \"next\": \"a[rel='next']\"    },    \"product_detail\": {        \"description\": {            \"selector\": \"#description, div.elementor-widget-theme-post-content\"        }    }}"
+      "code": "{\n  \"domain\": \"hosseinibrothers.ir\",\n  \"start_urls\": [\n    \"https://hosseinibrothers.ir/%D8%AE%D8%B4%DA%A9%D8%A8%D8%A7%D8%B1/\"\n  ],\n  \"categories\": [\n    {\n      \"name\": \"خشکبار\",\n      \"link\": \"https://hosseinibrothers.ir/%D8%AE%D8%B4%DA%A9%D8%A8%D8%A7%D8%B1/\"\n    },\n    {\n      \"name\": \"زعفران\",\n      \"link\": \"https://hosseinibrothers.ir/%D8%B2%D8%B9%D9%81%D8%B1%D8%A7%D9%86/\"\n    },\n    {\n      \"name\": \"تنقلات\",\n      \"link\": \"https://hosseinibrothers.ir/%D8%AA%D9%86%D9%82%D9%84%D8%A7%D8%AA/\"\n    }\n  ],\n  \"product_list\": {\n    \"item\": \"div.js-product-miniature\",\n    \"fields\": {\n      \"title\": {\n        \"selector\": \"a.stsb_mini_product_name\",\n        \"attr\": \"\"\n      },\n      \"price\": {\n        \"selector\": \"div.stsb_pm_price\",\n        \"attr\": \"\"\n      },\n      \"link\": {\n        \"selector\": \"a.stsb_mini_product_name\",\n        \"attr\": \"href\"\n      },\n      \"image\": {\n        \"selector\": \"img.stsb_pm_image\",\n        \"attr\": \"src\"\n      }\n    }\n  },\n  \"pagination\": {\n    \"next\": \"a[rel='next']\"\n  },\n  \"product_detail\": {\n    \"description\": {\n      \"selector\": \"#description, div.elementor-widget-theme-post-content\"\n    }\n  }\n}"
     },
     {
       "type": "paragraph",
@@ -706,7 +706,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "func convertPersianDigits(str string) string {    persianDigits := []string{\"۰\", \"۱\", \"۲\", \"۳\", \"۴\", \"۵\", \"۶\", \"۷\", \"۸\", \"۹\"}    for i, digit := range persianDigits {        str = strings.ReplaceAll(str, digit, strconv.Itoa(i))    }    return str}"
+      "code": "func convertPersianDigits(str string) string {\n    persianDigits := []string{\n        \"۰\", \"۱\", \"۲\", \"۳\", \"۴\", \"۵\", \"۶\", \"۷\", \"۸\", \"۹\"\n    }\n    for i, digit := range persianDigits {\n        str = strings.ReplaceAll(str, digit, strconv.Itoa(i))\n    }\n    return str\n}"
     },
     {
       "type": "list",
@@ -730,7 +730,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "c.Limit(&colly.LimitRule{    DomainGlob: s.web.Domain,    Parallelism: 4,           // 4 concurrent requests    Delay:      800 * time.Millisecond,  // 800ms between requests})"
+      "code": "c.Limit(&colly.LimitRule{    DomainGlob: s.web.Domain,    Parallelism: 4,           // 4 concurrent\nrequests    Delay:      800 * time.Millisecond,  // 800ms between requests})"
     },
     {
       "type": "paragraph",
@@ -772,7 +772,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "s.logger.Info(\"Visiting next page\", zap.String(\"url\", nextPage))s.logger.Debug(\"Product link is not valid\", zap.Any(\"product\", p))s.logger.Warn(\"Failed to visit product\", zap.String(\"url\", url), zap.Error(err))"
+      "code": "s.logger.Info(\"Visiting next page\", zap.String(\"url\",\nnextPage))s.logger.Debug(\"Product link is not valid\", zap.Any(\"product\",\np))s.logger.Warn(\"Failed to visit product\", zap.String(\"url\", url), zap.Error(err))"
     },
     {
       "type": "paragraph",

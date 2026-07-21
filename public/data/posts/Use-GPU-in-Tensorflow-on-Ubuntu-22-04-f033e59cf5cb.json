@@ -133,7 +133,7 @@
     {
       "type": "code",
       "lang": "bash",
-      "code": "sudo apt reinstall linux-headers-$(uname -r)sudo apt install nvidia-driver-525"
+      "code": "sudo\napt reinstall linux-headers-$(uname -r)\nsudo\napt install nvidia-driver-525"
     },
     {
       "type": "code",
@@ -173,7 +173,7 @@
     {
       "type": "code",
       "lang": "bash",
-      "code": "sudo apt-get install nvidia-cuda-toolkit"
+      "code": "sudo\napt-get install nvidia-cuda-toolkit"
     },
     {
       "type": "paragraph",
@@ -182,7 +182,7 @@
     {
       "type": "code",
       "lang": "bash",
-      "code": "sudo apt-get remove nvidia-cuda-toolkit"
+      "code": "sudo\napt-get remove nvidia-cuda-toolkit"
     },
     {
       "type": "heading",
@@ -192,7 +192,7 @@
     {
       "type": "code",
       "lang": "bash",
-      "code": "sudo apt-get purge nvidia*sudo apt-get autoremovesudo apt-get autocleansudo rm -rf /usr/local/cuda*"
+      "code": "sudo\napt-get purge nvidia*\nsudo\napt-get autoremove\nsudo\napt-get autoclean\nsudo rm -rf /usr/local/cuda*"
     },
     {
       "type": "heading",
@@ -202,7 +202,7 @@
     {
       "type": "code",
       "lang": "bash",
-      "code": "sudo apt-get install cuda"
+      "code": "sudo\napt-get install cuda"
     },
     {
       "type": "heading",
@@ -230,7 +230,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "python3 -m pip install tensorflow[and-cuda]# Verify the installation:python3 -c \"import tensorflow as tf; print(tf.config.list_physical_devices('GPU'))\"2024-03-30 08:45:30.386306: W tensorflow/core/common_runtime/gpu/gpu_device.cc:2251] Cannot dlopen some GPU libraries. Please make sure the missing libraries mentioned above are installed properly if you would like to use GPU. Follow the guide at https://www.tensorflow.org/install/gpu for how to download and setup the required libraries for your platform.Skipping registering GPU devices...[]"
+      "code": "python3 -m pip install tensorflow[and-cuda]# Verify the installation:python3 -c\n\"import tensorflow as tf; print(tf.config.list_physical_devices('GPU'))\"2024-03-30 08:45:30.386306:\nW tensorflow/core/common_runtime/gpu/gpu_device.cc:2251] Cannot dlopen some GPU libraries. Please\nmake sure the missing libraries mentioned above are installed properly if you would like to use GPU.\nFollow the guide at https://www.tensorflow.org/install/gpu for how to download and setup the\nrequired libraries for your platform.Skipping registering GPU devices...[]"
     },
     {
       "type": "code",
@@ -240,7 +240,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "Instal tensorflow[and-cuda] and add this to your .bashrc or conda activation script. Adjust python version in it according to your setup."
+      "code": "Instal tensorflow[and-cuda] and add this to your .bashrc or conda activation script. Adjust python\nversion in it according to your setup."
     },
     {
       "type": "code",
@@ -255,7 +255,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "for dir in $NVIDIA_PACKAGE_DIR/*; do    if [ -d \"$dir/lib\" ]; then        export LD_LIBRARY_PATH=\"$dir/lib:$LD_LIBRARY_PATH\"    fidone"
+      "code": "for dir in $NVIDIA_PACKAGE_DIR/*; do    if [ -d \"$dir/lib\" ]; then        export\nLD_LIBRARY_PATH=\"$dir/lib:$LD_LIBRARY_PATH\"    fidone"
     },
     {
       "type": "code",
@@ -269,8 +269,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "NVIDIA_PACKAGE_DIR=\"$HOME/.local/lib/python3.10/site-packages/nvidia/\"for dir in $NVIDIA_PACKAGE_DIR/*; do    if [ -d \"$dir/lib\" ]; then        export LD_LIBRARY_PATH=\"$dir/lib:$LD_LIBRARY_PATH\"    fidoneexport NVM_DIR=\"$HOME/.nvm\"[ -s \"$NVM_DIR/nvm.sh\" ] && \\. \"$NVM_DIR/nvm.sh\"  # This loads nvm[ -s \"$NVM_DIR/bash_completion\" ] && \\. \"$NVM_DIR/bash_completion\"  # This loads nvm bash_completion"
+      "lang": "dotenv",
+      "code": "N\nV\nI\nD\nI\nA_\nP\nA\nC\nK\nA\nG\nE_\nD\nI\nR=\"$HOME/.local/lib/python3.10/site-packages/nvidia/\"for dir in $NVIDIA_PACKAGE_DIR/*; do    if [ -d\n\"$dir/lib\" ]; then        export\nL\nD_\nL\nI\nB\nR\nA\nR\nY_\nP\nA\nT\nH=\"$dir/lib:$LD_LIBRARY_PATH\"    fidoneexport\nN\nV\nM_\nD\nI\nR=\"$HOME/.nvm\"[ -s \"$NVM_DIR/nvm.sh\" ] && \\. \"$NVM_DIR/nvm.sh\"  # This loads nvm[ -s\n\"$NVM_DIR/bash_completion\" ] && \\. \"$NVM_DIR/bash_completion\"  # This loads nvm bash_completion"
     },
     {
       "type": "heading",
@@ -284,7 +284,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "nvcc --versionnvcc: NVIDIA (R) Cuda compiler driverCopyright (c) 2005-2021 NVIDIA CorporationBuilt on Thu_Nov_18_09:45:30_PST_2021Cuda compilation tools, release 11.5, V11.5.119Build cuda_11.5.r11.5/compiler.30672275_0"
+      "code": "nvcc --versionnvcc: NVIDIA (R) Cuda compiler driverCopyright (c) 2005-2021 NVIDIA CorporationBuilt\non Thu_Nov_18_09:45:30_PST_2021Cuda compilation tools, release 11.5, V11.5.119Build\ncuda_11.5.r11.5/compiler.30672275_0"
     },
     {
       "type": "heading",

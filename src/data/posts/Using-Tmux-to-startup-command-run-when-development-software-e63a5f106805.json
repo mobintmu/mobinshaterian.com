@@ -39,7 +39,7 @@
     {
       "type": "code",
       "lang": "bash",
-      "code": "sudo apt  install tmux"
+      "code": "sudo\napt  install tmux"
     },
     {
       "type": "heading",
@@ -77,8 +77,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "#!/bin/shtmux new-session -s service   -n Document -d 'cd /path/1 ; bash -i'tmux new-window  -t service:1 -n micro       'cd /path/2 ; bash -i'tmux new-window  -t service:2 -n kafka       'cd /path/3 ; bash -i'tmux new-window  -t service:3 -n mongoDb     'cd /path/4 ; bash -i'tmux new-window  -t service:4 -n elk         'cd /path/5 ; bash -i'tmux new-window  -t service:5 -n db          'cd /path/6 ; bash -i'tmux select-window -t service:1tmux -2 attach-session -t service"
+      "lang": "bash",
+      "code": "#!/bin/shtmux new-session -s service   -n Document -d 'cd /path/1 ; bash -i'tmux new-window  -t\nservice:1 -n micro       'cd /path/2 ; bash -i'tmux new-window  -t service:2 -n kafka\n'cd /path/3 ; bash -i'tmux new-window  -t service:3 -n mongoDb     'cd /path/4 ; bash -i'tmux\nnew-window  -t service:4 -n elk         'cd /path/5 ; bash -i'tmux new-window  -t service:5 -n db\n'cd /path/6 ; bash -i'tmux select-window -t service:1tmux -2 attach-session -t service"
     },
     {
       "type": "paragraph",
@@ -86,8 +86,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "#!/bin/shtmux new-session -s service   -n Document -d 'cd /path/1 ; bash -i'tmux new-window  -t service:1 -n micro       'cd /path/2 ; docker-compose up ; bash -i'tmux new-window  -t service:2 -n kafka       'cd /path/3 ; bash -i'tmux new-window  -t service:3 -n mongoDb     'cd /path/4 ; bash -i'tmux new-window  -t service:4 -n elk         'cd /path/5 ; bash -i'tmux new-window  -t service:5 -n db          'cd /path/6 ; bash -i'tmux select-window -t service:1tmux -2 attach-session -t service"
+      "lang": "bash",
+      "code": "#!/bin/shtmux new-session -s service   -n Document -d 'cd /path/1 ; bash -i'tmux new-window  -t\nservice:1 -n micro       'cd /path/2 ;\ndocker-compose up ; bash -i'tmux new-window  -t service:2 -n kafka       'cd /path/3 ; bash\n-i'tmux new-window  -t service:3 -n mongoDb     'cd /path/4 ; bash\n-i'tmux new-window  -t service:4 -n elk         'cd /path/5 ; bash\n-i'tmux new-window  -t service:5 -n db          'cd /path/6 ; bash\n-i'tmux select-window -t service:1tmux -2 attach-session -t service"
     },
     {
       "type": "paragraph",

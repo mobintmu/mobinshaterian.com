@@ -177,7 +177,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "package service_testimport ( \"testing\" \"github.com/stretchr/testify/assert\")func TestService_NameTest(t *testing.T) { type Case struct {  name []string  want  string } cases := []Case{  {   names: []string{\"Hi\"},   want:  \"4422a\",  },  {   names: []string{\"BYE\"},   want:  \"5522b\",  }, } for _, currentCase := range cases {    res := Function(case.names)    assert.Equal(t, currentCase.want, res) }}"
+      "code": "package service_test\nimport (\n\"testing\"\n\"github.com/stretchr/testify/assert\"\n)\nfunc TestService_NameTest(t *testing.T) {\n    type Case struct {\n        name []string\n        want string\n    }\n    cases := []Case{\n        {\n            names: []string{\n                \"Hi\"\n            }, want: \"4422a\",\n        }, {\n            names: []string{\n                \"BYE\"\n            }, want: \"5522b\",\n        },\n    }\n    for _, currentCase := range cases {\n        res := Function(case.names)\n        assert.Equal(t, currentCase.want, res)\n    }\n}"
     },
     {
       "type": "heading",
@@ -186,7 +186,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "bash",
       "code": "go test -v ./path=== RUN   TestService_NameTest--- PASS: TestService_NameTest (0.00s)"
     },
     {
@@ -196,8 +196,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "go test -v -cover  ./path=== RUN   TestService_NameTest--- PASS: TestService_NameTest (0.00s)coverage: 32.1% of statementsok   ./path 0.002s coverage: 32.1% of statements"
+      "lang": "bash",
+      "code": "go test -v -cover  ./path=== RUN   TestService_NameTest--- PASS: TestService_NameTest\n(0.00s)coverage: 32.1% of statementsok   ./path 0.002s coverage: 32.1% of statements"
     },
     {
       "type": "heading",
@@ -206,7 +206,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "bash",
       "code": "go install gotest.tools/gotestsum@latest"
     },
     {
@@ -239,8 +239,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "go test -coverprofile=coverage.txt -covermode count ./pathgocover-cobertura < coverage.txt > coverage.xml"
+      "lang": "bash",
+      "code": "go test -coverprofile=coverage.txt -covermode count ./pathgocover-cobertura < coverage.txt >\ncoverage.xml"
     },
     {
       "type": "paragraph",
@@ -270,7 +270,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "gotestsum  --format pkgname --packages=\"./...\" --junitfile /test-results/unit-tests.xmlgo test -coverprofile=/test-results/coverage.txt -covermode=count   -coverpkg=./... -v ./...gocover-cobertura < /test-results/coverage.txt > /test-results/coverage.xml"
+      "code": "gotestsum  --format pkgname --packages=\"./...\" --junitfile /test-results/unit-tests.xmlgo test\n-coverprofile=/test-results/coverage.txt -covermode=count   -coverpkg=./... -v\n./...gocover-cobertura < /test-results/coverage.txt > /test-results/coverage.xml"
     },
     {
       "type": "image",
@@ -300,7 +300,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "// smsServiceMocktype smsServiceMock struct {    mock.Mock}// Our mocked smsService methodfunc (m *smsServiceMock) SendChargeNotification(value int) bool {    fmt.Println(\"Mocked charge notification function\")    fmt.Printf(\"Value passed in: %d\\n\", value)  // this records that the method was called and passes in the value  // it was called with  args := m.Called(value)  // it then returns whatever we tell it to return  // in this case true to simulate an SMS Service Notification  // sent out    return args.Bool(0)}// we need to satisfy our MessageService interface// which sadly means we have to stub out every method// defined in that interfacefunc (m *smsServiceMock) DummyFunc() {    fmt.Println(\"Dummy\")}"
+      "code": "// smsServiceMocktype smsServiceMock struct {    mock.Mock}// Our mocked smsService methodfunc (m\n*smsServiceMock) SendChargeNotification(value int) bool {\nfmt.Println(\"Mocked charge notification function\")    fmt.Printf(\"Value passed in: %d\\n\", value)  //\nthis records that the method was called and passes in the value  // it was called with  args :=\nm.Called(value)  // it then returns whatever we tell it to return  // in this case true to simulate\nan SMS Service Notification  // sent out    return args.Bool(0)}// we need to satisfy our\nMessageService interface// which sadly means we have to stub out every method// defined in that\ninterfacefunc (m *smsServiceMock) DummyFunc() {    fmt.Println(\"Dummy\")}"
     },
     {
       "type": "paragraph",
@@ -309,7 +309,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "// TestChargeCustomer is where the magic happens// here we create our SMSService mockfunc TestChargeCustomer(t *testing.T) {    smsService := new(smsServiceMock)  // we then define what should be returned from SendChargeNotification  // when we pass in the value 100 to it. In this case, we want to return  // true as it was successful in sending a notification    smsService.On(\"SendChargeNotification\", 100).Return(true)  // next we want to define the service we wish to test  myService := MyService{smsService}  // and call said method    myService.ChargeCustomer(100)  // at the end, we verify that our myService.ChargeCustomer  // method called our mocked SendChargeNotification method    smsService.AssertExpectations(t)}"
+      "code": "// TestChargeCustomer is where the magic happens// here we create our SMSService mockfunc\nTestChargeCustomer(t *testing.T) {    smsService := new(smsServiceMock)  // we then define what\nshould be returned from SendChargeNotification  // when we pass in the value 100 to it. In this\ncase, we want to return  // true as it was successful in sending a notification\nsmsService.On(\"SendChargeNotification\", 100).Return(true)  // next we want to define the service we\nwish to test  myService := MyService{smsService}  // and call said method\nmyService.ChargeCustomer(100)  // at the end, we verify that our myService.ChargeCustomer  // method\ncalled our mocked SendChargeNotification method    smsService.AssertExpectations(t)}"
     },
     {
       "type": "paragraph",
@@ -317,7 +317,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "bash",
       "code": "go test ./... --failfast"
     },
     {
@@ -348,7 +348,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "package example_projectimport (    \"testing\"    \"github.com/stretchr/testify/assert\")func Foo(s Stringer) string {    return s.String()}func TestString(t *testing.T) {    mockStringer := NewMockStringer(t)    mockStringer.EXPECT().String().Return(\"mockery\")    assert.Equal(t, \"mockery\", Foo(mockStringer))}"
+      "code": "package example_project\nimport (\n\"testing\"\n\"github.com/stretchr/testify/assert\"\n)\nfunc Foo(s Stringer) string {\n    return s.String()\n}\nfunc TestString(t *testing.T) {\n    mockStringer := NewMockStringer(t)\n    mockStringer.EXPECT().String().Return(\"mockery\")\n    assert.Equal(t, \"mockery\", Foo(mockStringer))\n}"
     },
     {
       "type": "image",
@@ -370,7 +370,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "//go:generate mockery --name NameOfInterfacetype NameOfInterface interface {    Get(val string) string}"
+      "code": "//go:generate mockery --name NameOfInterfacetype NameOfInterface interface {    Get(val string)\nstring}"
     },
     {
       "type": "paragraph",
@@ -440,7 +440,7 @@
     {
       "type": "code",
       "lang": "python",
-      "code": "import . \"github.com/stretchr/testify/mock\"proxyMock := mocks.NewProxy(t)proxyMock.On(\"passthrough\", mock.AnythingOfType(\"context.Context\"), mock.AnythingOfType(\"string\")).    Return(func(ctx context.Context, s string) string {        return s    })"
+      "code": "import . \"github.com/stretchr/testify/mock\"proxyMock := mocks.NewProxy(t)proxyMock.On(\"passthrough\",\nmock.AnythingOfType(\"context.Context\"), mock.AnythingOfType(\"string\")).\n    Return(func(ctx context.Context, s string) string {        return s\n    })"
     },
     {
       "type": "heading",
@@ -460,7 +460,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "func MatchedBy(fn interface{}) argumentMatcher"
+      "code": "func MatchedBy(fn interface{\n}) argumentMatcher"
     },
     {
       "type": "paragraph",
@@ -543,7 +543,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "func mockRedis() *miniredis.Miniredis { s, err := miniredis.Run() if err != nil {  panic(err) } return s}redisServer := mockRedis()redisClient = redis.NewClient(&redis.Options{Addr: redisServer.Addr()})"
+      "code": "func mockRedis() *miniredis.Miniredis {\n    s, err := miniredis.Run() if err != nil {\n        panic(err)\n    }\n    return s\n}\nredisServer := mockRedis()redisClient = redis.NewClient(&redis.Options{\n    Addr: redisServer.Addr()\n})"
     },
     {
       "type": "heading",
@@ -587,7 +587,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": " mockGRPC \"github.com/go-micro/plugins/v4/client/mock\" response := []mockGRPC.MockResponse{  {Endpoint: \"Foo.Bar\", Response: map[string]interface{}{\"foo\": \"bar\"}}, } clientMock := mockGRPC.NewClient(mockGRPC.Response(\"go.mock\", response))"
+      "code": "mockGRPC \"github.com/go-micro/plugins/v4/client/mock\" response := []mockGRPC.MockResponse{\n{Endpoint: \"Foo.Bar\", Response: map[string]interface{}{\"foo\": \"bar\"}}, } clientMock :=\nmockGRPC.NewClient(mockGRPC.Response(\"go.mock\", response))"
     },
     {
       "type": "heading",
@@ -607,7 +607,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "mockGreeterClient.EXPECT().SayHello(    gomock.Any(), // expect any value for first parameter    gomock.Any(), // expect any value for second parameter).Return(&helloworld.HelloReply{Message: “Mocked RPC”}, nil)"
+      "code": "mockGreeterClient.EXPECT().SayHello(    gomock.Any(), // expect any value for first parameter\ngomock.Any(), // expect any value for second parameter).Return(&helloworld.HelloReply{Message:\n“Mocked RPC”}, nil)"
     },
     {
       "type": "paragraph",
@@ -621,7 +621,7 @@
     {
       "type": "code",
       "lang": "dockerfile",
-      "code": "FROM golang:1.20WORKDIR /usr/src/appCOPY go.mod go.sum ./RUN go mod download && go mod verifyCOPY . .RUN go build -v -o /usr/local/bin/app ./...CMD [\"app\"]"
+      "code": "FROM golang:1.20WORKDIR /usr/src/appCOPY go.mod go.sum ./RUN go mod download && go mod verifyCOPY .\n.RUN\ngo build -v -o /usr/local/bin/app ./...CMD [\"app\"]"
     },
     {
       "type": "heading",
@@ -635,7 +635,7 @@
     {
       "type": "code",
       "lang": "dockerfile",
-      "code": "RUN go install github.com/nats-io/nats-server/v2@latest"
+      "code": "RUN\ngo install github.com/nats-io/nats-server/v2@latest"
     },
     {
       "type": "paragraph",
@@ -688,7 +688,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "    <include file=\"seeds/test.sql\" relativeToChangelogFile=\"true\"/>"
+      "code": "<include file=\"seeds/test.sql\" relativeToChangelogFile=\"true\"/>"
     },
     {
       "type": "heading",
@@ -711,12 +711,12 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "backend := backends.NewSimulatedBackend(   core.GenesisAlloc{    crypto.PubkeyToAddress(pub): {Balance: big.NewInt(10000000000)},   },   10000000,  )"
+      "code": "backend := backends.NewSimulatedBackend(   core.GenesisAlloc{    crypto.PubkeyToAddress(pub):\n{Balance: big.NewInt(10000000000)},   },   10000000,  )"
     },
     {
       "type": "code",
       "lang": "text",
-      "code": " coreTokenAddress, _, _, err := contracts.DeployCoreToken(auth, s.xcbClient, fakeWrappedTokenAddr, priceFeedAddr)"
+      "code": "coreTokenAddress, _, _, err := contracts.DeployCoreToken(auth, s.xcbClient, fakeWrappedTokenAddr,\npriceFeedAddr)"
     },
     {
       "type": "heading",
@@ -762,7 +762,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "bash",
       "code": "go install github.com/jstemmer/go-junit-report/v2@latest"
     },
     {
@@ -772,7 +772,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "bash",
       "code": "go test -v 2>&1 ./... | go-junit-report -set-exit-code > report.xml"
     },
     {
@@ -933,7 +933,7 @@
     {
       "type": "code",
       "lang": "json",
-      "code": "{    // Use IntelliSense to learn about possible attributes.    // Hover to view descriptions of existing attributes.    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387    \"version\": \"0.2.0\",    \"configurations\": [        {            \"name\": \"Launch Package\",            \"type\": \"go\",            \"request\": \"launch\",            \"mode\": \"auto\",            \"program\": \"main.go\",            \"envFile\": \"${workspaceFolder}/.env\"        }    ]}"
+      "code": "{    // Use IntelliSense to learn about possible attributes.    // Hover to view descriptions of\nexisting attributes.    // For more information, visit:\nhttps://go.microsoft.com/fwlink/?linkid=830387    \"version\": \"0.2.0\",    \"configurations\": [\n{            \"name\": \"Launch Package\",            \"type\": \"go\",            \"request\": \"launch\",\n\"mode\": \"auto\",            \"program\": \"main.go\",            \"envFile\": \"${workspaceFolder}/.env\"\n}    ]}"
     },
     {
       "type": "heading",
@@ -960,8 +960,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "/ Fail marks the function as having failed but continues execution.func (c *common) Fail() { if c.parent != nil {  c.parent.Fail() } c.mu.Lock() defer c.mu.Unlock() // c.done needs to be locked to synchronize checks to c.done in parent tests. if c.done {  panic(\"Fail in goroutine after \" + c.name + \" has completed\") } c.failed = true}"
+      "lang": "go",
+      "code": "/ Fail marks the function as having failed but continues execution.func (c *common) Fail() {\n    if c.parent != nil {\n        c.parent.Fail()\n    }\n    c.mu.Lock() defer c.mu.Unlock() // c.done needs to be locked to synchronize checks to c.done in\n    parent tests.if c.done {\n        panic(\"Fail in goroutine after \" + c.name + \" has completed\")\n    }\n    c.failed = true\n}"
     },
     {
       "type": "paragraph",
@@ -997,7 +997,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "import (    \"testing\"    \"github.com/stretchr/testify/suite\")type MySuite struct {    suite.Suite}func (suite *MySuite) TestSomething() {    // Test something here}func TestSuite(t *testing.T) {    suite.Run(t, new(MySuite))}"
+      "code": "import (\n\"testing\"\n\"github.com/stretchr/testify/suite\"\n)\ntype MySuite struct {\n    suite.Suite\n}\nfunc (suite *MySuite) TestSomething() {\n    // Test something here\n}\nfunc TestSuite(t *testing.T) {\n    suite.Run(t, new(MySuite))\n}"
     }
   ]
 }

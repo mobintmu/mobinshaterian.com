@@ -39,8 +39,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "type Pricing struct {    Price           int64   `json:\"price,omitempty\"`    PriceOff        int64   `json:\"priceOff,omitempty\"`    DiscountPercent float32 `json:\"discountPercent,omitempty\"`}"
+      "lang": "go",
+      "code": "type Pricing struct {\n    Price int64 `json:\"price,omitempty\"`\n    PriceOff int64 `json:\"priceOff,omitempty\"`\n    DiscountPercent float32 `json:\"discountPercent,omitempty\"`\n}"
     },
     {
       "type": "paragraph",
@@ -49,7 +49,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "func calculate(r *Input) *output {    discount := r.discount    price := r.productPrice    priceOff := price - discount    return &output{        Price:           price,        PriceOff:        priceOff,        DiscountPercent: float32(discount / price),    }}"
+      "code": "func calculate(r *Input) *output {\n    discount := r.discount\n    price := r.productPrice\n    priceOff := price - discount\n    return &output{\n        Price: price, PriceOff: priceOff, DiscountPercent: float32(discount / price),\n    }\n}"
     },
     {
       "type": "paragraph",

@@ -23,8 +23,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "Cannot connect to the Docker daemon at unix:///home/youruser/.docker/desktop/docker.sock. Is the docker daemon running?"
+      "lang": "bash",
+      "code": "Cannot connect to the Docker daemon at unix:///home/youruser/.docker/desktop/docker.sock. Is the\ndocker daemon running?"
     },
     {
       "type": "paragraph",
@@ -118,7 +118,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "NAME              DESCRIPTION       DOCKER ENDPOINT                                  ERRORdefault           ...               unix:///var/run/docker.sockdesktop-linux *   Docker Desktop    unix:///home/user/.docker/desktop/docker.sock"
+      "code": "NAME              DESCRIPTION       DOCKER ENDPOINT                                  ERRORdefault\n...               unix:///var/run/docker.sockdesktop-linux *   Docker Desktop\nunix:///home/user/.docker/desktop/docker.sock"
     },
     {
       "type": "paragraph",
@@ -177,7 +177,7 @@
     {
       "type": "code",
       "lang": "bash",
-      "code": "docker context ls    # Should show 'default *'docker ps            # Should work without sudodocker run --rm hello-world  # Test end-to-end"
+      "code": "docker context ls    # Should show 'default *'\ndocker ps            # Should work without sudo\ndocker run --rm hello-world  # Test end-to-end"
     },
     {
       "type": "heading",

@@ -38,7 +38,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "    \"go.testEnvFile\": \"${workspaceFolder}/.env\",    \"go.testTimeout\": \"300s\",    \"go.testFlags\": [\"-count=1\"],"
+      "code": "\"go.testEnvFile\": \"${workspaceFolder}/.env\",    \"go.testTimeout\": \"300s\",    \"go.testFlags\":\n[\"-count=1\"],"
     },
     {
       "type": "paragraph",

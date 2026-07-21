@@ -66,7 +66,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "nest g resource payment "
+      "code": "nest g resource payment"
     },
     {
       "type": "heading",
@@ -91,7 +91,7 @@
     {
       "type": "code",
       "lang": "bash",
-      "code": "yarn add zarinpal-nestjsnpm install --save zarinpal-nestjsnpm audit fix --force"
+      "code": "yarn add zarinpal-nestjs\nnpm install --save zarinpal-nestjs\nnpm audit fix --force"
     },
     {
       "type": "heading",
@@ -110,7 +110,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "    ZarinpalModule.register({      callBackUrl: configuration().zarinpal.callBackUrl,      merchantId: configuration().zarinpal.merchantId,    }),    PaymentModule,"
+      "code": "ZarinpalModule.register({      callBackUrl: configuration().zarinpal.callBackUrl,      merchantId:\nconfiguration().zarinpal.merchantId,    }),    PaymentModule,"
     },
     {
       "type": "heading",
@@ -120,7 +120,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "  zarinpal: {    merchantId: process.env.ZARINPAL_MERCHANT_ID,    callBackUrl: process.env.ZARINPAL_CALLBACK_URL,  },"
+      "code": "zarinpal: {    merchantId: process.env.ZARINPAL_MERCHANT_ID,    callBackUrl:\nprocess.env.ZARINPAL_CALLBACK_URL,  },"
     },
     {
       "type": "heading",
@@ -129,8 +129,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "  @Post('/openTransaction/')  @UseGuards(CustomerGuard)  @ApiOkResponse({ type: () => CreatePaymentResultDto })  @ApiBearerAuth()  create(    @Body() createPaymentDto: CreatePaymentDto,    @Req() req: { user: Partial<User> },  ) {    return this.paymentService.openTransaction(createPaymentDto, req.user);  }"
+      "lang": "typescript",
+      "code": "@Post('/openTransaction/') @UseGuards(CustomerGuard) @ApiOkResponse({\n  type: () => CreatePaymentResultDto\n}) @ApiBearerAuth() create(@Body() createPaymentDto: CreatePaymentDto, @Req() req: {\n  user: Partial<User>\n},) {\n  return this.paymentService.openTransaction(createPaymentDto, req.user);\n}"
     },
     {
       "type": "heading",
@@ -139,8 +139,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "  async openTransaction(    createPaymentDto: CreatePaymentDto,    user: Partial<User>,  ): Promise<CreatePaymentResultDto> {    const transactionResult = await this.zarinpalService.openTransaction({      amount: createPaymentDto.amount,      description: createPaymentDto.uniqueID,      metadata: {        mobile: user.phoneNumber,      },    });    try {      const result =        this.zarinpalService.generateStartPayUrl(transactionResult);      await this.paymentModel.create({        user: user,        amount: createPaymentDto.amount,        uniqueID: createPaymentDto.uniqueID,        status: PaymentStatus.Initial,        gateway: PaymentGateway.Zarinpal,        paymentLink: result,        authority: transactionResult,      });      return { paymentLink: result };    } catch (e) {      throw InternalServerErrorException;    }  }"
+      "lang": "javascript",
+      "code": "async openTransaction(    createPaymentDto: CreatePaymentDto,    user: Partial<User>,  ):\nPromise<CreatePaymentResultDto> {    const transactionResult = await\nthis.zarinpalService.openTransaction({      amount: createPaymentDto.amount,      description:\ncreatePaymentDto.uniqueID,      metadata: {        mobile: user.phoneNumber,      },    });    try {\nconst result =        this.zarinpalService.generateStartPayUrl(transactionResult);      await\nthis.paymentModel.create({        user: user,        amount: createPaymentDto.amount,\nuniqueID: createPaymentDto.uniqueID,        status: PaymentStatus.Initial,        gateway:\nPaymentGateway.Zarinpal,        paymentLink: result,        authority: transactionResult,      });\nreturn { paymentLink: result };    } catch (e) {      throw InternalServerErrorException;    }  }"
     },
     {
       "type": "heading",
@@ -149,8 +149,8 @@
     },
     {
       "type": "code",
-      "lang": "python",
-      "code": "import { ApiProperty } from '@nestjs/swagger';export class CreatePaymentDto {  @ApiProperty()  amount: number;  @ApiProperty()  uniqueID: string;}export class CreatePaymentResultDto {  @ApiProperty()  paymentLink: string;}"
+      "lang": "typescript",
+      "code": "import {\n  ApiProperty\n}\nfrom '@nestjs/swagger';\nexport class CreatePaymentDto {\n  @ApiProperty() amount: number;\n  @ApiProperty() uniqueID: string;\n}\nexport class CreatePaymentResultDto {\n  @ApiProperty() paymentLink: string;\n}"
     },
     {
       "type": "paragraph",
@@ -158,8 +158,8 @@
     },
     {
       "type": "code",
-      "lang": "python",
-      "code": "import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';import mongoose, { Document } from 'mongoose';import { User } from 'src/users/schemas/user.schema';export enum PaymentStatus {  Initial = 'Initial',  Pending = 'Pending',  Success = 'Success',  Failed = 'Failed',}export enum PaymentGateway {  Zarinpal = 'Zarinpal',}@Schema({  timestamps: true,  collection: 'Payment',})export class Payment extends Document {  @ApiProperty()  _id: string;  @ApiProperty({ type: () => User })  @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'user' })  user: User;  @ApiProperty()  @Prop({ required: true })  amount: number;  @ApiProperty()  @Prop({ required: true, unique: true })  uniqueID: string;  @ApiProperty({ type: () => [PaymentStatus] })  @Prop({ required: true })  status: string;  @ApiProperty({ type: () => [PaymentGateway] })  @Prop({ required: true })  gateway: string;  @ApiProperty()  @Prop({ required: true })  paymentLink: string;  @ApiPropertyOptional()  @Prop({ type: Object })  authority: Record<string, any>;}const PaymentSchema = SchemaFactory.createForClass(Payment);export { PaymentSchema };"
+      "lang": "typescript",
+      "code": "import {\n  Prop, Schema, SchemaFactory\n}\nfrom '@nestjs/mongoose';\nimport {\n  ApiProperty, ApiPropertyOptional\n}\nfrom '@nestjs/swagger';\nimport mongoose, {\n  Document\n}\nfrom 'mongoose';\nimport {\n  User\n}\nfrom 'src/users/schemas/user.schema';\nexport enum PaymentStatus {\n  Initial = 'Initial', Pending = 'Pending', Success = 'Success', Failed = 'Failed',\n}\nexport enum PaymentGateway {\n  Zarinpal = 'Zarinpal',\n}\n@Schema({\n  timestamps: true, collection: 'Payment',\n})\nexport class Payment extends Document {\n  @ApiProperty() _id: string;\n  @ApiProperty({\n    type: () => User\n  }) @Prop({\n    type: mongoose.Schema.Types.ObjectId, ref: 'user'\n  }) user: User;\n  @ApiProperty() @Prop({\n    required: true\n  }) amount: number;\n  @ApiProperty() @Prop({\n    required: true, unique: true\n  }) uniqueID: string;\n  @ApiProperty({\n    type: () => [PaymentStatus]\n  }) @Prop({\n    required: true\n  }) status: string;\n  @ApiProperty({\n    type: () => [PaymentGateway]\n  }) @Prop({\n    required: true\n  }) gateway: string;\n  @ApiProperty() @Prop({\n    required: true\n  }) paymentLink: string;\n  @ApiPropertyOptional() @Prop({\n    type: Object\n  }) authority: Record<string, any>;\n}\nconst PaymentSchema = SchemaFactory.createForClass(Payment);\nexport {\n  PaymentSchema\n};"
     },
     {
       "type": "image",
@@ -202,8 +202,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "  @Get('/zarinpal/verify')  @ApiOkResponse({ type: () => VerifyPaymentZarinPalResponseDto })  async verifyTransaction(@Query() query: VerifyPaymentZarinPalDto) {    return this.paymentZarinpalService.verifyTransaction(query);  }"
+      "lang": "typescript",
+      "code": "@Get('/zarinpal/verify') @ApiOkResponse({\n  type: () => VerifyPaymentZarinPalResponseDto\n}) async verifyTransaction(@Query() query: VerifyPaymentZarinPalDto) {\n  return this.paymentZarinpalService.verifyTransaction(query);\n}"
     },
     {
       "type": "heading",
@@ -212,8 +212,8 @@
     },
     {
       "type": "code",
-      "lang": "python",
-      "code": "import { Module } from '@nestjs/common';import { PaymentZarinpalService } from './payment.zarinpal.service';import { PaymentController } from './payment.controller';import { AuthModule } from 'src/auth/auth.module';import { MongooseModule } from '@nestjs/mongoose';import { Payment, PaymentSchema } from './entities/payment.entity';import { HttpModule } from '@nestjs/axios';@Module({  imports: [    AuthModule,    MongooseModule.forFeature([{ name: Payment.name, schema: PaymentSchema }]),    HttpModule,  ],  controllers: [PaymentController],  providers: [PaymentZarinpalService],})export class PaymentModule {}"
+      "lang": "typescript",
+      "code": "import {\n  Module\n}\nfrom '@nestjs/common';\nimport {\n  PaymentZarinpalService\n}\nfrom './payment.zarinpal.service';\nimport {\n  PaymentController\n}\nfrom './payment.controller';\nimport {\n  AuthModule\n}\nfrom 'src/auth/auth.module';\nimport {\n  MongooseModule\n}\nfrom '@nestjs/mongoose';\nimport {\n  Payment, PaymentSchema\n}\nfrom './entities/payment.entity';\nimport {\n  HttpModule\n}\nfrom '@nestjs/axios';\n@Module({\n  imports: [AuthModule, MongooseModule.forFeature([{\n    name: Payment.name, schema: PaymentSchema\n  }]), HttpModule,], controllers: [PaymentController], providers: [PaymentZarinpalService],\n})\nexport class PaymentModule {\n}"
     },
     {
       "type": "heading",
@@ -227,7 +227,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "    async verifyTransaction(query: VerifyPaymentZarinPalDto) {    const payment = await this.paymentModel.findOne({      authority_code: query.Authority,    });    if (!payment) {      throw new NotFoundException();    }    if (      payment.status == PaymentStatus.Failed ||      payment.status == PaymentStatus.Success    ) {      return new NotFoundException();    }    if (query.Status === 'NOK') {      payment.status = PaymentStatus.Failed;      payment.save();      return { status: PaymentStatus.Failed, message: PaymentStatus.Failed };    }    payment.status = PaymentStatus.Pending;    await payment.save();    try {      const verify = await this.zarinpalService.verifyTransaction({        authority: query.Authority,        amount: payment.amount,      });      if (verify.code == 100 || verify.code == 101) {        payment.status = PaymentStatus.Success;      } else {        payment.status = PaymentStatus.Failed;      }      payment.response = verify;      await payment.save();      return { status: payment.status, message: verify.message };    } catch (e) {      console.error(e);      payment.response = e;      payment.status = PaymentStatus.Failed;      payment.save();      throw InternalServerErrorException;    }  }"
+      "code": "async verifyTransaction(query: VerifyPaymentZarinPalDto) {    const payment = await\nthis.paymentModel.findOne({      authority_code: query.Authority,    });    if (!payment) {\nthrow new NotFoundException();    }    if (      payment.status == PaymentStatus.Failed ||\npayment.status == PaymentStatus.Success    ) {      return new NotFoundException();    }    if\n(query.Status === 'NOK') {      payment.status = PaymentStatus.Failed;      payment.save();\nreturn { status: PaymentStatus.Failed, message: PaymentStatus.Failed };    }    payment.status =\nPaymentStatus.Pending;    await payment.save();    try {      const verify = await\nthis.zarinpalService.verifyTransaction({        authority: query.Authority,        amount:\npayment.amount,      });      if (verify.code == 100 || verify.code == 101) {        payment.status\n= PaymentStatus.Success;      } else {        payment.status = PaymentStatus.Failed;      }\npayment.response = verify;      await payment.save();      return { status: payment.status, message:\nverify.message };    } catch (e) {      console.error(e);      payment.response = e;\npayment.status = PaymentStatus.Failed;      payment.save();      throw InternalServerErrorException;\n}  }"
     },
     {
       "type": "paragraph",
@@ -235,8 +235,8 @@
     },
     {
       "type": "code",
-      "lang": "javascript",
-      "code": "export class VerifyPaymentZarinPalDto {  @ApiProperty()  Status: string;  @ApiProperty()  Authority: string;}export class VerifyPaymentZarinPalResponseDto {  @ApiProperty()  Status: string;  @ApiProperty()  Message: string;}"
+      "lang": "typescript",
+      "code": "export class VerifyPaymentZarinPalDto {\n  @ApiProperty() Status: string;\n  @ApiProperty() Authority: string;\n}\nexport class VerifyPaymentZarinPalResponseDto {\n  @ApiProperty() Status: string;\n  @ApiProperty() Message: string;\n}"
     },
     {
       "type": "paragraph",
@@ -244,8 +244,8 @@
     },
     {
       "type": "code",
-      "lang": "javascript",
-      "code": "export class ZarinPalVerifyResponse {  data: {    code: number;    message: string;    card_hash: string;    card_pan: string;    ref_id: number;    fee_type: string;    fee: number;    shaparak_fee: string;    order_id: number | null;  };  errors: any[];}export const ZarinPalVerifyURL =  'https://payment.zarinpal.com/pg/v4/payment/verify.json';"
+      "lang": "typescript",
+      "code": "export class ZarinPalVerifyResponse {\n  data: {\n    code: number;\n    message: string;\n    card_hash: string;\n    card_pan: string;\n    ref_id: number;\n    fee_type: string;\n    fee: number;\n    shaparak_fee: string;\n    order_id: number | null;\n  };\n  errors: any[];\n}\nexport const ZarinPalVerifyURL = 'https://payment.zarinpal.com/pg/v4/payment/verify.json';"
     },
     {
       "type": "heading",

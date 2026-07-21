@@ -365,7 +365,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "{    \"security.workspace.trust.untrustedFiles\": \"open\",    \"editor.largeFileOptimizations\": false,    \"explorer.confirmDelete\": false,    \"editor.minimap.showSlider\": \"always\",    \"editor.minimap.size\": \"fit\",    \"git.autofetch\": true,    \"tabnine.experimentalAutoImports\": true,    \"workbench.colorTheme\": \"One Dark Pro Flat\",    \"workbench.iconTheme\": \"material-icon-theme\",    \"settingsSync.ignoredExtensions\": [    ],    \"files.autoSave\": \"afterDelay\",    \"files.autoSaveDelay\": 10000,    \"go.toolsManagement.autoUpdate\": true,    \"[json]\": {    \"editor.defaultFormatter\": \"esbenp.prettier-vscode\"    },    \"redhat.telemetry.enabled\": true,    \"workbench.editor.enablePreview\": false,}"
+      "code": "{    \"security.workspace.trust.untrustedFiles\": \"open\",    \"editor.largeFileOptimizations\": false,\n\"explorer.confirmDelete\": false,    \"editor.minimap.showSlider\": \"always\",    \"editor.minimap.size\":\n\"fit\",    \"git.autofetch\": true,    \"tabnine.experimentalAutoImports\": true,\n\"workbench.colorTheme\": \"One Dark Pro Flat\",    \"workbench.iconTheme\": \"material-icon-theme\",\n\"settingsSync.ignoredExtensions\": [    ],    \"files.autoSave\": \"afterDelay\",\n\"files.autoSaveDelay\": 10000,    \"go.toolsManagement.autoUpdate\": true,    \"[json]\": {\n\"editor.defaultFormatter\": \"esbenp.prettier-vscode\"    },    \"redhat.telemetry.enabled\": true,\n\"workbench.editor.enablePreview\": false,}"
     },
     {
       "type": "heading",
@@ -423,7 +423,7 @@
     {
       "type": "code",
       "lang": "json",
-      "code": "{    // Use IntelliSense to learn about possible attributes.    // Hover to view descriptions of existing attributes.    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387    \"version\": \"0.2.0\",    \"configurations\": [        {            \"name\": \"Launch Package\",            \"type\": \"go\",            \"request\": \"launch\",            \"mode\": \"auto\",            \"program\": \"main.go\",            \"envFile\": \"${workspaceFolder}/.env\"        }    ]}"
+      "code": "{    // Use IntelliSense to learn about possible attributes.    // Hover to view descriptions of\nexisting attributes.    // For more information, visit:\nhttps://go.microsoft.com/fwlink/?linkid=830387    \"version\": \"0.2.0\",    \"configurations\": [\n{            \"name\": \"Launch Package\",            \"type\": \"go\",            \"request\": \"launch\",\n\"mode\": \"auto\",            \"program\": \"main.go\",            \"envFile\": \"${workspaceFolder}/.env\"\n}    ]}"
     },
     {
       "type": "heading",
@@ -433,7 +433,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "    Open a file and type anything.    Press Ctrl+Shift+P -> Reload Window."
+      "code": "Open a file and type anything.    Press Ctrl+Shift+P -> Reload Window."
     },
     {
       "type": "heading",

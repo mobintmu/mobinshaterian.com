@@ -157,7 +157,7 @@
     {
       "type": "code",
       "lang": "python",
-      "code": "import pandas as pddf = pd.DataFrame(    {\"name\": [\"IBRAHIM\", \"SEGUN\", \"YUSUF\", \"DARE\", \"BOLA\", \"SOKUNBI\"],     \"score\": [50, 32, 45, 45, 23, 45]    })df[\"lower_name\"] = df[\"name\"].apply(lambda x: x.lower())"
+      "code": "import pandas as pddf = pd.DataFrame(\n    {\"name\": [\"IBRAHIM\", \"SEGUN\", \"YUSUF\", \"DARE\", \"BOLA\", \"SOKUNBI\"],     \"score\": [50, 32, 45, 45,\n    23, 45]\n    })df[\"lower_name\"] = df[\"name\"].apply(lambda x: x.lower())"
     },
     {
       "type": "image",
@@ -183,17 +183,17 @@
     {
       "type": "code",
       "lang": "python",
-      "code": "import osimport randomimport reimport stringimport nltkimport numpy as npimport pandas as pdfrom gensim.models import Word2Vecfrom nltk import word_tokenizefrom nltk.corpus import stopwordsfrom sklearn.cluster import MiniBatchKMeansfrom sklearn.metrics import silhouette_samples, silhouette_scorenltk.download(\"stopwords\")nltk.download(\"punkt\")SEED = 42random.seed(SEED)os.environ[\"PYTHONHASHSEED\"] = str(SEED)np.random.seed(SEED)"
+      "code": "import os\nimport random\nimport re\nimport string\nimport nltk\nimport numpy as np\nimport pandas as pd\nfrom gensim.models\nimport Word2Vec\nfrom nltk\nimport word_tokenize\nfrom nltk.corpus\nimport stopwords\nfrom sklearn.cluster\nimport MiniBatchKMeans\nfrom sklearn.metrics\nimport silhouette_samples, silhouette_scorenltk.download(\"stopwords\")nltk.download(\"punkt\")SEED =\n42random.seed(SEED)os.environ[\"PYTHONHASHSEED\"] = str(SEED)np.random.seed(SEED)"
     },
     {
       "type": "code",
       "lang": "python",
-      "code": "def clean_text(text, tokenizer, stopwords):    \"\"\"Pre-process text and generate tokens    Args:        text: Text to tokenize.    Returns:        Tokenized text.    \"\"\"    text = str(text).lower()  # Lowercase words    text = re.sub(r\"\\[(.*?)\\]\", \"\", text)  # Remove [+XYZ chars] in content    text = re.sub(r\"\\s+\", \" \", text)  # Remove multiple spaces in content    text = re.sub(r\"\\w+…|…\", \"\", text)  # Remove ellipsis (and last word)    text = re.sub(r\"(?<=\\w)-(?=\\w)\", \" \", text)  # Replace dash between words    text = re.sub(        f\"[{re.escape(string.punctuation)}]\", \"\", text    )  # Remove punctuation    tokens = tokenizer(text)  # Get tokens from text    tokens = [t for t in tokens if not t in stopwords]  # Remove stopwords    tokens = [\"\" if t.isdigit() else t for t in tokens]  # Remove digits    tokens = [t for t in tokens if len(t) > 1]  # Remove short tokens    return tokens"
+      "code": "def clean_text(text, tokenizer, stopwords):\n    \"\"\"Pre-process text and generate tokens\n    Args:        text: Text to tokenize.\n    Returns:        Tokenized text.\n    \"\"\"\n    text = str(text).lower()  # Lowercase words\n    text = re.sub(r\"\\[(.*?)\\]\", \"\", text)  # Remove [+XYZ chars] in content\n    text = re.sub(r\"\\s+\", \" \", text)  # Remove multiple spaces in content\n    text = re.sub(r\"\\w+…|…\", \"\", text)  # Remove ellipsis (and last word)\n    text = re.sub(r\"(?<=\\w)-(?=\\w)\", \" \", text)  # Replace dash between words\n    text = re.sub(        f\"[{re.escape(string.punctuation)}]\", \"\", text\n    )  # Remove punctuation\n    tokens = tokenizer(text)  # Get tokens from text\n    tokens = [t for t in tokens if not t in stopwords]  # Remove stopwords\n    tokens = [\"\" if t.isdigit() else t for t in tokens]  # Remove digits\n    tokens = [t for t in tokens if len(t) > 1]  # Remove short tokens\n    return tokens"
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "custom_stopwords = set(stopwords.words('english') + list(string.punctuation) + list([\"I\" , \"--\"]))df_raw = pd.read_csv(\"data.csv\")df = df_raw[['ID','Summarize']].copy()df[\"Tokens\"] = df[\"Summarize\"].map(lambda x: clean_text(x, word_tokenize, custom_stopwords))# Remove duplicated after preprocessing_, idx = np.unique(df[\"Tokens\"], return_index=True)df = df.iloc[idx, :]docs = df[\"Summarize\"].valuestokenized_docs = df[\"Tokens\"].valuesp"
+      "lang": "python",
+      "code": "custom_stopwords = set(stopwords.words('english') + list(string.punctuation) + list([\"I\" ,\n\"--\"]))df_raw = pd.read_csv(\"data.csv\")df = df_raw[['ID','Summarize']].copy()df[\"Tokens\"] =\ndf[\"Summarize\"].map(lambda x: clean_text(x, word_tokenize, custom_stopwords))# Remove duplicated\nafter preprocessing_, idx = np.unique(df[\"Tokens\"], return_index=True)df = df.iloc[idx, :]docs =\ndf[\"Summarize\"].valuestokenized_docs = df[\"Tokens\"].valuesp"
     },
     {
       "type": "heading",
@@ -235,7 +235,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "[('trumps', 0.988541841506958), ('president', 0.9746493697166443), ('donald', 0.9274922013282776), ('ivanka', 0.9203903079032898), ('impeachment', 0.9195784330368042), ('pences', 0.9152231812477112), ('avlon', 0.9148306846618652), ('biden', 0.9146010279655457), ('breitbart', 0.9144087433815002), ('vice', 0.9067237973213196)]"
+      "code": "[('trumps', 0.988541841506958), ('president', 0.9746493697166443), ('donald', 0.9274922013282776),\n('ivanka', 0.9203903079032898), ('impeachment', 0.9195784330368042), ('pences', 0.9152231812477112),\n('avlon', 0.9148306846618652), ('biden', 0.9146010279655457), ('breitbart', 0.9144087433815002),\n('vice', 0.9067237973213196)]"
     },
     {
       "type": "heading",
@@ -245,12 +245,12 @@
     {
       "type": "code",
       "lang": "python",
-      "code": "def vectorize(list_of_docs, model):    \"\"\"Generate vectors for list of documents using a Word Embedding    Args:        list_of_docs: List of documents        model: Gensim's Word Embedding    Returns:        List of document vectors    \"\"\"    features = []    for tokens in list_of_docs:        zero_vector = np.zeros(model.vector_size)        vectors = []        for token in tokens:            if token in model.wv:                try:                    vectors.append(model.wv[token])                except KeyError:                    continue        if vectors:            vectors = np.asarray(vectors)            avg_vec = vectors.mean(axis=0)            features.append(avg_vec)        else:            features.append(zero_vector)    return features    vectorized_docs = vectorize(tokenized_docs, model=model)len(vectorized_docs), len(vectorized_docs[0])"
+      "code": "def vectorize(list_of_docs, model):\n    \"\"\"Generate vectors for list of documents using a Word Embedding\n    Args:        list_of_docs: List of documents        model: Gensim's Word Embedding\n    Returns:        List of document vectors\n    \"\"\"\n    features = []\n    for tokens in list_of_docs:        zero_vector = np.zeros(model.vector_size)        vectors = []\n    for token in tokens:            if token in model.wv:                try:\n    vectors.append(model.wv[token])                except KeyError:                    continue\n    if vectors:            vectors = np.asarray(vectors)            avg_vec = vectors.mean(axis=0)\n    features.append(avg_vec)        else:            features.append(zero_vector)\n    return features\n    vectorized_docs = vectorize(tokenized_docs, model=model)len(vectorized_docs),\n    len(vectorized_docs[0])"
     },
     {
       "type": "code",
       "lang": "python",
-      "code": "import csvwith open('vectors.csv', 'w', newline='') as file:    # Step 4: Using csv.writer to write the list to the CSV file    writer = csv.writer(file)    writer.writerow(vectorized_docs) # Use writerow for single list"
+      "code": "import csvwith open('vectors.csv', 'w', newline='') as file:\n    # Step 4: Using csv.writer to write the list to the CSV file\n    writer = csv.writer(file)\n    writer.writerow(vectorized_docs) # Use writerow for single list"
     },
     {
       "type": "heading",
@@ -260,7 +260,7 @@
     {
       "type": "code",
       "lang": "python",
-      "code": "from sklearn.cluster import KMeansfor seed in range(5):    kmeans = KMeans(        n_clusters=10,        max_iter=100,        n_init=1,        random_state=seed,    ).fit(X)    cluster_ids, cluster_sizes = np.unique(kmeans.labels_, return_counts=True)    print(f\"Number of elements assigned to each cluster: {cluster_sizes}\")"
+      "code": "from sklearn.cluster\nimport KMeansfor seed in range(5):\n    kmeans = KMeans(        n_clusters=10,        max_iter=100,        n_init=1,\n    random_state=seed,\n    ).fit(X)\n    cluster_ids, cluster_sizes = np.unique(kmeans.labels_, return_counts=True)\n    print(f\"Number of elements assigned to each cluster: {cluster_sizes}\")"
     },
     {
       "type": "heading",
@@ -270,7 +270,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "# groupsgroups = cluster.groupby('Cluster', as_index=False).aggregate('count')groups =groups[['Cluster' , 'Index']]groups.sort_values('Index')groups.to_csv('sort_label.csv',index=True)selected_cluster = groups.query('Index < 30')# open AIload_dotenv()key = os.getenv('OPENAI_API_KEY')client = OpenAI(api_key=key)def group_meaning_gpt(questions):    messages = [        {\"role\": \"user\", \"content\": f'What do the following customer questions have in common? .\\n\\nCustomer questions:\\n\"\"\"\\n{questions}\\n\"\"\"\\n\\nTheme:'}    ]    response = client.chat.completions.create(        model=\"gpt-3.5-turbo-1106\",        messages=messages,        temperature=0,        max_tokens=64,        top_p=1,        frequency_penalty=0,        presence_penalty=0)    return response.choices[0].message.content.replace(\"\\n\", \"\")questions = \"\"for index_cluster in selected_cluster['Cluster']:    batches = cluster[cluster['Cluster'] == index_cluster]    for batch in batches['Text']:        if questions != \"\":            questions = questions + \"\\n\\n\" + batch        else :            questions = batch    anwser = group_meaning_gpt(questions)    new_batcher = batches.copy()    new_batcher.loc[ : , 'Label']  = anwser    new_batcher.to_csv('cluster_'+str(anwser)+'.csv',index=True)    break"
+      "code": "# groupsgroups = cluster.groupby('Cluster', as_index=False).aggregate('count')groups\n=groups[['Cluster' ,\n'Index']]groups.sort_values('Index')groups.to_csv('sort_label.csv',index=True)selected_cluster =\ngroups.query('Index < 30')# open AIload_dotenv()key = os.getenv('OPENAI_API_KEY')client =\nOpenAI(api_key=key)def group_meaning_gpt(questions):    messages = [        {\"role\": \"user\",\n\"content\":\nf'What do the following customer questions have in common? .\\n\\nCustomer questions:\\n\"\"\"\\n{questions}\\n\"\"\"\\n\\nTheme:'}    ]    response = client.chat.completions.create(        model=\"gpt-3.5-turbo-1106\",        messages=messages,        temperature=0,        max_tokens=64,        top_p=1,        frequency_penalty=0,        presence_penalty=0)    return response.choices[0].message.content.replace(\"\\n\", \"\")questions = \"\"for index_cluster in selected_cluster['Cluster']:    batches = cluster[cluster['Cluster'] == index_cluster]    for batch in batches['Text']:        if questions != \"\":            questions = questions + \"\\n\\n\" + batch        else :            questions = batch    anwser = group_meaning_gpt(questions)    new_batcher = batches.copy()    new_batcher.loc[ : , 'Label']  = anwser    new_batcher.to_csv('cluster_'+str(anwser)+'.csv',index=True)    break"
     },
     {
       "type": "heading",

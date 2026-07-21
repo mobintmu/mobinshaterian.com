@@ -59,12 +59,12 @@
     {
       "type": "code",
       "lang": "sql",
-      "code": "CREATE TABLE categories (  id         SERIAL PRIMARY KEY,  website_id INTEGER NOT NULL REFERENCES websites(id) ON DELETE CASCADE,  name       TEXT NOT NULL,  link       TEXT NOT NULL UNIQUE,  status     entity_status DEFAULT 'active' NOT NULL,  created_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP NOT NULL,  updated_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP NOT NULL);"
+      "code": "CREATE TABLE categories (  id         SERIAL PRIMARY KEY,  website_id INTEGER NOT NULL REFERENCES\nwebsites(id) ON DELETE CASCADE,  name       TEXT NOT NULL,  link       TEXT NOT NULL UNIQUE,  status\nentity_status DEFAULT 'active' NOT NULL,  created_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP NOT NULL,\nupdated_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP NOT NULL);"
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "CREATE INDEX idx_categories_status     ON categories(status);CREATE INDEX idx_categories_website_id ON categories(website_id);"
+      "lang": "sql",
+      "code": "CREATE INDEX idx_categories_status     ON categories(status);\nCREATE INDEX idx_categories_website_id ON categories(website_id);"
     },
     {
       "type": "paragraph",
@@ -115,7 +115,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "func (s *Store) KeyCategory(ID int32) string {    return s.prefix + \":category:\" + fmt.Sprint(ID)}func (s *Store) KeyAllCategories(limit, offset int64) string {    return s.prefix + \":categories:all:\" + fmt.Sprint(limit) + \":\" + fmt.Sprint(offset)}func (r *Store) DeleteAllCategoryCache(ctx context.Context) error {    return r.deleteByPattern(ctx, r.prefix+\":categories:all:*\")}"
+      "code": "func (s *Store) KeyCategory(ID int32) string {\n    return s.prefix + \":category:\" + fmt.Sprint(ID)\n}\nfunc (s *Store) KeyAllCategories(limit, offset int64) string {\n    return s.prefix + \":categories:all:\" + fmt.Sprint(limit) + \":\" + fmt.Sprint(offset)\n}\nfunc (r *Store) DeleteAllCategoryCache(ctx context.Context) error {\n    return r.deleteByPattern(ctx, r.prefix+\":categories:all:*\")\n}"
     },
     {
       "type": "paragraph",
@@ -137,7 +137,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "func (s *Category) GetCategoryByID(ctx context.Context, id int32) (*sqlc.Category, error) {    var category sqlc.Category    err := s.memory.Get(ctx, s.memory.KeyCategory(id), &category)    if err != nil {        // Cache miss — go to DB        category, err = s.query.GetCategoryByID(ctx, id)        if err != nil {            return nil, err        }        s.memory.Set(ctx, s.memory.KeyCategory(category.ID), category, s.cfg.Redis.DefaultTTL)    }    return &category, nil}"
+      "code": "func (s *Category) GetCategoryByID(ctx context.Context, id int32) (*sqlc.Category, error) {\n    var category sqlc.Category\n    err := s.memory.Get(ctx, s.memory.KeyCategory(id), &category)\n    if err != nil {\n        // Cache miss — go to DB category, err = s.query.GetCategoryByID(ctx, id) if err != nil {\n            return nil, err\n        }\n        s.memory.Set(ctx, s.memory.KeyCategory(category.ID), category, s.cfg.Redis.DefaultTTL)\n    }\n    return &category, nil\n}"
     },
     {
       "type": "paragraph",
@@ -155,7 +155,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "func (c *AdminCategory) RegisterRoutes(rg *gin.RouterGroup, cfg *config.Config) {    auth := middleware.JWTAuth(cfg)    rg.POST(\"/\", auth, c.CreateCategory)    rg.PUT(\"/:id\", auth, c.UpdateCategory)    rg.DELETE(\"/:id\", auth, c.DeleteCategory)    rg.GET(\"/:id\", auth, c.GetCategoryByID)    rg.GET(\"/\", auth, c.ListCategories)}"
+      "code": "func (c *AdminCategory) RegisterRoutes(rg *gin.RouterGroup, cfg *config.Config) {\n    auth := middleware.JWTAuth(cfg)\n    rg.POST(\"/\", auth, c.CreateCategory)\n    rg.PUT(\"/:id\", auth, c.UpdateCategory)\n    rg.DELETE(\"/:id\", auth, c.DeleteCategory)\n    rg.GET(\"/:id\", auth, c.GetCategoryByID)\n    rg.GET(\"/\", auth, c.ListCategories)\n}"
     },
     {
       "type": "paragraph",
@@ -178,7 +178,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "func TestProductGRPC(t *testing.T) {    // ...    client := productv1.NewProductServiceClient(conn)    grpcGetProductByID(t, product, client)}"
+      "code": "func TestProductGRPC(t *testing.T) {\n    //...\n    client := productv1.NewProductServiceClient(conn)\n    grpcGetProductByID(t, product, client)\n}"
     },
     {
       "type": "paragraph",

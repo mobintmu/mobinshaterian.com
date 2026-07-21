@@ -101,8 +101,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "version: \"3.9\"services:  postgres-tasks:    image: postgres:13.4-buster    environment:      POSTGRES_USER: user      POSTGRES_PASSWORD: pass      POSTGRES_DB: tasks    volumes:      - postgres-db:/var/lib/postgresql/data    restart: always    ports:       - 3001:5432    networks:      - tasks-network  admin:    image: adminer    restart: always    depends_on:       - postgres-tasks    ports:      - 10000:8080    networks:      - tasks-network  liquibase:    image: liquibase/liquibase    command: tail -f /liquibase/changelog.xml    volumes:      - ./sql/changelog.xml:/liquibase/changelog.xml      - ./sql/migrations:/liquibase/migrations    networks:      - tasks-networkvolumes:  postgres-db:    driver: localnetworks:  tasks-network:    external: true"
+      "lang": "yaml",
+      "code": "version: \"3.9\"services:\n  postgres-tasks:\n    image: postgres:13.4-buster\n    environment:\n      POSTGRES_USER: user\n      POSTGRES_PASSWORD: pass\n      POSTGRES_DB: tasks\n    volumes:\n      - postgres-db:/var/lib/postgresql/data\n    restart: always\n    ports:       - 3001:5432\n    networks:\n      - tasks-network\n  admin:\n    image: adminer\n    restart: always\n    depends_on:       - postgres-tasks\n    ports:\n      - 10000:8080\n    networks:\n      - tasks-network\n  liquibase:\n    image: liquibase/liquibase\n    command: tail -f /liquibase/changelog.xml\n    volumes:\n      - ./sql/changelog.xml:/liquibase/changelog.xml\n      - ./sql/migrations:/liquibase/migrations\n    networks:\n      - tasks-networkvolumes:\n  postgres-db:\n    driver: localnetworks:\n  tasks-network:\n    external: true"
     },
     {
       "type": "heading",
@@ -124,8 +124,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "--liquibase formatted sql-- changeset mobin:1CREATE TABLE IF NOT EXISTS \"tasks\" (  \"id\" bigserial PRIMARY KEY,  \"title\" TEXT NOT NULL,  \"description\" TEXT NOT NULL,  \"created_at\" timestamptz NOT NULL DEFAULT (now()));CREATE INDEX ON \"tasks\" (\"id\");--rollback DROP TABLE \"tasks\";"
+      "lang": "sql",
+      "code": "--liquibase formatted sql-- change\nset mobin:1\nCREATE TABLE IF NOT EXISTS \"tasks\" (  \"id\" bigserial PRIMARY KEY,  \"title\" TEXT NOT NULL,\n\"description\" TEXT NOT NULL,  \"created_at\" timestamptz NOT NULL DEFAULT (now()));\nCREATE INDEX ON \"tasks\" (\"id\");--rollback\nDROP TABLE \"tasks\";"
     },
     {
       "type": "heading",
@@ -134,8 +134,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "<?xml version=\"1.0\" encoding=\"UTF-8\"?><databaseChangeLog  xmlns=\"http://www.liquibase.org/xml/ns/dbchangelog\"  xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"  xsi:schemaLocation=\"http://www.liquibase.org/xml/ns/dbchangelog         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd\">    <includeAll  path=\"migrations/\" relativeToChangelogFile=\"true\"/></databaseChangeLog>"
+      "lang": "xml",
+      "code": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<databaseChangeLog  xmlns=\"http://www.liquibase.org/xml/ns/dbchangelog\"\nxmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\nxsi:schemaLocation=\"http://www.liquibase.org/xml/ns/dbchangelog         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd\">\n<includeAll  path=\"migrations/\" relativeToChangelogFile=\"true\"/>\n</databaseChangeLog>"
     },
     {
       "type": "heading",
@@ -145,7 +145,7 @@
     {
       "type": "code",
       "lang": "bash",
-      "code": "docker network create tasks-networksudo docker-compose up"
+      "code": "docker network create tasks-network\nsudo\ndocker-compose up"
     },
     {
       "type": "image",
@@ -163,7 +163,7 @@
     {
       "type": "code",
       "lang": "bash",
-      "code": "sudo docker-compose -f docker-compose.yml exec liquibase /bin/sh liquibase update --url=jdbc:postgresql://postgres-tasks:5432/task?currentSchema=public --changelog-file=changelog.xml --username=user --password=pass "
+      "code": "sudo\ndocker-compose -f docker-compose.yml exec liquibase /bin/sh liquibase update\n--url=jdbc:postgresql://postgres-tasks:5432/task?currentSchema=public --changelog-file=changelog.xml\n--username=user --password=pass"
     },
     {
       "type": "heading",
@@ -196,8 +196,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "@Module({  imports: [    TasksModule,    TypeOrmModule.forRoot({      type: 'postgres',      host: '127.0.0.1',      port: 3001,      username: 'user',      password: 'pass',      database: 'task',      autoLoadEntities: true,      synchronize: true,    }),  ],})export class AppModule {}"
+      "lang": "typescript",
+      "code": "@Module({\n  imports: [TasksModule, TypeOrmModule.forRoot({\n    type: 'postgres', host: '127.0.0.1', port: 3001, username: 'user', password: 'pass', database:\n    'task', autoLoadEntities: true, synchronize: true,\n  }),],\n})\nexport class AppModule {\n}"
     },
     {
       "type": "paragraph",
@@ -222,8 +222,8 @@
     },
     {
       "type": "code",
-      "lang": "python",
-      "code": "import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';import { TaskStatus } from './tasks.model';@Entity()export class Task {  @PrimaryGeneratedColumn('uuid')  id: string;  @Column()  title: string;  @Column()  description: string;  @Column()  status: TaskStatus;}"
+      "lang": "typescript",
+      "code": "import {\n  Column, Entity, PrimaryGeneratedColumn\n}\nfrom 'typeorm';\nimport {\n  TaskStatus\n}\nfrom './tasks.model';\n@Entity()\nexport class Task {\n  @PrimaryGeneratedColumn('uuid') id: string;\n  @Column() title: string;\n  @Column() description: string;\n  @Column() status: TaskStatus;\n}"
     },
     {
       "type": "heading",
@@ -250,8 +250,8 @@
     },
     {
       "type": "code",
-      "lang": "python",
-      "code": "import { DataSource, Repository } from 'typeorm';import { Injectable } from '@nestjs/common';import { Task } from './task.entity';@Injectable()export class TaskRepository extends Repository<Task> {  constructor(private dataSource: DataSource) {    super(Task, dataSource.createEntityManager());  }}"
+      "lang": "typescript",
+      "code": "import {\n  DataSource, Repository\n}\nfrom 'typeorm';\nimport {\n  Injectable\n}\nfrom '@nestjs/common';\nimport {\n  Task\n}\nfrom './task.entity';\n@Injectable()\nexport class TaskRepository extends Repository<Task> {\n  constructor(private dataSource: DataSource) {\n    super(Task, dataSource.createEntityManager());\n  }\n}"
     },
     {
       "type": "paragraph",
@@ -259,8 +259,8 @@
     },
     {
       "type": "code",
-      "lang": "python",
-      "code": "import { Module } from '@nestjs/common';import { TasksController } from './tasks.controller';import { TasksService } from './tasks.service';import { TypeOrmModule } from '@nestjs/typeorm';import { Task } from './task.entity';@Module({  imports: [TypeOrmModule.forFeature([Task])],  controllers: [TasksController],  providers: [TasksService],})export class TasksModule {}"
+      "lang": "typescript",
+      "code": "import {\n  Module\n}\nfrom '@nestjs/common';\nimport {\n  TasksController\n}\nfrom './tasks.controller';\nimport {\n  TasksService\n}\nfrom './tasks.service';\nimport {\n  TypeOrmModule\n}\nfrom '@nestjs/typeorm';\nimport {\n  Task\n}\nfrom './task.entity';\n@Module({\n  imports: [TypeOrmModule.forFeature([Task])], controllers: [TasksController], providers:\n  [TasksService],\n})\nexport class TasksModule {\n}"
     },
     {
       "type": "heading",
@@ -290,8 +290,8 @@
     },
     {
       "type": "code",
-      "lang": "python",
-      "code": "import { Controller, Get, Param } from '@nestjs/common';import { TasksService } from './tasks.service';import { Task } from './task.entity';@Controller('tasks')export class TasksController {  constructor(private tasksService: TasksService) {}  @Get('/:id')  getTaskById(@Param('id') id: string): Promise<Task> {    return this.tasksService.getTaskById(id);  }}"
+      "lang": "typescript",
+      "code": "import {\n  Controller, Get, Param\n}\nfrom '@nestjs/common';\nimport {\n  TasksService\n}\nfrom './tasks.service';\nimport {\n  Task\n}\nfrom './task.entity';\n@Controller('tasks')\nexport class TasksController {\n  constructor(private tasksService: TasksService) {\n  }\n  @Get('/:id') getTaskById(@Param('id') id: string): Promise<Task> {\n    return this.tasksService.getTaskById(id);\n  }\n}"
     },
     {
       "type": "paragraph",
@@ -299,8 +299,8 @@
     },
     {
       "type": "code",
-      "lang": "python",
-      "code": "import { Injectable, NotFoundException } from '@nestjs/common';import { TaskRepository } from './task.repository';import { InjectRepository } from '@nestjs/typeorm';import { Task } from './task.entity';@Injectable()export class TasksService {  constructor(    @InjectRepository(Task)    private taskRepository: TaskRepository,  ) {}  async getTaskById(id: string): Promise<Task> {    const found = await this.taskRepository.findOne({ where: { id: id } });    if (!found) {      throw new NotFoundException(`Task with ID \"${id}\" not found`);    }    return found;  }}"
+      "lang": "typescript",
+      "code": "import {\n  Injectable, NotFoundException\n}\nfrom '@nestjs/common';\nimport {\n  TaskRepository\n}\nfrom './task.repository';\nimport {\n  InjectRepository\n}\nfrom '@nestjs/typeorm';\nimport {\n  Task\n}\nfrom './task.entity';\n@Injectable()\nexport class TasksService {\n  constructor(@InjectRepository(Task) private taskRepository: TaskRepository,) {\n  }\n  async getTaskById(id: string): Promise<Task> {\n    const found = await this.taskRepository.findOne({\n      where: {\n        id: id\n      }\n    });\n    if (!found) {\n      throw new NotFoundException(`Task with ID \"${id}\" not found`);\n    }\n    return found;\n  }\n}"
     },
     {
       "type": "paragraph",
@@ -317,8 +317,8 @@
     },
     {
       "type": "code",
-      "lang": "python",
-      "code": "import { Module } from '@nestjs/common';import { TasksController } from './tasks.controller';import { TasksService } from './tasks.service';import { TypeOrmModule } from '@nestjs/typeorm';import { Task } from './task.entity';import { TaskRepository } from './task.repository';@Module({  imports: [TypeOrmModule.forFeature([Task])],  controllers: [TasksController],  providers: [TasksService, TaskRepository],})export class TasksModule {}"
+      "lang": "typescript",
+      "code": "import {\n  Module\n}\nfrom '@nestjs/common';\nimport {\n  TasksController\n}\nfrom './tasks.controller';\nimport {\n  TasksService\n}\nfrom './tasks.service';\nimport {\n  TypeOrmModule\n}\nfrom '@nestjs/typeorm';\nimport {\n  Task\n}\nfrom './task.entity';\nimport {\n  TaskRepository\n}\nfrom './task.repository';\n@Module({\n  imports: [TypeOrmModule.forFeature([Task])], controllers: [TasksController], providers:\n  [TasksService, TaskRepository],\n})\nexport class TasksModule {\n}"
     },
     {
       "type": "paragraph",
@@ -326,8 +326,8 @@
     },
     {
       "type": "code",
-      "lang": "python",
-      "code": "import { Body, Controller, Get, Param, Post } from '@nestjs/common';import { TasksService } from './tasks.service';import { Task } from './task.entity';import { CreateTaskDto } from './dto/create-task.dto';@Controller('tasks')export class TasksController {  constructor(private tasksService: TasksService) {}  @Get('/:id')  getTaskById(@Param('id') id: string): Promise<Task> {    return this.tasksService.getTaskById(id);  }  @Post()  createTask(@Body() createTaskDto: CreateTaskDto): Promise<Task> {    return this.tasksService.createTask(createTaskDto);  }}"
+      "lang": "typescript",
+      "code": "import {\n  Body, Controller, Get, Param, Post\n}\nfrom '@nestjs/common';\nimport {\n  TasksService\n}\nfrom './tasks.service';\nimport {\n  Task\n}\nfrom './task.entity';\nimport {\n  CreateTaskDto\n}\nfrom './dto/create-task.dto';\n@Controller('tasks')\nexport class TasksController {\n  constructor(private tasksService: TasksService) {\n  }\n  @Get('/:id') getTaskById(@Param('id') id: string): Promise<Task> {\n    return this.tasksService.getTaskById(id);\n  }\n  @Post() createTask(@Body() createTaskDto: CreateTaskDto): Promise<Task> {\n    return this.tasksService.createTask(createTaskDto);\n  }\n}"
     },
     {
       "type": "paragraph",
@@ -335,8 +335,8 @@
     },
     {
       "type": "code",
-      "lang": "python",
-      "code": "import { Injectable } from '@nestjs/common';import { TaskRepository } from './task.repository';import { InjectRepository } from '@nestjs/typeorm';import { Task } from './task.entity';import { CreateTaskDto } from './dto/create-task.dto';@Injectable()export class TasksService {  constructor(    @InjectRepository(TaskRepository)    private taskRepository: TaskRepository,  ) {}  async getTaskById(id: string): Promise<Task> {    const task = await this.taskRepository.getTaskById(id);    return task;  }  async createTask(createTaskDto: CreateTaskDto): Promise<Task> {    const task = await this.taskRepository.createTask(createTaskDto);    return task;  }}"
+      "lang": "typescript",
+      "code": "import {\n  Injectable\n}\nfrom '@nestjs/common';\nimport {\n  TaskRepository\n}\nfrom './task.repository';\nimport {\n  InjectRepository\n}\nfrom '@nestjs/typeorm';\nimport {\n  Task\n}\nfrom './task.entity';\nimport {\n  CreateTaskDto\n}\nfrom './dto/create-task.dto';\n@Injectable()\nexport class TasksService {\n  constructor(@InjectRepository(TaskRepository) private taskRepository: TaskRepository,) {\n  }\n  async getTaskById(id: string): Promise<Task> {\n    const task = await this.taskRepository.getTaskById(id);\n    return task;\n  }\n  async createTask(createTaskDto: CreateTaskDto): Promise<Task> {\n    const task = await this.taskRepository.createTask(createTaskDto);\n    return task;\n  }\n}"
     },
     {
       "type": "paragraph",
@@ -344,8 +344,8 @@
     },
     {
       "type": "code",
-      "lang": "python",
-      "code": "import { DataSource, Repository } from 'typeorm';import { Injectable, NotFoundException } from '@nestjs/common';import { Task } from './task.entity';import { TaskStatus } from './tasks-status.enum';import { CreateTaskDto } from './dto/create-task.dto';@Injectable()export class TaskRepository extends Repository<Task> {  constructor(private ds: DataSource) {    super(Task, ds.createEntityManager());  }  public async getTaskById(id: string): Promise<Task> {    const found = await this.findOne({ where: { id: id } });    if (!found) {      throw new NotFoundException(`Task with ID \"${id}\" not found`);    }    return found;  }  public async createTask(createTaskDto: CreateTaskDto): Promise<Task> {    const { title, description } = createTaskDto;    const task = this.create({      title,      description,      status: TaskStatus.OPEN,    });    await this.save(task);    return task;  }}"
+      "lang": "typescript",
+      "code": "import {\n  DataSource, Repository\n}\nfrom 'typeorm';\nimport {\n  Injectable, NotFoundException\n}\nfrom '@nestjs/common';\nimport {\n  Task\n}\nfrom './task.entity';\nimport {\n  TaskStatus\n}\nfrom './tasks-status.enum';\nimport {\n  CreateTaskDto\n}\nfrom './dto/create-task.dto';\n@Injectable()\nexport class TaskRepository extends Repository<Task> {\n  constructor(private ds: DataSource) {\n    super(Task, ds.createEntityManager());\n  }\n  public async getTaskById(id: string): Promise<Task> {\n    const found = await this.findOne({\n      where: {\n        id: id\n      }\n    });\n    if (!found) {\n      throw new NotFoundException(`Task with ID \"${id}\" not found`);\n    }\n    return found;\n  }\n  public async createTask(createTaskDto: CreateTaskDto): Promise<Task> {\n    const {\n      title, description\n    }\n    = createTaskDto;\n    const task = this.create({\n      title, description, status: TaskStatus.OPEN,\n    });\n    await this.save(task);\n    return task;\n  }\n}"
     },
     {
       "type": "heading",
@@ -362,8 +362,8 @@
     },
     {
       "type": "code",
-      "lang": "python",
-      "code": "import { Module } from '@nestjs/common';import { TasksModule } from './tasks/tasks.module';import { TypeOrmModule } from '@nestjs/typeorm';@Module({  imports: [    TasksModule,    TypeOrmModule.forRoot({      type: 'postgres',      host: '127.0.0.1',      port: 3001,      username: 'user',      password: 'pass',      database: 'task',      autoLoadEntities: true,      // synchronize: true,    }),  ],})export class AppModule {}"
+      "lang": "typescript",
+      "code": "import {\n  Module\n}\nfrom '@nestjs/common';\nimport {\n  TasksModule\n}\nfrom './tasks/tasks.module';\nimport {\n  TypeOrmModule\n}\nfrom '@nestjs/typeorm';\n@Module({\n  imports: [TasksModule, TypeOrmModule.forRoot({\n    type: 'postgres', host: '127.0.0.1', port: 3001, username: 'user', password: 'pass', database:\n    'task', autoLoadEntities: true, // synchronize: true,\n  }),],\n})\nexport class AppModule {\n}"
     },
     {
       "type": "heading",
@@ -376,8 +376,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "  @Delete('/:id')  deleteTask(@Param('id') id: string): Promise<void> {    return this.tasksService.deleteTask(id);  }"
+      "lang": "typescript",
+      "code": "@Delete('/:id') deleteTask(@Param('id') id: string): Promise<void> {\n  return this.tasksService.deleteTask(id);\n}"
     },
     {
       "type": "paragraph",
@@ -386,7 +386,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "  async deleteTask(id: string): Promise<void> {    return await this.taskRepository.deleteTask(id);  }"
+      "code": "async deleteTask(id: string): Promise<void> {    return await this.taskRepository.deleteTask(id);  }"
     },
     {
       "type": "paragraph",
@@ -395,7 +395,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "  public async deleteTask(id: string): Promise<void> {    const result = await this.delete(id);    if (result.affected === 0) {      throw new NotFoundException(`Task with ID \"${id}\" not found`);    }  }"
+      "code": "public async deleteTask(id: string): Promise<void> {    const result = await this.delete(id);    if\n(result.affected === 0) {      throw new NotFoundException(`Task with ID \"${id}\" not found`);    }\n}"
     },
     {
       "type": "heading",
@@ -408,8 +408,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "  @Patch('/:id/status')  updateTaskStatus(    @Param('id') id: string,    @Body() updateTaskStatusDto: UpdateTaskStatusDto,  ): Promise<Tasks> {    const { status } = updateTaskStatusDto;    return this.tasksService.updateTaskStatus(id, status);  }"
+      "lang": "typescript",
+      "code": "@Patch('/:id/status') updateTaskStatus(@Param('id') id: string, @Body() updateTaskStatusDto:\nUpdateTaskStatusDto,): Promise<Tasks> {\n  const {\n    status\n  }\n  = updateTaskStatusDto;\n  return this.tasksService.updateTaskStatus(id, status);\n}"
     },
     {
       "type": "paragraph",
@@ -418,7 +418,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "  async updateTaskStatus(id: string, status: TaskStatus): Promise<Tasks> {    return await this.taskRepository.updateTaskStatus(id, status);  }"
+      "code": "async updateTaskStatus(id: string, status: TaskStatus): Promise<Tasks> {    return await\nthis.taskRepository.updateTaskStatus(id, status);  }"
     },
     {
       "type": "paragraph",
@@ -427,7 +427,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "  public async updateTaskStatus(    id: string,    status: TaskStatus,  ): Promise<Tasks> {    const task = await this.getTaskById(id);    task.status = status;    await this.save(task);    return task;  }"
+      "code": "public async updateTaskStatus(    id: string,    status: TaskStatus,  ): Promise<Tasks> {    const\ntask = await this.getTaskById(id);    task.status = status;    await this.save(task);    return\ntask;  }"
     },
     {
       "type": "heading",
@@ -440,8 +440,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "  @Get()  getTasks(@Query() filterDto: GetTasksFilterDto): Promise<Tasks[]> {    return this.tasksService.getTasks(filterDto);  }"
+      "lang": "typescript",
+      "code": "@Get() getTasks(@Query() filterDto: GetTasksFilterDto): Promise<Tasks[]> {\n  return this.tasksService.getTasks(filterDto);\n}"
     },
     {
       "type": "paragraph",
@@ -450,7 +450,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "  async getTasks(filterDto: GetTasksFilterDto): Promise<Tasks[]> {    return await this.taskRepository.getTasks(filterDto);  }"
+      "code": "async getTasks(filterDto: GetTasksFilterDto): Promise<Tasks[]> {    return await\nthis.taskRepository.getTasks(filterDto);  }"
     },
     {
       "type": "paragraph",
@@ -459,7 +459,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "  async getTasks(filterDto: GetTasksFilterDto): Promise<Tasks[]> {    const { status, search } = filterDto;    const query = this.createQueryBuilder('tasks');    if (status) {      query.andWhere('tasks.status = :status', { status });    }    if (search) {      query.andWhere(        'LOWER(tasks.title) LIKE LOWER(:search) OR LOWER(tasks.description) LIKE LOWER(:search)',        { search: `%${search}%` },      );    }    const tasks = await query.getMany();    return tasks;  }"
+      "code": "async getTasks(filterDto: GetTasksFilterDto): Promise<Tasks[]> {    const { status, search } =\nfilterDto;    const query = this.createQueryBuilder('tasks');    if (status) {\nquery.andWhere('tasks.status = :status', { status });    }    if (search) {      query.andWhere(\n'LOWER(tasks.title) LIKE LOWER(:search) OR LOWER(tasks.description) LIKE LOWER(:search)',        {\nsearch: `%${search}%` },      );    }    const tasks = await query.getMany();    return tasks;  }"
     },
     {
       "type": "paragraph",

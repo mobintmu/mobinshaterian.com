@@ -62,7 +62,7 @@
     {
       "type": "code",
       "lang": "bash",
-      "code": "sudo fallocate -l 40G /swapfilesudo dd if=/dev/zero of=/swapfile bs=1G count=40"
+      "code": "sudo fallocate -l 40G /swapfile\nsudo dd if=/dev/zero of=/swapfile bs=1G count=40"
     },
     {
       "type": "paragraph",
@@ -71,7 +71,7 @@
     {
       "type": "code",
       "lang": "bash",
-      "code": "sudo chmod 600 /swapfile"
+      "code": "sudo\nchmod 600 /swapfile"
     },
     {
       "type": "paragraph",

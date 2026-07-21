@@ -49,8 +49,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "services:  clickhouse:    image: clickhouse/clickhouse-server:24.1    ports:      - \"8123:8123\"   # HTTP interface      - \"9000:9000\"   # Native TCP interface    environment:      CLICKHOUSE_DB: default      CLICKHOUSE_USER: default      CLICKHOUSE_PASSWORD: pass      CLICKHOUSE_DEFAULT_ACCESS_MANAGEMENT: 1    volumes:      - clickhouse_data:/var/lib/clickhousevolumes:  clickhouse_data:"
+      "lang": "yaml",
+      "code": "services:\n  clickhouse:\n    image: clickhouse/clickhouse-server:24.1\n    ports:\n      - \"8123:8123\"   # HTTP interface\n      - \"9000:9000\"   # Native TCP interface\n    environment:\n      CLICKHOUSE_DB: default\n      CLICKHOUSE_USER: default\n      CLICKHOUSE_PASSWORD: pass\n      CLICKHOUSE_DEFAULT_ACCESS_MANAGEMENT: 1\n    volumes:\n      - clickhouse_data:/var/lib/clickhousevolumes:\n  clickhouse_data:"
     },
     {
       "type": "paragraph",
@@ -72,7 +72,7 @@
     {
       "type": "code",
       "lang": "bash",
-      "code": "curl -X POST \"http://localhost:8123\" \\     -u default:pass \\     --data-binary \"SELECT 1\""
+      "code": "curl -X POST \"http://localhost:8123\" \\\n  -u default:pass \\\n  --data-binary \"SELECT 1\""
     },
     {
       "type": "heading",
@@ -85,8 +85,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "type ProductResponse struct {    ID          int32    Name        string    Description string    Price       int64}"
+      "lang": "go",
+      "code": "type ProductResponse struct {\n    ID int32\n    Name string\n    Description string\n    Price int64\n}"
     },
     {
       "type": "paragraph",
@@ -95,7 +95,7 @@
     {
       "type": "code",
       "lang": "bash",
-      "code": "curl -X POST \"http://localhost:8123\" \\     -u default:pass \\     --data-binary \"CREATE TABLE IF NOT EXISTS products (        id Int32,        name String,        description String,        price Int64     ) ENGINE = MergeTree()     ORDER BY (id)\""
+      "code": "curl -X POST \"http://localhost:8123\" \\\n  -u default:pass \\\n  --data-binary\n  \"CREATE TABLE IF NOT EXISTS products (        id Int32,        name String,        description String,        price Int64     ) ENGINE = MergeTree()     ORDER BY (id)\""
     },
     {
       "type": "paragraph",
@@ -104,7 +104,7 @@
     {
       "type": "code",
       "lang": "bash",
-      "code": "curl -X POST \"http://localhost:8123\" \\     -u default:pass \\     --data-binary \"INSERT INTO products FORMAT Values     (1, 'Laptop', 'High-performance laptop', 129900),     (2, 'Mouse', 'Wireless mouse', 2999)\""
+      "code": "curl -X POST \"http://localhost:8123\" \\\n  -u default:pass \\\n  --data-binary\n  \"INSERT INTO products FORMAT Values     (1, 'Laptop', 'High-performance laptop', 129900),     (2, 'Mouse', 'Wireless mouse', 2999)\""
     },
     {
       "type": "heading",
@@ -117,8 +117,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "type ClickHouseCfg struct { Host     string Port     string DB       string User     string Password string}"
+      "lang": "go",
+      "code": "type ClickHouseCfg struct {\n    Host string\n    Port string\n    DB string\n    User string\n    Password string\n}"
     },
     {
       "type": "paragraph",
@@ -145,7 +145,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "package clickhouseimport ( \"context\" \"fmt\" \"go-clickhouse/internal/config\" \"go-clickhouse/internal/storage/clickhouse/product\" \"github.com/ClickHouse/clickhouse-go/v2\")type ClickHouse struct { conn    clickhouse.Conn Product *product.Repository}func (c *ClickHouse) Conn() clickhouse.Conn { return c.conn}func New(cfg *config.Config) (*ClickHouse, error) { conn, err := clickhouse.Open(&clickhouse.Options{  Addr: []string{cfg.ClickHouse.Host + \":\" + cfg.ClickHouse.Port},  Auth: clickhouse.Auth{   Database: cfg.ClickHouse.DB,   Username: cfg.ClickHouse.User,   Password: cfg.ClickHouse.Password,  }, }) if err != nil {  fmt.Println(\"🛑 Click House could not connect: \", err)  return nil, err } if err := conn.Ping(context.Background()); err != nil {  conn.Close()  fmt.Println(\"🛑 Click House could not connect: \", err)  return nil, err } return &ClickHouse{  conn:    conn,  Product: product.NewProductRepository(conn), }, nil}"
+      "code": "package clickhouse\nimport (\n\"context\"\n\"fmt\"\n\"go-clickhouse/internal/config\"\n\"go-clickhouse/internal/storage/clickhouse/product\"\n\"github.com/ClickHouse/clickhouse-go/v2\"\n)\ntype ClickHouse struct {\n    conn clickhouse.Conn\n    Product *product.Repository\n}\nfunc (c *ClickHouse) Conn() clickhouse.Conn {\n    return c.conn\n}\nfunc New(cfg *config.Config) (*ClickHouse, error) {\n    conn, err := clickhouse.Open(&clickhouse.Options{\n        Addr: []string{\n            cfg.ClickHouse.Host + \":\" + cfg.ClickHouse.Port\n        }, Auth: clickhouse.Auth{\n            Database: cfg.ClickHouse.DB, Username: cfg.ClickHouse.User, Password:\n            cfg.ClickHouse.Password,\n        },\n    }) if err != nil {\n        fmt.Println(\"🛑 Click House could not connect: \", err) return nil, err\n    }\n    if err := conn.Ping(context.Background());\n    err != nil {\n        conn.Close() fmt.Println(\"🛑 Click House could not connect: \", err) return nil, err\n    }\n    return &ClickHouse{\n        conn:\n        conn, Product: product.NewProductRepository(conn),\n    }, nil\n}"
     },
     {
       "type": "paragraph",
@@ -163,7 +163,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "package productimport ( \"context\" \"github.com/ClickHouse/clickhouse-go/v2\")type Product struct { ID          int32 Name        string Description string Price       int64}type Repository struct { conn clickhouse.Conn}func NewProductRepository(conn clickhouse.Conn) *Repository { return &Repository{conn: conn}}const productColumns = `id, name, description, price`func (r *Repository) SelectProduct(ctx context.Context, id int32) (*Product, error) { var p Product err := r.conn.QueryRow(ctx, `        SELECT `+productColumns+`        FROM products        WHERE id = ?        LIMIT 1    `, id).Scan(&p.ID, &p.Name, &p.Description, &p.Price) if err != nil {  return nil, err } return &p, nil}"
+      "code": "package product\nimport (\n\"context\"\n\"github.com/ClickHouse/clickhouse-go/v2\"\n)\ntype Product struct {\n    ID int32\n    Name string\n    Description string\n    Price int64\n}\ntype Repository struct {\n    conn clickhouse.Conn\n}\nfunc NewProductRepository(conn clickhouse.Conn) *Repository {\n    return &Repository{\n        conn: conn\n    }\n}\nconst productColumns = `id, name, description, price`func (r *Repository) SelectProduct(ctx\ncontext.Context, id int32) (*Product, error) {\n    var p Product err := r.conn.QueryRow(ctx,\n    `        SELECT `+productColumns+`        FROM products        WHERE id = ?        LIMIT 1    `,\n    id).Scan(&p.ID, &p.Name, &p.Description, &p.Price) if err != nil {\n        return nil, err\n    }\n    return &p, nil\n}"
     },
     {
       "type": "paragraph",
@@ -180,8 +180,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "type Storage struct {    SQL        *sql.SQL    Cache      *cache.Cache    ClickHouse *clickhouse.ClickHouse}"
+      "lang": "go",
+      "code": "type Storage struct {\n    SQL *sql.SQL\n    Cache *cache.Cache\n    ClickHouse *clickhouse.ClickHouse\n}"
     },
     {
       "type": "paragraph",
@@ -190,7 +190,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "func New(pg *sql.SQL, cache *cache.Cache, ch *clickhouse.ClickHouse) *Storage {    return &Storage{        SQL:        pg,        Cache:      cache,        ClickHouse: ch,    }}"
+      "code": "func New(pg *sql.SQL, cache *cache.Cache, ch *clickhouse.ClickHouse) *Storage {\n    return &Storage{\n        SQL: pg, Cache: cache, ClickHouse: ch,\n    }\n}"
     },
     {
       "type": "paragraph",
@@ -213,7 +213,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "package testimport ( \"encoding/json\" \"fmt\" \"go-clickhouse/internal/config\" \"go-clickhouse/internal/product/dto\" \"io\" \"net/http\" \"testing\")func TestProductReportClient(t *testing.T) { // t.Parallel() WithHttpTestServer(t, func() {  cfg, err := config.NewConfig()  if err != nil {   t.Fatalf(\"Failed to load config: %v\", err)  }  addr := fmt.Sprintf(\"http://%s:%d\", cfg.HTTPAddress, cfg.HTTPPort)  // the product has been create in different way  product := dto.ProductResponse{   ID:          1,   Name:        \"Test Product for Client Report\",   Description: \"A product created for testing client report endpoint\",   Price:       1999,  }  clientGetProductByIDWithReport(t, product, addr) })}func clientGetProductByIDWithReport(t *testing.T, product dto.ProductResponse, addr string) { t.Run(\"List Products (Client)\", func(t *testing.T) {  resp, err := http.Get(addr + \"/api/v1/products/\" + fmt.Sprintf(\"%d/report\", product.ID))  if err != nil {   t.Fatalf(\"Failed to send GET request: %v\", err)  }  defer resp.Body.Close()  if resp.StatusCode != http.StatusOK {   t.Errorf(\"Expected status 200 OK, got %d\", resp.StatusCode)   responseBody, _ := io.ReadAll(resp.Body)   t.Logf(ResponseBodyMessage, string(responseBody))   return  }  var result dto.ProductResponse  if err := json.NewDecoder(resp.Body).Decode(&result); err != nil {   t.Fatalf(FailedToDecodeMessage, err)  }  if result.ID != product.ID {   t.Fatal(\"Product not found in client list\")  } })}"
+      "code": "package test\nimport (\n\"encoding/json\"\n\"fmt\"\n\"go-clickhouse/internal/config\"\n\"go-clickhouse/internal/product/dto\"\n\"io\"\n\"net/http\"\n\"testing\"\n)\nfunc TestProductReportClient(t *testing.T) {\n    // t.Parallel() WithHttpTestServer(t,\n    func() {\n        cfg, err := config.NewConfig() if err != nil {\n            t.Fatalf(\"Failed to load config: %v\", err)\n        }\n        addr := fmt.Sprintf(\"http://%s:%d\", cfg.HTTPAddress, cfg.HTTPPort) // the product has been\n        create in different way product := dto.ProductResponse{\n            ID: 1, Name: \"Test Product for Client Report\", Description:\n            \"A product created for testing client report endpoint\", Price: 1999,\n        }\n        clientGetProductByIDWithReport(t, product, addr)\n    })\n}\nfunc clientGetProductByIDWithReport(t *testing.T, product dto.ProductResponse, addr string) {\n    t.Run(\"List Products (Client)\", func(t *testing.T) {\n        resp, err := http.Get(addr + \"/api/v1/products/\" + fmt.Sprintf(\"%d/report\", product.ID)) if\n        err != nil {\n            t.Fatalf(\"Failed to send GET request: %v\", err)\n        }\n        defer resp.Body.Close() if resp.StatusCode != http.StatusOK {\n            t.Errorf(\"Expected status 200 OK, got %d\", resp.StatusCode) responseBody, _ :=\n            io.ReadAll(resp.Body) t.Logf(ResponseBodyMessage, string(responseBody)) return\n        }\n        var result dto.ProductResponse if err := json.NewDecoder(resp.Body).Decode(&result);\n        err != nil {\n            t.Fatalf(FailedToDecodeMessage, err)\n        }\n        if result.ID != product.ID {\n            t.Fatal(\"Product not found in client list\")\n        }\n    })\n}"
     },
     {
       "type": "paragraph",

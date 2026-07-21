@@ -104,7 +104,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "func NewApp() *fx.App { return fx.New(  fx.Provide(   config.NewConfig,   health.New,   server.NewGinEngine,   server.CreateHTTPServer,   migrate.NewRunner, // ← migration runner  ),  fx.Invoke(   server.RegisterRoutes,   server.StartHTTPServer,   migrate.RunMigrations, // ← migration hook  ), )}"
+      "code": "func NewApp() *fx.App {\n    return fx.New(fx.Provide(config.NewConfig, health.New, server.NewGinEngine,\n    server.CreateHTTPServer, migrate.NewRunner, // ← migration runner),\n    fx.Invoke(server.RegisterRoutes, server.StartHTTPServer, migrate.RunMigrations, // ← migration\n    hook),)\n}"
     },
     {
       "type": "paragraph",
@@ -117,8 +117,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "services:  redis:    image: redis:alpine    ports:      - \"6379:6379\"    volumes:      - redis-data:/data    restart: unless-stopped  postgres:    image: postgres:latest    environment:      - POSTGRES_USER=user      - POSTGRES_PASSWORD=pass      - POSTGRES_DB=database    volumes:      - postgres-data:/var/lib/postgresql/data    ports:      - \"5432:5432\"    restart: unless-stoppedvolumes:  redis-data:  postgres-data:"
+      "lang": "yaml",
+      "code": "services:\n  redis:\n    image: redis:alpine\n    ports:\n      - \"6379:6379\"\n    volumes:\n      - redis-data:/data\n    restart: unless-stopped\n  postgres:\n    image: postgres:latest\n    environment:\n      - POSTGRES_USER=user\n      - POSTGRES_PASSWORD=pass\n      - POSTGRES_DB=database\n    volumes:\n      - postgres-data:/var/lib/postgresql/data\n    ports:\n      - \"5432:5432\"\n    restart: unless-stoppedvolumes:\n  redis-data:\n  postgres-data:"
     },
     {
       "type": "heading",

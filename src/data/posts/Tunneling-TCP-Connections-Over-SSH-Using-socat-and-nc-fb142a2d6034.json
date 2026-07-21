@@ -93,7 +93,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "Host jump-tunnel    HostName <jump-host-ip>    User youruser    PasswordAuthentication yes    PubkeyAuthentication no    LocalForward 8990 <target-host>:9000"
+      "code": "Host jump-tunnel    HostName <jump-host-ip>    User youruser    PasswordAuthentication yes\nPubkeyAuthentication no    LocalForward 8990 <target-host>:9000"
     },
     {
       "type": "paragraph",

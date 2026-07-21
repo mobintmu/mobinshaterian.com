@@ -60,7 +60,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "CREATE MATERIALIZED VIEW mv_metrics_consumer TO dist_metrics_final(    `meta_begin_time` DateTime,    `measurements` String,    `created_at` DateTime    -- ... other fields)AS SELECT    -- Best effort parsing handles various ISO date formats automatically    parseDateTimeBestEffort(meta_begin_time) AS meta_begin_time,        -- CRITICAL FIX: Sanitize \"NaN\" values before they hit downstream CASTs    replace(measurements, 'NaN', '0') AS measurements,        parseDateTimeBestEffort(created_at) AS created_at,    id,    cell_id,    technologyFROM kafka_metrics_source;"
+      "code": "CREATE MATERIALIZED VIEW mv_metrics_consumer TO dist_metrics_final(    `meta_begin_time` DateTime,\n`measurements` String,    `created_at` DateTime    -- ... other fields)AS SELECT    -- Best effort\nparsing handles various ISO date formats automatically    parseDateTimeBestEffort(meta_begin_time)\nAS meta_begin_time,        -- CRITICAL FIX: Sanitize \"NaN\" values before they hit downstream CASTs\nreplace(measurements, 'NaN', '0') AS measurements,        parseDateTimeBestEffort(created_at) AS\ncreated_at,    id,    cell_id,    technologyFROM kafka_metrics_source;"
     },
     {
       "type": "heading",
@@ -74,7 +74,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "CREATE MATERIALIZED VIEW mv_metrics_consumer TO dist_metrics_final(    `meta_begin_time` DateTime,    `measurements` String,    `created_at` DateTime    -- ... other fields)AS SELECT    -- Best effort parsing handles various ISO date formats automatically    parseDateTimeBestEffort(meta_begin_time) AS meta_begin_time,        -- CRITICAL FIX: Sanitize \"NaN\" values before they hit downstream CASTs    replace(measurements, 'NaN', '0') AS measurements,        parseDateTimeBestEffort(created_at) AS created_at,    id,    cell_id,    technologyFROM kafka_metrics_source;"
+      "code": "CREATE MATERIALIZED VIEW mv_metrics_consumer TO dist_metrics_final(    `meta_begin_time` DateTime,\n`measurements` String,    `created_at` DateTime    -- ... other fields)AS SELECT    -- Best effort\nparsing handles various ISO date formats automatically    parseDateTimeBestEffort(meta_begin_time)\nAS meta_begin_time,        -- CRITICAL FIX: Sanitize \"NaN\" values before they hit downstream CASTs\nreplace(measurements, 'NaN', '0') AS measurements,        parseDateTimeBestEffort(created_at) AS\ncreated_at,    id,    cell_id,    technologyFROM kafka_metrics_source;"
     },
     {
       "type": "paragraph",

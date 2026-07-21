@@ -45,7 +45,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "func (s *Service) Create(ctx context.Context, req dto.AdminCreateProductRequest) (dto.ProductResponse, error)func (s *Service) Update(ctx context.Context, req dto.AdminUpdateProductRequest) (dto.ProductResponse, error)func (s *Service) Delete(ctx context.Context, id int32) errorfunc (s *Service) GetProductByID(ctx context.Context, id int32) (dto.ProductResponse, error)func (s *Service) ListProducts(ctx context.Context) ([]dto.ProductResponse, error)"
+      "code": "func (s *Service) Create(ctx context.Context, req dto.AdminCreateProductRequest)\n(dto.ProductResponse, error\n)\nfunc (s *Service) Update(ctx context.Context, req dto.AdminUpdateProductRequest)\n(dto.ProductResponse, error\n)\nfunc (s *Service) Delete(ctx context.Context, id int32) errorfunc (s *Service) GetProductByID(ctx\ncontext.Context, id int32) (dto.ProductResponse, error\n)\nfunc (s *Service) ListProducts(ctx context.Context) ([]dto.ProductResponse, error)"
     },
     {
       "type": "paragraph",
@@ -78,7 +78,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "func JSONError(ctx *gin.Context, status int, err error, logger *zap.Logger) {    logger.Error(\"request error\",        zap.Int(\"status\", status),        zap.String(\"error\", err.Error()),        zap.String(\"path\", ctx.Request.URL.Path),        zap.String(\"method\", ctx.Request.Method),    )    ctx.AbortWithStatusJSON(status, ErrorResponse{Error: err.Error()})}"
+      "code": "func JSONError(ctx *gin.Context, status int, err error, logger *zap.Logger) {\n    logger.Error(\"request error\", zap.Int(\"status\", status), zap.String(\"error\", err.Error()),\n    zap.String(\"path\", ctx.Request.URL.Path), zap.String(\"method\", ctx.Request.Method),\n    )\n    ctx.AbortWithStatusJSON(status, ErrorResponse{\n        Error: err.Error()\n    })\n}"
     },
     {
       "type": "paragraph",
@@ -96,7 +96,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "fx.Provide(func(cfg *config.Config) (*sql.DB, error) {    return sql.Open(\"postgres\", cfg.DatabaseURL)})"
+      "code": "fx.Provide(func(cfg *config.Config) (*sql.DB, error) {    return sql.Open(\"postgres\",\ncfg.DatabaseURL)})"
     },
     {
       "type": "paragraph",
@@ -114,7 +114,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "// @Summary Get a product by ID// @Description Retrieve a single product using its unique ID// @Tags Products// @Param id path int true \"Product ID\"// @Success 200 {object} dto.ProductResponse// @Failure 400 {object} response.ErrorResponse// @Failure 500 {object} response.ErrorResponse// @Router /products/{id} [get]"
+      "code": "// @Summary Get a product by ID// @Description Retrieve a single product using its unique ID// @Tags\nProducts// @Param id path int true \"Product ID\"// @Success 200 {object} dto.ProductResponse//\n@Failure 400 {object} response.ErrorResponse// @Failure 500 {object} response.ErrorResponse//\n@Router /products/{id} [get]"
     },
     {
       "type": "paragraph",

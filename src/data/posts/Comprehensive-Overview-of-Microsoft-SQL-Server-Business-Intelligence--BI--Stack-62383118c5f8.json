@@ -433,7 +433,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "PostgreSQL  →  SSIS (ETL)  →  SQL Server Data Warehouse  →  SSAS (Model)  →  SSRS / Power BI (Reports)"
+      "code": "PostgreSQL  →  SSIS (ETL)  →  SQL Server Data Warehouse  →  SSAS (Model)  →  SSRS / Power BI\n(Reports)"
     },
     {
       "type": "paragraph",

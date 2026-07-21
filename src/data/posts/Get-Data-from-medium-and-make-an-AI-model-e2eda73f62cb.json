@@ -69,7 +69,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "# Importing BeautifulSoup class from the bs4 module from bs4 import BeautifulSoup   # Opening the html file HTMLFile = open(\"1.html\", \"r\") # Reading the file index = HTMLFile.read() # Creating a BeautifulSoup object and specifying the parser Parse = BeautifulSoup(index, 'lxml') print(Parse.title.string)print(Parse.body) "
+      "code": "# Importing BeautifulSoup class from the bs4 module from bs4 import BeautifulSoup   # Opening the\nhtml file HTMLFile = open(\"1.html\", \"r\") # Reading the file index = HTMLFile.read() # Creating a\nBeautifulSoup object and specifying the parser Parse = BeautifulSoup(index, 'lxml')\nprint(Parse.title.string)print(Parse.body)"
     },
     {
       "type": "heading",
@@ -83,7 +83,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "text_element = Parse.find(class_='section-inner sectionLayout--insetColumn')text = text_element.get_text(strip=True)text = text.replace(u'\\xa0', u' ')text = (text.encode('ascii', 'ignore')).decode(\"utf-8\")"
+      "code": "text_element = Parse.find(class_='section-inner sectionLayout--insetColumn')text =\ntext_element.get_text(strip=True)text = text.replace(u'\\xa0', u' ')text = (text.encode('ascii',\n'ignore')).decode(\"utf-8\")"
     },
     {
       "type": "heading",

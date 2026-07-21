@@ -31,7 +31,7 @@
     {
       "type": "code",
       "lang": "json",
-      "code": "{\"_id\":{\"$oid\":\"62ea6a73511c5f776039****\"},\"user_id\":\"d37d691e-cc94-4620-ab55-c1f98e1****\",\"soft_delete\":false,\"purchase_at\":{\"$date\":\"2020-03-14T12:08:02Z\"},\"created_at\":{\"$date\":\"2022-08-03T12:30:43.063Z\"},\"updated_at\":{\"$date\":\"2022-08-03T12:30:43.063Z\"}}"
+      "code": "{\n  \"_id\": {\n    \"$oid\": \"62ea6a73511c5f776039****\"\n  },\n  \"user_id\": \"d37d691e-cc94-4620-ab55-c1f98e1****\",\n  \"soft_delete\": false,\n  \"purchase_at\": {\n    \"$date\": \"2020-03-14T12:08:02Z\"\n  },\n  \"created_at\": {\n    \"$date\": \"2022-08-03T12:30:43.063Z\"\n  },\n  \"updated_at\": {\n    \"$date\": \"2022-08-03T12:30:43.063Z\"\n  }\n}"
     },
     {
       "type": "paragraph",
@@ -56,7 +56,7 @@
     {
       "type": "code",
       "lang": "json",
-      "code": "{ \"_id\" : ObjectId(\"62ea6a73e2a83fe32a1****\"), \"user_id\" : \"d37d691e-cc94-4620\", \"numbery\" : 334, \"created_at\" : ISODate(\"2022-08-03T17:00:43.126+04:30\"), \"updated_at\" : ISODate(\"2022-08-03T17:00:43.126+04:30\")}"
+      "code": "{ \"_id\" : ObjectId(\"62ea6a73e2a83fe32a1****\"), \"user_id\" : \"d37d691e-cc94-4620\", \"numbery\" : 334,\n\"created_at\" : ISODate(\"2022-08-03T17:00:43.126+04:30\"), \"updated_at\" :\nISODate(\"2022-08-03T17:00:43.126+04:30\")}"
     },
     {
       "type": "image",
@@ -99,12 +99,12 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "[/* 1 createdAt:8/3/2022, 5:01:58 PM*/{ \"_id\" : ObjectId(\"62ea6abee2a83fe32a1****\"), \"user_id\" : \"2a15b17f-144f-4644-***\", \"price\" : NumberLong(\"10000\"), \"created_at\" : ISODate(\"2022-08-03T17:01:58.806+04:30\"), \"updated_at\" : ISODate(\"2022-08-03T17:01:58.806+04:30\")},"
+      "code": "[/* 1 createdAt:8/3/2022, 5:01:58 PM*/{ \"_id\" : ObjectId(\"62ea6abee2a83fe32a1****\"), \"user_id\" :\n\"2a15b17f-144f-4644-***\", \"price\" : NumberLong(\"10000\"), \"created_at\" :\nISODate(\"2022-08-03T17:01:58.806+04:30\"), \"updated_at\" : ISODate(\"2022-08-03T17:01:58.806+04:30\")},"
     },
     {
       "type": "code",
       "lang": "text",
-      "code": "/* 2 createdAt:8/3/2022, 5:01:58 PM*/{ \"_id\" : ObjectId(\"62ea6abee2a83fe32a14****\"), \"user_id\" : \"2a15b17f-144f-4644-***\", \"price\" : NumberLong(\"10000\"), \"created_at\" : ISODate(\"2022-08-03T17:01:58.806+04:30\"), \"updated_at\" : ISODate(\"2022-08-03T17:01:58.806+04:30\")},"
+      "code": "/* 2 createdAt:8/3/2022, 5:01:58 PM*/{ \"_id\" : ObjectId(\"62ea6abee2a83fe32a14****\"), \"user_id\" :\n\"2a15b17f-144f-4644-***\", \"price\" : NumberLong(\"10000\"), \"created_at\" :\nISODate(\"2022-08-03T17:01:58.806+04:30\"), \"updated_at\" : ISODate(\"2022-08-03T17:01:58.806+04:30\")},"
     },
     {
       "type": "code",

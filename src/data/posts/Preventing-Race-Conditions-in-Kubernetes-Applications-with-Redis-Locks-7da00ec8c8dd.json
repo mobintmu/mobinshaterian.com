@@ -110,7 +110,7 @@
     {
       "type": "code",
       "lang": "python",
-      "code": "import redisimport redis_lockimport time# Connect to Redis service in Kubernetesclient = redis.Redis(host=\"redis-service\", port=6379, db=0)# Create a lock with 10-minute expirylock = redis_lock.Lock(client, \"my-process-lock\", expire=600)if lock.acquire(blocking=False):    try:        print(\"Lock acquired, running task...\")        # Critical section: fetch and process data        time.sleep(10)  # simulate work    finally:        lock.release()        print(\"Lock released\")else:    print(\"Another process is already running, skipping...\")"
+      "code": "import redis\nimport redis_lock\nimport time# Connect to Redis service in Kubernetesclient = redis.Redis(host=\"redis-service\",\nport=6379, db=0)# Create a lock with 10-minute expirylock = redis_lock.Lock(client,\n\"my-process-lock\", expire=600)if lock.acquire(blocking=False):\n    try:        print(\"Lock acquired, running task...\")        # Critical section: fetch and process\n    data        time.sleep(10)  # simulate work\n    finally:        lock.release()        print(\"Lock released\")else:\n    print(\"Another process is already running, skipping...\")"
     },
     {
       "type": "heading",
@@ -134,7 +134,7 @@
     {
       "type": "code",
       "lang": "python",
-      "code": "from redlock import Redlockimport time# Connect to multiple Redis nodesdlm = Redlock([    {\"host\": \"redis1\", \"port\": 6379, \"db\": 0},    {\"host\": \"redis2\", \"port\": 6379, \"db\": 0},    {\"host\": \"redis3\", \"port\": 6379, \"db\": 0},])lock = dlm.lock(\"my-process-lock\", 60000)  # 60s lockif lock:    try:        print(\"Lock acquired, running task...\")        time.sleep(10)    finally:        dlm.unlock(lock)        print(\"Lock released\")else:    print(\"Could not acquire lock, another process is running\")"
+      "code": "from redlock\nimport Redlock\nimport time# Connect to multiple Redis nodesdlm = Redlock([\n    {\"host\": \"redis1\", \"port\": 6379, \"db\": 0},\n    {\"host\": \"redis2\", \"port\": 6379, \"db\": 0},\n    {\"host\": \"redis3\", \"port\": 6379, \"db\": 0},])lock = dlm.lock(\"my-process-lock\", 60000)  # 60s\n    lockif lock:\n    try:        print(\"Lock acquired, running task...\")        time.sleep(10)\n    finally:        dlm.unlock(lock)        print(\"Lock released\")else:\n    print(\"Could not acquire lock, another process is running\")"
     },
     {
       "type": "heading",

@@ -195,8 +195,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "type Document struct { State string // could be \"draft\", \"published\", \"archived\"}func (d *Document) Publish() { if d.State == \"draft\" {  fmt.Println(\"Document is now published.\")  d.State = \"published\" } else if d.State == \"published\" {  fmt.Println(\"Document is already published.\") } else if d.State == \"archived\" {  fmt.Println(\"Cannot publish an archived document.\") }}"
+      "lang": "go",
+      "code": "type Document struct {\n    State string // could be \"draft\", \"published\", \"archived\"\n}\nfunc (d *Document) Publish() {\n    if d.State == \"draft\" {\n        fmt.Println(\"Document is now published.\") d.State = \"published\"\n    }\n    else if d.State == \"published\" {\n        fmt.Println(\"Document is already published.\")\n    }\n    else if d.State == \"archived\" {\n        fmt.Println(\"Cannot publish an archived document.\")\n    }\n}"
     },
     {
       "type": "heading",
@@ -231,8 +231,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "type State interface {    addItem(int) error    requestItem() error    insertMoney(money int) error    dispenseItem() error}"
+      "lang": "go",
+      "code": "type State interface {\n    addItem(int) error\n    requestItem() error\n    insertMoney(money int) error\n    dispenseItem() error\n}"
     },
     {
       "type": "paragraph",
@@ -258,7 +258,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "func (v *VendingMachine) requestItem() error {    return v.currentState.requestItem()}"
+      "code": "func (v *VendingMachine) requestItem() error {\n    return v.currentState.requestItem()\n}"
     },
     {
       "type": "paragraph",
@@ -271,7 +271,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "func (i *HasItemState) requestItem() error {    i.vendingMachine.setState(i.vendingMachine.itemRequested)}"
+      "code": "func (i *HasItemState) requestItem() error {\n    i.vendingMachine.setState(i.vendingMachine.itemRequested)\n}"
     },
     {
       "type": "paragraph",
@@ -280,7 +280,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "func (i *ItemRequestedState) insertMoney(money int) error {    if money < price {        return error    }    i.vendingMachine.setState(i.vendingMachine.hasMoney)}"
+      "code": "func (i *ItemRequestedState) insertMoney(money int) error {\n    if money < price {\n        return error\n    }\n    i.vendingMachine.setState(i.vendingMachine.hasMoney)\n}"
     },
     {
       "type": "paragraph",
@@ -289,7 +289,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "func (i *HasMoneyState) dispenseItem() error {    vendingMachine.itemCount -= 1    vendingMachine.setState(...)}"
+      "code": "func (i *HasMoneyState) dispenseItem() error {\n    vendingMachine.itemCount -= 1\n    vendingMachine.setState(...)\n}"
     },
     {
       "type": "paragraph",
@@ -298,7 +298,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "func (i *NoItemState) requestItem() error {    return fmt.Errorf(\"Item out of stock\")}"
+      "code": "func (i *NoItemState) requestItem() error {\n    return fmt.Errorf(\"Item out of stock\")\n}"
     },
     {
       "type": "paragraph",
@@ -307,7 +307,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "vendingMachine := newVendingMachine(1, 10)vendingMachine.requestItem()vendingMachine.insertMoney(10)vendingMachine.dispenseItem()"
+      "code": "vendingMachine := newVendingMachine(1,\n10)vendingMachine.requestItem()vendingMachine.insertMoney(10)vendingMachine.dispenseItem()"
     },
     {
       "type": "paragraph",
@@ -316,7 +316,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "Item requestdMoney entered is okDispensing ItemAdding 2 itemsItem requestdMoney entered is okDispensing Item"
+      "code": "Item requestdMoney entered is okDispensing ItemAdding 2 itemsItem requestdMoney entered is\nokDispensing Item"
     },
     {
       "type": "heading",
@@ -345,7 +345,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "package mainimport ( \"fmt\" \"log\")/* ---------- State interface ---------- */type State interface { approve() error refund() error}/* ---------- Context ---------- */type Order struct { // singleton state objects unknown    State checkout   State inProgress State succeed    State canceled   State currentState State id           string}func newOrder(id string) *Order { o := &Order{id: id} // create concrete states, each holds a back‑pointer to the context o.unknown = &unknownState{o} o.checkout = &checkoutState{o} o.inProgress = &inProgressState{o} o.succeed = &succeedState{o} o.canceled = &canceledState{o} o.setState(o.unknown) // initial state return o}/* -- context helpers that delegate to state -- */func (o *Order) approve() error { return o.currentState.approve() }func (o *Order) refund() error  { return o.currentState.refund() }func (o *Order) setState(s State) { o.currentState = s fmt.Printf(\"🟢  Order %s switched to %T\\n\", o.id, s)}/* ---------- Concrete states ---------- *//* 1. unknown -------------------------------------------------------------- */type unknownState struct{ order *Order }func (s *unknownState) approve() error { fmt.Println(\"details confirmed, moving to checkout\") s.order.setState(s.order.checkout) return nil}func (s *unknownState) refund() error { return fmt.Errorf(\"cannot refund: order not created yet\")}/* 2. checkout ------------------------------------------------------------- */type checkoutState struct{ order *Order }func (s *checkoutState) approve() error { fmt.Println(\"payment started\") s.order.setState(s.order.inProgress) return nil}func (s *checkoutState) refund() error { s.order.setState(s.order.canceled) return nil}/* 3. inProgress ----------------------------------------------------------- */type inProgressState struct{ order *Order }func (s *inProgressState) approve() error { fmt.Println(\"order fulfilled\") s.order.setState(s.order.succeed) return nil}func (s *inProgressState) refund() error { fmt.Println(\"cancelling in‑progress order\") s.order.setState(s.order.canceled) return nil}/* 4. succeed -------------------------------------------------------------- */type succeedState struct{ order *Order }func (s *succeedState) approve() error { return fmt.Errorf(\"order already succeeded\")}func (s *succeedState) refund() error { fmt.Println(\"refund processed\") s.order.setState(s.order.canceled) return nil}/* 5. canceled ------------------------------------------------------------- */type canceledState struct{ order *Order }func (s *canceledState) approve() error { return fmt.Errorf(\"cannot approve: order is canceled\")}func (s *canceledState) refund() error { return fmt.Errorf(\"order already canceled / refunded\")}/* ---------- Demo ---------- */func main() { o := newOrder(\"ORD‑42\") // happy path if err := o.approve(); err != nil { log.Fatal(err) } // unknown -> checkout if err := o.approve(); err != nil { log.Fatal(err) } // checkout -> inProgress if err := o.approve(); err != nil { log.Fatal(err) } // inProgress -> succeed // now refund it if err := o.refund(); err != nil { log.Fatal(err) } // succeed -> canceled // try an invalid transition if err := o.approve(); err != nil { fmt.Println(\"expected error:\", err) }}"
+      "code": "package main\nimport (\n\"fmt\"\n\"log\")/* ---------- State interface ---------- */type State interface {\n    approve() error refund() error\n}\n/* ---------- Context ---------- */type Order struct {\n    // singleton state objects unknown\n    State checkout State inProgress State succeed\n    State canceled State currentState State id string\n}\nfunc newOrder(id string) *Order {\n    o := &Order{\n        id: id\n    }\n    // create concrete states, each holds a back‑pointer to the context o.unknown = &unknownState{\n        o\n    }\n    o.checkout = &checkoutState{\n        o\n    }\n    o.inProgress = &inProgressState{\n        o\n    }\n    o.succeed = &succeedState{\n        o\n    }\n    o.canceled = &canceledState{\n        o\n    }\n    o.setState(o.unknown) // initial state\n    return o\n}\n/* -- context helpers that delegate to state -- */func (o *Order) approve() error {\n    return o.currentState.approve()\n}\nfunc (o *Order) refund() error {\n    return o.currentState.refund()\n}\nfunc (o *Order) setState(s State) {\n    o.currentState = s fmt.Printf(\"🟢  Order %s switched to %T\\n\", o.id, s)\n}\n/* ---------- Concrete states ---------- *//* 1.unknown\n-------------------------------------------------------------- */\ntype unknownState struct{\n    order *Order\n}\nfunc (s *unknownState) approve() error {\n    fmt.Println(\"details confirmed, moving to checkout\") s.order.setState(s.order.checkout) return\n    nil\n}\nfunc (s *unknownState) refund() error {\n    return fmt.Errorf(\"cannot refund: order not created yet\")\n}\n/* 2.checkout ------------------------------------------------------------- */type checkoutState\nstruct{\n    order *Order\n}\nfunc (s *checkoutState) approve() error {\n    fmt.Println(\"payment started\") s.order.setState(s.order.inProgress) return nil\n}\nfunc (s *checkoutState) refund() error {\n    s.order.setState(s.order.canceled) return nil\n}\n/* 3.inProgress ----------------------------------------------------------- */type inProgressState\nstruct{\n    order *Order\n}\nfunc (s *inProgressState) approve() error {\n    fmt.Println(\"order fulfilled\") s.order.setState(s.order.succeed) return nil\n}\nfunc (s *inProgressState) refund() error {\n    fmt.Println(\"cancelling in‑progress order\") s.order.setState(s.order.canceled) return nil\n}\n/* 4.succeed -------------------------------------------------------------- */type succeedState\nstruct{\n    order *Order\n}\nfunc (s *succeedState) approve() error {\n    return fmt.Errorf(\"order already succeeded\")\n}\nfunc (s *succeedState) refund() error {\n    fmt.Println(\"refund processed\") s.order.setState(s.order.canceled) return nil\n}\n/* 5.canceled ------------------------------------------------------------- */type canceledState\nstruct{\n    order *Order\n}\nfunc (s *canceledState) approve() error {\n    return fmt.Errorf(\"cannot approve: order is canceled\")\n}\nfunc (s *canceledState) refund() error {\n    return fmt.Errorf(\"order already canceled / refunded\")\n}\n/* ---------- Demo ---------- */func main() {\n    o := newOrder(\"ORD‑42\") // happy path if err := o.approve();\n    err != nil {\n        log.Fatal(err)\n    }\n    // unknown -> checkout if err := o.approve();\n    err != nil {\n        log.Fatal(err)\n    }\n    // checkout -> inProgress if err := o.approve();\n    err != nil {\n        log.Fatal(err)\n    }\n    // inProgress -> succeed // now refund it if err := o.refund();\n    err != nil {\n        log.Fatal(err)\n    }\n    // succeed -> canceled // try an invalid transition if err := o.approve();\n    err != nil {\n        fmt.Println(\"expected error:\", err)\n    }\n}"
     },
     {
       "type": "image",
@@ -391,7 +391,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "type State stringtype Action stringconst (    StateIdle      State = \"idle\"    StateProcessing State = \"processing\"    StateSuccess    State = \"success\"    StateFailed     State = \"failed\"    ActionStart   Action = \"start\"    ActionSucceed Action = \"succeed\"    ActionFail    Action = \"fail\")"
+      "code": "type State stringtype Action stringconst (    StateIdle      State = \"idle\"    StateProcessing State\n= \"processing\"    StateSuccess    State = \"success\"    StateFailed     State = \"failed\"\nActionStart   Action = \"start\"    ActionSucceed Action = \"succeed\"    ActionFail    Action = \"fail\")"
     },
     {
       "type": "heading",
@@ -400,8 +400,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "type Transition struct {    From  State    Act   Action    To    State    Func  func() error // Optional business logic}"
+      "lang": "go",
+      "code": "type Transition struct {\n    From State\n    Act Action\n    To\n    State\n    Func func() error // Optional business logic\n}"
     },
     {
       "type": "heading",
@@ -410,8 +410,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "type FSM struct {    State       State    Transitions []Transition}func (f *FSM) Can(action Action) bool {    for _, t := range f.Transitions {        if t.From == f.State && t.Act == action {            return true        }    }    return false}func (f *FSM) Apply(action Action) error {    for _, t := range f.Transitions {        if t.From == f.State && t.Act == action {            if t.Func != nil {                if err := t.Func(); err != nil {                    return err                }            }            f.State = t.To            return nil        }    }    return fmt.Errorf(\"invalid transition from %s with action %s\", f.State, action)}"
+      "lang": "go",
+      "code": "type FSM struct {\n    State State\n    Transitions []Transition\n}\nfunc (f *FSM) Can(action Action) bool {\n    for _, t := range f.Transitions {\n        if t.From == f.State && t.Act == action {\n            return true\n        }\n    }\n    return false\n}\nfunc (f *FSM) Apply(action Action) error {\n    for _, t := range f.Transitions {\n        if t.From == f.State && t.Act == action {\n            if t.Func != nil {\n                if err := t.Func();\n                err != nil {\n                    return err\n                }\n            }\n            f.State = t.To return nil\n        }\n    }\n    return fmt.Errorf(\"invalid transition from %s with action %s\", f.State, action)\n}"
     },
     {
       "type": "heading",
@@ -421,7 +421,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "func main() {    fsm := &FSM{        State: StateIdle,        Transitions: []Transition{            {From: StateIdle, Act: ActionStart, To: StateProcessing, Func: func() error {                fmt.Println(\"Started processing\")                return nil            }},            {From: StateProcessing, Act: ActionSucceed, To: StateSuccess, Func: func() error {                fmt.Println(\"Processing succeeded\")                return nil            }},            {From: StateProcessing, Act: ActionFail, To: StateFailed, Func: func() error {                fmt.Println(\"Processing failed\")                return nil            }},        },    }    fmt.Println(\"Current State:\", fsm.State)    fsm.Apply(ActionStart)    fmt.Println(\"Current State:\", fsm.State)    fsm.Apply(ActionSucceed)    fmt.Println(\"Current State:\", fsm.State)}"
+      "code": "func main() {\n    fsm := &FSM{\n        State: StateIdle, Transitions: []Transition{\n            {\n                From: StateIdle, Act: ActionStart, To: StateProcessing, Func: func() error {\n                    fmt.Println(\"Started processing\") return nil\n                }\n            }, {\n                From: StateProcessing, Act: ActionSucceed, To: StateSuccess, Func: func() error {\n                    fmt.Println(\"Processing succeeded\") return nil\n                }\n            }, {\n                From: StateProcessing, Act: ActionFail, To: StateFailed, Func: func() error {\n                    fmt.Println(\"Processing failed\") return nil\n                }\n            },\n        },\n    }\n    fmt.Println(\"Current State:\", fsm.State)\n    fsm.Apply(ActionStart)\n    fmt.Println(\"Current State:\", fsm.State)\n    fsm.Apply(ActionSucceed)\n    fmt.Println(\"Current State:\", fsm.State)\n}"
     },
     {
       "type": "heading",

@@ -122,8 +122,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "services:  clickhouse:    image: clickhouse/clickhouse-server:24.8    container_name: clickhouse    ports:      - \"9000:9000\"      - \"8123:8123\"    environment:      - CLICKHOUSE_DB=default      - CLICKHOUSE_USER=default      - CLICKHOUSE_PASSWORD=pass      - CLICKHOUSE_DEFAULT_ACCESS_MANAGEMENT=1    volumes:      - ./data:/var/lib/clickhouse      - ./logs:/var/log/clickhouse-server    ulimits:      nofile:        soft: 262144        hard: 262144    restart: unless-stopped  zookeeper:    image: confluentinc/cp-zookeeper:7.5.0    container_name: zookeeper    environment:      ZOOKEEPER_CLIENT_PORT: 2181      ZOOKEEPER_TICK_TIME: 2000    ports:      - \"2181:2181\"    restart: unless-stopped  kafka:    image: confluentinc/cp-kafka:7.5.0    container_name: kafka    depends_on:      - zookeeper    ports:      - \"9092:9092\"    environment:      KAFKA_BROKER_ID: 1      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181      # Define both listeners      KAFKA_LISTENERS: INSIDE://0.0.0.0:29092,OUTSIDE://0.0.0.0:9092      # Advertise correct addresses      KAFKA_ADVERTISED_LISTENERS: INSIDE://kafka:29092,OUTSIDE://localhost:9092      # map listener names to protocol      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: INSIDE:PLAINTEXT,OUTSIDE:PLAINTEXT      # default listener      KAFKA_INTER_BROKER_LISTENER_NAME: INSIDE      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1    restart: unless-stopped  kafka-ui:    container_name: kafka-ui    image: provectuslabs/kafka-ui:latest    ports:      - \"8080:8080\"    environment:      DYNAMIC_CONFIG_ENABLED: \"true\"    volumes:      - ./config/config.yml:/etc/kafkaui/dynamic_config.yaml    restart: unless-stopped"
+      "lang": "yaml",
+      "code": "services:\n  clickhouse:\n    image: clickhouse/clickhouse-server:24.8\n    container_name: clickhouse\n    ports:\n      - \"9000:9000\"\n      - \"8123:8123\"\n    environment:\n      - CLICKHOUSE_DB=default\n      - CLICKHOUSE_USER=default\n      - CLICKHOUSE_PASSWORD=pass\n      - CLICKHOUSE_DEFAULT_ACCESS_MANAGEMENT=1\n    volumes:\n      - ./data:/var/lib/clickhouse\n      - ./logs:/var/log/clickhouse-server\n    ulimits:\n      nofile:\n        soft: 262144\n        hard: 262144\n    restart: unless-stopped\n  zookeeper:\n    image: confluentinc/cp-zookeeper:7.5.0\n    container_name: zookeeper\n    environment:\n      ZOOKEEPER_CLIENT_PORT: 2181\n      ZOOKEEPER_TICK_TIME: 2000\n    ports:\n      - \"2181:2181\"\n    restart: unless-stopped\n  kafka:\n    image: confluentinc/cp-kafka:7.5.0\n    container_name: kafka\n    depends_on:\n      - zookeeper\n    ports:\n      - \"9092:9092\"\n    environment:\n      KAFKA_BROKER_ID: 1\n      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181\n      # Define both listeners\n      KAFKA_LISTENERS: INSIDE://0.0.0.0:29092,OUTSIDE://0.0.0.0:9092\n      # Advertise correct addresses\n      KAFKA_ADVERTISED_LISTENERS: INSIDE://kafka:29092,OUTSIDE://localhost:9092\n      # map listener names to protocol\n      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: INSIDE:PLAINTEXT,OUTSIDE:PLAINTEXT\n      # default listener\n      KAFKA_INTER_BROKER_LISTENER_NAME: INSIDE\n      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1\n    restart: unless-stopped\n  kafka-ui:\n    container_name: kafka-ui\n    image: provectuslabs/kafka-ui:latest\n    ports:\n      - \"8080:8080\"\n    environment:\n      DYNAMIC_CONFIG_ENABLED: \"true\"\n    volumes:\n      - ./config/config.yml:/etc/kafkaui/dynamic_config.yaml\n    restart: unless-stopped"
     },
     {
       "type": "heading",
@@ -179,7 +179,7 @@
     {
       "type": "code",
       "lang": "bash",
-      "code": "curl -u default:pass \\  -X POST \"http://localhost:8123\" \\  --data-binary \"CREATE TABLE my_table (    id UInt64,    message String  ) ENGINE = MergeTree ORDER BY id\""
+      "code": "curl -u default:pass \\\n  -X POST \"http://localhost:8123\" \\\n  --data-binary\n  \"CREATE TABLE my_table (    id UInt64,    message String  ) ENGINE = MergeTree ORDER BY id\""
     },
     {
       "type": "heading",
@@ -189,7 +189,7 @@
     {
       "type": "code",
       "lang": "bash",
-      "code": "curl -u default:pass \\  -X POST \"http://localhost:8123\" \\  --data-binary \"INSERT INTO my_table VALUES (1, 'hello'), (2, 'world')\""
+      "code": "curl -u default:pass \\\n  -X POST \"http://localhost:8123\" \\\n  --data-binary \"INSERT INTO my_table VALUES (1, 'hello'), (2, 'world')\""
     },
     {
       "type": "heading",
@@ -199,7 +199,7 @@
     {
       "type": "code",
       "lang": "bash",
-      "code": "curl -u default:pass \\  \"http://localhost:8123/?query=SELECT+*+FROM+my_table+FORMAT+Pretty\""
+      "code": "curl -u default:pass \\\n  \"http://localhost:8123/?query=SELECT+*+FROM+my_table+FORMAT+Pretty\""
     },
     {
       "type": "heading",
@@ -218,7 +218,7 @@
     {
       "type": "code",
       "lang": "bash",
-      "code": "curl -u default:pass \\  -X POST \"http://localhost:8123\" \\  --data-binary \"CREATE TABLE kafka_output (    id UInt64,    message String)ENGINE = KafkaSETTINGS    kafka_broker_list = 'kafka:29092',    kafka_topic_list = 'clickhouse_out',    kafka_group_name = 'ch_producer',    kafka_format = 'JSONEachRow'\""
+      "code": "curl -u default:pass \\\n  -X POST \"http://localhost:8123\" \\\n  --data-binary\n  \"CREATE TABLE kafka_output (    id UInt64,    message String)ENGINE = KafkaSETTINGS    kafka_broker_list = 'kafka:29092',    kafka_topic_list = 'clickhouse_out',    kafka_group_name = 'ch_producer',    kafka_format = 'JSONEachRow'\""
     },
     {
       "type": "heading",
@@ -228,7 +228,7 @@
     {
       "type": "code",
       "lang": "bash",
-      "code": "curl -u default:pass \\  -X POST \"http://localhost:8123\" \\  --data-binary \"INSERT INTO kafka_output VALUES (1, 'hello from clickhouse')\""
+      "code": "curl -u default:pass \\\n  -X POST \"http://localhost:8123\" \\\n  --data-binary \"INSERT INTO kafka_output VALUES (1, 'hello from clickhouse')\""
     },
     {
       "type": "heading",
@@ -251,7 +251,7 @@
     {
       "type": "code",
       "lang": "json",
-      "code": "{\"id\":1,\"message\":\"hello from clickhouse\"}"
+      "code": "{\n  \"id\": 1,\n  \"message\": \"hello from clickhouse\"\n}"
     },
     {
       "type": "heading",
@@ -261,7 +261,7 @@
     {
       "type": "code",
       "lang": "bash",
-      "code": "docker exec -it kafka \\  kafka-console-consumer \\    --topic clickhouse_out \\    --bootstrap-server kafka:29092 \\    --from-beginning"
+      "code": "docker exec -it kafka \\\n  kafka-console-consumer \\\n  --topic clickhouse_out \\\n  --bootstrap-server kafka:29092 \\\n  --from-beginning"
     },
     {
       "type": "heading",

@@ -73,7 +73,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "models:  Time:    model:      - go-graphql/internal/graph/model.Time  Int64:    model:      - github.com/99designs/gqlgen/graphql.Int64"
+      "code": "models:  Time:    model:      - go-graphql/internal/graph/model.Time  Int64:    model:      -\ngithub.com/99designs/gqlgen/graphql.Int64"
     },
     {
       "type": "paragraph",
@@ -81,8 +81,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "scalar Timescalar Int64"
+      "lang": "graphql",
+      "code": "scalar Time\nscalar Int64"
     },
     {
       "type": "paragraph",
@@ -100,7 +100,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "type Product {  id: Int!  name: String!  description: String!  price: Int64!}type ProductListResponse {  id: Int!  name: String!  description: String!  price: Int64!}type ErrorResponse {  code: String!  message: String!}type Query {  \"\"\"Get a single product by ID\"\"\"  product(id: Int!): Product  \"\"\"Get a list of all products\"\"\"  products: [Product!]!}"
+      "code": "type Product {  id: Int!  name: String!  description: String!  price: Int64!}type\nProductListResponse {  id: Int!  name: String!  description: String!  price: Int64!}type\nErrorResponse {  code: String!  message: String!}type Query {  \"\"\"Get a single product by ID\"\"\"\nproduct(id: Int!): Product  \"\"\"Get a list of all products\"\"\"  products: [Product!]!}"
     },
     {
       "type": "paragraph",
@@ -117,8 +117,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "// Product is the resolver for the product field.func (r *queryResolver) Product(ctx context.Context, id int) (*model.Product, error) {    product, err := r.ProductService.GetProductByID(ctx, int32(id))    if err != nil {        return nil, fmt.Errorf(\"failed to get product: %w\", err)    }    return &model.Product{        ID:          int(product.ID),        Name:        product.Name,        Description: product.Description,        Price:       product.Price,    }, nil}// Products is the resolver for the products field.func (r *queryResolver) Products(ctx context.Context) ([]*model.Product, error) {    products, err := r.ProductService.ListProducts(ctx)    if err != nil {        return nil, fmt.Errorf(\"failed to list products: %w\", err)    }    var result []*model.Product    for _, p := range products {        result = append(result, &model.Product{            ID:          int(p.ID),            Name:        p.Name,            Description: p.Description,            Price:       p.Price,        })    }    return result, nil}"
+      "lang": "go",
+      "code": "// Product is the resolver for the product field.\nfunc (r *queryResolver) Product(ctx context.Context, id int) (*model.Product, error) {\n    product, err := r.ProductService.GetProductByID(ctx, int32(id))\n    if err != nil {\n        return nil, fmt.Errorf(\"failed to get product: %w\", err)\n    }\n    return &model.Product{\n        ID: int(product.ID), Name: product.Name, Description: product.Description, Price:\n        product.Price,\n    }, nil\n}\n// Products is the resolver for the products field.\nfunc (r *queryResolver) Products(ctx context.Context) ([]*model.Product, error) {\n    products, err := r.ProductService.ListProducts(ctx)\n    if err != nil {\n        return nil, fmt.Errorf(\"failed to list products: %w\", err)\n    }\n    var result []*model.Product\n    for _, p := range products {\n        result = append(result, &model.Product{\n            ID: int(p.ID), Name: p.Name, Description: p.Description, Price: p.Price,\n        })\n    }\n    return result, nil\n}"
     },
     {
       "type": "paragraph",
@@ -136,7 +136,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "query {  product(id: 1) {    id    name    price  }}query {  products {    id    name    description    price  }}j"
+      "code": "query {  product(id: 1) {    id    name    price  }}query {  products {    id    name    description\nprice  }}j"
     },
     {
       "type": "paragraph",

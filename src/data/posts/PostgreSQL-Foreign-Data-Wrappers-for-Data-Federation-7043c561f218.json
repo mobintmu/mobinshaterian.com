@@ -249,7 +249,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "CREATE SERVER foreign_db FOREIGN DATA WRAPPER postgres_fdw OPTIONS (host 'remote_host', dbname 'otherdb', port '5432');"
+      "code": "CREATE SERVER foreign_db FOREIGN DATA WRAPPER postgres_fdw OPTIONS (host 'remote_host', dbname\n'otherdb', port '5432');"
     },
     {
       "type": "paragraph",
@@ -258,7 +258,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "CREATE USER MAPPING FOR local_user SERVER foreign_db OPTIONS (user 'remote_user', password 'secret');"
+      "code": "CREATE USER MAPPING FOR local_user SERVER foreign_db OPTIONS (user 'remote_user', password\n'secret');"
     },
     {
       "type": "list",
@@ -270,7 +270,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "CREATE FOREIGN TABLE remote_table (     id INT,     name TEXT ) SERVER foreign_db OPTIONS (schema_name 'public', table_name 'users');"
+      "code": "CREATE FOREIGN TABLE remote_table (     id INT,     name TEXT ) SERVER foreign_db OPTIONS\n(schema_name 'public', table_name 'users');"
     },
     {
       "type": "paragraph",
@@ -279,7 +279,7 @@
     {
       "type": "code",
       "lang": "sql",
-      "code": "SELECT * FROM remote_table WHERE id < 10;"
+      "code": "SELECT *\nFROM remote_table\nWHERE id < 10;"
     },
     {
       "type": "heading",

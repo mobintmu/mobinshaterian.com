@@ -49,7 +49,7 @@
     {
       "type": "code",
       "lang": "bash",
-      "code": "sudo apt install tmux"
+      "code": "sudo\napt install tmux"
     },
     {
       "type": "heading",
@@ -101,7 +101,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "#!/bin/bashSESSION=\"port_forward\"NAMESPACE=(\"name-space\" \"name-space\" )PATTERN=(\"podname-\" \"podname-\" )PORT_MAPPINGS=(\"8081:9000\" \"8082:9000\")# Start a new tmux sessiontmux new-session -d -s $SESSION# Create three windows (tabs)for i in 0 1 2 3 4 5; do  tmux new-window -t $SESSION:$((i+1))  tmux send-keys -t $SESSION:$((i+1)) \"kubectl get pods -n ${NAMESPACE[$i]} | grep ${PATTERN[$i]}\" C-m  POD_NAME=$(kubectl get pods -n ${NAMESPACE[$i]} | grep ${PATTERN[$i]} | awk '{print $1}')  tmux send-keys -t $SESSION:$((i+1)) \"kubectl port-forward $POD_NAME ${PORT_MAPPINGS[$i]} -n ${NAMESPACE[$i]}\" C-mdone# Attach to the tmux sessiontmux attach-session -t $SESSION"
+      "code": "#!/bin/bashSESSION=\"port_forward\"NAMESPACE=(\"name-space\" \"name-space\" )PATTERN=(\"podname-\"\n\"podname-\" )PORT_MAPPINGS=(\"8081:9000\" \"8082:9000\")# Start a new tmux sessiontmux new-session -d -s\n$SESSION# Create three windows (tabs)for i in 0 1 2 3 4 5; do  tmux new-window -t $SESSION:$((i+1))\ntmux send-keys -t $SESSION:$((i+1)) \"kubectl get pods -n ${NAMESPACE[$i]} | grep ${PATTERN[$i]}\" C-m\nPOD_NAME=$(kubectl get pods -n ${NAMESPACE[$i]} | grep ${PATTERN[$i]} | awk '{print $1}')  tmux\nsend-keys -t $SESSION:$((i+1))\n\"kubectl port-forward $POD_NAME ${PORT_MAPPINGS[$i]} -n ${NAMESPACE[$i]}\" C-mdone# Attach to the\ntmux sessiontmux attach-session -t $SESSION"
     }
   ]
 }

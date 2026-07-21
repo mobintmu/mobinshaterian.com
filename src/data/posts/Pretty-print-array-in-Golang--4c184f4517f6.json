@@ -23,7 +23,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "func PrettyPrint(i interface{}) string {      s, _ := json.MarshalIndent(i, \"\", \"\\t\")      fmt.Println(string(s))      return string(s)}"
+      "code": "func PrettyPrint(i interface{\n}) string {\n    s, _ := json.MarshalIndent(i, \"\", \"\\t\") fmt.Println(string(s)) return string(s)\n}"
     },
     {
       "type": "paragraph",
@@ -37,7 +37,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "import (\"encoding/json\""
+      "code": "import (\n\"encoding/json\""
     },
     {
       "type": "code",
@@ -51,7 +51,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "javascript",
       "code": "var ("
     },
     {
@@ -66,7 +66,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "go",
       "code": "type prettyPrintInterface interface {"
     },
     {
@@ -81,7 +81,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "go",
       "code": "type prettyPrint struct {"
     },
     {
@@ -92,7 +92,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "func (p *prettyPrint) Print(i interface{}) string {"
+      "code": "func (p *prettyPrint) Print(i interface{\n}) string {"
     },
     {
       "type": "code",

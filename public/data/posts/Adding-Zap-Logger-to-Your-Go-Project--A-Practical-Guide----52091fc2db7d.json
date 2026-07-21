@@ -89,7 +89,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "package loggerimport (    \"go.uber.org/zap\"    \"go.uber.org/fx\")func NewLogger() (*zap.Logger, error) {    cfg := zap.NewProductionConfig()    cfg.OutputPaths = []string{\"stdout\"}    return cfg.Build()}var Module = fx.Provide(NewLogger)"
+      "code": "package logger\nimport (\n\"go.uber.org/zap\"\n\"go.uber.org/fx\"\n)\nfunc NewLogger() (*zap.Logger, error) {\n    cfg := zap.NewProductionConfig()\n    cfg.OutputPaths = []string{\n        \"stdout\"\n    }\n    return cfg.Build()\n}\nvar Module = fx.Provide(NewLogger)"
     },
     {
       "type": "heading",
@@ -103,7 +103,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "package mainimport (    \"go.uber.org/fx\"    \"your_project/internal/pkg/logger\")func main() {    app := fx.New(        logger.Module,        // other modules...    )    app.Run()}"
+      "code": "package main\nimport (\n\"go.uber.org/fx\"\n\"your_project/internal/pkg/logger\"\n)\nfunc main() {\n    app := fx.New(logger.Module, // other modules...\n    )\n    app.Run()\n}"
     },
     {
       "type": "paragraph",
@@ -120,8 +120,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "type ProductService struct {    log *zap.Logger}func NewProductService(log *zap.Logger) *ProductService {    log.Info(\"ProductService initialized\")    return &ProductService{log: log}}"
+      "lang": "go",
+      "code": "type ProductService struct {\n    log *zap.Logger\n}\nfunc NewProductService(log *zap.Logger) *ProductService {\n    log.Info(\"ProductService initialized\")\n    return &ProductService{\n        log: log\n    }\n}"
     },
     {
       "type": "paragraph",
@@ -139,7 +139,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "func RegisterLoggerLifecycle(lc fx.Lifecycle, log *zap.Logger) {    lc.Append(fx.Hook{        OnStop: func(ctx context.Context) error {            return log.Sync()        },    })}var Module = fx.Options(    fx.Provide(NewLogger),    fx.Invoke(RegisterLoggerLifecycle),)"
+      "code": "func RegisterLoggerLifecycle(lc fx.Lifecycle, log *zap.Logger) {\n    lc.Append(fx.Hook{\n        OnStop: func(ctx context.Context) error {\n            return log.Sync()\n        },\n    })\n}\nvar Module = fx.Options(\nfx.Provide(NewLogger),\nfx.Invoke(RegisterLoggerLifecycle),)"
     },
     {
       "type": "heading",
@@ -164,7 +164,7 @@
     {
       "type": "code",
       "lang": "json",
-      "code": "{\"level\":\"info\",\"ts\":1759755003.9162495,\"caller\":\"service/service.go:34\",\"msg\":\"Product created\",\"id\":8}"
+      "code": "{\n  \"level\": \"info\",\n  \"ts\": 1759755003.9162495,\n  \"caller\": \"service/service.go:34\",\n  \"msg\": \"Product created\",\n  \"id\": 8\n}"
     },
     {
       "type": "heading",

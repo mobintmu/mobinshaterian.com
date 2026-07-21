@@ -347,8 +347,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "version: '3.8'services: dynamodb-local:   command: \"-jar DynamoDBLocal.jar -sharedDb -dbPath ./data\"   image: \"amazon/dynamodb-local:latest\"   container_name: dynamodb-local   ports:     - \"8000:8000\"   user: root   volumes:     - \"./docker/dynamodb:/home/dynamodblocal/data\"   working_dir: /home/dynamodblocal"
+      "lang": "yaml",
+      "code": "version: '3.8'services: dynamodb-local:   command: \"-jar DynamoDBLocal.jar -sharedDb -dbPath ./data\"\nimage: \"amazon/dynamodb-local:latest\"   container_name: dynamodb-local   ports:     - \"8000:8000\"\nuser: root   volumes:     - \"./docker/dynamodb:/home/dynamodblocal/data\"   working_dir:\n/home/dynamodblocal"
     },
     {
       "type": "heading",
@@ -358,7 +358,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "aws dynamodb list-tables --endpoint-url http://localhost:8000"
+      "code": "aws dynamodb list-tables --endpoint-url\nhttp://localhost:8000"
     },
     {
       "type": "heading",
@@ -368,7 +368,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "aws dynamodb create-table \\    --table-name Users \\    --attribute-definitions \\        AttributeName=user_id,AttributeType=S \\        AttributeName=second_id,AttributeType=S \\    --key-schema \\        AttributeName=user_id,KeyType=HASH \\    --provisioned-throughput \\        ReadCapacityUnits=5,WriteCapacityUnits=5 \\    --global-secondary-indexes \\        \"[            {                \\\"IndexName\\\": \\\"SecondIdIndex\\\",                \\\"KeySchema\\\": [{\\\"AttributeName\\\":\\\"tg_id\\\",\\\"KeyType\\\":\\\"HASH\\\"}],                \\\"Projection\\\": {\\\"ProjectionType\\\":\\\"ALL\\\"},                \\\"ProvisionedThroughput\\\": {\\\"ReadCapacityUnits\\\":5,\\\"WriteCapacityUnits\\\":5}            }        ]\" \\     --endpoint-url=http://localhost:8000"
+      "code": "aws dynamodb create-table \\    --table-name Users \\    --attribute-definitions \\\nAttributeName=user_id,AttributeType=S \\        AttributeName=second_id,AttributeType=S \\\n--key-schema \\        AttributeName=user_id,KeyType=HASH \\    --provisioned-throughput \\\nReadCapacityUnits=5,WriteCapacityUnits=5 \\    --global-secondary-indexes \\\n\"[            {                \\\"IndexName\\\": \\\"SecondIdIndex\\\",                \\\"KeySchema\\\": [{\\\"AttributeName\\\":\\\"tg_id\\\",\\\"KeyType\\\":\\\"HASH\\\"}],                \\\"Projection\\\": {\\\"ProjectionType\\\":\\\"ALL\\\"},                \\\"ProvisionedThroughput\\\": {\\\"ReadCapacityUnits\\\":5,\\\"WriteCapacityUnits\\\":5}            }        ]\" \\     --endpoint-url=http://localhost:8000"
     },
     {
       "type": "heading",
@@ -378,7 +378,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "aws dynamodb put-item \\    --table-name Users \\    --item '{        \"user_id\": {\"S\": \"123456\"},        \"tg_id\": {\"S\": \"tg987654\"},        \"data\": {\"S\": \"John Doe\"}    }' \\    --endpoint-url=http://localhost:8000"
+      "code": "aws dynamodb put-item \\    --table-name Users \\    --item\n'{        \"user_id\": {\"S\": \"123456\"},        \"tg_id\": {\"S\": \"tg987654\"},        \"data\": {\"S\": \"John Doe\"}    }' \\    --endpoint-url=http://localhost:8000"
     },
     {
       "type": "heading",
@@ -431,7 +431,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "aws dynamodb list-tables --endpoint-url http://localhost:8000{    \"TableNames\": [        \"Users\"    ]}"
+      "code": "aws dynamodb list-tables --endpoint-url http://localhost:8000{    \"TableNames\": [        \"Users\"\n]}"
     },
     {
       "type": "heading",
@@ -441,7 +441,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "aws dynamodb --endpoint-url http://localhost:8000 describe-table --table-name Users | grep TableStatus "
+      "code": "aws dynamodb --endpoint-url http://localhost:8000 describe-table --table-name Users | grep\nTableStatus"
     },
     {
       "type": "code",
@@ -456,7 +456,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "aws dynamodb put-item \\    --table-name Users \\    --item '{        \"user_id\": {\"S\": \"123456\"},        \"tg_id\": {\"S\": \"tg987654\"},        \"data\": {\"S\": \"John Doe\"},,        \"created_at\": {\"S\": \"2024-08-14T10:00:00Z\"},        \"updated_at\": {\"S\": \"2024-08-14T10:00:00Z\"}    }' \\    --endpoint-url=http://localhost:8000"
+      "code": "aws dynamodb put-item \\    --table-name Users \\    --item\n'{        \"user_id\": {\"S\": \"123456\"},        \"tg_id\": {\"S\": \"tg987654\"},        \"data\": {\"S\": \"John Doe\"},,        \"created_at\": {\"S\": \"2024-08-14T10:00:00Z\"},        \"updated_at\": {\"S\": \"2024-08-14T10:00:00Z\"}    }' \\    --endpoint-url=http://localhost:8000"
     },
     {
       "type": "heading",
@@ -466,7 +466,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "aws dynamodb scan --table-name Users \\    --endpoint-url=http://localhost:8000"
+      "code": "aws dynamodb scan --table-name Users \\    --endpoint-url=\nhttp://localhost:8000"
     },
     {
       "type": "heading",
@@ -476,12 +476,12 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "aws dynamodb get-item \\    --table-name Users \\    --key '{\"user_id\": {\"S\": \"12345\"}}' \\    --endpoint-url=http://localhost:8000"
+      "code": "aws dynamodb get-item \\    --table-name Users \\    --key '{\"user_id\": {\"S\": \"12345\"}}' \\\n--endpoint-url=http://localhost:8000"
     },
     {
       "type": "code",
       "lang": "go",
-      "code": "func (db *DB) GetByUserID(userID string) (*User, error) { result, err := db.dynamodb.GetItem(&dynamodb.GetItemInput{  ConsistentRead: aws.Bool(true),  Key: map[string]*dynamodb.AttributeValue{   \"user_id\": {    S: aws.String(userID),   },  },  TableName: aws.String(db.tableName), }) if err != nil {  log.Fatalf(\"Got error calling GetItem: %s\", err)  return nil, err } if result.Item == nil {  msg := \"Could not find '\" + userID + \"'\"  return nil, errors.New(msg) } user := User{} err = dynamodbattribute.UnmarshalMap(result.Item, &user) if err != nil {  log.Fatalf(\"Got error un marshalling: %v\", err)  return nil, err } return &user, nil}"
+      "code": "func (db *DB) GetByUserID(userID string) (*User, error) {\n    result, err := db.dynamodb.GetItem(&dynamodb.GetItemInput{\n        ConsistentRead: aws.Bool(true), Key: map[string]*dynamodb.AttributeValue{\n            \"user_id\": {\n                S: aws.String(userID),\n            },\n        }, TableName: aws.String(db.tableName),\n    }) if err != nil {\n        log.Fatalf(\"Got error calling GetItem: %s\", err) return nil, err\n    }\n    if result.Item == nil {\n        msg := \"Could not find '\" + userID + \"'\" return nil, errors.New(msg)\n    }\n    user := User{\n    }\n    err = dynamodbattribute.UnmarshalMap(result.Item, &user) if err != nil {\n        log.Fatalf(\"Got error un marshalling: %v\", err) return nil, err\n    }\n    return &user, nil\n}"
     },
     {
       "type": "heading",
@@ -499,8 +499,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "// GetByTgID get item by Global Secondary Index (GSI)func (db *DB) GetByTgID(tgID string) ([]User, error) { input := &dynamodb.QueryInput{  TableName:              aws.String(db.tableName),  IndexName:              aws.String(db.gsiIndex), // Replace with your GSI name  KeyConditionExpression: aws.String(\"#tg = :v\"),  ExpressionAttributeNames: map[string]*string{   \"#tg\": aws.String(\"tg_id\"),  },  ExpressionAttributeValues: map[string]*dynamodb.AttributeValue{   \":v\": {    S: aws.String(tgID),   },  }, } // Perform the query result, err := db.dynamodb.Query(input) if err != nil {  log.Fatalf(\"failed to query items, %v\", err)  return nil, err } if result.Items == nil {  msg := \"Could not find '\" + tgID + \"'\"  return nil, errors.New(msg) } users := []User{} for _, item := range result.Items {  user := User{}  err := dynamodbattribute.UnmarshalMap(item, &user)  if err != nil {   log.Fatalf(\"Got error un marshalling: %v\", err)   return nil, err  }  users = append(users, user) } return users, nil}"
+      "lang": "go",
+      "code": "// GetByTgID get item by Global Secondary Index (GSI\n)\nfunc (db *DB) GetByTgID(tgID string) ([]User, error) {\n    input := &dynamodb.QueryInput{\n        TableName: aws.String(db.tableName), IndexName: aws.String(db.gsiIndex), // Replace with\n        your GSI name KeyConditionExpression: aws.String(\"#tg = :v\"), ExpressionAttributeNames:\n        map[string]*string{\n            \"#tg\": aws.String(\"tg_id\"),\n        }, ExpressionAttributeValues: map[string]*dynamodb.AttributeValue{\n            \":v\": {\n                S: aws.String(tgID),\n            },\n        },\n    }\n    // Perform the query result, err := db.dynamodb.Query(input) if err != nil {\n        log.Fatalf(\"failed to query items, %v\", err) return nil, err\n    }\n    if result.Items == nil {\n        msg := \"Could not find '\" + tgID + \"'\" return nil, errors.New(msg)\n    }\n    users := []User{\n    }\n    for _, item := range result.Items {\n        user := User{\n        }\n        err := dynamodbattribute.UnmarshalMap(item, &user) if err != nil {\n            log.Fatalf(\"Got error un marshalling: %v\", err) return nil, err\n        }\n        users = append(users, user)\n    }\n    return users, nil\n}"
     },
     {
       "type": "heading",
@@ -510,7 +510,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "func (db *DB) CountAllData() (int64, error) { input := &dynamodb.ScanInput{  TableName: aws.String(\"Users\"), } result, err := db.dynamodb.Scan(input) if err != nil {  log.Fatalf(\"failed to scan table, \" + err.Error())  return 0, err } return *result.Count, nil}"
+      "code": "func (db *DB) CountAllData() (int64, error) {\n    input := &dynamodb.ScanInput{\n        TableName: aws.String(\"Users\"),\n    }\n    result, err := db.dynamodb.Scan(input) if err != nil {\n        log.Fatalf(\"failed to scan table, \" + err.Error()) return 0, err\n    }\n    return *result.Count, nil\n}"
     },
     {
       "type": "heading",
@@ -520,7 +520,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "aws dynamodb delete-table --table-name Users \\    --endpoint-url=http://localhost:8000"
+      "code": "aws dynamodb delete-table --table-name Users \\    --endpoint-url=\nhttp://localhost:8000"
     },
     {
       "type": "heading",
@@ -535,7 +535,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "func (db *DB) CreateTable() error { input := &dynamodb.CreateTableInput{  AttributeDefinitions: []*dynamodb.AttributeDefinition{   {    AttributeName: aws.String(\"user_id\"),    AttributeType: aws.String(\"S\"),   },   {    AttributeName: aws.String(\"tg_id\"),    AttributeType: aws.String(\"S\"),   },   {    AttributeName: aws.String(\"referrer\"),    AttributeType: aws.String(\"S\"),   },   {    AttributeName: aws.String(\"created_at\"),    AttributeType: aws.String(\"N\"),   },  },  KeySchema: []*dynamodb.KeySchemaElement{   {    AttributeName: aws.String(\"user_id\"),    KeyType:       aws.String(\"HASH\"),   },  },  GlobalSecondaryIndexes: []*dynamodb.GlobalSecondaryIndex{   {    IndexName: aws.String(\"TgIdIndex\"),    KeySchema: []*dynamodb.KeySchemaElement{     {      AttributeName: aws.String(\"tg_id\"),      KeyType:       aws.String(\"HASH\"),     },    },    Projection: &dynamodb.Projection{     ProjectionType: aws.String(\"ALL\"),    },   },   {    IndexName: aws.String(\"ReferrerIndex\"),    KeySchema: []*dynamodb.KeySchemaElement{     {      AttributeName: aws.String(\"referrer\"),      KeyType:       aws.String(\"HASH\"),     },     {      AttributeName: aws.String(\"created_at\"),      KeyType:       aws.String(\"RANGE\"),     },    },    Projection: &dynamodb.Projection{     ProjectionType: aws.String(\"ALL\"),    },   },  },  BillingMode: aws.String(\"PAY_PER_REQUEST\"),  TableName:   aws.String(db.tableName), } _, err := db.dynamodb.CreateTable(input) if err != nil {  log.Fatalf(\"Got error calling CreateTable: %s\", err)  return err } return nil}"
+      "code": "func (db *DB) CreateTable() error {\n    input := &dynamodb.CreateTableInput{\n        AttributeDefinitions: []*dynamodb.AttributeDefinition{\n            {\n                AttributeName: aws.String(\"user_id\"),\n                AttributeType: aws.String(\"S\"),\n            }, {\n                AttributeName: aws.String(\"tg_id\"),\n                AttributeType: aws.String(\"S\"),\n            }, {\n                AttributeName: aws.String(\"referrer\"),\n                AttributeType: aws.String(\"S\"),\n            }, {\n                AttributeName: aws.String(\"created_at\"),\n                AttributeType: aws.String(\"N\"),\n            },\n        }, KeySchema: []*dynamodb.KeySchemaElement{\n            {\n                AttributeName: aws.String(\"user_id\"),\n                KeyType: aws.String(\"HASH\"),\n            },\n        }, GlobalSecondaryIndexes: []*dynamodb.GlobalSecondaryIndex{\n            {\n                IndexName: aws.String(\"TgIdIndex\"),\n                KeySchema: []*dynamodb.KeySchemaElement{\n                    {\n                        AttributeName: aws.String(\"tg_id\"), KeyType: aws.String(\"HASH\"),\n                    },\n                },\n                Projection: &dynamodb.Projection{\n                    ProjectionType: aws.String(\"ALL\"),\n                },\n            }, {\n                IndexName: aws.String(\"ReferrerIndex\"),\n                KeySchema: []*dynamodb.KeySchemaElement{\n                    {\n                        AttributeName: aws.String(\"referrer\"), KeyType: aws.String(\"HASH\"),\n                    }, {\n                        AttributeName: aws.String(\"created_at\"), KeyType: aws.String(\"RANGE\"),\n                    },\n                },\n                Projection: &dynamodb.Projection{\n                    ProjectionType: aws.String(\"ALL\"),\n                },\n            },\n        }, BillingMode: aws.String(\"PAY_PER_REQUEST\"), TableName: aws.String(db.tableName),\n    }\n    _, err := db.dynamodb.CreateTable(input) if err != nil {\n        log.Fatalf(\"Got error calling CreateTable: %s\", err) return err\n    }\n    return nil\n}"
     },
     {
       "type": "heading",

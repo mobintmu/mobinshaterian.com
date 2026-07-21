@@ -86,8 +86,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "@Module({  imports: [    ...    TasksModule,    AuthModule,  ],})"
+      "lang": "typescript",
+      "code": "@Module({\n  imports: [...TasksModule, AuthModule,],\n})"
     },
     {
       "type": "paragraph",
@@ -95,8 +95,8 @@
     },
     {
       "type": "code",
-      "lang": "python",
-      "code": "import { Module } from '@nestjs/common';import { AuthService } from './auth.service';import { AuthController } from './auth.controller';import { TypeOrmModule } from '@nestjs/typeorm';import { UsersRepository } from './users.repository';@Module({  imports: [TypeOrmModule.forFeature([Users])],    providers: [AuthService, UsersRepository],  controllers: [AuthController],})export class AuthModule {}"
+      "lang": "typescript",
+      "code": "import {\n  Module\n}\nfrom '@nestjs/common';\nimport {\n  AuthService\n}\nfrom './auth.service';\nimport {\n  AuthController\n}\nfrom './auth.controller';\nimport {\n  TypeOrmModule\n}\nfrom '@nestjs/typeorm';\nimport {\n  UsersRepository\n}\nfrom './users.repository';\n@Module({\n  imports: [TypeOrmModule.forFeature([Users])], providers: [AuthService, UsersRepository],\n  controllers: [AuthController],\n})\nexport class AuthModule {\n}"
     },
     {
       "type": "paragraph",
@@ -104,8 +104,8 @@
     },
     {
       "type": "code",
-      "lang": "python",
-      "code": "import { Controller } from '@nestjs/common';@Controller('auth')export class AuthController {}"
+      "lang": "typescript",
+      "code": "import {\n  Controller\n}\nfrom '@nestjs/common';\n@Controller('auth')\nexport class AuthController {\n}"
     },
     {
       "type": "paragraph",
@@ -113,8 +113,8 @@
     },
     {
       "type": "code",
-      "lang": "python",
-      "code": "import { Injectable } from '@nestjs/common';import { UsersRepository } from './users.repository';import { InjectRepository } from '@nestjs/typeorm';@Injectable()export class AuthService {  constructor(    @InjectRepository(UsersRepository)    private userRepository: UsersRepository,  ) {}}"
+      "lang": "typescript",
+      "code": "import {\n  Injectable\n}\nfrom '@nestjs/common';\nimport {\n  UsersRepository\n}\nfrom './users.repository';\nimport {\n  InjectRepository\n}\nfrom '@nestjs/typeorm';\n@Injectable()\nexport class AuthService {\n  constructor(@InjectRepository(UsersRepository) private userRepository: UsersRepository,) {\n  }\n}"
     },
     {
       "type": "paragraph",
@@ -122,8 +122,8 @@
     },
     {
       "type": "code",
-      "lang": "python",
-      "code": "import { Injectable } from '@nestjs/common';import { DataSource, Repository } from 'typeorm';import { Users } from './user.entity';@Injectable()export class UsersRepository extends Repository<Users> {  constructor(private ds: DataSource) {    super(Users, ds.createEntityManager());  }}"
+      "lang": "typescript",
+      "code": "import {\n  Injectable\n}\nfrom '@nestjs/common';\nimport {\n  DataSource, Repository\n}\nfrom 'typeorm';\nimport {\n  Users\n}\nfrom './user.entity';\n@Injectable()\nexport class UsersRepository extends Repository<Users> {\n  constructor(private ds: DataSource) {\n    super(Users, ds.createEntityManager());\n  }\n}"
     },
     {
       "type": "paragraph",
@@ -131,8 +131,8 @@
     },
     {
       "type": "code",
-      "lang": "python",
-      "code": "import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';@Entity()export class Users {  @PrimaryGeneratedColumn('uuid')  id: string;  @Column()  username: string;  @Column()  password: string;  @Column()  created_at: Date;}"
+      "lang": "typescript",
+      "code": "import {\n  Column, Entity, PrimaryGeneratedColumn\n}\nfrom 'typeorm';\n@Entity()\nexport class Users {\n  @PrimaryGeneratedColumn('uuid') id: string;\n  @Column() username: string;\n  @Column() password: string;\n  @Column() created_at: Date;\n}"
     },
     {
       "type": "image",
@@ -153,8 +153,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "--liquibase formatted sql-- changeset mobin:2CREATE TABLE IF NOT EXISTS \"users\" (  \"id\" uuid NOT NULL DEFAULT gen_random_uuid(),  \"username\" TEXT NOT NULL,  \"password\" TEXT NOT NULL,  \"created_at\" timestamptz NOT NULL DEFAULT (now()),  PRIMARY KEY (id));CREATE INDEX ON \"users\" (\"id\");--rollback DROP TABLE \"tasks\";"
+      "lang": "sql",
+      "code": "--liquibase formatted sql-- change\nset mobin:2\nCREATE TABLE IF NOT EXISTS \"users\" (  \"id\" uuid NOT NULL DEFAULT gen_random_uuid(),  \"username\" TEXT\nNOT NULL,  \"password\" TEXT NOT NULL,  \"created_at\" timestamptz NOT NULL DEFAULT (now()),  PRIMARY\nKEY (id));\nCREATE INDEX ON \"users\" (\"id\");--rollback\nDROP TABLE \"tasks\";"
     },
     {
       "type": "paragraph",
@@ -163,7 +163,7 @@
     {
       "type": "code",
       "lang": "bash",
-      "code": "sudo docker-compose -f docker-compose.yml exec liquibase /bin/shliquibase update --url=jdbc:postgresql://postgres-tasks:5432/task?currentSchema=public --changelog-file=changelog.xml --username=user --password=pass "
+      "code": "sudo\ndocker-compose -f docker-compose.yml exec liquibase /bin/shliquibase update\n--url=jdbc:postgresql://postgres-tasks:5432/task?currentSchema=public --changelog-file=changelog.xml\n--username=user --password=pass"
     },
     {
       "type": "image",
@@ -216,8 +216,8 @@
     },
     {
       "type": "code",
-      "lang": "javascript",
-      "code": "export class AuthCredentialsDto {  username: string;  password: string;}"
+      "lang": "typescript",
+      "code": "export class AuthCredentialsDto {\n  username: string;\n  password: string;\n}"
     },
     {
       "type": "paragraph",
@@ -225,8 +225,8 @@
     },
     {
       "type": "code",
-      "lang": "python",
-      "code": "import { Injectable } from '@nestjs/common';import { DataSource, Repository } from 'typeorm';import { Users } from './user.entity';import { AuthCredentialsDto } from './dto/auth-credentials.dto';@Injectable()export class UsersRepository extends Repository<Users> {  constructor(private ds: DataSource) {    super(Users, ds.createEntityManager());  }  async createUser(authCredentialDto: AuthCredentialsDto): Promise<void> {    const { username, password } = authCredentialDto;    const user = this.create({      username,      password,    });    await this.save(user);  }}"
+      "lang": "typescript",
+      "code": "import {\n  Injectable\n}\nfrom '@nestjs/common';\nimport {\n  DataSource, Repository\n}\nfrom 'typeorm';\nimport {\n  Users\n}\nfrom './user.entity';\nimport {\n  AuthCredentialsDto\n}\nfrom './dto/auth-credentials.dto';\n@Injectable()\nexport class UsersRepository extends Repository<Users> {\n  constructor(private ds: DataSource) {\n    super(Users, ds.createEntityManager());\n  }\n  async createUser(authCredentialDto: AuthCredentialsDto): Promise<void> {\n    const {\n      username, password\n    }\n    = authCredentialDto;\n    const user = this.create({\n      username, password,\n    });\n    await this.save(user);\n  }\n}"
     },
     {
       "type": "paragraph",
@@ -234,8 +234,8 @@
     },
     {
       "type": "code",
-      "lang": "python",
-      "code": "import { Injectable } from '@nestjs/common';import { UsersRepository } from './users.repository';import { InjectRepository } from '@nestjs/typeorm';import { AuthCredentialsDto } from './dto/auth-credentials.dto';@Injectable()export class AuthService {  constructor(    @InjectRepository(UsersRepository)    private userRepository: UsersRepository,  ) {}  async signUp(authCredentialsDto: AuthCredentialsDto): Promise<void> {    return this.userRepository.createUser(authCredentialsDto);  }}"
+      "lang": "typescript",
+      "code": "import {\n  Injectable\n}\nfrom '@nestjs/common';\nimport {\n  UsersRepository\n}\nfrom './users.repository';\nimport {\n  InjectRepository\n}\nfrom '@nestjs/typeorm';\nimport {\n  AuthCredentialsDto\n}\nfrom './dto/auth-credentials.dto';\n@Injectable()\nexport class AuthService {\n  constructor(@InjectRepository(UsersRepository) private userRepository: UsersRepository,) {\n  }\n  async signUp(authCredentialsDto: AuthCredentialsDto): Promise<void> {\n    return this.userRepository.createUser(authCredentialsDto);\n  }\n}"
     },
     {
       "type": "paragraph",
@@ -243,8 +243,8 @@
     },
     {
       "type": "code",
-      "lang": "python",
-      "code": "import { Body, Controller, Post } from '@nestjs/common';import { AuthService } from './auth.service';import { AuthCredentialsDto } from './dto/auth-credentials.dto';@Controller('auth')export class AuthController {  constructor(private authService: AuthService) {}  @Post('/signup')  async signUp(@Body() authCredentialsDto: AuthCredentialsDto): Promise<void> {    return this.authService.signUp(authCredentialsDto);  }}"
+      "lang": "typescript",
+      "code": "import {\n  Body, Controller, Post\n}\nfrom '@nestjs/common';\nimport {\n  AuthService\n}\nfrom './auth.service';\nimport {\n  AuthCredentialsDto\n}\nfrom './dto/auth-credentials.dto';\n@Controller('auth')\nexport class AuthController {\n  constructor(private authService: AuthService) {\n  }\n  @Post('/signup') async signUp(@Body() authCredentialsDto: AuthCredentialsDto): Promise<void> {\n    return this.authService.signUp(authCredentialsDto);\n  }\n}"
     },
     {
       "type": "heading",
@@ -253,8 +253,8 @@
     },
     {
       "type": "code",
-      "lang": "python",
-      "code": "import { IsString, Matches, MaxLength, MinLength } from 'class-validator';export class AuthCredentialsDto {  @IsString()  @MinLength(4)  @MaxLength(20)  username: string;  @IsString()  @MinLength(8)  @MaxLength(32)  @Matches(/((?=.*\\d)|(?=.*\\W+))(?![.\\n])(?=.*[A-Z])(?=.*[a-z]).*$/, {    message: 'Password too weak',  })  password: string;}"
+      "lang": "typescript",
+      "code": "import {\n  IsString, Matches, MaxLength, MinLength\n}\nfrom 'class-validator';\nexport class AuthCredentialsDto {\n  @IsString() @MinLength(4) @MaxLength(20) username: string;\n  @IsString() @MinLength(8) @MaxLength(32)\n  @Matches(/((?=.*\\d)|(?=.*\\W+))(?![.\\n])(?=.*[A-Z])(?=.*[a-z]).*$/, {\n    message: 'Password too weak',\n  }) password: string;\n}"
     },
     {
       "type": "paragraph",
@@ -307,8 +307,8 @@
     },
     {
       "type": "code",
-      "lang": "python",
-      "code": "import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';@Entity()export class Users {  @PrimaryGeneratedColumn('uuid')  id: string;  @Column({ unique: true })  username: string;  @Column()  password: string;  @Column()  created_at: Date;}"
+      "lang": "typescript",
+      "code": "import {\n  Column, Entity, PrimaryGeneratedColumn\n}\nfrom 'typeorm';\n@Entity()\nexport class Users {\n  @PrimaryGeneratedColumn('uuid') id: string;\n  @Column({\n    unique: true\n  }) username: string;\n  @Column() password: string;\n  @Column() created_at: Date;\n}"
     },
     {
       "type": "paragraph",
@@ -317,7 +317,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "  async createUser(authCredentialDto: AuthCredentialsDto): Promise<void> {    const { username, password } = authCredentialDto;    const user = this.create({      username,      password,    });    try {      await this.save(user);    } catch (error) {      console.error(error);      if (error.code === '23505') {        throw new ConflictException('Username already exists');      } else {        throw new InternalServerErrorException();      }    }  }"
+      "code": "async createUser(authCredentialDto: AuthCredentialsDto): Promise<void> {    const { username,\npassword } = authCredentialDto;    const user = this.create({      username,      password,    });\ntry {      await this.save(user);    } catch (error) {      console.error(error);      if\n(error.code === '23505') {        throw new ConflictException('Username already exists');      }\nelse {        throw new InternalServerErrorException();      }    }  }"
     },
     {
       "type": "heading",
@@ -344,7 +344,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "  async createUser(authCredentialDto: AuthCredentialsDto): Promise<void> {    const { username, password } = authCredentialDto;    const salt = await bycrypt.genSalt();    const hashedPassword = await bycrypt.hash(password, salt);    const user = this.create({      username,      password: hashedPassword,    });    try {      await this.save(user);    } catch (error) {      console.error(error);      if (error.code === '23505') {        throw new ConflictException('Username already exists');      } else {        throw new InternalServerErrorException();      }    }  }"
+      "code": "async createUser(authCredentialDto: AuthCredentialsDto): Promise<void> {    const { username,\npassword } = authCredentialDto;    const salt = await bycrypt.genSalt();    const hashedPassword =\nawait bycrypt.hash(password, salt);    const user = this.create({      username,      password:\nhashedPassword,    });    try {      await this.save(user);    } catch (error) {\nconsole.error(error);      if (error.code === '23505') {        throw new\nConflictException('Username already exists');      } else {        throw new\nInternalServerErrorException();      }    }  }"
     },
     {
       "type": "heading",
@@ -357,8 +357,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "  @Post('/signin')  async signIn(    @Body() authCredentialsDto: AuthCredentialsDto,  ): Promise<string> {    return this.authService.signIn(authCredentialsDto);  }"
+      "lang": "typescript",
+      "code": "@Post('/signin') async signIn(@Body() authCredentialsDto: AuthCredentialsDto,): Promise<string> {\n  return this.authService.signIn(authCredentialsDto);\n}"
     },
     {
       "type": "paragraph",
@@ -367,7 +367,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "  async signIn(authCredentialsDto: AuthCredentialsDto): Promise<string> {    return this.userRepository.validateUserPassword(authCredentialsDto);  }"
+      "code": "async signIn(authCredentialsDto: AuthCredentialsDto): Promise<string> {    return\nthis.userRepository.validateUserPassword(authCredentialsDto);  }"
     },
     {
       "type": "paragraph",
@@ -376,7 +376,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "  async validateUserPassword(    authCredentialDto: AuthCredentialsDto,  ): Promise<string> {    const { username, password } = authCredentialDto;    const user = await this.findOne({ where: { username } });    if (user && (await bycrypt.compare(password, user.password))) {      return 'success';    } else {      return 'Invalid credentials';    }  }"
+      "code": "async validateUserPassword(    authCredentialDto: AuthCredentialsDto,  ): Promise<string> {    const\n{ username, password } = authCredentialDto;    const user = await this.findOne({ where: { username }\n});    if (user && (await bycrypt.compare(password, user.password))) {      return 'success';    }\nelse {      return 'Invalid credentials';    }  }"
     },
     {
       "type": "heading",
@@ -398,8 +398,8 @@
     },
     {
       "type": "code",
-      "lang": "python",
-      "code": "import { Module } from '@nestjs/common';import { AuthService } from './auth.service';import { AuthController } from './auth.controller';import { TypeOrmModule } from '@nestjs/typeorm';import { UsersRepository } from './users.repository';import { Users } from './user.entity';import { PassportModule } from '@nestjs/passport';import { JwtModule } from '@nestjs/jwt';@Module({  imports: [    PassportModule.register({ defaultStrategy: 'jwt' }),    JwtModule.register({      secret: 'topSecret51',      signOptions: {        expiresIn: 3600,      },    }),    TypeOrmModule.forFeature([Users]),  ],  providers: [AuthService, UsersRepository],  controllers: [AuthController],})export class AuthModule {}"
+      "lang": "typescript",
+      "code": "import {\n  Module\n}\nfrom '@nestjs/common';\nimport {\n  AuthService\n}\nfrom './auth.service';\nimport {\n  AuthController\n}\nfrom './auth.controller';\nimport {\n  TypeOrmModule\n}\nfrom '@nestjs/typeorm';\nimport {\n  UsersRepository\n}\nfrom './users.repository';\nimport {\n  Users\n}\nfrom './user.entity';\nimport {\n  PassportModule\n}\nfrom '@nestjs/passport';\nimport {\n  JwtModule\n}\nfrom '@nestjs/jwt';\n@Module({\n  imports: [PassportModule.register({\n    defaultStrategy: 'jwt'\n  }), JwtModule.register({\n    secret: 'topSecret51', signOptions: {\n      expiresIn: 3600,\n    },\n  }), TypeOrmModule.forFeature([Users]),], providers: [AuthService, UsersRepository], controllers:\n  [AuthController],\n})\nexport class AuthModule {\n}"
     },
     {
       "type": "paragraph",
@@ -407,8 +407,8 @@
     },
     {
       "type": "code",
-      "lang": "javascript",
-      "code": "export interface JwtPayload {  username: string;}"
+      "lang": "typescript",
+      "code": "export interface JwtPayload {\n  username: string;\n}"
     },
     {
       "type": "paragraph",
@@ -416,8 +416,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "  @Post('/signin')  async signIn(    @Body() authCredentialsDto: AuthCredentialsDto,  ): Promise<{ accessToken: string }> {    return this.authService.signIn(authCredentialsDto);  }"
+      "lang": "typescript",
+      "code": "@Post('/signin') async signIn(@Body() authCredentialsDto: AuthCredentialsDto,): Promise<{\n  accessToken: string\n}\n> {\n  return this.authService.signIn(authCredentialsDto);\n}"
     },
     {
       "type": "paragraph",
@@ -425,8 +425,8 @@
     },
     {
       "type": "code",
-      "lang": "python",
-      "code": "import { Injectable } from '@nestjs/common';import { UsersRepository } from './users.repository';import { InjectRepository } from '@nestjs/typeorm';import { AuthCredentialsDto } from './dto/auth-credentials.dto';import { JwtService } from '@nestjs/jwt';import { JwtPayload } from './jwt-payload.intreface';@Injectable()export class AuthService {  constructor(    @InjectRepository(UsersRepository)    private userRepository: UsersRepository,    private jwtService: JwtService,  ) {}  async signUp(authCredentialsDto: AuthCredentialsDto): Promise<void> {    return this.userRepository.createUser(authCredentialsDto);  }  async signIn(    authCredentialsDto: AuthCredentialsDto,  ): Promise<{ accessToken: string }> {    if (await this.userRepository.validateUserPassword(authCredentialsDto)) {      const payload: JwtPayload = { username: authCredentialsDto.username };      const accessToken: string = this.jwtService.sign(payload);      return { accessToken };    }  }}"
+      "lang": "typescript",
+      "code": "import {\n  Injectable\n}\nfrom '@nestjs/common';\nimport {\n  UsersRepository\n}\nfrom './users.repository';\nimport {\n  InjectRepository\n}\nfrom '@nestjs/typeorm';\nimport {\n  AuthCredentialsDto\n}\nfrom './dto/auth-credentials.dto';\nimport {\n  JwtService\n}\nfrom '@nestjs/jwt';\nimport {\n  JwtPayload\n}\nfrom './jwt-payload.intreface';\n@Injectable()\nexport class AuthService {\n  constructor(@InjectRepository(UsersRepository) private userRepository: UsersRepository, private\n  jwtService: JwtService,) {\n  }\n  async signUp(authCredentialsDto: AuthCredentialsDto): Promise<void> {\n    return this.userRepository.createUser(authCredentialsDto);\n  }\n  async signIn(authCredentialsDto: AuthCredentialsDto,): Promise<{\n    accessToken: string\n  }\n  > {\n    if (await this.userRepository.validateUserPassword(authCredentialsDto)) {\n      const payload: JwtPayload = {\n        username: authCredentialsDto.username\n      };\n      const accessToken: string = this.jwtService.sign(payload);\n      return {\n        accessToken\n      };\n    }\n  }\n}"
     },
     {
       "type": "paragraph",
@@ -434,8 +434,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "  async validateUserPassword(    authCredentialDto: AuthCredentialsDto,  ): Promise<boolean> {    const { username, password } = authCredentialDto;    const user = await this.findOne({ where: { username } });    if (user && (await bycrypt.compare(password, user.password))) {      return true;    } else {      return false;    }  }"
+      "lang": "javascript",
+      "code": "async validateUserPassword(    authCredentialDto: AuthCredentialsDto,  ): Promise<boolean> {\nconst { username, password } = authCredentialDto;    const user = await this.findOne({ where: {\nusername } });    if (user && (await bycrypt.compare(password, user.password))) {      return true;\n} else {      return false;    }  }"
     },
     {
       "type": "heading",
@@ -457,8 +457,8 @@
     },
     {
       "type": "code",
-      "lang": "python",
-      "code": "import { Module } from '@nestjs/common';import { AuthService } from './auth.service';import { AuthController } from './auth.controller';import { TypeOrmModule } from '@nestjs/typeorm';import { UsersRepository } from './users.repository';import { Users } from './user.entity';import { PassportModule } from '@nestjs/passport';import { JwtModule } from '@nestjs/jwt';import { JWTStrategy } from './jwt.strategy';@Module({  imports: [    PassportModule.register({ defaultStrategy: 'jwt' }),    JwtModule.register({      secret: 'topSecret51',      signOptions: {        expiresIn: 3600,      },    }),    TypeOrmModule.forFeature([Users]),  ],  providers: [AuthService, UsersRepository, JWTStrategy],  controllers: [AuthController],  exports: [JWTStrategy, PassportModule],})export class AuthModule {}"
+      "lang": "typescript",
+      "code": "import {\n  Module\n}\nfrom '@nestjs/common';\nimport {\n  AuthService\n}\nfrom './auth.service';\nimport {\n  AuthController\n}\nfrom './auth.controller';\nimport {\n  TypeOrmModule\n}\nfrom '@nestjs/typeorm';\nimport {\n  UsersRepository\n}\nfrom './users.repository';\nimport {\n  Users\n}\nfrom './user.entity';\nimport {\n  PassportModule\n}\nfrom '@nestjs/passport';\nimport {\n  JwtModule\n}\nfrom '@nestjs/jwt';\nimport {\n  JWTStrategy\n}\nfrom './jwt.strategy';\n@Module({\n  imports: [PassportModule.register({\n    defaultStrategy: 'jwt'\n  }), JwtModule.register({\n    secret: 'topSecret51', signOptions: {\n      expiresIn: 3600,\n    },\n  }), TypeOrmModule.forFeature([Users]),], providers: [AuthService, UsersRepository, JWTStrategy],\n  controllers: [AuthController], exports: [JWTStrategy, PassportModule],\n})\nexport class AuthModule {\n}"
     },
     {
       "type": "paragraph",
@@ -466,8 +466,8 @@
     },
     {
       "type": "code",
-      "lang": "python",
-      "code": "import { Injectable, UnauthorizedException } from '@nestjs/common';import { PassportStrategy } from '@nestjs/passport';import { ExtractJwt, Strategy } from 'passport-jwt';import { UsersRepository } from './users.repository';import { InjectRepository } from '@nestjs/typeorm';import { JwtPayload } from './jwt-payload.intreface';import { Users } from './user.entity';@Injectable()export class JWTStrategy extends PassportStrategy(Strategy) {  constructor(    @InjectRepository(UsersRepository)    private userRepository: UsersRepository,  ) {    super({      secretOrKey: 'topSecret51',      jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),    });  }  async validate(payload: JwtPayload): Promise<Users> {    const { username } = payload;    const user: Users = await this.userRepository.findOne({      where: { username },    });    if (!user) {      throw new UnauthorizedException();    }    return user;  }}"
+      "lang": "typescript",
+      "code": "import {\n  Injectable, UnauthorizedException\n}\nfrom '@nestjs/common';\nimport {\n  PassportStrategy\n}\nfrom '@nestjs/passport';\nimport {\n  ExtractJwt, Strategy\n}\nfrom 'passport-jwt';\nimport {\n  UsersRepository\n}\nfrom './users.repository';\nimport {\n  InjectRepository\n}\nfrom '@nestjs/typeorm';\nimport {\n  JwtPayload\n}\nfrom './jwt-payload.intreface';\nimport {\n  Users\n}\nfrom './user.entity';\n@Injectable()\nexport class JWTStrategy extends PassportStrategy(Strategy) {\n  constructor(@InjectRepository(UsersRepository) private userRepository: UsersRepository,) {\n    super({\n      secretOrKey: 'topSecret51', jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),\n    });\n  }\n  async validate(payload: JwtPayload): Promise<Users> {\n    const {\n      username\n    }\n    = payload;\n    const user: Users = await this.userRepository.findOne({\n      where: {\n        username\n      },\n    });\n    if (!user) {\n      throw new UnauthorizedException();\n    }\n    return user;\n  }\n}"
     },
     {
       "type": "heading",
@@ -480,8 +480,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "@Module({  imports: [TypeOrmModule.forFeature([Tasks]), AuthModule],  controllers: [TasksController],  providers: [TasksService, TaskRepository],})"
+      "lang": "typescript",
+      "code": "@Module({\n  imports: [TypeOrmModule.forFeature([Tasks]), AuthModule], controllers: [TasksController],\n  providers: [TasksService, TaskRepository],\n})"
     },
     {
       "type": "paragraph",
@@ -489,7 +489,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "typescript",
       "code": "@Controller('tasks')@UseGuards(AuthGuard())"
     },
     {

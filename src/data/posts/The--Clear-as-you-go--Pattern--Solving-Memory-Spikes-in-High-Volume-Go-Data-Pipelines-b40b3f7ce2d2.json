@@ -74,7 +74,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "func (s *Service) applyTransformations(inputData *model.TableData, outputData *model.TableData) {    for rowIdx, inputRow := range inputData.Rows {        // 1. Create the new data        outputRow := s.transformSingleRow(inputRow)                // 2. Store it in the output slice        outputData.Rows[rowIdx] = outputRow        // 3. THE PATTERN: Delete the reference to the source row        // This makes the memory eligible for GC immediately        inputData.Rows[rowIdx] = nil     }        // 4. Fully release the input slice header    inputData.Rows = nil}"
+      "code": "func (s *Service) applyTransformations(inputData *model.TableData, outputData *model.TableData) {\n    for rowIdx, inputRow := range inputData.Rows {\n        // 1.Create the new data outputRow := s.transformSingleRow(inputRow) // 2.Store it in the\n        output slice outputData.Rows[rowIdx] = outputRow // 3.THE PATTERN: Delete the reference to\n        the source row // This makes the memory eligible for GC immediately inputData.Rows[rowIdx] =\n        nil\n    }\n    // 4.Fully release the input slice header\n    inputData.Rows = nil\n}"
     },
     {
       "type": "paragraph",

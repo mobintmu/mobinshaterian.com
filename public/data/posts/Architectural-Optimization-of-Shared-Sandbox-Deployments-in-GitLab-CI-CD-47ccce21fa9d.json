@@ -229,7 +229,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "before_script:  - eval $(ssh-agent -s)  - chmod 600 \"$SSH_PRIVATE_KEY\"  - ssh-add \"$SSH_PRIVATE_KEY\"  - mkdir -p ~/.ssh  - chmod 700 ~/.ssh  - ssh-keyscan $SSH_HOST >> ~/.ssh/known_hosts"
+      "code": "before_script:  - eval $(ssh-agent -s)  - chmod 600 \"$SSH_PRIVATE_KEY\"  - ssh-add \"$SSH_PRIVATE_KEY\"\n- mkdir -p ~/.ssh  - chmod 700 ~/.ssh  - ssh-keyscan $SSH_HOST >> ~/.ssh/known_hosts"
     },
     {
       "type": "paragraph",
@@ -250,8 +250,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "services:  web:    image: ${CI_REGISTRY_IMAGE}/${BRANCH_SLUG}:${IMAGE_TAG}    env_file:.env"
+      "lang": "yaml",
+      "code": "services:\n  web:\n    image: ${CI_REGISTRY_IMAGE}/${BRANCH_SLUG}:${IMAGE_TAG}\n    env_file:.env"
     },
     {
       "type": "paragraph",
@@ -260,7 +260,7 @@
     {
       "type": "code",
       "lang": "javascript",
-      "code": "export IMAGE_TAG=${CI_COMMIT_SHORT_SHA}export BRANCH_SLUG=${CI_COMMIT_REF_SLUG}envsubst < infra/development/docker-compose.tmpl > docker-compose.ymlscp docker-compose.yml ${SSH_USER}@${SSH_HOST}:${DEV_DEPLOY_DIR}/docker-compose.yml"
+      "code": "export IMAGE_TAG=${\n  CI_COMMIT_SHORT_SHA\n}\nexport BRANCH_SLUG=${\n  CI_COMMIT_REF_SLUG\n}\nenvsubst < infra/development/docker-compose.tmpl > docker-compose.ymlscp docker-compose.yml ${\n  SSH_USER\n}\n@${\n  SSH_HOST\n}\n:${\n  DEV_DEPLOY_DIR\n}\n/docker-compose.yml"
     },
     {
       "type": "paragraph",
@@ -318,7 +318,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "# Daily at 3 AM: Remove unused images older than 48 hours0 3 * * * /usr/bin/docker image prune -a - filter \"until=48h\" -f"
+      "code": "# Daily at 3 AM: Remove unused images older than 48 hours0 3 * * * /usr/bin/docker image prune -a -\nfilter \"until=48h\" -f"
     },
     {
       "type": "paragraph",
@@ -385,7 +385,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "cp \"$ENV_FILE\"./infra/development/.envscp./infra/development/.env ${SSH_USER}@${SSH_HOST}:${DEV_DEPLOY_DIR}/.env"
+      "code": "cp \"$ENV_FILE\"./infra/development/.envscp./infra/development/.env\n${SSH_USER}@${SSH_HOST}:${DEV_DEPLOY_DIR}/.env"
     },
     {
       "type": "paragraph",

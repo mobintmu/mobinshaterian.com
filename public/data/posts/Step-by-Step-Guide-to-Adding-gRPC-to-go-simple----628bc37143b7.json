@@ -24,8 +24,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "syntax = \"proto3\";package product.v1;option go_package = \"github.com/mobintmu/go-simple/api/proto/product/v1\";import \"google/protobuf/empty.proto\";message ProductRequest { int32 id = 1; }message ProductResponse {  int32 id = 1;  string name = 2;  string description = 3;  int64 price = 4;}message CreateProductRequest { string name = 1; string description = 2; int64 price = 3; }message UpdateProductRequest { int32 id = 1; string name = 2; string description = 3; int64 price = 4; }message DeleteProductRequest { int32 id = 1; }message ListProductsResponse { repeated ProductResponse products = 1; }service ProductService {  rpc GetProductByID(ProductRequest) returns (ProductResponse);  rpc CreateProduct(CreateProductRequest) returns (ProductResponse);  rpc UpdateProduct(UpdateProductRequest) returns (ProductResponse);  rpc DeleteProduct(DeleteProductRequest) returns (ProductResponse);  rpc ListProducts(google.protobuf.Empty) returns (ListProductsResponse);}"
+      "lang": "protobuf",
+      "code": "syntax = \"proto3\";\npackage product.v1;\noption go_package = \"github.com/mobintmu/go-simple/api/proto/product/v1\";\nimport \"google/protobuf/empty.proto\";\n\nmessage ProductRequest {\n int32 id = 1;\n\n}\n\nmessage ProductResponse {\n  int32 id = 1;\n  string name = 2;\n  string description = 3;\n  int64 price = 4;\n\n}\n\nmessage CreateProductRequest {\n string name = 1;\n string description = 2;\n int64 price = 3;\n\n}\n\nmessage UpdateProductRequest {\n int32 id = 1;\n string name = 2;\n string description = 3;\n int64 price = 4;\n\n}\n\nmessage DeleteProductRequest {\n int32 id = 1;\n\n}\n\nmessage ListProductsResponse {\n repeated ProductResponse products = 1;\n\n}\n\nservice ProductService {\n\nrpc GetProductByID(ProductRequest) returns (ProductResponse);\n\nrpc CreateProduct(CreateProductRequest) returns (ProductResponse);\n\nrpc UpdateProduct(UpdateProductRequest) returns (ProductResponse);\n\nrpc DeleteProduct(DeleteProductRequest) returns (ProductResponse);\n\nrpc ListProducts(google.protobuf.Empty) returns (ListProductsResponse);\n\n}"
     },
     {
       "type": "paragraph",
@@ -42,7 +42,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "protoc -I.   --go_out=. --go_opt=paths=source_relative   --go-grpc_out=. --go-grpc_opt=paths=source_relative   --grpc-gateway_out=. --grpc-gateway_opt=paths=source_relative   api/proto/product/v1/product.proto"
+      "code": "protoc -I.   --go_out=. --go_opt=paths=source_relative   --go-grpc_out=.\n--go-grpc_opt=paths=source_relative   --grpc-gateway_out=. --grpc-gateway_opt=paths=source_relative\napi/proto/product/v1/product.proto"
     },
     {
       "type": "image",
@@ -63,8 +63,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "type ProductGRPC struct {  productv1.UnimplementedProductServiceServer  svc *service.Product}func NewProductGRPC(svc *service.Product) productv1.ProductServiceServer {  return &ProductGRPC{svc: svc}}"
+      "lang": "go",
+      "code": "type ProductGRPC struct {\n    productv1.UnimplementedProductServiceServer svc *service.Product\n}\nfunc NewProductGRPC(svc *service.Product) productv1.ProductServiceServer {\n    return &ProductGRPC{\n        svc: svc\n    }\n}"
     },
     {
       "type": "paragraph",
@@ -82,7 +82,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "func NewGRPCServer(p Params) *grpc.Server {  server := grpc.NewServer()  productv1.RegisterProductServiceServer(server, p.Product)  ...}"
+      "code": "func NewGRPCServer(p Params) *grpc.Server {\n    server := grpc.NewServer() productv1.RegisterProductServiceServer(server, p.Product)...\n}"
     },
     {
       "type": "paragraph",
@@ -100,7 +100,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "conn, err := grpc.Dial(\"localhost:9090\", grpc.WithTransportCredentials(insecure.NewCredentials()))client := productv1.NewProductServiceClient(conn)resp, err := client.GetProductByID(context.Background(), &productv1.ProductRequest{Id: 1})"
+      "code": "conn, err := grpc.Dial(\"localhost:9090\",\ngrpc.WithTransportCredentials(insecure.NewCredentials()))client :=\nproductv1.NewProductServiceClient(conn)resp, err := client.GetProductByID(context.Background(),\n&productv1.ProductRequest{Id: 1})"
     },
     {
       "type": "paragraph",
@@ -130,7 +130,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "version: v2plugins:  - local: protoc-gen-go    out: gen/go    opt:      - paths=source_relative  - local: protoc-gen-go-grpc    out: gen/go    opt:      - paths=source_relative"
+      "code": "version: v2plugins:  - local: protoc-gen-go    out: gen/go    opt:      - paths=source_relative  -\nlocal: protoc-gen-go-grpc    out: gen/go    opt:      - paths=source_relative"
     },
     {
       "type": "heading",

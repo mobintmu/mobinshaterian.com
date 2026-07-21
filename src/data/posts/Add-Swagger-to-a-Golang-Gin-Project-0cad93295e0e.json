@@ -54,7 +54,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "bash",
       "code": "go install github.com/swaggo/swag/cmd/swag@latest"
     },
     {
@@ -73,12 +73,12 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "// @title           My API// @version         1.0// @description     This is a sample API with Gin and Swagger.// @host              localhost:8080// @BasePath         /api/v1package main"
+      "code": "// @title           My API// @version         1.0// @description     This is a sample API with Gin\nand Swagger.// @host              localhost:8080// @BasePath         /api/v1package main"
     },
     {
       "type": "code",
       "lang": "go",
-      "code": "func main() {    r := gin.Default()    // Serve Swagger docs    r.GET(\"/swagger/*any\", ginSwagger.WrapHandler(swaggerFiles.Handler))    r.Run(\":4000\")}"
+      "code": "func main() {\n    r := gin.Default()\n    // Serve Swagger docs\n    r.GET(\"/swagger/*any\", ginSwagger.WrapHandler(swaggerFiles.Handler))\n    r.Run(\":4000\")\n}"
     },
     {
       "type": "heading",
@@ -131,7 +131,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "func (a *Application) Routes() { api := a.Router.Group(\"/api/v1/\") api.GET(\"/health\", HealthHandler) api.GET(\"/slow\", SlowHandler) //  Set Swagger metadata dynamically docs.SwaggerInfo.Title = \"My API\" docs.SwaggerInfo.Version = \"1.0\" docs.SwaggerInfo.Description = \"This is a sample API with Gin and Swagger.\" docs.SwaggerInfo.Host = \"127.0.0.1:4000\" docs.SwaggerInfo.BasePath = \"/api/v1\" docs.SwaggerInfo.Schemes = []string{\"http\"} // or {\"https\"} in production a.Router.GET(\"/swagger/*any\", ginSwagger.WrapHandler(swaggerFiles.Handler))}"
+      "code": "func (a *Application) Routes() {\n    api := a.Router.Group(\"/api/v1/\") api.GET(\"/health\", HealthHandler) api.GET(\"/slow\",\n    SlowHandler) // Set Swagger metadata dynamically docs.SwaggerInfo.Title = \"My API\"\n    docs.SwaggerInfo.Version = \"1.0\" docs.SwaggerInfo.Description =\n    \"This is a sample API with Gin and Swagger.\" docs.SwaggerInfo.Host = \"127.0.0.1:4000\"\n    docs.SwaggerInfo.BasePath = \"/api/v1\" docs.SwaggerInfo.Schemes = []string{\n        \"http\"\n    }\n    // or {\n        \"https\"\n    }\n    in production a.Router.GET(\"/swagger/*any\", ginSwagger.WrapHandler(swaggerFiles.Handler))\n}"
     },
     {
       "type": "heading",

@@ -36,12 +36,12 @@
     {
       "type": "code",
       "lang": "python",
-      "code": "import scheduleimport time"
+      "code": "import schedule\nimport time"
     },
     {
       "type": "code",
       "lang": "python",
-      "code": "def job():    now = datetime.datetime.now()    print(\"The current time is:\", now)schedule.every(10).minutes.do(job)while 1:    schedule.run_pending()    time.sleep(1)"
+      "code": "def job():\n    now = datetime.datetime.now()\n    print(\"The current time is:\", now)schedule.every(10).minutes.do(job)while 1:\n    schedule.run_pending()\n    time.sleep(1)"
     },
     {
       "type": "paragraph",

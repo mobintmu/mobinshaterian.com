@@ -90,7 +90,7 @@
     {
       "type": "code",
       "lang": "sql",
-      "code": "CREATE TABLE IF NOT EXISTS kpi_flat_hourly(    time  DateTime('UTC'),    cell_id          String,    vendor           String,    -- ... more dimension columns ...    updated_at       DateTime('UTC') DEFAULT now('UTC'),    kpi_id_1001      Nullable(Float64),    kpi_id_1002      Nullable(Float64)    -- columns added dynamically as new KPIs are discovered)ENGINE = MergeTreePARTITION BY toDate(time)ORDER BY (time, cell_id)SETTINGS index_granularity = 8192;"
+      "code": "CREATE TABLE IF NOT EXISTS kpi_flat_hourly(    time  DateTime('UTC'),    cell_id          String,\nvendor           String,    -- ... more dimension columns ...    updated_at       DateTime('UTC')\nDEFAULT now('UTC'),    kpi_id_1001      Nullable(Float64),    kpi_id_1002      Nullable(Float64)\n-- columns added dynamically as new KPIs are discovered)ENGINE = MergeTreePARTITION BY toDate(time)\nORDER BY (time, cell_id)SETTINGS index_granularity = 8192;"
     },
     {
       "type": "paragraph",
@@ -107,8 +107,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "ALTER TABLE kpi_flat_hourlyDELETEWHERE meta_begin_time >= toDateTime('2024-11-01 14:00:00', 'UTC')  AND meta_begin_time <  toDateTime('2024-11-01 15:00:00', 'UTC');"
+      "lang": "sql",
+      "code": "ALTER TABLE kpi_flat_hourlyDELETE\nWHERE meta_begin_time >= toDateTime('2024-11-01 14:00:00', 'UTC')  AND meta_begin_time <\ntoDateTime('2024-11-01 15:00:00', 'UTC');"
     },
     {
       "type": "paragraph",
@@ -157,7 +157,7 @@
     {
       "type": "code",
       "lang": "sql",
-      "code": "SELECT    time,    cell_id,    kpi_id_1001,    kpi_id_1002,    kpi_id_1001 / nullIf(kpi_id_1002, 0) AS utilisation_ratioFROM kpi_flat_hourlyWHERE time >= '2024-11-01 00:00:00'  AND time <  '2024-11-02 00:00:00'  AND region = 'north';"
+      "code": "SELECT    time,    cell_id,    kpi_id_1001,    kpi_id_1002,    kpi_id_1001 / nullIf(kpi_id_1002, 0)\nAS utilisation_ratio\nFROM kpi_flat_hourly\nWHERE time >= '2024-11-01 00:00:00'  AND time <  '2024-11-02 00:00:00'  AND region = 'north';"
     },
     {
       "type": "paragraph",
@@ -184,7 +184,7 @@
     {
       "type": "code",
       "lang": "python",
-      "code": "def ensure_kpi_columns(client, table_name: str, kpi_columns: list[str]):    existing = get_existing_columns(client, table_name)    for col in kpi_columns:        if col not in existing:            client.command(                f\"ALTER TABLE {table_name} \"                f\"ADD COLUMN IF NOT EXISTS {col} Nullable(Float64)\"            )"
+      "code": "def ensure_kpi_columns(client, table_name: str, kpi_columns: list[str]):\n    existing = get_existing_columns(client, table_name)\n    for col in kpi_columns:        if col not in existing:            client.command(\n    f\"ALTER TABLE {table_name} \"                f\"ADD COLUMN IF NOT EXISTS {col} Nullable(Float64)\"\n    )"
     },
     {
       "type": "paragraph",
@@ -211,7 +211,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "WITH  kpi_1 AS (    SELECT time, cell_id, vendor, ..., sum(counter_a) AS kpi_id_1001    FROM flat_lte_vendor_a    WHERE time>= toDateTime('2024-11-01 14:00:00', 'UTC')      AND time <  toDateTime('2024-11-01 15:00:00', 'UTC')    GROUP BY time, cell_id, vendor, ...  ),  kpi_2 AS (    SELECT meta_begin_time, cell_id, vendor, ..., avg(counter_b) AS kpi_id_1002    FROM flat_lte_vendor_a    WHERE ...    GROUP BY ...  )INSERT INTO kpi_flat_lte_vendor_a_cell_hourlySELECT    coalesce(kpi_1.time, kpi_2.time) AS meta_begin_time,    coalesce(kpi_1.cell_id,         kpi_2.cell_id)         AS cell_id,    -- ... coalesce for every dimension column ...    now('UTC') AS updated_at,    kpi_1.kpi_id_1001,    kpi_2.kpi_id_1002FROM kpi_1FULL OUTER JOIN kpi_2  ON kpi_1.meta_begin_time = kpi_2.meta_begin_time AND kpi_1.cell_id         = kpi_2.cell_id AND kpi_1.vendor          = kpi_2.vendor;"
+      "code": "WITH  kpi_1 AS (    SELECT time, cell_id, vendor, ..., sum(counter_a) AS kpi_id_1001    FROM\nflat_lte_vendor_a    WHERE time>= toDateTime('2024-11-01 14:00:00', 'UTC')      AND time <\ntoDateTime('2024-11-01 15:00:00', 'UTC')    GROUP BY time, cell_id, vendor, ...  ),  kpi_2 AS (\nSELECT meta_begin_time, cell_id, vendor, ..., avg(counter_b) AS kpi_id_1002    FROM\nflat_lte_vendor_a    WHERE ...    GROUP BY ...  )INSERT INTO kpi_flat_lte_vendor_a_cell_hourlySELECT\ncoalesce(kpi_1.time, kpi_2.time) AS meta_begin_time,    coalesce(kpi_1.cell_id,\nkpi_2.cell_id)         AS cell_id,    -- ... coalesce for every dimension column ...    now('UTC')\nAS updated_at,    kpi_1.kpi_id_1001,    kpi_2.kpi_id_1002FROM kpi_1FULL OUTER JOIN kpi_2  ON\nkpi_1.meta_begin_time = kpi_2.meta_begin_time AND kpi_1.cell_id         = kpi_2.cell_id AND\nkpi_1.vendor          = kpi_2.vendor;"
     },
     {
       "type": "paragraph",
@@ -229,7 +229,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "1. Discover SQL files matching the group.2. ensure_target_table  — CREATE TABLE IF NOT EXISTS (no-op after first run).3. ensure_kpi_columns   — ADD COLUMN IF NOT EXISTS for any new KPIs.4. ALTER TABLE … DELETE WHERE meta_begin_time in [start, end).5. WITH … INSERT INTO … SELECT (the merged CTE query)."
+      "code": "1. Discover SQL files matching the group.2. ensure_target_table  — CREATE TABLE IF NOT EXISTS (no-op\nafter first run).3. ensure_kpi_columns   — ADD COLUMN IF NOT EXISTS for any new KPIs.4. ALTER TABLE\n… DELETE WHERE meta_begin_time in [start, end).5. WITH … INSERT INTO … SELECT (the merged CTE\nquery)."
     },
     {
       "type": "paragraph",

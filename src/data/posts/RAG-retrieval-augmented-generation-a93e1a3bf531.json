@@ -33,12 +33,12 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "pip install openaikey = \"sk-Fh*******\"prompt = 'what is the capital of USA?'client = OpenAI(    api_key = key)chat_completion = client.chat.completions.create(    model=\"gpt-3.5-turbo\",    messages=[{\"role\": \"user\", \"content\": prompt}])"
+      "code": "pip install openaikey = \"sk-Fh*******\"prompt = 'what is the capital of USA?'client = OpenAI(\napi_key = key)chat_completion = client.chat.completions.create(    model=\"gpt-3.5-turbo\",\nmessages=[{\"role\": \"user\", \"content\": prompt}])"
     },
     {
       "type": "code",
       "lang": "text",
-      "code": "message=ChatCompletionMessage(content='The capital of the United States is Washington, D.C.', role='assistant'"
+      "code": "message=ChatCompletionMessage(content='The capital of the United States is Washington, D.C.',\nrole='assistant'"
     },
     {
       "type": "heading",
@@ -91,7 +91,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "%pip install --upgrade --quiet  langchain langchain-community langchainhub langchain-openai chromadb bs4from google.colab import userdatauserdata.get('key')"
+      "code": "%pip install --upgrade --quiet  langchain langchain-community langchainhub langchain-openai chromadb\nbs4from google.colab import userdatauserdata.get('key')"
     },
     {
       "type": "paragraph",
@@ -100,7 +100,7 @@
     {
       "type": "code",
       "lang": "python",
-      "code": "import osfrom langchain_community.document_loaders.csv_loader import CSVLoaderimport bs4from langchain import hubfrom langchain.text_splitter import RecursiveCharacterTextSplitterfrom langchain_community.document_loaders import WebBaseLoaderfrom langchain_community.vectorstores import Chromafrom langchain_core.output_parsers import StrOutputParserfrom langchain_core.runnables import RunnablePassthroughfrom langchain_openai import ChatOpenAI, OpenAIEmbeddings"
+      "code": "import os\nfrom langchain_community.document_loaders.csv_loader\nimport CSVLoader\nimport bs4\nfrom langchain\nimport hub\nfrom langchain.text_splitter\nimport RecursiveCharacterTextSplitter\nfrom langchain_community.document_loaders\nimport WebBaseLoader\nfrom langchain_community.vectorstores\nimport Chroma\nfrom langchain_core.output_parsers\nimport StrOutputParser\nfrom langchain_core.runnables\nimport RunnablePassthrough\nfrom langchain_openai\nimport ChatOpenAI, OpenAIEmbeddings"
     },
     {
       "type": "heading",
@@ -134,7 +134,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=200)splits = text_splitter.split_documents(docs)"
+      "code": "text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=200)splits =\ntext_splitter.split_documents(docs)"
     },
     {
       "type": "heading",
@@ -154,17 +154,17 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "# Retrieve and generate using the relevant snippets of the blog.retriever = vectorstore.as_retriever()prompt = hub.pull(\"rlm/rag-prompt\")llm = ChatOpenAI(model_name=\"gpt-3.5-turbo\", temperature=0)"
+      "code": "# Retrieve and generate using the relevant snippets of the blog.retriever =\nvectorstore.as_retriever()prompt = hub.pull(\"rlm/rag-prompt\")llm =\nChatOpenAI(model_name=\"gpt-3.5-turbo\", temperature=0)"
     },
     {
       "type": "code",
       "lang": "python",
-      "code": "def format_docs(docs):    return \"\\n\\n\".join(doc.page_content for doc in docs)"
+      "code": "def format_docs(docs):\n    return \"\\n\\n\".join(doc.page_content for doc in docs)"
     },
     {
       "type": "code",
       "lang": "text",
-      "code": "rag_chain = (    {\"context\": retriever | format_docs, \"question\": RunnablePassthrough()}    | prompt    | llm    | StrOutputParser())"
+      "code": "rag_chain = (    {\"context\": retriever | format_docs, \"question\": RunnablePassthrough()}    | prompt\n| llm    | StrOutputParser())"
     },
     {
       "type": "heading",
@@ -184,7 +184,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "retriever_2 = vectorstore.as_retriever(search_type=\"similarity\", search_kwargs={\"k\": 6})retrieved_docs = retriever.invoke(\"What is corepass apllicaion?\")"
+      "code": "retriever_2 = vectorstore.as_retriever(search_type=\"similarity\", search_kwargs={\"k\":\n6})retrieved_docs = retriever.invoke(\"What is corepass apllicaion?\")"
     },
     {
       "type": "heading",
@@ -203,7 +203,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "[HumanMessage(content=\"You are an assistant for question-answering tasks. Use the following pieces of retrieved context to answer the question. If you don't know the answer, just say that you don't know. Use three sentences maximum and keep the answer concise.\\nQuestion: filler question \\nContext: filler context \\nAnswer:\")]"
+      "code": "[HumanMessage(content=\"You are an assistant for question-answering tasks. Use the following pieces o\nf retrieved context to answer the question. If you don't know the answer, just say that you don't\nknow. Use three sentences maximum and keep the answer concise.\\nQuestion: filler question \\nContext:\nfiller context \\nAnswer:\")]"
     },
     {
       "type": "heading",
@@ -222,7 +222,7 @@
     {
       "type": "code",
       "lang": "python",
-      "code": "from langchain_core.runnables import RunnableParallelrag_chain_from_docs = (    RunnablePassthrough.assign(context=(lambda x: format_docs(x[\"context\"])))    | prompt    | llm    | StrOutputParser())rag_chain_with_source = RunnableParallel(    {\"context\": retriever, \"question\": RunnablePassthrough()}).assign(answer=rag_chain_from_docs)"
+      "code": "from langchain_core.runnables\nimport RunnableParallelrag_chain_from_docs = (\n    RunnablePassthrough.assign(context=(lambda x: format_docs(x[\"context\"])))\n    | prompt\n    | llm\n    | StrOutputParser())rag_chain_with_source = RunnableParallel(\n    {\"context\": retriever, \"question\": RunnablePassthrough()}).assign(answer=rag_chain_from_docs)"
     },
     {
       "type": "code",
@@ -252,7 +252,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "This model's maximum context length is 4097 tokens. However, your messages resulted in 4969 tokens. Please reduce the length of the messages."
+      "code": "This\nmodel's maximum context length is 4097 tokens. However, your messages resulted in 4969 tokens. Please reduce the length of the messages."
     },
     {
       "type": "image",

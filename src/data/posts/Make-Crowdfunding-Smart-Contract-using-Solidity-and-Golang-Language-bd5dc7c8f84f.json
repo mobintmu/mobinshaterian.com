@@ -148,8 +148,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "// SPDX-License-Identifier: GPL-3.0-or-laterpragma solidity >=0.5.0 <0.9.0;// linter warnings (red underline) about pragma version can igonored!// contract code will go herecontract Campaing {    address public manager;    uint256 public minimumContribution;    mapping (address => bool ) public approvers;    constructor(uint256 min ) {        manager = msg.sender;        minimumContribution = min;    } }"
+      "lang": "solidity",
+      "code": "// SPDX-License-Identifier: GPL-3.0-or-laterpragma solidity >=0.5.0 <0.9.0;\n// linter warnings (red underline) about pragma version can igonored!// contract code will go\nherecontract Campaing {\n  address public manager;\n  uint256 public minimumContribution;\n  mapping (address => bool) public approvers;\n  constructor(uint256 min) {\n    manager = msg.sender;\n    minimumContribution = min;\n  }\n}"
     },
     {
       "type": "image",
@@ -175,7 +175,7 @@
     {
       "type": "code",
       "lang": "javascript",
-      "code": "    function contibute() public payable {        require(            msg.value >= minimumContribution,            \"minimum contribute is required.\"        );        approvers[msg.sender] = true;        approversCount ++;    }"
+      "code": "function contibute() public payable {\n  require(msg.value >= minimumContribution, \"minimum contribute is required.\");\n  approvers[msg.sender] = true;\n  approversCount ++;\n}"
     },
     {
       "type": "image",
@@ -221,7 +221,7 @@
     {
       "type": "code",
       "lang": "javascript",
-      "code": "    function isPaied() public view returns (bool) {        return (approvers[msg.sender]);    }"
+      "code": "function isPaied() public view returns (bool) {\n  return (approvers[msg.sender]);\n}"
     },
     {
       "type": "image",
@@ -239,7 +239,7 @@
     {
       "type": "code",
       "lang": "javascript",
-      "code": "    function getBalance() public view returns(uint256){        return (address(this).balance);    }"
+      "code": "function getBalance() public view returns(uint256){\n  return (address(this).balance);\n}"
     },
     {
       "type": "image",
@@ -257,7 +257,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "    struct Request {        string description;        uint256 value;        address payable recipient;        bool complete;        uint256 approvalCount;        mapping(address => bool) approvals;    }"
+      "code": "struct Request {        string description;        uint256 value;        address payable recipient;\nbool complete;        uint256 approvalCount;        mapping(address => bool) approvals;    }"
     },
     {
       "type": "heading",
@@ -267,7 +267,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": " modifier onlyManager() {        require(            msg.sender == manager,            \"Only the campaign manager can call this function.\"        );        _;    }"
+      "code": "modifier onlyManager() {        require(            msg.sender == manager,\n\"Only the campaign manager can call this function.\"        );        _;    }"
     },
     {
       "type": "heading",
@@ -277,7 +277,7 @@
     {
       "type": "code",
       "lang": "javascript",
-      "code": "    function addRequest(        string memory description,        uint256 value,        address payable  recipient    ) public onlyManager {        Request storage req = requests[numRequests++];        req.description = description;        req.value = value;        req.recipient = recipient;        req.complete = false;        req.approvalCount = 0;    }"
+      "code": "function addRequest(string memory description, uint256 value, address payable recipient) public\nonlyManager {\n  Request storage req = requests[numRequests++];\n  req.description = description;\n  req.value = value;\n  req.recipient = recipient;\n  req.complete = false;\n  req.approvalCount = 0;\n}"
     },
     {
       "type": "image",
@@ -298,7 +298,7 @@
     {
       "type": "code",
       "lang": "javascript",
-      "code": "    function approveRequest(uint256 index) public{        Request storage req = requests[index];        require(            approvers[msg.sender] ,            \"Only contributors can approve a specific payment request\"        );        require(            !req.approvals[msg.sender],            \"You have already voted to approve this request\"        );        require(index < numRequests,        \"You can vote only in valid index. more than valid value\");        require(index >= 0,        \"You can vote only in valid index. minus value\");        req.approvals[msg.sender] = true;        req.approvalCount++;    }"
+      "code": "function approveRequest(uint256 index) public{\n  Request storage req = requests[index];\n  require(approvers[msg.sender], \"Only contributors can approve a specific payment request\");\n  require(!req.approvals[msg.sender], \"You have already voted to approve this request\");\n  require(index < numRequests, \"You can vote only in valid index. more than valid value\");\n  require(index >= 0, \"You can vote only in valid index. minus value\");\n  req.approvals[msg.sender] = true;\n  req.approvalCount++;\n}"
     },
     {
       "type": "code",
@@ -344,7 +344,7 @@
     {
       "type": "code",
       "lang": "javascript",
-      "code": "    function finalizeRequest(uint256 index) public onlyManager {        require(index < numRequests,        \"You can vote only in valid index. more than valid\");        require(index >= 0,        \"You can vote only in valid index. minus value\");        Request storage req = requests[index];                require(!req.complete ,        \"This request has been completed.\");        req.recipient.transfer(req.value);        req.complete = true;    }"
+      "code": "function finalizeRequest(uint256 index) public onlyManager {\n  require(index < numRequests, \"You can vote only in valid index. more than valid\");\n  require(index >= 0, \"You can vote only in valid index. minus value\");\n  Request storage req = requests[index];\n  require(!req.complete, \"This request has been completed.\");\n  req.recipient.transfer(req.value);\n  req.complete = true;\n}"
     },
     {
       "type": "paragraph",
@@ -353,7 +353,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "        require(            req.approvalCount > (approversCount / 2),            \"This request needs more approvals before it can be finalized\"        );"
+      "code": "require(            req.approvalCount > (approversCount / 2),\n\"This request needs more approvals before it can be finalized\"        );"
     },
     {
       "type": "image",
@@ -396,8 +396,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "type Client struct { Client *ethclient.Client}func (c *Client) NewClient(address string) { client, err := ethclient.Dial(address) if err != nil {  log.Fatal(err) } fmt.Println(\"connect to network ...\") c.Client = client}"
+      "lang": "go",
+      "code": "type Client struct {\n    Client *ethclient.Client\n}\nfunc (c *Client) NewClient(address string) {\n    client, err := ethclient.Dial(address) if err != nil {\n        log.Fatal(err)\n    }\n    fmt.Println(\"connect to network ...\") c.Client = client\n}"
     },
     {
       "type": "heading",
@@ -429,7 +429,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "ADDRESS = http://localhost:8545MANAGER_ADDRESS = 0xBad21545CDAc5eA56050a5441E435B2437fE4770MANAGER_PRIVATE_ADDRESS = 0xbcab03c0fb40ccdd5d75b8024731dd772113b02d01132d81c584027d8a7280b9PROVIDER_ADDRESS = 0xEc89A6a668206286a875BB906B79BbB756f09E22PROVIDER_PRIVATE_ADDRESS = 0xbf6e3ba07b0ea7a98e5cbd0f0206bcdb35fd9520571c28cc16c803cae702dc89CONTRIBUTOR_ADDRESS = 0x6BC477cE822a30331D0D5Ce4B5CeA23b2f2eEaEbCONTRIBUTOR_PRIVATE_ADDRESS = 0x2b7b6e43aca333d79375eb8cb3d225b795480596d4fff6e0abf70c111628a410"
+      "code": "ADDRESS = http://localhost:8545MANAGER_ADDRESS =\n0xBad21545CDAc5eA56050a5441E435B2437fE4770MANAGER_PRIVATE_ADDRESS =\n0xbcab03c0fb40ccdd5d75b8024731dd772113b02d01132d81c584027d8a7280b9PROVIDER_ADDRESS =\n0xEc89A6a668206286a875BB906B79BbB756f09E22PROVIDER_PRIVATE_ADDRESS =\n0xbf6e3ba07b0ea7a98e5cbd0f0206bcdb35fd9520571c28cc16c803cae702dc89CONTRIBUTOR_ADDRESS =\n0x6BC477cE822a30331D0D5Ce4B5CeA23b2f2eEaEbCONTRIBUTOR_PRIVATE_ADDRESS =\n0x2b7b6e43aca333d79375eb8cb3d225b795480596d4fff6e0abf70c111628a410"
     },
     {
       "type": "heading",
@@ -438,8 +438,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "type Account struct { PublicAddress  common.Address PrivateAddress string Name           string client         *ethclient.Client}// NewAccount creates a new instance of Accountfunc NewAccount(publicAddress string, privateAddress string, client *client.Client) *Account { return &Account{  PublicAddress: common.HexToAddress(publicAddress),  client:        client.Client, }}func (a *Account) GetBalance() *big.Int { balance, err := a.client.BalanceAt(context.Background(), a.PublicAddress, nil) if err != nil {  log.Fatal(err) } return balance}"
+      "lang": "go",
+      "code": "type Account struct {\n    PublicAddress common.Address\n    PrivateAddress string\n    Name string\n    client *ethclient.Client\n}\n// NewAccount creates a new instance of Account\nfunc NewAccount(publicAddress string, privateAddress string, client *client.Client) *Account {\n    return &Account{\n        PublicAddress: common.HexToAddress(publicAddress), client: client.Client,\n    }\n}\nfunc (a *Account) GetBalance() *big.Int {\n    balance, err := a.client.BalanceAt(context.Background(), a.PublicAddress, nil) if err != nil {\n        log.Fatal(err)\n    }\n    return balance\n}"
     },
     {
       "type": "paragraph",
@@ -447,8 +447,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "go run *.goconnect to network ...balance manager : 1000000000000000000000balance provider : 1000000000000000000000contributor manager : 1000000000000000000000"
+      "lang": "bash",
+      "code": "go run *.goconnect to network ...balance manager : 1000000000000000000000balance provider :\n1000000000000000000000contributor manager : 1000000000000000000000"
     },
     {
       "type": "heading",
@@ -476,7 +476,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "abigen --abi ./build/Campaign.abi --pkg main --type Campaign --out Campaign.go --bin ./Campaign.bin/Campaign.bin"
+      "code": "abigen --abi ./build/Campaign.abi --pkg main --type Campaign --out Campaign.go --bin\n./Campaign.bin/Campaign.bin"
     },
     {
       "type": "heading",
@@ -505,7 +505,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "solc --versionsolc, the solidity compiler commandline interfaceVersion: 0.8.7+commit.e28d00a7.Linux.g++"
+      "code": "solc --versionsolc, the solidity compiler commandline interfaceVersion:\n0.8.7+commit.e28d00a7.Linux.g++"
     },
     {
       "type": "heading",
@@ -519,7 +519,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": " privateKey, err := crypto.HexToECDSA(strings.TrimPrefix(privateAddress, \"0x\")) if err != nil {  log.Fatal(err) }"
+      "code": "privateKey, err := crypto.HexToECDSA(strings.TrimPrefix(privateAddress, \"0x\")) if err != nil {\nlog.Fatal(err) }"
     },
     {
       "type": "paragraph",
@@ -532,8 +532,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "type Campaign struct { instance  *contracts.Campaign txAddress common.Address tx        *types.Transaction Min       *big.Int client    *ethclient.Client}func NewCampaign(min *big.Int, client *ethclient.Client) *Campaign { return &Campaign{  Min:    min,  client: client, }}func (c *Campaign) Deploy(manager *account.Account) { nonce := manager.GetNonce() gasPrice, err := c.client.SuggestGasPrice(context.Background()) if err != nil {  log.Fatal(err) } chainID, err := c.client.ChainID(context.Background()) if err != nil {  log.Fatal(err) } auth, err := bind.NewKeyedTransactorWithChainID(manager.PrivateKey, chainID) if err != nil {  fmt.Println(err) } auth.Nonce = big.NewInt(int64(nonce)) auth.Value = big.NewInt(0)     // in wei auth.GasLimit = uint64(300000) // in units auth.GasPrice = gasPrice txAddress, tx, instance, err := contracts.DeployCampaign(auth, c.client, c.Min) if err != nil {  fmt.Println(\"DeployLottery\")  log.Fatal(err.Error()) } c.instance = instance c.txAddress = txAddress c.tx = tx fmt.Println(txAddress.Hex()) fmt.Println(tx.Hash().Hex())}"
+      "lang": "go",
+      "code": "type Campaign struct {\n    instance *contracts.Campaign\n    txAddress common.Address\n    tx *types.Transaction\n    Min *big.Int\n    client *ethclient.Client\n}\nfunc NewCampaign(min *big.Int, client *ethclient.Client) *Campaign {\n    return &Campaign{\n        Min:\n        min, client: client,\n    }\n}\nfunc (c *Campaign) Deploy(manager *account.Account) {\n    nonce := manager.GetNonce() gasPrice, err := c.client.SuggestGasPrice(context.Background()) if\n    err != nil {\n        log.Fatal(err)\n    }\n    chainID, err := c.client.ChainID(context.Background()) if err != nil {\n        log.Fatal(err)\n    }\n    auth, err := bind.NewKeyedTransactorWithChainID(manager.PrivateKey, chainID) if err != nil {\n        fmt.Println(err)\n    }\n    auth.Nonce = big.NewInt(int64(nonce)) auth.Value = big.NewInt(0) // in wei auth.GasLimit =\n    uint64(300000) // in units auth.GasPrice = gasPrice txAddress, tx, instance, err :=\n    contracts.DeployCampaign(auth, c.client, c.Min) if err != nil {\n        fmt.Println(\"DeployLottery\") log.Fatal(err.Error())\n    }\n    c.instance = instance c.txAddress = txAddress c.tx = tx fmt.Println(txAddress.Hex())\n    fmt.Println(tx.Hash().Hex())\n}"
     },
     {
       "type": "paragraph",
@@ -541,8 +541,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "go run *.goconnect to network ...balance manager : 999999400000000000000balance provider : 1000000000000000000000contributor manager : 1000000000000000000000nonce manager :  1deploying contract  ... _____________________0x8195b8a7757977AA6ae6Df873dA452a65Ab4791F0x1e75f1dfa1a7454599acce94e4e1ccfeaa4d9633e0e11ec75cc896c0981e77bbbalance manager : 999998800000000000000"
+      "lang": "bash",
+      "code": "go run *.goconnect to network ...balance manager : 999999400000000000000balance provider :\n1000000000000000000000contributor manager : 1000000000000000000000nonce manager :  1deploying\ncontract  ...\n_____________________0x8195b8a7757977AA6ae6Df873dA452a65Ab4791F0x1e75f1dfa1a7454599acce94e4e1ccfeaa4d9633e0e11ec75cc896c0981e77bbbalance manager : 999998800000000000000"
     },
     {
       "type": "paragraph",
@@ -551,7 +551,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "  Transaction: 0x1e75f1dfa1a7454599acce94e4e1ccfeaa4d9633e0e11ec75cc896c0981e77bb  Contract created: 0x8195b8a7757977aa6ae6df873da452a65ab4791f  Gas usage: 300000  Block number: 2  Block time: Wed Dec 27 2023 16:40:48 GMT  Runtime error: code size to deposit exceeds maximum code size"
+      "code": "Transaction: 0x1e75f1dfa1a7454599acce94e4e1ccfeaa4d9633e0e11ec75cc896c0981e77bb  Contract created:\n0x8195b8a7757977aa6ae6df873da452a65ab4791f  Gas usage: 300000  Block number: 2  Block time: Wed Dec\n27 2023 16:40:48 GMT  Runtime error: code size to deposit exceeds maximum code size"
     },
     {
       "type": "paragraph",
@@ -565,7 +565,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "func (a *Account) GetHeader() *big.Int { header, err := a.client.HeaderByNumber(context.Background(), nil) if err != nil {  log.Fatal(err) } fmt.Println(header.Number.String()) // 5671744 return header.Number}func (a *Account) GetDataFromBlock(blockNumber *big.Int) { block, err := a.client.BlockByNumber(context.Background(), blockNumber) if err != nil {  log.Fatal(err) } fmt.Println(\"block.Number().Uint64() \", block.Number().Uint64())        // 5671744 fmt.Println(\"block.Time()\", block.Time())                               // 1527211625 fmt.Println(\"block.Difficulty().Uint64()\", block.Difficulty().Uint64()) // 3217000136609065 fmt.Println(\"block.Hash().Hex()\", block.Hash().Hex())                   // 0x9e8751ebb5069389b855bba72d94902cc385042661498a415979b7b6ee9ba4b9 fmt.Println(\"len(block.Transactions())\", len(block.Transactions()))     // 144}"
+      "code": "func (a *Account) GetHeader() *big.Int {\n    header, err := a.client.HeaderByNumber(context.Background(), nil) if err != nil {\n        log.Fatal(err)\n    }\n    fmt.Println(header.Number.String()) // 5671744\n    return header.Number\n}\nfunc (a *Account) GetDataFromBlock(blockNumber *big.Int) {\n    block, err := a.client.BlockByNumber(context.Background(), blockNumber) if err != nil {\n        log.Fatal(err)\n    }\n    fmt.Println(\"block.Number().Uint64() \", block.Number().Uint64()) // 5671744\n    fmt.Println(\"block.Time()\", block.Time()) // 1527211625\n    fmt.Println(\"block.Difficulty().Uint64()\", block.Difficulty().Uint64()) // 3217000136609065\n    fmt.Println(\"block.Hash().Hex()\", block.Hash().Hex()) //\n    0x9e8751ebb5069389b855bba72d94902cc385042661498a415979b7b6ee9ba4b9\n    fmt.Println(\"len(block.Transactions())\", len(block.Transactions())) // 144\n}"
     },
     {
       "type": "heading",
@@ -575,7 +575,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": " my := common.HexToAddress(\"0xdd3f3c8afb70786e3bfb7a8cd8d44a3c5049268e\") var err error campaign.Instance, err = contracts.NewCampaign(my, client.Client) if err != nil {  fmt.Println(err) }"
+      "code": "my := common.HexToAddress(\"0xdd3f3c8afb70786e3bfb7a8cd8d44a3c5049268e\") var err error\ncampaign.Instance, err = contracts.NewCampaign(my, client.Client) if err != nil {  fmt.Println(err)\n}"
     },
     {
       "type": "heading",
@@ -585,12 +585,12 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "func (c *Campaign) Contribute(contributor *account.Account) { nonce := contributor.GetNonce() gasPrice, err := c.client.SuggestGasPrice(context.Background()) if err != nil {  log.Fatal(err) } chainID, err := c.client.ChainID(context.Background()) if err != nil {  log.Fatal(err) } auth, err := bind.NewKeyedTransactorWithChainID(contributor.PrivateKey, chainID) if err != nil {  log.Fatal(err) } auth.Nonce = big.NewInt(int64(nonce)) auth.Value = c.Min              // in wei auth.GasLimit = uint64(3000000) // in units auth.GasPrice = gasPrice tx, err := c.instance.Contribute(auth) if err != nil {  log.Fatal(err) } fmt.Println(\"transaction hash\") fmt.Println(tx.Hash())}"
+      "code": "func (c *Campaign) Contribute(contributor *account.Account) {\n    nonce := contributor.GetNonce() gasPrice, err := c.client.SuggestGasPrice(context.Background())\n    if err != nil {\n        log.Fatal(err)\n    }\n    chainID, err := c.client.ChainID(context.Background()) if err != nil {\n        log.Fatal(err)\n    }\n    auth, err := bind.NewKeyedTransactorWithChainID(contributor.PrivateKey, chainID) if err != nil {\n        log.Fatal(err)\n    }\n    auth.Nonce = big.NewInt(int64(nonce)) auth.Value = c.Min // in wei auth.GasLimit =\n    uint64(3000000) // in units auth.GasPrice = gasPrice tx, err := c.instance.Contribute(auth) if\n    err != nil {\n        log.Fatal(err)\n    }\n    fmt.Println(\"transaction hash\") fmt.Println(tx.Hash())\n}"
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "go run *.goconnect to network ...block.Number().Uint64()  21block.Time() 1703691148block.Difficulty().Uint64() 0block.Hash().Hex() 0x06c93b2954bed6bd1f76340b4b504c985293abbff6b21006dc359daf0d65198clen(block.Transactions()) 1>>>>>>>>>>>>>>>>>>>>>>Balance>>>>>>>>>>>>>>>>balance manager : 999992200000000000000balance provider : 1000000000000000000000balance contributor : 999999662975999994800<<<<<<<<<<<<<<<<<<<<<<Balance<<<<<<<<<<<<<<<<<deploying contract  ... 0xaf9087a308a23E335Dd8bB73E5b77AD0bF625Cd00xd56b10c190f65cec3be4f437f22da9fce4f3149d770b65fb494ca5f79af70d48>>>>>>>>>>>>>>>>>>>>>>Balance>>>>>>>>>>>>>>>>balance manager : 999991600000000000000balance provider : 1000000000000000000000balance contributor : 999999662975999994800<<<<<<<<<<<<<<<<<<<<<<Balance<<<<<<<<<<<<<<<<<contribute ...transaction hash ...0xfc2028dbaa4235e4a19a0b2e437db48b8cdbb6e05f0bebdd93eda4209e0541c6>>>>>>>>>>>>>>>>>>>>>>Balance>>>>>>>>>>>>>>>>balance manager : 999991600000000000000balance provider : 1000000000000000000000balance contributor : 999999620847999993800<<<<<<<<<<<<<<<<<<<<<<Balance<<<<<<<<<<<<<<<<<"
+      "lang": "bash",
+      "code": "go run *.goconnect to network ...block.Number().Uint64()  21block.Time()\n1703691148block.Difficulty().Uint64() 0block.Hash().Hex()\n0x06c93b2954bed6bd1f76340b4b504c985293abbff6b21006dc359daf0d65198clen(block.Transactions())\n1>>>>>>>>>>>>>>>>>>>>>>Balance>>>>>>>>>>>>>>>>balance manager : 999992200000000000000balance\nprovider : 1000000000000000000000balance contributor :\n999999662975999994800<<<<<<<<<<<<<<<<<<<<<<Balance<<<<<<<<<<<<<<<<<deploying contract  ...\n0xaf9087a308a23E335Dd8bB73E5b77AD0bF625Cd00xd56b10c190f65cec3be4f437f22da9fce4f3149d770b65fb494ca5f79af70d48>>>>>>>>>>>>>>>>>>>>>>Balance>>>>>>>>>>>>>>>>balance manager : 999991600000000000000balance provider : 1000000000000000000000balance contributor : 999999662975999994800<<<<<<<<<<<<<<<<<<<<<<Balance<<<<<<<<<<<<<<<<<contribute ...transaction hash ...0xfc2028dbaa4235e4a19a0b2e437db48b8cdbb6e05f0bebdd93eda4209e0541c6>>>>>>>>>>>>>>>>>>>>>>Balance>>>>>>>>>>>>>>>>balance manager : 999991600000000000000balance provider : 1000000000000000000000balance contributor : 999999620847999993800<<<<<<<<<<<<<<<<<<<<<<Balance<<<<<<<<<<<<<<<<<"
     },
     {
       "type": "paragraph",
@@ -603,7 +603,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "  Transaction: 0xd56b10c190f65cec3be4f437f22da9fce4f3149d770b65fb494ca5f79af70d48  Contract created: 0xaf9087a308a23e335dd8bb73e5b77ad0bf625cd0  Gas usage: 300000  Block number: 22"
+      "code": "Transaction: 0xd56b10c190f65cec3be4f437f22da9fce4f3149d770b65fb494ca5f79af70d48  Contract created:\n0xaf9087a308a23e335dd8bb73e5b77ad0bf625cd0  Gas usage: 300000  Block number: 22"
     },
     {
       "type": "paragraph",
@@ -612,7 +612,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "  Transaction: 0xfc2028dbaa4235e4a19a0b2e437db48b8cdbb6e05f0bebdd93eda4209e0541c6  Gas usage: 21064  Block number: 23"
+      "code": "Transaction: 0xfc2028dbaa4235e4a19a0b2e437db48b8cdbb6e05f0bebdd93eda4209e0541c6  Gas usage: 21064\nBlock number: 23"
     },
     {
       "type": "image",
@@ -630,7 +630,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "func (c *Campaign) IsPaid(contributor *account.Account) bool { result, err := c.Instance.IsPaid(&bind.CallOpts{  From:    contributor.PublicAddress,  Context: context.Background(), }) if err != nil {  fmt.Println(\"IsPaid\")  fmt.Println(err) } fmt.Println(result) return result}"
+      "code": "func (c *Campaign) IsPaid(contributor *account.Account) bool {\n    result, err := c.Instance.IsPaid(&bind.CallOpts{\n        From:\n        contributor.PublicAddress, Context: context.Background(),\n    }) if err != nil {\n        fmt.Println(\"IsPaid\") fmt.Println(err)\n    }\n    fmt.Println(result) return result\n}"
     },
     {
       "type": "heading",
@@ -640,7 +640,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "func (c *Campaign) GetBalance() *big.Int { result, err := c.Instance.GetBalance(nil) if err != nil {  fmt.Println(\"IsPaid\")  fmt.Println(err) } fmt.Println(result) return result}"
+      "code": "func (c *Campaign) GetBalance() *big.Int {\n    result, err := c.Instance.GetBalance(nil) if err != nil {\n        fmt.Println(\"IsPaid\") fmt.Println(err)\n    }\n    fmt.Println(result) return result\n}"
     },
     {
       "type": "heading",
@@ -650,7 +650,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "func (c *Campaign) AddRequest(request entity.Request, manager *account.Account) { nonce := manager.GetNonce() gasPrice, err := c.client.SuggestGasPrice(context.Background()) if err != nil {  log.Fatal(err) } auth, err := bind.NewKeyedTransactorWithChainID(manager.PrivateKey, c.chainID) if err != nil {  log.Fatal(err) } auth.Nonce = big.NewInt(int64(nonce)) auth.Value = big.NewInt(0)      // in wei auth.GasLimit = uint64(6721975) // in units 6721975 auth.GasPrice = gasPrice tx, err := c.Instance.AddRequest(auth, request.Description, request.Value, request.ProviderAddress) if err != nil {  fmt.Println(\"CreateRequest\")  fmt.Println(err.Error())  log.Fatal(err) } fmt.Println(\"transaction hash ...\") fmt.Println(tx.Hash())}"
+      "code": "func (c *Campaign) AddRequest(request entity.Request, manager *account.Account) {\n    nonce := manager.GetNonce() gasPrice, err := c.client.SuggestGasPrice(context.Background()) if\n    err != nil {\n        log.Fatal(err)\n    }\n    auth, err := bind.NewKeyedTransactorWithChainID(manager.PrivateKey, c.chainID) if err != nil {\n        log.Fatal(err)\n    }\n    auth.Nonce = big.NewInt(int64(nonce)) auth.Value = big.NewInt(0) // in wei auth.GasLimit =\n    uint64(6721975) // in units 6721975 auth.GasPrice = gasPrice tx, err :=\n    c.Instance.AddRequest(auth, request.Description, request.Value, request.ProviderAddress) if err\n    != nil {\n        fmt.Println(\"CreateRequest\") fmt.Println(err.Error()) log.Fatal(err)\n    }\n    fmt.Println(\"transaction hash ...\") fmt.Println(tx.Hash())\n}"
     },
     {
       "type": "image",
@@ -668,7 +668,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "func (c *Campaign) GetNumberOfRequests() *big.Int { result, err := c.Instance.NumRequests(nil) if err != nil {  fmt.Println(\"GetNumberOfRequests\")  fmt.Println(err) } fmt.Println(result) return result}"
+      "code": "func (c *Campaign) GetNumberOfRequests() *big.Int {\n    result, err := c.Instance.NumRequests(nil) if err != nil {\n        fmt.Println(\"GetNumberOfRequests\") fmt.Println(err)\n    }\n    fmt.Println(result) return result\n}"
     },
     {
       "type": "heading",
@@ -678,7 +678,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "func (c *Campaign) ApproveRequest(contributor *account.Account, index *big.Int) { nonce := contributor.GetNonce() gasPrice, err := c.client.SuggestGasPrice(context.Background()) if err != nil {  log.Fatal(err) } auth, err := bind.NewKeyedTransactorWithChainID(contributor.PrivateKey, c.chainID) if err != nil {  log.Fatal(err) } auth.Nonce = big.NewInt(int64(nonce)) auth.Value = big.NewInt(0)      // in wei auth.GasLimit = uint64(6721975) // in units 6721975 auth.GasPrice = gasPrice tx, err := c.Instance.ApproveRequest(auth, index) if err != nil {  fmt.Println(\"ApproveRequest\")  fmt.Println(err.Error())  log.Fatal(err) } fmt.Println(\"transaction hash ...\") fmt.Println(tx.Hash())}"
+      "code": "func (c *Campaign) ApproveRequest(contributor *account.Account, index *big.Int) {\n    nonce := contributor.GetNonce() gasPrice, err := c.client.SuggestGasPrice(context.Background())\n    if err != nil {\n        log.Fatal(err)\n    }\n    auth, err := bind.NewKeyedTransactorWithChainID(contributor.PrivateKey, c.chainID) if err != nil\n    {\n        log.Fatal(err)\n    }\n    auth.Nonce = big.NewInt(int64(nonce)) auth.Value = big.NewInt(0) // in wei auth.GasLimit =\n    uint64(6721975) // in units 6721975 auth.GasPrice = gasPrice tx, err :=\n    c.Instance.ApproveRequest(auth, index) if err != nil {\n        fmt.Println(\"ApproveRequest\") fmt.Println(err.Error()) log.Fatal(err)\n    }\n    fmt.Println(\"transaction hash ...\") fmt.Println(tx.Hash())\n}"
     },
     {
       "type": "image",
@@ -696,7 +696,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "func (c *Campaign) FinalizeRequest(manager *account.Account, index *big.Int) { nonce := manager.GetNonce() gasPrice, err := c.client.SuggestGasPrice(context.Background()) if err != nil {  log.Fatal(err) } auth, err := bind.NewKeyedTransactorWithChainID(manager.PrivateKey, c.chainID) if err != nil {  log.Fatal(err) } auth.Nonce = big.NewInt(int64(nonce)) auth.Value = big.NewInt(0)      // in wei auth.GasLimit = uint64(6721975) // in units 6721975 auth.GasPrice = gasPrice tx, err := c.Instance.FinalizeRequest(auth, index) if err != nil {  fmt.Println(\"FinalizeRequest\")  fmt.Println(err.Error())  log.Fatal(err) } fmt.Println(\"transaction hash ...\") fmt.Println(tx.Hash())}"
+      "code": "func (c *Campaign) FinalizeRequest(manager *account.Account, index *big.Int) {\n    nonce := manager.GetNonce() gasPrice, err := c.client.SuggestGasPrice(context.Background()) if\n    err != nil {\n        log.Fatal(err)\n    }\n    auth, err := bind.NewKeyedTransactorWithChainID(manager.PrivateKey, c.chainID) if err != nil {\n        log.Fatal(err)\n    }\n    auth.Nonce = big.NewInt(int64(nonce)) auth.Value = big.NewInt(0) // in wei auth.GasLimit =\n    uint64(6721975) // in units 6721975 auth.GasPrice = gasPrice tx, err :=\n    c.Instance.FinalizeRequest(auth, index) if err != nil {\n        fmt.Println(\"FinalizeRequest\") fmt.Println(err.Error()) log.Fatal(err)\n    }\n    fmt.Println(\"transaction hash ...\") fmt.Println(tx.Hash())\n}"
     },
     {
       "type": "image",

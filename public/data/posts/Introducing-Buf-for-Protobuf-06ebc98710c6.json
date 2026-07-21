@@ -111,7 +111,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "go get github.com/bufbuild/buf/cmd/buf@v1.36.0go install github.com/bufbuild/buf/cmd/buf@v1.36.0buf --version"
+      "code": "go get github.com/bufbuild/buf/cmd/buf@v1.36.0go install github.com/bufbuild/buf/cmd/buf@v1.36.0buf\n--version"
     },
     {
       "type": "paragraph",
@@ -139,7 +139,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "# For details on buf.yaml configuration, visit https://buf.build/docs/configuration/v2/buf-yamlversion: v2modules:  - path: protolint:  use:    - DEFAULTbreaking:  use:    - FILE"
+      "code": "# For details on buf.yaml configuration, visit\nhttps://buf.build/docs/configuration/v2/buf-yamlversion: v2modules:  - path: protolint:  use:    -\nDEFAULTbreaking:  use:    - FILE"
     },
     {
       "type": "heading",
@@ -177,7 +177,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "version: v2managed:  enabled: true  override:    - file_option: go_package_prefix      value: github.com/bufbuild/buf-tour/genplugins:  - remote: buf.build/protocolbuffers/go    out: gen    opt: paths=source_relative  - remote: buf.build/connectrpc/go    out: gen    opt: paths=source_relativeinputs:  - directory: proto"
+      "code": "version: v2managed:  enabled: true  override:    - file_option: go_package_prefix      value:\ngithub.com/bufbuild/buf-tour/genplugins:  - remote: buf.build/protocolbuffers/go    out: gen    opt:\npaths=source_relative  - remote: buf.build/connectrpc/go    out: gen    opt:\npaths=source_relativeinputs:  - directory: proto"
     },
     {
       "type": "paragraph",
@@ -253,7 +253,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "version: v2managed:  enabled: true  override:    - file_option: go_package_prefix      value: connectrpc.com/connect/internal/genplugins:  - local: protoc-gen-go    out: gen    opt: paths=source_relative"
+      "code": "version: v2managed:  enabled: true  override:    - file_option: go_package_prefix      value:\nconnectrpc.com/connect/internal/genplugins:  - local: protoc-gen-go    out: gen    opt:\npaths=source_relative"
     },
     {
       "type": "paragraph",
@@ -266,7 +266,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "$ go install google.golang.org/protobuf/cmd/protoc-gen-go@v1.31.0$ export PATH=\"$PATH:$(go env GOPATH)/bin\""
+      "code": "$ go install google.golang.org/protobuf/cmd/protoc-gen-go@v1.31.0$ export\nPATH=\"$PATH:$(go env GOPATH)/bin\""
     },
     {
       "type": "heading",
@@ -276,7 +276,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "version: v2managed:  enabled: true  override:    - file_option: go_package_prefix      value: github.com/your_addressplugins:  - local: protoc-gen-go    out: go    opt: paths=source_relative  - remote: buf.build/connectrpc/go    out: go    opt: paths=source_relative"
+      "code": "version: v2managed:  enabled: true  override:    - file_option: go_package_prefix      value:\ngithub.com/your_addressplugins:  - local: protoc-gen-go    out: go    opt: paths=source_relative  -\nremote: buf.build/connectrpc/go    out: go    opt: paths=source_relative"
     },
     {
       "type": "paragraph",
@@ -285,7 +285,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "# For details on buf.yaml configuration, visit https://buf.build/docs/configuration/v2/buf-yamlversion: v2lint:  use:    - DEFAULTbreaking:  use:    - FILE"
+      "code": "# For details on buf.yaml configuration, visit\nhttps://buf.build/docs/configuration/v2/buf-yamlversion: v2lint:  use:    - DEFAULTbreaking:  use:\n- FILE"
     },
     {
       "type": "heading",
@@ -294,8 +294,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "syntax = \"proto3\";package models.v1;option go_package = \".modelsv1\" ;message People {  string user_uid = 1;}"
+      "lang": "protobuf",
+      "code": "syntax = \"proto3\";\npackage models.v1;\noption go_package = \".modelsv1\" ;\n\nmessage People {\n  string user_uid = 1;\n\n}"
     },
     {
       "type": "heading",

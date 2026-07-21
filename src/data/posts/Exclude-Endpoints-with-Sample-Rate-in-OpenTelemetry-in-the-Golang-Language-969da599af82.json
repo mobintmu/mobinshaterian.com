@@ -44,7 +44,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": " secureOption := otlptracegrpc.WithInsecure() exporter, err := otlptrace.New(  context.Background(),  otlptracegrpc.NewClient(   secureOption,   otlptracegrpc.WithEndpoint(config.OtelEndpoint()),  ), ) if err != nil {  log.Fatal(err) } resources, err := resource.New(  context.Background(),  resource.WithHost(), // This option configures a set of Detectors that discover host information  resource.WithAttributes(   attribute.String(\"service.name\", \"Service Name\"),  ), ) if err != nil {  log.Fatal(\"Could not set resources: \", err) } tp := sdktrace.NewTracerProvider(  sdktrace.WithSampler(sdktrace.TraceIDRatioBased(0.2)),  sdktrace.WithBatcher(exporter),  sdktrace.WithResource(resources), ) otel.SetTracerProvider(tp) //propagator otel.SetTextMapPropagator(propagation.NewCompositeTextMapPropagator(propagation.TraceContext{}, propagation.Baggage{}))"
+      "code": "secureOption := otlptracegrpc.WithInsecure() exporter, err := otlptrace.New(  context.Background(),\notlptracegrpc.NewClient(   secureOption,   otlptracegrpc.WithEndpoint(config.OtelEndpoint()),  ), )\nif err != nil {  log.Fatal(err) } resources, err := resource.New(  context.Background(),\nresource.WithHost(), // This option configures a set of Detectors that discover host information\nresource.WithAttributes(   attribute.String(\"service.name\", \"Service Name\"),  ), ) if err != nil {\nlog.Fatal(\"Could not set resources: \", err) } tp := sdktrace.NewTracerProvider(\nsdktrace.WithSampler(sdktrace.TraceIDRatioBased(0.2)),  sdktrace.WithBatcher(exporter),\nsdktrace.WithResource(resources), ) otel.SetTracerProvider(tp) //propagator\notel.SetTextMapPropagator(propagation.NewCompositeTextMapPropagator(propagation.TraceContext{},\npropagation.Baggage{}))"
     },
     {
       "type": "heading",
@@ -63,7 +63,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "package tracerimport ( \"strings\" sdktrace \"go.opentelemetry.io/otel/sdk/trace\")type ExcludeSampler struct { delegate sdktrace.Sampler}func New(delegate sdktrace.Sampler) sdktrace.Sampler { return &ExcludeSampler{delegate: delegate}}func (e ExcludeSampler) ShouldSample(parameters sdktrace.SamplingParameters) sdktrace.SamplingResult { if parameters.Name == \"/health\" ||  strings.HasPrefix(parameters.Name, \"/static\"){  return sdktrace.SamplingResult{Decision: sdktrace.Drop} } return sdktrace.TraceIDRatioBased(\"0.5\").ShouldSample(parameters)}func (e ExcludeSampler) Description() string { return \"excludeEndpoints\"}"
+      "code": "package tracer\nimport (\n\"strings\" sdktrace \"go.opentelemetry.io/otel/sdk/trace\"\n)\ntype ExcludeSampler struct {\n    delegate sdktrace.Sampler\n}\nfunc New(delegate sdktrace.Sampler) sdktrace.Sampler {\n    return &ExcludeSampler{\n        delegate: delegate\n    }\n}\nfunc (e ExcludeSampler) ShouldSample(parameters sdktrace.SamplingParameters) sdktrace.SamplingResult\n{\n    if parameters.Name == \"/health\" || strings.HasPrefix(parameters.Name, \"/static\"){\n        return sdktrace.SamplingResult{\n            Decision: sdktrace.Drop\n        }\n    }\n    return sdktrace.TraceIDRatioBased(\"0.5\").ShouldSample(parameters)\n}\nfunc (e ExcludeSampler) Description() string {\n    return \"excludeEndpoints\"\n}"
     },
     {
       "type": "heading",

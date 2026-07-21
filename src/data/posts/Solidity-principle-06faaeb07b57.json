@@ -49,8 +49,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "//SPDX-License-Identifier: MITpragma solidity 0.8.14;contract MyContract {    string public ourString = \"Hello World\";}"
+      "lang": "solidity",
+      "code": "//SPDX-License-Identifier: MITpragma solidity 0.8.14;\ncontract MyContract {\n  string public ourString = \"Hello World\";\n}"
     },
     {
       "type": "heading",
@@ -59,8 +59,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "//SPDX-License-Identifier: MITpragma solidity 0.8.13;contract MyContract {    string public myString = \"Hello world\";    function updateOurString(string memory _myString) public {        myString = _myString;    }}"
+      "lang": "solidity",
+      "code": "//SPDX-License-Identifier: MITpragma solidity 0.8.13;\ncontract MyContract {\n  string public myString = \"Hello world\";\n  function updateOurString(string memory _myString) public {\n    myString = _myString;\n  }\n}"
     },
     {
       "type": "image",
@@ -128,8 +128,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "//SPDX-License-Identifier: MITpragma solidity 0.8.15;contract ExampleWrapAround {    uint256 public myUint;    function decrementUintUnchecked() public {        unchecked {            myUint--;        }    }    function decrementUint() public {        myUint--;    }}"
+      "lang": "solidity",
+      "code": "//SPDX-License-Identifier: MITpragma solidity 0.8.15;\ncontract ExampleWrapAround {\n  uint256 public myUint;\n  function decrementUintUnchecked() public {\n    unchecked {\n      myUint--;\n    }\n  }\n  function decrementUint() public {\n    myUint--;\n  }\n}"
     },
     {
       "type": "heading",
@@ -139,7 +139,7 @@
     {
       "type": "code",
       "lang": "javascript",
-      "code": "function compareTwoStrings(string memory _myString) public view returns(bool) {        return keccak256(abi.encodePacked(myString)) == keccak256(abi.encodePacked(_myString));    }"
+      "code": "function compareTwoStrings(string memory _myString) public view returns(bool) {\n  return keccak256(abi.encodePacked(myString)) == keccak256(abi.encodePacked(_myString));\n}"
     },
     {
       "type": "paragraph",
@@ -161,7 +161,7 @@
     {
       "type": "code",
       "lang": "javascript",
-      "code": "    function getAddressBalance() public view returns(uint) {        return someAddress.balance;    }"
+      "code": "function getAddressBalance() public view returns(uint) {\n  return someAddress.balance;\n}"
     },
     {
       "type": "paragraph",
@@ -192,8 +192,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "//SPDX-License-Identifier: MITpragma solidity 0.8.15;contract ExampleViewPure {    uint public myStorageVariable;    function getMyStorageVariable() public view returns(uint) {        return myStorageVariable;    }    function getAddition(uint a, uint b) public pure returns(uint) {        return a+b;    }    function setMyStorageVariable(uint _newVar) public returns(uint) {        myStorageVariable = _newVar;        return _newVar;    }}"
+      "lang": "solidity",
+      "code": "//SPDX-License-Identifier: MITpragma solidity 0.8.15;\ncontract ExampleViewPure {\n  uint public myStorageVariable;\n  function getMyStorageVariable() public view returns(uint) {\n    return myStorageVariable;\n  }\n  function getAddition(uint a, uint b) public pure returns(uint) {\n    return a+b;\n  }\n  function setMyStorageVariable(uint _newVar) public returns(uint) {\n    myStorageVariable = _newVar;\n    return _newVar;\n  }\n}"
     },
     {
       "type": "heading",
@@ -202,8 +202,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "//SPDX-License-Identifier: MITpragma solidity 0.8.15;contract ExampleConstructor {    address public myAddress;    constructor(address _someAddress) {        myAddress = _someAddress;    }    function setMyAddress(address _myAddress) public {        myAddress = _myAddress;    }    function setMyAddressToMsgSender() public {        myAddress = msg.sender;    }}"
+      "lang": "solidity",
+      "code": "//SPDX-License-Identifier: MITpragma solidity 0.8.15;\ncontract ExampleConstructor {\n  address public myAddress;\n  constructor(address _someAddress) {\n    myAddress = _someAddress;\n  }\n  function setMyAddress(address _myAddress) public {\n    myAddress = _myAddress;\n  }\n  function setMyAddressToMsgSender() public {\n    myAddress = msg.sender;\n  }\n}"
     },
     {
       "type": "heading",
@@ -221,7 +221,7 @@
     {
       "type": "code",
       "lang": "javascript",
-      "code": "    function updateTheMessage(string memory _newMessage) public {        if(msg.sender == owner) {            theMessage = _newMessage;            changeCounter++;        }    }"
+      "code": "function updateTheMessage(string memory _newMessage) public {\n  if(msg.sender == owner) {\n    theMessage = _newMessage;\n    changeCounter++;\n  }\n}"
     },
     {
       "type": "heading",
@@ -335,7 +335,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": " {    messageHash: '0x6893a6ee8df79b0f5d64a180cd1ef35d030f3e296a5361cf04d02ce720d32ec5',    r: '0x9ebb6ca057a0535d6186462bc0b465b561c94a295bdb0621fc19208ab149a9c',    s: '0x440ffd775ce91a833ab410777204d5341a6f9fa91216a6f3ee2c051fea6a0428',    v: '0x25',    rawTransaction: '0xf86a8086d55698372431831e848094f0109fc8df283027b6285cc889f5aa624eac1f55843b9aca008025a009ebb6ca057a0535d6186462bc0b465b561c94a295bdb0621fc19208ab149a9ca0440ffd775ce91a833ab410777204d5341a6f9fa91216a6f3ee2c051fea6a0428'    transactionHash: '0xd8f64a42b57be0d565f385378db2f6bf324ce14a594afc05de90436e9ce01f60'}"
+      "code": "{    messageHash: '0x6893a6ee8df79b0f5d64a180cd1ef35d030f3e296a5361cf04d02ce720d32ec5',    r:\n'0x9ebb6ca057a0535d6186462bc0b465b561c94a295bdb0621fc19208ab149a9c',    s:\n'0x440ffd775ce91a833ab410777204d5341a6f9fa91216a6f3ee2c051fea6a0428',    v: '0x25',\nrawTransaction:\n'0xf86a8086d55698372431831e848094f0109fc8df283027b6285cc889f5aa624eac1f55843b9aca008025a009ebb6ca057a0535d6186462bc0b465b561c94a295bdb0621fc19208ab149a9ca0440ffd775ce91a833ab410777204d5341a6f9fa91216a6f3ee2c051fea6a0428'    transactionHash: '0xd8f64a42b57be0d565f385378db2f6bf324ce14a594afc05de90436e9ce01f60'}"
     },
     {
       "type": "paragraph",
@@ -483,7 +483,7 @@
     {
       "type": "code",
       "lang": "javascript",
-      "code": "    function updateString(string memory _newString) public payable {        if(msg.value == 1 ether) {            myString = _newString;        } else {            payable(msg.sender).transfer(msg.value);        }    }"
+      "code": "function updateString(string memory _newString) public payable {\n  if(msg.value == 1 ether) {\n    myString = _newString;\n  }\n  else {\n    payable(msg.sender).transfer(msg.value);\n  }\n}"
     },
     {
       "type": "heading",
@@ -505,7 +505,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "    receive() external payable {        lastValueSent = msg.value;        lastFunctionCalled = \"receive\";    }"
+      "code": "receive() external payable {        lastValueSent = msg.value;        lastFunctionCalled =\n\"receive\";    }"
     },
     {
       "type": "heading",
@@ -518,8 +518,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "//SPDX-License-Identifier: MITpragma solidity 0.8.16;contract SendWithdrawMoney {    uint public balanceReceived;    function deposit() public payable {        balanceReceived += msg.value;    }    function getContractBalance() public view returns(uint) {        return address(this).balance;    }    function withdrawAll() public {        address payable to = payable(msg.sender);        to.transfer(getContractBalance());    }    function withdrawToAddress(address payable to) public {        to.transfer(getContractBalance());    }}"
+      "lang": "solidity",
+      "code": "//SPDX-License-Identifier: MITpragma solidity 0.8.16;\ncontract SendWithdrawMoney {\n  uint public balanceReceived;\n  function deposit() public payable {\n    balanceReceived += msg.value;\n  }\n  function getContractBalance() public view returns(uint) {\n    return address(this).balance;\n  }\n  function withdrawAll() public {\n    address payable to = payable(msg.sender);\n    to.transfer(getContractBalance());\n  }\n  function withdrawToAddress(address payable to) public {\n    to.transfer(getContractBalance());\n  }\n}"
     },
     {
       "type": "heading",
@@ -528,8 +528,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "//SPDX-License-Identifier: MITpragma solidity ^0.8.14;contract SimpleMappingExample {    mapping(uint => bool) public myMapping;    mapping(address => bool) public myAddressMapping;    function setValue(uint _index) public {        myMapping[_index] = true;    }    function setMyAddressToTrue() public {        myAddressMapping[msg.sender] = true;    }}"
+      "lang": "solidity",
+      "code": "//SPDX-License-Identifier: MITpragma solidity ^0.8.14;\ncontract SimpleMappingExample {\n  mapping(uint => bool) public myMapping;\n  mapping(address => bool) public myAddressMapping;\n  function setValue(uint _index) public {\n    myMapping[_index] = true;\n  }\n  function setMyAddressToTrue() public {\n    myAddressMapping[msg.sender] = true;\n  }\n}"
     },
     {
       "type": "code",
@@ -547,8 +547,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "//SPDX-License-Identifier: MITpragma solidity 0.8.15;contract PaymentReceived {    address public from;    uint public amount;    constructor(address _from, uint _amount) {        from = _from;        amount = _amount;    }}contract Wallet {    PaymentReceived public payment;    function payContract() public payable {        payment = new PaymentReceived(msg.sender, msg.value);    }}}"
+      "lang": "solidity",
+      "code": "//SPDX-License-Identifier: MITpragma solidity 0.8.15;\ncontract PaymentReceived {\n  address public from;\n  uint public amount;\n  constructor(address _from, uint _amount) {\n    from = _from;\n    amount = _amount;\n  }\n}\ncontract Wallet {\n  PaymentReceived public payment;\n  function payContract() public payable {\n    payment = new PaymentReceived(msg.sender, msg.value);\n  }\n}\n}"
     },
     {
       "type": "heading",
@@ -624,8 +624,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "//SPDX-License-Identifier: MITpragma solidity 0.8.14;contract WillThrow {    function aFunction() public pure {        require(false, \"Error message\");    }}contract ErrorHandling {    event ErrorLogging(string reason);    function catchError() public {        WillThrow will = new WillThrow();        try will.aFunction() {            //here we could do something if it works        }  catch Error(string memory reason) {            emit ErrorLogging(reason);        }    }}"
+      "lang": "solidity",
+      "code": "//SPDX-License-Identifier: MITpragma solidity 0.8.14;\ncontract WillThrow {\n  function aFunction() public pure {\n    require(false, \"Error message\");\n  }\n}\ncontract ErrorHandling {\n  event ErrorLogging(string reason);\n  function catchError() public {\n    WillThrow will = new WillThrow();\n    try will.aFunction() {\n      //here we could do something if it works\n    }\n    catch Error(string memory reason) {\n      emit ErrorLogging(reason);\n    }\n  }\n}"
     },
     {
       "type": "heading",
@@ -679,8 +679,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "contract Consume{    function getBalance() public view returns (uint) {        return address(this).balance;    }    function deposit() payable public {}}"
+      "lang": "solidity",
+      "code": "contract Consume{\n  function getBalance() public view returns (uint) {\n    return address(this).balance;\n  }\n  function deposit() payable public {\n  }\n}"
     },
     {
       "type": "image",
@@ -705,13 +705,13 @@
     },
     {
       "type": "code",
-      "lang": "python",
-      "code": "import { deploy } from './web3-lib'(async () => {    let accounts = await web3.eth.getAccounts();    console.log(\"Accounts: \", accounts);    console.log(accounts.length)    let balance = await web3.eth.getBalance(accounts[0])    console.log(balance)    console.log(web3.utils.fromwei(balance , \"eth\"))})();"
+      "lang": "javascript",
+      "code": "import { deploy } from './web3-lib'(async () => {\n    let accounts = await web3.eth.getAccounts();\n    console.log(\"Accounts: \", accounts);\n    console.log(accounts.length)\n    let balance = await web3.eth.getBalance(accounts[0])\n    console.log(balance)\n    console.log(web3.utils.fromwei(balance , \"eth\"))})();"
     },
     {
       "type": "code",
       "lang": "text",
-      "code": "Accounts: [\"0x5B38Da6a701c568545dCfcB03FcB875f56beddC4\",\"0xAb8483F64d9C6d1EcF9b849Ae677dD3315835cb2\",\"0x4B20993Bc481177ec7E8f571ceCaE8A9e22C02db\",\"0x78731D3Ca6b7E34aC0F824c42a7cC18A495cabaB\",\"0x617F2E2fD72FD9D5503197092aC168c91465E7f2\",\"0x17F6AD8Ef982297579C203069C1DbfFE4348c372\",\"0x5c6B0f7Bf3E7ce046039Bd8FABdfD3f9F5021678\",\"0x03C6FcED478cBbC9a4FAB34eF9f40767739D1Ff7\",\"0x1aE0EA34a72D944a8C7603FfB3eC30a6669E454C\",\"0x0A098Eda01Ce92ff4A4CCb7A4fFFb5A43EBC70DC\",\"0xCA35b7d915458EF540aDe6068dFe2F44E8fa733c\",\"0x14723A09ACff6D2A60DcdF7aA4AFf308FDDC160C\",\"0x4B0897b0513fdC7C541B6d9D7E929C4e5364D2dB\",\"0x583031D1113aD414F02576BD6afaBfb302140225\",\"0xdD870fA1b7C4700F2BD7f44238821C26f7392148\"] 15100000000000000000000"
+      "code": "Accounts:\n[\"0x5B38Da6a701c568545dCfcB03FcB875f56beddC4\",\"0xAb8483F64d9C6d1EcF9b849Ae677dD3315835cb2\",\"0x4B20993Bc481177ec7E8f571ceCaE8A9e22C02db\",\"0x78731D3Ca6b7E34aC0F824c42a7cC18A495cabaB\",\"0x617F2E2fD72FD9D5503197092aC168c91465E7f2\",\"0x17F6AD8Ef982297579C203069C1DbfFE4348c372\",\"0x5c6B0f7Bf3E7ce046039Bd8FABdfD3f9F5021678\",\"0x03C6FcED478cBbC9a4FAB34eF9f40767739D1Ff7\",\"0x1aE0EA34a72D944a8C7603FfB3eC30a6669E454C\",\"0x0A098Eda01Ce92ff4A4CCb7A4fFFb5A43EBC70DC\",\"0xCA35b7d915458EF540aDe6068dFe2F44E8fa733c\",\"0x14723A09ACff6D2A60DcdF7aA4AFf308FDDC160C\",\"0x4B0897b0513fdC7C541B6d9D7E929C4e5364D2dB\",\"0x583031D1113aD414F02576BD6afaBfb302140225\",\"0xdD870fA1b7C4700F2BD7f44238821C26f7392148\"] 15100000000000000000000"
     },
     {
       "type": "heading",
@@ -720,8 +720,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "//SPDX-License-Identifier: MITpragma solidity 0.8.14;contract MyContract {    uint public myUint = 123;    function setMyUint(uint newUint) public {        myUint = newUint;    }}"
+      "lang": "solidity",
+      "code": "//SPDX-License-Identifier: MITpragma solidity 0.8.14;\ncontract MyContract {\n  uint public myUint = 123;\n  function setMyUint(uint newUint) public {\n    myUint = newUint;\n  }\n}"
     },
     {
       "type": "image",
@@ -749,8 +749,8 @@
     },
     {
       "type": "code",
-      "lang": "python",
-      "code": "import { deploy } from './web3-lib'(async() => {    const address = \"0xd8b934580fcE35a11B58C6D73aDeE468a2833fa8\";    const abi = [ {  \"inputs\": [],  \"name\": \"myUint\",  \"outputs\": [   {    \"internalType\": \"uint256\",    \"name\": \"\",    \"type\": \"uint256\"   }  ],  \"stateMutability\": \"view\",  \"type\": \"function\" }, {  \"inputs\": [   {    \"internalType\": \"uint256\",    \"name\": \"newUint\",    \"type\": \"uint256\"   }  ],  \"name\": \"setMyUint\",  \"outputs\": [],  \"stateMutability\": \"nonpayable\",  \"type\": \"function\" }];    let contractInstance = new web3.eth.Contract(abi, address);    console.log(await contractInstance.methods.myUint().call());    let accounts = await web3.eth.getAccounts();    await contractInstance.methods.setMyUint(345).send({from: accounts[0]});    console.log(await contractInstance.methods.myUint().call());})()"
+      "lang": "javascript",
+      "code": "import { deploy } from './web3-lib'(async() => {\n    const address = \"0xd8b934580fcE35a11B58C6D73aDeE468a2833fa8\";\n    const abi = [ {  \"inputs\": [],  \"name\": \"myUint\",  \"outputs\": [   {\n    \"internalType\": \"uint256\",\n    \"name\": \"\",\n    \"type\": \"uint256\"   }  ],  \"stateMutability\": \"view\",  \"type\": \"function\" }, {  \"inputs\": [   {\n    \"internalType\": \"uint256\",\n    \"name\": \"newUint\",\n    \"type\": \"uint256\"   }  ],  \"name\": \"setMyUint\",  \"outputs\": [],  \"stateMutability\":\n    \"nonpayable\",  \"type\": \"function\" }];\n    let contractInstance = new web3.eth.Contract(abi, address);\n    console.log(await contractInstance.methods.myUint().call());\n    let accounts = await web3.eth.getAccounts();\n    await contractInstance.methods.setMyUint(345).send({from: accounts[0]});\n    console.log(await contractInstance.methods.myUint().call());})()"
     },
     {
       "type": "heading",
@@ -764,12 +764,12 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "    event TokensSent(address _from, address _to, uint _amount);"
+      "code": "event TokensSent(address _from, address _to, uint _amount);"
     },
     {
       "type": "code",
       "lang": "text",
-      "code": "        emit TokensSent(msg.sender, _to, _amount);"
+      "code": "emit TokensSent(msg.sender, _to, _amount);"
     },
     {
       "type": "image",
@@ -781,8 +781,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "//SPDX-License-Identifier: MITpragma solidity 0.8.16;contract EventExample {    mapping(address => uint) public tokenBalance;    event TokensSent(address _from, address _to, uint _amount);    constructor() {        tokenBalance[msg.sender] = 100;    }    function sendToken(address _to, uint _amount) public returns(bool) {        require(tokenBalance[msg.sender] >= _amount, \"Not enough tokens\");        tokenBalance[msg.sender] -= _amount;        tokenBalance[_to] += _amount;        emit TokensSent(msg.sender, _to, _amount);        return true;    }    receive() external payable {}}"
+      "lang": "solidity",
+      "code": "//SPDX-License-Identifier: MITpragma solidity 0.8.16;\ncontract EventExample {\n  mapping(address => uint) public tokenBalance;\n  event TokensSent(address _from, address _to, uint _amount);\n  constructor() {\n    tokenBalance[msg.sender] = 100;\n  }\n  function sendToken(address _to, uint _amount) public returns(bool) {\n    require(tokenBalance[msg.sender] >= _amount, \"Not enough tokens\");\n    tokenBalance[msg.sender] -= _amount;\n    tokenBalance[_to] += _amount;\n    emit TokensSent(msg.sender, _to, _amount);\n    return true;\n  }\n  receive() external payable {\n  }\n}"
     },
     {
       "type": "heading",
@@ -795,8 +795,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "//SPDX-License-Identifier: MITpragma solidity ^0.8.16;contract InheritanceModifierExample {    mapping(address => uint) public tokenBalance;    address owner;    uint tokenPrice = 1 ether;    constructor() {        owner = msg.sender;        tokenBalance[owner] = 100;    }    function createNewToken() public {        require(msg.sender == owner, \"You are not allowed\");        tokenBalance[owner]++;    }    function burnToken() public {        require(msg.sender == owner, \"You are not allowed\");        tokenBalance[owner]--;    }    function purchaseToken() public payable {        require((tokenBalance[owner] * tokenPrice) / msg.value > 0, \"not enough tokens\");        tokenBalance[owner] -= msg.value / tokenPrice;        tokenBalance[msg.sender] += msg.value / tokenPrice;    }    function sendToken(address _to, uint _amount) public {        require(tokenBalance[msg.sender] >= _amount, \"Not enough tokens\");        tokenBalance[msg.sender] -= _amount;        tokenBalance[_to] += _amount;    }}"
+      "lang": "solidity",
+      "code": "//SPDX-License-Identifier: MITpragma solidity ^0.8.16;\ncontract InheritanceModifierExample {\n  mapping(address => uint) public tokenBalance;\n  address owner;\n  uint tokenPrice = 1 ether;\n  constructor() {\n    owner = msg.sender;\n    tokenBalance[owner] = 100;\n  }\n  function createNewToken() public {\n    require(msg.sender == owner, \"You are not allowed\");\n    tokenBalance[owner]++;\n  }\n  function burnToken() public {\n    require(msg.sender == owner, \"You are not allowed\");\n    tokenBalance[owner]--;\n  }\n  function purchaseToken() public payable {\n    require((tokenBalance[owner] * tokenPrice) / msg.value > 0, \"not enough tokens\");\n    tokenBalance[owner] -= msg.value / tokenPrice;\n    tokenBalance[msg.sender] += msg.value / tokenPrice;\n  }\n  function sendToken(address _to, uint _amount) public {\n    require(tokenBalance[msg.sender] >= _amount, \"Not enough tokens\");\n    tokenBalance[msg.sender] -= _amount;\n    tokenBalance[_to] += _amount;\n  }\n}"
     },
     {
       "type": "heading",
@@ -806,7 +806,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "    modifier onlyOwner() {        require(msg.sender == owner, \"You are not allowed\");        _;    }"
+      "code": "modifier onlyOwner() {        require(msg.sender == owner, \"You are not allowed\");        _;    }"
     },
     {
       "type": "heading",
@@ -816,7 +816,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "contract Owned {    address owner;    constructor() {        owner = msg.sender;    }    modifier onlyOwner() {        require(msg.sender == owner, \"You are not allowed\");        _;    }}"
+      "code": "contract Owned {    address owner;    constructor() {        owner = msg.sender;    }    modifier\nonlyOwner() {        require(msg.sender == owner, \"You are not allowed\");        _;    }}"
     },
     {
       "type": "code",
@@ -850,12 +850,12 @@
     {
       "type": "code",
       "lang": "javascript",
-      "code": "    function destroySmartContract() public {        selfdestruct(payable(msg.sender));    }"
+      "code": "function destroySmartContract() public {\n  selfdestruct(payable(msg.sender));\n}"
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "//SPDX-License-Identifier: MITpragma solidity 0.8.16;contract StartStopUpdateExample {    receive() external payable {}    function destroySmartContract() public {        selfdestruct(payable(msg.sender));    }    function Iamhere() public pure returns (string memory) {        return \"I am here\";    }}"
+      "lang": "solidity",
+      "code": "//SPDX-License-Identifier: MITpragma solidity 0.8.16;\ncontract StartStopUpdateExample {\n  receive() external payable {\n  }\n  function destroySmartContract() public {\n    selfdestruct(payable(msg.sender));\n  }\n  function Iamhere() public pure returns (string memory) {\n    return \"I am here\";\n  }\n}"
     },
     {
       "type": "image",
@@ -876,8 +876,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "//SPDX-License-Identifier: MITpragma solidity 0.8.16;contract MyContract {    mapping(address => uint) public balance;    constructor() {        balance[msg.sender] = 100;    }    function transfer(address to, uint amount) public {        balance[msg.sender] -= amount;        balance[to] += amount;    }    function someCrypticFunctionName(address _addr) public view returns(uint) {        return balance[_addr];    }}"
+      "lang": "solidity",
+      "code": "//SPDX-License-Identifier: MITpragma solidity 0.8.16;\ncontract MyContract {\n  mapping(address => uint) public balance;\n  constructor() {\n    balance[msg.sender] = 100;\n  }\n  function transfer(address to, uint amount) public {\n    balance[msg.sender] -= amount;\n    balance[to] += amount;\n  }\n  function someCrypticFunctionName(address _addr) public view returns(uint) {\n    return balance[_addr];\n  }\n}"
     },
     {
       "type": "paragraph",
@@ -968,8 +968,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "// SPDX-License-Identifier: MITpragma solidity ^0.8.4;import \"@openzeppelin/contracts/token/ERC20/ERC20.sol\";contract MyToken is ERC20 {    constructor() ERC20(\"MyToken\", \"MYT\") {}}"
+      "lang": "solidity",
+      "code": "// SPDX-License-Identifier: MITpragma solidity ^0.8.4;\nimport \"@openzeppelin/contracts/token/ERC20/ERC20.sol\";\ncontract MyToken is ERC20 {\n  constructor() ERC20(\"MyToken\", \"MYT\") {\n  }\n}"
     },
     {
       "type": "paragraph",
@@ -998,7 +998,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "    bytes32 public constant MINTER_ROLE = keccak256(\"MINTER_ROLE\");"
+      "code": "bytes32 public constant MINTER_ROLE = keccak256(\"MINTER_ROLE\");"
     },
     {
       "type": "paragraph",
@@ -1006,8 +1006,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "// SPDX-License-Identifier: MITpragma solidity ^0.8.4;import \"@openzeppelin/contracts/token/ERC20/ERC20.sol\";import \"@openzeppelin/contracts/access/AccessControl.sol\";contract MyToken is ERC20, AccessControl {    bytes32 public constant MINTER_ROLE = keccak256(\"MINTER_ROLE\");    bytes32 public constant BURNER_ROLE = keccak256(\"BURNER_ROLE\");    constructor() ERC20(\"MyToken\", \"MYT\") {        _grantRole(DEFAULT_ADMIN_ROLE, msg.sender);        _grantRole(MINTER_ROLE, msg.sender);        _grantRole(BURNER_ROLE, msg.sender);    }    function mint(address to, uint256 amount) public onlyRole(MINTER_ROLE) {        _mint(to, amount);    }    function burn(address from, uint256 amount) public onlyRole(BURNER_ROLE) {        _burn(from, amount);    }}"
+      "lang": "solidity",
+      "code": "// SPDX-License-Identifier: MITpragma solidity ^0.8.4;\nimport \"@openzeppelin/contracts/token/ERC20/ERC20.sol\";\nimport \"@openzeppelin/contracts/access/AccessControl.sol\";\ncontract MyToken is ERC20, AccessControl {\n  bytes32 public constant MINTER_ROLE = keccak256(\"MINTER_ROLE\");\n  bytes32 public constant BURNER_ROLE = keccak256(\"BURNER_ROLE\");\n  constructor() ERC20(\"MyToken\", \"MYT\") {\n    _grantRole(DEFAULT_ADMIN_ROLE, msg.sender);\n    _grantRole(MINTER_ROLE, msg.sender);\n    _grantRole(BURNER_ROLE, msg.sender);\n  }\n  function mint(address to, uint256 amount) public onlyRole(MINTER_ROLE) {\n    _mint(to, amount);\n  }\n  function burn(address from, uint256 amount) public onlyRole(BURNER_ROLE) {\n    _burn(from, amount);\n  }\n}"
     },
     {
       "type": "image",
@@ -1032,8 +1032,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "// SPDX-License-Identifier: MITpragma solidity ^0.8.4;import \"@openzeppelin/contracts/token/ERC20/ERC20.sol\";import \"@openzeppelin/contracts/access/AccessControl.sol\";contract CoffeeToken is ERC20, AccessControl {    bytes32 public constant MINTER_ROLE = keccak256(\"MINTER_ROLE\");    event CoffeePurchased(address indexed receiver, address indexed buyer);    constructor() ERC20(\"CoffeeToken\", \"CFE\") {        _grantRole(DEFAULT_ADMIN_ROLE, msg.sender);        _grantRole(MINTER_ROLE, msg.sender);    }    function mint(address to, uint256 amount) public onlyRole(MINTER_ROLE) {        _mint(to, amount);    }    function buyOneCoffee() public {        _burn(_msgSender(), 1);        emit CoffeePurchased(_msgSender(), _msgSender());    }    function buyOneCoffeeFrom(address account) public {        _spendAllowance(account, _msgSender(), 1);        _burn(account, 1);        emit CoffeePurchased(_msgSender(), account);    }}"
+      "lang": "solidity",
+      "code": "// SPDX-License-Identifier: MITpragma solidity ^0.8.4;\nimport \"@openzeppelin/contracts/token/ERC20/ERC20.sol\";\nimport \"@openzeppelin/contracts/access/AccessControl.sol\";\ncontract CoffeeToken is ERC20, AccessControl {\n  bytes32 public constant MINTER_ROLE = keccak256(\"MINTER_ROLE\");\n  event CoffeePurchased(address indexed receiver, address indexed buyer);\n  constructor() ERC20(\"CoffeeToken\", \"CFE\") {\n    _grantRole(DEFAULT_ADMIN_ROLE, msg.sender);\n    _grantRole(MINTER_ROLE, msg.sender);\n  }\n  function mint(address to, uint256 amount) public onlyRole(MINTER_ROLE) {\n    _mint(to, amount);\n  }\n  function buyOneCoffee() public {\n    _burn(_msgSender(), 1);\n    emit CoffeePurchased(_msgSender(), _msgSender());\n  }\n  function buyOneCoffeeFrom(address account) public {\n    _spendAllowance(account, _msgSender(), 1);\n    _burn(account, 1);\n    emit CoffeePurchased(_msgSender(), account);\n  }\n}"
     },
     {
       "type": "image",
@@ -1104,8 +1104,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "// SPDX-License-Identifier: MITpragma solidity ^0.8.20;import \"@openzeppelin/contracts/token/ERC721/ERC721.sol\";import \"@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol\";import \"@openzeppelin/contracts/access/Ownable.sol\";contract Mobin is ERC721, ERC721URIStorage, Ownable {    uint256 private _nextTokenId;    constructor(address initialOwner)        ERC721(\"mobin\", \"MOB\")        Ownable(initialOwner)    {}    function _baseURI() internal pure override returns (string memory) {        return \"https://mobinshaterian.medium.com\";    }    function safeMint(address to, string memory uri) public onlyOwner {        uint256 tokenId = _nextTokenId++;        _safeMint(to, tokenId);        _setTokenURI(tokenId, uri);    }    // The following functions are overrides required by Solidity.    function tokenURI(uint256 tokenId)        public        view        override(ERC721, ERC721URIStorage)        returns (string memory)    {        return super.tokenURI(tokenId);    }    function supportsInterface(bytes4 interfaceId)        public        view        override(ERC721, ERC721URIStorage)        returns (bool)    {        return super.supportsInterface(interfaceId);    }}"
+      "lang": "solidity",
+      "code": "// SPDX-License-Identifier: MITpragma solidity ^0.8.20;\nimport \"@openzeppelin/contracts/token/ERC721/ERC721.sol\";\nimport \"@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol\";\nimport \"@openzeppelin/contracts/access/Ownable.sol\";\ncontract Mobin is ERC721, ERC721URIStorage, Ownable {\n  uint256 private _nextTokenId;\n  constructor(address initialOwner) ERC721(\"mobin\", \"MOB\") Ownable(initialOwner) {\n  }\n  function _baseURI() internal pure override returns (string memory) {\n    return \"https://mobinshaterian.medium.com\";\n  }\n  function safeMint(address to, string memory uri) public onlyOwner {\n    uint256 tokenId = _nextTokenId++;\n    _safeMint(to, tokenId);\n    _setTokenURI(tokenId, uri);\n  }\n  // The following\n  functions are overrides required by Solidity.function tokenURI(uint256 tokenId) public view\n  override(ERC721, ERC721URIStorage) returns (string memory) {\n    return super.tokenURI(tokenId);\n  }\n  function supportsInterface(bytes4 interfaceId) public view override(ERC721, ERC721URIStorage)\n  returns (bool) {\n    return super.supportsInterface(interfaceId);\n  }\n}"
     }
   ]
 }

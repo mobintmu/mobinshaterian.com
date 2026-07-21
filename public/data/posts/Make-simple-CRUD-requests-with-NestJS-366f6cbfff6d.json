@@ -120,7 +120,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "# installs nvm (Node Version Manager)curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash# download and install Node.js (you may need to restart the terminal)nvm install 20# verifies the right Node.js version is in the environmentnode -v # should print `v20.14.0`# verifies the right NPM version is in the environmentnpm -v # should print `10.7.0`"
+      "code": "# installs nvm (Node Version Manager)curl -o-\nhttps://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash# download and install Node.js\n(you may need to restart the terminal)nvm install 20# verifies the right Node.js version is in the\nenvironmentnode -v # should print `v20.14.0`# verifies the right NPM version is in the\nenvironmentnpm -v # should print `10.7.0`"
     },
     {
       "type": "code",
@@ -202,7 +202,7 @@
     {
       "type": "code",
       "lang": "bash",
-      "code": "cd nestjs-task-managementyarn run start"
+      "code": "cd nestjs-task-management\nyarn run start"
     },
     {
       "type": "heading",
@@ -234,8 +234,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "@Module({  imports: [],  controllers: [AppController],  providers: [AppService],})"
+      "lang": "typescript",
+      "code": "@Module({\n  imports: [], controllers: [AppController], providers: [AppService],\n})"
     },
     {
       "type": "heading",
@@ -344,12 +344,12 @@
     {
       "type": "code",
       "lang": "text",
-      "code": " nest g controller tasks --no-spec"
+      "code": "nest g controller tasks --no-spec"
     },
     {
       "type": "code",
-      "lang": "python",
-      "code": "import { Controller } from '@nestjs/common';@Controller('tasks')export class TasksController {}"
+      "lang": "typescript",
+      "code": "import {\n  Controller\n}\nfrom '@nestjs/common';\n@Controller('tasks')\nexport class TasksController {\n}"
     },
     {
       "type": "heading",
@@ -367,7 +367,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": " nest g service tasks --no-spec"
+      "code": "nest g service tasks --no-spec"
     },
     {
       "type": "heading",
@@ -376,8 +376,8 @@
     },
     {
       "type": "code",
-      "lang": "python",
-      "code": "import { Module } from '@nestjs/common';import { TasksController } from './tasks.controller';import { TasksService } from './tasks.service';@Module({  controllers: [TasksController],  providers: [TasksService],})export class TasksModule {}"
+      "lang": "typescript",
+      "code": "import {\n  Module\n}\nfrom '@nestjs/common';\nimport {\n  TasksController\n}\nfrom './tasks.controller';\nimport {\n  TasksService\n}\nfrom './tasks.service';\n@Module({\n  controllers: [TasksController], providers: [TasksService],\n})\nexport class TasksModule {\n}"
     },
     {
       "type": "heading",
@@ -386,8 +386,8 @@
     },
     {
       "type": "code",
-      "lang": "python",
-      "code": "import { Controller } from '@nestjs/common';import { TasksService } from './tasks.service';@Controller('tasks')export class TasksController {  tasksService: TasksService;  constructor(tasksService: TasksService) {    this.tasksService = tasksService;  }  helloWorld() {    this.tasksService.helloWorld();  }}"
+      "lang": "typescript",
+      "code": "import {\n  Controller\n}\nfrom '@nestjs/common';\nimport {\n  TasksService\n}\nfrom './tasks.service';\n@Controller('tasks')\nexport class TasksController {\n  tasksService: TasksService;\n  constructor(tasksService: TasksService) {\n    this.tasksService = tasksService;\n  }\n  helloWorld() {\n    this.tasksService.helloWorld();\n  }\n}"
     },
     {
       "type": "heading",
@@ -396,8 +396,8 @@
     },
     {
       "type": "code",
-      "lang": "python",
-      "code": "import { Controller } from '@nestjs/common';import { TasksService } from './tasks.service';@Controller('tasks')export class TasksController {  constructor(private tasksService: TasksService) {}  helloWorld() {    this.tasksService.helloWorld();  }}"
+      "lang": "typescript",
+      "code": "import {\n  Controller\n}\nfrom '@nestjs/common';\nimport {\n  TasksService\n}\nfrom './tasks.service';\n@Controller('tasks')\nexport class TasksController {\n  constructor(private tasksService: TasksService) {\n  }\n  helloWorld() {\n    this.tasksService.helloWorld();\n  }\n}"
     },
     {
       "type": "heading",
@@ -411,8 +411,8 @@
     },
     {
       "type": "code",
-      "lang": "python",
-      "code": "import { Controller, Get } from '@nestjs/common';import { TasksService } from './tasks.service';@Controller('tasks')export class TasksController {  constructor(private tasksService: TasksService) {}  @Get()  getAllTasks() {    return this.tasksService.getAllTasks();  }}"
+      "lang": "typescript",
+      "code": "import {\n  Controller, Get\n}\nfrom '@nestjs/common';\nimport {\n  TasksService\n}\nfrom './tasks.service';\n@Controller('tasks')\nexport class TasksController {\n  constructor(private tasksService: TasksService) {\n  }\n  @Get() getAllTasks() {\n    return this.tasksService.getAllTasks();\n  }\n}"
     },
     {
       "type": "heading",
@@ -421,8 +421,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "@Injectable()export class TasksService {  private tasks = [];  getAllTasks() {    this.tasks.push({ id: 1, title: 'Task 1', description: 'Description 1' });    return this.tasks;  }}"
+      "lang": "typescript",
+      "code": "@Injectable()\nexport class TasksService {\n  private tasks = [];\n  getAllTasks() {\n    this.tasks.push({\n      id: 1, title: 'Task 1', description: 'Description 1'\n    });\n    return this.tasks;\n  }\n}"
     },
     {
       "type": "heading",
@@ -453,8 +453,8 @@
     },
     {
       "type": "code",
-      "lang": "javascript",
-      "code": "export interface Task {  id: number;  title: string;  description: string;  status: TaskStatus;}export enum TaskStatus {  OPEN = 'OPEN',  IN_PROGRESS = 'IN_PROGRESS',  DONE = 'DONE',}"
+      "lang": "typescript",
+      "code": "export interface Task {\n  id: number;\n  title: string;\n  description: string;\n  status: TaskStatus;\n}\nexport enum TaskStatus {\n  OPEN = 'OPEN', IN_PROGRESS = 'IN_PROGRESS', DONE = 'DONE',\n}"
     },
     {
       "type": "paragraph",
@@ -462,8 +462,8 @@
     },
     {
       "type": "code",
-      "lang": "python",
-      "code": "import { Injectable } from '@nestjs/common';import { Task } from './tasks.model';@Injectable()export class TasksService {  private tasks: Task[] = [];  getAllTasks(): Task[] {    return this.tasks;  }}"
+      "lang": "typescript",
+      "code": "import {\n  Injectable\n}\nfrom '@nestjs/common';\nimport {\n  Task\n}\nfrom './tasks.model';\n@Injectable()\nexport class TasksService {\n  private tasks: Task[] = [];\n  getAllTasks(): Task[] {\n    return this.tasks;\n  }\n}"
     },
     {
       "type": "paragraph",
@@ -471,8 +471,8 @@
     },
     {
       "type": "code",
-      "lang": "python",
-      "code": "import { Controller, Get } from '@nestjs/common';import { TasksService } from './tasks.service';import { Task } from './tasks.model';@Controller('tasks')export class TasksController {  constructor(private tasksService: TasksService) {}  @Get()  getAllTasks(): Task[] {    return this.tasksService.getAllTasks();  }}"
+      "lang": "typescript",
+      "code": "import {\n  Controller, Get\n}\nfrom '@nestjs/common';\nimport {\n  TasksService\n}\nfrom './tasks.service';\nimport {\n  Task\n}\nfrom './tasks.model';\n@Controller('tasks')\nexport class TasksController {\n  constructor(private tasksService: TasksService) {\n  }\n  @Get() getAllTasks(): Task[] {\n    return this.tasksService.getAllTasks();\n  }\n}"
     },
     {
       "type": "heading",
@@ -497,7 +497,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "  createTask(title: string, description: string): Task {    const task: Task = {      id: uuid(),      title,      description,      status: TaskStatus.OPEN,    };    this.tasks.push(task);    return task;  }"
+      "code": "createTask(title: string, description: string): Task {    const task: Task = {      id: uuid(),\ntitle,      description,      status: TaskStatus.OPEN,    };    this.tasks.push(task);    return\ntask;  }"
     },
     {
       "type": "heading",
@@ -506,8 +506,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "  @Post()  createTask(    @Body('title') title: string,    @Body('description') description: string,  ): Task {    console.log(title, description);    return this.tasksService.createTask(title, description);  }"
+      "lang": "typescript",
+      "code": "@Post() createTask(@Body('title') title: string, @Body('description') description: string,): Task {\n  console.log(title, description);\n  return this.tasksService.createTask(title, description);\n}"
     },
     {
       "type": "heading",
@@ -549,8 +549,8 @@
     },
     {
       "type": "code",
-      "lang": "javascript",
-      "code": "export class CreateTaskDto {  title: string;  description: string;}"
+      "lang": "typescript",
+      "code": "export class CreateTaskDto {\n  title: string;\n  description: string;\n}"
     },
     {
       "type": "heading",
@@ -559,8 +559,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "  @Post()  createTask(@Body() createTaskDto: CreateTaskDto): Task {    console.log(createTaskDto.title, createTaskDto.description);    return this.tasksService.createTask(createTaskDto);  }"
+      "lang": "typescript",
+      "code": "@Post() createTask(@Body() createTaskDto: CreateTaskDto): Task {\n  console.log(createTaskDto.title, createTaskDto.description);\n  return this.tasksService.createTask(createTaskDto);\n}"
     },
     {
       "type": "heading",
@@ -569,8 +569,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "  createTask(createTaskDto: CreateTaskDto): Task {    const { title, description } = createTaskDto;    const task: Task = {      id: uuid(),      title,      description,      status: TaskStatus.OPEN,    };    this.tasks.push(task);    return task;  }"
+      "lang": "javascript",
+      "code": "createTask(createTaskDto: CreateTaskDto): Task {    const { title, description } = createTaskDto;\nconst task: Task = {      id: uuid(),      title,      description,      status: TaskStatus.OPEN,\n};    this.tasks.push(task);    return task;  }"
     },
     {
       "type": "heading",
@@ -583,8 +583,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "  @Get('/:id')  getTaskById(@Param('id') id: number): Task {    return this.tasksService.getTaskById(id);  }"
+      "lang": "typescript",
+      "code": "@Get('/:id') getTaskById(@Param('id') id: number): Task {\n  return this.tasksService.getTaskById(id);\n}"
     },
     {
       "type": "paragraph",
@@ -593,7 +593,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "  getTaskById(id: number): Task {    return this.tasks.find((task) => task.id === id);  }"
+      "code": "getTaskById(id: number): Task {    return this.tasks.find((task) => task.id === id);  }"
     },
     {
       "type": "heading",
@@ -606,8 +606,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "  @Delete('/:id')  deleteTask(@Param('id') id: number): void {    return this.tasksService.deleteTask(id);  }"
+      "lang": "typescript",
+      "code": "@Delete('/:id') deleteTask(@Param('id') id: number): void {\n  return this.tasksService.deleteTask(id);\n}"
     },
     {
       "type": "paragraph",
@@ -616,7 +616,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "  deleteTask(id: number): void {    this.tasks = this.tasks.filter((task) => task.id !== id);  }"
+      "code": "deleteTask(id: number): void {    this.tasks = this.tasks.filter((task) => task.id !== id);  }"
     },
     {
       "type": "heading",
@@ -637,8 +637,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "  @Patch('/:id/status')  updateTaskStatus(    @Param('id') id: string,    @Body('status') status: Task['status'],  ): Task {    return this.tasksService.updateTaskStatus(id, status);  }"
+      "lang": "typescript",
+      "code": "@Patch('/:id/status') updateTaskStatus(@Param('id') id: string, @Body('status') status:\nTask['status'],): Task {\n  return this.tasksService.updateTaskStatus(id, status);\n}"
     },
     {
       "type": "paragraph",
@@ -647,7 +647,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "  updateTaskStatus(id: string, status: TaskStatus): Task {    const task = this.getTaskById(id);    console.log(status);    task.status = status;    return task;  }"
+      "code": "updateTaskStatus(id: string, status: TaskStatus): Task {    const task = this.getTaskById(id);\nconsole.log(status);    task.status = status;    return task;  }"
     },
     {
       "type": "heading",
@@ -660,8 +660,8 @@
     },
     {
       "type": "code",
-      "lang": "python",
-      "code": "import { TaskStatus } from '../tasks.model';export class GetTasksFilterDto {  status?: TaskStatus;  search?: string;}"
+      "lang": "typescript",
+      "code": "import {\n  TaskStatus\n}\nfrom '../tasks.model';\nexport class GetTasksFilterDto {\n  status?: TaskStatus;\n  search?: string;\n}"
     },
     {
       "type": "paragraph",
@@ -669,8 +669,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "  @Get()  getTasks(@Query() filterDTO: GetTasksFilterDto): Task[] {    if (Object.keys(filterDTO).length) {      return this.tasksService.getTasksWithFilters(filterDTO);    } else {      return this.tasksService.getAllTasks();    }  }"
+      "lang": "typescript",
+      "code": "@Get() getTasks(@Query() filterDTO: GetTasksFilterDto): Task[] {\n  if (Object.keys(filterDTO).length) {\n    return this.tasksService.getTasksWithFilters(filterDTO);\n  }\n  else {\n    return this.tasksService.getAllTasks();\n  }\n}"
     },
     {
       "type": "paragraph",
@@ -678,8 +678,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "  getTasksWithFilters(filterDTO: GetTasksFilterDto): Task[] {    const { status, search } = filterDTO;    let tasks = this.getAllTasks();    if (status) {      tasks = tasks.filter((task) => task.status === status);    }    if (search) {      tasks = tasks.filter(        (task) =>          task.title.includes(search) || task.description.includes(search),      );    }    return tasks;  }"
+      "lang": "javascript",
+      "code": "getTasksWithFilters(filterDTO: GetTasksFilterDto): Task[] {    const { status, search } = filterDTO;\nlet tasks = this.getAllTasks();    if (status) {      tasks = tasks.filter((task) => task.status ===\nstatus);    }    if (search) {      tasks = tasks.filter(        (task) =>\ntask.title.includes(search) || task.description.includes(search),      );    }    return tasks;  }"
     },
     {
       "type": "heading",

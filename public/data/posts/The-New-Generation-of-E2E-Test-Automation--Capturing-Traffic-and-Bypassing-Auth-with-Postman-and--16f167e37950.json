@@ -138,8 +138,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "POST /api/test/backdoor/generate-otpX-Test-Secret-Key: local_test_environment_secret_123Content-Type: application/json{  \"email\": \"qa-automation@company.com\"}"
+      "lang": "http",
+      "code": "POST /api/test/backdoor/generate-otp\nX-Test-Secret-Key: local_test_environment_secret_123\nContent-Type: application/json\n\n{\n  \"email\": \"qa-automation@company.com\"\n}"
     },
     {
       "type": "paragraph",
@@ -148,7 +148,7 @@
     {
       "type": "code",
       "lang": "json",
-      "code": "{  \"otp\": \"998822\",  \"expires_in\": 300}"
+      "code": "{\n  \"otp\": \"998822\",\n  \"expires_in\": 300\n}"
     },
     {
       "type": "heading",
@@ -162,7 +162,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "[Postman Interceptor] -> Captures UI Traffic -> Saved to Postman Collection                                                          |[Postman Automated Runner] <- Submits Backdoor OTP  <-----+                                   |                         [Successful Login Token]                                   |                  Executes Full E2E Scenario via AI/Scripts"
+      "code": "[Postman Interceptor] -> Captures UI Traffic -> Saved to Postman Collection\n                                                          |\n[Postman Automated Runner] <- Submits Backdoor OTP  <-----+\n                                   |\n                         [Successful Login Token]\n                                   |\n                  Executes Full E2E Scenario via AI/Scripts"
     },
     {
       "type": "heading",

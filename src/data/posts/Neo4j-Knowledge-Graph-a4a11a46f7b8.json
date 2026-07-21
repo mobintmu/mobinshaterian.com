@@ -50,8 +50,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "services:  neo4j:    container_name: neo4j    image: neo4j:latest    ports:      - 7474:7474      - 7687:7687    environment:      - NEO4J_AUTH=neo4j/${NEO4J_PASSWORD}      - NEO4J_apoc_export_file_enabled=true      - NEO4J_apoc_import_file_enabled=true      - NEO4J_apoc_import_file_use__neo4j__config=true      - NEO4J_PLUGINS=[\"apoc\", \"graph-data-science\"]    volumes:      - ./neo4j_db/data:/data      - ./neo4j_db/logs:/logs      - ./neo4j_db/import:/var/lib/neo4j/import      - ./neo4j_db/plugins:/plugins"
+      "lang": "yaml",
+      "code": "services:\n  neo4j:\n    container_name: neo4j\n    image: neo4j:latest\n    ports:\n      - 7474:7474\n      - 7687:7687\n    environment:\n      - NEO4J_AUTH=neo4j/${NEO4J_PASSWORD}\n      - NEO4J_apoc_export_file_enabled=true\n      - NEO4J_apoc_import_file_enabled=true\n      - NEO4J_apoc_import_file_use__neo4j__config=true\n      - NEO4J_PLUGINS=[\"apoc\", \"graph-data-science\"]\n    volumes:\n      - ./neo4j_db/data:/data\n      - ./neo4j_db/logs:/logs\n      - ./neo4j_db/import:/var/lib/neo4j/import\n      - ./neo4j_db/plugins:/plugins"
     },
     {
       "type": "heading",
@@ -60,8 +60,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "LOAD CSV WITH HEADERSfrom 'https://raw.githubusercontent.com/MidnightSkyUniverse/udemyNeo4j/master/data/titles_and_skills.csv'AS rowRETURN row.Title, row.SkillsLIMIT 15"
+      "lang": "sql",
+      "code": "LOAD CSV\nWITH HEADERS\nfrom\n'https://raw.githubusercontent.com/MidnightSkyUniverse/udemyNeo4j/master/data/titles_and_skills.csv'AS rowRETURN row.Title, row.Skills\nLIMIT 15"
     },
     {
       "type": "image",
@@ -78,7 +78,7 @@
     {
       "type": "code",
       "lang": "bash",
-      "code": "sudo docker-compose -f docker-compose.yml exec neo4j /bin/sh"
+      "code": "sudo\ndocker-compose -f docker-compose.yml exec neo4j /bin/sh"
     },
     {
       "type": "heading",
@@ -92,7 +92,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "$ sudo add-apt-repository ppa:cleishm/neo4j$ sudo apt-get update$ sudo apt-get install neo4j-client libneo4j-client-dev"
+      "code": "$ sudo add-apt-repository ppa:cleishm/neo4j$ sudo apt-get update$ sudo apt-get install neo4j-client\nlibneo4j-client-dev"
     },
     {
       "type": "heading",
@@ -102,7 +102,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": " chmod a+x neo4j-desktop-1.6.0-x86_64.AppImage./neo4j-desktop-1.6.0-x86_64.AppImage"
+      "code": "chmod a+x neo4j-desktop-1.6.0-x86_64.AppImage./neo4j-desktop-1.6.0-x86_64.AppImage"
     },
     {
       "type": "image",
@@ -120,7 +120,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "CREATE CONSTRAINT skillUniqueIF NOT EXISTSFOR (s:Skill)REQUIRE s.name IS UNIQUE;CREATE CONSTRAINT titleUniqueIF NOT EXISTSFOR (t:Title)REQUIRE t.name IS UNIQUE;SHOW ALL CONSTRAINTS;"
+      "code": "CREATE CONSTRAINT skillUniqueIF NOT EXISTSFOR (s:Skill)REQUIRE s.name IS UNIQUE;CREATE CONSTRAINT\ntitleUniqueIF NOT EXISTSFOR (t:Title)REQUIRE t.name IS UNIQUE;SHOW ALL CONSTRAINTS;"
     },
     {
       "type": "image",
@@ -137,8 +137,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "LOAD CSV WITH HEADERSfrom 'https://raw.githubusercontent.com/MidnightSkyUniverse/udemyNeo4j/master/data/titles_and_skills.csv'AS rowMERGE (t:Title {name: row.Title});"
+      "lang": "sql",
+      "code": "LOAD CSV\nWITH HEADERS\nfrom\n'https://raw.githubusercontent.com/MidnightSkyUniverse/udemyNeo4j/master/data/titles_and_skills.csv'AS rowMERGE (t:Title {name: row.Title});"
     },
     {
       "type": "image",
@@ -155,7 +155,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "cypher",
       "code": "MATCH (n:Title) RETURN n LIMIT 25"
     },
     {
@@ -173,8 +173,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "LOAD CSV WITH HEADERSfrom 'https://raw.githubusercontent.com/MidnightSkyUniverse/udemyNeo4j/master/data/skills_details.csv'AS rowMERGE (s:Skill {name: row.Skill})SETs.id = row.ID,s.description = row.Description,s.category=row.Category;"
+      "lang": "sql",
+      "code": "LOAD CSV\nWITH HEADERS\nfrom\n'https://raw.githubusercontent.com/MidnightSkyUniverse/udemyNeo4j/master/data/skills_details.csv'AS\nrowMERGE (s:Skill {name: row.Skill})SETs.id = row.ID,s.description =\nrow.Description,s.category=row.Category;"
     },
     {
       "type": "paragraph",

@@ -56,7 +56,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "Recent data    →  NVMe SSD   (fast, expensive)Older data     →  HDD        (slower, cheap)Archival data  →  S3         (very slow, very cheap)Expired data   →  deleted    (free)"
+      "code": "Recent data    →  NVMe SSD   (fast, expensive)Older data     →  HDD        (slower, cheap)Archival\ndata  →  S3         (very slow, very cheap)Expired data   →  deleted    (free)"
     },
     {
       "type": "paragraph",
@@ -128,12 +128,12 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "Table  └── Storage Policy: 'hot_warm_cold'        ├── Volume: hot   → Disk: nvme_disk        ├── Volume: warm  → Disk: hdd_disk        └── Volume: cold  → Disk: s3_disk"
+      "code": "Table  └── Storage Policy: 'hot_warm_cold'        ├── Volume: hot   → Disk: nvme_disk        ├──\nVolume: warm  → Disk: hdd_disk        └── Volume: cold  → Disk: s3_disk"
     },
     {
       "type": "code",
       "lang": "text",
-      "code": "Table TTL:  event_time + INTERVAL 7  DAY  → move to volume 'warm'  event_time + INTERVAL 30 DAY  → move to volume 'cold'  event_time + INTERVAL 365 DAY → DELETE"
+      "code": "Table TTL:  event_time + INTERVAL 7  DAY  → move to volume 'warm'  event_time + INTERVAL 30 DAY  →\nmove to volume 'cold'  event_time + INTERVAL 365 DAY → DELETE"
     },
     {
       "type": "heading",
@@ -151,8 +151,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "mkdir -p /mnt/nvme/clickhouse /mnt/hdd/clickhousechown -R clickhouse:clickhouse /mnt/nvme/clickhouse /mnt/hdd/clickhouse"
+      "lang": "bash",
+      "code": "mkdir -p /mnt/nvme/clickhouse /mnt/hdd/clickhouse\nchown -R clickhouse:clickhouse /mnt/nvme/clickhouse /mnt/hdd/clickhouse"
     },
     {
       "type": "heading",
@@ -165,8 +165,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "<!-- /etc/clickhouse-server/config.d/storage.xml --><clickhouse>    <storage_configuration>        <disks>            <!-- Fast NVMe — primary hot storage -->            <nvme_disk>                <type>local</type>                <path>/mnt/nvme/clickhouse/</path>                <!-- Prevent ClickHouse from filling the disk completely -->                <keep_free_space_bytes>10737418240</keep_free_space_bytes> <!-- 10 GB -->            </nvme_disk>            <!-- Cheap spinning HDD — warm storage -->            <hdd_disk>                <type>local</type>                <path>/mnt/hdd/clickhouse/</path>                <keep_free_space_bytes>10737418240</keep_free_space_bytes>            </hdd_disk>        </disks>    </storage_configuration></clickhouse>"
+      "lang": "xml",
+      "code": "<!-- /etc/clickhouse-server/config.d/storage.xml -->\n<clickhouse>\n<storage_configuration>\n<disks>\n<!-- Fast NVMe — primary hot storage -->\n<nvme_disk>\n<type>local</type>\n<path>/mnt/nvme/clickhouse/</path>\n<!-- Prevent ClickHouse from filling the disk completely -->\n<keep_free_space_bytes>10737418240</keep_free_space_bytes>\n<!-- 10 GB -->\n</nvme_disk>\n<!-- Cheap spinning HDD — warm storage -->\n<hdd_disk>\n<type>local</type>\n<path>/mnt/hdd/clickhouse/</path>\n<keep_free_space_bytes>10737418240</keep_free_space_bytes>\n</hdd_disk>\n</disks>\n</storage_configuration>\n</clickhouse>"
     },
     {
       "type": "heading",
@@ -180,7 +180,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "<policies>            <hot_warm>                <volumes>                    <!-- Volume 1: hot — all new parts land here first -->                    <hot>                        <disk>nvme_disk</disk>                        <!-- Parts larger than this are written directly                             to the next volume instead -->                        <max_data_part_size_bytes>10737418240</max_data_part_size_bytes>                    </hot>                    <!-- Volume 2: warm — parts move here via TTL or when hot fills up -->                    <warm>                        <disk>hdd_disk</disk>                    </warm>                </volumes>                <!-- When the hot volume reaches 80% full, ClickHouse starts                     moving the oldest parts to warm automatically.                     move_factor = fraction of hot disk that triggers the move.                     0.2 means \"start moving when only 20% free space remains.\" -->                <move_factor>0.2</move_factor>            </hot_warm>        </policies>"
+      "code": "<policies>            <hot_warm>                <volumes>                    <!-- Volume 1: hot —\nall new parts land here first -->                    <hot>\n<disk>nvme_disk</disk>                        <!-- Parts larger than this are written directly\nto the next volume instead -->\n<max_data_part_size_bytes>10737418240</max_data_part_size_bytes>                    </hot>\n<!-- Volume 2: warm — parts move here via TTL or when hot fills up -->                    <warm>\n<disk>hdd_disk</disk>                    </warm>                </volumes>                <!-- When\nthe hot volume reaches 80% full, ClickHouse starts                     moving the oldest parts to\nwarm automatically.                     move_factor = fraction of hot disk that triggers the move.\n0.2 means \"start moving when only 20% free space remains.\" -->\n<move_factor>0.2</move_factor>            </hot_warm>        </policies>"
     },
     {
       "type": "heading",
@@ -190,7 +190,7 @@
     {
       "type": "code",
       "lang": "sql",
-      "code": "CREATE TABLE events(    event_time   DateTime,    user_id      UInt64,    action       String,    value        Float64)ENGINE = MergeTreePARTITION BY toDate(event_time)ORDER BY (event_time, user_id)SETTINGS    index_granularity = 8192,    storage_policy = 'hot_warm';   -- assign policy here"
+      "code": "CREATE TABLE events(    event_time   DateTime,    user_id      UInt64,    action       String,\nvalue        Float64)ENGINE = MergeTreePARTITION BY toDate(event_time)\nORDER BY (event_time, user_id)SETTINGS    index_granularity = 8192,    storage_policy = 'hot_warm';\n-- assign policy here"
     },
     {
       "type": "paragraph",
@@ -198,7 +198,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "sql",
       "code": "ALTER TABLE eventsMODIFY SETTING storage_policy = 'hot_warm';"
     },
     {
@@ -216,8 +216,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "ALTER TABLE eventsMODIFY TTL    event_time + INTERVAL 7  DAY  TO VOLUME 'warm',    event_time + INTERVAL 90 DAY  DELETE;"
+      "lang": "sql",
+      "code": "ALTER TABLE eventsMODIFY TTL    event_time + INTERVAL 7  DAY  TO VOLUME 'warm',    event_time +\nINTERVAL 90 DAY  DELETE;"
     },
     {
       "type": "paragraph",
@@ -248,8 +248,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "-- See all configured policies and their volumesSELECT    policy_name,    volume_name,    volume_priority,    disks,    formatReadableSize(max_data_part_size) AS max_part_size,    move_factorFROM system.storage_policies;-- See which disk each part lives onSELECT    partition,    name,    disk_name,    rows,    formatReadableSize(bytes_on_disk) AS sizeFROM system.partsWHERE table = 'events'  AND active = 1ORDER BY partition DESC;"
+      "lang": "sql",
+      "code": "-- See all configured policies and their volumes\nSELECT    policy_name,    volume_name,    volume_priority,    disks,\nformatReadableSize(max_data_part_size) AS max_part_size,    move_factor\nFROM system.storage_policies;-- See which disk each part lives on\nSELECT    partition,    name,    disk_name,    rows,    formatReadableSize(bytes_on_disk) AS size\nFROM system.parts\nWHERE table = 'events'  AND active = 1\nORDER BY partition DESC;"
     },
     {
       "type": "heading",
@@ -277,7 +277,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "<s3_cold>    <type>s3</type>    <!-- Must end with a trailing slash -->    <endpoint>https://s3.amazonaws.com/your-bucket-name/clickhouse/</endpoint>    <!-- Use IAM instance profile (recommended for AWS) -->    <use_environment_credentials>true</use_environment_credentials>    <!-- Or use explicit credentials (for MinIO, GCS, etc.) -->    <!-- <access_key_id>YOUR_KEY</access_key_id>         -->    <!-- <secret_access_key>YOUR_SECRET</secret_access_key> -->    <region>eu-west-1</region>    <!-- Network timeouts -->    <connect_timeout_ms>10000</connect_timeout_ms>    <request_timeout_ms>30000</request_timeout_ms>    <retry_attempts>10</retry_attempts>    <!-- Multipart upload settings for large parts -->    <min_upload_part_size>33554432</min_upload_part_size>       <!-- 32 MB -->    <max_upload_part_size>5368709120</max_upload_part_size>     <!-- 5 GB -->    <upload_part_size_multiply_factor>2</upload_part_size_multiply_factor>    <upload_part_size_multiply_parts_count_threshold>500</upload_part_size_multiply_parts_count_threshold>    <!-- Local cache so repeated reads on cold data are served from NVMe -->    <cache_enabled>true</cache_enabled>    <cache_path>/mnt/nvme/clickhouse_s3_cache/</cache_path>    <cache_max_size>107374182400</cache_max_size> <!-- 100 GB --></s3_cold><s3_cold>    <type>s3</type>"
+      "code": "<s3_cold>    <type>s3</type>    <!-- Must end with a trailing slash -->\n<endpoint>https://s3.amazonaws.com/your-bucket-name/clickhouse/</endpoint>    <!-- Use IAM instance\nprofile (recommended for AWS) -->    <use_environment_credentials>true</use_environment_credentials>\n<!-- Or use explicit credentials (for MinIO, GCS, etc.) -->    <!--\n<access_key_id>YOUR_KEY</access_key_id>         -->    <!--\n<secret_access_key>YOUR_SECRET</secret_access_key> -->    <region>eu-west-1</region>    <!-- Network\ntimeouts -->    <connect_timeout_ms>10000</connect_timeout_ms>\n<request_timeout_ms>30000</request_timeout_ms>    <retry_attempts>10</retry_attempts>    <!--\nMultipart upload settings for large parts -->\n<min_upload_part_size>33554432</min_upload_part_size>       <!-- 32 MB -->\n<max_upload_part_size>5368709120</max_upload_part_size>     <!-- 5 GB -->\n<upload_part_size_multiply_factor>2</upload_part_size_multiply_factor>\n<upload_part_size_multiply_parts_count_threshold>500</upload_part_size_multiply_parts_count_threshold>    <!-- Local cache so repeated reads on cold data are served from NVMe -->    <cache_enabled>true</cache_enabled>    <cache_path>/mnt/nvme/clickhouse_s3_cache/</cache_path>    <cache_max_size>107374182400</cache_max_size> <!-- 100 GB --></s3_cold><s3_cold>    <type>s3</type>"
     },
     {
       "type": "paragraph",
@@ -291,7 +291,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "<policies>    <hot_warm_cold>        <volumes>            <hot>                <disk>nvme_disk</disk>                <max_data_part_size_bytes>10737418240</max_data_part_size_bytes>            </hot>            <warm>                <disk>hdd_disk</disk>                <max_data_part_size_bytes>107374182400</max_data_part_size_bytes>            </warm>            <cold>                <disk>s3_cold</disk>                <!-- No max_data_part_size — S3 has no practical size limit -->            </cold>        </volumes>        <move_factor>0.2</move_factor>    </hot_warm_cold></policies>"
+      "code": "<policies>    <hot_warm_cold>        <volumes>            <hot>\n<disk>nvme_disk</disk>\n<max_data_part_size_bytes>10737418240</max_data_part_size_bytes>            </hot>            <warm>\n<disk>hdd_disk</disk>\n<max_data_part_size_bytes>107374182400</max_data_part_size_bytes>            </warm>\n<cold>                <disk>s3_cold</disk>                <!-- No max_data_part_size — S3 has no\npractical size limit -->            </cold>        </volumes>        <move_factor>0.2</move_factor>\n</hot_warm_cold></policies>"
     },
     {
       "type": "heading",
@@ -301,7 +301,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "<policies>    <hot_warm_cold>        <volumes>            <hot>                <disk>nvme_disk</disk>                <max_data_part_size_bytes>10737418240</max_data_part_size_bytes>            </hot>            <warm>                <disk>hdd_disk</disk>                <max_data_part_size_bytes>107374182400</max_data_part_size_bytes>            </warm>            <cold>                <disk>s3_cold</disk>                <!-- No max_data_part_size — S3 has no practical size limit -->            </cold>        </volumes>        <move_factor>0.2</move_factor>    </hot_warm_cold></policies>"
+      "code": "<policies>    <hot_warm_cold>        <volumes>            <hot>\n<disk>nvme_disk</disk>\n<max_data_part_size_bytes>10737418240</max_data_part_size_bytes>            </hot>            <warm>\n<disk>hdd_disk</disk>\n<max_data_part_size_bytes>107374182400</max_data_part_size_bytes>            </warm>\n<cold>                <disk>s3_cold</disk>                <!-- No max_data_part_size — S3 has no\npractical size limit -->            </cold>        </volumes>        <move_factor>0.2</move_factor>\n</hot_warm_cold></policies>"
     },
     {
       "type": "paragraph",
@@ -310,7 +310,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "Day 0–7     →  NVMe  (hot)Day 7–30    →  HDD   (warm)Day 30–365  →  S3    (cold)Day 365+    →  deleted automatically"
+      "code": "Day 0–7     →  NVMe  (hot)Day 7–30    →  HDD   (warm)Day 30–365  →  S3    (cold)Day 365+    →\ndeleted automatically"
     },
     {
       "type": "heading",
@@ -332,8 +332,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "ALTER TABLE eventsMODIFY TTL    event_time + INTERVAL 7   DAY  TO VOLUME 'warm'  RECOMPRESS CODEC(ZSTD(3)),    event_time + INTERVAL 30  DAY  TO VOLUME 'cold'  RECOMPRESS CODEC(ZSTD(9)),    event_time + INTERVAL 365 DAY  DELETE;"
+      "lang": "sql",
+      "code": "ALTER TABLE eventsMODIFY TTL    event_time + INTERVAL 7   DAY  TO VOLUME 'warm'  RECOMPRESS\nCODEC(ZSTD(3)),    event_time + INTERVAL 30  DAY  TO VOLUME 'cold'  RECOMPRESS CODEC(ZSTD(9)),\nevent_time + INTERVAL 365 DAY  DELETE;"
     },
     {
       "type": "paragraph",
@@ -365,7 +365,7 @@
     {
       "type": "code",
       "lang": "sql",
-      "code": "CREATE TABLE events(    event_time   DateTime,    user_id      UInt64,    action       String,    value        Float64)ENGINE = MergeTreePARTITION BY toDate(event_time)ORDER BY (event_time, user_id)TTL    event_time + INTERVAL 7   DAY  TO VOLUME 'warm'  RECOMPRESS CODEC(ZSTD(3)),    event_time + INTERVAL 30  DAY  TO VOLUME 'cold'  RECOMPRESS CODEC(ZSTD(9)),    event_time + INTERVAL 365 DAY  DELETESETTINGS    index_granularity = 8192,    storage_policy = 'hot_warm_cold';"
+      "code": "CREATE TABLE events(    event_time   DateTime,    user_id      UInt64,    action       String,\nvalue        Float64)ENGINE = MergeTreePARTITION BY toDate(event_time)\nORDER BY (event_time, user_id)TTL    event_time + INTERVAL 7   DAY  TO VOLUME 'warm'  RECOMPRESS\nCODEC(ZSTD(3)),    event_time + INTERVAL 30  DAY  TO VOLUME 'cold'  RECOMPRESS CODEC(ZSTD(9)),\nevent_time + INTERVAL 365 DAY  DELETESETTINGS    index_granularity = 8192,    storage_policy =\n'hot_warm_cold';"
     },
     {
       "type": "heading",
@@ -378,7 +378,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "sql",
       "code": "ALTER TABLE events MATERIALIZE TTL;"
     },
     {
@@ -396,8 +396,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "-- Move a specific partition to warmALTER TABLE eventsMOVE PARTITION '2024-11-01' TO VOLUME 'warm';-- Move a specific partition directly to S3ALTER TABLE eventsMOVE PARTITION '2024-09-01' TO VOLUME 'cold';"
+      "lang": "sql",
+      "code": "-- Move a specific partition to warm\nALTER TABLE eventsMOVE PARTITION '2024-11-01' TO VOLUME 'warm';-- Move a specific partition directly\nto S3\nALTER TABLE eventsMOVE PARTITION '2024-09-01' TO VOLUME 'cold';"
     },
     {
       "type": "heading",
@@ -406,8 +406,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "<!-- /etc/clickhouse-server/config.d/storage.xml --><clickhouse>    <storage_configuration>        <disks>            <nvme_disk>                <type>local</type>                <path>/mnt/nvme/clickhouse/</path>                <keep_free_space_bytes>10737418240</keep_free_space_bytes>            </nvme_disk>            <hdd_disk>                <type>local</type>                <path>/mnt/hdd/clickhouse/</path>                <keep_free_space_bytes>10737418240</keep_free_space_bytes>            </hdd_disk>            <s3_cold>                <type>s3</type>                <endpoint>https://s3.amazonaws.com/your-bucket/clickhouse/</endpoint>                <use_environment_credentials>true</use_environment_credentials>                <region>eu-west-1</region>                <connect_timeout_ms>10000</connect_timeout_ms>                <request_timeout_ms>30000</request_timeout_ms>                <retry_attempts>10</retry_attempts>                <min_upload_part_size>33554432</min_upload_part_size>                <max_upload_part_size>5368709120</max_upload_part_size>                <upload_part_size_multiply_factor>2</upload_part_size_multiply_factor>                <upload_part_size_multiply_parts_count_threshold>500</upload_part_size_multiply_parts_count_threshold>                <cache_enabled>true</cache_enabled>                <cache_path>/mnt/nvme/clickhouse_s3_cache/</cache_path>                <cache_max_size>107374182400</cache_max_size>            </s3_cold>        </disks>        <policies>            <hot_warm_cold>                <volumes>                    <hot>                        <disk>nvme_disk</disk>                        <max_data_part_size_bytes>10737418240</max_data_part_size_bytes>                    </hot>                    <warm>                        <disk>hdd_disk</disk>                        <max_data_part_size_bytes>107374182400</max_data_part_size_bytes>                    </warm>                    <cold>                        <disk>s3_cold</disk>                    </cold>                </volumes>                <move_factor>0.2</move_factor>            </hot_warm_cold>        </policies>    </storage_configuration></clickhouse>"
+      "lang": "xml",
+      "code": "<!-- /etc/clickhouse-server/config.d/storage.xml -->\n<clickhouse>\n<storage_configuration>\n<disks>\n<nvme_disk>\n<type>local</type>\n<path>/mnt/nvme/clickhouse/</path>\n<keep_free_space_bytes>10737418240</keep_free_space_bytes>\n</nvme_disk>\n<hdd_disk>\n<type>local</type>\n<path>/mnt/hdd/clickhouse/</path>\n<keep_free_space_bytes>10737418240</keep_free_space_bytes>\n</hdd_disk>\n<s3_cold>\n<type>s3</type>\n<endpoint>https://s3.amazonaws.com/your-bucket/clickhouse/</endpoint>\n<use_environment_credentials>true</use_environment_credentials>\n<region>eu-west-1</region>\n<connect_timeout_ms>10000</connect_timeout_ms>\n<request_timeout_ms>30000</request_timeout_ms>\n<retry_attempts>10</retry_attempts>\n<min_upload_part_size>33554432</min_upload_part_size>\n<max_upload_part_size>5368709120</max_upload_part_size>\n<upload_part_size_multiply_factor>2</upload_part_size_multiply_factor>\n<upload_part_size_multiply_parts_count_threshold>500</upload_part_size_multiply_parts_count_threshold>\n<cache_enabled>true</cache_enabled>\n<cache_path>/mnt/nvme/clickhouse_s3_cache/</cache_path>\n<cache_max_size>107374182400</cache_max_size>\n</s3_cold>\n</disks>\n<policies>\n<hot_warm_cold>\n<volumes>\n<hot>\n<disk>nvme_disk</disk>\n<max_data_part_size_bytes>10737418240</max_data_part_size_bytes>\n</hot>\n<warm>\n<disk>hdd_disk</disk>\n<max_data_part_size_bytes>107374182400</max_data_part_size_bytes>\n</warm>\n<cold>\n<disk>s3_cold</disk>\n</cold>\n</volumes>\n<move_factor>0.2</move_factor>\n</hot_warm_cold>\n</policies>\n</storage_configuration>\n</clickhouse>"
     },
     {
       "type": "heading",
@@ -420,8 +420,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "-- How much data lives on each disk, per tableSELECT    table,    disk_name,    count()                                AS part_count,    sum(rows)                              AS total_rows,    formatReadableSize(sum(bytes_on_disk)) AS total_sizeFROM system.partsWHERE active = 1  AND database = currentDatabase()GROUP BY table, disk_nameORDER BY table, disk_name;-- Free space on each configured diskSELECT    name,    path,    formatReadableSize(free_space)  AS free,    formatReadableSize(total_space) AS total,    round(100.0 * free_space / total_space, 1) AS free_pctFROM system.disks;-- Parts with pending TTL moves (scheduled but not yet executed)SELECT    table,    partition,    name,    disk_name,    move_ttl_infoFROM system.partsWHERE active = 1  AND notEmpty(move_ttl_info)ORDER BY table, partition;-- Active mutations (ALTER TABLE DELETE or heavy operations)SELECT    table,    mutation_id,    command,    create_time,    is_done,    latest_fail_reasonFROM system.mutationsWHERE is_done = 0ORDER BY create_time;-- S3 cache hit rate (if using S3 with local cache)SELECT    *FROM system.filesystem_cache_settings;"
+      "lang": "sql",
+      "code": "-- How much data lives on each disk, per table\nSELECT    table,    disk_name,    count()                                AS part_count,    sum(rows)\nAS total_rows,    formatReadableSize(sum(bytes_on_disk)) AS total_size\nFROM system.parts\nWHERE active = 1  AND database = currentDatabase()\nGROUP BY table, disk_name\nORDER BY table, disk_name;-- Free space on each configured disk\nSELECT    name,    path,    formatReadableSize(free_space)  AS free,\nformatReadableSize(total_space) AS total,    round(100.0 * free_space / total_space, 1) AS free_pct\nFROM system.disks;-- Parts\nwith pending TTL moves (scheduled but not yet executed)\nSELECT    table,    partition,    name,    disk_name,    move_ttl_info\nFROM system.parts\nWHERE active = 1  AND notEmpty(move_ttl_info)\nORDER BY table, partition;-- Active mutations (\nALTER TABLE DELETE or heavy operations)\nSELECT    table,    mutation_id,    command,    create_time,    is_done,    latest_fail_reason\nFROM system.mutations\nWHERE is_done = 0\nORDER BY create_time;-- S3 cache hit rate (if using S3\nwith local cache)\nSELECT    *\nFROM system.filesystem_cache_settings;"
     },
     {
       "type": "heading",

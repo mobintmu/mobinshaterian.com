@@ -24,7 +24,7 @@
     {
       "type": "code",
       "lang": "bash",
-      "code": "sudo apt update sudo apt install nodejsnode -vv18.19.0"
+      "code": "sudo\napt update\nsudo\napt install nodejsnode -vv18.19.0"
     },
     {
       "type": "heading",
@@ -57,7 +57,7 @@
     {
       "type": "code",
       "lang": "bash",
-      "code": "npm init "
+      "code": "npm init"
     },
     {
       "type": "paragraph",
@@ -80,8 +80,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "pragma solidity ^0.4.17;contract Inbox {    string public message;        function Inbox(string initialMessage) public {        message = initialMessage;    }        function setMessage(string newMessage) public {        message = newMessage;    }}"
+      "lang": "solidity",
+      "code": "pragma solidity ^0.4.17;\ncontract Inbox {\n  string public message;\n  function Inbox(string initialMessage) public {\n    message = initialMessage;\n  }\n  function setMessage(string newMessage) public {\n    message = newMessage;\n  }\n}"
     },
     {
       "type": "heading",
@@ -91,7 +91,7 @@
     {
       "type": "code",
       "lang": "javascript",
-      "code": "const path = require('path');const fs = require('fs');const solc = require('solc');const inboxPath = path.resolve(__dirname, 'contracts', 'Inbox.sol');const source = fs.readFileSync(inboxPath, 'utf8');console.log(solc.compile(source, 1)); // 1 is the number of contracts we are compiling"
+      "code": "const path = require('path');\nconst fs = require('fs');\nconst solc = require('solc');\nconst inboxPath = path.resolve(__dirname, 'contracts', 'Inbox.sol');\nconst source = fs.readFileSync(inboxPath, 'utf8');\nconsole.log(solc.compile(source, 1));\n// 1 is the number of contracts we are compiling"
     },
     {
       "type": "heading",
@@ -106,7 +106,7 @@
     {
       "type": "code",
       "lang": "json",
-      "code": "{  contracts: {    ':Inbox': {      assembly: [Object],      bytecode: '606..',      functionHashes: [Object],      gasEstimates: [Object],      interface: '[{\"constant\":false,\"inputs\":[{\"name\":\"newMessage\",\"type\":\"string\"}],\"name\":\"setMessage\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"message\",\"outputs\":[{\"name\":\"\",\"type\":\"string\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"name\":\"initialMessage\",\"type\":\"string\"}],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"}]',      metadata: '{\"compiler\":{\"version\":\"0.4.17+commit.bdeb9e52\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"constant\":false,\"inputs\":[{\"name\":\"newMessage\",\"type\":\"string\"}],\"name\":\"setMessage\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"message\",\"outputs\":[{\"name\":\"\",\"type\":\"string\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"name\":\"initialMessage\",\"type\":\"string\"}],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"\":\"Inbox\"},\"libraries\":{},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"\":{\"keccak256\":\"0xcf32bc45deff4c661bc812c6626a1d59f89a03cbd33be9e29bc53877b7795dda\",\"urls\":[\"bzzr://4641a40b0545ee62b215e759ccbb1201d2c21103816847ea8f56f60353564be3\"]}},\"version\":1}',      opcodes: 'PUSH1 0x60 PUSH1 0x40 MSTORE .. 0x58B712FA588DA6C4E604E56B37CEE21FAA100A0029000000 ',      runtimeBytecode: '60606..',      srcmap: ''    }  },  sourceList: [ '' ],  sources: { '': { AST: [Object] } }}"
+      "code": "{  contracts: {    ':Inbox': {      assembly: [Object],      bytecode: '606..',      functionHashes:\n[Object],      gasEstimates: [Object],      interface:\n'[{\"constant\":false,\"inputs\":[{\"name\":\"newMessage\",\"type\":\"string\"}],\"name\":\"setMessage\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"message\",\"outputs\":[{\"name\":\"\",\"type\":\"string\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"name\":\"initialMessage\",\"type\":\"string\"}],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"}]',      metadata: '{\"compiler\":{\"version\":\"0.4.17+commit.bdeb9e52\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"constant\":false,\"inputs\":[{\"name\":\"newMessage\",\"type\":\"string\"}],\"name\":\"setMessage\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"message\",\"outputs\":[{\"name\":\"\",\"type\":\"string\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"name\":\"initialMessage\",\"type\":\"string\"}],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"\":\"Inbox\"},\"libraries\":{},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"\":{\"keccak256\":\"0xcf32bc45deff4c661bc812c6626a1d59f89a03cbd33be9e29bc53877b7795dda\",\"urls\":[\"bzzr://4641a40b0545ee62b215e759ccbb1201d2c21103816847ea8f56f60353564be3\"]}},\"version\":1}',      opcodes: 'PUSH1 0x60 PUSH1 0x40 MSTORE .. 0x58B712FA588DA6C4E604E56B37CEE21FAA100A0029000000 ',      runtimeBytecode: '60606..',      srcmap: ''    }  },  sourceList: [ '' ],  sources: { '': { AST: [Object] } }}"
     },
     {
       "type": "heading",
@@ -124,7 +124,7 @@
     {
       "type": "code",
       "lang": "bash",
-      "code": "npm install --save mocha ganache-cli web3npm install web3@^0.20.6 //depricatenpm install web3"
+      "code": "npm install --save mocha ganache-cli web3\nnpm install web3@^0.20.6 //depricate\nnpm install web3"
     },
     {
       "type": "heading",
@@ -152,7 +152,7 @@
     {
       "type": "code",
       "lang": "javascript",
-      "code": "const assert = require('assert');const ganache = require('ganache-cli');const Web3 = require('web3');const web3 = new Web3( ganache.provider() ); // ganache.provider() is the provider that connects to the ganache networkclass Car {    park(){        return 'stopped';    }    drive(){        return 'vroom';    }}describe('Car example', () => {    it('can park', () => {        const car = new Car();        assert.equal(car.park(), 'stopped');    });    it('can drive', () => {        const car = new Car();        assert.equal(car.drive(), 'vroom');    });});"
+      "code": "const assert = require('assert');\nconst ganache = require('ganache-cli');\nconst Web3 = require('web3');\nconst web3 = new Web3(ganache.provider());\n// ganache.provider() is the provider that connects to the ganache network\nclass Car {\n  park(){\n    return 'stopped';\n  }\n  drive(){\n    return 'vroom';\n  }\n}\ndescribe('Car example', () => {\n  it('can park', () => {\n    const car = new Car();\n    assert.equal(car.park(), 'stopped');\n  });\n  it('can drive', () => {\n    const car = new Car();\n    assert.equal(car.drive(), 'vroom');\n  });\n});"
     },
     {
       "type": "paragraph",
@@ -161,7 +161,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "  \"scripts\": {    // \"test\": \"echo \\\"Error: no test specified\\\" && exit 1\"    \"test\": \"mocha\"  },"
+      "code": "\"scripts\": {    // \"test\": \"echo \\\"Error: no test specified\\\" && exit 1\"    \"test\": \"mocha\"  },"
     },
     {
       "type": "paragraph",
@@ -213,7 +213,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "    // Get a list of all accounts    web3.eth.getAccounts()"
+      "code": "// Get a list of all accounts    web3.eth.getAccounts()"
     },
     {
       "type": "heading",
@@ -223,7 +223,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "    // Get a list of all accounts    web3.eth.getAccounts().then( fetchedAccounts => {            console.log(fetchedAccounts);        });    // Use one of those accounts to deploy the contract"
+      "code": "// Get a list of all accounts    web3.eth.getAccounts().then( fetchedAccounts => {\nconsole.log(fetchedAccounts);        });    // Use one of those accounts to deploy the contract"
     },
     {
       "type": "heading",
@@ -233,7 +233,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "  \"scripts\": {    \"test\": \"mocha\"  },"
+      "code": "\"scripts\": {    \"test\": \"mocha\"  },"
     },
     {
       "type": "heading",
@@ -259,7 +259,7 @@
     {
       "type": "code",
       "lang": "javascript",
-      "code": "let accounts;beforeEach( async () => {    accounts = await web3.eth.getAccounts();});describe('Inbox', () => {    it('deploys a contract', () => {           console.log(accounts)     });});"
+      "code": "let accounts;\nbeforeEach(async () => {\n  accounts = await web3.eth.getAccounts();\n});\ndescribe('Inbox', () => {\n  it('deploys a contract', () => {\n    console.log(accounts)\n  });\n});"
     },
     {
       "type": "image",
@@ -277,7 +277,7 @@
     {
       "type": "code",
       "lang": "javascript",
-      "code": "const assert = require('assert');const ganache = require('ganache-cli');const Web3 = require('web3');const web3 = new Web3( ganache.provider() ); // ganache.provider() is the provider that connects to the ganache networkconst { interface , bytecode } = require('../compile');let accounts;let inbox;beforeEach( async () => {    accounts = await web3.eth.getAccounts();    // Use one of those accounts to deploy the contract    inbox = await new web3.eth.Contract(JSON.parse(interface))    .deploy({data : bytecode, arguments: ['Hi Bye']})    .send( { from: accounts[0] , gas : '1000000' })});"
+      "code": "const assert = require('assert');\nconst ganache = require('ganache-cli');\nconst Web3 = require('web3');\nconst web3 = new Web3(ganache.provider());\n// ganache.provider() is the provider that connects to the ganache network\nconst {\n  interface, bytecode\n}\n= require('../compile');\nlet accounts;\nlet inbox;\nbeforeEach(async () => {\n  accounts = await web3.eth.getAccounts();\n  // Use one of those accounts to deploy the contract inbox =\n  await new web3.eth.Contract(JSON.parse(interface)).deploy({\n    data : bytecode, arguments: ['Hi Bye']\n  }).send({\n    from: accounts[0], gas : '1000000'\n  })\n});"
     },
     {
       "type": "heading",
@@ -312,7 +312,7 @@
     {
       "type": "code",
       "lang": "javascript",
-      "code": "let accounts;let inbox;beforeEach( async () => {    accounts = await web3.eth.getAccounts();    // Use one of those accounts to deploy the contract    inbox = await new web3.eth.Contract(JSON.parse(interface))    .deploy({data : bytecode, arguments: ['Hi Bye']})    .send( { from: accounts[0] , gas : '1000000' })});describe('Inbox', () => {    it('deploys a contract', () => {           console.log(inbox.options.address);        assert.ok(inbox.options.address);             });});"
+      "code": "let accounts;\nlet inbox;\nbeforeEach(async () => {\n  accounts = await web3.eth.getAccounts();\n  // Use one of those accounts to deploy the contract inbox =\n  await new web3.eth.Contract(JSON.parse(interface)).deploy({\n    data : bytecode, arguments: ['Hi Bye']\n  }).send({\n    from: accounts[0], gas : '1000000'\n  })\n});\ndescribe('Inbox', () => {\n  it('deploys a contract', () => {\n    console.log(inbox.options.address);\n    assert.ok(inbox.options.address);\n  });\n});"
     },
     {
       "type": "image",
@@ -330,7 +330,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "    it('has a default message', async () => {        const message = await inbox.methods.message().call();        assert.equal(message, 'Hi Bye');    });"
+      "code": "it('has a default message', async () => {        const message = await\ninbox.methods.message().call();        assert.equal(message, 'Hi Bye');    });"
     },
     {
       "type": "image",
@@ -348,7 +348,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "    it('can change the message', async () => {        await inbox.methods.setMessage('bye').send({from: accounts[0]});        const message = await inbox.methods.message().call();        assert.equal(message, 'bye');    });"
+      "code": "it('can change the message', async () => {        await inbox.methods.setMessage('bye').send({from:\naccounts[0]});        const message = await inbox.methods.message().call();\nassert.equal(message, 'bye');    });"
     },
     {
       "type": "image",
@@ -425,7 +425,7 @@
     {
       "type": "code",
       "lang": "javascript",
-      "code": "const HDWalletProvider = require('@truffle/hdwallet-provider');const Web3 = require('web3');const { interface , bytecode } = require('./compile');const provider = new HDWalletProvider(    'help mydecade fee world movie dmage issue clay country aware do',    'https://sepolia.infura.io/v3/1d23e111028d4e94aac4f272f1ab97298');const web3 = new Web3(provider);const deploy = async () => {    const accounts = await web3.eth.getAccounts();    console.log('Attempting to deploy from account', accounts[0]);    const result = await new web3.eth.Contract(JSON.parse(interface))        .deploy({data : bytecode, arguments: ['Hi there!']})        .send( { gas : '1000000', from: accounts[0] });        console.log('Contract deployed to', result.options.address);    provider.engine.stop();}deploy();"
+      "code": "const HDWalletProvider = require('@truffle/hdwallet-provider');\nconst Web3 = require('web3');\nconst {\n  interface, bytecode\n}\n= require('./compile');\nconst provider = new\nHDWalletProvider('help mydecade fee world movie dmage issue clay country aware do',\n'https://sepolia.infura.io/v3/1d23e111028d4e94aac4f272f1ab97298');\nconst web3 = new Web3(provider);\nconst deploy = async () => {\n  const accounts = await web3.eth.getAccounts();\n  console.log('Attempting to deploy from account', accounts[0]);\n  const result = await new web3.eth.Contract(JSON.parse(interface)).deploy({\n    data : bytecode, arguments: ['Hi there!']\n  }).send({\n    gas : '1000000', from: accounts[0]\n  });\n  console.log('Contract deployed to', result.options.address);\n  provider.engine.stop();\n}\ndeploy();"
     },
     {
       "type": "heading",

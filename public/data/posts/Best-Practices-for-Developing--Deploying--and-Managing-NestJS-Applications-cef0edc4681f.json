@@ -73,7 +73,7 @@
     {
       "type": "code",
       "lang": "javascript",
-      "code": "  const logger = new Logger();  logger.log(`Application listening on port 3000`);"
+      "code": "const logger = new Logger();\nlogger.log(`Application listening on port 3000`);"
     },
     {
       "type": "heading",
@@ -83,7 +83,7 @@
     {
       "type": "code",
       "lang": "javascript",
-      "code": "export class TasksController {  private logger = new Logger('TasksController');"
+      "code": "export class TasksController {\n  private logger = new Logger('TasksController');"
     },
     {
       "type": "heading",
@@ -93,7 +93,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "    this.logger.verbose(      `User \"${user.username}\" retrieving all tasks. Filters: ${JSON.stringify(        filterDto,      )}`,    );"
+      "code": "this.logger.verbose(\n`User \"${user.username}\" retrieving all tasks. Filters: ${JSON.stringify(        filterDto,      )}`,    );"
     },
     {
       "type": "image",
@@ -110,7 +110,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "    try {      const tasks = await query.getMany();      return tasks;    } catch (error) {      this.logger.error(        `Failed to get tasks for user \"${user.username}\". Filters: ${JSON.stringify(filterDto)}`,        error.stack,      );    }"
+      "code": "try {      const tasks = await query.getMany();      return tasks;    } catch (error) {\nthis.logger.error(\n`Failed to get tasks for user \"${user.username}\". Filters: ${JSON.stringify(filterDto)}`,\nerror.stack,      );    }"
     },
     {
       "type": "heading",
@@ -135,7 +135,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": " npm_package_jest_testRegex: '.*\\\\.spec\\\\.ts$', npm_package_devDependencies_ts_node: '^10.9.1', npm_package_devDependencies__types_supertest: '^6.0.0', npm_package_devDependencies__types_node: '^20.3.1', npm_package_dependencies__nestjs_platform_express: '^10.0.0',"
+      "code": "npm_package_jest_testRegex: '.*\\\\.spec\\\\.ts$', npm_package_devDependencies_ts_node: '^10.9.1',\nnpm_package_devDependencies__types_supertest: '^6.0.0', npm_package_devDependencies__types_node:\n'^20.3.1', npm_package_dependencies__nestjs_platform_express: '^10.0.0',"
     },
     {
       "type": "heading",
@@ -154,7 +154,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "    ConfigModule.forRoot({      envFilePath: [`.env.stage.${process.env.STAGE}`],    }),"
+      "code": "ConfigModule.forRoot({      envFilePath: [`.env.stage.${process.env.STAGE}`],    }),"
     },
     {
       "type": "paragraph",
@@ -175,7 +175,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "    \"start:dev\": \"STAGE=dev nest start --watch\",    \"start:debug\": \"STAGE=dev nest start --debug --watch\",    \"start:prod\": \"STAGE=prod node dist/main\",    \"lint\": \"eslint \\\"{src,apps,libs,test}/**/*.ts\\\" --fix\",    \"test\": \"STAGE=dev jest\","
+      "code": "\"start:dev\": \"STAGE=dev nest start --watch\",    \"start:debug\":\n\"STAGE=dev nest start --debug --watch\",    \"start:prod\": \"STAGE=prod node dist/main\",    \"lint\":\n\"eslint \\\"{src,apps,libs,test}/**/*.ts\\\" --fix\",    \"test\": \"STAGE=dev jest\","
     },
     {
       "type": "heading",
@@ -189,7 +189,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "  constructor(    private tasksService: TasksService,    private configService: ConfigService,  ) {    console.log(configService.get('DATABASE_HOST'));  }"
+      "code": "constructor(    private tasksService: TasksService,    private configService: ConfigService,  ) {\nconsole.log(configService.get('DATABASE_HOST'));  }"
     },
     {
       "type": "paragraph",
@@ -197,8 +197,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "@Module({  imports: [ConfigModule, TypeOrmModule.forFeature([Task]), AuthModule],  controllers: [TasksController],  providers: [TasksService, TaskRepository],})"
+      "lang": "typescript",
+      "code": "@Module({\n  imports: [ConfigModule, TypeOrmModule.forFeature([Task]), AuthModule], controllers:\n  [TasksController], providers: [TasksService, TaskRepository],\n})"
     },
     {
       "type": "heading",
@@ -211,8 +211,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "@Module({  imports: [    ConfigModule.forRoot({      envFilePath: [`.env.stage.${process.env.STAGE}`],    }),    // Add ConfigModule to the imports array    ConfigModule,    TypeOrmModule.forRootAsync({      imports: [ConfigModule],      inject: [ConfigService],      useFactory: async (configService: ConfigService) => ({        type: 'postgres',        host: configService.get('DB_HOST'),        port: parseInt(configService.get('DB_PORT')),        username: configService.get('DB_USER'),        password: configService.get('DB_PASS'),        database: configService.get('DB_DATABASE'),        autoLoadEntities: true,        synchronize: false,      }),    }),    TasksModule,    AuthModule,  ],})"
+      "lang": "typescript",
+      "code": "@Module({\n  imports: [ConfigModule.forRoot({\n    envFilePath: [`.env.stage.${process.env.STAGE}`],\n  }), // Add ConfigModule to the imports array ConfigModule, TypeOrmModule.forRootAsync({\n    imports: [ConfigModule], inject: [ConfigService], useFactory: async (configService:\n    ConfigService) => ({\n      type: 'postgres', host: configService.get('DB_HOST'), port:\n      parseInt(configService.get('DB_PORT')), username: configService.get('DB_USER'), password:\n      configService.get('DB_PASS'), database: configService.get('DB_DATABASE'), autoLoadEntities:\n      true, synchronize: false,\n    }),\n  }), TasksModule, AuthModule,],\n})"
     },
     {
       "type": "heading",
@@ -294,7 +294,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "heroku config:set DB_HOST=...heroku config:set DB_PORT=5432heroku config:set DB_USERNAME=...heroku config:set DB_PASSWORD=...heroku config:set DB_DATABASE=...heroku config:set JWT_SECRECT=..."
+      "code": "heroku config:set DB_HOST=...heroku config:set DB_PORT=5432heroku config:set DB_USERNAME=...heroku\nconfig:set DB_PASSWORD=...heroku config:set DB_DATABASE=...heroku config:set JWT_SECRECT=..."
     },
     {
       "type": "heading",

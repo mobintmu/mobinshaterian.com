@@ -39,7 +39,7 @@
     {
       "type": "code",
       "lang": "bash",
-      "code": "sudo apt-get install libqt5gui5"
+      "code": "sudo\napt-get install libqt5gui5"
     },
     {
       "type": "heading",
@@ -61,7 +61,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "ubuntu-drivers devices== /sys/devices/pci0000:00/0000:00:01.0/0000:01:00.0 ==modalias : pci:v000010DEd000025A0sv00001043sd00001CCCbc03sc00i00vendor   : NVIDIA Corporationmodel    : GA107M [GeForce RTX 3050 Ti Mobile]manual_install: Truedriver   : nvidia-driver-525-open - distro non-free recommendeddriver   : nvidia-driver-515 - distro non-freedriver   : nvidia-driver-515-open - distro non-freedriver   : nvidia-driver-525 - distro non-freedriver   : nvidia-driver-470-server - distro non-freedriver   : nvidia-driver-525-server - distro non-freedriver   : nvidia-driver-470 - distro non-freedriver   : nvidia-driver-510 - distro non-freedriver   : nvidia-driver-515-server - distro non-freedriver   : xserver-xorg-video-nouveau - distro free builtin"
+      "code": "ubuntu-drivers devices== /sys/devices/pci0000:00/0000:00:01.0/0000:01:00.0 ==modalias :\npci:v000010DEd000025A0sv00001043sd00001CCCbc03sc00i00vendor   : NVIDIA Corporationmodel    : GA107M\n[GeForce RTX 3050 Ti Mobile]manual_install: Truedriver   : nvidia-driver-525-open - distro non-free\nrecommendeddriver   : nvidia-driver-515 - distro non-freedriver   : nvidia-driver-515-open - distro\nnon-freedriver   : nvidia-driver-525 - distro non-freedriver   : nvidia-driver-470-server - distro\nnon-freedriver   : nvidia-driver-525-server - distro non-freedriver   : nvidia-driver-470 - distro\nnon-freedriver   : nvidia-driver-510 - distro non-freedriver   : nvidia-driver-515-server - distro\nnon-freedriver   : xserver-xorg-video-nouveau - distro free builtin"
     },
     {
       "type": "paragraph",
@@ -97,7 +97,7 @@
     {
       "type": "code",
       "lang": "bash",
-      "code": "sudo add-apt-repository ppa:tomtomtom/woeusbsudo apt update && sudo apt install woeusb-frontend-wxgtk"
+      "code": "sudo add-apt-repository ppa:tomtomtom/woeusb\nsudo\napt update &&\nsudo\napt install woeusb-frontend-wxgtk"
     },
     {
       "type": "paragraph",
@@ -124,12 +124,12 @@
     {
       "type": "code",
       "lang": "bash",
-      "code": "sudo apt install virtualbox"
+      "code": "sudo\napt install virtualbox"
     },
     {
       "type": "code",
       "lang": "bash",
-      "code": "sudo apt-get install unrar"
+      "code": "sudo\napt-get install unrar"
     },
     {
       "type": "code",
@@ -148,7 +148,7 @@
     {
       "type": "code",
       "lang": "bash",
-      "code": "sudo apt install network-manager-l2tp"
+      "code": "sudo\napt install network-manager-l2tp"
     },
     {
       "type": "code",
@@ -158,17 +158,17 @@
     {
       "type": "code",
       "lang": "bash",
-      "code": "sudo apt -y install network-manager-l2tp"
+      "code": "sudo\napt -y install network-manager-l2tp"
     },
     {
       "type": "code",
       "lang": "bash",
-      "code": "sudo apt-get install network-manager-l2tp-gnome"
+      "code": "sudo\napt-get install network-manager-l2tp-gnome"
     },
     {
       "type": "code",
       "lang": "bash",
-      "code": "sudo apt install --install-suggests network-manager-l2tp-gnome"
+      "code": "sudo\napt install --install-suggests network-manager-l2tp-gnome"
     },
     {
       "type": "heading",
@@ -183,7 +183,7 @@
     {
       "type": "code",
       "lang": "bash",
-      "code": "sudo systemctl status torsudo apt-get install -y proxychainssudo apt install proxychains4"
+      "code": "sudo systemctl status tor\nsudo\napt-get install -y proxychains\nsudo\napt install proxychains4"
     },
     {
       "type": "heading",
@@ -197,7 +197,7 @@
     {
       "type": "code",
       "lang": "bash",
-      "code": "sudo apt-get update"
+      "code": "sudo\napt-get update"
     },
     {
       "type": "heading",
@@ -207,7 +207,7 @@
     {
       "type": "code",
       "lang": "bash",
-      "code": "sudo apt-get install gitsudo apt-get install htopsudo apt-get install sshuttlesudo apt-get install iotopsudo apt-get install vimsudo apt-get install curl"
+      "code": "sudo\napt-get install git\nsudo\napt-get install htop\nsudo\napt-get install sshuttle\nsudo\napt-get install iotop\nsudo\napt-get install vim\nsudo\napt-get install curl"
     },
     {
       "type": "heading",
@@ -217,7 +217,7 @@
     {
       "type": "code",
       "lang": "bash",
-      "code": "sudo apt install gparted"
+      "code": "sudo\napt install gparted"
     },
     {
       "type": "heading",
@@ -269,7 +269,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": " Settings > Time and date > Clock"
+      "code": "Settings > Time and date > Clock"
     },
     {
       "type": "heading",
@@ -279,7 +279,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "https://www.fontyab.com/download?id=7782https://soft98.ir/graphic/font/14282-Font-Collection-Farsi.html"
+      "code": "https://www.fontyab.com/download?id=7782\nhttps://soft98.ir/graphic/font/14282-Font-Collection-Farsi.html"
     },
     {
       "type": "heading",
@@ -288,13 +288,13 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "bash",
       "code": "wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb"
     },
     {
       "type": "code",
       "lang": "bash",
-      "code": "sudo apt install ./google-chrome-stable_current_amd64.deb"
+      "code": "sudo\napt install ./google-chrome-stable_current_amd64.deb"
     },
     {
       "type": "heading",
@@ -361,7 +361,7 @@
     {
       "type": "code",
       "lang": "bash",
-      "code": "sudo groupadd dockersudo gpasswd -a $USER dockernewgrp docker"
+      "code": "sudo groupadd docker\nsudo gpasswd -a $USER dockernewgrp docker"
     },
     {
       "type": "code",
@@ -371,7 +371,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "Docker version 19.03.8, build afacb8b7f0docker psCONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES"
+      "code": "Docker version 19.03.8, build afacb8b7f0docker psCONTAINER ID        IMAGE               COMMAND\nCREATED             STATUS              PORTS               NAMES"
     },
     {
       "type": "heading",
@@ -381,7 +381,7 @@
     {
       "type": "code",
       "lang": "bash",
-      "code": "sudo apt install docker-compose"
+      "code": "sudo\napt install docker-compose"
     },
     {
       "type": "heading",
@@ -391,7 +391,7 @@
     {
       "type": "code",
       "lang": "bash",
-      "code": "docker run -d -p 8000:8000 -p 9443:9443 --name portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ee:latest"
+      "code": "docker run -d -p 8000:8000 -p 9443:9443 --name portainer --restart=always -v\n/var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ee:latest"
     },
     {
       "type": "heading",
@@ -455,7 +455,7 @@
     {
       "type": "code",
       "lang": "javascript",
-      "code": "export PATH=$PATH:/usr/local/go/binexport PATH=$PATH:$(go env GOPATH)/binexport GOPATH=$(go env GOPATH)# Powerline configurationif [ -f /usr/share/powerline/bindings/bash/powerline.sh ]; then  powerline-daemon -q  POWERLINE_BASH_CONTINUATION=1  POWERLINE_BASH_SELECT=1  source /usr/share/powerline/bindings/bash/powerline.shfi"
+      "code": "export PATH=$PATH:/usr/local/go/binexport PATH=$PATH:$(go env GOPATH)/binexport GOPATH=$(go env\nGOPATH)# Powerline configurationif [-f /usr/share/powerline/bindings/bash/powerline.sh];\nthen powerline-daemon -q POWERLINE_BASH_CONTINUATION=1 POWERLINE_BASH_SELECT=1 source\n/usr/share/powerline/bindings/bash/powerline.shfi"
     },
     {
       "type": "heading",
@@ -480,7 +480,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "You can do this by adding the following line to your $HOME/.profile or /etc/profile (for a system-wide installation):"
+      "code": "You can do this by adding the following line to your $HOME/.profile or /etc/profile (for a\nsystem-wide installation):"
     },
     {
       "type": "code",
@@ -499,7 +499,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "# Set the GOPROXY environment variableexport GOPROXY=https://goproxy.io,direct# Set environment variable allow bypassing the proxy for specified repos (optional)export GOPRIVATE=git.mycompany.com,github.com/my/private"
+      "code": "# Set the GOPROXY environment variableexport GOPROXY=https://goproxy.io,direct# Set environment\nvariable allow bypassing the proxy for specified repos (optional)export\nGOPRIVATE=git.mycompany.com,github.com/my/private"
     },
     {
       "type": "code",
@@ -523,7 +523,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "ENV GOPROXY=https://goproxy.io,direct"
+      "code": "ENV GOPROXY=\nhttps://goproxy.io,direct"
     },
     {
       "type": "heading",
@@ -532,7 +532,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "bash",
       "code": "go install github.com/go-micro/cli/cmd/go-micro@latest"
     },
     {
@@ -547,7 +547,7 @@
     {
       "type": "code",
       "lang": "bash",
-      "code": "sudo apt install ./nats-server-v2.9.15-386.deb nats-server -js -m 9090"
+      "code": "sudo\napt install ./nats-server-v2.9.15-386.deb nats-server -js -m 9090"
     },
     {
       "type": "code",
@@ -577,7 +577,7 @@
     {
       "type": "code",
       "lang": "bash",
-      "code": "sudo apt install protobuf-compilerhttps://grpc.io/docs/languages/go/quickstart/"
+      "code": "sudo\napt install protobuf-compilerhttps://grpc.io/docs/languages/go/quickstart/"
     },
     {
       "type": "code",
@@ -603,8 +603,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "go install \\    github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-grpc-gateway \\    github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-openapiv2 \\    google.golang.org/protobuf/cmd/protoc-gen-go \\    google.golang.org/grpc/cmd/protoc-gen-go-grpc"
+      "lang": "bash",
+      "code": "go install \\\n  github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-grpc-gateway \\\n  github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-openapiv2 \\\n  google.golang.org/protobuf/cmd/protoc-gen-go \\\n  google.golang.org/grpc/cmd/protoc-gen-go-grpc"
     },
     {
       "type": "heading",
@@ -614,7 +614,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": " @go get -u google.golang.org/protobuf/proto @go install google.golang.org/protobuf/cmd/protoc-gen-go@latest @go install github.com/go-micro/generator/cmd/protoc-gen-micro@latest  "
+      "code": "@go get -u google.golang.org/protobuf/proto @go install\ngoogle.golang.org/protobuf/cmd/protoc-gen-go@latest @go install\ngithub.com/go-micro/generator/cmd/protoc-gen-micro@latest"
     },
     {
       "type": "heading",
@@ -644,7 +644,7 @@
     {
       "type": "code",
       "lang": "bash",
-      "code": "sudo apt-get install build-essential"
+      "code": "sudo\napt-get install build-essential"
     },
     {
       "type": "heading",
@@ -664,7 +664,7 @@
     {
       "type": "code",
       "lang": "bash",
-      "code": "sudo apt install calc"
+      "code": "sudo\napt install calc"
     },
     {
       "type": "heading",
@@ -691,7 +691,7 @@
     {
       "type": "code",
       "lang": "bash",
-      "code": "sudo apt  install tmux"
+      "code": "sudo\napt  install tmux"
     },
     {
       "type": "heading",
@@ -764,7 +764,7 @@
     {
       "type": "code",
       "lang": "bash",
-      "code": "sudo snap install sqlcgo install github.com/kyleconroy/sqlc/cmd/sqlc@latest"
+      "code": "sudo snap install sqlc\ngo install github.com/kyleconroy/sqlc/cmd/sqlc@latest"
     },
     {
       "type": "heading",
@@ -774,7 +774,7 @@
     {
       "type": "code",
       "lang": "bash",
-      "code": "sudo apt install gnome-sound-recorder"
+      "code": "sudo\napt install gnome-sound-recorder"
     }
   ]
 }

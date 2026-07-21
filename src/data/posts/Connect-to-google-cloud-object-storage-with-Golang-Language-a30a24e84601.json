@@ -36,7 +36,7 @@
     {
       "type": "code",
       "lang": "python",
-      "code": "import     \"cloud.google.com/go/storage\"ctx := context.Background()client, err := storage.NewClient(ctx)if err != nil {    // TODO: Handle error.}"
+      "code": "import     \"cloud.google.com/go/storage\"ctx := context.Background()client, err :=\nstorage.NewClient(ctx)if err != nil {\n    // TODO: Handle error.}"
     },
     {
       "type": "paragraph",
@@ -57,7 +57,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "filename := \"./address_of_json.json\" client, err := storage.NewClient(ctx, option.WithCredentialsFile(filename)) if err != nil {  logger.Fatal(err) }"
+      "code": "filename := \"./address_of_json.json\" client, err := storage.NewClient(ctx,\noption.WithCredentialsFile(filename)) if err != nil {  logger.Fatal(err) }"
     },
     {
       "type": "heading",
@@ -89,7 +89,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "attrs, err := bkt.Attrs(ctx)if err != nil {    // TODO: Handle error.}fmt.Printf(\"bucket %s, created at %s, is located in %s with storage class %s\\n\",    attrs.Name, attrs.Created, attrs.Location, attrs.StorageClass)"
+      "code": "attrs, err := bkt.Attrs(ctx)if err != nil {    // TODO: Handle\nerror.}fmt.Printf(\"bucket %s, created at %s, is located in %s with storage class %s\\n\",\nattrs.Name, attrs.Created, attrs.Location, attrs.StorageClass)"
     },
     {
       "type": "heading",
@@ -103,7 +103,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": " obj := bkt.Object(\"new-first-one\")"
+      "code": "obj := bkt.Object(\"new-first-one\")"
     },
     {
       "type": "heading",
@@ -117,7 +117,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "// Create a byte slice. bytes := []byte(\"Hello, world!\") writer := obj.NewWriter(ctx) _, err = writer.Write(bytes) if err != nil {  log.Fatal(err) } // Close the writer. err = writer.Close() if err != nil {  log.Fatal(err) }"
+      "code": "// Create a byte slice. bytes := []byte(\"Hello, world!\") writer := obj.NewWriter(ctx) _, err =\nwriter.Write(bytes) if err != nil {  log.Fatal(err) } // Close the writer. err = writer.Close() if\nerr != nil {  log.Fatal(err) }"
     },
     {
       "type": "heading",
@@ -131,7 +131,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": " // Create a reader. reader, err := obj.NewReader(ctx) if err != nil {  log.Fatal(err) } // Read the bytes from the file. bytes, err := io.ReadAll(reader) if err != nil {  log.Fatal(err) } // Close the reader. err = reader.Close() if err != nil {  log.Fatal(err) } // Convert the bytes to a string and print it. fmt.Println(string(bytes))"
+      "code": "// Create a reader. reader, err := obj.NewReader(ctx) if err != nil {  log.Fatal(err) } // Read the\nbytes from the file. bytes, err := io.ReadAll(reader) if err != nil {  log.Fatal(err) } // Close the\nreader. err = reader.Close() if err != nil {  log.Fatal(err) } // Convert the bytes to a string and\nprint it. fmt.Println(string(bytes))"
     },
     {
       "type": "heading",
@@ -145,7 +145,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": " err = obj.Delete(ctx) if err != nil {  logger.Fatal(err) }"
+      "code": "err = obj.Delete(ctx) if err != nil {  logger.Fatal(err) }"
     },
     {
       "type": "heading",
@@ -159,7 +159,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "query := &storage.Query{Prefix: \"\"} var names []string it := bkt.Objects(ctx, query) for {  attrs, err := it.Next()  if err == iterator.Done {   break  }  if err != nil {   log.Fatal(err)  }  names = append(names, attrs.Name) }"
+      "code": "query := &storage.Query{Prefix: \"\"} var names []string it := bkt.Objects(ctx, query) for {  attrs,\nerr := it.Next()  if err == iterator.Done {   break  }  if err != nil {   log.Fatal(err)  }  names =\nappend(names, attrs.Name) }"
     },
     {
       "type": "heading",
@@ -173,7 +173,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "ctx := context.Background() client, err := storage.NewClient(ctx) if err != nil {  // TODO: handle error. } data := []byte(\"verify me\") wc := client.Bucket(\"bucketname\").Object(\"filename1\").NewWriter(ctx) wc.CRC32C = crc32.Checksum(data, crc32.MakeTable(crc32.Castagnoli)) wc.SendCRC32C = true if _, err := wc.Write([]byte(\"hello world\")); err != nil {  // TODO: handle error.  // Note that Write may return nil in some error situations,  // so always check the error from Close. } if err := wc.Close(); err != nil {  // TODO: handle error. } fmt.Println(\"updated object:\", wc.Attrs())"
+      "code": "ctx := context.Background() client, err := storage.NewClient(ctx) if err != nil {  // TODO: handle\nerror. } data := []byte(\"verify me\") wc :=\nclient.Bucket(\"bucketname\").Object(\"filename1\").NewWriter(ctx) wc.CRC32C = crc32.Checksum(data,\ncrc32.MakeTable(crc32.Castagnoli)) wc.SendCRC32C = true if _, err :=\nwc.Write([]byte(\"hello world\")); err != nil {  // TODO: handle error.  // Note that Write may return\nnil in some error situations,  // so always check the error from Close. } if err := wc.Close(); err\n!= nil {  // TODO: handle error. } fmt.Println(\"updated object:\", wc.Attrs())"
     },
     {
       "type": "heading",
@@ -183,7 +183,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "ctx := context.Background() client, err := storage.NewClient(ctx) if err != nil {  // TODO: handle error. } tctx, cancel := context.WithTimeout(ctx, 30*time.Second) defer cancel() // Cancel when done, whether we time out or not. wc := client.Bucket(\"bucketname\").Object(\"filename1\").NewWriter(tctx) wc.ContentType = \"text/plain\" wc.ACL = []storage.ACLRule{{Entity: storage.AllUsers, Role: storage.RoleReader}} if _, err := wc.Write([]byte(\"hello world\")); err != nil {  // TODO: handle error.  // Note that Write may return nil in some error situations,  // so always check the error from Close. } if err := wc.Close(); err != nil {  // TODO: handle error. } fmt.Println(\"updated object:\", wc.Attrs())"
+      "code": "ctx := context.Background() client, err := storage.NewClient(ctx) if err != nil {  // TODO: handle\nerror. } tctx, cancel := context.WithTimeout(ctx, 30*time.Second) defer cancel() // Cancel when\ndone, whether we time out or not. wc :=\nclient.Bucket(\"bucketname\").Object(\"filename1\").NewWriter(tctx) wc.ContentType = \"text/plain\" wc.ACL\n= []storage.ACLRule{{Entity: storage.AllUsers, Role: storage.RoleReader}} if _, err :=\nwc.Write([]byte(\"hello world\")); err != nil {  // TODO: handle error.  // Note that Write may return\nnil in some error situations,  // so always check the error from Close. } if err := wc.Close(); err\n!= nil {  // TODO: handle error. } fmt.Println(\"updated object:\", wc.Attrs())"
     },
     {
       "type": "heading",
@@ -193,7 +193,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "func main() { ctx := context.Background() client, err := storage.NewClient(ctx) if err != nil {  // TODO: handle error. } obj := client.Bucket(\"my-bucket\").Object(\"my-object\") // Encrypt the object's contents. w := obj.Key(secretKey).NewWriter(ctx) if _, err := w.Write([]byte(\"top secret\")); err != nil {  // TODO: handle error. } if err := w.Close(); err != nil {  // TODO: handle error. }}"
+      "code": "func main() {\n    ctx := context.Background() client, err := storage.NewClient(ctx) if err != nil {\n        // TODO: handle error.\n    }\n    obj := client.Bucket(\"my-bucket\").Object(\"my-object\") // Encrypt the\n    object's contents. w := obj.Key(secretKey).NewWriter(ctx) if _, err := w.Write([]byte(\"top secret\")); err != nil {  // TODO: handle error. } if err := w.Close(); err != nil {  // TODO: handle error. }}"
     },
     {
       "type": "heading",
@@ -203,7 +203,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "func main() { ctx := context.Background() client, err := storage.NewClient(ctx) if err != nil {  // TODO: handle error. } objAttrs, err := client.Bucket(\"my-bucket\").Object(\"my-object\").Attrs(ctx) if err != nil {  // TODO: handle error. } fmt.Println(objAttrs)}"
+      "code": "func main() {\n    ctx := context.Background() client, err := storage.NewClient(ctx) if err != nil {\n        // TODO: handle error.\n    }\n    objAttrs, err := client.Bucket(\"my-bucket\").Object(\"my-object\").Attrs(ctx) if err != nil {\n        // TODO: handle error.\n    }\n    fmt.Println(objAttrs)\n}"
     },
     {
       "type": "heading",
@@ -213,7 +213,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "func main() { ctx := context.Background() client, err := storage.NewClient(ctx) if err != nil {  // TODO: handle error. } objAttrs, err := client.Bucket(\"my-bucket\").Object(\"my-object\").Attrs(ctx) if err != nil {  // TODO: handle error. } fmt.Println(objAttrs)}"
+      "code": "func main() {\n    ctx := context.Background() client, err := storage.NewClient(ctx) if err != nil {\n        // TODO: handle error.\n    }\n    objAttrs, err := client.Bucket(\"my-bucket\").Object(\"my-object\").Attrs(ctx) if err != nil {\n        // TODO: handle error.\n    }\n    fmt.Println(objAttrs)\n}"
     },
     {
       "type": "heading",

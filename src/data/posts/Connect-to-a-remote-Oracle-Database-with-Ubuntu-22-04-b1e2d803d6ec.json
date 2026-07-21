@@ -45,7 +45,7 @@
     {
       "type": "code",
       "lang": "bash",
-      "code": "sudo apt updatesudo apt install alien libaio-dev wget unzip"
+      "code": "sudo\napt update\nsudo\napt install alien libaio-dev\nwget unzip"
     },
     {
       "type": "heading",
@@ -55,7 +55,7 @@
     {
       "type": "code",
       "lang": "bash",
-      "code": "sudo mkdir -p /opt/oraclecd /opt/oracle"
+      "code": "sudo\nmkdir -p /opt/oraclecd /opt/oracle"
     },
     {
       "type": "heading",
@@ -72,8 +72,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "wget https://download.oracle.com/otn_software/linux/instantclient/2326000/instantclient-basic-linux.x64-23.26.0.0.0.zipwget https://download.oracle.com/otn_software/linux/instantclient/2326000/instantclient-sqlplus-linux.x64-23.26.0.0.0.zip"
+      "lang": "bash",
+      "code": "wget\nhttps://download.oracle.com/otn_software/linux/instantclient/2326000/instantclient-basic-linux.x64-23.26.0.0.0.zip\nwget\nhttps://download.oracle.com/otn_software/linux/instantclient/2326000/instantclient-sqlplus-linux.x64-23.26.0.0.0.zip"
     },
     {
       "type": "heading",
@@ -83,7 +83,7 @@
     {
       "type": "code",
       "lang": "bash",
-      "code": "sudo apt install unzip -yunzip instantclient-basic-linux.x64-23.26.0.0.0.zipunzip instantclient-sqlplus-linux.x64-23.26.0.0.0.zip"
+      "code": "sudo\napt install unzip -yunzip instantclient-basic-linux.x64-23.26.0.0.0.zipunzip\ninstantclient-sqlplus-linux.x64-23.26.0.0.0.zip"
     },
     {
       "type": "heading",
@@ -97,7 +97,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "echo 'export LD_LIBRARY_PATH=/opt/oracle/instantclient_23_26:$LD_LIBRARY_PATH' >> ~/.bashrcecho 'export PATH=/opt/oracle/instantclient_23_26:$PATH' >> ~/.bashrcsource ~/.bashrc"
+      "code": "echo 'export LD_LIBRARY_PATH=/opt/oracle/instantclient_23_26:$LD_LIBRARY_PATH' >> ~/.bashrcecho\n'export PATH=/opt/oracle/instantclient_23_26:$PATH' >> ~/.bashrcsource ~/.bashrc"
     },
     {
       "type": "heading",

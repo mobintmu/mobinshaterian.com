@@ -32,7 +32,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "The following packages have unmet dependencies: mongodb-org-mongos : Depends: libssl1.1 (>= 1.1.1) but it is not installable mongodb-org-server : Depends: libssl1.1 (>= 1.1.1) but it is not installable mongodb-org-shell : Depends: libssl1.1 (>= 1.1.1) but it is not installable"
+      "code": "The following packages have unmet dependencies: mongodb-org-mongos : Depends: libssl1.1 (>= 1.1.1)\nbut it is not installable mongodb-org-server : Depends: libssl1.1 (>= 1.1.1) but it is not\ninstallable mongodb-org-shell : Depends: libssl1.1 (>= 1.1.1) but it is not installable"
     },
     {
       "type": "paragraph",
@@ -45,7 +45,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "The following packages have unmet dependencies: mongodb-org-mongos : Depends: libssl1.1 (>= 1.1.1) but 1.1.0g-2ubuntu4 is to be installed mongodb-org-server : Depends: libssl1.1 (>= 1.1.1) but 1.1.0g-2ubuntu4 is to be installed mongodb-org-shell : Depends: libssl1.1 (>= 1.1.1) but 1.1.0g-2ubuntu4 is to be installedE: Unable to correct problems, you have held broken packages."
+      "code": "The following packages have unmet dependencies: mongodb-org-mongos : Depends: libssl1.1 (>= 1.1.1)\nbut 1.1.0g-2ubuntu4 is to be installed mongodb-org-server : Depends: libssl1.1 (>= 1.1.1) but\n1.1.0g-2ubuntu4 is to be installed mongodb-org-shell : Depends: libssl1.1 (>= 1.1.1) but\n1.1.0g-2ubuntu4 is to be installedE: Unable to correct problems, you have held broken packages."
     },
     {
       "type": "paragraph",
@@ -69,18 +69,18 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "yaml",
       "code": "version: '2'"
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "services:  mongodb:    image: docker.io/bitnami/mongodb:5.0    ports:      - \"27017:27017\"    volumes:      - 'mongodb_data:/bitnami/mongodb'    networks:      - backend"
+      "lang": "yaml",
+      "code": "services:\n  mongodb:\n    image: docker.io/bitnami/mongodb:5.0\n    ports:\n      - \"27017:27017\"\n    volumes:\n      - 'mongodb_data:/bitnami/mongodb'\n    networks:\n      - backend"
     },
     {
       "type": "code",
       "lang": "text",
-      "code": "mongoex:    image: mongo-express    environment:    - ME_CONFIG_MONGODB_SERVER=mongodb    - ME_CONFIG_MONGODB_PORT=27017    ports:    - \"8085:8081\"    networks:      - backend    restart: always    depends_on:      - mongodb"
+      "code": "mongoex:    image: mongo-express    environment:    - ME_CONFIG_MONGODB_SERVER=mongodb    -\nME_CONFIG_MONGODB_PORT=27017    ports:    - \"8085:8081\"    networks:      - backend    restart:\nalways    depends_on:      - mongodb"
     },
     {
       "type": "code",

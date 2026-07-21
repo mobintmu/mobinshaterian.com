@@ -49,8 +49,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "scalar Timescalar Int64input ProductFilter {  id: Int  name: String  description: String  minPrice: Int64  maxPrice: Int64  isActive: Boolean}input PaginationInput {  limit: Int  offset: Int}type Product {  id: Int!  name: String!  description: String!  price: Int64!  isActive: Boolean!}type ProductConnection {  products: [Product!]!  total: Int!}type Query {  product(id: Int!): Product  products(filter: ProductFilter, pagination: PaginationInput): ProductConnection!}"
+      "lang": "graphql",
+      "code": "scalar Time\nscalar Int64\ninput ProductFilter {\n  id: Int  name: String  description: String  minPrice: Int64  maxPrice: Int64  isActive: Boolean\n}\n\ninput PaginationInput {\n  limit: Int  offset: Int\n}\n\ntype Product {\n  id: Int!  name: String!  description: String!  price: Int64!  isActive: Boolean!\n}\n\ntype ProductConnection {\n  products: [Product!]!  total: Int!\n}\n\ntype Query {\n  product(id: Int!): Product  products(filter: ProductFilter, pagination: PaginationInput):\n  ProductConnection!\n}"
     },
     {
       "type": "paragraph",
@@ -68,7 +68,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "func ToNullInt64(val *int64) sql.NullInt64 {    if val == nil {        return sql.NullInt64{Valid: false}    }    return sql.NullInt64{Int64: *val, Valid: true}}"
+      "code": "func ToNullInt64(val *int64) sql.NullInt64 {\n    if val == nil {\n        return sql.NullInt64{\n            Valid: false\n        }\n    }\n    return sql.NullInt64{\n        Int64: *val, Valid: true\n    }\n}"
     },
     {
       "type": "paragraph",
@@ -81,7 +81,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "func (s *Product) graphqlFilterToSQLCParams(    filter *model.ProductFilter,    pagination *model.PaginationInput,) sqlc.ListProductsWithFiltersParams {    params := sqlc.ListProductsWithFiltersParams{        Limit:  sql.NullInt64{Int64: 10, Valid: true},        Offset: sql.NullInt64{Int64: 0, Valid: true},    }    if filter != nil {        params.ID = utils.ToNullInt32(filter.ID)        params.ProductName = utils.ToNullString(filter.Name)        params.ProductDescription = utils.ToNullString(filter.Description)        params.MinPrice = utils.ToNullInt64(filter.MinPrice)        params.MaxPrice = utils.ToNullInt64(filter.MaxPrice)        params.IsActive = utils.ToNullBool(filter.IsActive)    }    if pagination != nil {        if pagination.Limit != nil {            params.Limit = sql.NullInt64{Int64: int64(*pagination.Limit), Valid: true}        }        if pagination.Offset != nil {            params.Offset = sql.NullInt64{Int64: int64(*pagination.Offset), Valid: true}        }    }    return params}"
+      "code": "func (s *Product) graphqlFilterToSQLCParams(\nfilter *model.ProductFilter,\npagination *model.PaginationInput,) sqlc.ListProductsWithFiltersParams {\n    params := sqlc.ListProductsWithFiltersParams{\n        Limit: sql.NullInt64{\n            Int64: 10, Valid: true\n        }, Offset: sql.NullInt64{\n            Int64: 0, Valid: true\n        },\n    }\n    if filter != nil {\n        params.ID = utils.ToNullInt32(filter.ID) params.ProductName =\n        utils.ToNullString(filter.Name) params.ProductDescription =\n        utils.ToNullString(filter.Description) params.MinPrice = utils.ToNullInt64(filter.MinPrice)\n        params.MaxPrice = utils.ToNullInt64(filter.MaxPrice) params.IsActive =\n        utils.ToNullBool(filter.IsActive)\n    }\n    if pagination != nil {\n        if pagination.Limit != nil {\n            params.Limit = sql.NullInt64{\n                Int64: int64(*pagination.Limit), Valid: true\n            }\n        }\n        if pagination.Offset != nil {\n            params.Offset = sql.NullInt64{\n                Int64: int64(*pagination.Offset), Valid: true\n            }\n        }\n    }\n    return params\n}"
     },
     {
       "type": "heading",
@@ -94,8 +94,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "-- name: ListProductsWithFilters :manySELECT id, product_name, product_description, price, is_active, created_atFROM productsWHERE  (sqlc.narg('id')::int IS NULL OR id = sqlc.narg('id'))  AND (sqlc.narg('product_name')::text IS NULL OR product_name ILIKE '%' || sqlc.narg('product_name') || '%')  AND (sqlc.narg('min_price')::bigint IS NULL OR price >= sqlc.narg('min_price'))  AND (sqlc.narg('max_price')::bigint IS NULL OR price <= sqlc.narg('max_price'))  AND (sqlc.narg('is_active')::bool IS NULL OR is_active = sqlc.narg('is_active'))  AND (sqlc.narg('product_description')::text IS NULL OR product_description ILIKE '%' || sqlc.narg('product_description') || '%')ORDER BY idLIMIT sqlc.narg('limit')OFFSET sqlc.narg('offset');-- name: CountProductsWithFilters :oneSELECT COUNT(*) as countFROM productsWHERE  (sqlc.narg('id')::int IS NULL OR id = sqlc.narg('id'))  AND (sqlc.narg('product_name')::text IS NULL OR product_name ILIKE '%' || sqlc.narg('product_name') || '%')  AND (sqlc.narg('min_price')::bigint IS NULL OR price >= sqlc.narg('min_price'))  AND (sqlc.narg('max_price')::bigint IS NULL OR price <= sqlc.narg('max_price'))  AND (sqlc.narg('is_active')::bool IS NULL OR is_active = sqlc.narg('is_active'))  AND (sqlc.narg('product_description')::text IS NULL OR product_description ILIKE '%' || sqlc.narg('product_description') || '%');"
+      "lang": "sql",
+      "code": "-- name: ListProductsWithFilters :many\nSELECT id, product_name, product_description, price, is_active, created_at\nFROM products\nWHERE  (sqlc.narg('id')::int IS NULL OR id = sqlc.narg('id'))  AND (sqlc.narg('product_name')::text\nIS NULL OR product_name ILIKE '%' || sqlc.narg('product_name') || '%')  AND\n(sqlc.narg('min_price')::bigint IS NULL OR price >= sqlc.narg('min_price'))  AND\n(sqlc.narg('max_price')::bigint IS NULL OR price <= sqlc.narg('max_price'))  AND\n(sqlc.narg('is_active')::bool IS NULL OR is_active = sqlc.narg('is_active'))  AND\n(sqlc.narg('product_description')::text IS NULL OR product_description ILIKE '%' ||\nsqlc.narg('product_description') || '%')\nORDER BY id\nLIMIT sqlc.narg('\nlimit')OFF\nSET sqlc.narg('off\nset');-- name: CountProductsWithFilters :one\nSELECT COUNT(*) as count\nFROM products\nWHERE  (sqlc.narg('id')::int IS NULL OR id = sqlc.narg('id'))  AND (sqlc.narg('product_name')::text\nIS NULL OR product_name ILIKE '%' || sqlc.narg('product_name') || '%')  AND\n(sqlc.narg('min_price')::bigint IS NULL OR price >= sqlc.narg('min_price'))  AND\n(sqlc.narg('max_price')::bigint IS NULL OR price <= sqlc.narg('max_price'))  AND\n(sqlc.narg('is_active')::bool IS NULL OR is_active = sqlc.narg('is_active'))  AND\n(sqlc.narg('product_description')::text IS NULL OR product_description ILIKE '%' ||\nsqlc.narg('product_description') || '%');"
     },
     {
       "type": "heading",
@@ -123,7 +123,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "func queryProductsByFilter(t *testing.T, addr, filter string, validate func(map[string]interface{}) bool) {    query := fmt.Sprintf(`{\"query\":\"query { products(filter: { %s }) { products { id name description price isActive } total } }\"}`, filter)    resp, err := http.Post(addr+\"/query\", \"application/json\", bytes.NewBufferString(query))    // ... decode response and validate results ...}"
+      "code": "func queryProductsByFilter(t *testing.T, addr, filter string, validate func(map[string]interface{\n}) bool) {\n    query :=\n    fmt.Sprintf(`{\"query\":\"query { products(filter: { %s }) { products { id name description price isActive } total } }\"}`, filter)\n    resp, err := http.Post(addr+\"/query\", \"application/json\", bytes.NewBufferString(query))\n    //...decode response and validate results...\n}"
     },
     {
       "type": "paragraph",

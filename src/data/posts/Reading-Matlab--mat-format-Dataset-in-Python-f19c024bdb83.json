@@ -72,27 +72,27 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "  # List all groups"
+      "code": "# List all groups"
     },
     {
       "type": "code",
       "lang": "python",
-      "code": "  print(f.keys() )"
+      "code": "print(f.keys() )"
     },
     {
       "type": "code",
       "lang": "text",
-      "code": "  a_group_key = list(f.keys())[0]"
+      "code": "a_group_key = list(f.keys())[0]"
     },
     {
       "type": "code",
       "lang": "text",
-      "code": "  # Get the data"
+      "code": "# Get the data"
     },
     {
       "type": "code",
       "lang": "text",
-      "code": "  data = list(f[a_group_key])"
+      "code": "data = list(f[a_group_key])"
     },
     {
       "type": "paragraph",
@@ -144,7 +144,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "array([[ 1.75953079e+00,  6.70629552e+01, -6.06060606e-02],       [ 1.71847507e+00,  6.93586281e+01, -7.52688172e-02],       [ 1.68426197e+00,  7.53664529e+01, -7.03812317e-02],       ...,       [ 1.64418377e+00,  7.64410232e+01, -1.00195503e-01],       [ 1.60019550e+00,  8.18138747e+01, -9.04203324e-02],       [ 1.56598240e+00,  9.13873191e+01, -4.54545455e-02]])"
+      "code": "array([[ 1.75953079e+00,  6.70629552e+01, -6.06060606e-02],       [ 1.71847507e+00,  6.93586281e+01,\n-7.52688172e-02],       [ 1.68426197e+00,  7.53664529e+01, -7.03812317e-02],       ...,       [\n1.64418377e+00,  7.64410232e+01, -1.00195503e-01],       [ 1.60019550e+00,  8.18138747e+01,\n-9.04203324e-02],       [ 1.56598240e+00,  9.13873191e+01, -4.54545455e-02]])"
     },
     {
       "type": "code",

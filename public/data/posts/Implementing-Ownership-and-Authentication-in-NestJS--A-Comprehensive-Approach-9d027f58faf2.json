@@ -83,7 +83,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "  @OneToMany(() => Tasks, (tasks) => tasks.user, { eager: true })  tasks: Tasks[];"
+      "code": "@OneToMany(() => Tasks, (tasks) => tasks.user, { eager: true })  tasks: Tasks[];"
     },
     {
       "type": "paragraph",
@@ -92,7 +92,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "  @ManyToOne(() => Users, (user) => user.tasks, { eager: false })  user: Users;"
+      "code": "@ManyToOne(() => Users, (user) => user.tasks, { eager: false })  user: Users;"
     },
     {
       "type": "heading",
@@ -101,8 +101,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "@Entity({ name: 'system_users' })export class User {  @PrimaryGeneratedColumn()  id: number;  @Column({ length: 255, name: \"first_name\" })  firstName: string;   @Column({ length: 255, name: \"last_name\" })  lastName: string; }"
+      "lang": "typescript",
+      "code": "@Entity({\n  name: 'system_users'\n})\nexport class User {\n  @PrimaryGeneratedColumn() id: number;\n  @Column({\n    length: 255, name: \"first_name\"\n  }) firstName: string;\n  @Column({\n    length: 255, name: \"last_name\"\n  }) lastName: string;\n}"
     },
     {
       "type": "heading",
@@ -111,8 +111,8 @@
     },
     {
       "type": "code",
-      "lang": "python",
-      "code": "import { createParamDecorator, ExecutionContext } from '@nestjs/common';export const User = createParamDecorator(  (data: unknown, ctx: ExecutionContext) => {    const request = ctx.switchToHttp().getRequest();    return request.user;  },);"
+      "lang": "typescript",
+      "code": "import {\n  createParamDecorator, ExecutionContext\n}\nfrom '@nestjs/common';\nexport const User = createParamDecorator((data: unknown, ctx: ExecutionContext) => {\n  const request = ctx.switchToHttp().getRequest();\n  return request.user;\n},);"
     },
     {
       "type": "heading",
@@ -153,8 +153,8 @@
     },
     {
       "type": "code",
-      "lang": "python",
-      "code": "import { createParamDecorator, ExecutionContext } from '@nestjs/common';import { User } from './user.entity';export const GetUser = createParamDecorator(  (data: unknown, ctx: ExecutionContext): User => {    const request = ctx.switchToHttp().getRequest();    return request.user;  },);"
+      "lang": "typescript",
+      "code": "import {\n  createParamDecorator, ExecutionContext\n}\nfrom '@nestjs/common';\nimport {\n  User\n}\nfrom './user.entity';\nexport const GetUser = createParamDecorator((data: unknown, ctx: ExecutionContext): User => {\n  const request = ctx.switchToHttp().getRequest();\n  return request.user;\n},);"
     },
     {
       "type": "paragraph",
@@ -174,8 +174,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "@Post()createTask(  @Body() createTaskDto: CreateTaskDto,  @GetUser() user: User,): Promise<Task> {  console.log(user);  return this.tasksService.createTask(createTaskDto, user);}"
+      "lang": "typescript",
+      "code": "@Post()createTask(@Body() createTaskDto: CreateTaskDto, @GetUser() user: User,): Promise<Task> {\n  console.log(user);\n  return this.tasksService.createTask(createTaskDto, user);\n}"
     },
     {
       "type": "paragraph",
@@ -200,8 +200,8 @@
     },
     {
       "type": "code",
-      "lang": "python",
-      "code": "import { createParamDecorator, ExecutionContext } from '@nestjs/common';export const GetUser = createParamDecorator(  (data: unknown, ctx: ExecutionContext) => {    const request = ctx.switchToHttp().getRequest();    return request.user;  },);"
+      "lang": "typescript",
+      "code": "import {\n  createParamDecorator, ExecutionContext\n}\nfrom '@nestjs/common';\nexport const GetUser = createParamDecorator((data: unknown, ctx: ExecutionContext) => {\n  const request = ctx.switchToHttp().getRequest();\n  return request.user;\n},);"
     },
     {
       "type": "paragraph",
@@ -209,8 +209,8 @@
     },
     {
       "type": "code",
-      "lang": "python",
-      "code": "import { User } from 'src/auth/user.entity';import { GetUser } from 'src/auth/user.decorator';...  @Post()  createTask(    @Body() createTaskDto: CreateTaskDto,    @GetUser() user: User,  ): Promise<Task> {    return this.tasksService.createTask(createTaskDto, user);  }"
+      "lang": "typescript",
+      "code": "import {\n  User\n}\nfrom 'src/auth/user.entity';\nimport {\n  GetUser\n}\nfrom 'src/auth/user.decorator';\n...@Post() createTask(@Body() createTaskDto: CreateTaskDto, @GetUser() user: User,): Promise<Task> {\n  return this.tasksService.createTask(createTaskDto, user);\n}"
     },
     {
       "type": "paragraph",
@@ -219,7 +219,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "  createTask(createTaskDto: CreateTaskDto, user: User): Promise<Task> {    const task = this.taskRepository.createTask(createTaskDto, user);    return task;  }"
+      "code": "createTask(createTaskDto: CreateTaskDto, user: User): Promise<Task> {    const task =\nthis.taskRepository.createTask(createTaskDto, user);    return task;  }"
     },
     {
       "type": "paragraph",
@@ -227,8 +227,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "  public async createTask(    createTaskDto: CreateTaskDto,    user: User,  ): Promise<Task> {    const { title, description } = createTaskDto;    const task = this.create({      title,      description,      status: TaskStatus.OPEN,      user,    });"
+      "lang": "javascript",
+      "code": "public async createTask(    createTaskDto: CreateTaskDto,    user: User,  ): Promise<Task> {\nconst { title, description } = createTaskDto;    const task = this.create({      title,\ndescription,      status: TaskStatus.OPEN,      user,    });"
     },
     {
       "type": "heading",
@@ -241,8 +241,8 @@
     },
     {
       "type": "code",
-      "lang": "python",
-      "code": "import {  CallHandler,  ExecutionContext,  Injectable,  NestInterceptor,} from '@nestjs/common';import { instanceToPlain } from 'class-transformer';import { map } from 'rxjs/operators';@Injectable()export class TransformerInterceptor implements NestInterceptor {  intercept(context: ExecutionContext, next: CallHandler<any>) {    return next.handle().pipe(map((data) => instanceToPlain(data)));  }}"
+      "lang": "typescript",
+      "code": "import {\n  CallHandler, ExecutionContext, Injectable, NestInterceptor,\n}\nfrom '@nestjs/common';\nimport {\n  instanceToPlain\n}\nfrom 'class-transformer';\nimport {\n  map\n}\nfrom 'rxjs/operators';\n@Injectable()\nexport class TransformerInterceptor implements NestInterceptor {\n  intercept(context: ExecutionContext, next: CallHandler<any>) {\n    return next.handle().pipe(map((data) => instanceToPlain(data)));\n  }\n}"
     },
     {
       "type": "heading",
@@ -251,8 +251,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "@Injectable()export class TransformerInterceptor implements NestInterceptor"
+      "lang": "typescript",
+      "code": "@Injectable()\nexport class TransformerInterceptor implements NestInterceptor"
     },
     {
       "type": "list",
@@ -270,7 +270,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "intercept(context: ExecutionContext, next: CallHandler<any>) {  return next.handle().pipe(map((data) => instanceToPlain(data)));}"
+      "code": "intercept(context: ExecutionContext, next: CallHandler<any>) {  return next.handle().pipe(map((data)\n=> instanceToPlain(data)));}"
     },
     {
       "type": "list",
@@ -338,7 +338,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "  @ManyToOne(() => User, (user) => user.tasks, { eager: false })  @Exclude({ toPlainOnly: true })  @JoinColumn({ name: 'user_id' })  user: User;"
+      "code": "@ManyToOne(() => User, (user) => user.tasks, { eager: false })  @Exclude({ toPlainOnly: true })\n@JoinColumn({ name: 'user_id' })  user: User;"
     },
     {
       "type": "paragraph",
@@ -346,8 +346,8 @@
     },
     {
       "type": "code",
-      "lang": "python",
-      "code": "import {  Column,  Entity,  JoinColumn,  ManyToOne,  PrimaryGeneratedColumn,} from 'typeorm';import { TaskStatus } from './tasks-status.enum';import { User } from 'src/auth/user.entity';import { Exclude } from 'class-transformer';@Entity({ name: 'tasks' })export class Task {  @PrimaryGeneratedColumn('uuid')  id: string;  @Column()  title: string;  @Column()  description: string;  @Column()  status: TaskStatus;  @ManyToOne(() => User, (user) => user.tasks, { eager: false })  @Exclude({ toPlainOnly: true })  @JoinColumn({ name: 'user_id' })  user: User;  @Column()  created_at: Date;}"
+      "lang": "typescript",
+      "code": "import {\n  Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn,\n}\nfrom 'typeorm';\nimport {\n  TaskStatus\n}\nfrom './tasks-status.enum';\nimport {\n  User\n}\nfrom 'src/auth/user.entity';\nimport {\n  Exclude\n}\nfrom 'class-transformer';\n@Entity({\n  name: 'tasks'\n})\nexport class Task {\n  @PrimaryGeneratedColumn('uuid') id: string;\n  @Column() title: string;\n  @Column() description: string;\n  @Column() status: TaskStatus;\n  @ManyToOne(() => User, (user) => user.tasks, {\n    eager: false\n  }) @Exclude({\n    toPlainOnly: true\n  }) @JoinColumn({\n    name: 'user_id'\n  }) user: User;\n  @Column() created_at: Date;\n}"
     },
     {
       "type": "paragraph",
@@ -355,8 +355,8 @@
     },
     {
       "type": "code",
-      "lang": "python",
-      "code": "import { NestFactory } from '@nestjs/core';import { AppModule } from './app.module';import { ValidationPipe } from '@nestjs/common';import { TransformerInterceptor } from './transform.interceptor';async function bootstrap() {  const app = await NestFactory.create(AppModule);  app.useGlobalPipes(new ValidationPipe());  app.useGlobalInterceptors(new TransformerInterceptor());  await app.listen(3000);}bootstrap();"
+      "lang": "typescript",
+      "code": "import {\n  NestFactory\n}\nfrom '@nestjs/core';\nimport {\n  AppModule\n}\nfrom './app.module';\nimport {\n  ValidationPipe\n}\nfrom '@nestjs/common';\nimport {\n  TransformerInterceptor\n}\nfrom './transform.interceptor';\nasync function bootstrap() {\n  const app = await NestFactory.create(AppModule);\n  app.useGlobalPipes(new ValidationPipe());\n  app.useGlobalInterceptors(new TransformerInterceptor());\n  await app.listen(3000);\n}\nbootstrap();"
     },
     {
       "type": "paragraph",
@@ -393,8 +393,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "  @Get()  getTasks(    @Query() filterDto: GetTasksFilterDto,    @GetUser() user: User,  ): Promise<Task[]> {    return this.tasksService.getTasks(filterDto, user);  }"
+      "lang": "typescript",
+      "code": "@Get() getTasks(@Query() filterDto: GetTasksFilterDto, @GetUser() user: User,): Promise<Task[]> {\n  return this.tasksService.getTasks(filterDto, user);\n}"
     },
     {
       "type": "paragraph",
@@ -403,7 +403,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "  async getTasks(filterDto: GetTasksFilterDto, user: User): Promise<Task[]> {    return await this.taskRepository.getTasks(filterDto, user);  }"
+      "code": "async getTasks(filterDto: GetTasksFilterDto, user: User): Promise<Task[]> {    return await\nthis.taskRepository.getTasks(filterDto, user);  }"
     },
     {
       "type": "paragraph",
@@ -412,7 +412,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "  async getTasks(filterDto: GetTasksFilterDto, user: User): Promise<Task[]> {    const { status, search } = filterDto;    const query = this.createQueryBuilder('tasks');    query.where({ user });    if (status) {      query.andWhere('tasks.status = :status', { status });    }    if (search) {      query.andWhere(        '(LOWER(tasks.title) LIKE LOWER(:search) OR LOWER(tasks.description) LIKE LOWER(:search))',        { search: `%${search}%` },      );    }    const tasks = await query.getMany();    return tasks;  }"
+      "code": "async getTasks(filterDto: GetTasksFilterDto, user: User): Promise<Task[]> {    const { status,\nsearch } = filterDto;    const query = this.createQueryBuilder('tasks');    query.where({ user });\nif (status) {      query.andWhere('tasks.status = :status', { status });    }    if (search) {\nquery.andWhere(\n'(LOWER(tasks.title) LIKE LOWER(:search) OR LOWER(tasks.description) LIKE LOWER(:search))',        {\nsearch: `%${search}%` },      );    }    const tasks = await query.getMany();    return tasks;  }"
     },
     {
       "type": "heading",
@@ -425,8 +425,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "  @Get('/:id')  getTaskById(@Param('id') id: string, @GetUser() user: User): Promise<Task> {    return this.tasksService.getTaskById(id, user);  }"
+      "lang": "typescript",
+      "code": "@Get('/:id') getTaskById(@Param('id') id: string, @GetUser() user: User): Promise<Task> {\n  return this.tasksService.getTaskById(id, user);\n}"
     },
     {
       "type": "paragraph",
@@ -435,7 +435,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "  async getTaskById(id: string, user: User): Promise<Task> {    const task = await this.taskRepository.getTaskById(id, user);    return task;  }"
+      "code": "async getTaskById(id: string, user: User): Promise<Task> {    const task = await\nthis.taskRepository.getTaskById(id, user);    return task;  }"
     },
     {
       "type": "paragraph",
@@ -444,7 +444,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "  public async getTaskById(id: string): Promise<Task> {    const found = await this.findOne({ where: { id: id } });    if (!found) {      throw new NotFoundException(`Task with ID \"${id}\" not found`);    }    return found;  }"
+      "code": "public async getTaskById(id: string): Promise<Task> {    const found = await this.findOne({ where: {\nid: id } });    if (!found) {      throw new NotFoundException(`Task with ID \"${id}\" not found`);\n}    return found;  }"
     },
     {
       "type": "heading",

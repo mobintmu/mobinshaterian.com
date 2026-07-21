@@ -60,7 +60,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "hugo new site quickstartcd quickstartgit initgit submodule add https://github.com/theNewDynamic/gohugo-theme-ananke.git themes/anankeecho \"theme = 'ananke'\" >> hugo.tomlhugo server"
+      "code": "hugo new site quickstartcd quickstartgit initgit submodule add\nhttps://github.com/theNewDynamic/gohugo-theme-ananke.git themes/anankeecho \"theme = 'ananke'\" >>\nhugo.tomlhugo server"
     },
     {
       "type": "heading",
@@ -78,7 +78,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "git clone https://github.com/apvarun/blist-hugo-theme.git themes/blist"
+      "code": "git clone\nhttps://github.com/apvarun/blist-hugo-theme.git themes/blist"
     },
     {
       "type": "paragraph",
@@ -87,7 +87,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "git submodule add https://github.com/apvarun/blist-hugo-theme.git themes/blist"
+      "code": "git submodule add\nhttps://github.com/apvarun/blist-hugo-theme.git themes/blist"
     },
     {
       "type": "heading",
@@ -117,7 +117,7 @@
     {
       "type": "code",
       "lang": "bash",
-      "code": "sudo apt updatesudo apt install apache2"
+      "code": "sudo\napt update\nsudo\napt install apache2"
     },
     {
       "type": "paragraph",
@@ -278,7 +278,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "git submodule add https://github.com/theNewDynamic/gohugo-theme-ananke.git themes/ananke"
+      "code": "git submodule add\nhttps://github.com/theNewDynamic/gohugo-theme-ananke.git themes/ananke"
     },
     {
       "type": "list",

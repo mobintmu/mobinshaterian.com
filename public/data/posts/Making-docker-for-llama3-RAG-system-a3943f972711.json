@@ -95,7 +95,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "$ docker ps aa492e7068d7   ollama/ollama:latest        \"/bin/ollama serve\"      9 seconds ago   Up 8 seconds   0.0.0.0:11434->11434/tcp   ollama"
+      "code": "$ docker ps aa492e7068d7   ollama/ollama:latest        \"/bin/ollama serve\"      9 seconds ago   Up 8\nseconds   0.0.0.0:11434->11434/tcp   ollama"
     },
     {
       "type": "code",
@@ -114,7 +114,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "model = Ollama(model=MODEL , base_url='http://ollama:11434')"
+      "code": "model = Ollama(model=MODEL , base_url='\nhttp://ollama:11434')"
     },
     {
       "type": "heading",
@@ -123,8 +123,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "version: \"3.9\"services:  ollama-faqs:    image: ollama-app    env_file:      - .env    networks:      - ollama-network    ports:      - 8000:8080    depends_on:      - ollama  ollama:      image: ollama/ollama:latest      ports:        - 7869:11434      volumes:        - .:/code        - ./ollama/ollama:/root/.ollama      container_name: ollama      pull_policy: always      tty: true      restart: always      environment:        - OLLAMA_KEEP_ALIVE=24h        - OLLAMA_HOST=0.0.0.0      networks:        - ollama-network  ollama-webui:    image: ghcr.io/open-webui/open-webui:main    container_name: ollama-webui    volumes:      - ./ollama/ollama-webui:/app/backend/data    depends_on:      - ollama    ports:      - 8080:8080    environment: # https://docs.openwebui.com/getting-started/env-configuration#default_models      - OLLAMA_BASE_URLS=http://host.docker.internal:7869 #comma separated ollama hosts      - ENV=dev      - WEBUI_AUTH=False      - WEBUI_NAME=valiantlynx AI      - WEBUI_URL=http://localhost:8080      - WEBUI_SECRET_KEY=t0p-s3cr3t    extra_hosts:      - host.docker.internal:host-gateway    restart: unless-stopped    networks:      - ollama-networknetworks:  ollama-network:    external: true"
+      "lang": "yaml",
+      "code": "version: \"3.9\"services:\n  ollama-faqs:\n    image: ollama-app\n    env_file:\n      - .env\n    networks:\n      - ollama-network\n    ports:\n      - 8000:8080\n    depends_on:\n      - ollama\n  ollama:\n      image: ollama/ollama:latest\n      ports:\n        - 7869:11434\n      volumes:\n        - .:/code\n        - ./ollama/ollama:/root/.ollama\n      container_name: ollama\n      pull_policy: always\n      tty: true\n      restart: always\n      environment:\n        - OLLAMA_KEEP_ALIVE=24h\n        - OLLAMA_HOST=0.0.0.0\n      networks:\n        - ollama-network\n  ollama-webui:\n    image: ghcr.io/open-webui/open-webui:main\n    container_name: ollama-webui\n    volumes:\n      - ./ollama/ollama-webui:/app/backend/data\n    depends_on:\n      - ollama\n    ports:\n      - 8080:8080\n    environment: # https://docs.openwebui.com/getting-started/env-configuration#default_models\n      - OLLAMA_BASE_URLS=http://host.docker.internal:7869 #comma separated ollama hosts\n      - ENV=dev\n      - WEBUI_AUTH=False\n      - WEBUI_NAME=valiantlynx AI\n      - WEBUI_URL=http://localhost:8080\n      - WEBUI_SECRET_KEY=t0p-s3cr3t\n    extra_hosts:\n      - host.docker.internal:host-gateway\n    restart: unless-stopped\n    networks:\n      - ollama-networknetworks:\n  ollama-network:\n    external: true"
     },
     {
       "type": "heading",
@@ -159,7 +159,7 @@
     {
       "type": "code",
       "lang": "bash",
-      "code": "curl -fsSL https://nvidia.github.io/libnvidia-container/gpgkey | sudo gpg --dearmor -o /usr/share/keyrings/nvidia-container-toolkit-keyring.gpg \\  && curl -s -L https://nvidia.github.io/libnvidia-container/stable/deb/nvidia-container-toolkit.list | \\    sed 's#deb https://#deb [signed-by=/usr/share/keyrings/nvidia-container-toolkit-keyring.gpg] https://#g' | \\    sudo tee /etc/apt/sources.list.d/nvidia-container-toolkit.list"
+      "code": "curl -fsSL https://nvidia.github.io/libnvidia-container/gpgkey |\nsudo gpg --dearmor -o /usr/share/keyrings/nvidia-container-toolkit-keyring.gpg \\\n  &&\ncurl -s -L https://nvidia.github.io/libnvidia-container/stable/deb/nvidia-container-toolkit.list | \\\n  sed\n  's#deb https://#deb [signed-by=/usr/share/keyrings/nvidia-container-toolkit-keyring.gpg] https://#g' | \\\n\nsudo tee /etc/apt/sources.list.d/nvidia-container-toolkit.list"
     },
     {
       "type": "paragraph",
@@ -177,7 +177,7 @@
     {
       "type": "code",
       "lang": "bash",
-      "code": "sudo apt-get update"
+      "code": "sudo\napt-get update"
     },
     {
       "type": "list",
@@ -189,7 +189,7 @@
     {
       "type": "code",
       "lang": "bash",
-      "code": "sudo apt-get install -y nvidia-container-toolkit"
+      "code": "sudo\napt-get install -y nvidia-container-toolkit"
     },
     {
       "type": "heading",
@@ -228,7 +228,7 @@
     {
       "type": "code",
       "lang": "json",
-      "code": "{    \"registry-mirrors\": [        \"https://registry.docker.ir\"    ],    \"runtimes\": {        \"nvidia\": {            \"args\": [],            \"path\": \"nvidia-container-runtime\"        }    }}"
+      "code": "{\n  \"registry-mirrors\": [\n    \"https://registry.docker.ir\"\n  ],\n  \"runtimes\": {\n    \"nvidia\": {\n      \"args\": [],\n      \"path\": \"nvidia-container-runtime\"\n    }\n  }\n}"
     },
     {
       "type": "heading",
@@ -237,8 +237,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "version: \"3.8\"  # Adjust version if neededservices:  your-service:    image: your-image:latest    deploy:      resources:        reservations:          devices:            - driver: nvidia              capabilities: [gpu]              count: 1  # Adjust count as needed"
+      "lang": "yaml",
+      "code": "version: \"3.8\"\n  # Adjust version if neededservices:\n  your-service:\n    image: your-image:latest\n    deploy:\n      resources:\n        reservations:\n          devices:\n            - driver: nvidia\n              capabilities: [gpu]\n              count: 1\n  # Adjust count as needed"
     },
     {
       "type": "heading",
@@ -248,7 +248,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "llama_new_context_with_model:        CPU  output buffer size =     0.00 MiBllama_new_context_with_model:      CUDA0 compute buffer size =    23.00 MiBllama_new_context_with_model:  CUDA_Host compute buffer size =     3.50 MiB"
+      "code": "llama_new_context_with_model:        CPU  output buffer size =     0.00\nMiBllama_new_context_with_model:      CUDA0 compute buffer size =    23.00\nMiBllama_new_context_with_model:  CUDA_Host compute buffer size =     3.50 MiB"
     },
     {
       "type": "paragraph",

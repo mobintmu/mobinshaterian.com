@@ -242,7 +242,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "package mainimport ( \"go-example/repository\" \"go-example/service\")func main() { repository := repository.New(\"mysql\") service := service.New(\"user\", repository) service.Run()}"
+      "code": "package main\nimport (\n\"go-example/repository\"\n\"go-example/service\"\n)\nfunc main() {\n    repository := repository.New(\"mysql\") service := service.New(\"user\", repository) service.Run()\n}"
     },
     {
       "type": "paragraph",
@@ -251,7 +251,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "package serviceimport \"go-example/repository\"type Service struct { ServiceName string Model       *repository.DB}func New(serviceName string, model *repository.DB) *Service { return &Service{  ServiceName: serviceName,  Model:       model, }}func (s *Service) Run() { println(\"Service is running\")}"
+      "code": "package serviceimport \"go-example/repository\"type Service struct {\n    ServiceName string\n    Model *repository.DB\n}\nfunc New(serviceName string, model *repository.DB) *Service {\n    return &Service{\n        ServiceName: serviceName, Model: model,\n    }\n}\nfunc (s *Service) Run() {\n    println(\"Service is running\")\n}"
     },
     {
       "type": "paragraph",
@@ -260,7 +260,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "package repositorytype DB struct { RepositoryName string}func New(repositoryName string) *DB { return &DB{  RepositoryName: repositoryName, }}"
+      "code": "package repositorytype DB struct {\n    RepositoryName string\n}\nfunc New(repositoryName string) *DB {\n    return &DB{\n        RepositoryName: repositoryName,\n    }\n}"
     },
     {
       "type": "heading",
@@ -312,7 +312,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "package mainimport ( \"go-example/manufacture\")func main() { markCompany := manufacture.NewMarkCompany() for i := 0; i <= 10; i++ {  markCompany.AddGun() } markCompany.PrintGunList()}"
+      "code": "package main\nimport (\n\"go-example/manufacture\"\n)\nfunc main() {\n    markCompany := manufacture.NewMarkCompany() for i := 0;\n    i <= 10;\n    i++ {\n        markCompany.AddGun()\n    }\n    markCompany.PrintGunList()\n}"
     },
     {
       "type": "paragraph",
@@ -321,7 +321,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "package manufactureimport ( \"fmt\" \"go-example/gun\" \"math/rand\")type MarkCompany struct { gunList []gun.IGun}func NewMarkCompany() *MarkCompany { mk := MarkCompany{} mk.gunList = make([]gun.IGun, 0) return &mk}func (m *MarkCompany) AddGun() { myRand := rand.Intn(2) //Random distribution if myRand == 0 {  g := gun.NewAK47()  m.gunList = append(m.gunList, g) } else {  g := gun.NewShotgun()  m.gunList = append(m.gunList, g) }}func (m *MarkCompany) PrintGunList() { for _, g := range m.gunList {  fmt.Println(g.GetName(), g.GetPower()) }}"
+      "code": "package manufacture\nimport (\n\"fmt\"\n\"go-example/gun\"\n\"math/rand\"\n)\ntype MarkCompany struct {\n    gunList []gun.IGun\n}\nfunc NewMarkCompany() *MarkCompany {\n    mk := MarkCompany{\n    }\n    mk.gunList = make([]gun.IGun, 0) return &mk\n}\nfunc (m *MarkCompany) AddGun() {\n    myRand := rand.Intn(2) //Random distribution if myRand == 0 {\n        g := gun.NewAK47() m.gunList = append(m.gunList, g)\n    }\n    else {\n        g := gun.NewShotgun() m.gunList = append(m.gunList, g)\n    }\n}\nfunc (m *MarkCompany) PrintGunList() {\n    for _, g := range m.gunList {\n        fmt.Println(g.GetName(), g.GetPower())\n    }\n}"
     },
     {
       "type": "paragraph",
@@ -330,7 +330,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "package guntype Shotgun struct { Gun}func NewShotgun() IGun { return &Shotgun{  Gun: Gun{   name:  \"Shotgun\",   power: 10,  }, }}"
+      "code": "package guntype Shotgun struct {\n    Gun\n}\nfunc NewShotgun() IGun {\n    return &Shotgun{\n        Gun: Gun{\n            name: \"Shotgun\", power: 10,\n        },\n    }\n}"
     },
     {
       "type": "paragraph",
@@ -339,7 +339,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "package guntype AK47 struct { Gun}func NewAK47() IGun { return &AK47{  Gun: Gun{   name:  \"AK47\",   power: 5,  }, }}"
+      "code": "package guntype AK47 struct {\n    Gun\n}\nfunc NewAK47() IGun {\n    return &AK47{\n        Gun: Gun{\n            name: \"AK47\", power: 5,\n        },\n    }\n}"
     },
     {
       "type": "paragraph",
@@ -348,7 +348,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "package guntype IGun interface { setName(name string) GetName() string setPower(power int) GetPower() int}type Gun struct { name  string power int}func (g *Gun) setName(name string) { g.name = name}func (g *Gun) GetName() string { return g.name}func (g *Gun) setPower(power int) { g.power = power}func (g *Gun) GetPower() int { return g.power}"
+      "code": "package guntype IGun interface {\n    setName(name string) GetName() string setPower(power int) GetPower() int\n}\ntype Gun struct {\n    name string\n    power int\n}\nfunc (g *Gun) setName(name string) {\n    g.name = name\n}\nfunc (g *Gun) GetName() string {\n    return g.name\n}\nfunc (g *Gun) setPower(power int) {\n    g.power = power\n}\nfunc (g *Gun) GetPower() int {\n    return g.power\n}"
     },
     {
       "type": "image",
@@ -411,7 +411,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "package factoryimport ( \"go-example/abstract/shirt\" \"go-example/abstract/shoe\")type ISportFactory interface { MakeShoe() shoe.IShoe MakeShirt() shirt.IShirt GetShoe() shoe.IShoe GetShirt() shirt.IShirt}"
+      "code": "package factory\nimport (\n\"go-example/abstract/shirt\"\n\"go-example/abstract/shoe\"\n)\ntype ISportFactory interface {\n    MakeShoe() shoe.IShoe MakeShirt() shirt.IShirt GetShoe() shoe.IShoe GetShirt() shirt.IShirt\n}"
     },
     {
       "type": "paragraph",
@@ -420,7 +420,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "package shirttype IShirt interface { SetLogo(logo string) GetLogo() string}type Shirt struct { logo string}func NewShirt(logo string) Shirt { return Shirt{  logo: logo, }}func (s *Shirt) SetLogo(logo string) { s.logo = logo}func (s *Shirt) GetLogo() string { return s.logo}"
+      "code": "package shirttype IShirt interface {\n    SetLogo(logo string) GetLogo() string\n}\ntype Shirt struct {\n    logo string\n}\nfunc NewShirt(logo string) Shirt {\n    return Shirt{\n        logo: logo,\n    }\n}\nfunc (s *Shirt) SetLogo(logo string) {\n    s.logo = logo\n}\nfunc (s *Shirt) GetLogo() string {\n    return s.logo\n}"
     },
     {
       "type": "paragraph",
@@ -429,7 +429,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "package shoetype IShoe interface { SetLogo(logo string) SetSize(size int) GetLogo() string GetSize() int}type Shoe struct { logo string size int}func NewShoe(logo string, size int) Shoe { return Shoe{  logo: logo,  size: size, }}func (s *Shoe) SetLogo(logo string) { s.logo = logo}func (s *Shoe) GetLogo() string { return s.logo}func (s *Shoe) SetSize(size int) { s.size = size}func (s *Shoe) GetSize() int { return s.size}"
+      "code": "package shoetype IShoe interface {\n    SetLogo(logo string) SetSize(size int) GetLogo() string GetSize() int\n}\ntype Shoe struct {\n    logo string\n    size int\n}\nfunc NewShoe(logo string, size int) Shoe {\n    return Shoe{\n        logo: logo, size: size,\n    }\n}\nfunc (s *Shoe) SetLogo(logo string) {\n    s.logo = logo\n}\nfunc (s *Shoe) GetLogo() string {\n    return s.logo\n}\nfunc (s *Shoe) SetSize(size int) {\n    s.size = size\n}\nfunc (s *Shoe) GetSize() int {\n    return s.size\n}"
     },
     {
       "type": "paragraph",
@@ -438,7 +438,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "package factoryimport ( \"go-example/abstract/shirt\" \"go-example/abstract/shoe\")type Nike struct { shoe  shoe.IShoe shirt shirt.IShirt}type NikeShoe struct { shoe.Shoe}type NikeShirt struct { shirt.Shirt}func NewNike() *Nike { nike := Nike{} nike.shirt = nike.MakeShirt() nike.shoe = nike.MakeShoe() return &nike}func (n *Nike) MakeShoe() shoe.IShoe { return &NikeShoe{  shoe.NewShoe(\"nike\", 20), }}func (n *Nike) MakeShirt() shirt.IShirt { return &NikeShirt{  shirt.NewShirt(\"nike\"), }}func (n *Nike) GetShoe() shoe.IShoe { return n.shoe}func (n *Nike) GetShirt() shirt.IShirt { return n.shirt}"
+      "code": "package factory\nimport (\n\"go-example/abstract/shirt\"\n\"go-example/abstract/shoe\"\n)\ntype Nike struct {\n    shoe shoe.IShoe\n    shirt shirt.IShirt\n}\ntype NikeShoe struct {\n    shoe.Shoe\n}\ntype NikeShirt struct {\n    shirt.Shirt\n}\nfunc NewNike() *Nike {\n    nike := Nike{\n    }\n    nike.shirt = nike.MakeShirt() nike.shoe = nike.MakeShoe() return &nike\n}\nfunc (n *Nike) MakeShoe() shoe.IShoe {\n    return &NikeShoe{\n        shoe.NewShoe(\"nike\", 20),\n    }\n}\nfunc (n *Nike) MakeShirt() shirt.IShirt {\n    return &NikeShirt{\n        shirt.NewShirt(\"nike\"),\n    }\n}\nfunc (n *Nike) GetShoe() shoe.IShoe {\n    return n.shoe\n}\nfunc (n *Nike) GetShirt() shirt.IShirt {\n    return n.shirt\n}"
     },
     {
       "type": "paragraph",
@@ -447,7 +447,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "package factoryimport ( \"go-example/abstract/shirt\" \"go-example/abstract/shoe\")type Adidas struct { shoe  shoe.IShoe shirt shirt.IShirt}type AdidasShoe struct { shoe.Shoe}type AdidasShirt struct { shirt.Shirt}func NewAdidas() *Adidas { adidas := Adidas{} adidas.shoe = adidas.MakeShoe() adidas.shirt = adidas.MakeShirt() return &adidas}func (a *Adidas) MakeShoe() shoe.IShoe { return &AdidasShoe{  shoe.NewShoe(\"adidas\", 20), }}func (a *Adidas) MakeShirt() shirt.IShirt { return &AdidasShirt{  shirt.NewShirt(\"adidas\"), }}func (a *Adidas) GetShoe() shoe.IShoe { return a.shoe}func (a *Adidas) GetShirt() shirt.IShirt { return a.shirt}"
+      "code": "package factory\nimport (\n\"go-example/abstract/shirt\"\n\"go-example/abstract/shoe\"\n)\ntype Adidas struct {\n    shoe shoe.IShoe\n    shirt shirt.IShirt\n}\ntype AdidasShoe struct {\n    shoe.Shoe\n}\ntype AdidasShirt struct {\n    shirt.Shirt\n}\nfunc NewAdidas() *Adidas {\n    adidas := Adidas{\n    }\n    adidas.shoe = adidas.MakeShoe() adidas.shirt = adidas.MakeShirt() return &adidas\n}\nfunc (a *Adidas) MakeShoe() shoe.IShoe {\n    return &AdidasShoe{\n        shoe.NewShoe(\"adidas\", 20),\n    }\n}\nfunc (a *Adidas) MakeShirt() shirt.IShirt {\n    return &AdidasShirt{\n        shirt.NewShirt(\"adidas\"),\n    }\n}\nfunc (a *Adidas) GetShoe() shoe.IShoe {\n    return a.shoe\n}\nfunc (a *Adidas) GetShirt() shirt.IShirt {\n    return a.shirt\n}"
     },
     {
       "type": "heading",

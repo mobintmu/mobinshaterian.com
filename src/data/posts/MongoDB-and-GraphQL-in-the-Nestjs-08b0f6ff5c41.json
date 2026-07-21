@@ -89,12 +89,12 @@
     {
       "type": "code",
       "lang": "text",
-      "code": " nest new nestjs-mongodb"
+      "code": "nest new nestjs-mongodb"
     },
     {
       "type": "code",
       "lang": "bash",
-      "code": "yarn run startyarn run start:dev"
+      "code": "yarn run start\nyarn run start:dev"
     },
     {
       "type": "heading",
@@ -222,8 +222,8 @@
     },
     {
       "type": "code",
-      "lang": "python",
-      "code": "import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';import { Module } from '@nestjs/common';import { GraphQLModule } from '@nestjs/graphql';@Module({  imports: [    GraphQLModule.forRoot<ApolloDriverConfig>({      driver: ApolloDriver,      autoSchemaFile: 'schema.gql',    }),  ],})export class AppModule {}"
+      "lang": "typescript",
+      "code": "import {\n  ApolloDriver, ApolloDriverConfig\n}\nfrom '@nestjs/apollo';\nimport {\n  Module\n}\nfrom '@nestjs/common';\nimport {\n  GraphQLModule\n}\nfrom '@nestjs/graphql';\n@Module({\n  imports: [GraphQLModule.forRoot<ApolloDriverConfig>({\n    driver: ApolloDriver, autoSchemaFile: 'schema.gql',\n  }),],\n})\nexport class AppModule {\n}"
     },
     {
       "type": "heading",
@@ -241,8 +241,8 @@
     },
     {
       "type": "code",
-      "lang": "python",
-      "code": "import { Module } from '@nestjs/common';import { GraphQLModule } from '@nestjs/graphql';import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';import { LessonModule } from './lesson/lesson.module';@Module({  imports: [    GraphQLModule.forRoot<ApolloDriverConfig>({      driver: ApolloDriver,      autoSchemaFile: 'schema.gql',    }),    LessonModule,  ],  controllers: [],  providers: [],})export class AppModule {}"
+      "lang": "typescript",
+      "code": "import {\n  Module\n}\nfrom '@nestjs/common';\nimport {\n  GraphQLModule\n}\nfrom '@nestjs/graphql';\nimport {\n  ApolloDriver, ApolloDriverConfig\n}\nfrom '@nestjs/apollo';\nimport {\n  LessonModule\n}\nfrom './lesson/lesson.module';\n@Module({\n  imports: [GraphQLModule.forRoot<ApolloDriverConfig>({\n    driver: ApolloDriver, autoSchemaFile: 'schema.gql',\n  }), LessonModule,], controllers: [], providers: [],\n})\nexport class AppModule {\n}"
     },
     {
       "type": "paragraph",
@@ -250,8 +250,8 @@
     },
     {
       "type": "code",
-      "lang": "python",
-      "code": "import { Module } from '@nestjs/common';import { LessonResolver } from './lesson.resolver';@Module({  providers: [LessonResolver],})export class LessonModule {}"
+      "lang": "typescript",
+      "code": "import {\n  Module\n}\nfrom '@nestjs/common';\nimport {\n  LessonResolver\n}\nfrom './lesson.resolver';\n@Module({\n  providers: [LessonResolver],\n})\nexport class LessonModule {\n}"
     },
     {
       "type": "paragraph",
@@ -259,8 +259,8 @@
     },
     {
       "type": "code",
-      "lang": "python",
-      "code": "import { Resolver, Query } from '@nestjs/graphql';import { LessonType } from './lesson.type';@Resolver(() => LessonType)export class LessonResolver {  @Query(() => LessonType)  lesson() {    return {      id: '1',      name: 'Physics Class',      startDate: new Date().toISOString(),      endDate: new Date().toISOString(),      createdAt: new Date().toISOString(),    };  }}"
+      "lang": "typescript",
+      "code": "import {\n  Resolver, Query\n}\nfrom '@nestjs/graphql';\nimport {\n  LessonType\n}\nfrom './lesson.type';\n@Resolver(() => LessonType)\nexport class LessonResolver {\n  @Query(() => LessonType) lesson() {\n    return {\n      id: '1', name: 'Physics Class', startDate: new Date().toISOString(), endDate: new\n      Date().toISOString(), createdAt: new Date().toISOString(),\n    };\n  }\n}"
     },
     {
       "type": "paragraph",
@@ -268,8 +268,8 @@
     },
     {
       "type": "code",
-      "lang": "python",
-      "code": "import { ObjectType, Field, ID } from '@nestjs/graphql';@ObjectType('Lesson')export class LessonType {  @Field(() => ID)  id: string;  @Field()  name: string;  @Field()  startDate: string;  @Field()  endDate: string;  @Field()  createdAt: string;}"
+      "lang": "typescript",
+      "code": "import {\n  ObjectType, Field, ID\n}\nfrom '@nestjs/graphql';\n@ObjectType('Lesson')\nexport class LessonType {\n  @Field(() => ID) id: string;\n  @Field() name: string;\n  @Field() startDate: string;\n  @Field() endDate: string;\n  @Field() createdAt: string;\n}"
     },
     {
       "type": "heading",
@@ -305,8 +305,8 @@
     },
     {
       "type": "code",
-      "lang": "python",
-      "code": "import { Module } from '@nestjs/common';import { GraphQLModule } from '@nestjs/graphql';import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';import { LessonModule } from './lesson/lesson.module';import { TypeOrmModule } from '@nestjs/typeorm';import { Lesson } from './lesson/lesson.entity';@Module({  imports: [    TypeOrmModule.forRoot({      type: 'mongodb',      url: 'mongodb://localhost/school',      port: 27017,      synchronize: true,      useUnifiedTopology: true,      entities: [Lesson],    }),    GraphQLModule.forRoot<ApolloDriverConfig>({      driver: ApolloDriver,      autoSchemaFile: 'schema.gql',    }),    LessonModule,  ],  controllers: [],  providers: [],})export class AppModule {}"
+      "lang": "typescript",
+      "code": "import {\n  Module\n}\nfrom '@nestjs/common';\nimport {\n  GraphQLModule\n}\nfrom '@nestjs/graphql';\nimport {\n  ApolloDriver, ApolloDriverConfig\n}\nfrom '@nestjs/apollo';\nimport {\n  LessonModule\n}\nfrom './lesson/lesson.module';\nimport {\n  TypeOrmModule\n}\nfrom '@nestjs/typeorm';\nimport {\n  Lesson\n}\nfrom './lesson/lesson.entity';\n@Module({\n  imports: [TypeOrmModule.forRoot({\n    type: 'mongodb', url: 'mongodb://localhost/school', port: 27017, synchronize: true,\n    useUnifiedTopology: true, entities: [Lesson],\n  }), GraphQLModule.forRoot<ApolloDriverConfig>({\n    driver: ApolloDriver, autoSchemaFile: 'schema.gql',\n  }), LessonModule,], controllers: [], providers: [],\n})\nexport class AppModule {\n}"
     },
     {
       "type": "paragraph",
@@ -314,8 +314,8 @@
     },
     {
       "type": "code",
-      "lang": "python",
-      "code": "import { Entity, Column, ObjectIdColumn } from 'typeorm';@Entity()export class Lesson {  @ObjectIdColumn()  _id: string;  @Column()  name: string;  @Column()  startDate: string;  @Column()  endDate: string;}"
+      "lang": "typescript",
+      "code": "import {\n  Entity, Column, ObjectIdColumn\n}\nfrom 'typeorm';\n@Entity()\nexport class Lesson {\n  @ObjectIdColumn() _id: string;\n  @Column() name: string;\n  @Column() startDate: string;\n  @Column() endDate: string;\n}"
     },
     {
       "type": "heading",
@@ -324,8 +324,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "version: '3.9'services:  mongo:    image: mongo:latest    restart: always    ports:      - \"27017:27017\"  mongoexpress:    image: mongo-express    ports:      - \"8081:8081\"    environment:       - ME_CONFIG_MONGODB_URL=mongodb://mongo:27017    depends_on:      - mongo    restart: alwaysvolumes:  mongo_data:    driver: local networks:  default:    external:      name: mongo-school-network"
+      "lang": "yaml",
+      "code": "version: '3.9'services:\n  mongo:\n    image: mongo:latest\n    restart: always\n    ports:\n      - \"27017:27017\"\n  mongoexpress:\n    image: mongo-express\n    ports:\n      - \"8081:8081\"\n    environment:       - ME_CONFIG_MONGODB_URL=mongodb://mongo:27017\n    depends_on:\n      - mongo\n    restart: alwaysvolumes:\n  mongo_data:\n    driver: local networks:\n  default:\n    external:\n      name: mongo-school-network"
     },
     {
       "type": "heading",
@@ -348,8 +348,8 @@
     },
     {
       "type": "code",
-      "lang": "python",
-      "code": "import { Entity, Column, ObjectIdColumn, PrimaryColumn } from 'typeorm';@Entity()export class Lesson {  @ObjectIdColumn()  _id: string;  @PrimaryColumn()  id: string;  @Column()  name: string;  @Column()  startDate: string;  @Column()  endDate: string;}"
+      "lang": "typescript",
+      "code": "import {\n  Entity, Column, ObjectIdColumn, PrimaryColumn\n}\nfrom 'typeorm';\n@Entity()\nexport class Lesson {\n  @ObjectIdColumn() _id: string;\n  @PrimaryColumn() id: string;\n  @Column() name: string;\n  @Column() startDate: string;\n  @Column() endDate: string;\n}"
     },
     {
       "type": "paragraph",
@@ -357,8 +357,8 @@
     },
     {
       "type": "code",
-      "lang": "python",
-      "code": "import { Module } from '@nestjs/common';import { LessonResolver } from './lesson.resolver';import { LessonService } from './lesson.service';import { TypeOrmModule } from '@nestjs/typeorm';import { Lesson } from './lesson.entity';@Module({  imports: [TypeOrmModule.forFeature([Lesson])],  providers: [LessonResolver, LessonService],})export class LessonModule {}"
+      "lang": "typescript",
+      "code": "import {\n  Module\n}\nfrom '@nestjs/common';\nimport {\n  LessonResolver\n}\nfrom './lesson.resolver';\nimport {\n  LessonService\n}\nfrom './lesson.service';\nimport {\n  TypeOrmModule\n}\nfrom '@nestjs/typeorm';\nimport {\n  Lesson\n}\nfrom './lesson.entity';\n@Module({\n  imports: [TypeOrmModule.forFeature([Lesson])], providers: [LessonResolver, LessonService],\n})\nexport class LessonModule {\n}"
     },
     {
       "type": "paragraph",
@@ -366,8 +366,8 @@
     },
     {
       "type": "code",
-      "lang": "python",
-      "code": "import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';import { LessonType } from './lesson.type';import { LessonService } from './lesson.service';@Resolver(() => LessonType)export class LessonResolver {  constructor(private lessonService: LessonService) {}  @Query(() => LessonType)  lesson() {    return {      id: '1',      name: 'Physics Class',      startDate: new Date().toISOString(),      endDate: new Date().toISOString(),      createdAt: new Date().toISOString(),    };  }  @Mutation(() => LessonType)  createLesson(    @Args('name') name: string,    @Args('startDate') startDate: string,    @Args('endDate') endDate: string,  ) {    return this.lessonService.createLesson(name, startDate, endDate);  }}"
+      "lang": "typescript",
+      "code": "import {\n  Resolver, Query, Mutation, Args\n}\nfrom '@nestjs/graphql';\nimport {\n  LessonType\n}\nfrom './lesson.type';\nimport {\n  LessonService\n}\nfrom './lesson.service';\n@Resolver(() => LessonType)\nexport class LessonResolver {\n  constructor(private lessonService: LessonService) {\n  }\n  @Query(() => LessonType) lesson() {\n    return {\n      id: '1', name: 'Physics Class', startDate: new Date().toISOString(), endDate: new\n      Date().toISOString(), createdAt: new Date().toISOString(),\n    };\n  }\n  @Mutation(() => LessonType) createLesson(@Args('name') name: string, @Args('startDate') startDate:\n  string, @Args('endDate') endDate: string,) {\n    return this.lessonService.createLesson(name, startDate, endDate);\n  }\n}"
     },
     {
       "type": "paragraph",
@@ -375,8 +375,8 @@
     },
     {
       "type": "code",
-      "lang": "python",
-      "code": "import { Injectable } from '@nestjs/common';import { InjectRepository } from '@nestjs/typeorm';import { Lesson } from './lesson.entity';import { Repository } from 'typeorm';import { v4 as uuid } from 'uuid';@Injectable()export class LessonService {  constructor(    @InjectRepository(Lesson) private lessonRepository: Repository<Lesson>,  ) {}  createLesson(name, startDate, endDate): Promise<Lesson> {    const lesson = this.lessonRepository.create({      id: uuid(),      name,      startDate,      endDate,    });    return this.lessonRepository.save(lesson);  }}"
+      "lang": "typescript",
+      "code": "import {\n  Injectable\n}\nfrom '@nestjs/common';\nimport {\n  InjectRepository\n}\nfrom '@nestjs/typeorm';\nimport {\n  Lesson\n}\nfrom './lesson.entity';\nimport {\n  Repository\n}\nfrom 'typeorm';\nimport {\n  v4 as uuid\n}\nfrom 'uuid';\n@Injectable()\nexport class LessonService {\n  constructor(@InjectRepository(Lesson) private lessonRepository: Repository<Lesson>,) {\n  }\n  createLesson(name, startDate, endDate): Promise<Lesson> {\n    const lesson = this.lessonRepository.create({\n      id: uuid(), name, startDate, endDate,\n    });\n    return this.lessonRepository.save(lesson);\n  }\n}"
     },
     {
       "type": "image",
@@ -405,8 +405,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "  @Query(() => LessonType)  lesson(@Args('id') id: string) {    return this.lessonService.getLesson(id);  }"
+      "lang": "typescript",
+      "code": "@Query(() => LessonType) lesson(@Args('id') id: string) {\n  return this.lessonService.getLesson(id);\n}"
     },
     {
       "type": "paragraph",
@@ -415,7 +415,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "  getLesson(id: string): Promise<Lesson> {    return this.lessonRepository.findOne({ where: { id } });  }"
+      "code": "getLesson(id: string): Promise<Lesson> {    return this.lessonRepository.findOne({ where: { id } });\n}"
     },
     {
       "type": "image",
@@ -449,8 +449,8 @@
     },
     {
       "type": "code",
-      "lang": "python",
-      "code": "import { NestFactory } from '@nestjs/core';import { AppModule } from './app.module';import { ValidationPipe } from '@nestjs/common';async function bootstrap() {  const app = await NestFactory.create(AppModule);  app.useGlobalPipes(new ValidationPipe());  await app.listen(3000);}bootstrap();"
+      "lang": "typescript",
+      "code": "import {\n  NestFactory\n}\nfrom '@nestjs/core';\nimport {\n  AppModule\n}\nfrom './app.module';\nimport {\n  ValidationPipe\n}\nfrom '@nestjs/common';\nasync function bootstrap() {\n  const app = await NestFactory.create(AppModule);\n  app.useGlobalPipes(new ValidationPipe());\n  await app.listen(3000);\n}\nbootstrap();"
     },
     {
       "type": "paragraph",
@@ -458,8 +458,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "mport { Field, InputType } from '@nestjs/graphql';import { MinLength, IsDateString } from 'class-validator';@InputType()export class CreateLessonInput {  @MinLength(2)  @Field()  name: string;  @IsDateString()  @Field()  startDate: string;  @IsDateString()  @Field()  endDate: string;}"
+      "lang": "typescript",
+      "code": "mport {\n  Field, InputType\n}\nfrom '@nestjs/graphql';\nimport {\n  MinLength, IsDateString\n}\nfrom 'class-validator';\n@InputType()\nexport class CreateLessonInput {\n  @MinLength(2) @Field() name: string;\n  @IsDateString() @Field() startDate: string;\n  @IsDateString() @Field() endDate: string;\n}"
     },
     {
       "type": "paragraph",
@@ -467,8 +467,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "  @Mutation(() => LessonType)  createLesson(    @Args('name') name: string,    @Args('startDate') startDate: string,    @Args('endDate') endDate: string,  ) {    return this.lessonService.createLesson(name, startDate, endDate);  }"
+      "lang": "typescript",
+      "code": "@Mutation(() => LessonType) createLesson(@Args('name') name: string, @Args('startDate') startDate:\nstring, @Args('endDate') endDate: string,) {\n  return this.lessonService.createLesson(name, startDate, endDate);\n}"
     },
     {
       "type": "paragraph",
@@ -477,7 +477,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "  async createLesson(createLessonInput: CreateLessonInput): Promise<Lesson> {    const { name, startDate, endDate } = createLessonInput;    const lesson = this.lessonRepository.create({      id: uuid(),      name,      startDate,      endDate,    });    return this.lessonRepository.save(lesson);  }"
+      "code": "async createLesson(createLessonInput: CreateLessonInput): Promise<Lesson> {    const { name,\nstartDate, endDate } = createLessonInput;    const lesson = this.lessonRepository.create({      id:\nuuid(),      name,      startDate,      endDate,    });    return\nthis.lessonRepository.save(lesson);  }"
     },
     {
       "type": "image",
@@ -498,8 +498,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "  @Query(() => [LessonType])  lessons() {    return this.lessonService.getLessons();  }"
+      "lang": "typescript",
+      "code": "@Query(() => [LessonType]) lessons() {\n  return this.lessonService.getLessons();\n}"
     },
     {
       "type": "paragraph",
@@ -508,7 +508,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "  getLessons(): Promise<Lesson[]> {    return this.lessonRepository.find();  }"
+      "code": "getLessons(): Promise<Lesson[]> {    return this.lessonRepository.find();  }"
     },
     {
       "type": "image",
@@ -563,8 +563,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "  @Query(() => [StudentType])  async students() {    return this.studentService.getStudents();  }"
+      "lang": "typescript",
+      "code": "@Query(() => [StudentType]) async students() {\n  return this.studentService.getStudents();\n}"
     },
     {
       "type": "paragraph",
@@ -573,7 +573,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "  async getStudents(): Promise<Student[]> {    return this.studentRepository.find();  }"
+      "code": "async getStudents(): Promise<Student[]> {    return this.studentRepository.find();  }"
     },
     {
       "type": "heading",
@@ -586,8 +586,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "  @Query(() => StudentType)  async student(@Args('id') id: string) {    return this.studentService.getStudent(id);  }"
+      "lang": "typescript",
+      "code": "@Query(() => StudentType) async student(@Args('id') id: string) {\n  return this.studentService.getStudent(id);\n}"
     },
     {
       "type": "paragraph",
@@ -596,7 +596,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "  async getStudent(id: string): Promise<Student> {    return this.studentRepository.findOne({ where: { id } });  }"
+      "code": "async getStudent(id: string): Promise<Student> {    return this.studentRepository.findOne({ where: {\nid } });  }"
     },
     {
       "type": "image",
@@ -618,7 +618,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "  @Column()  students: string[];"
+      "code": "@Column()  students: string[];"
     },
     {
       "type": "paragraph",
@@ -626,8 +626,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "@InputType()export class AssignStudentsToLessonInput {  @IsUUID()  @Field(() => ID)  lessonId: string;  @IsUUID('4', { each: true })  @Field(() => [ID])  studentIds: string[];}"
+      "lang": "typescript",
+      "code": "@InputType()\nexport class AssignStudentsToLessonInput {\n  @IsUUID() @Field(() => ID) lessonId: string;\n  @IsUUID('4', {\n    each: true\n  }) @Field(() => [ID]) studentIds: string[];\n}"
     },
     {
       "type": "paragraph",
@@ -635,8 +635,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "  @Mutation(() => LessonType)  assignStudentsToLesson(    @Args('assignStudentsToLessonInput')    assignStudentsToLessonInput: AssignStudentsToLessonInput,  ) {    return this.lessonService.assignStudentsToLesson(      assignStudentsToLessonInput,    );  }"
+      "lang": "typescript",
+      "code": "@Mutation(() => LessonType) assignStudentsToLesson(@Args('assignStudentsToLessonInput')\nassignStudentsToLessonInput: AssignStudentsToLessonInput,) {\n  return this.lessonService.assignStudentsToLesson(assignStudentsToLessonInput,);\n}"
     },
     {
       "type": "paragraph",
@@ -645,7 +645,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "  async assignStudentsToLesson(    assignStudentsToLessonInput: AssignStudentsToLessonInput,  ): Promise<Lesson> {    const { lessonId, studentIds } = assignStudentsToLessonInput;    const lesson = await this.lessonRepository.findOne({      where: { id: lessonId },    });    if (!lesson) {      throw new Error(`Lesson with ID ${lessonId} not found`);    }    console.log(lesson.students);    if (lesson.students === undefined || lesson.students.length == 0) {      lesson.students = [...studentIds];    } else {      lesson.students = [...lesson.students, ...studentIds];    }    return this.lessonRepository.save(lesson);  }"
+      "code": "async assignStudentsToLesson(    assignStudentsToLessonInput: AssignStudentsToLessonInput,  ):\nPromise<Lesson> {    const { lessonId, studentIds } = assignStudentsToLessonInput;    const lesson =\nawait this.lessonRepository.findOne({      where: { id: lessonId },    });    if (!lesson) {\nthrow new Error(`Lesson with ID ${lessonId} not found`);    }    console.log(lesson.students);    if\n(lesson.students === undefined || lesson.students.length == 0) {      lesson.students =\n[...studentIds];    } else {      lesson.students = [...lesson.students, ...studentIds];    }\nreturn this.lessonRepository.save(lesson);  }"
     },
     {
       "type": "paragraph",
@@ -653,8 +653,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "  @Field(() => [StudentType])  students: string[];"
+      "lang": "typescript",
+      "code": "@Field(() => [StudentType]) students: string[];"
     },
     {
       "type": "image",

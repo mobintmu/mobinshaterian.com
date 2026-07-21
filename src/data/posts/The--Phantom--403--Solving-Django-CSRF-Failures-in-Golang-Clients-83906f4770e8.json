@@ -93,7 +93,7 @@
     {
       "type": "code",
       "lang": "python",
-      "code": "from django.views.decorators.csrf import csrf_exemptfrom django.utils.decorators import method_decorator@method_decorator(csrf_exempt, name='dispatch')class LoginView(APIView):    def post(self, request):        # Authentication logic here        return Response({\"status\": \"Authenticated\"})"
+      "code": "from django.views.decorators.csrf\nimport csrf_exempt\nfrom django.utils.decorators\nimport method_decorator@method_decorator(csrf_exempt, name='dispatch')\nclass LoginView(APIView):\n\ndef post(self, request):        # Authentication logic here        return Response({\"status\":\n\"Authenticated\"})"
     },
     {
       "type": "heading",
@@ -119,7 +119,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "// 1. Extract token from CookieJarvar token stringfor _, cookie := range jar.Cookies(req.URL) {    if cookie.Name == \"csrftoken\" {        token = cookie.Value    }}// 2. Set the header manuallyreq.Header.Set(\"X-CSRFToken\", token)"
+      "code": "// 1. Extract token from CookieJarvar token stringfor _, cookie := range jar.Cookies(req.URL) {\nif cookie.Name == \"csrftoken\" {        token = cookie.Value    }}// 2. Set the header\nmanuallyreq.Header.Set(\"X-CSRFToken\", token)"
     },
     {
       "type": "heading",

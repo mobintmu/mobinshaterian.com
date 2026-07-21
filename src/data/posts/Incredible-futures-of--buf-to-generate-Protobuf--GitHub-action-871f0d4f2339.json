@@ -60,7 +60,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "version: v2managed:  enabled: true  override:    - file_option: go_package_prefix      value: github.com/your_addressplugins:  - local: protoc-gen-go    out: go    opt: paths=source_relative"
+      "code": "version: v2managed:  enabled: true  override:    - file_option: go_package_prefix      value:\ngithub.com/your_addressplugins:  - local: protoc-gen-go    out: go    opt: paths=source_relative"
     },
     {
       "type": "paragraph",
@@ -69,7 +69,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "name: Default CICD for protorpeoon:  push:    branches: [main, dev]  pull_request:    types: [opened, synchronize, reopened, labeled, unlabeled]env:  CREATE_RELEASE: falsepermissions:  contents: read  pull-requests: writejobs:  buf:    runs-on: ubuntu-latest    steps:      - uses: actions/checkout@v4      - uses: bufbuild/buf-action@v1        with:          token: ${{secrets.BUF_TOKEN}}"
+      "code": "name: Default CICD for protorpeoon:  push:    branches: [main, dev]  pull_request:    types:\n[opened, synchronize, reopened, labeled, unlabeled]env:  CREATE_RELEASE: falsepermissions:\ncontents: read  pull-requests: writejobs:  buf:    runs-on: ubuntu-latest    steps:      - uses:\nactions/checkout@v4      - uses: bufbuild/buf-action@v1        with:          token:\n${{secrets.BUF_TOKEN}}"
     },
     {
       "type": "paragraph",

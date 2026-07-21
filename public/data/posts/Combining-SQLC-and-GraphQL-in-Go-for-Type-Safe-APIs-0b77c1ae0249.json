@@ -99,8 +99,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "-- name: ListProductsWithFilters :manySELECT id, name, description, price, is_activeFROM productsWHERE  (sqlc.narg('id')::int IS NULL OR id = sqlc.narg('id'))  AND (sqlc.narg('name')::text IS NULL OR name ILIKE '%' || sqlc.narg('name') || '%')  AND (sqlc.narg('min_price')::bigint IS NULL OR price >= sqlc.narg('min_price'))  AND (sqlc.narg('max_price')::bigint IS NULL OR price <= sqlc.narg('max_price'))  AND (sqlc.narg('is_active')::bool IS NULL OR is_active = sqlc.narg('is_active'));"
+      "lang": "sql",
+      "code": "-- name: ListProductsWithFilters :many\nSELECT id, name, description, price, is_active\nFROM products\nWHERE  (sqlc.narg('id')::int IS NULL OR id = sqlc.narg('id'))  AND (sqlc.narg('name')::text IS NULL\nOR name ILIKE '%' || sqlc.narg('name') || '%')  AND (sqlc.narg('min_price')::bigint IS NULL OR price\n>= sqlc.narg('min_price'))  AND (sqlc.narg('max_price')::bigint IS NULL OR price <=\nsqlc.narg('max_price'))  AND (sqlc.narg('is_active')::bool IS NULL OR is_active =\nsqlc.narg('is_active'));"
     },
     {
       "type": "paragraph",
@@ -108,8 +108,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "type ListProductsWithFiltersParams struct {    ID       sql.NullInt32    Name     sql.NullString    MinPrice sql.NullInt64    MaxPrice sql.NullInt64    IsActive sql.NullBool}func (q *Queries) ListProductsWithFilters(ctx context.Context, arg ListProductsWithFiltersParams) ([]Product, error)"
+      "lang": "go",
+      "code": "type ListProductsWithFiltersParams struct {\n    ID sql.NullInt32\n    Name sql.NullString\n    MinPrice sql.NullInt64\n    MaxPrice sql.NullInt64\n    IsActive sql.NullBool\n}\nfunc (q *Queries) ListProductsWithFilters(ctx context.Context, arg ListProductsWithFiltersParams)\n([]Product, error)"
     },
     {
       "type": "heading",
@@ -122,8 +122,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "scalar Int64input ProductFilter {  id: Int  name: String  minPrice: Int64  maxPrice: Int64  isActive: Boolean}type Product {  id: Int!  name: String!  description: String  price: Int64!  isActive: Boolean!}type Query {  products(filter: ProductFilter): [Product!]!}"
+      "lang": "graphql",
+      "code": "scalar Int64\ninput ProductFilter {\n  id: Int  name: String  minPrice: Int64  maxPrice: Int64  isActive: Boolean\n}\n\ntype Product {\n  id: Int!  name: String!  description: String  price: Int64!  isActive: Boolean!\n}\n\ntype Query {\n  products(filter: ProductFilter): [Product!]!\n}"
     },
     {
       "type": "heading",
@@ -133,7 +133,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "func (r *queryResolver) Products(ctx context.Context, filter *model.ProductFilter) ([]*model.Product, error) {    params := sqlc.ListProductsWithFiltersParams{        ID:       toNullInt32(filter.ID),        Name:     toNullString(filter.Name),        MinPrice: toNullInt64(filter.MinPrice),        MaxPrice: toNullInt64(filter.MaxPrice),        IsActive: toNullBool(filter.IsActive),    }    products, err := r.Queries.ListProductsWithFilters(ctx, params)    if err != nil {        return nil, fmt.Errorf(\"failed to list products: %w\", err)    }    var result []*model.Product    for _, p := range products {        result = append(result, &model.Product{            ID:          int(p.ID),            Name:        p.Name,            Description: &p.Description,            Price:       p.Price,            IsActive:    p.IsActive,        })    }    return result, nil}"
+      "code": "func (r *queryResolver) Products(ctx context.Context, filter *model.ProductFilter)\n([]*model.Product, error) {\n    params := sqlc.ListProductsWithFiltersParams{\n        ID: toNullInt32(filter.ID), Name: toNullString(filter.Name), MinPrice:\n        toNullInt64(filter.MinPrice), MaxPrice: toNullInt64(filter.MaxPrice), IsActive:\n        toNullBool(filter.IsActive),\n    }\n    products, err := r.Queries.ListProductsWithFilters(ctx, params)\n    if err != nil {\n        return nil, fmt.Errorf(\"failed to list products: %w\", err)\n    }\n    var result []*model.Product\n    for _, p := range products {\n        result = append(result, &model.Product{\n            ID: int(p.ID), Name: p.Name, Description: &p.Description, Price: p.Price, IsActive:\n            p.IsActive,\n        })\n    }\n    return result, nil\n}"
     },
     {
       "type": "heading",
@@ -143,7 +143,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "query {  products(filter: { name: \"phone\", minPrice: 500, isActive: true }) {    id    name    price  }}"
+      "code": "query {  products(filter: { name: \"phone\", minPrice: 500, isActive: true }) {    id    name    price\n}}"
     },
     {
       "type": "paragraph",
@@ -207,7 +207,7 @@
     {
       "type": "code",
       "lang": "sql",
-      "code": "SELECT   u.id AS user_id,  u.name AS user_name,  p.id AS product_id,  p.name AS product_name,  p.priceFROM users uJOIN products p ON p.user_id = u.id;"
+      "code": "SELECT   u.id AS user_id,  u.name AS user_name,  p.id AS product_id,  p.name AS product_name,\np.price\nFROM users uJOIN products p ON p.user_id = u.id;"
     },
     {
       "type": "paragraph",
@@ -215,8 +215,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "type ListUsersWithProductsRow struct {    UserID      int32    UserName    string    ProductID   int32    ProductName string    Price       int64}"
+      "lang": "go",
+      "code": "type ListUsersWithProductsRow struct {\n    UserID int32\n    UserName string\n    ProductID int32\n    ProductName string\n    Price int64\n}"
     },
     {
       "type": "paragraph",
@@ -239,7 +239,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "for _, row := range rows {    result = append(result, &model.UserProduct{        User: &model.User{            ID:   int(row.UserID),            Name: row.UserName,        },        Product: &model.Product{            ID:    int(row.ProductID),            Name:  row.ProductName,            Price: row.Price,        },    })}"
+      "code": "for _, row := range rows {    result = append(result, &model.UserProduct{        User: &model.User{\nID:   int(row.UserID),            Name: row.UserName,        },        Product: &model.Product{\nID:    int(row.ProductID),            Name:  row.ProductName,            Price: row.Price,        },\n})}"
     },
     {
       "type": "paragraph",
@@ -256,8 +256,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "-- name: ListUsersWithProducts :manySELECT u.id AS user_id, u.name AS user_name,       p.id AS product_id, p.name AS product_name, p.priceFROM users uJOIN products p ON p.user_id = u.idWHERE  (sqlc.narg('user_name')::text IS NULL OR u.name ILIKE '%' || sqlc.narg('user_name') || '%')  AND (sqlc.narg('product_name')::text IS NULL OR p.name ILIKE '%' || sqlc.narg('product_name') || '%')  AND (sqlc.narg('min_price')::bigint IS NULL OR p.price >= sqlc.narg('min_price'));"
+      "lang": "sql",
+      "code": "-- name: ListUsersWithProducts :many\nSELECT u.id AS user_id, u.name AS user_name,       p.id AS product_id, p.name AS product_name,\np.price\nFROM users uJOIN products p ON p.user_id = u.id\nWHERE  (sqlc.narg('user_name')::text IS NULL OR u.name ILIKE '%' || sqlc.narg('user_name') || '%')\nAND (sqlc.narg('product_name')::text IS NULL OR p.name ILIKE '%' || sqlc.narg('product_name') ||\n'%')  AND (sqlc.narg('min_price')::bigint IS NULL OR p.price >= sqlc.narg('min_price'));"
     },
     {
       "type": "paragraph",
@@ -274,8 +274,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "input UserProductFilter {  userName: String  productName: String  minPrice: Int64}type UserProduct {  user: User!  product: Product!}type Query {  userProducts(filter: UserProductFilter): [UserProduct!]!}"
+      "lang": "graphql",
+      "code": "input UserProductFilter {\n  userName: String  productName: String  minPrice: Int64\n}\n\ntype UserProduct {\n  user: User!  product: Product!\n}\n\ntype Query {\n  userProducts(filter: UserProductFilter): [UserProduct!]!\n}"
     },
     {
       "type": "heading",
@@ -285,7 +285,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "func (r *queryResolver) UserProducts(ctx context.Context, filter *model.UserProductFilter) ([]*model.UserProduct, error) {    params := sqlc.ListUsersWithProductsParams{        UserName:    toNullString(filter.UserName),        ProductName: toNullString(filter.ProductName),        MinPrice:    toNullInt64(filter.MinPrice),    }    rows, err := r.Queries.ListUsersWithProducts(ctx, params)    if err != nil {        return nil, err    }    var result []*model.UserProduct    for _, row := range rows {        result = append(result, &model.UserProduct{            User: &model.User{ID: int(row.UserID), Name: row.UserName},            Product: &model.Product{ID: int(row.ProductID), Name: row.ProductName, Price: row.Price},        })    }    return result, nil}"
+      "code": "func (r *queryResolver) UserProducts(ctx context.Context, filter *model.UserProductFilter)\n([]*model.UserProduct, error) {\n    params := sqlc.ListUsersWithProductsParams{\n        UserName:\n        toNullString(filter.UserName), ProductName: toNullString(filter.ProductName), MinPrice:\n        toNullInt64(filter.MinPrice),\n    }\n    rows, err := r.Queries.ListUsersWithProducts(ctx, params)\n    if err != nil {\n        return nil, err\n    }\n    var result []*model.UserProduct\n    for _, row := range rows {\n        result = append(result, &model.UserProduct{\n            User: &model.User{\n                ID: int(row.UserID), Name: row.UserName\n            }, Product: &model.Product{\n                ID: int(row.ProductID), Name: row.ProductName, Price: row.Price\n            },\n        })\n    }\n    return result, nil\n}"
     },
     {
       "type": "heading",
@@ -325,8 +325,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "input UserFilter {  id: Int  name: String  email: String}input ProductFilter {  id: Int  name: String  minPrice: Int64  maxPrice: Int64  isActive: Boolean}type UserProduct {  user: User!  product: Product!}type Query {  userProducts(userFilter: UserFilter, productFilter: ProductFilter): [UserProduct!]!}"
+      "lang": "graphql",
+      "code": "input UserFilter {\n  id: Int  name: String  email: String\n}\n\ninput ProductFilter {\n  id: Int  name: String  minPrice: Int64  maxPrice: Int64  isActive: Boolean\n}\n\ntype UserProduct {\n  user: User!  product: Product!\n}\n\ntype Query {\n  userProducts(userFilter: UserFilter, productFilter: ProductFilter): [UserProduct!]!\n}"
     },
     {
       "type": "paragraph",
@@ -344,7 +344,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "func (r *queryResolver) UserProducts(    ctx context.Context,    userFilter *model.UserFilter,    productFilter *model.ProductFilter,) ([]*model.UserProduct, error) {    // Step 1: Run users query with filters    userParams := sqlc.ListUsersWithFiltersParams{        ID:    toNullInt32(userFilter.ID),        Name:  toNullString(userFilter.Name),        Email: toNullString(userFilter.Email),    }    users, err := r.Queries.ListUsersWithFilters(ctx, userParams)    if err != nil {        return nil, fmt.Errorf(\"failed to list users: %w\", err)    }    // Step 2: Run products query with filters    productParams := sqlc.ListProductsWithFiltersParams{        ID:       toNullInt32(productFilter.ID),        Name:     toNullString(productFilter.Name),        MinPrice: toNullInt64(productFilter.MinPrice),        MaxPrice: toNullInt64(productFilter.MaxPrice),        IsActive: toNullBool(productFilter.IsActive),    }    products, err := r.Queries.ListProductsWithFilters(ctx, productParams)    if err != nil {        return nil, fmt.Errorf(\"failed to list products: %w\", err)    }    // Step 3: Merge results in Go    var result []*model.UserProduct    for _, u := range users {        for _, p := range products {            if p.UserID == u.ID { // join condition                result = append(result, &model.UserProduct{                    User: &model.User{                        ID:    int(u.ID),                        Name:  u.Name,                        Email: u.Email,                    },                    Product: &model.Product{                        ID:          int(p.ID),                        Name:        p.Name,                        Description: &p.Description,                        Price:       p.Price,                        IsActive:    p.IsActive,                    },                })            }        }    }    return result, nil}"
+      "code": "func (r *queryResolver) UserProducts(\nctx context.Context,\nuserFilter *model.UserFilter,\nproductFilter *model.ProductFilter,) ([]*model.UserProduct, error) {\n    // Step 1: Run users query with filters\n    userParams := sqlc.ListUsersWithFiltersParams{\n        ID:\n        toNullInt32(userFilter.ID), Name: toNullString(userFilter.Name), Email:\n        toNullString(userFilter.Email),\n    }\n    users, err := r.Queries.ListUsersWithFilters(ctx, userParams)\n    if err != nil {\n        return nil, fmt.Errorf(\"failed to list users: %w\", err)\n    }\n    // Step 2: Run products query with filters\n    productParams := sqlc.ListProductsWithFiltersParams{\n        ID: toNullInt32(productFilter.ID), Name: toNullString(productFilter.Name), MinPrice:\n        toNullInt64(productFilter.MinPrice), MaxPrice: toNullInt64(productFilter.MaxPrice),\n        IsActive: toNullBool(productFilter.IsActive),\n    }\n    products, err := r.Queries.ListProductsWithFilters(ctx, productParams)\n    if err != nil {\n        return nil, fmt.Errorf(\"failed to list products: %w\", err)\n    }\n    // Step 3: Merge results in Go\n    var result []*model.UserProduct\n    for _, u := range users {\n        for _, p := range products {\n            if p.UserID == u.ID {\n                // join condition result = append(result, &model.UserProduct{\n                    User: &model.User{\n                        ID:\n                        int(u.ID), Name: u.Name, Email: u.Email,\n                    }, Product: &model.Product{\n                        ID: int(p.ID), Name: p.Name, Description: &p.Description, Price: p.Price,\n                        IsActive:\n                        p.IsActive,\n                    },\n                })\n            }\n        }\n    }\n    return result, nil\n}"
     },
     {
       "type": "heading",
@@ -358,7 +358,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "query {  userProducts(    userFilter: { name: \"Alice\" }    productFilter: { minPrice: 500, isActive: true }  ) {    user {      id      name      email    }    product {      id      name      price    }  }}"
+      "code": "query {  userProducts(    userFilter: { name: \"Alice\" }    productFilter: { minPrice: 500, isActive:\ntrue }  ) {    user {      id      name      email    }    product {      id      name      price\n}  }}"
     },
     {
       "type": "paragraph",

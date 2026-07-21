@@ -48,7 +48,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "func (s *Service) LocationBasedSearch(ctx context.Context, req QueryParams, data Data) (*Result, error) {    // ... 150+ lines of logic ...    city := data.City    // ... later ...    s.applyRating(ctx, data)    // ... and ...    s.cachePrice(ctx, data) }func (s *Service) ProcessSearch(ctx context.Context, req QueryParams, data Data) (*Result, error) {    // ... same 150+ lines ...    // uses shared `city` from param    s.applyRatingVersionTwo(ctx, data)    s.cachePriceByOtherParam(ctx, data) // ← This one DOES need caching}"
+      "code": "func (s *Service) LocationBasedSearch(ctx context.Context, req QueryParams, data Data) (*Result,\nerror) {\n    //...150+ lines of logic...\n    city := data.City\n    //...later...\n    s.applyRating(ctx, data)\n    //...and...\n    s.cachePrice(ctx, data)\n}\nfunc (s *Service) ProcessSearch(ctx context.Context, req QueryParams, data Data) (*Result, error) {\n    //...same 150+ lines...\n    // uses shared `city` from param\n    s.applyRatingVersionTwo(ctx, data)\n    s.cachePriceByOtherParam(ctx, data) // ← This one DOES need caching\n}"
     },
     {
       "type": "paragraph",
@@ -79,7 +79,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "func (s *Service) processCore(    ctx context.Context,    req QueryParams,     data Data,    cityResolver func(data Data) *hotel.City,    ratingSetter func(context.Context, data Data) error,    cacheFn func(context.Context,data Data),) (*Result, error) {    // Shared logic        // Use injected city resolver    city := cityResolver(&h)        // Apply ratings via injected function    ratingSetter(ctx, hotelIds64, hotelsMap)        // Apply pricing    s.applyPricing(ctx, req, roomsMap, hotelsMap)        // Conditionally cache — only if cacheFn does something    cacheFn(ctx, roomsMap, req)        return result, nil}"
+      "code": "func (s *Service) processCore(\nctx context.Context,\nreq QueryParams, data Data,\ncityResolver func(data Data) *hotel.City,\nratingSetter func(context.Context, data Data) error,\ncacheFn func(context.Context,data Data),) (*Result, error) {\n    // Shared logic // Use injected city resolver\n    city := cityResolver(&h) // Apply ratings via injected\n    function\n    ratingSetter(ctx, hotelIds64, hotelsMap) // Apply pricing\n    s.applyPricing(ctx, req, roomsMap, hotelsMap) // Conditionally cache — only if cacheFn does\n    something\n    cacheFn(ctx, roomsMap, req)\n    return result, nil\n}"
     },
     {
       "type": "paragraph",
@@ -147,7 +147,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "cityResolver func(data Data),ratingSetter func(context.Context, data Data) error,cacheFn func(context.Context, data Data),"
+      "code": "cityResolver func(data Data),ratingSetter func(context.Context, data Data) error,cacheFn\nfunc(context.Context, data Data),"
     },
     {
       "type": "list",
@@ -171,8 +171,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "type CityResolver interface {    Resolve(data Data) }"
+      "lang": "go",
+      "code": "type CityResolver interface {\n    Resolve(data Data)\n}"
     },
     {
       "type": "list",

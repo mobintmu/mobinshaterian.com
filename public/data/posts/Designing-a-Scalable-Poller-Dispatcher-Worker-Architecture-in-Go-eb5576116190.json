@@ -107,8 +107,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "type Job interface { ID() string Service() string Execute(ctx context.Context) error}"
+      "lang": "go",
+      "code": "type Job interface {\n    ID() string Service() string Execute(ctx context.Context) error\n}"
     },
     {
       "type": "paragraph",
@@ -135,13 +135,13 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "type Worker interface { Start(ctx context.Context) Stop()}"
+      "lang": "go",
+      "code": "type Worker interface {\n    Start(ctx context.Context) Stop()\n}"
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "type SimpleWorker struct { id       int jobQueue <-chan job.Job cancel   context.CancelFunc}func NewSimpleWorker( id int, jobQueue <-chan job.Job,) *SimpleWorker { return &SimpleWorker{  id:       id,  jobQueue: jobQueue, }}func (w *SimpleWorker) Start(ctx context.Context) { ctx, cancel := context.WithCancel(ctx) w.cancel = cancel go func() {  log.Printf(\"[worker-%d] started\\n\", w.id)  for {   //blocker   select {   case <-ctx.Done():    log.Printf(\"[worker-%d] stopped\\n\", w.id)    return   case j := <-w.jobQueue:    w.handleJob(ctx, j)   }  } }()}func (w *SimpleWorker) Stop() { if w.cancel != nil {  w.cancel() }}func (w *SimpleWorker) handleJob(ctx context.Context, j job.Job) { log.Printf(  \"[worker-%d] executing job id=%s service=%s\\n\",  w.id,  j.ID(),  j.Service(), ) if err := j.Execute(ctx); err != nil {  log.Printf(   \"[worker-%d] job failed id=%s error=%v\\n\",   w.id,   j.ID(),   err,  ) }}"
+      "lang": "go",
+      "code": "type SimpleWorker struct {\n    id int jobQueue <-chan job.Job cancel context.CancelFunc\n}\nfunc NewSimpleWorker(id int, jobQueue <-chan job.Job,) *SimpleWorker {\n    return &SimpleWorker{\n        id: id, jobQueue: jobQueue,\n    }\n}\nfunc (w *SimpleWorker) Start(ctx context.Context) {\n    ctx, cancel := context.WithCancel(ctx) w.cancel = cancel go func() {\n        log.Printf(\"[worker-%d] started\\n\", w.id) for {\n            //blocker select {\n                case <-ctx.Done():\n                log.Printf(\"[worker-%d] stopped\\n\", w.id)\n                return case j := <-w.jobQueue:\n                w.handleJob(ctx, j)\n            }\n        }\n    }\n    ()\n}\nfunc (w *SimpleWorker) Stop() {\n    if w.cancel != nil {\n        w.cancel()\n    }\n}\nfunc (w *SimpleWorker) handleJob(ctx context.Context, j job.Job) {\n    log.Printf(\"[worker-%d] executing job id=%s service=%s\\n\", w.id, j.ID(), j.Service(),) if err :=\n    j.Execute(ctx);\n    err != nil {\n        log.Printf(\"[worker-%d] job failed id=%s error=%v\\n\", w.id, j.ID(), err,)\n    }\n}"
     },
     {
       "type": "paragraph",
@@ -185,8 +185,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "type Dispatcher interface { Start() Stop() Dispatch(j job.Job) error}var ErrServiceNotRegistered = errors.New(\"service not registered\")type Service struct { ctx    context.Context cancel context.CancelFunc mu sync.RWMutex queues  map[string]chan job.Job workers map[string][]worker.Worker}func New() *Service { ctx, cancel := context.WithCancel(context.Background()) return &Service{  ctx:     ctx,  cancel:  cancel,  queues:  make(map[string]chan job.Job),  workers: make(map[string][]worker.Worker), }}func (d *Service) Register( service string, workerCount int, queueSize int,) { d.mu.Lock() defer d.mu.Unlock() if _, exists := d.queues[service]; exists {  fmt.Println(\"service already registered\")  return } queue := make(chan job.Job, queueSize) d.queues[service] = queue var workers []worker.Worker for i := 0; i < workerCount; i++ {  w := worker.NewSimpleWorker(i+1, queue)  workers = append(workers, w) } d.workers[service] = workers}func (d *Service) Start() { d.mu.RLock() defer d.mu.RUnlock() for _, ws := range d.workers {  for _, w := range ws {   w.Start(d.ctx)  } }}func (d *Service) Dispatch(j job.Job) error { // Prevent dispatch after stop select { case <-d.ctx.Done():  return context.Canceled default: } d.mu.RLock() queue, ok := d.queues[j.Service()] d.mu.RUnlock() if !ok {  return ErrServiceNotRegistered } // Safe send select { case queue <- j:  return nil case <-d.ctx.Done():  return context.Canceled }}func (d *Service) Stop() { d.cancel() d.mu.RLock() defer d.mu.RUnlock() for _, q := range d.queues {  close(q) }}func RegisterLifecycle(lc fx.Lifecycle, d *Service) { lc.Append(fx.Hook{  OnStart: func(ctx context.Context) error {   fmt.Println(\"starting dispatcher...\")   d.Start()   return nil  },  OnStop: func(ctx context.Context) error {   fmt.Println(\"stopping dispatcher...\")   d.Stop()   return nil  }, })}func RegisterServices(d *Service) { // Example services d.Register(\"email\", 5, 100)}"
+      "lang": "go",
+      "code": "type Dispatcher interface {\n    Start() Stop() Dispatch(j job.Job) error\n}\nvar ErrServiceNotRegistered = errors.New(\"service not registered\"\n)\ntype Service struct {\n    ctx\n    context.Context cancel context.CancelFunc mu sync.RWMutex queues map[string]chan job.Job workers\n    map[string][]worker.Worker\n}\nfunc New() *Service {\n    ctx, cancel := context.WithCancel(context.Background()) return &Service{\n        ctx: ctx, cancel: cancel, queues: make(map[string]chan job.Job), workers:\n        make(map[string][]worker.Worker),\n    }\n}\nfunc (d *Service) Register(service string, workerCount int, queueSize int,) {\n    d.mu.Lock() defer d.mu.Unlock() if _, exists := d.queues[service];\n    exists {\n        fmt.Println(\"service already registered\") return\n    }\n    queue := make(chan job.Job, queueSize) d.queues[service] = queue var workers []worker.Worker for\n    i := 0;\n    i < workerCount;\n    i++ {\n        w := worker.NewSimpleWorker(i+1, queue) workers = append(workers, w)\n    }\n    d.workers[service] = workers\n}\nfunc (d *Service) Start() {\n    d.mu.RLock() defer d.mu.RUnlock() for _, ws := range d.workers {\n        for _, w := range ws {\n            w.Start(d.ctx)\n        }\n    }\n}\nfunc (d *Service) Dispatch(j job.Job) error {\n    // Prevent dispatch after stop select {\n        case <-d.ctx.Done(): return context.Canceled default:\n    }\n    d.mu.RLock() queue, ok := d.queues[j.Service()] d.mu.RUnlock() if !ok {\n        return ErrServiceNotRegistered\n    }\n    // Safe send select {\n        case queue <- j: return nil case <-d.ctx.Done(): return context.Canceled\n    }\n}\nfunc (d *Service) Stop() {\n    d.cancel() d.mu.RLock() defer d.mu.RUnlock() for _, q := range d.queues {\n        close(q)\n    }\n}\nfunc RegisterLifecycle(lc fx.Lifecycle, d *Service) {\n    lc.Append(fx.Hook{\n        OnStart: func(ctx context.Context) error {\n            fmt.Println(\"starting dispatcher...\") d.Start() return nil\n        }, OnStop: func(ctx context.Context) error {\n            fmt.Println(\"stopping dispatcher...\") d.Stop() return nil\n        },\n    })\n}\nfunc RegisterServices(d *Service) {\n    // Example services d.Register(\"email\", 5, 100)\n}"
     },
     {
       "type": "paragraph",
@@ -225,8 +225,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "/*Fx App ├── Dispatcher (long-lived) │    └── Worker pools ├── Poller (long-lived background process) │    └── Infinite loop │         ├── Check condition (DB / cache / API) │         └── Dispatch job(s) └── Servers*/type Poller struct { Dispatcher *dispatcher.Service Interval   time.Duration ctx        context.Context cancel     context.CancelFunc OnTick     func(context.Context)}func New( dispatcher *dispatcher.Service,) *Poller { p := &Poller{  Dispatcher: dispatcher,  Interval:   500 * time.Microsecond, } p.OnTick = p.DefaultTick // default behavior return p}func (p *Poller) Run(ctx context.Context) { ticker := time.NewTicker(p.Interval) defer ticker.Stop() for {  fmt.Println(\"poller For loop ...\")  select {  case <-ctx.Done():   return  case <-ticker.C:   p.OnTick(ctx)  } }}func (p *Poller) DefaultTick(ctx context.Context) { // Example condition (replace with DB/cache logic) log.Println(\"DefaultTick is running ...\") if !p.conditionMet(ctx) {  return } j := example.NewExampleJob(\"job-123\", \"email\") _ = p.Dispatcher.Dispatch(j)}func (p *Poller) conditionMet(ctx context.Context) bool { // DB / Redis / API / feature flag / backlog size return true}func RegisterLifecycle(lc fx.Lifecycle, p *Poller) { lc.Append(fx.Hook{  OnStart: func(ctx context.Context) error {   fmt.Println(\"starting dispatcher...\")   p.ctx, p.cancel = context.WithCancel(context.Background())   go p.Run(p.ctx)   return nil  },  OnStop: func(ctx context.Context) error {   fmt.Println(\"stopping poller...\")   if p.cancel != nil {    p.cancel()   }   return nil  }, })}"
+      "lang": "go",
+      "code": "/*Fx App ├── Dispatcher (long-lived) │\n└── Worker pools ├── Poller (long-lived background process) │\n└── Infinite loop │ ├── Check condition (DB / cache / API) │ └── Dispatch job(s) └── Servers*/type\nPoller struct {\n    Dispatcher *dispatcher.Service Interval time.Duration ctx context.Context cancel\n    context.CancelFunc OnTick func(context.Context)\n}\nfunc New(dispatcher *dispatcher.Service,) *Poller {\n    p := &Poller{\n        Dispatcher: dispatcher, Interval: 500 * time.Microsecond,\n    }\n    p.OnTick = p.DefaultTick // default behavior\n    return p\n}\nfunc (p *Poller) Run(ctx context.Context) {\n    ticker := time.NewTicker(p.Interval) defer ticker.Stop() for {\n        fmt.Println(\"poller For loop ...\") select {\n            case <-ctx.Done(): return case <-ticker.C: p.OnTick(ctx)\n        }\n    }\n}\nfunc (p *Poller) DefaultTick(ctx context.Context) {\n    // Example condition (replace with DB/cache logic) log.Println(\"DefaultTick is running ...\") if\n    !p.conditionMet(ctx) {\n        return\n    }\n    j := example.NewExampleJob(\"job-123\", \"email\") _ = p.Dispatcher.Dispatch(j)\n}\nfunc (p *Poller) conditionMet(ctx context.Context) bool {\n    // DB / Redis / API / feature flag / backlog size\n    return true\n}\nfunc RegisterLifecycle(lc fx.Lifecycle, p *Poller) {\n    lc.Append(fx.Hook{\n        OnStart: func(ctx context.Context) error {\n            fmt.Println(\"starting dispatcher...\") p.ctx, p.cancel =\n            context.WithCancel(context.Background()) go p.Run(p.ctx) return nil\n        }, OnStop: func(ctx context.Context) error {\n            fmt.Println(\"stopping poller...\") if p.cancel != nil {\n                p.cancel()\n            }\n            return nil\n        },\n    })\n}"
     },
     {
       "type": "paragraph",
@@ -258,7 +258,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "func (p *Poller) Run(ctx context.Context) { ticker := time.NewTicker(p.Interval) defer ticker.Stop() for {  select {  case <-ctx.Done():   return  case <-ticker.C:   p.OnTick(ctx)  } }}"
+      "code": "func (p *Poller) Run(ctx context.Context) {\n    ticker := time.NewTicker(p.Interval) defer ticker.Stop() for {\n        select {\n            case <-ctx.Done(): return case <-ticker.C: p.OnTick(ctx)\n        }\n    }\n}"
     },
     {
       "type": "heading",
@@ -292,7 +292,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "func Register(lc fx.Lifecycle, svc Service) { lc.Append(fx.Hook{  OnStart: func(ctx context.Context) error {   svc.Start()   return nil  },  OnStop: func(ctx context.Context) error {   svc.Stop()   return nil  }, })}"
+      "code": "func Register(lc fx.Lifecycle, svc Service) {\n    lc.Append(fx.Hook{\n        OnStart: func(ctx context.Context) error {\n            svc.Start() return nil\n        }, OnStop: func(ctx context.Context) error {\n            svc.Stop() return nil\n        },\n    })\n}"
     },
     {
       "type": "paragraph",
@@ -329,7 +329,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "func (d *serviceDispatcher) Dispatch(job Job) error { select { case d.queues[job.Service()] <- job:  return nil default:  return ErrQueueFull }}"
+      "code": "func (d *serviceDispatcher) Dispatch(job Job) error {\n    select {\n        case d.queues[job.Service()] <- job: return nil default: return ErrQueueFull\n    }\n}"
     },
     {
       "type": "paragraph",

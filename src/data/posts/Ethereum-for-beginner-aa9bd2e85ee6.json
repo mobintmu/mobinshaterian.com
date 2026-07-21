@@ -225,8 +225,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "pragma solidity ^0.4.17;contract Inbox {    string public message;        function Inbox(string initialMessage) public {        message = initialMessage;    }        function setMessage(string newMessage) public {        message = newMessage;    }        function getMessage() public view returns (string) {        return message;    }    }"
+      "lang": "solidity",
+      "code": "pragma solidity ^0.4.17;\ncontract Inbox {\n  string public message;\n  function Inbox(string initialMessage) public {\n    message = initialMessage;\n  }\n  function setMessage(string newMessage) public {\n    message = newMessage;\n  }\n  function getMessage() public view returns (string) {\n    return message;\n  }\n}"
     },
     {
       "type": "image",

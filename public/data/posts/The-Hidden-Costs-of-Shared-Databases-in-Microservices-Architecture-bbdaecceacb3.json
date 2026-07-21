@@ -374,7 +374,7 @@
     {
       "type": "code",
       "lang": "sql",
-      "code": "SELECT * FROM orders WHERE user_id = 123;"
+      "code": "SELECT *\nFROM orders\nWHERE user_id = 123;"
     },
     {
       "type": "paragraph",
@@ -481,7 +481,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "┌─────────────────────┐    ┌────────────────────┐    ┌─────────────────────┐│ Auth Service        │    │ Order Service      │    │ Inventory Service   ││ REST / gRPC / Kafka │    │ REST / Kafka       │    │ REST / Kafka        │└────────┬────────────┘    └────────┬───────────┘    └────────┬────────────┘         │                          │                         │         ▼                          ▼                         ▼    auth_db                    order_db                 inventory_db"
+      "code": "┌─────────────────────┐    ┌────────────────────┐    ┌─────────────────────┐│ Auth Service        │\n│ Order Service      │    │ Inventory Service   ││ REST / gRPC / Kafka │    │ REST / Kafka       │\n│ REST / Kafka        │└────────┬────────────┘    └────────┬───────────┘    └────────┬────────────┘\n│                          │                         │         ▼                          ▼\n▼    auth_db                    order_db                 inventory_db"
     },
     {
       "type": "paragraph",

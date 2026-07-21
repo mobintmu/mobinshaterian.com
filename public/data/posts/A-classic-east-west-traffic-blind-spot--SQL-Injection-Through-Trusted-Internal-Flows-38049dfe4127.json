@@ -92,8 +92,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "GET /profile?id=1' OR '1'='1 HTTP/1.1Host: yoursite.com"
+      "lang": "http",
+      "code": "GET /profile?id=1' OR '1'='1 HTTP/1.1\nHost: yoursite.com"
     },
     {
       "type": "paragraph",
@@ -124,7 +124,7 @@
     {
       "type": "code",
       "lang": "javascript",
-      "code": "export async function getServerSideProps({ query }) {  const { id } = query;  // ❌ No validation — passes raw input  const res = await fetch(`https://api.yoursite.com/user?id=${id}`);  const user = await res.json();  return { props: { user } };}"
+      "code": "export async function getServerSideProps({\n  query\n}) {\n  const {\n    id\n  }\n  = query;\n  // ❌ No validation — passes raw input\n  const res = await fetch(`https://api.yoursite.com/user?id=${id}`);\n  const user = await res.json();\n  return {\n    props: {\n      user\n    }\n  };\n}"
     },
     {
       "type": "paragraph",
@@ -141,7 +141,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "http",
       "code": "GET /user?id=1' OR '1'='1"
     },
     {
@@ -151,7 +151,7 @@
     {
       "type": "code",
       "lang": "sql",
-      "code": "SELECT * FROM users WHERE id = '1' OR '1'='1';"
+      "code": "SELECT *\nFROM users\nWHERE id = '1' OR '1'='1';"
     },
     {
       "type": "paragraph",
@@ -233,8 +233,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "// ✅ Validate and sanitizeexport async function getServerSideProps({ query }) {  const id = parseInt(query.id, 10);  if (isNaN(id) || id <= 0) {    return { notFound: true };  }  const res = await fetch(`https://api.yoursite.com/user?id=${id}`);  // ...}"
+      "lang": "javascript",
+      "code": "// ✅ Validate and sanitize\nexport async function getServerSideProps({\n  query\n}) {\n  const id = parseInt(query.id, 10);\n  if (isNaN(id) || id <= 0) {\n    return {\n      notFound: true\n    };\n  }\n  const res = await fetch(`https://api.yoursite.com/user?id=${id}`);\n  //...\n}"
     },
     {
       "type": "paragraph",
@@ -252,7 +252,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "// ✅ Parameterized query (Node.js + PostgreSQL)const result = await db.query(  'SELECT * FROM users WHERE id = $1',  [req.query.id]);"
+      "code": "// ✅ Parameterized query (Node.js + PostgreSQL)const result = await db.query(\n'SELECT * FROM users WHERE id = $1',  [req.query.id]);"
     },
     {
       "type": "paragraph",
