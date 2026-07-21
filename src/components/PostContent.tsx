@@ -37,7 +37,7 @@ function CodeBlock({ lang, code }: { lang: string; code: string }) {
           {copied ? "copied" : "copy"}
         </button>
       </div>
-      <pre className="overflow-x-auto p-4 font-mono-plus text-xs leading-relaxed text-foreground/90">
+      <pre className="max-w-full whitespace-pre-wrap [overflow-wrap:anywhere] p-4 font-mono-plus text-xs leading-relaxed text-foreground/90">
         <code>{code}</code>
       </pre>
     </div>

@@ -85,6 +85,18 @@ function inlineHtml($, el) {
   return $el.html() || "";
 }
 
+function preformattedText($, el) {
+  // Medium exports code lines with <br> elements. Cheerio's .text() omits
+  // those elements, which used to concatenate every line during import.
+  const $el = $(el).clone();
+  $el.find("br").replaceWith("\n");
+  return $el
+    .text()
+    .replace(/\r\n?/g, "\n")
+    .replace(/\u00a0/g, " ")
+    .replace(/^\n+|\n+$/g, "");
+}
+
 function detectLang(code) {
   const c = code.toLowerCase();
   if (/^\s*(package |func |import \(|import ")/m.test(code)) return "go";
@@ -143,7 +155,7 @@ async function parseFile(filename) {
       blocks.push({ type: "paragraph", html: inlineHtml($, node) });
       plain.push(text);
     } else if (tag === "pre") {
-      const code = $(node).text();
+      const code = preformattedText($, node);
       blocks.push({ type: "code", lang: detectLang(code), code });
       plain.push(code);
     } else if (tag === "blockquote") {

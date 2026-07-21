@@ -2,7 +2,7 @@
 
 Personal portfolio and technical blog for Mobin Shaterian. The site presents a resume-style home page and a searchable archive of 200+ articles imported from Medium.
 
-The application is built with React and TanStack Start, then prerendered to static HTML for deployment to GitHub Pages. Blog content is stored as JSON in the repository, so the site does not need a database, CMS, or production API.
+The application is built with React and TanStack Start, then pre rendered to static HTML for deployment to GitHub Pages. Blog content is stored as JSON in the repository, so the site does not need a database, CMS, or production API.
 
 ## What the site contains
 
@@ -109,7 +109,7 @@ On `/blogs`, titles and post cards come from the small metadata index. The large
 
 ### GitHub Pages routing
 
-Static hosts cannot normally resolve an unknown nested client-side URL. `public/404.html` stores the requested location in `sessionStorage` and redirects to `/`; the root React component then restores that path through TanStack Router. Prerendered known routes load directly, while unknown routes reach the application's 404 UI.
+Static hosts cannot normally resolve an unknown nested client-side URL. `public/404.html` stores the requested location in `sessionStorage` and redirects to `/`; the root React component then restores that path through TanStack Router. Pre rendered known routes load directly, while unknown routes reach the application's 404 UI.
 
 ## Project structure
 
@@ -171,7 +171,7 @@ No environment variables, external database, or API credentials are required for
 | Command             | Description                                           |
 | ------------------- | ----------------------------------------------------- |
 | `bun run dev`       | Start the Vite development server with hot reload.    |
-| `bun run build`     | Create the production/prerendered build in `.output`. |
+| `bun run build`     | Create the production/pre rendered build in `.output`. |
 | `bun run build:dev` | Build using Vite's development mode.                  |
 | `bun run preview`   | Preview the production build locally.                 |
 | `bun run lint`      | Run ESLint and Prettier checks.                       |
@@ -240,7 +240,7 @@ For a manual deployment, run the workflow from the GitHub Actions interface. Git
 ## Important maintenance notes
 
 - Keep `src/data` and `public/data` synchronized; the import and maintenance scripts already update both.
-- Add new article slugs to `src/data/posts-index.json` through the importer so `vite.config.ts` prerenders them.
+- Add new article slugs to `src/data/posts-index.json` through the importer so `vite.config.ts` pre renders them.
 - Do not edit `src/routeTree.gen.ts` by hand.
 - Do not commit `.output`, `dist`, `.vinxi`, or `node_modules`.
 - This repository is connected to Lovable. Do not force-push, rebase, amend, or squash commits that have already been pushed, because rewriting published history can break Lovable's project history.

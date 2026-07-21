@@ -82,8 +82,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "-- Core System-Versioned Table Configuration (PostgreSQL 3NF Pattern)CREATE TABLE users (    id UUID NOT NULL,    version_id SERIAL NOT NULL,    email VARCHAR(255) NOT NULL,    status VARCHAR(50) NOT NULL,    valid_from TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW(),    valid_to TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT '9999-12-31 23:59:59+00',    PRIMARY KEY (id, version_id));-- Optimize queries searching for specific historical statesCREATE INDEX idx_users_temporal_search ON users (id, valid_from, valid_to);"
+      "lang": "sql",
+      "code": "-- Core System-Versioned Table Configuration (PostgreSQL 3NF Pattern)\nCREATE TABLE users (\n    id UUID NOT NULL,\n    version_id SERIAL NOT NULL,\n    email VARCHAR(255) NOT NULL,\n    status VARCHAR(50) NOT NULL,\n    valid_from TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW(),\n    valid_to TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT '9999-12-31 23:59:59+00',\n    PRIMARY KEY (id, version_id)\n);\n\n-- Optimize queries searching for specific historical states\nCREATE INDEX idx_users_temporal_search\n    ON users (id, valid_from, valid_to);"
     },
     {
       "type": "heading",
@@ -121,7 +121,7 @@
     {
       "type": "code",
       "lang": "sql",
-      "code": "SELECT * FROM users  WHERE id = 'd3b07384-d113-49cd-a5d6-8cd5ed1af257'    AND NOW() BETWEEN valid_from AND valid_to;"
+      "code": "SELECT *\nFROM users\nWHERE id = 'd3b07384-d113-49cd-a5d6-8cd5ed1af257'\n  AND NOW() BETWEEN valid_from AND valid_to;"
     },
     {
       "type": "list",
@@ -133,7 +133,7 @@
     {
       "type": "code",
       "lang": "sql",
-      "code": "SELECT * FROM users  WHERE id = 'd3b07384-d113-49cd-a5d6-8cd5ed1af257'    AND '2026-05-23 00:00:00+00' BETWEEN valid_from AND valid_to;"
+      "code": "SELECT *\nFROM users\nWHERE id = 'd3b07384-d113-49cd-a5d6-8cd5ed1af257'\n  AND '2026-05-23 00:00:00+00' BETWEEN valid_from AND valid_to;"
     },
     {
       "type": "heading",
@@ -151,7 +151,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "┌─────────────────────────────────┐│     Operational DB (3NF)        ││  (PostgreSQL / Temporal Tables) │└─────────────────────────────────┘                 │                 │ Asynchronous CDC (Debezium / Kafka)                 ▼┌─────────────────────────────────┐│    Columnar Data Lakehouse      ││  (ClickHouse / Apache Iceberg)  │ ──► Machine Learning / Feature Store└─────────────────────────────────┘     (Supports native SQL Time-Travel)"
+      "code": "┌─────────────────────────────────┐\n│     Operational DB (3NF)        │\n│  (PostgreSQL / Temporal Tables) │\n└─────────────────────────────────┘\n                 │\n                 │ Asynchronous CDC (Debezium / Kafka)\n                 ▼\n┌─────────────────────────────────┐\n│    Columnar Data Lakehouse      │\n│  (ClickHouse / Apache Iceberg)  │ ──► Machine Learning / Feature Store\n└─────────────────────────────────┘\n     (Supports native SQL Time-Travel)"
     },
     {
       "type": "heading",
@@ -181,8 +181,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "-- Locking down training data state to a historical milestoneSELECT user_id, status, count(orders) FROM training_lakehouse.user_featuresFOR SYSTEM_TIME AS OF '2026-06-01 12:00:00'GROUP BY user_id, status;"
+      "lang": "sql",
+      "code": "-- Locking down training data state to a historical milestone\nSELECT\n    user_id,\n    status,\n    COUNT(orders)\nFROM training_lakehouse.user_features\nFOR SYSTEM_TIME AS OF '2026-06-01 12:00:00'\nGROUP BY user_id, status;"
     },
     {
       "type": "paragraph",
