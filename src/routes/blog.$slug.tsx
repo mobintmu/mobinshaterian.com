@@ -2,7 +2,15 @@ import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import postsIndex from "@/data/posts-index.json";
 import profile from "@/data/profile.json";
 import { PostContent, type Block } from "@/components/PostContent";
-import { ArrowLeft, ExternalLink, Calendar, Clock, Tag as TagIcon, FileJson } from "lucide-react";
+import {
+  ArrowLeft,
+  ArrowRight,
+  ExternalLink,
+  Calendar,
+  Clock,
+  Tag as TagIcon,
+  FileJson,
+} from "lucide-react";
 
 type IndexEntry = {
   slug: string;
@@ -88,6 +96,10 @@ function formatDate(iso: string) {
 
 function BlogPostPage() {
   const { post } = Route.useLoaderData();
+  const articles = postsIndex as IndexEntry[];
+  const currentIndex = articles.findIndex((article) => article.slug === post.slug);
+  const previousPost = currentIndex >= 0 ? articles[currentIndex + 1] : undefined;
+  const nextPost = currentIndex > 0 ? articles[currentIndex - 1] : undefined;
 
   return (
     <div className="min-h-screen bg-background text-foreground font-sans">
@@ -182,7 +194,52 @@ function BlogPostPage() {
           </a>
         </div>
 
-        <div className="mt-10 border-t border-border pt-6">
+        <nav
+          className="mt-10 grid gap-3 border-t border-border pt-6 sm:grid-cols-2"
+          aria-label="Blog post navigation"
+        >
+          {previousPost ? (
+            <Link
+              to="/blog/$slug"
+              params={{ slug: previousPost.slug }}
+              rel="prev"
+              className="group flex min-w-0 items-center gap-3 rounded-md border border-border bg-surface p-4 transition-colors hover:border-terminal/50 hover:bg-terminal/5"
+            >
+              <ArrowLeft className="h-4 w-4 shrink-0 text-terminal transition-transform group-hover:-translate-x-1" />
+              <span className="min-w-0">
+                <span className="block font-mono-plus text-[10px] uppercase tracking-wider text-muted-foreground">
+                  Previous blog
+                </span>
+                <span className="mt-1 block line-clamp-2 text-sm font-medium leading-snug">
+                  {previousPost.title}
+                </span>
+              </span>
+            </Link>
+          ) : (
+            <div className="hidden sm:block" />
+          )}
+
+          {nextPost ? (
+            <Link
+              to="/blog/$slug"
+              params={{ slug: nextPost.slug }}
+              rel="next"
+              className="group flex min-w-0 items-center justify-end gap-3 rounded-md border border-border bg-surface p-4 text-right transition-colors hover:border-terminal/50 hover:bg-terminal/5"
+            >
+              <span className="min-w-0">
+                <span className="block font-mono-plus text-[10px] uppercase tracking-wider text-muted-foreground">
+                  Next blog
+                </span>
+                <span className="mt-1 block line-clamp-2 text-sm font-medium leading-snug">
+                  {nextPost.title}
+                </span>
+              </span>
+              <ArrowRight className="h-4 w-4 shrink-0 text-terminal transition-transform group-hover:translate-x-1" />
+            </Link>
+          ) : null}
+        </nav>
+
+        <div className="mt-6">
           <Link
             to="/blogs"
             className="font-mono-plus text-xs text-muted-foreground hover:text-terminal"
@@ -225,6 +282,3 @@ function PostNotFound() {
     </div>
   );
 }
-
-// Silence unused-warning if postsIndex ever becomes useful for related links.
-void postsIndex;
