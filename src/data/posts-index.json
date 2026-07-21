@@ -1,5 +1,18 @@
 [
   {
+    "slug": "Understanding-Server-Sent-Events--SSE---Architecture--Authentication--and-Testing-in-NestJS-oc5uf",
+    "title": "Understanding Server-Sent Events (SSE): Architecture, Authentication, and Testing in NestJS",
+    "excerpt": "Introduction Modern web applications often need real-time communication. Examples include: Notifications Chat applications Live dashboards Stock prices Progress tracking Monitoring systems Most developers immediately th…",
+    "date": "2026-06-26",
+    "tags": [
+      "API",
+      "Testing"
+    ],
+    "readingTime": "2 min",
+    "url": "https://www.linkedin.com/pulse/understanding-server-sent-events-sse-architecture-nestjs-shaterian-oc5uf",
+    "hero": "https://media.licdn.com/dms/image/v2/D4D12AQH-nTiTjQs2DQ/article-cover_image-shrink_720_1280/B4DZ8EZ9VUHEAQ-/0/1782485347673?e=2147483647&v=beta&t=iDOOT7BiSsuIQi-N_xhuyktTC3g7_rE2maa0_55MZA4"
+  },
+  {
     "slug": "When-Mediums-Bots-Fear-Your-Writing--Why-Im-Leaving-After-6-Years-and-200-Articles-anlqe",
     "title": "When Medium's Bots Fear Your Writing: Why I'm Leaving After 6 Years and 200 Articles",
     "excerpt": "Six years. Two hundred articles. Technical writing about software architecture, data pipelines, and the tools I work with every day.",
