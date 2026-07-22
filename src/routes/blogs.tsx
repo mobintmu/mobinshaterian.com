@@ -21,7 +21,7 @@ type IndexEntry = {
 type SearchDoc = { slug: string; title: string; tags: string[]; plainText: string };
 
 const searchSchema = z.object({
-  tag: fallback(z.string(), "Star").default("Star"),
+  tag: fallback(z.string(), "").default(""),
   q: fallback(z.string(), "").default(""),
 });
 
@@ -81,6 +81,7 @@ function useSearchIndex() {
 
 function BlogsPage() {
   const { tag, q } = Route.useSearch();
+  const activeTag = tag || "Star";
   const navigate = Route.useNavigate();
   const all = postsIndex as IndexEntry[];
 
@@ -110,12 +111,12 @@ function BlogsPage() {
 
   const filtered = useMemo(() => {
     return all
-      .filter((p) => (tag ? p.tags.includes(tag) : true))
+      .filter((p) => (activeTag === "All" ? true : p.tags.includes(activeTag)))
       .filter((p) => (matchedSlugs ? matchedSlugs.has(p.slug) : true))
       .sort((a, b) =>
         a.date === b.date ? a.slug.localeCompare(b.slug) : a.date < b.date ? 1 : -1,
       );
-  }, [all, tag, matchedSlugs]);
+  }, [all, activeTag, matchedSlugs]);
 
   const searching = q.trim() && !ms;
 
@@ -158,10 +159,10 @@ function BlogsPage() {
           <h1 className="mt-2 text-3xl font-semibold tracking-tight md:text-4xl">Blog archive</h1>
           <p className="mt-2 text-sm text-muted-foreground">
             {filtered.length} of {all.length} articles
-            {tag ? (
+            {activeTag !== "All" ? (
               <>
                 {" "}
-                tagged <span className="font-mono-plus text-terminal">#{tag}</span>
+                tagged <span className="font-mono-plus text-terminal">#{activeTag}</span>
               </>
             ) : null}
             {q.trim() ? (
@@ -216,14 +217,14 @@ function BlogsPage() {
                   navigate({
                     search: (prev: { tag: string; q: string }) => ({
                       ...prev,
-                      tag: prev.tag === "Star" ? "" : "Star",
+                      tag: "Star",
                     }),
                     replace: true,
                   })
                 }
                 className={
                   "rounded border px-2 py-1 font-mono-plus text-xs transition-colors " +
-                  (tag === "Star"
+                  (activeTag === "Star"
                     ? "border-terminal bg-terminal/10 text-terminal"
                     : "border-border text-muted-foreground hover:border-terminal/50 hover:text-terminal")
                 }
@@ -234,13 +235,13 @@ function BlogsPage() {
             <button
               onClick={() =>
                 navigate({
-                  search: (prev: { tag: string; q: string }) => ({ ...prev, tag: "" }),
+                  search: (prev: { tag: string; q: string }) => ({ ...prev, tag: "All" }),
                   replace: true,
                 })
               }
               className={
                 "rounded border px-2 py-1 font-mono-plus text-xs transition-colors " +
-                (!tag
+                (activeTag === "All"
                   ? "border-terminal bg-terminal/10 text-terminal"
                   : "border-border text-muted-foreground hover:border-terminal/50 hover:text-terminal")
               }
@@ -254,14 +255,14 @@ function BlogsPage() {
                   navigate({
                     search: (prev: { tag: string; q: string }) => ({
                       ...prev,
-                      tag: t === tag ? "" : t,
+                      tag: t === activeTag ? "" : t,
                     }),
                     replace: true,
                   })
                 }
                 className={
                   "rounded border px-2 py-1 font-mono-plus text-xs transition-colors " +
-                  (tag === t
+                  (activeTag === t
                     ? "border-terminal bg-terminal/10 text-terminal"
                     : "border-border text-muted-foreground hover:border-terminal/50 hover:text-terminal")
                 }

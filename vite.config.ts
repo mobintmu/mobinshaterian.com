@@ -10,12 +10,12 @@ const staticPages = ["/", "/blogs", ...index.map((p) => `/blog/${p.slug}`)];
 export default defineConfig({
   tanstackStart: {
     server: { entry: "server" },
+    pages: staticPages.map((path) => ({ path })),
     prerender: {
       enabled: true,
       autoSubfolderIndex: true,
       autoStaticPathsDiscovery: true,
-      crawlLinks: true,
-      pages: staticPages,
+      crawlLinks: false,
     },
   },
   vite: {
