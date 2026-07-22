@@ -1,5 +1,41 @@
 [
   {
+    "slug": "Deploying-a-Lovable--TanStack-Start--App-with-GitHub-Actions---the-Real-Story-272he",
+    "title": "Deploying a Lovable (TanStack Start) App with GitHub Actions — the Real Story",
+    "excerpt": "Deploying a Lovable (TanStack Start) App with GitHub Actions — the Real Story Lovable is a great way to scaffold a TanStack Start app fast. But the moment you want to ship it yourself — on your own domain, through your…",
+    "date": "2026-07-18",
+    "tags": [
+      "DevOps"
+    ],
+    "readingTime": "5 min",
+    "url": "https://www.linkedin.com/pulse/deploying-lovable-tanstack-start-app-github-actions-real-shaterian-272he",
+    "hero": "https://media.licdn.com/dms/image/v2/D4E12AQEWC5ssZzwE2w/article-cover_image-shrink_720_1280/B4EZ91qfToHwAQ-/0/1784385506734?e=2147483647&v=beta&t=2kuypZBRG9rN20NVTuoMQbQKZO4lDrHFSjxTeM8d1FY"
+  },
+  {
+    "slug": "The-Entity-You-Modeled-Isn-t-the-Entity-That-Persists-vtwge",
+    "title": "The Entity You Modeled Isn't the Entity That Persists",
+    "excerpt": "A recurring architectural mistake — and the state machine pattern that fixes it. A pattern you've probably seen before There's a particular kind of mess that shows up in almost every system that models a multi-stage bus…",
+    "date": "2026-07-10",
+    "tags": [
+      "Architecture"
+    ],
+    "readingTime": "6 min",
+    "url": "https://www.linkedin.com/pulse/entity-you-modeled-isnt-persists-mobin-shaterian-vtwge",
+    "hero": "https://media.licdn.com/dms/image/v2/D4E12AQEZb9yjQOfJfw/article-cover_image-shrink_720_1280/B4EZ9MRDzhKIAQ-/0/1783690972554?e=2147483647&v=beta&t=yGbRd05zIC5c6JwaC4mTNmsT-XNGsKU535tzVUHwU1A"
+  },
+  {
+    "slug": "One-Door--Two-Mechanisms--When-Your-Domain-Model-Quietly-Forks-Itself-oewde",
+    "title": "One Door, Two Mechanisms: When Your Domain Model Quietly Forks Itself",
+    "excerpt": "I want to talk about a bug that, on the surface, looked trivial. An endpoint was missing.",
+    "date": "2026-07-08",
+    "tags": [
+      "Architecture"
+    ],
+    "readingTime": "8 min",
+    "url": "https://www.linkedin.com/pulse/one-door-two-mechanisms-when-your-domain-model-forks-itself-mobin-oewde",
+    "hero": "https://media.licdn.com/dms/image/v2/D4E12AQGUKeipZfkB6w/article-cover_image-shrink_720_1280/B4EZ9BKCw1IwAU-/0/1783504584814?e=2147483647&v=beta&t=4dwvcFhN2y2O2TQFbBtoFwxAs3tRI5xpStE9JUAo5Ek"
+  },
+  {
     "slug": "Understanding-Server-Sent-Events--SSE---Architecture--Authentication--and-Testing-in-NestJS-oc5uf",
     "title": "Understanding Server-Sent Events (SSE): Architecture, Authentication, and Testing in NestJS",
     "excerpt": "Introduction Modern web applications often need real-time communication. Examples include: Notifications Chat applications Live dashboards Stock prices Progress tracking Monitoring systems Most developers immediately th…",
