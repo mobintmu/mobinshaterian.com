@@ -1,5 +1,19 @@
 [
   {
+    "slug": "Authentication---Authorization--RBAC--ReBAC--ABAC--and-PBAC-Explained-f3c6b95ad394",
+    "title": "Authentication & Authorization: RBAC, ReBAC, ABAC, and PBAC Explained",
+    "excerpt": "From “who are you?” to “what can you do?” — a complete guide to modern access control models, with real examples using CASL, Keycloak, and…",
+    "date": "2026-07-22",
+    "tags": [
+      "Security",
+      "Architecture",
+      "Node.js"
+    ],
+    "readingTime": "15 min",
+    "url": "https://blog.stackademic.com/authentication-authorization-rbac-rebac-abac-and-pbac-explained-f3c6b95ad394",
+    "hero": "https://miro.medium.com/v2/resize:fit:1200/1*27PayjIuCx-qVI6LQ6sWrQ.png"
+  },
+  {
     "slug": "Deploying-a-Lovable--TanStack-Start--App-with-GitHub-Actions---the-Real-Story-272he",
     "title": "Deploying a Lovable (TanStack Start) App with GitHub Actions — the Real Story",
     "excerpt": "Deploying a Lovable (TanStack Start) App with GitHub Actions — the Real Story Lovable is a great way to scaffold a TanStack Start app fast. But the moment you want to ship it yourself — on your own domain, through your…",
