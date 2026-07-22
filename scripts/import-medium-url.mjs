@@ -4,7 +4,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import * as cheerio from "cheerio";
-import { detectCodeLanguage } from "./code-language.mjs";
+import { detectCodeLanguage, supportedCodeLanguages } from "./code-language.mjs";
 
 const requestedUrl = process.argv[2];
 const tags = process.argv.slice(3);
@@ -14,10 +14,16 @@ if (!requestedUrl) {
   process.exit(1);
 }
 
-const response = await fetch(requestedUrl);
-if (!response.ok) throw new Error(`Medium returned HTTP ${response.status}`);
+let articleHtml;
+if (/^https?:\/\//i.test(requestedUrl)) {
+  const response = await fetch(requestedUrl);
+  if (!response.ok) throw new Error(`Medium returned HTTP ${response.status}`);
+  articleHtml = await response.text();
+} else {
+  articleHtml = fs.readFileSync(requestedUrl, "utf8");
+}
 
-const $ = cheerio.load(await response.text());
+const $ = cheerio.load(articleHtml);
 const title = $("h1.pw-post-title").first().text().trim() || $("h1").first().text().trim();
 const canonical = $('link[rel="canonical"]').attr("href") || requestedUrl;
 const articleId = new URL(canonical).pathname.match(/-([a-f0-9]{12})\/?$/i)?.[1] || "medium";
@@ -61,8 +67,8 @@ function imageUrl(figure) {
   return srcset.split(",").at(-1)?.trim().split(/\s+/)[0] || "";
 }
 
-const blocks = [];
-const plain = [];
+let blocks = [];
+let plain = [];
 
 contentRoot.children().each((_, node) => {
   const element = $(node);
@@ -132,6 +138,157 @@ contentRoot.children().each((_, node) => {
     if (caption) plain.push(caption);
   }
 });
+
+function escapeHtml(value) {
+  return value
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#39;");
+}
+
+function paragraphHtml(paragraph) {
+  const text = paragraph.text || "";
+  const markups = (paragraph.markups || [])
+    .filter((markup) => markup.start < markup.end)
+    .map((markup) => ({
+      ...markup,
+      start: Math.max(0, markup.start),
+      end: Math.min(text.length, markup.end),
+    }));
+
+  const opening = new Map();
+  const closing = new Map();
+  for (const markup of markups) {
+    if (!opening.has(markup.start)) opening.set(markup.start, []);
+    if (!closing.has(markup.end)) closing.set(markup.end, []);
+    opening.get(markup.start).push(markup);
+    closing.get(markup.end).push(markup);
+  }
+
+  function tags(markup) {
+    if (markup.type === "STRONG") return ["<strong>", "</strong>"];
+    if (markup.type === "EM") return ["<em>", "</em>"];
+    if (markup.type === "CODE") return ["<code>", "</code>"];
+    if (markup.type === "A" && markup.href) {
+      return [
+        `<a href="${escapeHtml(markup.href)}" target="_blank" rel="noreferrer noopener">`,
+        "</a>",
+      ];
+    }
+    return ["", ""];
+  }
+
+  let html = "";
+  for (let index = 0; index <= text.length; index++) {
+    const ending = [...(closing.get(index) || [])].sort((a, b) => b.start - a.start);
+    for (const markup of ending) html += tags(markup)[1];
+
+    const starting = [...(opening.get(index) || [])].sort((a, b) => b.end - a.end);
+    for (const markup of starting) html += tags(markup)[0];
+
+    if (index < text.length) html += escapeHtml(text[index]);
+  }
+  return html;
+}
+
+function apolloParagraphs() {
+  const script = $("script")
+    .toArray()
+    .map((node) => $(node).text())
+    .find((text) => text.startsWith("window.__APOLLO_STATE__"));
+  if (!script) return [];
+
+  const state = JSON.parse(script.slice(script.indexOf("=") + 1).replace(/;\s*$/, ""));
+  const post = state[`Post:${articleId}`];
+  const contentKey = Object.keys(post || {}).find((key) => key.startsWith("content("));
+  const references = contentKey ? post[contentKey]?.bodyModel?.paragraphs || [] : [];
+  return references.map((reference) => state[reference.__ref]).filter(Boolean);
+}
+
+function blocksFromApollo(paragraphs) {
+  const parsedBlocks = [];
+  const parsedPlain = [];
+
+  for (let index = 0; index < paragraphs.length; index++) {
+    const paragraph = paragraphs[index];
+    const text = (paragraph.text || "").trim();
+
+    if (index === 0 && text === title) continue;
+
+    if (paragraph.type === "H3" || paragraph.type === "H4") {
+      if (text) {
+        parsedBlocks.push({
+          type: "heading",
+          level: paragraph.type === "H3" ? 2 : 3,
+          text,
+        });
+        parsedPlain.push(text);
+      }
+      continue;
+    }
+
+    if (paragraph.type === "P" || paragraph.type === "BQ") {
+      if (text) {
+        parsedBlocks.push({
+          type: paragraph.type === "BQ" ? "quote" : "paragraph",
+          html: paragraphHtml(paragraph),
+        });
+        parsedPlain.push(text);
+      }
+      continue;
+    }
+
+    if (paragraph.type === "PRE") {
+      if (text) {
+        const declaredLanguage = paragraph.codeBlockMetadata?.lang;
+        parsedBlocks.push({
+          type: "code",
+          lang: supportedCodeLanguages.has(declaredLanguage)
+            ? declaredLanguage
+            : detectCodeLanguage(text),
+          code: paragraph.text.replace(/\r\n?/g, "\n").trimEnd(),
+        });
+        parsedPlain.push(text);
+      }
+      continue;
+    }
+
+    if (paragraph.type === "ULI" || paragraph.type === "OLI") {
+      const ordered = paragraph.type === "OLI";
+      const items = [];
+      while (index < paragraphs.length && paragraphs[index].type === (ordered ? "OLI" : "ULI")) {
+        items.push(paragraphHtml(paragraphs[index]));
+        parsedPlain.push((paragraphs[index].text || "").trim());
+        index++;
+      }
+      index--;
+      if (items.length) parsedBlocks.push({ type: "list", ordered, items });
+      continue;
+    }
+
+    if (paragraph.type === "IMG" && paragraph.metadata?.id) {
+      const metadata = paragraph.metadata;
+      parsedBlocks.push({
+        type: "image",
+        src: `https://miro.medium.com/v2/resize:fit:1400/${metadata.id}`,
+        alt: metadata.alt || title,
+        caption: text,
+        width: metadata.originalWidth || undefined,
+        height: metadata.originalHeight || undefined,
+      });
+      if (text) parsedPlain.push(text);
+    }
+  }
+
+  return { blocks: parsedBlocks, plain: parsedPlain };
+}
+
+const completeParagraphs = apolloParagraphs();
+if (completeParagraphs.length > blocks.length) {
+  ({ blocks, plain } = blocksFromApollo(completeParagraphs));
+}
 
 if (blocks.length === 0) throw new Error("Could not parse the Medium article body");
 

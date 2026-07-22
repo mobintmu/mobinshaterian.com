@@ -14,6 +14,19 @@
     "hero": "https://miro.medium.com/v2/resize:fit:1200/1*27PayjIuCx-qVI6LQ6sWrQ.png"
   },
   {
+    "slug": "Keycloak---OpenFGA--A-Practical-Integration-Guide-a9ed984ee205",
+    "title": "Keycloak + OpenFGA: A Practical Integration Guide",
+    "excerpt": "Overview",
+    "date": "2026-07-20",
+    "tags": [
+      "Security",
+      "Architecture"
+    ],
+    "readingTime": "9 min",
+    "url": "https://medium.datadriveninvestor.com/keycloak-openfga-a-practical-integration-guide-a9ed984ee205",
+    "hero": "https://miro.medium.com/v2/resize:fit:1200/1*4lkbdotQol7xSmM-gExbxA.png"
+  },
+  {
     "slug": "Deploying-a-Lovable--TanStack-Start--App-with-GitHub-Actions---the-Real-Story-272he",
     "title": "Deploying a Lovable (TanStack Start) App with GitHub Actions — the Real Story",
     "excerpt": "Deploying a Lovable (TanStack Start) App with GitHub Actions — the Real Story Lovable is a great way to scaffold a TanStack Start app fast. But the moment you want to ship it yourself — on your own domain, through your…",
@@ -24,6 +37,18 @@
     "readingTime": "5 min",
     "url": "https://www.linkedin.com/pulse/deploying-lovable-tanstack-start-app-github-actions-real-shaterian-272he",
     "hero": "https://media.licdn.com/dms/image/v2/D4E12AQEWC5ssZzwE2w/article-cover_image-shrink_720_1280/B4EZ91qfToHwAQ-/0/1784385506734?e=2147483647&v=beta&t=2kuypZBRG9rN20NVTuoMQbQKZO4lDrHFSjxTeM8d1FY"
+  },
+  {
+    "slug": "How-Domain-Boundary-Violations-Slowly-Destroy-Your-Codebase-9cef4b11f8f1",
+    "title": "How Domain Boundary Violations Slowly Destroy Your Codebase",
+    "excerpt": "Have you ever opened a “service” file and seen it reach deep into three or four other domains? Ever had to add a workaround like…",
+    "date": "2026-07-18",
+    "tags": [
+      "Architecture"
+    ],
+    "readingTime": "5 min",
+    "url": "https://towardsdev.com/how-domain-boundary-violations-slowly-destroy-your-codebase-9cef4b11f8f1",
+    "hero": "https://miro.medium.com/v2/resize:fit:1200/1*Td5QLo6jYidovJwTTPE-Vw.png"
   },
   {
     "slug": "The-Entity-You-Modeled-Isn-t-the-Entity-That-Persists-vtwge",
