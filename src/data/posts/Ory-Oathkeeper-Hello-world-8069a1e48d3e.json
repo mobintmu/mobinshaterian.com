@@ -5,6 +5,7 @@
   "excerpt": "delegate authentication to the API Gateway level using Kratos and Oathkeeper",
   "date": "2023-02-06",
   "tags": [
+    "My Experience",
     "API",
     "Security"
   ],

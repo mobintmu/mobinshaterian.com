@@ -5,6 +5,7 @@
   "excerpt": "In this article I am going to explain, how can run script on scheduled time. be careful, this script is not proper for run on kubernetis…",
   "date": "2024-03-01",
   "tags": [
+    "Design Rag System",
     "Python"
   ],
   "readingTime": "1 min",

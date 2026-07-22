@@ -5,6 +5,7 @@
   "excerpt": "In this article I want to get data from Fresh Desk via API key. and write note base on RAG open AI system.",
   "date": "2024-02-28",
   "tags": [
+    "Design Rag System",
     "API",
     "Machine Learning"
   ],

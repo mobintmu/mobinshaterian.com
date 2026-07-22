@@ -5,6 +5,7 @@
   "excerpt": "Design specs for 10M-user app: tackles 100K clicks/sec with Redis, WebSockets, load balancing, and NoSQL. Focuses on scalability and…",
   "date": "2024-08-10",
   "tags": [
+    "My Experience",
     "Redis"
   ],
   "readingTime": "7 min",

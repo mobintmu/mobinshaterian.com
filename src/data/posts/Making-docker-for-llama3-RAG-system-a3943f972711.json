@@ -5,6 +5,7 @@
   "excerpt": "This document describes how to set up a Docker container for a Retrieval-Augmented Generation (RAG) system using Llama 3 and Ollama.",
   "date": "2024-06-07",
   "tags": [
+    "Design Rag System",
     "Docker",
     "Machine Learning"
   ],

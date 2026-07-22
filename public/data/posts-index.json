@@ -247,6 +247,7 @@
     "date": "2026-05-25",
     "tags": [
       "Star",
+      "My Experience",
       "ClickHouse",
       "Performance",
       "Data Engineering"
@@ -1239,6 +1240,7 @@
     "excerpt": "System design is a critical challenge in modern software development, where applications must serve millions of users.",
     "date": "2025-01-18",
     "tags": [
+      "My Experience",
       "Microservices",
       "Machine Learning"
     ],
@@ -1252,6 +1254,7 @@
     "excerpt": "My journey from PHP to Golang has been one of growth, adaptation, and continuous learning. While PHP and Laravel served me well in the…",
     "date": "2025-01-14",
     "tags": [
+      "My Experience",
       "Go",
       "PHP",
       "Laravel"
@@ -1305,7 +1308,9 @@
     "title": "Refactoring if-Strategies: Transforming Legacy Code for Modern E-Commerce Platforms",
     "excerpt": "The Challenge of Legacy Sorting Methods",
     "date": "2024-12-11",
-    "tags": [],
+    "tags": [
+      "My Experience"
+    ],
     "readingTime": "3 min",
     "url": "https://medium.com/@mobinshaterian/refactoring-if-strategies-transforming-legacy-code-for-modern-e-commerce-platforms-3be0717570b4",
     "hero": "https://cdn-images-1.medium.com/max/800/1*KvTyRM6zIUU8Dcl84Aq5Zw.jpeg"
@@ -1338,6 +1343,7 @@
     "excerpt": "The main Idea of this article concerns adding senior software developers to the business and customer support teams to reduce pressure on…",
     "date": "2024-10-14",
     "tags": [
+      "Design Rag System",
       "Machine Learning"
     ],
     "readingTime": "6 min",
@@ -1437,6 +1443,7 @@
     "excerpt": "Design specs for 10M-user app: tackles 100K clicks/sec with Redis, WebSockets, load balancing, and NoSQL. Focuses on scalability and…",
     "date": "2024-08-10",
     "tags": [
+      "My Experience",
       "Redis"
     ],
     "readingTime": "7 min",
@@ -1555,6 +1562,7 @@
     "excerpt": "In the rapidly evolving customer support landscape, integrating Artificial Intelligence (AI) has become increasingly pivotal. This essay…",
     "date": "2024-06-28",
     "tags": [
+      "Design Rag System",
       "Machine Learning"
     ],
     "readingTime": "4 min",
@@ -1595,6 +1603,8 @@
     "excerpt": "Improving Customer Service Chatbot with Retrieval-Augmented Generation and Knowledge Graphs",
     "date": "2024-06-25",
     "tags": [
+      "My Experience",
+      "Design Rag System",
       "Machine Learning"
     ],
     "readingTime": "4 min",
@@ -1632,6 +1642,7 @@
     "excerpt": "This report outlines the steps involved in creating a conversational AI Telegram bot using Python.",
     "date": "2024-06-10",
     "tags": [
+      "Design Rag System",
       "Python",
       "Machine Learning"
     ],
@@ -1645,6 +1656,7 @@
     "excerpt": "This document describes how to set up a Docker container for a Retrieval-Augmented Generation (RAG) system using Llama 3 and Ollama.",
     "date": "2024-06-07",
     "tags": [
+      "Design Rag System",
       "Docker",
       "Machine Learning"
     ],
@@ -1658,6 +1670,7 @@
     "excerpt": "The article describes Retrieval-Augmented Generation (RAG) which helps large language models answer questions based on unseen documents…",
     "date": "2024-06-06",
     "tags": [
+      "Design Rag System",
       "Machine Learning"
     ],
     "readingTime": "4 min",
@@ -1670,6 +1683,7 @@
     "excerpt": "In this tutorial, the daily FAQ with ranking will be explained.",
     "date": "2024-05-21",
     "tags": [
+      "Design Rag System",
       "Machine Learning"
     ],
     "readingTime": "1 min",
@@ -1682,6 +1696,7 @@
     "excerpt": "One of the biggest challenges for every business is related to client answers. Angry clients can ruin the business and need a quick…",
     "date": "2024-05-13",
     "tags": [
+      "Design Rag System",
       "Machine Learning"
     ],
     "readingTime": "2 min",
@@ -1694,6 +1709,7 @@
     "excerpt": "In this tutorial, I want to write a Python code for the extraction of a customer tickets list with FreshDesk API.",
     "date": "2024-05-08",
     "tags": [
+      "Design Rag System",
       "Python",
       "API"
     ],
@@ -1707,6 +1723,7 @@
     "excerpt": "In every company, a group of agents is responsible for answering the client’s questions. My idea is related to ChatGPT automatically…",
     "date": "2024-05-07",
     "tags": [
+      "Design Rag System",
       "Machine Learning"
     ],
     "readingTime": "2 min",
@@ -1719,6 +1736,7 @@
     "excerpt": "Building a Knowledge Base is usually hard work for the company, and developers are always scared of writing documents. I found an effective…",
     "date": "2024-04-11",
     "tags": [
+      "Design Rag System",
       "Machine Learning"
     ],
     "readingTime": "2 min",
@@ -1743,6 +1761,7 @@
     "excerpt": "This document provides a guide on installing TensorFlow with GPU support on Ubuntu 22.04. It details the necessary steps to install the…",
     "date": "2024-03-30",
     "tags": [
+      "Design Rag System",
       "Linux",
       "Machine Learning"
     ],
@@ -1756,6 +1775,7 @@
     "excerpt": "In this tutorial, I am going to learn the fundamentals of tensors.",
     "date": "2024-03-29",
     "tags": [
+      "Design Rag System",
       "Machine Learning"
     ],
     "readingTime": "7 min",
@@ -1768,6 +1788,7 @@
     "excerpt": "Train ChatGPT with your own data.",
     "date": "2024-03-12",
     "tags": [
+      "Design Rag System",
       "Machine Learning"
     ],
     "readingTime": "2 min",
@@ -1780,6 +1801,7 @@
     "excerpt": "In this article I am going to explain, how can run script on scheduled time. be careful, this script is not proper for run on kubernetis…",
     "date": "2024-03-01",
     "tags": [
+      "Design Rag System",
       "Python"
     ],
     "readingTime": "1 min",
@@ -1792,6 +1814,7 @@
     "excerpt": "In this article I want to get data from Fresh Desk via API key. and write note base on RAG open AI system.",
     "date": "2024-02-28",
     "tags": [
+      "Design Rag System",
       "API",
       "Machine Learning"
     ],
@@ -1805,6 +1828,7 @@
     "excerpt": "In this tutorial I am going to get data from medium a make my version AI bot.",
     "date": "2024-02-23",
     "tags": [
+      "Design Rag System",
       "Machine Learning"
     ],
     "readingTime": "1 min",
@@ -2032,6 +2056,7 @@
     "excerpt": "In such a way that traces and metrics are emitted to the console.",
     "date": "2023-11-15",
     "tags": [
+      "My Experience",
       "Go"
     ],
     "readingTime": "6 min",
@@ -2044,6 +2069,7 @@
     "excerpt": "Both the function option pattern and builder pattern are super operative design patterns. But as a software engineer, it is so important to use this pattern in the right conditions.",
     "date": "2023-11-09",
     "tags": [
+      "My Experience",
       "Career"
     ],
     "readingTime": "2 min",
@@ -2091,6 +2117,7 @@
     "excerpt": "We have an application with Microservice architecture. In normal situations the application transfers 10k requests per second. We have a…",
     "date": "2023-08-28",
     "tags": [
+      "My Experience",
       "Microservices",
       "Architecture"
     ],
@@ -2116,6 +2143,7 @@
     "excerpt": "One of the best tools for document Backend API is Swagger. And also can send data at the endpoint easily with no other tools. In this…",
     "date": "2023-07-12",
     "tags": [
+      "My Experience",
       "Go",
       "API"
     ],
@@ -2212,6 +2240,7 @@
     "date": "2023-03-01",
     "tags": [
       "Star",
+      "My Experience",
       "Go",
       "Performance",
       "Testing",
@@ -2227,6 +2256,7 @@
     "excerpt": "In the last 6 months, I made enormous system for online payment and settlement with bank for handle 10k TPS. In this article I will explain…",
     "date": "2023-02-23",
     "tags": [
+      "My Experience",
       "Microservices",
       "Architecture",
       "Performance"
@@ -2265,6 +2295,7 @@
     "excerpt": "delegate authentication to the API Gateway level using Kratos and Oathkeeper",
     "date": "2023-02-06",
     "tags": [
+      "My Experience",
       "API",
       "Security"
     ],
@@ -2300,7 +2331,9 @@
     "title": "Redirect port from one server to port of another server via Iptables",
     "excerpt": "In this article, I want to redirect traffic from one server to another server. The main reason is I want to fetch data from a newspaper in…",
     "date": "2023-01-15",
-    "tags": [],
+    "tags": [
+      "My Experience"
+    ],
     "readingTime": "1 min",
     "url": "https://medium.com/@mobinshaterian/redirect-port-from-one-server-to-port-of-another-server-via-iptables-7d77f37d7fa0",
     "hero": "https://cdn-images-1.medium.com/max/800/1*2seMAJoclGqsKHiPMlSImQ.png"
@@ -2350,6 +2383,7 @@
     "date": "2022-09-12",
     "tags": [
       "Star",
+      "My Experience",
       "Architecture",
       "Data Engineering"
     ],
@@ -2415,6 +2449,7 @@
     "excerpt": "In a previous article, I mentioned that I have to use mongo-express to import and export data from my local server, which causes some…",
     "date": "2022-08-09",
     "tags": [
+      "My Experience",
       "Node.js",
       "MongoDB"
     ],
@@ -2468,6 +2503,7 @@
     "excerpt": "as a data Engineer, the data scientist team gave me API Machine Learning called Engine.",
     "date": "2021-03-23",
     "tags": [
+      "My Experience",
       "API",
       "Performance",
       "Data Engineering",
@@ -2483,6 +2519,7 @@
     "excerpt": "after I’m facing CPU usage in PHP and Laravael framework I decided to implement my data engineer system by Go language.",
     "date": "2021-02-07",
     "tags": [
+      "My Experience",
       "Go",
       "PHP",
       "Data Engineering"
@@ -2497,6 +2534,7 @@
     "excerpt": "I have been a PHP developer for many years. Employers want to build every platform with PHP!",
     "date": "2021-01-11",
     "tags": [
+      "My Experience",
       "PHP",
       "Machine Learning"
     ],
@@ -2597,6 +2635,7 @@
     "excerpt": "when customer increase in website suddenly face of limitation of hard disk , in this time increasing hard drive is very stressful …",
     "date": "2020-09-13",
     "tags": [
+      "My Experience",
       "Linux"
     ],
     "readingTime": "3 min",
