@@ -5,6 +5,7 @@
   "excerpt": "I faced 100K requests in a short period in our application. In that situation, Postgres Database has a lot of delays in response requests…",
   "date": "2022-08-15",
   "tags": [
+    "Star",
     "Redis",
     "Postgres"
   ],

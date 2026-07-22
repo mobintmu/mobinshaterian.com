@@ -246,6 +246,7 @@
     "excerpt": "Every hour, 15 million rows of raw network measurement data land in our ClickHouse cluster. From that data we calculate per-cell…",
     "date": "2026-05-25",
     "tags": [
+      "Star",
       "ClickHouse",
       "Performance",
       "Data Engineering"
@@ -736,6 +737,7 @@
     "excerpt": "As a Go developer, having the right set of Visual Studio Code extensions can dramatically boost your productivity, code quality.",
     "date": "2025-10-25",
     "tags": [
+      "Star",
       "Go"
     ],
     "readingTime": "11 min",
@@ -1360,6 +1362,7 @@
     "excerpt": "This document outlines a comprehensive setup guide for Golang developers working on Ubuntu 22.04 LTS. It covers a wide range of essential…",
     "date": "2024-09-23",
     "tags": [
+      "Star",
       "Go",
       "Linux"
     ],
@@ -2208,6 +2211,7 @@
     "excerpt": "Explain way of testing golang application.",
     "date": "2023-03-01",
     "tags": [
+      "Star",
       "Go",
       "Performance",
       "Testing",
@@ -2345,6 +2349,7 @@
     "excerpt": "I designed event-driven architecture for our fintech software. It consisted of three parts. Part one had a sync process, and Parts two and…",
     "date": "2022-09-12",
     "tags": [
+      "Star",
       "Architecture",
       "Data Engineering"
     ],
@@ -2358,6 +2363,7 @@
     "excerpt": "When I was a child, I decided to use only open-source tools. It was a hard decision at the time because many open-source tools weren’t…",
     "date": "2022-09-08",
     "tags": [
+      "Star",
       "Go",
       "Machine Learning"
     ],
@@ -2383,6 +2389,7 @@
     "excerpt": "I faced 100K requests in a short period in our application. In that situation, Postgres Database has a lot of delays in response requests…",
     "date": "2022-08-15",
     "tags": [
+      "Star",
       "Redis",
       "Postgres"
     ],

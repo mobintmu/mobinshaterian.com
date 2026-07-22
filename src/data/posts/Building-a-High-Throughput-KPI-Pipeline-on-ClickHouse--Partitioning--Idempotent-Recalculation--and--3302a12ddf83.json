@@ -5,6 +5,7 @@
   "excerpt": "Every hour, 15 million rows of raw network measurement data land in our ClickHouse cluster. From that data we calculate per-cell…",
   "date": "2026-05-25",
   "tags": [
+    "Star",
     "ClickHouse",
     "Performance",
     "Data Engineering"

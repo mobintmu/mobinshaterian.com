@@ -21,7 +21,7 @@ type IndexEntry = {
 type SearchDoc = { slug: string; title: string; tags: string[]; plainText: string };
 
 const searchSchema = z.object({
-  tag: fallback(z.string(), "").default(""),
+  tag: fallback(z.string(), "Star").default("Star"),
   q: fallback(z.string(), "").default(""),
 });
 
@@ -89,10 +89,15 @@ function BlogsPage() {
     if (q.trim()) load();
   }, [q, load]);
 
-  const tagCounts = useMemo(() => {
+  const { starCount, otherTagCounts } = useMemo(() => {
     const c = new Map<string, number>();
     for (const p of all) for (const t of p.tags) c.set(t, (c.get(t) ?? 0) + 1);
-    return [...c.entries()].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]));
+    return {
+      starCount: c.get("Star") ?? 0,
+      otherTagCounts: [...c.entries()]
+        .filter(([name]) => name !== "Star")
+        .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0])),
+    };
   }, [all]);
 
   const matchedSlugs = useMemo(() => {
@@ -205,6 +210,27 @@ function BlogsPage() {
             filter by tag
           </div>
           <div className="flex flex-wrap gap-1.5">
+            {starCount ? (
+              <button
+                onClick={() =>
+                  navigate({
+                    search: (prev: { tag: string; q: string }) => ({
+                      ...prev,
+                      tag: prev.tag === "Star" ? "" : "Star",
+                    }),
+                    replace: true,
+                  })
+                }
+                className={
+                  "rounded border px-2 py-1 font-mono-plus text-xs transition-colors " +
+                  (tag === "Star"
+                    ? "border-terminal bg-terminal/10 text-terminal"
+                    : "border-border text-muted-foreground hover:border-terminal/50 hover:text-terminal")
+                }
+              >
+                ★ star ({starCount})
+              </button>
+            ) : null}
             <button
               onClick={() =>
                 navigate({
@@ -221,7 +247,7 @@ function BlogsPage() {
             >
               all ({all.length})
             </button>
-            {tagCounts.map(([t, n]) => (
+            {otherTagCounts.map(([t, n]) => (
               <button
                 key={t}
                 onClick={() =>
