@@ -2,6 +2,7 @@ import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import postsIndex from "@/data/posts-index.json";
 import profile from "@/data/profile.json";
 import { PostContent, type Block } from "@/components/PostContent";
+import { SiteMenu } from "@/components/SiteMenu";
 import {
   ArrowLeft,
   ArrowRight,
@@ -116,7 +117,7 @@ function BlogPostPage() {
   return (
     <div className="min-h-screen bg-background text-foreground font-sans">
       <header className="sticky top-0 z-40 border-b border-border/60 bg-background/80 backdrop-blur">
-        <div className="mx-auto flex max-w-3xl items-center justify-between px-6 py-4">
+        <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
           <Link
             to="/blogs"
             className="inline-flex items-center gap-2 font-mono-plus text-sm text-terminal terminal-glow"
@@ -124,14 +125,17 @@ function BlogPostPage() {
             <ArrowLeft className="h-4 w-4" />
             ~/blogs
           </Link>
-          <a
-            href={`/data/posts/${post.slug}.json`}
-            className="inline-flex items-center gap-1 font-mono-plus text-xs text-muted-foreground hover:text-terminal"
-            title="Open data — machine readable"
-          >
-            <FileJson className="h-3.5 w-3.5" />
-            .json
-          </a>
+          <div className="flex items-center gap-2">
+            <a
+              href={`/data/posts/${post.slug}.json`}
+              className="inline-flex items-center gap-1 rounded border border-border px-2 py-1 font-mono-plus text-xs text-muted-foreground hover:border-terminal/50 hover:text-terminal"
+              title="Open data — machine readable"
+            >
+              <FileJson className="h-3.5 w-3.5" />
+              <span className="hidden sm:inline">.json</span>
+            </a>
+            <SiteMenu />
+          </div>
         </div>
       </header>
 

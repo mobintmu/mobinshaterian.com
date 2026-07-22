@@ -3,9 +3,10 @@ import { useEffect, useMemo, useState } from "react";
 import { z } from "zod";
 import { zodValidator, fallback } from "@tanstack/zod-adapter";
 import MiniSearch from "minisearch";
+import { SiteMenu } from "@/components/SiteMenu";
 import postsIndex from "@/data/posts-index.json";
 import profile from "@/data/profile.json";
-import { ArrowLeft, PenLine, Search, Tag as TagIcon, FileJson } from "lucide-react";
+import { ArrowLeft, Search, Tag as TagIcon, FileJson } from "lucide-react";
 
 type IndexEntry = {
   slug: string;
@@ -138,17 +139,9 @@ function BlogsPage() {
               title="Open data — machine readable"
             >
               <FileJson className="h-3 w-3" />
-              index.json
+              <span className="hidden sm:inline">index.json</span>
             </a>
-            <a
-              href={profile.links.medium}
-              target="_blank"
-              rel="noreferrer noopener"
-              className="inline-flex items-center gap-1.5 rounded border border-terminal/40 bg-terminal/5 px-3 py-1.5 font-mono-plus text-xs text-terminal transition-colors hover:bg-terminal/10"
-            >
-              <PenLine className="h-3.5 w-3.5" />
-              medium
-            </a>
+            <SiteMenu />
           </div>
         </div>
       </header>

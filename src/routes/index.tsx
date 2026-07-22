@@ -1,5 +1,6 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
+import { SiteMenu } from "@/components/SiteMenu";
 import profile from "@/data/profile.json";
 import posts from "@/data/posts-index.json";
 import {
@@ -55,13 +56,6 @@ function HomePage() {
 /* ---------- sections ---------- */
 
 function Nav() {
-  const items = [
-    { href: "#about", label: "about" },
-    { href: "#writing", label: "writing" },
-    { href: "#experience", label: "experience" },
-    { href: "#skills", label: "skills" },
-    { href: "#contact", label: "contact" },
-  ];
   return (
     <header className="sticky top-0 z-40 border-b border-border/60 bg-background/80 backdrop-blur">
       <div className="mx-auto flex max-w-5xl items-center justify-between px-6 py-4">
@@ -69,25 +63,7 @@ function Nav() {
           ~/mobin
           <span className="cursor-blink ml-0.5">_</span>
         </a>
-        <nav className="hidden gap-6 font-mono-plus text-xs text-muted-foreground md:flex">
-          {items.map((i) => (
-            <a key={i.href} href={i.href} className="transition-colors hover:text-terminal">
-              {i.label}
-            </a>
-          ))}
-          <Link to="/blogs" className="transition-colors hover:text-terminal">
-            blog
-          </Link>
-        </nav>
-        <a
-          href={profile.links.medium}
-          target="_blank"
-          rel="noreferrer noopener"
-          className="hidden items-center gap-1.5 rounded border border-terminal/40 bg-terminal/5 px-3 py-1.5 font-mono-plus text-xs text-terminal transition-colors hover:bg-terminal/10 md:inline-flex"
-        >
-          <PenLine className="h-3.5 w-3.5" />
-          blog
-        </a>
+        <SiteMenu />
       </div>
     </header>
   );
