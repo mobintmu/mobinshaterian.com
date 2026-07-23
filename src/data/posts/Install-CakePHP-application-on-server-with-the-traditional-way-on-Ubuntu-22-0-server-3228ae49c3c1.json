@@ -99,7 +99,7 @@
     {
       "type": "code",
       "lang": "sql",
-      "code": "CREATE DATABASE db_name;USE db_name;SHOW TABLES;"
+      "code": "CREATE DATABASE db_name;\n\nUSE db_name;\n\nSHOW TABLES;"
     },
     {
       "type": "paragraph",

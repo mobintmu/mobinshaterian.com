@@ -86,7 +86,7 @@
     {
       "type": "code",
       "lang": "sql",
-      "code": "-- liquibase formatted sql-- change\nset liquibase:1\nCREATE TABLE test_table (test_id INT, test_column VARCHAR(256), PRIMARY KEY (test_id))"
+      "code": "-- liquibase formatted sql\n-- changeset liquibase:1\nCREATE TABLE test_table (\n    test_id INT,\n    test_column VARCHAR(256),\n    PRIMARY KEY (test_id)\n);"
     },
     {
       "type": "paragraph",
@@ -142,7 +142,7 @@
     {
       "type": "code",
       "lang": "sql",
-      "code": "--liquibase formatted sql--change\nset stevedonie:\ncreate-test-table\nCREATE TABLE testTable(  columnName1 VARCHAR (355));--rollback\nDROP TABLE--rollback testTable"
+      "code": "-- liquibase formatted sql\n-- changeset stevedonie:create-test-table\nCREATE TABLE testTable (\n    columnName1 VARCHAR(355)\n);\n\n-- rollback DROP TABLE testTable;"
     },
     {
       "type": "heading",

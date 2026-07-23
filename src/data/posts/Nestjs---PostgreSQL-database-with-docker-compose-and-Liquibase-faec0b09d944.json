@@ -125,7 +125,7 @@
     {
       "type": "code",
       "lang": "sql",
-      "code": "--liquibase formatted sql-- change\nset mobin:1\nCREATE TABLE IF NOT EXISTS \"tasks\" (  \"id\" bigserial PRIMARY KEY,  \"title\" TEXT NOT NULL,\n\"description\" TEXT NOT NULL,  \"created_at\" timestamptz NOT NULL DEFAULT (now()));\nCREATE INDEX ON \"tasks\" (\"id\");--rollback\nDROP TABLE \"tasks\";"
+      "code": "-- liquibase formatted sql\n-- changeset mobin:1\nCREATE TABLE IF NOT EXISTS \"tasks\" (\n    \"id\" BIGSERIAL PRIMARY KEY,\n    \"title\" TEXT NOT NULL,\n    \"description\" TEXT NOT NULL,\n    \"created_at\" TIMESTAMPTZ NOT NULL DEFAULT NOW()\n);\n\nCREATE INDEX ON \"tasks\" (\"id\");\n\n-- rollback DROP TABLE \"tasks\";"
     },
     {
       "type": "heading",

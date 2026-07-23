@@ -137,7 +137,7 @@
     {
       "type": "code",
       "lang": "sql",
-      "code": "CREATE TABLE kafka_raw (    timestamp  DateTime,    server     String,    metric     String,\nvalue      Float64) ENGINE = KafkaSETTINGS    kafka_brokers = 'ip:9093',    kafka_topic_list =\n'measurements-test-1',    kafka_group_name = 'clickhouse-consumer',    kafka_format = 'JSONEachRow',\nkafka_num_consumers = 4; -- Adjusted for performance"
+      "code": "CREATE TABLE kafka_raw (\n    timestamp DateTime,\n    server String,\n    metric String,\n    value Float64\n)\nENGINE = Kafka\nSETTINGS\n    kafka_brokers = 'ip:9093',\n    kafka_topic_list = 'measurements-test-1',\n    kafka_group_name = 'clickhouse-consumer',\n    kafka_format = 'JSONEachRow',\n    kafka_num_consumers = 4; -- Adjusted for performance"
     },
     {
       "type": "paragraph",

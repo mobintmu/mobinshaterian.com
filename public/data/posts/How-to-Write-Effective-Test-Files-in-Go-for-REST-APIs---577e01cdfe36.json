@@ -122,8 +122,8 @@
     },
     {
       "type": "code",
-      "lang": "sql",
-      "code": "update := dto.AdminUpdateProductRequest{ Name: \"Updated\", Price: 1500 }body, _ := json.Marshal(\nupdate)req, _ := http.NewRequest(http.MethodPut, addr+\"/api/v1/admin/products/1\",\nbytes.NewBuffer(body))req.Header.\nSet(\"Content-Type\", \"application/json\")client := &http.Client{}resp, _ := client.Do(req)"
+      "lang": "go",
+      "code": "update := dto.AdminUpdateProductRequest{\n    Name:  \"Updated\",\n    Price: 1500,\n}\n\nbody, _ := json.Marshal(update)\nreq, _ := http.NewRequest(\n    http.MethodPut,\n    addr+\"/api/v1/admin/products/1\",\n    bytes.NewBuffer(body),\n)\nreq.Header.Set(\"Content-Type\", \"application/json\")\n\nclient := &http.Client{}\nresp, _ := client.Do(req)"
     },
     {
       "type": "paragraph",

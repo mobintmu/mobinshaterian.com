@@ -513,7 +513,7 @@
     {
       "type": "code",
       "lang": "sql",
-      "code": "SELECT id, customer_id, amount, updated_at\nFROM orders\nWHERE updated_at > '2025-10-16T12:34:46Z'  -- off\nset minus 10s buffer  AND id > 10542\nORDER BY updated_at ASC, id ASC\nLIMIT 1000;"
+      "code": "SELECT\n    id,\n    customer_id,\n    amount,\n    updated_at\nFROM orders\nWHERE updated_at > '2025-10-16T12:34:46Z' -- offset minus 10s buffer\n  AND id > 10542\nORDER BY updated_at ASC, id ASC\nLIMIT 1000;"
     },
     {
       "type": "paragraph",

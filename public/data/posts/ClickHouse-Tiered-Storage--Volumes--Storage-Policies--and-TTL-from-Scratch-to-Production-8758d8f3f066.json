@@ -190,7 +190,7 @@
     {
       "type": "code",
       "lang": "sql",
-      "code": "CREATE TABLE events(    event_time   DateTime,    user_id      UInt64,    action       String,\nvalue        Float64)ENGINE = MergeTreePARTITION BY toDate(event_time)\nORDER BY (event_time, user_id)SETTINGS    index_granularity = 8192,    storage_policy = 'hot_warm';\n-- assign policy here"
+      "code": "CREATE TABLE events (\n    event_time DateTime,\n    user_id UInt64,\n    action String,\n    value Float64\n)\nENGINE = MergeTree\nPARTITION BY toDate(event_time)\nORDER BY (event_time, user_id)\nSETTINGS\n    index_granularity = 8192,\n    storage_policy = 'hot_warm'; -- assign policy here"
     },
     {
       "type": "paragraph",
@@ -199,7 +199,7 @@
     {
       "type": "code",
       "lang": "sql",
-      "code": "ALTER TABLE eventsMODIFY SETTING storage_policy = 'hot_warm';"
+      "code": "ALTER TABLE events\nMODIFY SETTING storage_policy = 'hot_warm';"
     },
     {
       "type": "quote",
@@ -217,7 +217,7 @@
     {
       "type": "code",
       "lang": "sql",
-      "code": "ALTER TABLE eventsMODIFY TTL    event_time + INTERVAL 7  DAY  TO VOLUME 'warm',    event_time +\nINTERVAL 90 DAY  DELETE;"
+      "code": "ALTER TABLE events\nMODIFY TTL\n    event_time + INTERVAL 7 DAY TO VOLUME 'warm',\n    event_time + INTERVAL 90 DAY DELETE;"
     },
     {
       "type": "paragraph",
@@ -249,7 +249,7 @@
     {
       "type": "code",
       "lang": "sql",
-      "code": "-- See all configured policies and their volumes\nSELECT    policy_name,    volume_name,    volume_priority,    disks,\nformatReadableSize(max_data_part_size) AS max_part_size,    move_factor\nFROM system.storage_policies;-- See which disk each part lives on\nSELECT    partition,    name,    disk_name,    rows,    formatReadableSize(bytes_on_disk) AS size\nFROM system.parts\nWHERE table = 'events'  AND active = 1\nORDER BY partition DESC;"
+      "code": "-- See all configured policies and their volumes\nSELECT\n    policy_name,\n    volume_name,\n    volume_priority,\n    disks,\n    formatReadableSize(max_data_part_size) AS max_part_size,\n    move_factor\nFROM system.storage_policies;\n\n-- See which disk each part lives on\nSELECT\n    partition,\n    name,\n    disk_name,\n    rows,\n    formatReadableSize(bytes_on_disk) AS size\nFROM system.parts\nWHERE table = 'events'\n  AND active = 1\nORDER BY partition DESC;"
     },
     {
       "type": "heading",
@@ -333,7 +333,7 @@
     {
       "type": "code",
       "lang": "sql",
-      "code": "ALTER TABLE eventsMODIFY TTL    event_time + INTERVAL 7   DAY  TO VOLUME 'warm'  RECOMPRESS\nCODEC(ZSTD(3)),    event_time + INTERVAL 30  DAY  TO VOLUME 'cold'  RECOMPRESS CODEC(ZSTD(9)),\nevent_time + INTERVAL 365 DAY  DELETE;"
+      "code": "ALTER TABLE events\nMODIFY TTL\n    event_time + INTERVAL 7 DAY\n        TO VOLUME 'warm' RECOMPRESS CODEC(ZSTD(3)),\n    event_time + INTERVAL 30 DAY\n        TO VOLUME 'cold' RECOMPRESS CODEC(ZSTD(9)),\n    event_time + INTERVAL 365 DAY DELETE;"
     },
     {
       "type": "paragraph",
@@ -365,7 +365,7 @@
     {
       "type": "code",
       "lang": "sql",
-      "code": "CREATE TABLE events(    event_time   DateTime,    user_id      UInt64,    action       String,\nvalue        Float64)ENGINE = MergeTreePARTITION BY toDate(event_time)\nORDER BY (event_time, user_id)TTL    event_time + INTERVAL 7   DAY  TO VOLUME 'warm'  RECOMPRESS\nCODEC(ZSTD(3)),    event_time + INTERVAL 30  DAY  TO VOLUME 'cold'  RECOMPRESS CODEC(ZSTD(9)),\nevent_time + INTERVAL 365 DAY  DELETESETTINGS    index_granularity = 8192,    storage_policy =\n'hot_warm_cold';"
+      "code": "CREATE TABLE events (\n    event_time DateTime,\n    user_id UInt64,\n    action String,\n    value Float64\n)\nENGINE = MergeTree\nPARTITION BY toDate(event_time)\nORDER BY (event_time, user_id)\nTTL\n    event_time + INTERVAL 7 DAY\n        TO VOLUME 'warm' RECOMPRESS CODEC(ZSTD(3)),\n    event_time + INTERVAL 30 DAY\n        TO VOLUME 'cold' RECOMPRESS CODEC(ZSTD(9)),\n    event_time + INTERVAL 365 DAY DELETE\nSETTINGS\n    index_granularity = 8192,\n    storage_policy = 'hot_warm_cold';"
     },
     {
       "type": "heading",
@@ -397,7 +397,7 @@
     {
       "type": "code",
       "lang": "sql",
-      "code": "-- Move a specific partition to warm\nALTER TABLE eventsMOVE PARTITION '2024-11-01' TO VOLUME 'warm';-- Move a specific partition directly\nto S3\nALTER TABLE eventsMOVE PARTITION '2024-09-01' TO VOLUME 'cold';"
+      "code": "-- Move a specific partition to warm\nALTER TABLE events\nMOVE PARTITION '2024-11-01' TO VOLUME 'warm';\n\n-- Move a specific partition directly to S3\nALTER TABLE events\nMOVE PARTITION '2024-09-01' TO VOLUME 'cold';"
     },
     {
       "type": "heading",
@@ -421,7 +421,7 @@
     {
       "type": "code",
       "lang": "sql",
-      "code": "-- How much data lives on each disk, per table\nSELECT    table,    disk_name,    count()                                AS part_count,    sum(rows)\nAS total_rows,    formatReadableSize(sum(bytes_on_disk)) AS total_size\nFROM system.parts\nWHERE active = 1  AND database = currentDatabase()\nGROUP BY table, disk_name\nORDER BY table, disk_name;-- Free space on each configured disk\nSELECT    name,    path,    formatReadableSize(free_space)  AS free,\nformatReadableSize(total_space) AS total,    round(100.0 * free_space / total_space, 1) AS free_pct\nFROM system.disks;-- Parts\nwith pending TTL moves (scheduled but not yet executed)\nSELECT    table,    partition,    name,    disk_name,    move_ttl_info\nFROM system.parts\nWHERE active = 1  AND notEmpty(move_ttl_info)\nORDER BY table, partition;-- Active mutations (\nALTER TABLE DELETE or heavy operations)\nSELECT    table,    mutation_id,    command,    create_time,    is_done,    latest_fail_reason\nFROM system.mutations\nWHERE is_done = 0\nORDER BY create_time;-- S3 cache hit rate (if using S3\nwith local cache)\nSELECT    *\nFROM system.filesystem_cache_settings;"
+      "code": "-- How much data lives on each disk, per table\nSELECT\n    table,\n    disk_name,\n    count() AS part_count,\n    sum(rows) AS total_rows,\n    formatReadableSize(sum(bytes_on_disk)) AS total_size\nFROM system.parts\nWHERE active = 1\n  AND database = currentDatabase()\nGROUP BY table, disk_name\nORDER BY table, disk_name;\n\n-- Free space on each configured disk\nSELECT\n    name,\n    path,\n    formatReadableSize(free_space) AS free,\n    formatReadableSize(total_space) AS total,\n    round(100.0 * free_space / total_space, 1) AS free_pct\nFROM system.disks;\n\n-- Parts with pending TTL moves\nSELECT\n    table,\n    partition,\n    name,\n    disk_name,\n    move_ttl_info\nFROM system.parts\nWHERE active = 1\n  AND notEmpty(move_ttl_info)\nORDER BY table, partition;\n\n-- Active mutations (ALTER TABLE DELETE or heavy operations)\nSELECT\n    table,\n    mutation_id,\n    command,\n    create_time,\n    is_done,\n    latest_fail_reason\nFROM system.mutations\nWHERE is_done = 0\nORDER BY create_time;\n\n-- S3 cache hit rate (if using S3 with local cache)\nSELECT *\nFROM system.filesystem_cache_settings;"
     },
     {
       "type": "heading",

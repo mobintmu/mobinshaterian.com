@@ -31,6 +31,15 @@ type FullPost = IndexEntry & {
 
 const postModules = import.meta.glob("@/data/posts/*.json");
 
+const allTags = Array.from(
+  (postsIndex as IndexEntry[]).reduce((counts, article) => {
+    for (const tag of article.tags) {
+      counts.set(tag, (counts.get(tag) ?? 0) + 1);
+    }
+    return counts;
+  }, new Map<string, number>()),
+).sort(([tagA], [tagB]) => tagA.localeCompare(tagB));
+
 async function loadPost(slug: string): Promise<FullPost | null> {
   const key = Object.keys(postModules).find((k) => k.endsWith(`/${slug}.json`));
   if (!key) return null;
@@ -254,6 +263,59 @@ function BlogPostPage() {
             </Link>
           ) : null}
         </nav>
+
+        {post.tags.length ? (
+          <section
+            className="mt-10 border-t border-border pt-6"
+            aria-labelledby="post-tags-heading"
+          >
+            <div className="mb-4 flex items-center gap-2">
+              <TagIcon className="h-4 w-4 text-terminal" />
+              <h2
+                id="post-tags-heading"
+                className="font-mono-plus text-xs uppercase tracking-wider text-terminal"
+              >
+                Tags of this blog
+              </h2>
+            </div>
+            <div className="flex flex-wrap gap-1.5">
+              {post.tags.map((tag) => (
+                <Link
+                  key={tag}
+                  to="/blogs"
+                  search={{ tag, q: "" }}
+                  className="rounded border border-terminal/50 bg-terminal/10 px-2 py-1 font-mono-plus text-[11px] text-terminal transition-colors hover:border-terminal hover:bg-terminal/20"
+                >
+                  #{tag}
+                </Link>
+              ))}
+            </div>
+          </section>
+        ) : null}
+
+        <section className="mt-10 border-t border-border pt-6" aria-labelledby="all-tags-heading">
+          <div className="mb-4 flex items-center gap-2">
+            <TagIcon className="h-4 w-4 text-terminal" />
+            <h2
+              id="all-tags-heading"
+              className="font-mono-plus text-xs uppercase tracking-wider text-terminal"
+            >
+              Explore all tags
+            </h2>
+          </div>
+          <div className="flex flex-wrap gap-1.5">
+            {allTags.map(([tag, count]) => (
+              <Link
+                key={tag}
+                to="/blogs"
+                search={{ tag, q: "" }}
+                className="rounded border border-border px-2 py-1 font-mono-plus text-[11px] text-muted-foreground transition-colors hover:border-terminal/50 hover:text-terminal"
+              >
+                #{tag} <span className="text-[10px] opacity-70">({count})</span>
+              </Link>
+            ))}
+          </div>
+        </section>
 
         <div className="mt-6">
           <Link

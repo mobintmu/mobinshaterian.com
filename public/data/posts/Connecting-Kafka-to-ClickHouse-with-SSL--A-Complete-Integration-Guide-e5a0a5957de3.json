@@ -128,7 +128,7 @@
     {
       "type": "code",
       "lang": "sql",
-      "code": "CREATE TABLE events_destination (    event_id    UInt64,    event_name  String,    event_time\nDateTime,    payload     String,    ingested_at DateTime DEFAULT now()) ENGINE = MergeTree()\nORDER BY (event_time, event_id);"
+      "code": "CREATE TABLE events_destination (\n    event_id UInt64,\n    event_name String,\n    event_time DateTime,\n    payload String,\n    ingested_at DateTime DEFAULT now()\n)\nENGINE = MergeTree()\nORDER BY (event_time, event_id);"
     },
     {
       "type": "heading",
@@ -142,7 +142,7 @@
     {
       "type": "code",
       "lang": "sql",
-      "code": "CREATE TABLE kafka_queue_stream (    event_id    UInt64,    event_name  String,    event_time\nDateTime,    payload     String) ENGINE = KafkaSETTINGS    kafka_broker_list = 'ip:9093,ip:9093',\nkafka_topic_list = 'your_topic_name',    kafka_group_name = 'clickhouse_consumer_v1',\nkafka_format = 'JSONEachRow',    kafka_num_consumers = 4, -- Matches Kafka partitions for parallel\nreading    kafka_skip_broken_messages = 1;"
+      "code": "CREATE TABLE kafka_queue_stream (\n    event_id UInt64,\n    event_name String,\n    event_time DateTime,\n    payload String\n)\nENGINE = Kafka\nSETTINGS\n    kafka_broker_list = 'ip:9093,ip:9093',\n    kafka_topic_list = 'your_topic_name',\n    kafka_group_name = 'clickhouse_consumer_v1',\n    kafka_format = 'JSONEachRow',\n    kafka_num_consumers = 4, -- Matches Kafka partitions for parallel reading\n    kafka_skip_broken_messages = 1;"
     },
     {
       "type": "heading",

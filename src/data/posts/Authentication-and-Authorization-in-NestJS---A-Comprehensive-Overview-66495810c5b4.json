@@ -154,7 +154,7 @@
     {
       "type": "code",
       "lang": "sql",
-      "code": "--liquibase formatted sql-- change\nset mobin:2\nCREATE TABLE IF NOT EXISTS \"users\" (  \"id\" uuid NOT NULL DEFAULT gen_random_uuid(),  \"username\" TEXT\nNOT NULL,  \"password\" TEXT NOT NULL,  \"created_at\" timestamptz NOT NULL DEFAULT (now()),  PRIMARY\nKEY (id));\nCREATE INDEX ON \"users\" (\"id\");--rollback\nDROP TABLE \"tasks\";"
+      "code": "-- liquibase formatted sql\n-- changeset mobin:2\nCREATE TABLE IF NOT EXISTS \"users\" (\n    \"id\" UUID NOT NULL DEFAULT gen_random_uuid(),\n    \"username\" TEXT NOT NULL,\n    \"password\" TEXT NOT NULL,\n    \"created_at\" TIMESTAMPTZ NOT NULL DEFAULT NOW(),\n    PRIMARY KEY (\"id\")\n);\n\nCREATE INDEX ON \"users\" (\"id\");\n\n-- rollback DROP TABLE \"tasks\";"
     },
     {
       "type": "paragraph",

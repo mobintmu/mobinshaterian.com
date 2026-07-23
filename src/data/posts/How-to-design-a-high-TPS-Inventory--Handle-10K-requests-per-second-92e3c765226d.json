@@ -124,7 +124,7 @@
     {
       "type": "code",
       "lang": "sql",
-      "code": "CREATE TABLE products (    product_id INT PRIMARY KEY,    quantity INT NOT NULL DEFAULT 0,    price\nDECIMAL(10,2),    description TEXT);\nCREATE TABLE orders (    order_id INT PRIMARY KEY,    product_id INT,    quantity INT,    status\nVARCHAR(20),    FOREIGN KEY (product_id) REFERENCES products(product_id));"
+      "code": "CREATE TABLE products (\n    product_id INT PRIMARY KEY,\n    quantity INT NOT NULL DEFAULT 0,\n    price DECIMAL(10, 2),\n    description TEXT\n);\n\nCREATE TABLE orders (\n    order_id INT PRIMARY KEY,\n    product_id INT,\n    quantity INT,\n    status VARCHAR(20),\n    FOREIGN KEY (product_id) REFERENCES products(product_id)\n);"
     },
     {
       "type": "image",
@@ -176,7 +176,7 @@
     {
       "type": "code",
       "lang": "sql",
-      "code": "CREATE TABLE products (    product_id INT PRIMARY KEY,    quantity INT NOT NULL DEFAULT 0,    price\nDECIMAL(10,2),    description TEXT,    status VARCHAR(20),    last_updated TIMESTAMP DEFAULT\nCURRENT_TIMESTAMP,    version INT NOT NULL DEFAULT 0);-- Cache table for quick lookups\nCREATE TABLE product_cache (    product_id INT PRIMARY KEY,    quantity INT NOT NULL,    status\nVARCHAR(20),    version INT NOT NULL,    last_updated TIMESTAMP NOT NULL,    expires_at TIMESTAMP\nNOT NULL,    FOREIGN KEY (product_id) REFERENCES products(product_id));-- Index for efficient cache\ninvalidation\nCREATE INDEX idx_expires_at ON product_cache (expires_at);"
+      "code": "CREATE TABLE products (\n    product_id INT PRIMARY KEY,\n    quantity INT NOT NULL DEFAULT 0,\n    price DECIMAL(10, 2),\n    description TEXT,\n    status VARCHAR(20),\n    last_updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP,\n    version INT NOT NULL DEFAULT 0\n);\n\n-- Cache table for quick lookups\nCREATE TABLE product_cache (\n    product_id INT PRIMARY KEY,\n    quantity INT NOT NULL,\n    status VARCHAR(20),\n    version INT NOT NULL,\n    last_updated TIMESTAMP NOT NULL,\n    expires_at TIMESTAMP NOT NULL,\n    FOREIGN KEY (product_id) REFERENCES products(product_id)\n);\n\n-- Index for efficient cache invalidation\nCREATE INDEX idx_expires_at ON product_cache (expires_at);"
     },
     {
       "type": "image",
@@ -215,7 +215,7 @@
     {
       "type": "code",
       "lang": "sql",
-      "code": "-- Optimized product table\nwith efficient indexing\nCREATE TABLE products (    product_id BIGINT PRIMARY KEY AUTO_INCREMENT,    category_id INT NOT\nNULL,    region_id INT NOT NULL,    quantity INT NOT NULL DEFAULT 0,    price DECIMAL(10,2),\nstatus VARCHAR(20),    version INT NOT NULL DEFAULT 0,    last_updated TIMESTAMP DEFAULT\nCURRENT_TIMESTAMP,    INDEX idx_category_quantity (category_id, quantity),    INDEX\nidx_region_status (region_id, status),    INDEX idx_version (version));-- Partition the products\ntable by region\nCREATE TABLE products_partitioned (    product_id BIGINT PRIMARY KEY AUTO_INCREMENT,    category_id\nINT NOT NULL,    region_id INT NOT NULL,    quantity INT NOT NULL DEFAULT 0,    price DECIMAL(10,2),\nstatus VARCHAR(20),    version INT NOT NULL DEFAULT 0,    last_updated TIMESTAMP DEFAULT\nCURRENT_TIMESTAMP) PARTITION BY LIST (region_id) (    PARTITION p_north\nVALUES IN (1),    PARTITION p_south\nVALUES IN (2),    PARTITION p_east\nVALUES IN (3),    PARTITION p_west\nVALUES IN (4));-- Cache table\nwith optimized indexing\nCREATE TABLE product_cache (    cache_key VARCHAR(255) PRIMARY KEY,    product_id BIGINT,\nquantity INT,    expires_at TIMESTAMP NOT NULL,    INDEX idx_expires (expires_at),    INDEX\nidx_product_id (product_id));"
+      "code": "-- Optimized product table with efficient indexing\nCREATE TABLE products (\n    product_id BIGINT PRIMARY KEY AUTO_INCREMENT,\n    category_id INT NOT NULL,\n    region_id INT NOT NULL,\n    quantity INT NOT NULL DEFAULT 0,\n    price DECIMAL(10, 2),\n    status VARCHAR(20),\n    version INT NOT NULL DEFAULT 0,\n    last_updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP,\n    INDEX idx_category_quantity (category_id, quantity),\n    INDEX idx_region_status (region_id, status),\n    INDEX idx_version (version)\n);\n\n-- Partition the products table by region\nCREATE TABLE products_partitioned (\n    product_id BIGINT PRIMARY KEY AUTO_INCREMENT,\n    category_id INT NOT NULL,\n    region_id INT NOT NULL,\n    quantity INT NOT NULL DEFAULT 0,\n    price DECIMAL(10, 2),\n    status VARCHAR(20),\n    version INT NOT NULL DEFAULT 0,\n    last_updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP\n)\nPARTITION BY LIST (region_id) (\n    PARTITION p_north VALUES IN (1),\n    PARTITION p_south VALUES IN (2),\n    PARTITION p_east VALUES IN (3),\n    PARTITION p_west VALUES IN (4)\n);\n\n-- Cache table with optimized indexing\nCREATE TABLE product_cache (\n    cache_key VARCHAR(255) PRIMARY KEY,\n    product_id BIGINT,\n    quantity INT,\n    expires_at TIMESTAMP NOT NULL,\n    INDEX idx_expires (expires_at),\n    INDEX idx_product_id (product_id)\n);"
     },
     {
       "type": "heading",

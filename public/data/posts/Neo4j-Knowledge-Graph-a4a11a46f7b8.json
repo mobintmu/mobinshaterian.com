@@ -60,8 +60,8 @@
     },
     {
       "type": "code",
-      "lang": "sql",
-      "code": "LOAD CSV\nWITH HEADERS\nfrom\n'https://raw.githubusercontent.com/MidnightSkyUniverse/udemyNeo4j/master/data/titles_and_skills.csv'AS rowRETURN row.Title, row.Skills\nLIMIT 15"
+      "lang": "cypher",
+      "code": "LOAD CSV WITH HEADERS\nFROM 'https://raw.githubusercontent.com/MidnightSkyUniverse/udemyNeo4j/master/data/titles_and_skills.csv'\nAS row\nRETURN row.Title, row.Skills\nLIMIT 15;"
     },
     {
       "type": "image",
@@ -137,8 +137,8 @@
     },
     {
       "type": "code",
-      "lang": "sql",
-      "code": "LOAD CSV\nWITH HEADERS\nfrom\n'https://raw.githubusercontent.com/MidnightSkyUniverse/udemyNeo4j/master/data/titles_and_skills.csv'AS rowMERGE (t:Title {name: row.Title});"
+      "lang": "cypher",
+      "code": "LOAD CSV WITH HEADERS\nFROM 'https://raw.githubusercontent.com/MidnightSkyUniverse/udemyNeo4j/master/data/titles_and_skills.csv'\nAS row\nMERGE (t:Title {name: row.Title});"
     },
     {
       "type": "image",
@@ -173,8 +173,8 @@
     },
     {
       "type": "code",
-      "lang": "sql",
-      "code": "LOAD CSV\nWITH HEADERS\nfrom\n'https://raw.githubusercontent.com/MidnightSkyUniverse/udemyNeo4j/master/data/skills_details.csv'AS\nrowMERGE (s:Skill {name: row.Skill})SETs.id = row.ID,s.description =\nrow.Description,s.category=row.Category;"
+      "lang": "cypher",
+      "code": "LOAD CSV WITH HEADERS\nFROM 'https://raw.githubusercontent.com/MidnightSkyUniverse/udemyNeo4j/master/data/skills_details.csv'\nAS row\nMERGE (s:Skill {name: row.Skill})\nSET\n    s.id = row.ID,\n    s.description = row.Description,\n    s.category = row.Category;"
     },
     {
       "type": "paragraph",

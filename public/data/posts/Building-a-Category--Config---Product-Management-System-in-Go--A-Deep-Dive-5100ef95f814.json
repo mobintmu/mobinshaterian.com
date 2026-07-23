@@ -59,7 +59,7 @@
     {
       "type": "code",
       "lang": "sql",
-      "code": "CREATE TABLE categories (  id         SERIAL PRIMARY KEY,  website_id INTEGER NOT NULL REFERENCES\nwebsites(id) ON DELETE CASCADE,  name       TEXT NOT NULL,  link       TEXT NOT NULL UNIQUE,  status\nentity_status DEFAULT 'active' NOT NULL,  created_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP NOT NULL,\nupdated_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP NOT NULL);"
+      "code": "CREATE TABLE categories (\n    id SERIAL PRIMARY KEY,\n    website_id INTEGER NOT NULL\n        REFERENCES websites(id) ON DELETE CASCADE,\n    name TEXT NOT NULL,\n    link TEXT NOT NULL UNIQUE,\n    status entity_status DEFAULT 'active' NOT NULL,\n    created_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP NOT NULL,\n    updated_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP NOT NULL\n);"
     },
     {
       "type": "code",

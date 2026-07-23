@@ -100,7 +100,7 @@
     {
       "type": "code",
       "lang": "sql",
-      "code": "-- name: ListProductsWithFilters :many\nSELECT id, name, description, price, is_active\nFROM products\nWHERE  (sqlc.narg('id')::int IS NULL OR id = sqlc.narg('id'))  AND (sqlc.narg('name')::text IS NULL\nOR name ILIKE '%' || sqlc.narg('name') || '%')  AND (sqlc.narg('min_price')::bigint IS NULL OR price\n>= sqlc.narg('min_price'))  AND (sqlc.narg('max_price')::bigint IS NULL OR price <=\nsqlc.narg('max_price'))  AND (sqlc.narg('is_active')::bool IS NULL OR is_active =\nsqlc.narg('is_active'));"
+      "code": "-- name: ListProductsWithFilters :many\nSELECT\n    id,\n    name,\n    description,\n    price,\n    is_active\nFROM products\nWHERE (sqlc.narg('id')::int IS NULL OR id = sqlc.narg('id'))\n  AND (\n      sqlc.narg('name')::text IS NULL\n      OR name ILIKE '%' || sqlc.narg('name') || '%'\n  )\n  AND (\n      sqlc.narg('min_price')::bigint IS NULL\n      OR price >= sqlc.narg('min_price')\n  )\n  AND (\n      sqlc.narg('max_price')::bigint IS NULL\n      OR price <= sqlc.narg('max_price')\n  )\n  AND (\n      sqlc.narg('is_active')::bool IS NULL\n      OR is_active = sqlc.narg('is_active')\n  );"
     },
     {
       "type": "paragraph",
@@ -207,7 +207,7 @@
     {
       "type": "code",
       "lang": "sql",
-      "code": "SELECT   u.id AS user_id,  u.name AS user_name,  p.id AS product_id,  p.name AS product_name,\np.price\nFROM users uJOIN products p ON p.user_id = u.id;"
+      "code": "SELECT\n    u.id AS user_id,\n    u.name AS user_name,\n    p.id AS product_id,\n    p.name AS product_name,\n    p.price\nFROM users AS u\nJOIN products AS p ON p.user_id = u.id;"
     },
     {
       "type": "paragraph",
@@ -257,7 +257,7 @@
     {
       "type": "code",
       "lang": "sql",
-      "code": "-- name: ListUsersWithProducts :many\nSELECT u.id AS user_id, u.name AS user_name,       p.id AS product_id, p.name AS product_name,\np.price\nFROM users uJOIN products p ON p.user_id = u.id\nWHERE  (sqlc.narg('user_name')::text IS NULL OR u.name ILIKE '%' || sqlc.narg('user_name') || '%')\nAND (sqlc.narg('product_name')::text IS NULL OR p.name ILIKE '%' || sqlc.narg('product_name') ||\n'%')  AND (sqlc.narg('min_price')::bigint IS NULL OR p.price >= sqlc.narg('min_price'));"
+      "code": "-- name: ListUsersWithProducts :many\nSELECT\n    u.id AS user_id,\n    u.name AS user_name,\n    p.id AS product_id,\n    p.name AS product_name,\n    p.price\nFROM users AS u\nJOIN products AS p ON p.user_id = u.id\nWHERE (\n        sqlc.narg('user_name')::text IS NULL\n        OR u.name ILIKE '%' || sqlc.narg('user_name') || '%'\n    )\n  AND (\n        sqlc.narg('product_name')::text IS NULL\n        OR p.name ILIKE '%' || sqlc.narg('product_name') || '%'\n    )\n  AND (\n        sqlc.narg('min_price')::bigint IS NULL\n        OR p.price >= sqlc.narg('min_price')\n    );"
     },
     {
       "type": "paragraph",
