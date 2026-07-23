@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { z } from "zod";
 import { zodValidator, fallback } from "@tanstack/zod-adapter";
 import MiniSearch from "minisearch";
@@ -20,6 +20,8 @@ type IndexEntry = {
 };
 
 type SearchDoc = { slug: string; title: string; tags: string[]; plainText: string };
+
+const POSTS_PER_PAGE = 20;
 
 const searchSchema = z.object({
   tag: fallback(z.string(), "").default(""),
@@ -85,6 +87,8 @@ function BlogsPage() {
   const activeTag = tag || "Star";
   const navigate = Route.useNavigate();
   const all = postsIndex as IndexEntry[];
+  const loadMoreRef = useRef<HTMLDivElement>(null);
+  const [visibleCount, setVisibleCount] = useState(POSTS_PER_PAGE);
 
   const { ms, loading, load } = useSearchIndex();
   useEffect(() => {
@@ -120,6 +124,29 @@ function BlogsPage() {
   }, [all, activeTag, matchedSlugs]);
 
   const searching = q.trim() && !ms;
+  const visiblePosts = filtered.slice(0, visibleCount);
+  const hasMore = visibleCount < filtered.length;
+
+  useEffect(() => {
+    setVisibleCount(POSTS_PER_PAGE);
+  }, [activeTag, q]);
+
+  useEffect(() => {
+    const target = loadMoreRef.current;
+    if (!target || !hasMore) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setVisibleCount((count) => Math.min(count + POSTS_PER_PAGE, filtered.length));
+        }
+      },
+      { rootMargin: "200px 0px" },
+    );
+
+    observer.observe(target);
+    return () => observer.disconnect();
+  }, [filtered.length, hasMore]);
 
   return (
     <div className="min-h-screen bg-background text-foreground font-sans">
@@ -277,47 +304,58 @@ function BlogsPage() {
             no posts match those filters.
           </div>
         ) : (
-          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-            {filtered.map((p) => (
-              <Link
-                key={p.slug}
-                to="/blog/$slug"
-                params={{ slug: p.slug }}
-                className="group flex flex-col overflow-hidden rounded-lg border border-border bg-surface transition-all hover:-translate-y-0.5 hover:border-terminal/40"
+          <>
+            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+              {visiblePosts.map((p) => (
+                <Link
+                  key={p.slug}
+                  to="/blog/$slug"
+                  params={{ slug: p.slug }}
+                  className="group flex flex-col overflow-hidden rounded-lg border border-border bg-surface transition-all hover:-translate-y-0.5 hover:border-terminal/40"
+                >
+                  {p.hero ? (
+                    <img
+                      src={p.hero}
+                      alt=""
+                      loading="lazy"
+                      className="h-36 w-full border-b border-border object-cover"
+                    />
+                  ) : null}
+                  <div className="flex flex-1 flex-col p-5">
+                    <div className="mb-3 flex items-center justify-between font-mono-plus text-xs text-muted-foreground">
+                      <time dateTime={p.date}>{formatDate(p.date)}</time>
+                      <span>{p.readingTime}</span>
+                    </div>
+                    <h3 className="mb-2 text-base font-semibold leading-snug group-hover:text-terminal">
+                      {p.title}
+                    </h3>
+                    <p className="mb-4 flex-1 text-sm leading-relaxed text-muted-foreground line-clamp-3">
+                      {p.excerpt}
+                    </p>
+                    <div className="flex flex-wrap gap-1.5">
+                      {p.tags.map((t) => (
+                        <span
+                          key={t}
+                          className="rounded border border-border px-1.5 py-0.5 font-mono-plus text-[10px] uppercase tracking-wide text-muted-foreground"
+                        >
+                          {t}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </Link>
+              ))}
+            </div>
+            {hasMore ? (
+              <div
+                ref={loadMoreRef}
+                className="mt-8 flex min-h-12 items-center justify-center font-mono-plus text-xs text-muted-foreground"
+                aria-live="polite"
               >
-                {p.hero ? (
-                  <img
-                    src={p.hero}
-                    alt=""
-                    loading="lazy"
-                    className="h-36 w-full border-b border-border object-cover"
-                  />
-                ) : null}
-                <div className="flex flex-1 flex-col p-5">
-                  <div className="mb-3 flex items-center justify-between font-mono-plus text-xs text-muted-foreground">
-                    <time dateTime={p.date}>{formatDate(p.date)}</time>
-                    <span>{p.readingTime}</span>
-                  </div>
-                  <h3 className="mb-2 text-base font-semibold leading-snug group-hover:text-terminal">
-                    {p.title}
-                  </h3>
-                  <p className="mb-4 flex-1 text-sm leading-relaxed text-muted-foreground line-clamp-3">
-                    {p.excerpt}
-                  </p>
-                  <div className="flex flex-wrap gap-1.5">
-                    {p.tags.map((t) => (
-                      <span
-                        key={t}
-                        className="rounded border border-border px-1.5 py-0.5 font-mono-plus text-[10px] uppercase tracking-wide text-muted-foreground"
-                      >
-                        {t}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </Link>
-            ))}
-          </div>
+                $ scroll to load more · showing {visiblePosts.length} of {filtered.length}
+              </div>
+            ) : null}
+          </>
         )}
       </main>
 

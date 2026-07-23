@@ -92,7 +92,7 @@ function Hero() {
           </div>
           <pre className="mt-3 overflow-x-auto rounded-md border border-border bg-surface p-4 text-xs leading-relaxed text-foreground/90 md:text-sm">
             {`> role      : Senior Software Engineer @ MTN Irancell
-> stack     : Go · gRPC · ClickHouse · Kafka · NATS · Postgres
+> stack     : Go · Python · Nestjs · ClickHouse · Kafka · Postgres
 > shipped   : 15M rows/hr · 400K req/day · 10K TPS ML inference
 > location  : ${profile.location}
 > writing   : 200+ articles on Medium`}
@@ -108,7 +108,7 @@ function Hero() {
             {profile.email}
           </a>
           <a
-            href={profile.email}
+            href={profile.links.github}
             target="_blank"
             rel="noreferrer noopener"
             className="inline-flex items-center gap-2 rounded-md border border-border bg-surface px-4 py-2 font-mono-plus text-sm text-foreground transition-colors hover:border-terminal/50 hover:text-terminal"
