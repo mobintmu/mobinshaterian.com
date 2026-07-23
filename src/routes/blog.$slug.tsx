@@ -198,7 +198,7 @@ function BlogPostPage() {
         ) : null}
 
         <article className="mt-8">
-          <PostContent blocks={post.content} />
+          <PostContent blocks={post.content} displayedImageSources={[post.hero]} />
         </article>
 
         <div className="mt-12 rounded-lg border border-terminal/30 bg-terminal/5 p-6">

@@ -71,7 +71,32 @@ function Embed({ provider, url }: { provider: string; url: string }) {
   );
 }
 
-export function PostContent({ blocks }: { blocks: Block[] }) {
+function normalizeImageSource(src: string) {
+  const value = src.trim();
+  if (!value) return "";
+
+  try {
+    const url = new URL(value);
+    url.hash = "";
+    return url.toString();
+  } catch {
+    return value;
+  }
+}
+
+export function PostContent({
+  blocks,
+  displayedImageSources = [],
+}: {
+  blocks: Block[];
+  displayedImageSources?: Array<string | null | undefined>;
+}) {
+  const seenImageSources = new Set(
+    displayedImageSources
+      .filter((source): source is string => Boolean(source))
+      .map(normalizeImageSource),
+  );
+
   return (
     <div className="post-content">
       {blocks.map((b, i) => {
@@ -96,7 +121,13 @@ export function PostContent({ blocks }: { blocks: Block[] }) {
             );
           case "code":
             return <CodeBlock key={i} lang={b.lang} code={b.code} />;
-          case "image":
+          case "image": {
+            const normalizedSource = normalizeImageSource(b.src);
+            if (normalizedSource && seenImageSources.has(normalizedSource)) {
+              return null;
+            }
+            if (normalizedSource) seenImageSources.add(normalizedSource);
+
             return (
               <figure key={i} className="my-6">
                 <img
@@ -114,6 +145,7 @@ export function PostContent({ blocks }: { blocks: Block[] }) {
                 ) : null}
               </figure>
             );
+          }
           case "quote":
             return (
               <blockquote
