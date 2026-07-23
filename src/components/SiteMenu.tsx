@@ -6,6 +6,7 @@ import profile from "@/data/profile.json";
 const items = [
   { href: "/#about", label: "about" },
   { href: "/#writing", label: "writing" },
+  { href: "/#featured", label: "featured" },
   { href: "/#experience", label: "experience" },
   { href: "/#skills", label: "skills" },
   { href: "/#contact", label: "contact" },

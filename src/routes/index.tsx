@@ -43,8 +43,8 @@ function HomePage() {
       <Nav />
       <Hero />
       <main className="mx-auto max-w-5xl px-6 pb-24">
-        <Writing posts={sortedPosts} />
         <Featured />
+        <Writing posts={sortedPosts} />
         <About />
         <Experience />
         <Skills />
