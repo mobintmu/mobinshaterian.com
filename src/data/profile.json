@@ -14,7 +14,15 @@
   },
   "skills": {
     "Languages & Frameworks": ["Go", "gRPC", "Gin", "Echo", "Protobuf", "GraphQL", "RESTful API"],
-    "Architecture": ["Microservices", "DDD", "CQRS", "Clean Code", "SOLID", "OOP", "Design Patterns"],
+    "Architecture": [
+      "Microservices",
+      "DDD",
+      "CQRS",
+      "Clean Code",
+      "SOLID",
+      "OOP",
+      "Design Patterns"
+    ],
     "Data": ["PostgreSQL", "MongoDB", "Redis", "Cassandra", "Elasticsearch", "MySQL", "ClickHouse"],
     "Messaging": ["NATS", "JetStream", "Kafka", "RabbitMQ"],
     "Observability": ["OpenTelemetry", "Prometheus", "Sentry", "Swagger"],
