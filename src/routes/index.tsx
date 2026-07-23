@@ -9,6 +9,7 @@ import {
   Linkedin,
   Mail,
   MapPin,
+  Newspaper,
   PenLine,
   Search,
   Send,
@@ -43,6 +44,7 @@ function HomePage() {
       <Hero />
       <main className="mx-auto max-w-5xl px-6 pb-24">
         <Writing posts={sortedPosts} />
+        <Featured />
         <About />
         <Experience />
         <Skills />
@@ -139,6 +141,41 @@ function SectionHeading({ id, kbd, title }: { id: string; kbd: string; title: st
       <h2 className="text-2xl font-semibold tracking-tight md:text-3xl">{title}</h2>
       <div className="h-px flex-1 bg-border/70" />
     </div>
+  );
+}
+
+function Featured() {
+  return (
+    <section className="py-20">
+      <SectionHeading id="featured" kbd="cat ./featured.log" title="Featured In" />
+      <div className="grid gap-4">
+        {profile.features.map((feature) => (
+          <a
+            key={feature.url}
+            href={feature.url}
+            target="_blank"
+            rel="noreferrer noopener"
+            className="group rounded-lg border border-terminal/30 bg-terminal/5 p-6 transition-colors hover:border-terminal/60 hover:bg-terminal/10"
+          >
+            <div className="flex flex-wrap items-center justify-between gap-3">
+              <span className="inline-flex items-center gap-2 font-mono-plus text-xs uppercase tracking-wider text-terminal">
+                <Newspaper className="h-4 w-4" />
+                {feature.source}
+              </span>
+              <time className="font-mono-plus text-xs text-muted-foreground">{feature.date}</time>
+            </div>
+            <h3 className="mt-4 text-xl font-semibold tracking-tight">{feature.title}</h3>
+            <p className="mt-3 max-w-3xl text-sm leading-relaxed text-muted-foreground">
+              {feature.description}
+            </p>
+            <span className="mt-5 inline-flex items-center gap-1.5 font-mono-plus text-xs text-terminal">
+              Read on {feature.source}
+              <ArrowUpRight className="h-3.5 w-3.5 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+            </span>
+          </a>
+        ))}
+      </div>
+    </section>
   );
 }
 

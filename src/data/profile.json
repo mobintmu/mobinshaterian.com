@@ -12,6 +12,15 @@
     "linkedin": "https://www.linkedin.com/in/mobin-shaterian/",
     "telegram": "https://t.me/mobinshaterian_com"
   },
+  "features": [
+    {
+      "source": "ClickHouse",
+      "title": "June 2026 Newsletter",
+      "date": "Jun 18, 2026",
+      "url": "https://clickhouse.com/blog/202606-newsletter",
+      "description": "ClickHouse highlighted two of my telecom analytics articles, including a KPI pipeline processing 15 million rows per hour and a platform rebuilt to handle 10 billion records per month."
+    }
+  ],
   "skills": {
     "Languages & Frameworks": ["Go", "gRPC", "Gin", "Echo", "Protobuf", "GraphQL", "RESTful API"],
     "Architecture": [
