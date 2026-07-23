@@ -11,6 +11,7 @@ import {
   MapPin,
   PenLine,
   Search,
+  Send,
   Terminal,
 } from "lucide-react";
 
@@ -394,6 +395,15 @@ function Contact() {
           >
             <Github className="h-4 w-4" />
             GitHub
+          </a>
+          <a
+            href={profile.links.telegram}
+            target="_blank"
+            rel="noreferrer noopener"
+            className="inline-flex items-center gap-2 rounded-md border border-border bg-background px-4 py-2 font-mono-plus text-sm text-foreground transition-colors hover:border-terminal/50 hover:text-terminal"
+          >
+            <Send className="h-4 w-4" />
+            Telegram
           </a>
         </div>
       </div>

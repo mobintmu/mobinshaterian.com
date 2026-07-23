@@ -9,7 +9,8 @@
   "links": {
     "medium": "https://mobinshaterian.medium.com",
     "github": "https://github.com/mobintmu",
-    "linkedin": "https://www.linkedin.com/in/mobin-shaterian/"
+    "linkedin": "https://www.linkedin.com/in/mobin-shaterian/",
+    "telegram": "https://t.me/mobinshaterian_com"
   },
   "skills": {
     "Languages & Frameworks": ["Go", "gRPC", "Gin", "Echo", "Protobuf", "GraphQL", "RESTful API"],

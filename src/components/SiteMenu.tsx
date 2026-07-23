@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { Menu, PenLine, X } from "lucide-react";
+import { Menu, PenLine, Send, X } from "lucide-react";
 import { useState } from "react";
 import profile from "@/data/profile.json";
 
@@ -35,6 +35,15 @@ export function SiteMenu() {
       >
         <PenLine className="h-3.5 w-3.5" />
         medium
+      </a>
+      <a
+        href={profile.links.telegram}
+        target="_blank"
+        rel="noreferrer noopener"
+        className="hidden items-center gap-1.5 rounded border border-terminal/40 bg-terminal/5 px-3 py-1.5 font-mono-plus text-xs text-terminal transition-colors hover:bg-terminal/10 md:inline-flex"
+      >
+        <Send className="h-3.5 w-3.5" />
+        telegram
       </a>
       <button
         type="button"
@@ -73,10 +82,20 @@ export function SiteMenu() {
             target="_blank"
             rel="noreferrer noopener"
             onClick={closeMobileMenu}
-            className="col-span-2 inline-flex items-center justify-center gap-1.5 rounded border border-terminal/40 bg-terminal/5 px-3 py-2 text-terminal transition-colors hover:bg-terminal/10"
+            className="inline-flex items-center justify-center gap-1.5 rounded border border-terminal/40 bg-terminal/5 px-3 py-2 text-terminal transition-colors hover:bg-terminal/10"
           >
             <PenLine className="h-3.5 w-3.5" />
             medium
+          </a>
+          <a
+            href={profile.links.telegram}
+            target="_blank"
+            rel="noreferrer noopener"
+            onClick={closeMobileMenu}
+            className="inline-flex items-center justify-center gap-1.5 rounded border border-terminal/40 bg-terminal/5 px-3 py-2 text-terminal transition-colors hover:bg-terminal/10"
+          >
+            <Send className="h-3.5 w-3.5" />
+            telegram
           </a>
         </nav>
       ) : null}
