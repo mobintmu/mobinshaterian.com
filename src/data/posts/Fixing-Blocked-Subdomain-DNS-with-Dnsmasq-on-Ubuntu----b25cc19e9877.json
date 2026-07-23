@@ -47,8 +47,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "ping datadriveninvestor.comPING datadriveninvestor.com (104.26.0.23) 56(84) bytes of data.ping\nmedium.datadriveninvestor.comPING medium.datadriveninvestor.com (162.159.153.4) 56(84) bytes of\ndata."
+      "lang": "bash",
+      "code": "ping datadriveninvestor.comPING datadriveninvestor.com (104.26.0.23) 56(84) bytes of data.\nping\nmedium.datadriveninvestor.comPING medium.datadriveninvestor.com (162.159.153.4) 56(84) bytes of\ndata."
     },
     {
       "type": "paragraph",
@@ -144,7 +144,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "bash",
       "code": "dig medium.datadriveninvestor.com @127.0.0.1"
     },
     {
@@ -162,7 +162,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "bash",
       "code": "ping medium.datadriveninvestor.comPING medium.datadriveninvestor.com (104.26.0.23) 56(84) bytes of\ndata."
     },
     {

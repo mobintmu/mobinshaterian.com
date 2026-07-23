@@ -82,8 +82,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "describe('Example', () => {  it('should be an example test', () => {    expect(true).toBe(true);\n});});"
+      "lang": "javascript",
+      "code": "describe(\"Example\", () => {\n  it(\"should be an example test\", () => {\n    expect(true).toBe(true);\n  });\n});"
     },
     {
       "type": "image",

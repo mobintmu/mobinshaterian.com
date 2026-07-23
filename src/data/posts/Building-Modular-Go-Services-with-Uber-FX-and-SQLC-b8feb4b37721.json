@@ -50,7 +50,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "internal/└── product/    ├── controller/    ├── service/    ├── repository/    └── module.go"
+      "code": "internal/\n└── product/    \n├── controller/    \n├── service/    \n├── repository/    \n└── module.go"
     },
     {
       "type": "paragraph",
@@ -68,7 +68,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "internal/db/sqlc/├── schema/│   └── schema.sql├── queries/│   └── product.sql"
+      "code": "internal/db/sqlc/\n├── schema/\n│   \n└── schema.sql\n├── queries/\n│   \n└── product.sql"
     },
     {
       "type": "paragraph",
@@ -85,7 +85,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "go",
       "code": "fx.Invoke(migrate.RunMigrations)"
     },
     {

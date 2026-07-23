@@ -90,8 +90,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "go-micro new service helloworldcd helloworldmake init proto update tidy"
+      "lang": "bash",
+      "code": "go-micro new service helloworld\ncd helloworld\nmake init proto update tidy"
     },
     {
       "type": "code",
@@ -104,7 +104,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "bash",
       "code": "go-micro call helloworld Helloworld.Call '{\"name\": \"John\"}'"
     },
     {
@@ -121,7 +121,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "bash",
       "code": "make proto"
     },
     {
@@ -139,7 +139,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "go",
       "code": "// Register handler if err := pb.RegisterHelloworldHandler(srv.Server(), new(handler.Helloworld));\nerr != nil {  logger.Fatal(err) } // Run service if err := srv.Run(); err != nil {\nlogger.Fatal(err) }}"
     },
     {
@@ -149,7 +149,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "bash",
       "code": "go-micro run"
     },
     {
@@ -159,7 +159,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "bash",
       "code": "go-micro new service --jaeger helloworld"
     },
     {
@@ -227,8 +227,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "go-micro new service --jaeger helloworldcd helloworldmake init proto update tidygo-micro rungo-micro\ncall helloworld Helloworld.Call '{\"name\": \"John\"}'"
+      "lang": "bash",
+      "code": "go-micro new service --jaeger helloworld\ncd helloworld\nmake init proto update tidy\ngo-micro run\ngo-micro\ncall helloworld Helloworld.Call '{\"name\": \"John\"}'"
     },
     {
       "type": "code",
@@ -270,7 +270,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "bash",
       "code": "go-micro new service helloworld"
     },
     {
@@ -279,7 +279,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "bash",
       "code": "go mod tidy go get -u"
     },
     {
@@ -288,7 +288,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "bash",
       "code": "make proto"
     },
     {

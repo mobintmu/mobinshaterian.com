@@ -96,7 +96,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "go",
       "code": "v.SetDefault(\"JWT_SECRET\", \"your-secret-key\")v.SetDefault(\"JWT_EXPIRY_HOURS\", 72)cfg := &Config{\n// existing fields...    JWTSecret:      v.GetString(\"JWT_SECRET\"),    JWTExpiryHours:\nv.GetInt(\"JWT_EXPIRY_HOURS\"),}"
     },
     {
@@ -157,7 +157,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "go",
       "code": "req.Header.Set(\"Authorization\", \"Bearer \"+token)"
     },
     {
@@ -167,7 +167,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "go",
       "code": "req, _ := http.NewRequest(http.MethodGet, addr, nil)req.Header.Set(\"Authorization\", \"Bearer \"+token)"
     },
     {
@@ -177,7 +177,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "go",
       "code": "req, _ := http.NewRequest(http.MethodGet, fmt.Sprintf(\"%s/%d\", addr, product.ID),\nnil)req.Header.Set(\"Authorization\", \"Bearer \"+token)"
     },
     {
@@ -187,7 +187,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "go",
       "code": "req, _ := http.NewRequest(http.MethodPut, fmt.Sprintf(\"%s/%d\", addr, product.ID),\nbody)req.Header.Set(\"Authorization\", \"Bearer \"+token)"
     },
     {
@@ -197,7 +197,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "go",
       "code": "req, _ := http.NewRequest(http.MethodDelete, fmt.Sprintf(\"%s/%d\", addr, product.ID),\nnil)req.Header.Set(\"Authorization\", \"Bearer \"+token)"
     },
     {
@@ -207,7 +207,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "go",
       "code": "req, _ := http.NewRequest(http.MethodGet, fmt.Sprintf(\"%s/%d\", addr, product.ID),\nnil)req.Header.Set(\"Authorization\", \"Bearer \"+token)"
     },
     {
@@ -257,7 +257,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "go",
       "code": "// @securityDefinitions.apikey BearerAuth// @in header// @name Authorization// @description Enter\nyour JWT token in the format: Bearer <token>"
     },
     {
@@ -285,7 +285,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "go",
       "code": "// @Security BearerAuth"
     },
     {
@@ -294,7 +294,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "go",
       "code": "// @Summary Create a new product// @Description Admin-only endpoint to create a product// @Tags\nAdmin// @Accept json// @Produce json// @Param product body dto.AdminCreateProductRequest true\n\"Product info\"// @Success 201 {object} dto.ProductResponse// @Security BearerAuth// @Router\n/admin/products [post]"
     },
     {

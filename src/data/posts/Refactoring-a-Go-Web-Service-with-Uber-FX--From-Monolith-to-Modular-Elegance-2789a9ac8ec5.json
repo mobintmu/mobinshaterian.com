@@ -86,7 +86,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "go",
       "code": "fx.Provide(    config.NewConfig,       // returns *Config    server.NewGinEngine,    // returns\n*gin.Engine)"
     },
     {
@@ -121,7 +121,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "go",
       "code": "fx.Invoke(    server.RegisterRoutes,    server.StartHTTPServer,)"
     },
     {

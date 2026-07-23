@@ -181,13 +181,13 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "// Extract text contentTitle: e.ChildText(s.web.ProductList.Fields[\"title\"].Selector)"
+      "lang": "go",
+      "code": "// Extract text content.\nTitle: e.ChildText(s.web.ProductList.Fields[\"title\"].Selector)"
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "// Extract attribute valueLink: e.ChildAttr(s.web.ProductList.Fields[\"link\"].Selector,\ns.web.ProductList.Fields[\"link\"].Attr)"
+      "lang": "go",
+      "code": "// Extract an attribute value.\nLink: e.ChildAttr(\n    s.web.ProductList.Fields[\"link\"].Selector,\n    s.web.ProductList.Fields[\"link\"].Attr,\n)"
     },
     {
       "type": "heading",
@@ -221,8 +221,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "\"product_list\": {    \"item\": \"div.product-grid-item\",    \"fields\": {        \"title\": {\n\"selector\": \"h3.wd-entities-title a\",            \"attr\": \"\"        },        \"price\": {\n\"selector\": \"span.price\",            \"attr\": \"\"        },        \"link\": {            \"selector\":\n\"a.product-image-link\",            \"attr\": \"href\"        },        \"image\": {            \"selector\":\n\"a.product-image-link img\",            \"attr\": \"src\"        }    }}"
+      "lang": "json",
+      "code": "{\n  \"product_list\": {\n    \"item\": \"div.product-grid-item\",\n    \"fields\": {\n      \"title\": {\n        \"selector\": \"h3.wd-entities-title a\",\n        \"attr\": \"\"\n      },\n      \"price\": {\n        \"selector\": \"span.price\",\n        \"attr\": \"\"\n      },\n      \"link\": {\n        \"selector\": \"a.product-image-link\",\n        \"attr\": \"href\"\n      },\n      \"image\": {\n        \"selector\": \"a.product-image-link img\",\n        \"attr\": \"src\"\n      }\n    }\n  }\n}"
     },
     {
       "type": "heading",
@@ -255,8 +255,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "c.OnHTML(s.web.Pagination.Next, func(e *colly.HTMLElement) {    nextPage := e.Attr(\"href\")\ns.logger.Info(\"Visiting next page\", zap.String(\"url\", nextPage))    e.Request.Visit(nextPage)})"
+      "lang": "go",
+      "code": "c.OnHTML(s.web.Pagination.Next, func(e *colly.HTMLElement) {\n    nextPage := e.Attr(\"href\")\n    s.logger.Info(\"Visiting next page\", zap.String(\"url\", nextPage))\n    e.Request.Visit(nextPage)\n})"
     },
     {
       "type": "heading",
@@ -729,8 +729,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "c.Limit(&colly.LimitRule{    DomainGlob: s.web.Domain,    Parallelism: 4,           // 4 concurrent\nrequests    Delay:      800 * time.Millisecond,  // 800ms between requests})"
+      "lang": "go",
+      "code": "c.Limit(&colly.LimitRule{\n    DomainGlob:  s.web.Domain,\n    Parallelism: 4,                      // 4 concurrent requests\n    Delay:       800 * time.Millisecond, // 800ms between requests\n})"
     },
     {
       "type": "paragraph",
@@ -771,8 +771,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "s.logger.Info(\"Visiting next page\", zap.String(\"url\",\nnextPage))s.logger.Debug(\"Product link is not valid\", zap.Any(\"product\",\np))s.logger.Warn(\"Failed to visit product\", zap.String(\"url\", url), zap.Error(err))"
+      "lang": "go",
+      "code": "s.logger.Info(\n    \"Visiting next page\",\n    zap.String(\"url\", nextPage),\n)\n\ns.logger.Debug(\n    \"Product link is not valid\",\n    zap.Any(\"product\", p),\n)\n\ns.logger.Warn(\n    \"Failed to visit product\",\n    zap.String(\"url\", url),\n    zap.Error(err),\n)"
     },
     {
       "type": "paragraph",

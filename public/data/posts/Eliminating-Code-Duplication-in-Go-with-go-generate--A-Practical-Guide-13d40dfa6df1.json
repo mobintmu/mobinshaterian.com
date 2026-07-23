@@ -88,7 +88,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "go",
       "code": "// Slow and loses type safetyresult, _ := mapstructure.Decode(source, &destination)"
     },
     {
@@ -269,7 +269,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "Service.go├── graphqlFilterToListProductParams()     [200 lines]├──\ngraphqlFilterToCountProductParams()    [195 lines - 95% duplicate]└── dbGsmToGraphQLProduct()\n[150 lines]"
+      "code": "Service.go\n├── graphqlFilterToListProductParams()     [200 lines]\n├──\ngraphqlFilterToCountProductParams()    [195 lines - 95% duplicate]\n└── dbGsmToGraphQLProduct()\n[150 lines]"
     },
     {
       "type": "paragraph",
@@ -283,7 +283,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "Generator└── fields = []FieldMapping{...}     [1 definition]└── modelFields =\n[]ModelFieldMapping{...}Generated:└── filter_mapper.gen.go              [auto-generated from single\nsource]    ├── GraphqlFilterToListProductParams()    ├── GraphqlFilterToCountProductParams()    └──\ndbGsmToGraphQLProduct()"
+      "code": "Generator\n└── fields = []FieldMapping{...}     [1 definition]\n└── modelFields =\n[]ModelFieldMapping{...}Generated:\n└── filter_mapper.gen.go              [auto-generated from single\nsource]    \n├── GraphqlFilterToListProductParams()    \n├── GraphqlFilterToCountProductParams()    \n└──\ndbGsmToGraphQLProduct()"
     },
     {
       "type": "paragraph",
@@ -353,7 +353,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "go",
       "code": "// Generated code - no reflection, pure assignmentfunc (s *Service) dbToGraphQL(db *sqlc.Record)\n*model.Record {    return &model.Record{        Field1: utils.NullStringToPointer(db.Field1),\nField2: utils.NullTimeToTime(db.Field2),        // ... etc    }}"
     },
     {
@@ -412,8 +412,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "# Generate codego generate ./...# Verify no files changedgit diff --exit-code"
+      "lang": "bash",
+      "code": "# Generate codego generate ./...# Verify no files changed\ngit diff --exit-code"
     },
     {
       "type": "heading",

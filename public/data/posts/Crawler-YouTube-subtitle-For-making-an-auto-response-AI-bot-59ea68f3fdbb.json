@@ -56,7 +56,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "bash",
       "code": "python3 -m pip install --force-reinstall\nhttps://github.com/yt-dlp/yt-dlp/archive/master.tar.gz"
     },
     {
@@ -126,7 +126,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "bash",
       "code": "pip install webvtt-py"
     },
     {

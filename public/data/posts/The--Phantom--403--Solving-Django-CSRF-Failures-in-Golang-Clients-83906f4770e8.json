@@ -118,7 +118,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "go",
       "code": "// 1. Extract token from CookieJarvar token stringfor _, cookie := range jar.Cookies(req.URL) {\nif cookie.Name == \"csrftoken\" {        token = cookie.Value    }}// 2. Set the header\nmanuallyreq.Header.Set(\"X-CSRFToken\", token)"
     },
     {

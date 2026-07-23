@@ -29,7 +29,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "bash",
       "code": "git clone\nhttps://github.com/ory/hydra"
     },
     {
@@ -155,8 +155,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "code_client=$(docker-compose -f quickstart.yml exec hydra \\    hydra create client \\    --endpoint\nhttp://127.0.0.1:4445 \\    --grant-type authorization_code,refresh_token \\    --response-type\ncode,id_token \\    --format json \\    --scope openid --scope offline \\    --redirect-uri\nhttp://127.0.0.1:5555/callback)code_client_id=$(echo $code_client | jq -r\n'.client_id')code_client_secret=$(echo $code_client | jq -r '.client_secret')"
+      "lang": "bash",
+      "code": "code_client=$(\ndocker-compose -f quickstart.yml exec hydra \\    hydra create client \\    --endpoint\nhttp://127.0.0.1:4445 \\    --grant-type authorization_code,refresh_token \\    --response-type\ncode,id_token \\    --format json \\    --scope openid --scope offline \\    --redirect-uri\nhttp://127.0.0.1:5555/callback)code_client_id=$(echo $code_client | jq -r\n'.client_id')code_client_secret=$(echo $code_client | jq -r '.client_secret')"
     },
     {
       "type": "code",

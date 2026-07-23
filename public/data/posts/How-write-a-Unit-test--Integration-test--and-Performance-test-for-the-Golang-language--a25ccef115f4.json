@@ -236,8 +236,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "go get github.com/boumenot/gocover-coberturago install github.com/boumenot/gocover-cobertura@latest"
+      "lang": "bash",
+      "code": "go get github.com/boumenot/gocover-cobertura\ngo install github.com/boumenot/gocover-cobertura@latest"
     },
     {
       "type": "code",
@@ -301,7 +301,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "go",
       "code": "// smsServiceMocktype smsServiceMock struct {    mock.Mock}// Our mocked smsService methodfunc (m\n*smsServiceMock) SendChargeNotification(value int) bool {\nfmt.Println(\"Mocked charge notification function\")    fmt.Printf(\"Value passed in: %d\\n\", value)  //\nthis records that the method was called and passes in the value  // it was called with  args :=\nm.Called(value)  // it then returns whatever we tell it to return  // in this case true to simulate\nan SMS Service Notification  // sent out    return args.Bool(0)}// we need to satisfy our\nMessageService interface// which sadly means we have to stub out every method// defined in that\ninterfacefunc (m *smsServiceMock) DummyFunc() {    fmt.Println(\"Dummy\")}"
     },
     {
@@ -310,7 +310,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "go",
       "code": "// TestChargeCustomer is where the magic happens// here we create our SMSService mockfunc\nTestChargeCustomer(t *testing.T) {    smsService := new(smsServiceMock)  // we then define what\nshould be returned from SendChargeNotification  // when we pass in the value 100 to it. In this\ncase, we want to return  // true as it was successful in sending a notification\nsmsService.On(\"SendChargeNotification\", 100).Return(true)  // next we want to define the service we\nwish to test  myService := MyService{smsService}  // and call said method\nmyService.ChargeCustomer(100)  // at the end, we verify that our myService.ChargeCustomer  // method\ncalled our mocked SendChargeNotification method    smsService.AssertExpectations(t)}"
     },
     {
@@ -371,7 +371,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "go",
       "code": "//go:generate mockery --name NameOfInterfacetype NameOfInterface interface {    Get(val string)\nstring}"
     },
     {
@@ -393,7 +393,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "go",
       "code": "mockH := mocks.NewMyInterface(t)mockH.EXPECT().MyFuction(ctx, \"aaa\").Return(\"aa\", nil).Once()"
     },
     {
@@ -431,7 +431,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "go",
       "code": "store.EXPECT().CreateUser(gomock.Any(), gomock.Any()).Times(1)"
     },
     {
@@ -470,7 +470,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "go",
       "code": "Example: m.On(\"Do\", MatchedBy(func(req *http.Request) bool { return req.Host == \"example.com\" }))"
     },
     {
@@ -588,7 +588,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "go",
       "code": "mockGRPC \"github.com/go-micro/plugins/v4/client/mock\" response := []mockGRPC.MockResponse{\n{Endpoint: \"Foo.Bar\", Response: map[string]interface{}{\"foo\": \"bar\"}}, } clientMock :=\nmockGRPC.NewClient(mockGRPC.Response(\"go.mock\", response))"
     },
     {
@@ -608,7 +608,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "go",
       "code": "mockGreeterClient.EXPECT().SayHello(    gomock.Any(), // expect any value for first parameter\ngomock.Any(), // expect any value for second parameter).Return(&helloworld.HelloReply{Message:\n“Mocked RPC”}, nil)"
     },
     {
@@ -712,12 +712,12 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "go",
       "code": "backend := backends.NewSimulatedBackend(   core.GenesisAlloc{    crypto.PubkeyToAddress(pub):\n{Balance: big.NewInt(10000000000)},   },   10000000,  )"
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "go",
       "code": "coreTokenAddress, _, _, err := contracts.DeployCoreToken(auth, s.xcbClient, fakeWrappedTokenAddr,\npriceFeedAddr)"
     },
     {

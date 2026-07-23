@@ -114,7 +114,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "python",
       "code": "model = Ollama(model=MODEL , base_url='\nhttp://ollama:11434')"
     },
     {

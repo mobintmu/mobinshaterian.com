@@ -256,7 +256,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "go",
       "code": "struct Request {        string description;        uint256 value;        address payable recipient;\nbool complete;        uint256 approvalCount;        mapping(address => bool) approvals;    }"
     },
     {
@@ -266,7 +266,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "solidity",
       "code": "modifier onlyManager() {        require(            msg.sender == manager,\n\"Only the campaign manager can call this function.\"        );        _;    }"
     },
     {
@@ -352,7 +352,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "solidity",
       "code": "require(            req.approvalCount > (approversCount / 2),\n\"This request needs more approvals before it can be finalized\"        );"
     },
     {
@@ -428,7 +428,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "properties",
       "code": "ADDRESS = http://localhost:8545MANAGER_ADDRESS =\n0xBad21545CDAc5eA56050a5441E435B2437fE4770MANAGER_PRIVATE_ADDRESS =\n0xbcab03c0fb40ccdd5d75b8024731dd772113b02d01132d81c584027d8a7280b9PROVIDER_ADDRESS =\n0xEc89A6a668206286a875BB906B79BbB756f09E22PROVIDER_PRIVATE_ADDRESS =\n0xbf6e3ba07b0ea7a98e5cbd0f0206bcdb35fd9520571c28cc16c803cae702dc89CONTRIBUTOR_ADDRESS =\n0x6BC477cE822a30331D0D5Ce4B5CeA23b2f2eEaEbCONTRIBUTOR_PRIVATE_ADDRESS =\n0x2b7b6e43aca333d79375eb8cb3d225b795480596d4fff6e0abf70c111628a410"
     },
     {
@@ -475,7 +475,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "go",
       "code": "abigen --abi ./build/Campaign.abi --pkg main --type Campaign --out Campaign.go --bin\n./Campaign.bin/Campaign.bin"
     },
     {
@@ -494,7 +494,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "bash",
       "code": "pip3 install solc-select"
     },
     {
@@ -518,7 +518,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "go",
       "code": "privateKey, err := crypto.HexToECDSA(strings.TrimPrefix(privateAddress, \"0x\")) if err != nil {\nlog.Fatal(err) }"
     },
     {
@@ -574,7 +574,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "go",
       "code": "my := common.HexToAddress(\"0xdd3f3c8afb70786e3bfb7a8cd8d44a3c5049268e\") var err error\ncampaign.Instance, err = contracts.NewCampaign(my, client.Client) if err != nil {  fmt.Println(err)\n}"
     },
     {

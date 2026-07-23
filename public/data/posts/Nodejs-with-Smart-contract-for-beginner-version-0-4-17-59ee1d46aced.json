@@ -160,7 +160,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "jsonc",
       "code": "\"scripts\": {    // \"test\": \"echo \\\"Error: no test specified\\\" && exit 1\"    \"test\": \"mocha\"  },"
     },
     {
@@ -212,7 +212,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "javascript",
       "code": "// Get a list of all accounts    web3.eth.getAccounts()"
     },
     {
@@ -222,7 +222,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "javascript",
       "code": "// Get a list of all accounts    web3.eth.getAccounts().then( fetchedAccounts => {\nconsole.log(fetchedAccounts);        });    // Use one of those accounts to deploy the contract"
     },
     {
@@ -232,7 +232,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "jsonc",
       "code": "\"scripts\": {    \"test\": \"mocha\"  },"
     },
     {
@@ -329,8 +329,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "it('has a default message', async () => {        const message = await\ninbox.methods.message().call();        assert.equal(message, 'Hi Bye');    });"
+      "lang": "javascript",
+      "code": "it(\"has a default message\", async () => {\n  const message = await inbox.methods.message().call();\n  assert.equal(message, \"Hi Bye\");\n});"
     },
     {
       "type": "image",
@@ -347,8 +347,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "it('can change the message', async () => {        await inbox.methods.setMessage('bye').send({from:\naccounts[0]});        const message = await inbox.methods.message().call();\nassert.equal(message, 'bye');    });"
+      "lang": "javascript",
+      "code": "it(\"can change the message\", async () => {\n  await inbox.methods.setMessage(\"bye\").send({ from: accounts[0] });\n  const message = await inbox.methods.message().call();\n  assert.equal(message, \"bye\");\n});"
     },
     {
       "type": "image",

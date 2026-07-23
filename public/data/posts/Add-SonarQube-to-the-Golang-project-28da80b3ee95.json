@@ -82,8 +82,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "# Update package listsudo apt update# Install OpenJDK 17 (recommended)sudo apt install\nopenjdk-17-jdk -y# Verify Java installationjava -version"
+      "lang": "bash",
+      "code": "# Update package list\nsudo apt update# Install OpenJDK 17 (recommended)\nsudo apt install\nopenjdk-17-jdk -y# Verify Java installationjava -version"
     },
     {
       "type": "heading",
@@ -92,7 +92,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "go",
       "code": "# Download SonarScanner (replace with latest version if needed)wget\nhttps://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-5.0.1.3006-linux.zip# Create a directory for SonarScannersudo mkdir -p /opt/sonar-scanner# Unzip the downloaded filesudo unzip sonar-scanner-cli-5.0.1.3006-linux.zip -d /opt/sonar-scanner# Rename folder for easier referencesudo mv /opt/sonar-scanner/sonar-scanner-5.0.1.3006-linux /opt/sonar-scanner/sonar-scanner"
     },
     {
@@ -141,7 +141,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "go",
       "code": "# Required metadatasonar.projectKey=mobintmu_go-simplesonar.projectName=Go\nSimplesonar.projectVersion=1.0# Source code locationsonar.sources=.# Languagesonar.language=go#\nEncodingsonar.sourceEncoding=UTF-8# Exclude tests and vendor\n(optional)sonar.exclusions=**/vendor/**,**/*_test.go# Go-specific: Use golangci-lint to generate\nreport for\nSonarQubesonar.go.coverage.reportPaths=coverage.outsonar.go.tests.reportPaths=test-report.xml"
     },
     {
@@ -171,7 +171,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "go",
       "code": "INFO: Start fetching files for the text and secrets analysisINFO: Using Git CLI to retrieve\nuntracked filesINFO: Retrieving language associated files and files included via\n\"sonar.text.inclusions\" that are tracked by gitINFO: Starting the text and secrets analysisINFO: 9\nsource files to be analyzed for the text and secrets analysisINFO: 9/9 source files have been\nanalyzed for the text and secrets analysisINFO: 2 files are ignored because they are untracked by\ngitINFO: Sensor TextAndSecretsSensor [text] (done) | time=281msINFO: ------------- Run sensors on\nprojectINFO: Sensor Zero Coverage SensorINFO: Sensor Zero Coverage Sensor (done) | time=0msINFO:\n------------- Gather SCA dependencies on projectINFO: Dependency analysis skippedINFO: CPD Executor\nCalculating CPD for 5 filesINFO: CPD Executor CPD calculation finished (done) | time=4msINFO:\nAnalysis report generated in 38ms, dir size=261.2 kBINFO: Analysis report compressed in 12ms, zip\nsize=39.6 kBINFO: Analysis report uploaded in 13msINFO: ANALYSIS SUCCESSFUL, you can find the\nresults at: http://127.0.0.1:9000/dashboard?id=go-simpleINFO: Note that you will be able to access\nthe updated dashboard once the server has processed the submitted analysis reportINFO: More about\nthe report processing at http://127.0.0.1:9000/api/ce/task?id=696eINFO: Analysis total time: 1.950\nsINFO: ------------------------------------------------------------------------INFO: EXECUTION\nSUCCESSINFO: ------------------------------------------------------------------------INFO: Total\ntime: 2.619sINFO: Final Memory: 17M/80MINFO:\n------------------------------------------------------------------------"
     },
     {

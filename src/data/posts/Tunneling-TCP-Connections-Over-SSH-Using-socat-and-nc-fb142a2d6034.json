@@ -115,7 +115,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "bash",
       "code": "ssh -N -L 8990:<target-host>:9000 user@jump-host"
     },
     {
@@ -124,7 +124,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "bash",
       "code": "ssh -N jump-tunnel"
     },
     {

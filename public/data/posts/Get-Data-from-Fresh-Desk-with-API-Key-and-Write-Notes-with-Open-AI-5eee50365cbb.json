@@ -88,7 +88,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "python",
       "code": "ticket_data = fd_api.tickets.get_ticket(ticket.id)"
     },
     {
@@ -98,7 +98,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "python",
       "code": "contract_data = fd_api.contacts.get_contact(ticket_data.requester_id)"
     },
     {
@@ -108,7 +108,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "python",
       "code": "comments = fd_api.comments.list_comments(ticket.id)"
     },
     {

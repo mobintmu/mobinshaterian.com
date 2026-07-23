@@ -56,7 +56,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "Recent data    →  NVMe SSD   (fast, expensive)Older data     →  HDD        (slower, cheap)Archival\ndata  →  S3         (very slow, very cheap)Expired data   →  deleted    (free)"
+      "code": "Recent data    →  NVMe SSD   (fast, expensive)\nOlder data     →  HDD        (slower, cheap)\nArchival\ndata  →  S3         (very slow, very cheap)\nExpired data   →  deleted    (free)"
     },
     {
       "type": "paragraph",
@@ -128,7 +128,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "Table  └── Storage Policy: 'hot_warm_cold'        ├── Volume: hot   → Disk: nvme_disk        ├──\nVolume: warm  → Disk: hdd_disk        └── Volume: cold  → Disk: s3_disk"
+      "code": "Table  \n└── Storage Policy: 'hot_warm_cold'        \n├── Volume: hot   → Disk: nvme_disk        \n├──\nVolume: warm  → Disk: hdd_disk        \n└── Volume: cold  → Disk: s3_disk"
     },
     {
       "type": "code",
@@ -179,7 +179,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "xml",
       "code": "<policies>            <hot_warm>                <volumes>                    <!-- Volume 1: hot —\nall new parts land here first -->                    <hot>\n<disk>nvme_disk</disk>                        <!-- Parts larger than this are written directly\nto the next volume instead -->\n<max_data_part_size_bytes>10737418240</max_data_part_size_bytes>                    </hot>\n<!-- Volume 2: warm — parts move here via TTL or when hot fills up -->                    <warm>\n<disk>hdd_disk</disk>                    </warm>                </volumes>                <!-- When\nthe hot volume reaches 80% full, ClickHouse starts                     moving the oldest parts to\nwarm automatically.                     move_factor = fraction of hot disk that triggers the move.\n0.2 means \"start moving when only 20% free space remains.\" -->\n<move_factor>0.2</move_factor>            </hot_warm>        </policies>"
     },
     {
@@ -276,7 +276,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "xml",
       "code": "<s3_cold>    <type>s3</type>    <!-- Must end with a trailing slash -->\n<endpoint>https://s3.amazonaws.com/your-bucket-name/clickhouse/</endpoint>    <!-- Use IAM instance\nprofile (recommended for AWS) -->    <use_environment_credentials>true</use_environment_credentials>\n<!-- Or use explicit credentials (for MinIO, GCS, etc.) -->    <!--\n<access_key_id>YOUR_KEY</access_key_id>         -->    <!--\n<secret_access_key>YOUR_SECRET</secret_access_key> -->    <region>eu-west-1</region>    <!-- Network\ntimeouts -->    <connect_timeout_ms>10000</connect_timeout_ms>\n<request_timeout_ms>30000</request_timeout_ms>    <retry_attempts>10</retry_attempts>    <!--\nMultipart upload settings for large parts -->\n<min_upload_part_size>33554432</min_upload_part_size>       <!-- 32 MB -->\n<max_upload_part_size>5368709120</max_upload_part_size>     <!-- 5 GB -->\n<upload_part_size_multiply_factor>2</upload_part_size_multiply_factor>\n<upload_part_size_multiply_parts_count_threshold>500</upload_part_size_multiply_parts_count_threshold>    <!-- Local cache so repeated reads on cold data are served from NVMe -->    <cache_enabled>true</cache_enabled>    <cache_path>/mnt/nvme/clickhouse_s3_cache/</cache_path>    <cache_max_size>107374182400</cache_max_size> <!-- 100 GB --></s3_cold><s3_cold>    <type>s3</type>"
     },
     {
@@ -290,7 +290,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "xml",
       "code": "<policies>    <hot_warm_cold>        <volumes>            <hot>\n<disk>nvme_disk</disk>\n<max_data_part_size_bytes>10737418240</max_data_part_size_bytes>            </hot>            <warm>\n<disk>hdd_disk</disk>\n<max_data_part_size_bytes>107374182400</max_data_part_size_bytes>            </warm>\n<cold>                <disk>s3_cold</disk>                <!-- No max_data_part_size — S3 has no\npractical size limit -->            </cold>        </volumes>        <move_factor>0.2</move_factor>\n</hot_warm_cold></policies>"
     },
     {
@@ -300,7 +300,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "xml",
       "code": "<policies>    <hot_warm_cold>        <volumes>            <hot>\n<disk>nvme_disk</disk>\n<max_data_part_size_bytes>10737418240</max_data_part_size_bytes>            </hot>            <warm>\n<disk>hdd_disk</disk>\n<max_data_part_size_bytes>107374182400</max_data_part_size_bytes>            </warm>\n<cold>                <disk>s3_cold</disk>                <!-- No max_data_part_size — S3 has no\npractical size limit -->            </cold>        </volumes>        <move_factor>0.2</move_factor>\n</hot_warm_cold></policies>"
     },
     {
@@ -310,7 +310,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "Day 0–7     →  NVMe  (hot)Day 7–30    →  HDD   (warm)Day 30–365  →  S3    (cold)Day 365+    →\ndeleted automatically"
+      "code": "Day 0–7     →  NVMe  (hot)\nDay 7–30    →  HDD   (warm)\nDay 30–365  →  S3    (cold)\nDay 365+    →\ndeleted automatically"
     },
     {
       "type": "heading",
@@ -350,7 +350,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "xml",
       "code": "<warm>    <disk>hdd_disk_1</disk>    <disk>hdd_disk_2</disk>    <disk>hdd_disk_3</disk></warm>"
     },
     {

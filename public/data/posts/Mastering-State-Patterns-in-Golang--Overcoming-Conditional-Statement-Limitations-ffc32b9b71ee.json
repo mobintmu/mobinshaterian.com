@@ -306,7 +306,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "go",
       "code": "vendingMachine := newVendingMachine(1,\n10)vendingMachine.requestItem()vendingMachine.insertMoney(10)vendingMachine.dispenseItem()"
     },
     {
@@ -390,7 +390,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "go",
       "code": "type State stringtype Action stringconst (    StateIdle      State = \"idle\"    StateProcessing State\n= \"processing\"    StateSuccess    State = \"success\"    StateFailed     State = \"failed\"\nActionStart   Action = \"start\"    ActionSucceed Action = \"succeed\"    ActionFail    Action = \"fail\")"
     },
     {

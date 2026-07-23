@@ -146,7 +146,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "go",
       "code": "cityResolver func(data Data),ratingSetter func(context.Context, data Data) error,cacheFn\nfunc(context.Context, data Data),"
     },
     {

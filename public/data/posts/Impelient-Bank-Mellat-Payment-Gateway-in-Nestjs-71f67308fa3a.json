@@ -83,8 +83,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "return await new Promise<any>((resolve, reject) => {      soap.createClient(\nMellatConfiguration.WsdlInitial,        options,        function (err: any, client: any) {\nif (err) {            console.error('Error creating SOAP client:', err);            reject(err);\n}          client.bpPayRequest(requestData, (err, result) => {            if (err) {\nconsole.error('Error making SOAP request:', err);              reject(err);            }\nresolve(result);          });        },      );    });"
+      "lang": "typescript",
+      "code": "return await new Promise<any>((resolve, reject) => {\n  soap.createClient(\n    MellatConfiguration.WsdlInitial,\n    options,\n    function (err: any, client: any) {\n      if (err) {\n        console.error(\"Error creating SOAP client:\", err);\n        reject(err);\n      }\n      client.bpPayRequest(requestData, (err, result) => {\n        if (err) {\n          console.error(\"Error making SOAP request:\", err);\n          reject(err);\n        }\n        resolve(result);\n      });\n    },\n  );\n});"
     },
     {
       "type": "heading",
@@ -103,7 +103,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "typescript",
       "code": "mellat: {    callBackUrl: process.env.MELLAT_CALLBACK_URL,    terminalId:\nprocess.env.MELLAT_TERMINAL_ID,    username: process.env.MELLAT_USERNAME,    userPassword:\nprocess.env.MELLAT_USER_PASSWORD,  },"
     },
     {

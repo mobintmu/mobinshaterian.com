@@ -205,7 +205,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "solidity",
       "code": "receive() external payable {    // this built-in function\ndoesn't require any calldata,    // it will get called if the data field is empty and     // the value field is not empty.    // this allows the smart contract to receive ether just like a     // regular user account controlled by a private key would.}"
     },
     {
@@ -259,7 +259,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "solidity",
       "code": "require(_i > 10, “Input must be greater than 10”);"
     },
     {
@@ -397,7 +397,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "solidity",
       "code": "address[] myArray = new address[](0); //dynamic arraymyArray = new address[2](0); //fix array"
     },
     {
@@ -411,7 +411,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "solidity",
       "code": "contract Owner {   modifier onlyOwner {      require(msg.sender == owner);      _;   }   modifier\ncosts(uint price) {      if (msg.value >= price) {         _;      }   }}"
     },
     {
@@ -425,7 +425,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "javascript",
       "code": "web3.utils.toWei(number [, unit])"
     },
     {

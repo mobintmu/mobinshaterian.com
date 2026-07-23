@@ -67,8 +67,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "git clone\nhttps://github.com/owanhunte/ethereum-solidity-course-updated-code.gitcd lottery"
+      "lang": "bash",
+      "code": "git clone\nhttps://github.com/owanhunte/ethereum-solidity-course-updated-code.git\ncd lottery"
     },
     {
       "type": "code",
@@ -176,7 +176,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "bash",
       "code": "go get github.com/ethereum/go-ethereum"
     },
     {
@@ -190,7 +190,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "go",
       "code": "‍‍‍client, err := ethclient.Dial(\"\nhttps://mainnet.infura.io\")"
     },
     {
@@ -236,7 +236,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "go",
       "code": "client, err := ethclient.Dial(\"\nhttp://localhost:8545\")if err != nil {  log.Fatal(err)}"
     },
     {
@@ -261,7 +261,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "go",
       "code": "dlopen(): error loading libfuse.so.2sudo apt install libfuse2"
     },
     {
@@ -271,7 +271,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "go",
       "code": "address = \"http://127.0.0.1:7545\" client, err := ethclient.Dial(address) if err != nil {\nlog.Fatal(err) }"
     },
     {
@@ -281,7 +281,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "properties",
       "code": "GOERLI_ENDPOINT=\"\nhttp://localhost:8545\""
     },
     {
@@ -325,7 +325,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "go",
       "code": "account := common.HexToAddress(myAddress)balance, err := client.BalanceAt(context.Background(),\naccount, nil)if err != nil {  log.Fatal(err)}fmt.Println(balance) // 999997816911625000000"
     },
     {
@@ -335,7 +335,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "go",
       "code": "blockNumber := big.NewInt(1) balance, err = client.BalanceAt(context.Background(), myAddress,\nblockNumber) if err != nil {  log.Fatal(err) }"
     },
     {
@@ -353,7 +353,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "go",
       "code": "pendingBalance, err := client.PendingBalanceAt(context.Background(), myAddress)\nfmt.Println(pendingBalance) // 25729324269165216042"
     },
     {
@@ -367,7 +367,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "go",
       "code": "header, err := client.HeaderByNumber(context.Background(), nil)if err != nil {\nlog.Fatal(err)}fmt.Println(header.Number.String()) // 1"
     },
     {
@@ -386,7 +386,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "go",
       "code": "count, err := client.TransactionCount(context.Background(), block.Hash()) if err != nil {\nlog.Fatal(err) } fmt.Println(count)"
     },
     {
@@ -396,7 +396,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "go",
       "code": "for _, tx := range block.Transactions() {  fmt.Println(tx.Hash().Hex())\nfmt.Println(tx.Value().String())      fmt.Println(tx.Gas())\nfmt.Println(tx.GasPrice().Uint64())   fmt.Println(tx.Nonce())              }"
     },
     {
@@ -424,8 +424,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "go get -u github.com/ethereum/go-ethereumcd $GOPATH/src/github.com/ethereum/go-ethereum/makemake\ndevtools"
+      "lang": "bash",
+      "code": "go get -u github.com/ethereum/go-ethereum\ncd $GOPATH/src/github.com/ethereum/go-ethereum/make\nmake\ndevtools"
     },
     {
       "type": "heading",
@@ -457,7 +457,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "go",
       "code": "======= Lottery.sol:Lottery =======Contract JSON\nABI[{\"inputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"inputs\":[],\"name\":\"enter\",\"outputs\":[],\"stateMutability\":\"payable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getPlayers\",\"outputs\":[{\"internalType\":\"address payable[]\",\"name\":\"\",\"type\":\"address[]\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"manager\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"pickWinner\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"players\",\"outputs\":[{\"internalType\":\"address payable\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"}]"
     },
     {
@@ -475,7 +475,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "go",
       "code": "abigen --abi ./build/Lottery.abi --pkg main --type Lottery --out Lottery.go"
     },
     {
@@ -508,7 +508,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "go",
       "code": "abigen --abi ./build/Lottery.abi --pkg main --type Lottery --out Lottery.go --bin\n./Lottery.bin/Lottery.bin"
     },
     {
@@ -543,12 +543,12 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "go",
       "code": "address := \"http://localhost:8545\" // ganache cli client, err := ethclient.Dial(address) if err !=\nnil {  log.Fatal(err) } privateKey, err :=\ncrypto.HexToECDSA(\"872e066455dcfb1e38e1c6109f3522f2d2344e3b58fbfbe0b47803c971784760\") if err != nil\n{  log.Fatal(err) } nonce, err := client.PendingNonceAt(context.Background(),\ncrypto.PubkeyToAddress(privateKey.PublicKey)) if err != nil {  log.Fatal(err) } gasPrice, err :=\nclient.SuggestGasPrice(context.Background()) if err != nil {  log.Fatal(err) }\nfmt.Println(\"gasPrice: \", gasPrice) chainID, err := client.ChainID(context.Background())\nfmt.Println(\"networkID :\", chainID) auth, err := bind.NewKeyedTransactorWithChainID(privateKey,\nchainID) if err != nil {  fmt.Println(err) } auth.Nonce = big.NewInt(int64(nonce)) auth.Value =\nbig.NewInt(0)      // in wei auth.GasLimit = uint64(300000) // in units auth.GasPrice = gasPrice\ntxAddress, tx, instance, err := contracts.DeployLottery(auth, client) if err != nil {\nfmt.Println(\"DeployLottery\")  log.Fatal(err.Error()) } fmt.Println(instance, address, tx, instance)\nfmt.Println(txAddress.Hex()) // 0x147B8eb97fD247D06C4006D269c90C1908Fb5D54\nfmt.Println(tx.Hash().Hex())"
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "go",
       "code": "fmt.Println(txAddress.Hex())\nfmt.Println(tx.Hash().Hex())0xf6e2551d2AFaFBA200D3803aE6a72B515Fa9f8250x81ea1d8c480a316f5721edf31a3c1f39f3827b5cc75e9b6fcad928c3e261dd08"
     },
     {
@@ -572,7 +572,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "go",
       "code": "address := \"http://localhost:8545\" // ganache cli client, err := ethclient.Dial(address) if err !=\nnil {  log.Fatal(err) } contractAddress :=\ncommon.HexToAddress(\"0x25b79f942ebccfae067bb94a0e76282e7c1c2db825e5cbee18da1bb487596e06\") instance,\nerr := contracts.NewLottery(contractAddress, client) if err != nil {  log.Fatal(err) }"
     },
     {
@@ -603,7 +603,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "go",
       "code": "address := \"http://localhost:8545\" // ganache cli client, err := ethclient.Dial(address) if err !=\nnil {  log.Fatal(err) } privateKey, err :=\ncrypto.HexToECDSA(\"872e066455dcfb1e38e1c6109f3522f2d2344e3b58fbfbe0b47803c971784760\") if err != nil\n{  log.Fatal(err) } publicKey := privateKey.Public() publicKeyECDSA, ok :=\npublicKey.(*ecdsa.PublicKey) if !ok {  log.Fatal(\"error casting public key to ECDSA\") } fromAddress\n:= crypto.PubkeyToAddress(*publicKeyECDSA) nonce, err := client.PendingNonceAt(context.Background(),\nfromAddress) if err != nil {  log.Fatal(err) } gasPrice, err :=\nclient.SuggestGasPrice(context.Background()) if err != nil {  log.Fatal(err) } fmt.Println(gasPrice)\nchainID, err := client.ChainID(context.Background()) if err != nil {  log.Fatal(err) }\nfmt.Println(\"networkID :\", chainID) auth, err := bind.NewKeyedTransactorWithChainID(privateKey,\nchainID) if err != nil {  log.Fatal(err) } auth.Nonce = big.NewInt(int64(nonce)) auth.Value =\nbig.NewInt(0)      // in wei auth.GasLimit = uint64(3000000) // in units auth.GasPrice = gasPrice\ncontractAddress :=\ncommon.HexToAddress(\"0x25b79f942ebccfae067bb94a0e76282e7c1c2db825e5cbee18da1bb487596e06\") balance,\nerr := client.BalanceAt(context.Background(), contractAddress, nil) if err != nil {  log.Fatal(err)\n} fmt.Println(\"balance : \", balance) myAddress :=\ncommon.HexToAddress(\"0x6e06Dc176Ee86DCb3C428a42Ed9AAeD9c0Eb1935\") myBalance, err :=\nclient.BalanceAt(context.Background(), myAddress, nil) if err != nil {  log.Fatal(err) }\nfmt.Println(\"myBalance : \", myBalance) instance, err := contracts.NewLottery(contractAddress,\nclient) if err != nil {  fmt.Println(\"NewLottery\")  log.Fatal(err) } tx, err := instance.Enter(auth)\nif err != nil {  fmt.Println(\"Enter\")  log.Fatal(err) }"
     },
     {

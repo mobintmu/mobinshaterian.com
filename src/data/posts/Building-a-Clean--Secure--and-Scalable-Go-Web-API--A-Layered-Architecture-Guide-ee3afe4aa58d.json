@@ -74,7 +74,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "go",
       "code": "internal/├── model/       → Data structures (e.g., Product)├── repository/  → Data access (DB,\nin-memory store)├── service/     → Business logic├── controller/  → HTTP handlers└── dto/         →\nData Transfer Objects (for API responses)"
     },
     {
@@ -100,7 +100,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "go",
       "code": "// ❌ In service/product.gotype Product struct {    ID    string    Name  string    Price float64}//\n❌ In repository/product.gotype Product struct {    ID    string    Name  string    Price float64}"
     },
     {
@@ -276,7 +276,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "internal/product/├── model/│   └── product.go              → Full domain model├── dto/│   ├──\nclient_product.go       → Public fields│   └── admin_product.go        → All fields├── controller/│\n├── client_controller.go    → Returns ClientProduct│   └── admin_controller.go     → Returns\nAdminProduct└── service/    └── product_service.go      → Business logic (used by both)"
+      "code": "internal/product/\n├── model/\n│   \n└── product.go              → Full domain model\n├── dto/\n│   \n├──\nclient_product.go       → Public fields\n│   \n└── admin_product.go        → All fields\n├── controller/\n│\n\n├── client_controller.go    → Returns ClientProduct\n│   \n└── admin_controller.go     → Returns\nAdminProduct\n└── service/    \n└── product_service.go      → Business logic (used by both)"
     },
     {
       "type": "paragraph",

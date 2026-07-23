@@ -109,12 +109,12 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "git clone https://github.com/ory/kratos.gitcd kratosgit checkout <version-you-want>docker-compose -f\nquickstart.yml -f quickstart-standalone.yml up --build --force-recreate# If you have SELinux,\nrun:docker-compose -f quickstart.yml -f quickstart-selinux.yml -f quickstart-standalone.yml up\n--build --force-recreate"
+      "lang": "bash",
+      "code": "git clone https://github.com/ory/kratos.git\ncd kratos\ngit checkout <version-you-want>\ndocker-compose -f\nquickstart.yml -f quickstart-standalone.yml up --build --force-recreate# If you have SELinux,\nrun:docker-compose -f quickstart.yml -f quickstart-selinux.yml -f quickstart-standalone.yml up\n--build --force-recreate"
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "typescript",
       "code": "Ory Kratos    Public (\"Browser\") API (port 4433)    Admin API (port 4434) - This is only made public\nso we can test via the CLI."
     },
     {

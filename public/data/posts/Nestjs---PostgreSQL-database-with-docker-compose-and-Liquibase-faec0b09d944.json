@@ -385,7 +385,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "typescript",
       "code": "async deleteTask(id: string): Promise<void> {    return await this.taskRepository.deleteTask(id);  }"
     },
     {
@@ -394,7 +394,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "typescript",
       "code": "public async deleteTask(id: string): Promise<void> {    const result = await this.delete(id);    if\n(result.affected === 0) {      throw new NotFoundException(`Task with ID \"${id}\" not found`);    }\n}"
     },
     {
@@ -417,7 +417,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "typescript",
       "code": "async updateTaskStatus(id: string, status: TaskStatus): Promise<Tasks> {    return await\nthis.taskRepository.updateTaskStatus(id, status);  }"
     },
     {
@@ -426,7 +426,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "typescript",
       "code": "public async updateTaskStatus(    id: string,    status: TaskStatus,  ): Promise<Tasks> {    const\ntask = await this.getTaskById(id);    task.status = status;    await this.save(task);    return\ntask;  }"
     },
     {
@@ -449,7 +449,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "typescript",
       "code": "async getTasks(filterDto: GetTasksFilterDto): Promise<Tasks[]> {    return await\nthis.taskRepository.getTasks(filterDto);  }"
     },
     {
@@ -458,7 +458,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "typescript",
       "code": "async getTasks(filterDto: GetTasksFilterDto): Promise<Tasks[]> {    const { status, search } =\nfilterDto;    const query = this.createQueryBuilder('tasks');    if (status) {\nquery.andWhere('tasks.status = :status', { status });    }    if (search) {      query.andWhere(\n'LOWER(tasks.title) LIKE LOWER(:search) OR LOWER(tasks.description) LIKE LOWER(:search)',        {\nsearch: `%${search}%` },      );    }    const tasks = await query.getMany();    return tasks;  }"
     },
     {

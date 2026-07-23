@@ -23,7 +23,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "bash",
       "code": "pip install selenium"
     },
     {
@@ -110,8 +110,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "pip3 install seleniumpip3 install webdriver-manager"
+      "lang": "bash",
+      "code": "pip3 install selenium\npip3 install webdriver-manager"
     },
     {
       "type": "heading",

@@ -54,7 +54,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "bash",
       "code": "go get \"go.opentelemetry.io/otel\" \\  \"go.opentelemetry.io/otel/exporters/stdout/stdoutmetric\" \\\n\"go.opentelemetry.io/otel/exporters/stdout/stdouttrace\" \\  \"go.opentelemetry.io/otel/propagation\" \\\n\"go.opentelemetry.io/otel/sdk/metric\" \\  \"go.opentelemetry.io/otel/sdk/resource\" \\\n\"go.opentelemetry.io/otel/sdk/trace\" \\  \"go.opentelemetry.io/otel/semconv/v1.21.0\" \\\n\"go.opentelemetry.io/contrib/instrumentation/net/http/otelhttp\""
     },
     {
@@ -166,7 +166,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "go",
       "code": "exporter, err := stdouttrace.New(stdouttrace.WithPrettyPrint())  if err != nil {  log.Fatal(err)}"
     },
     {
@@ -176,7 +176,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "go",
       "code": "tp = SDKTrace.NewTracerProvider(  SDKTrace.WithSpanProcessor(sentryOtel.NewSentrySpanProcessor()), )\notel.SetTracerProvider(tp) otel.SetTextMapPropagator(sentryOtel.NewSentryPropagator()) Tracer =\ntp.Tracer(serviceName) return tp}"
     },
     {

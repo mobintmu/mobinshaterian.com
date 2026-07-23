@@ -153,7 +153,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "go",
       "code": "// ProcessOrder processes an order with pessimistic lockingfunc (i *InventoryManager)\nProcessOrder(productID int, requestedQuantity int) error {    // Begin transaction with SERIALIZABLE\nisolation level    tx, err := i.db.BeginTx(nil, &sql.TxOptions{        Isolation:\nsql.LevelSerializable,    })    if err != nil {        return\nfmt.Errorf(\"failed to begin transaction: %w\", err)    }    defer func() {        if err != nil {\nif rbErr := tx.Rollback(); rbErr != nil {\nfmt.Printf(\"Failed to rollback transaction: %v\\n\", rbErr)            }        } else {            if\nerr := tx.Commit(); err != nil {                fmt.Printf(\"Failed to commit transaction: %v\\n\",\nerr)            }        }    }()    // Step 1: Acquire exclusive lock with FOR UPDATE    var\nproduct Product    row :=\ntx.QueryRow(`        SELECT product_id, quantity         FROM products         WHERE product_id = ?         FOR UPDATE`, productID)    err = row.Scan(&product.ProductID, &product.Quantity)    if err != nil {        if errors.Is(err, sql.ErrNoRows) {            return fmt.Errorf(\"product %d not found\", productID)        }        return fmt.Errorf(\"failed to select product: %w\", err)    }    // Step 2: Validate quantity while holding lock    if product.Quantity < requestedQuantity {        return fmt.Errorf(\"insufficient stock: have %d, need %d\",            product.Quantity, requestedQuantity)    }    // Step 3: Update quantity while still holding lock    result, err := tx.Exec(`        UPDATE products         SET quantity = quantity - ?         WHERE product_id = ?`,         requestedQuantity, productID)    if err != nil {        return fmt.Errorf(\"failed to update quantity: %w\", err)    }    rowsAffected, err := result.RowsAffected()    if err != nil {        return fmt.Errorf(\"failed to check affected rows: %w\", err)    }    if rowsAffected != 1 {        return fmt.Errorf(\"expected to update exactly one row\")    }    err = nil    return nil}"
     },
     {
@@ -245,7 +245,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "go",
       "code": "// ConnectionPoolManager manages database connection poolstype ConnectionPoolManager struct {\nprimaryDB    *sql.DB    replicaDBs   []*sql.DB    redisClient  *redis.Client    metrics\n*ConnectionMetrics}// NewConnectionPoolManager creates a new connection pool managerfunc\nNewConnectionPoolManager(    primaryCfg DatabaseConfig,    replicaCfgs []DatabaseConfig,)\n(*ConnectionPoolManager, error) {    // Initialize primary database connection    primaryDB, err :=\nNewDatabaseConnection(primaryCfg)    if err != nil {        return nil,\nfmt.Errorf(\"failed to initialize primary database: %w\", err)    }    // Initialize replica database\nconnections    replicaDBs := make([]*sql.DB, 0, len(replicaCfgs))    for _, cfg := range replicaCfgs\n{        db, err := NewDatabaseConnection(cfg)        if err != nil {            return nil,\nfmt.Errorf(\"failed to initialize replica database: %w\", err)        }        replicaDBs =\nappend(replicaDBs, db)    }    return &ConnectionPoolManager{        primaryDB:    primaryDB,\nreplicaDBs:   replicaDBs,        redisClient:  redis.NewClient(&redis.Options{}),        metrics:\nnewConnectionMetrics(),    }, nil}"
     },
     {

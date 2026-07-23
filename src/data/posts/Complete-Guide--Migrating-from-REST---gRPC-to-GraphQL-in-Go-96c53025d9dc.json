@@ -99,8 +99,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "go get github.com/99designs/gqlgen@latestgo get github.com/vektah/gqlparser/v2go get\ngithub.com/gorilla/websocket  # For subscriptions"
+      "lang": "bash",
+      "code": "go get github.com/99designs/gqlgen@latest\ngo get github.com/vektah/gqlparser/v2\ngo get\ngithub.com/gorilla/websocket\n# For subscriptions"
     },
     {
       "type": "paragraph",
@@ -146,7 +146,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "solidity",
       "code": "unable to parse config: [17:3] mapping key \"filename_template\" already defined"
     },
     {
@@ -160,8 +160,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "go mod tidygo mod download"
+      "lang": "bash",
+      "code": "go mod tidy\ngo mod download"
     },
     {
       "type": "heading",
@@ -197,7 +197,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "go",
       "code": "// Service layer stays the sametype ProductService struct {    repo *ProductRepository    cache\nCacheStore}"
     },
     {
@@ -207,7 +207,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "go",
       "code": "// Repository layer stays the sametype ProductRepository struct {    db *sql.DB}"
     },
     {
@@ -246,13 +246,13 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "type Product {  id: ID!  name: String!  description: String  price: Float!  createdAt: Time!\nupdatedAt: Time!}"
+      "lang": "graphql",
+      "code": "type Product {\n  id: ID!\n  name: String!\n  description: String\n  price: Float!\n  createdAt: Time!\n  updatedAt: Time!\n}"
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "type ProductList {  items: [Product!]!  total: Int!  limit: Int!  offset: Int!}"
+      "lang": "graphql",
+      "code": "type ProductList {\n  items: [Product!]!\n  total: Int!\n  limit: Int!\n  offset: Int!\n}"
     },
     {
       "type": "code",
@@ -410,8 +410,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "# Simple querycurl -X POST http://localhost:4000/query \\  -H \"Content-Type: application/json\" \\  -d\n'{    \"query\": \"{ getProduct(id: \\\"1\\\") { id name price } }\"  }'# Query with variablescurl -X POST\nhttp://localhost:4000/query \\  -H \"Content-Type: application/json\" \\  -d\n'{    \"query\": \"query GetProduct($id: ID!) { getProduct(id: $id) { id name } }\",    \"variables\": { \"id\": \"1\" }  }'# Mutationcurl -X POST http://localhost:4000/query \\  -H \"Content-Type: application/json\" \\  -d '{    \"query\": \"mutation { createProduct(input: {name: \\\"Laptop\\\", price: 999.99}) { id name } }\"  }'"
+      "lang": "bash",
+      "code": "# Simple query\ncurl -X POST http://localhost:4000/query \\  -H \"Content-Type: application/json\" \\  -d\n'{    \"query\": \"{ getProduct(id: \\\"1\\\") { id name price } }\"  }'# Query with variables\ncurl -X POST\nhttp://localhost:4000/query \\  -H \"Content-Type: application/json\" \\  -d\n'{    \"query\": \"query GetProduct($id: ID!) { getProduct(id: $id) { id name } }\",    \"variables\": { \"id\": \"1\" }  }'# Mutation\ncurl -X POST http://localhost:4000/query \\  -H \"Content-Type: application/json\" \\  -d '{    \"query\": \"mutation { createProduct(input: {name: \\\"Laptop\\\", price: 999.99}) { id name } }\"  }'"
     },
     {
       "type": "heading",

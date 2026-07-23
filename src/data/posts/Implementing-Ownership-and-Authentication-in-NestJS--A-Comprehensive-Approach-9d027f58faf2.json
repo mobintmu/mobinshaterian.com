@@ -82,7 +82,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "typescript",
       "code": "@OneToMany(() => Tasks, (tasks) => tasks.user, { eager: true })  tasks: Tasks[];"
     },
     {
@@ -91,7 +91,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "typescript",
       "code": "@ManyToOne(() => Users, (user) => user.tasks, { eager: false })  user: Users;"
     },
     {
@@ -218,7 +218,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "typescript",
       "code": "createTask(createTaskDto: CreateTaskDto, user: User): Promise<Task> {    const task =\nthis.taskRepository.createTask(createTaskDto, user);    return task;  }"
     },
     {
@@ -269,7 +269,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "typescript",
       "code": "intercept(context: ExecutionContext, next: CallHandler<any>) {  return next.handle().pipe(map((data)\n=> instanceToPlain(data)));}"
     },
     {
@@ -288,7 +288,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "typescript",
       "code": "return next.handle().pipe(map((data) => instanceToPlain(data)));"
     },
     {
@@ -337,7 +337,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "typescript",
       "code": "@ManyToOne(() => User, (user) => user.tasks, { eager: false })  @Exclude({ toPlainOnly: true })\n@JoinColumn({ name: 'user_id' })  user: User;"
     },
     {
@@ -402,7 +402,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "typescript",
       "code": "async getTasks(filterDto: GetTasksFilterDto, user: User): Promise<Task[]> {    return await\nthis.taskRepository.getTasks(filterDto, user);  }"
     },
     {
@@ -411,7 +411,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "typescript",
       "code": "async getTasks(filterDto: GetTasksFilterDto, user: User): Promise<Task[]> {    const { status,\nsearch } = filterDto;    const query = this.createQueryBuilder('tasks');    query.where({ user });\nif (status) {      query.andWhere('tasks.status = :status', { status });    }    if (search) {\nquery.andWhere(\n'(LOWER(tasks.title) LIKE LOWER(:search) OR LOWER(tasks.description) LIKE LOWER(:search))',        {\nsearch: `%${search}%` },      );    }    const tasks = await query.getMany();    return tasks;  }"
     },
     {
@@ -434,7 +434,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "typescript",
       "code": "async getTaskById(id: string, user: User): Promise<Task> {    const task = await\nthis.taskRepository.getTaskById(id, user);    return task;  }"
     },
     {
@@ -443,7 +443,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "typescript",
       "code": "public async getTaskById(id: string): Promise<Task> {    const found = await this.findOne({ where: {\nid: id } });    if (!found) {      throw new NotFoundException(`Task with ID \"${id}\" not found`);\n}    return found;  }"
     },
     {

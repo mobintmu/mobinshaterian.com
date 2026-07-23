@@ -82,7 +82,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "go-simple/├── .env                    # Local development\n(don't commit)├── .env.test               # Testing (don't commit)├── .env.development        #\nDevelopment (can commit)├── .env.production         # Production\n(don't commit)├── .env.example            # Template (COMMIT THIS)├── .gitignore              # Ignore actual .env files├── cmd/│   └── server/│       └── main.go         # Entry point├── internal/│   ├── config/│   │   ├── config.go       # Config loading & validation│   │   └── validate.go     # Validation functions│   ├── storage/│   │   └── db.go           # Database initialization│   └── app/│       └── app.go          # Application setup└── test/    ├── http_server_test.go    └── grpc_server_test.go"
+      "code": "go-simple/\n├── .env                    # Local development\n(don't commit)\n├── .env.test               # Testing (don't commit)\n├── .env.development        #\nDevelopment (can commit)\n├── .env.production         # Production\n(don't commit)\n├── .env.example            # Template (COMMIT THIS)\n├── .gitignore              # Ignore actual .env files\n├── cmd/\n│   \n└── server/\n│       \n└── main.go         # Entry point\n├── internal/\n│   \n├── config/\n│   \n│   \n├── config.go       # Config loading & validation\n│   \n│   \n└── validate.go     # Validation functions\n│   \n├── storage/\n│   \n│   \n└── db.go           # Database initialization\n│   \n└── app/\n│       \n└── app.go          # Application setup\n└── test/    \n├── http_server_test.go    \n└── grpc_server_test.go"
     },
     {
       "type": "heading",
@@ -95,8 +95,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "go get github.com/joho/godotenvgo get github.com/spf13/viper"
+      "lang": "bash",
+      "code": "go get github.com/joho/godotenv\ngo get github.com/spf13/viper"
     },
     {
       "type": "list",
@@ -142,7 +142,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "go",
       "code": "# Server ConfigurationAPP_HTTP_PORT=4001APP_HTTP_ADDRESS=127.0.0.1APP_GRPC_PORT=9002#\nEnvironmentAPP_ENV=test# Database - Separate test\ndatabaseAPP_DATABASE_DSN=postgresql://postgres:postgres@localhost:5432/go_simple_test?sslmode=disable# JWTAPP_JWT_SECRET=test-secret-keyAPP_JWT_EXPIRY_HOURS=1# Redis - Different DB for isolationAPP_REDIS_DSN=localhost:6379APP_REDIS_DB=1APP_REDIS_PREFIX=go-simple-testAPP_REDIS_DEFAULT_TTL=1"
     },
     {

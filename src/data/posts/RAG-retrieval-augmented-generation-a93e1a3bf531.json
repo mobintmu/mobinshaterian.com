@@ -32,12 +32,12 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "bash",
       "code": "pip install openaikey = \"sk-Fh*******\"prompt = 'what is the capital of USA?'client = OpenAI(\napi_key = key)chat_completion = client.chat.completions.create(    model=\"gpt-3.5-turbo\",\nmessages=[{\"role\": \"user\", \"content\": prompt}])"
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "python",
       "code": "message=ChatCompletionMessage(content='The capital of the United States is Washington, D.C.',\nrole='assistant'"
     },
     {
@@ -90,8 +90,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "%pip install --upgrade --quiet  langchain langchain-community langchainhub langchain-openai chromadb\nbs4from google.colab import userdatauserdata.get('key')"
+      "lang": "python",
+      "code": "%pip install --upgrade --quiet  langchain langchain-community langchainhub langchain-openai chromadb\nbs4\nfrom google.colab import userdata\nuserdata.get('key')"
     },
     {
       "type": "paragraph",
@@ -109,8 +109,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "os.environ[\"OPENAI_API_KEY\"] = userdata.get('key')os.environ[\"LANGCHAIN_TRACING_V2\"] = \"false\""
+      "lang": "python",
+      "code": "os.environ[\"OPENAI_API_KEY\"] = userdata.get('key')\nos.environ[\"LANGCHAIN_TRACING_V2\"] = \"false\""
     },
     {
       "type": "heading",
@@ -123,8 +123,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "loader = CSVLoader(file_path=\"./blogs1.csv\")docs = loader.load()"
+      "lang": "python",
+      "code": "loader = CSVLoader(file_path=\"./blogs1.csv\")\ndocs = loader.load()"
     },
     {
       "type": "heading",
@@ -133,8 +133,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=200)splits =\ntext_splitter.split_documents(docs)"
+      "lang": "python",
+      "code": "text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=200)\nsplits =\ntext_splitter.split_documents(docs)"
     },
     {
       "type": "heading",
@@ -143,7 +143,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "python",
       "code": "vectorstore = Chroma.from_documents(documents=splits, embedding=OpenAIEmbeddings())"
     },
     {
@@ -163,7 +163,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "python",
       "code": "rag_chain = (    {\"context\": retriever | format_docs, \"question\": RunnablePassthrough()}    | prompt\n| llm    | StrOutputParser())"
     },
     {
@@ -173,7 +173,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "python",
       "code": "rag_chain.invoke(\"How was the weather in the Netherlands?\")"
     },
     {
@@ -183,8 +183,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "retriever_2 = vectorstore.as_retriever(search_type=\"similarity\", search_kwargs={\"k\":\n6})retrieved_docs = retriever.invoke(\"What is corepass apllicaion?\")"
+      "lang": "python",
+      "code": "retriever_2 = vectorstore.as_retriever(search_type=\"similarity\", search_kwargs={\"k\":\n6})\nretrieved_docs = retriever.invoke(\"What is corepass apllicaion?\")"
     },
     {
       "type": "heading",
@@ -226,7 +226,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "python",
       "code": "res = rag_chain_with_source.invoke(\"How can I excange CTN o botcoin?\")"
     },
     {

@@ -79,7 +79,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "properties",
       "code": "mongoex:    image: mongo-express    environment:    - ME_CONFIG_MONGODB_SERVER=mongodb    -\nME_CONFIG_MONGODB_PORT=27017    ports:    - \"8085:8081\"    networks:      - backend    restart:\nalways    depends_on:      - mongodb"
     },
     {

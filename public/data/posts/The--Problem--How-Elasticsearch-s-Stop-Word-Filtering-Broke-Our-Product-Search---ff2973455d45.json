@@ -104,8 +104,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "\"name_fa\": {          \"type\": \"text\",          \"analyzer\": \"default\",          \"search_analyzer\":\n\"rebuilt\"        },"
+      "lang": "json",
+      "code": "{\n  \"name_fa\": {\n    \"type\": \"text\",\n    \"analyzer\": \"default\",\n    \"search_analyzer\": \"rebuilt\"\n  }\n}"
     },
     {
       "type": "paragraph",
@@ -118,8 +118,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "\"analyzer\": {            \"rebuilt\": {              \"filter\": [\n\"english_possessive_stemmer\",                \"lowercase\",                \"english_stop\",\n\"english_keywords\",                \"english_stemmer\"              ],              \"tokenizer\":\n\"standard\"            }          },"
+      "lang": "json",
+      "code": "{\n  \"analyzer\": {\n    \"rebuilt\": {\n      \"filter\": [\n        \"english_possessive_stemmer\",\n        \"lowercase\",\n        \"english_stop\",\n        \"english_keywords\",\n        \"english_stemmer\"\n      ],\n      \"tokenizer\": \"standard\"\n    }\n  }\n}"
     },
     {
       "type": "heading",

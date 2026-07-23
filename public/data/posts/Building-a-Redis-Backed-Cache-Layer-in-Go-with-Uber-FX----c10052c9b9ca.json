@@ -41,7 +41,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "internal/├── storage/│   ├── cache/│   │   ├── client.go        // Redis connection setup│   │   ├──\nstore.go         // Cache logic (set/get/delete)│   │   └── module.go        // Uber FX integration"
+      "code": "internal/\n├── storage/\n│   \n├── cache/\n│   \n│   \n├── client.go        // Redis connection setup\n│   \n│   \n├──\nstore.go         // Cache logic (set/get/delete)\n│   \n│   \n└── module.go        // Uber FX integration"
     },
     {
       "type": "heading",
@@ -91,7 +91,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "go",
       "code": "Key(\"product\", \"123\") // \"product:123\""
     },
     {
@@ -114,7 +114,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "go",
       "code": "fx.New(    cache.Module,    // other modules...)"
     },
     {

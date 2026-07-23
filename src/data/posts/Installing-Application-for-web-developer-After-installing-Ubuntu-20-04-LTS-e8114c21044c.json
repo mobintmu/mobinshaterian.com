@@ -225,8 +225,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "mysql --versionmysql  Ver 8.0.21-0ubuntu0.20.04.4 for Linux on x86_64 ((Ubuntu))"
+      "lang": "bash",
+      "code": "mysql --version\nmysql  Ver 8.0.21-0ubuntu0.20.04.4 for Linux on x86_64 ((Ubuntu))"
     },
     {
       "type": "paragraph",
@@ -293,7 +293,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "sql",
       "code": "show grants for phpmyadmin@localhost;"
     },
     {
@@ -322,7 +322,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "xml",
       "code": "<Directory /var/www/>        Options Indexes FollowSymLinks        AllowOverride All        Require\nall granted</Directory>"
     },
     {
@@ -439,7 +439,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "xml",
       "code": "<VirtualHost *:8001> ServerAdmin webmaster@localhost DocumentRoot /var/www/html/folder ErrorLog\n/var/www/html/folder/error.log CustomLog ${APACHE_LOG_DIR}/access.log combined</VirtualHost>"
     },
     {

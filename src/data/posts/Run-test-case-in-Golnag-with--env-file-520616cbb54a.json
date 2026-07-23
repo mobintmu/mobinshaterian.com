@@ -23,8 +23,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "\"go.testEnvVars\": {  \"MY_VAR\": \"my value\"},"
+      "lang": "json",
+      "code": "{\n  \"go.testEnvVars\": {\n    \"MY_VAR\": \"my value\"\n  }\n}"
     },
     {
       "type": "paragraph",
@@ -32,13 +32,13 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "\"go.testEnvFile\": \"${workspaceFolder}/.env\","
+      "lang": "json",
+      "code": "{\n  \"go.testEnvFile\": \"${workspaceFolder}/.env\"\n}"
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "\"go.testEnvFile\": \"${workspaceFolder}/.env\",    \"go.testTimeout\": \"300s\",    \"go.testFlags\":\n[\"-count=1\"],"
+      "lang": "json",
+      "code": "{\n  \"go.testEnvFile\": \"${workspaceFolder}/.env\",\n  \"go.testTimeout\": \"300s\",\n  \"go.testFlags\": [\n    \"-count=1\"\n  ]\n}"
     },
     {
       "type": "paragraph",

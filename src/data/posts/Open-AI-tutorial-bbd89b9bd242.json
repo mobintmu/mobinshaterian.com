@@ -46,7 +46,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "bash",
       "code": "pip install openai"
     },
     {
@@ -70,7 +70,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "properties",
       "code": "MY_ENV_VAR=\"This is my env var content.\""
     },
     {
@@ -168,7 +168,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "bash",
       "code": "pip install openai"
     },
     {
@@ -183,7 +183,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "python",
       "code": "ChatCompletion(id='chatcmpl-9aYk3coc90XEJ5NrPNhFQAZZW0uJe', choices=[Choice(finish_reason='stop',\nindex=0, logprobs=None,\nmessage=ChatCompletionMessage(content='The capital of the United States of America is Washington, D.C.', role='assistant', function_call=None, tool_calls=None))], created=1705392343, model='gpt-3.5-turbo-0613', object='chat.completion', system_fingerprint=None, usage=CompletionUsage(completion_tokens=14, prompt_tokens=14, total_tokens=28))"
     },
     {

@@ -40,7 +40,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "bash",
       "code": "go mod init go-simple"
     },
     {
@@ -162,7 +162,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "bash",
       "code": "go get -u github.com/gin-gonic/gin"
     },
     {

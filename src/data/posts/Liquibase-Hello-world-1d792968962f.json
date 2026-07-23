@@ -94,7 +94,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "bash",
       "code": "liquibase --username=test --password=test --changelog-file=<changelog.xml> status"
     },
     {
@@ -199,7 +199,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "bash",
       "code": "liquibase update --url=jdbc:postgresql://<db_host>:5432/<db_name>?currentSchema=public\n--changelog-file=changelog.xml --username=<db_username> --password=<db_password>"
     },
     {
@@ -213,7 +213,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "bash",
       "code": "liquibase rollback-count --count=1\n--url=jdbc:postgresql://<db_host>:5432/<db_name>?currentSchema=public --changelog-file=changelog.xml\n--username=<db_username> --password=<db_password>"
     }
   ]

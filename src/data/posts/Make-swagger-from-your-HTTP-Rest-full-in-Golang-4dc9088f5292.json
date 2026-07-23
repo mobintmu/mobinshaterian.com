@@ -104,7 +104,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "go",
       "code": "// ShowAccount godoc// @Summary      Show an account// @Description  get string by ID// @Tags\naccounts// @Accept       json// @Produce      json// @Param        id   path      int  true\n\"Account ID\"// @Success      200  {object}  model.Account// @Failure      400  {object}\nhttputil.HTTPError// @Failure      404  {object}  httputil.HTTPError// @Failure      500  {object}\nhttputil.HTTPError// @Router       /accounts/{id} [get]"
     },
     {
@@ -114,7 +114,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "go",
       "code": "// @Param   enumstring  query     string     false  \"string enums\"       Enums(A, B, C)// @Param\nenumint     query     int        false  \"int enums\"          Enums(1, 2, 3)// @Param   enumnumber\nquery     number     false  \"int enums\"          Enums(1.1, 1.2, 1.3)// @Param   string      query\nstring     false  \"string valid\"       minlength(5)  maxlength(10)// @Param   int         query\nint        false  \"int valid\"          minimum(1)    maximum(10)// @Param   default     query\nstring     false  \"string default\"     default(A)// @Param   example     query     string     false\n\"string example\"     example(string)// @Param   collection  query     []string   false\n\"string collection\"  collectionFormat(multi)// @Param   extensions  query     []string   false\n\"string collection\"  extensions(x-example=test,x-nullable)"
     },
     {

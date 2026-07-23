@@ -251,7 +251,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "javascript",
       "code": "// ✅ Parameterized query (Node.js + PostgreSQL)const result = await db.query(\n'SELECT * FROM users WHERE id = $1',  [req.query.id]);"
     },
     {

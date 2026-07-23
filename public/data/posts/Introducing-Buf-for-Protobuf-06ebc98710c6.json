@@ -110,8 +110,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "go get github.com/bufbuild/buf/cmd/buf@v1.36.0go install github.com/bufbuild/buf/cmd/buf@v1.36.0buf\n--version"
+      "lang": "bash",
+      "code": "go get github.com/bufbuild/buf/cmd/buf@v1.36.0\ngo install github.com/bufbuild/buf/cmd/buf@v1.36.0\nbuf\n--version"
     },
     {
       "type": "paragraph",
@@ -129,7 +129,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "bash",
       "code": "buf config init"
     },
     {
@@ -148,7 +148,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "bash",
       "code": "buf build"
     },
     {
@@ -176,7 +176,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "yaml",
       "code": "version: v2managed:  enabled: true  override:    - file_option: go_package_prefix      value:\ngithub.com/bufbuild/buf-tour/genplugins:  - remote: buf.build/protocolbuffers/go    out: gen    opt:\npaths=source_relative  - remote: buf.build/connectrpc/go    out: gen    opt:\npaths=source_relativeinputs:  - directory: proto"
     },
     {
@@ -210,7 +210,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "bash",
       "code": "buf generate"
     },
     {
@@ -224,7 +224,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "bash",
       "code": "buf lint"
     },
     {
@@ -243,8 +243,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "buf config initbuf buildtouch buf.gen.yaml‍‍‍‍‍‍buf generatebuf lint"
+      "lang": "bash",
+      "code": "buf config init\nbuf buildtouch buf.gen.yaml‍‍‍‍‍‍buf generate\nbuf lint"
     },
     {
       "type": "paragraph",
@@ -252,7 +252,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "yaml",
       "code": "version: v2managed:  enabled: true  override:    - file_option: go_package_prefix      value:\nconnectrpc.com/connect/internal/genplugins:  - local: protoc-gen-go    out: gen    opt:\npaths=source_relative"
     },
     {
@@ -265,7 +265,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "properties",
       "code": "$ go install google.golang.org/protobuf/cmd/protoc-gen-go@v1.31.0$ export\nPATH=\"$PATH:$(go env GOPATH)/bin\""
     },
     {
@@ -275,7 +275,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "yaml",
       "code": "version: v2managed:  enabled: true  override:    - file_option: go_package_prefix      value:\ngithub.com/your_addressplugins:  - local: protoc-gen-go    out: go    opt: paths=source_relative  -\nremote: buf.build/connectrpc/go    out: go    opt: paths=source_relative"
     },
     {

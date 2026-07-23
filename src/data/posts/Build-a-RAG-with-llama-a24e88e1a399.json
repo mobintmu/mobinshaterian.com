@@ -184,7 +184,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "python",
       "code": "chain = prompt | model | parserchain.invoke({\"context\": \"My parents named me Santiago\", \"question\":\n\"What's your name'?\"})"
     },
     {

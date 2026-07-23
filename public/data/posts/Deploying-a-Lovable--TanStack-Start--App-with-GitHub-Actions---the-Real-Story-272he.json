@@ -35,7 +35,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "nginx",
       "code": "import { defineConfig } from \"@lovable.dev/vite-tanstack-config\";\n\nexport default defineConfig({\n  tanstackStart: {\n    server: { entry: \"server\" },\n  },\n});"
     },
     {
@@ -53,7 +53,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "typescript",
       "code": "name: Deploy TanStack Start app to GitHub Pages\n\non:\n  push:\n    branches: [main]\n  workflow_dispatch:\n\npermissions:\n  contents: read\n  pages: write\n  id-token: write\n\njobs:\n  build:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - uses: actions/setup-node@v4\n        with:\n          node-version: 24\n          cache: 'npm'\n      - run: npm ci --legacy-peer-deps\n      - run: npm run build\n      - name: Upload artifact\n        uses: actions/upload-pages-artifact@v3\n        with:\n          path: .output/public\n\n  deploy:\n    needs: build\n    runs-on: ubuntu-latest\n    environment:\n      name: github-pages\n    steps:\n      - uses: actions/deploy-pages@v4"
     },
     {
@@ -83,7 +83,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "nginx",
       "code": "export default defineConfig({\n  tanstackStart: {\n    server: { entry: \"server\" },\n    prerender: {\n      enabled: true,\n      autoSubfolderIndex: true,\n      autoStaticPathsDiscovery: true,\n      crawlLinks: true,\n    },\n  },\n});"
     },
     {
@@ -114,7 +114,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "yaml",
       "code": "import { defineConfig } from \"@lovable.dev/vite-tanstack-config\";\nimport { nitro } from \"nitro/vite\";\n\nexport default defineConfig({\n  tanstackStart: {\n    server: { entry: \"server\" },\n    prerender: {\n      enabled: true,\n      autoSubfolderIndex: true,\n      autoStaticPathsDiscovery: true,\n      crawlLinks: true,\n    },\n  },\n  vite: {\n    plugins: [nitro({ preset: \"node-server\" })],\n  },\n});"
     },
     {
@@ -141,8 +141,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "- run: npm ci --legacy-peer-deps\n- run: npm run build          # now produces real HTML in .output/public\n- uses: actions/upload-pages-artifact@v3\n  with:\n    path: .output/public\n- uses: actions/deploy-pages@v4"
+      "lang": "yaml",
+      "code": "- run: npm ci --legacy-peer-deps\n- run: npm run build # now produces real HTML in .output/public\n- uses: actions/upload-pages-artifact@v3\n  with:\n    path: .output/public\n- uses: actions/deploy-pages@v4"
     },
     {
       "type": "paragraph",

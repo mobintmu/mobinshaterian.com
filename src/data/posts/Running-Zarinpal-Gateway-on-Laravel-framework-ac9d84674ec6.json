@@ -86,7 +86,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "php",
       "code": "Schema::create('packageprices', function (Blueprint $table) {"
     },
     {
@@ -126,7 +126,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "php",
       "code": "Schema::create('transactions', function (Blueprint $table) {"
     },
     {
@@ -236,7 +236,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "php",
       "code": "Schema::create('statustransactionses', function (Blueprint $table) {"
     },
     {
@@ -426,17 +426,17 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "php",
       "code": "'price' => $pakageprice->price,"
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "php",
       "code": "'user_id' => $user->id,"
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "php",
       "code": "'packageprice_id' => $pakageprice->id,"
     },
     {
@@ -466,7 +466,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "php",
       "code": "'amount' => $transaction->price * 10,"
     },
     {
@@ -476,12 +476,12 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "php",
       "code": "'mobile' => $user->mobile,"
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "php",
       "code": "'email' => $user->email,"
     },
     {
@@ -506,27 +506,27 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "php",
       "code": "curl_setopt($ch, CURLOPT_USERAGENT, 'ZarinPal Rest Api v4');"
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "php",
       "code": "curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'POST');"
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "php",
       "code": "curl_setopt($ch, CURLOPT_POSTFIELDS, $jsonData);"
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "php",
       "code": "curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);"
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "php",
       "code": "curl_setopt($ch, CURLOPT_HTTPHEADER, array("
     },
     {
@@ -536,7 +536,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "php",
       "code": "'Content-Length: ' . strlen($jsonData)"
     },
     {
@@ -576,7 +576,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "php",
       "code": "if (array_key_exists(\"{$code}\", $error)) {"
     },
     {
@@ -626,7 +626,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "php",
       "code": "if ($err) {"
     },
     {
@@ -661,12 +661,12 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "php",
       "code": "if($transaction AND !empty($result['data'][\"authority\"]) ){"
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "php",
       "code": "return Redirect::to(\"\nhttps://www.zarinpal.com/pg/StartPay/\" . $result['data'][\"authority\"]);"
     },
     {
@@ -711,7 +711,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "php",
       "code": "return redirect()->back();"
     },
     {
@@ -755,7 +755,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "php",
       "code": "if (isset($_GET['Authority']) OR isset($_GET['Status'])) {"
     },
     {
@@ -774,12 +774,12 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "nginx",
       "code": "location / {"
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "nginx",
       "code": "try_files $uri $uri/ /index.php?$args;"
     },
     {
@@ -793,12 +793,12 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "php",
       "code": "if (!empty($Authority) AND !empty($Status)) {"
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "php",
       "code": "if($Status == 'OK')"
     },
     {
@@ -903,12 +903,12 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "php",
       "code": "->first();"
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "php",
       "code": "if(empty($transaction->id))"
     },
     {
@@ -928,7 +928,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "php",
       "code": "return view('/callback')->with('message', $message)->with('error' , $error);"
     },
     {
@@ -938,7 +938,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "php",
       "code": "if($transaction->statustransaction_id != 1)"
     },
     {
@@ -958,7 +958,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "php",
       "code": "return view('/callback')->with('message', $message)->with('error' , $error);"
     },
     {
@@ -983,7 +983,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "php",
       "code": "'amount' => $transaction->price * 10,"
     },
     {
@@ -1003,27 +1003,27 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "php",
       "code": "curl_setopt($ch, CURLOPT_USERAGENT, 'ZarinPal Rest Api V4');"
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "php",
       "code": "curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'POST');"
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "php",
       "code": "curl_setopt($ch, CURLOPT_POSTFIELDS, $jsonData);"
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "php",
       "code": "curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);"
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "php",
       "code": "curl_setopt($ch, CURLOPT_HTTPHEADER, array("
     },
     {
@@ -1033,7 +1033,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "php",
       "code": "'Content-Length: ' . strlen($jsonData)"
     },
     {
@@ -1063,7 +1063,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "php",
       "code": "if(isset($result['errors']['code']))"
     },
     {
@@ -1103,7 +1103,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "php",
       "code": "return view('callback')->with('message', $message)->with('error' , $error);"
     },
     {
@@ -1133,7 +1133,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "php",
       "code": "if (array_key_exists(\"{$code}\", $errorMessagesZarinpal)) {"
     },
     {
@@ -1153,7 +1153,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "php",
       "code": "if (isset($result['data']['code']) AND $result['data']['code'] == '100')"
     },
     {
@@ -1228,7 +1228,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "php",
       "code": "return view('/callback')->with('message', $message)->with('error' , $error);"
     },
     {
@@ -1238,7 +1238,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "php",
       "code": "else if (isset($result['data']['code']) AND $result['data']['code'] == '101')"
     },
     {
@@ -1258,7 +1258,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "php",
       "code": "return view('/customer/payment/paymentcallbakzarinpall')->with('message', $message)->with('error' ,\n$error);"
     },
     {
@@ -1293,7 +1293,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "php",
       "code": "return view('callback')->with('message', $message)->with('error' , $error);"
     },
     {
@@ -1323,7 +1323,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "php",
       "code": "return view('/callback')->with('message', $message)->with('error' , $error);"
     },
     {

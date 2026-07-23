@@ -198,7 +198,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "go",
       "code": "product, err := s.storage.ClickHouse.ProductCH.GetProductByID(ctx, id)"
     },
     {

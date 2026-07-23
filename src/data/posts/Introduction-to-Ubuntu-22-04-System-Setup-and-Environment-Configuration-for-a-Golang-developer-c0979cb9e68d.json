@@ -218,7 +218,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "go",
       "code": "# Special DNS for specific\ndomainsserver=/mysite.ir/1.1.1.1server=/youtube.com/4.4.4.4server=/shecan.ir/178.22.122.101server=/ir/1.1.1.1"
     },
     {
@@ -238,7 +238,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "bash",
       "code": "# Logging (optional — logs go to journal/syslog by\ndefault)log-querieslog-facility=/var/log/dnsmasq.log"
     },
     {
@@ -268,7 +268,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "bash",
       "code": "cat /etc/resolv.conf"
     },
     {
@@ -286,12 +286,12 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "# Stop and disable systemd-resolvedsudo systemctl stop systemd-resolvedsudo systemctl disable\nsystemd-resolved"
+      "lang": "bash",
+      "code": "# Stop and disable systemd-resolved\nsudo systemctl stop systemd-resolved\nsudo systemctl disable\nsystemd-resolved"
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "bash",
       "code": "# Replace resolv.confecho \"nameserver 127.0.0.1\" | sudo tee /etc/resolv.conf"
     },
     {
@@ -301,12 +301,12 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "# Remove the symlinksudo rm /etc/resolv.conf"
+      "lang": "bash",
+      "code": "# Remove the symlink\nsudo rm /etc/resolv.conf"
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "bash",
       "code": "# Create a new static file with DNSMasq as the resolverecho \"nameserver 127.0.0.1\" | sudo tee\n/etc/resolv.conf"
     },
     {
@@ -344,8 +344,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "cat /etc/resolv.confcat /var/log/dnsmasq.log"
+      "lang": "bash",
+      "code": "cat /etc/resolv.conf\ncat /var/log/dnsmasq.log"
     },
     {
       "type": "heading",
@@ -354,8 +354,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "dig @127.0.0.1 datadriveninvestor.comsudo tail -f /var/log/dnsmasq.logsudo cat\n/etc/dnsmasq.d/99-split-dns.conf"
+      "lang": "bash",
+      "code": "dig @127.0.0.1 datadriveninvestor.com\nsudo tail -f /var/log/dnsmasq.log\nsudo cat\n/etc/dnsmasq.d/99-split-dns.conf"
     },
     {
       "type": "heading",
@@ -397,18 +397,18 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "# Go installation pathexport PATH=$PATH:/usr/local/go/bin"
+      "lang": "bash",
+      "code": "# Go installation path\nexport PATH=$PATH:/usr/local/go/bin"
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "# Set GOPATH explicitly (optional but clearer)export GOPATH=$HOME/go"
+      "lang": "bash",
+      "code": "# Set GOPATH explicitly (optional but clearer)\nexport GOPATH=$HOME/go"
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "# Add Go workspace bin to PATHexport PATH=$PATH:$GOPATH/bin"
+      "lang": "bash",
+      "code": "# Add Go workspace bin to PATH\nexport PATH=$PATH:$GOPATH/bin"
     },
     {
       "type": "code",
@@ -475,8 +475,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "# Install to $(go env GOPATH)/bin (common and recommended)curl -sSfL\nhttps://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(go env\nGOPATH)/bin v1.59.1"
+      "lang": "bash",
+      "code": "# Install to $(go env GOPATH)/bin (common and recommended)\ncurl -sSfL\nhttps://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(go env\nGOPATH)/bin v1.59.1"
     },
     {
       "type": "code",

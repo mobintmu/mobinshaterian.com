@@ -103,7 +103,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "bash",
       "code": "pip install python-telegram-bot --upgrade"
     },
     {
@@ -126,7 +126,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "python",
       "code": "async def ai_model(update: Update, context: ContextTypes.DEFAULT_TYPE):  print(\"please wait\")  await\ncontext.bot.send_message(chat_id=update.effective_chat.id, text=\"⚠️ please wait ⚠️\")  message =\nupdate.message.text  ai_response, similar_answer = ai_curl(message)      await\ncontext.bot.send_message(chat_id=update.effective_chat.id, text=ai_response)"
     },
     {

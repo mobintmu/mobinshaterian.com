@@ -155,7 +155,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "sql",
       "code": "CREATE MATERIALIZED VIEW kafka_ingest_mv TO events_destination ASSELECT event_id, event_name,\nevent_time, payloadFROM kafka_queue_stream;"
     },
     {

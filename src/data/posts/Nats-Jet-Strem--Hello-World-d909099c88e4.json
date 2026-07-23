@@ -27,7 +27,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "bash",
       "code": "go get github.com/nats-io/nats-server/v2"
     },
     {
@@ -46,7 +46,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "bash",
       "code": "nats server run"
     },
     {
@@ -61,7 +61,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "bash",
       "code": "nats context select nats_development"
     },
     {
@@ -81,7 +81,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "bash",
       "code": "nats reply hello.jermy \"hi\""
     },
     {
@@ -96,7 +96,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "bash",
       "code": "nats req hello.jermy \"\""
     },
     {
@@ -106,7 +106,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "bash",
       "code": "nats req hello.jermy \"{ \"hi\" : \"bye\" }\"11:26:33 Sending request on \"hello.jermy\"11:26:33 Received\nwith rtt 399.847µshi"
     },
     {
@@ -126,7 +126,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "bash",
       "code": "nats sub hello.world[#2] Received on \"hello.world\"hi?"
     },
     {
@@ -136,7 +136,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "bash",
       "code": "nats pub hello.world \"hi?\"11:46:50 Published 3 bytes to \"hello.world\""
     },
     {
@@ -151,7 +151,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "bash",
       "code": "nats sub hello.world[#483] Received on \"hello.world\"hi, guys[#484] Received on \"hello.world\"group 2"
     },
     {
@@ -161,12 +161,12 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "bash",
       "code": "nats pub hello.world \"hi, guys\" --count=-1 --sleep=1s"
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "bash",
       "code": "nats pub hello.world \"group 2\" --count=-1 --sleep=1s"
     },
     {
@@ -205,12 +205,12 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "bash",
       "code": "nats sub hello.world04:32:15 Subscribing on hello.world [#1] Received on \"hello.world\"message"
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "bash",
       "code": "nats sub hello.world04:33:03 Subscribing on hello.world [#1] Received on \"hello.world\"message"
     },
     {
@@ -219,7 +219,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "bash",
       "code": "nats pub hello.world \"message\"04:33:20 Published 7 bytes to \"hello.world\""
     },
     {
@@ -238,12 +238,12 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "bash",
       "code": "nats sub hello.world --queue greeter04:34:26 Subscribing on hello.world [#1] Received on\n\"hello.world\"message"
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "bash",
       "code": "nats sub hello.world --queue greeter04:34:42 Subscribing on hello.world"
     },
     {
@@ -253,7 +253,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "bash",
       "code": "nats pub hello.world \"message\"04:34:56 Published 7 bytes to \"hello.world\""
     },
     {
@@ -262,7 +262,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "bash",
       "code": "nats pub hello.world \"message\" --count 10001000 / 1000\n[========================================================================================================================================]    0s"
     },
     {
@@ -282,7 +282,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "bash",
       "code": "nats server run --jetstream"
     },
     {
@@ -291,7 +291,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "bash",
       "code": "nats context select nats_developmentNATS Configuration Context \"nats_development\"      Description:\nLocal user access for NATS Development instance      Server URLs: nats://0.0.0.0:36275\nUsername: local         Password: *********             Path:\n/home/user/.config/nats/context/nats_development.json"
     },
     {
@@ -300,7 +300,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "bash",
       "code": "nats stream lsNo Streams defined"
     },
     {
@@ -318,7 +318,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "bash",
       "code": "nats stream add"
     },
     {
@@ -340,7 +340,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "bash",
       "code": "nats pub orders.us \"{{.Count}}\" --count 1000010000 / 10000\n[========================================================================================================================================]    1s"
     },
     {
@@ -357,7 +357,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "bash",
       "code": "nats sub --stream orders"
     },
     {
@@ -371,7 +371,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "bash",
       "code": "nats sub --stream orders --all"
     },
     {
@@ -380,7 +380,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "bash",
       "code": "nats sub --stream orders --new05:08:21 Subscribing to JetStream Stream holding messages with subject\norders.* delivering any new messages received"
     },
     {
@@ -389,7 +389,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "bash",
       "code": "nats sub --stream orders --last"
     },
     {
@@ -403,7 +403,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "bash",
       "code": "nats sub --stream orders --last-per-subject orders.us05:10:44 Subscribing to JetStream Stream\nholding messages with subject orders.us for the last messages for each subject in the Stream [#1]\nReceived JetStream message: stream: orders seq 21000 / subject: orders.us / time:\n2022-12-28T05:05:37+03:301000"
     },
     {
@@ -412,7 +412,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "bash",
       "code": "nats sub --stream orders --start-sequence=21900"
     },
     {
@@ -421,7 +421,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "bash",
       "code": "nats sub  \"orders.*\" --durable my_consumer"
     },
     {
@@ -431,7 +431,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "bash",
       "code": "nats consumer create? Consumer name pull_consumer? Delivery target (empty for Pull Consumers) ?\nStart policy (all, new, last, subject, 1h, msg sequence) all? Acknowledgement policy explicit?\nReplay policy instant? Filter Stream by subject (blank for all) ? Maximum Allowed Deliveries -1?\nMaximum Acknowledgements Pending 0? Deliver headers only without bodies No? Add a Retry Backoff\nPolicy No? Select a Stream ordersInformation for Consumer orders > pull_consumer created\n2022-12-28T05:22:57+03:30"
     },
     {
@@ -440,7 +440,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "bash",
       "code": "nats consumer next orders pull_consumer --count=10[05:24:09] subj: orders.us / tries: 1 / cons seq:\n1 / str seq: 1 / pending: 21,9991Acknowledged message[05:24:09] subj: orders.us / tries: 1 / cons\nseq: 2 / str seq: 2 / pending: 21,9982Acknowledged message[05:24:09] subj: orders.us / tries: 1 /\ncons seq: 3 / str seq: 3 / pending: 21,9973Acknowledged message[05:24:09] subj: orders.us / tries: 1\n/ cons seq: 4 / str seq: 4 / pending: 21,9964Acknowledged message[05:24:09] subj: orders.us / tries:\n1 / cons seq: 5 / str seq: 5 / pending: 21,9955Acknowledged message[05:24:09] subj: orders.us /\ntries: 1 / cons seq: 6 / str seq: 6 / pending: 21,9946Acknowledged message[05:24:09] subj: orders.us\n/ tries: 1 / cons seq: 7 / str seq: 7 / pending: 21,9937Acknowledged message[05:24:09] subj:\norders.us / tries: 1 / cons seq: 8 / str seq: 8 / pending: 21,9928Acknowledged message[05:24:09]\nsubj: orders.us / tries: 1 / cons seq: 9 / str seq: 9 / pending: 21,9919Acknowledged\nmessage[05:24:09] subj: orders.us / tries: 1 / cons seq: 10 / str seq: 10 / pending:\n21,99010Acknowledged message"
     },
     {
@@ -449,7 +449,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "bash",
       "code": "nats consumer info? Select a Stream orders? Select a Consumer pull_consumerInformation for Consumer\norders > pull_consumer created 2022-12-28T05:22:57+03:30Configuration:        Durable Name:\npull_consumer           Pull Mode: true      Deliver Policy: All          Ack Policy: Explicit\nAck Wait: 30s       Replay Policy: Instant     Max Ack Pending: 1,000   Max Waiting Pulls: 512State:\nLast Delivered Message: Consumer sequence: 10 Stream sequence: 10 Last delivery: 1m8s ago\nAcknowledgment floor: Consumer sequence: 10 Stream sequence: 10 Last Ack: 1m8s ago\nOutstanding Acks: 0 out of maximum 1,000     Redelivered Messages: 0     Unprocessed Messages:\n21,990            Waiting Pulls: 0 of maximum 512"
     },
     {
@@ -459,7 +459,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "bash",
       "code": "nats kverror: a subcommand from the list below is required, use --help for full help including flags\nand argumentsusage: nats kv <command> [<args> ...]Interacts with a JetStream based Key-Value\nstoreThe JetStream Key-Value store uses streams to store key-value pairs for an indefinite period or\na per-bucket configured TTL.Subcommands:  kv add      Adds a new KV Store Bucket  kv put      Puts a\nvalue into a key  kv get      Gets a value for a key  kv create   Puts a value into a key only if\nthe key is new or\nit's last operation was a delete  kv update   Updates a key with a new value if the previous value matches the given revision  kv del      Deletes a key or the entire bucket  kv purge    Deletes a key from the bucket, clearing history before creating a delete marker  kv history  Shows the full history for a key  kv revert   Reverts a value to a previous revision using put  kv info     View the status of a KV store  kv watch    Watch the bucket or a specific key for updated  kv ls       List available buckets or the keys in a bucket  kv compact  Removes all historic values from the store where the last value is a delete"
     },
     {
@@ -468,7 +468,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "bash",
       "code": "nats kv add oneInformation for Key-Value Store Bucket one created\n2022-12-28T05:30:54+03:30Configuration:          Bucket Name: one         History Kept: 1\nValues Stored: 0   Backing Store Kind: JetStream          Bucket Size: 0 B  Maximum Bucket Size:\nunlimited   Maximum Value Size: unlimited     JetStream Stream: KV_one              Storage: File"
     },
     {
@@ -477,12 +477,12 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "bash",
       "code": "nats kv put one hello world"
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "bash",
       "code": "nats kv watch one[2022-12-28 05:33:17] PUT one > hello: world"
     },
     {

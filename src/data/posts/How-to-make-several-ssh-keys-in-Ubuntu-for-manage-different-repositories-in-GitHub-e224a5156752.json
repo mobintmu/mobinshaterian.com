@@ -40,12 +40,12 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "typescript",
       "code": "ssh-keygen -t rsa -b 4096 -C \"you@example.com\"ssh-keygenGenerating public/private rsa key pair.Enter\nfile in which to save the key (/home/name/.ssh/id_rsa): id_rsa_personalEnter passphrase (empty for\nno passphrase): Enter same passphrase again: Your identification has been saved in\nid_rsa_personalYour public key has been saved in id_rsa_personal.pubThe key fingerprint is:"
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "bash",
       "code": "cat id_rsa_p2.pub"
     },
     {
@@ -68,8 +68,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "cat configHost github.com    User user1    Hostname github.com    IdentityFile ~/.ssh/id_rsa\nIdentitiesOnly yes                Host github2    User user2    Hostname github.com    IdentityFile\n~/.ssh/id_rsa_personal    IdentitiesOnly yes"
+      "lang": "bash",
+      "code": "cat configHost github.com    User user1    Hostname github.com    IdentityFile ~/.\nssh/id_rsa\nIdentitiesOnly yes                Host github2    User user2    Hostname github.com    IdentityFile\n~/.\nssh/id_rsa_personal    IdentitiesOnly yes"
     },
     {
       "type": "heading",
@@ -78,7 +78,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "bash",
       "code": "git clone git@github.com:name/repository.git"
     },
     {
@@ -88,8 +88,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "git config  user.email \"email@gmail.com\"git config  user.name  \"Name\""
+      "lang": "bash",
+      "code": "git config  user.email \"email@gmail.com\"\ngit config  user.name  \"Name\""
     },
     {
       "type": "heading",
@@ -98,12 +98,12 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "bash",
       "code": "git remote add selectedName git@github2:name/repository.git"
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "bash",
       "code": "git remote -v"
     },
     {

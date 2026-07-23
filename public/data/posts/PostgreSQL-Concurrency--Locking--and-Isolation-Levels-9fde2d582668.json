@@ -443,8 +443,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "START TRANSACTION;SELECT * FROM jobs_table FOR UPDATE SKIP LOCKED LIMIT 1;-- Process the jobCOMMIT;"
+      "lang": "sql",
+      "code": "START TRANSACTION;\nSELECT *\nFROM jobs_table FOR UPDATE SKIP LOCKED\nLIMIT 1;\n-- Process the jobCOMMIT;"
     },
     {
       "type": "paragraph",

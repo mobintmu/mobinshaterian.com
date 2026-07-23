@@ -248,7 +248,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "sql",
       "code": "CREATE SERVER foreign_db FOREIGN DATA WRAPPER postgres_fdw OPTIONS (host 'remote_host', dbname\n'otherdb', port '5432');"
     },
     {
@@ -257,7 +257,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "sql",
       "code": "CREATE USER MAPPING FOR local_user SERVER foreign_db OPTIONS (user 'remote_user', password\n'secret');"
     },
     {
@@ -269,7 +269,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "sql",
       "code": "CREATE FOREIGN TABLE remote_table (     id INT,     name TEXT ) SERVER foreign_db OPTIONS\n(schema_name 'public', table_name 'users');"
     },
     {

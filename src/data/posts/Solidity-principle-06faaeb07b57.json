@@ -174,7 +174,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "solidity",
       "code": "msg.sender  //is address of account"
     },
     {
@@ -504,7 +504,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "solidity",
       "code": "receive() external payable {        lastValueSent = msg.value;        lastFunctionCalled =\n\"receive\";    }"
     },
     {
@@ -533,7 +533,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "solidity",
       "code": "mapping (uint => mapping(uint => bool)) uintUintBoolMapping;"
     },
     {
@@ -581,7 +581,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "solidity",
       "code": "assert(msg.value == uint8(msg.value));"
     },
     {
@@ -763,12 +763,12 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "solidity",
       "code": "event TokensSent(address _from, address _to, uint _amount);"
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "solidity",
       "code": "emit TokensSent(msg.sender, _to, _amount);"
     },
     {
@@ -805,7 +805,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "solidity",
       "code": "modifier onlyOwner() {        require(msg.sender == owner, \"You are not allowed\");        _;    }"
     },
     {
@@ -815,12 +815,12 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "solidity",
       "code": "contract Owned {    address owner;    constructor() {        owner = msg.sender;    }    modifier\nonlyOwner() {        require(msg.sender == owner, \"You are not allowed\");        _;    }}"
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "solidity",
       "code": "contract InheritanceModifierExample is Owned {"
     },
     {
@@ -997,7 +997,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "typescript",
       "code": "bytes32 public constant MINTER_ROLE = keccak256(\"MINTER_ROLE\");"
     },
     {

@@ -69,8 +69,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "# Importing BeautifulSoup class from the bs4 module from bs4 import BeautifulSoup   # Opening the\nhtml file HTMLFile = open(\"1.html\", \"r\") # Reading the file index = HTMLFile.read() # Creating a\nBeautifulSoup object and specifying the parser Parse = BeautifulSoup(index, 'lxml')\nprint(Parse.title.string)print(Parse.body)"
+      "lang": "python",
+      "code": "# Importing BeautifulSoup class from the bs4 module from bs4 import BeautifulSoup   # Opening the\nhtml file HTMLFile = open(\"1.html\", \"r\") # Reading the file index = HTMLFile.read() # Creating a\nBeautifulSoup object and specifying the parser Parse = BeautifulSoup(index, 'lxml')\nprint(Parse.title.string)\nprint(Parse.body)"
     },
     {
       "type": "heading",
@@ -83,8 +83,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "text_element = Parse.find(class_='section-inner sectionLayout--insetColumn')text =\ntext_element.get_text(strip=True)text = text.replace(u'\\xa0', u' ')text = (text.encode('ascii',\n'ignore')).decode(\"utf-8\")"
+      "lang": "python",
+      "code": "text_element = Parse.find(class_='section-inner sectionLayout--insetColumn')\ntext =\ntext_element.get_text(strip=True)\ntext = text.replace(u'\\xa0', u' ')\ntext = (text.encode('ascii',\n'ignore')).decode(\"utf-8\")"
     },
     {
       "type": "heading",
@@ -93,8 +93,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "link_element = Parse.find(class_='p-canonical')link = link_element.get('href')"
+      "lang": "python",
+      "code": "link_element = Parse.find(class_='p-canonical')\nlink = link_element.get('href')"
     },
     {
       "type": "heading",
@@ -103,8 +103,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "images = Parse.findAll('img')picture = images[0].get('src')"
+      "lang": "python",
+      "code": "images = Parse.findAll('img')\npicture = images[0].get('src')"
     },
     {
       "type": "heading",

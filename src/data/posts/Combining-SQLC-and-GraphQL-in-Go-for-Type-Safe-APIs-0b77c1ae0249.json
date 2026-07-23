@@ -142,8 +142,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "query {  products(filter: { name: \"phone\", minPrice: 500, isActive: true }) {    id    name    price\n}}"
+      "lang": "graphql",
+      "code": "query {\n  products(filter: { name: \"phone\", minPrice: 500, isActive: true }) {\n    id\n    name\n    price\n  }\n}"
     },
     {
       "type": "paragraph",
@@ -238,7 +238,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "go",
       "code": "for _, row := range rows {    result = append(result, &model.UserProduct{        User: &model.User{\nID:   int(row.UserID),            Name: row.UserName,        },        Product: &model.Product{\nID:    int(row.ProductID),            Name:  row.ProductName,            Price: row.Price,        },\n})}"
     },
     {
@@ -357,8 +357,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "query {  userProducts(    userFilter: { name: \"Alice\" }    productFilter: { minPrice: 500, isActive:\ntrue }  ) {    user {      id      name      email    }    product {      id      name      price\n}  }}"
+      "lang": "graphql",
+      "code": "query {\n  userProducts(\n    userFilter: { name: \"Alice\" }\n    productFilter: { minPrice: 500, isActive: true }\n  ) {\n    user {\n      id\n      name\n      email\n    }\n    product {\n      id\n      name\n      price\n    }\n  }\n}"
     },
     {
       "type": "paragraph",

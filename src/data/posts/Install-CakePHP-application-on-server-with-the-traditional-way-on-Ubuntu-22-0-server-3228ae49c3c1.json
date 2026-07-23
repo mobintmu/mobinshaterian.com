@@ -80,12 +80,12 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "sql",
       "code": "ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password by 'mynewpassword';"
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "bash",
       "code": "mysql -u root -pSHOW DATABASES;"
     },
     {
@@ -107,7 +107,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "bash",
       "code": "mysql -u username -p database_name < file.sql"
     },
     {
@@ -116,7 +116,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "sql",
       "code": "DROP DATABASE [IF EXISTS] database_name;"
     },
     {
@@ -125,7 +125,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "sql",
       "code": "SET GLOBAL sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''));"
     },
     {
@@ -185,12 +185,12 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "cat ~/.ssh/"
+      "lang": "bash",
+      "code": "cat ~/.\nssh/"
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "bash",
       "code": "ssh-keygen"
     },
     {
@@ -200,7 +200,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "bash",
       "code": "ssh -T git@gitlab.com"
     },
     {
@@ -210,12 +210,12 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "bash",
       "code": "git config --global user.name \"FIRST_NAME LAST_NAME\""
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "bash",
       "code": "git config --global user.email \"MY_NAME@example.com\""
     },
     {
@@ -351,7 +351,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "properties",
       "code": "CRON_TZ=Europe/London* * * * * /var/www/path/bin/cake command_name >> /var/www/path/ex1.log 2>&1*/5\n* * * * /var/www/path/bin/cake command_name >> /var/www/path/ex2.log 2>&1"
     },
     {
@@ -361,8 +361,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "scp -P 44 path/to/local/file.ext user@remote-host:path/to/remote/file.extscp -r source\nuser@target:destscp -P port -r  ./uploads root@ip:/var/www/uploads"
+      "lang": "bash",
+      "code": "scp -P 44 path/to/local/file.ext user@remote-host:path/to/remote/file.ext\nscp -r source\nuser@target:dest\nscp -P port -r  ./uploads root@ip:/var/www/uploads"
     },
     {
       "type": "paragraph",
@@ -370,8 +370,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "find  ./path  -type f -exec chmod 644 '{}' \\;sudo find ./path -type d -exec chmod 755 {} \\;sudo\nchmod 777 -R tmpsudo chmod 777 -R logs"
+      "lang": "bash",
+      "code": "find  ./path  -type f -exec chmod 644 '{}' \\;\nsudo find ./path -type d -exec chmod 755 {} \\;\nsudo\nchmod 777 -R tmp\nsudo chmod 777 -R logs"
     },
     {
       "type": "heading",
@@ -380,12 +380,12 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "git statusgit stash save --keep-index --include-untracked"
+      "lang": "bash",
+      "code": "git status\ngit stash save --keep-index --include-untracked"
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "bash",
       "code": "git reset <file>"
     },
     {
@@ -408,7 +408,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "bash",
       "code": "#!/bin/bashnow=$(date +%d%m%Y-%H:%M:%S)filename=$1backupfilename=$1-$nowmysqldump\n--defaults-file=/root/backup/.my.cnf  elaart  > /root/backup/sql$backupfilename.sqlzip -r\n/root/backup/sql$backupfilename.zip /root/backup/sql$backupfilename.sqlrm\n/root/backup/sql$backupfilename.sql"
     },
     {

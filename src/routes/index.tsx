@@ -220,7 +220,7 @@ function Writing({ posts }: { posts: Post[] }) {
   const [q, setQ] = useState("");
   const submit = (e: React.FormEvent) => {
     e.preventDefault();
-    navigate({ to: "/blogs", search: { tag: "All", q: q.trim() } });
+    navigate({ to: "/blogs", search: { tag: "Star", q: q.trim() } });
   };
   return (
     <section className="py-20">
@@ -300,7 +300,7 @@ function Writing({ posts }: { posts: Post[] }) {
       <div className="mt-8 flex justify-center">
         <Link
           to="/blogs"
-          search={{ tag: "All", q: "" }}
+          search={{ tag: "Star", q: "" }}
           className="inline-flex items-center gap-2 rounded-md border border-terminal/40 bg-terminal/5 px-4 py-2 font-mono-plus text-sm text-terminal transition-colors hover:bg-terminal/10"
         >
           browse all posts · filter by tag

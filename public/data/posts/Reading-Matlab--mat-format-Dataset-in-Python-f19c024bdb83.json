@@ -61,7 +61,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "python",
       "code": "filename = \"./data/Part_1.mat\""
     },
     {
@@ -81,7 +81,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "python",
       "code": "a_group_key = list(f.keys())[0]"
     },
     {
@@ -91,7 +91,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "python",
       "code": "data = list(f[a_group_key])"
     },
     {
@@ -109,27 +109,27 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "python",
       "code": "f = h5py.File('./data/Part_1.mat','r')"
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "python",
       "code": "test = f['Part_1']"
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "python",
       "code": "st = test[0][0] # has 3000 element #<HDF5 dataset \"Part_1\": shape (3000, 1), type \"|O\">"
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "python",
       "code": "st = test[0][0]"
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "python",
       "code": "obj=f[st]"
     },
     {

@@ -108,7 +108,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "static/\n├── react.production.min.js       (~10 KB)\n├── react-dom.production.min.js   (~130 KB)\n├── graphiql.min.css              (~418 KB)\n└── graphiql.min.js               (~1.0 MB)"
+      "code": "static/\n\n├── react.production.min.js       (~10 KB)\n\n├── react-dom.production.min.js   (~130 KB)\n\n├── graphiql.min.css              (~418 KB)\n\n└── graphiql.min.js               (~1.0 MB)"
     },
     {
       "type": "heading",

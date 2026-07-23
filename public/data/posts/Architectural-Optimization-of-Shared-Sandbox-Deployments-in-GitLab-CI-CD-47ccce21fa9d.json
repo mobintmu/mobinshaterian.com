@@ -228,7 +228,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "yaml",
       "code": "before_script:  - eval $(ssh-agent -s)  - chmod 600 \"$SSH_PRIVATE_KEY\"  - ssh-add \"$SSH_PRIVATE_KEY\"\n- mkdir -p ~/.ssh  - chmod 700 ~/.ssh  - ssh-keyscan $SSH_HOST >> ~/.ssh/known_hosts"
     },
     {
@@ -317,8 +317,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "# Daily at 3 AM: Remove unused images older than 48 hours0 3 * * * /usr/bin/docker image prune -a -\nfilter \"until=48h\" -f"
+      "lang": "bash",
+      "code": "# Daily at 3 AM: Remove unused images older than 48 hours0 3 * * * /usr/bin/\ndocker image prune -a -\nfilter \"until=48h\" -f"
     },
     {
       "type": "paragraph",
@@ -384,7 +384,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "bash",
       "code": "cp \"$ENV_FILE\"./infra/development/.envscp./infra/development/.env\n${SSH_USER}@${SSH_HOST}:${DEV_DEPLOY_DIR}/.env"
     },
     {

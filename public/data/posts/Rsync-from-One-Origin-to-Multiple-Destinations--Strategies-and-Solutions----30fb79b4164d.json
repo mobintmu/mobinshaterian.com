@@ -62,7 +62,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "bash",
       "code": "for dest in user@server1:/data user@server2:/data; do    rsync -avz /origin $dest || exit 1done"
     },
     {
@@ -85,7 +85,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "bash",
       "code": "rsync -avz /origin user@server1:/data &rsync -avz /origin user@server2:/data &wait"
     },
     {
@@ -108,8 +108,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "rsync -avz /origin user@server1:/datarsync -avz user@server1:/data user@server2:/data"
+      "lang": "bash",
+      "code": "rsync -avz /origin user@server1:/data\nrsync -avz user@server1:/data user@server2:/data"
     },
     {
       "type": "list",
@@ -131,7 +131,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "bash",
       "code": "rsync -av /origin /stagingfor dest in user@server1:/data user@server2:/data; do    rsync -avz\n/staging $destdone"
     },
     {
@@ -154,8 +154,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "#!/bin/bashset -ersync -av /origin /stagingfor dest in user@server1:/data user@server2:/data; do\necho \"Syncing to $dest...\"    rsync -avz --delete /staging $dest || {        echo\n\"Failed to sync $dest\"        exit 1    }doneecho \"All destinations updated successfully.\""
+      "lang": "bash",
+      "code": "#!/bin/bashset -e\nrsync -av /origin /stagingfor dest in user@server1:/data user@server2:/data; do\necho \"Syncing to $dest...\"    rsync -avz --delete /staging $dest || {        echo\n\"Failed to sync $dest\"        exit 1    }doneecho \"All destinations updated successfully.\""
     },
     {
       "type": "list",

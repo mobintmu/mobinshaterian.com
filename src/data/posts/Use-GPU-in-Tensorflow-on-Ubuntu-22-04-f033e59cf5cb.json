@@ -230,7 +230,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "python",
       "code": "python3 -m pip install tensorflow[and-cuda]# Verify the installation:python3 -c\n\"import tensorflow as tf; print(tf.config.list_physical_devices('GPU'))\"2024-03-30 08:45:30.386306:\nW tensorflow/core/common_runtime/gpu/gpu_device.cc:2251] Cannot dlopen some GPU libraries. Please\nmake sure the missing libraries mentioned above are installed properly if you would like to use GPU.\nFollow the guide at https://www.tensorflow.org/install/gpu for how to download and setup the\nrequired libraries for your platform.Skipping registering GPU devices...[]"
     },
     {
@@ -250,12 +250,12 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "properties",
       "code": "NVIDIA_PACKAGE_DIR=\"$CONDA_PREFIX/lib/python3.12/site-packages/nvidia\""
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "properties",
       "code": "for dir in $NVIDIA_PACKAGE_DIR/*; do    if [ -d \"$dir/lib\" ]; then        export\nLD_LIBRARY_PATH=\"$dir/lib:$LD_LIBRARY_PATH\"    fidone"
     },
     {
@@ -284,7 +284,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "bash",
       "code": "nvcc --versionnvcc: NVIDIA (R) Cuda compiler driverCopyright (c) 2005-2021 NVIDIA CorporationBuilt\non Thu_Nov_18_09:45:30_PST_2021Cuda compilation tools, release 11.5, V11.5.119Build\ncuda_11.5.r11.5/compiler.30672275_0"
     },
     {
@@ -294,7 +294,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "bash",
       "code": "pip install ml_dtypes==0.4.0"
     },
     {

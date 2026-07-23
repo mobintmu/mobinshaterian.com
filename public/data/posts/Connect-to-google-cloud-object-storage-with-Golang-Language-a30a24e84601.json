@@ -56,7 +56,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "go",
       "code": "filename := \"./address_of_json.json\" client, err := storage.NewClient(ctx,\noption.WithCredentialsFile(filename)) if err != nil {  logger.Fatal(err) }"
     },
     {
@@ -70,7 +70,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "go",
       "code": "bucketName := \"my-first-bucket\"bkt := client.Bucket(bucketName)"
     },
     {
@@ -79,7 +79,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "go",
       "code": "if err := bkt.Create(ctx, projectID, nil); err != nil {    // TODO: Handle error.}"
     },
     {
@@ -88,7 +88,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "go",
       "code": "attrs, err := bkt.Attrs(ctx)if err != nil {    // TODO: Handle\nerror.}fmt.Printf(\"bucket %s, created at %s, is located in %s with storage class %s\\n\",\nattrs.Name, attrs.Created, attrs.Location, attrs.StorageClass)"
     },
     {
@@ -102,7 +102,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "go",
       "code": "obj := bkt.Object(\"new-first-one\")"
     },
     {
@@ -116,7 +116,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "go",
       "code": "// Create a byte slice. bytes := []byte(\"Hello, world!\") writer := obj.NewWriter(ctx) _, err =\nwriter.Write(bytes) if err != nil {  log.Fatal(err) } // Close the writer. err = writer.Close() if\nerr != nil {  log.Fatal(err) }"
     },
     {
@@ -130,7 +130,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "go",
       "code": "// Create a reader. reader, err := obj.NewReader(ctx) if err != nil {  log.Fatal(err) } // Read the\nbytes from the file. bytes, err := io.ReadAll(reader) if err != nil {  log.Fatal(err) } // Close the\nreader. err = reader.Close() if err != nil {  log.Fatal(err) } // Convert the bytes to a string and\nprint it. fmt.Println(string(bytes))"
     },
     {
@@ -144,7 +144,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "go",
       "code": "err = obj.Delete(ctx) if err != nil {  logger.Fatal(err) }"
     },
     {
@@ -158,7 +158,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "go",
       "code": "query := &storage.Query{Prefix: \"\"} var names []string it := bkt.Objects(ctx, query) for {  attrs,\nerr := it.Next()  if err == iterator.Done {   break  }  if err != nil {   log.Fatal(err)  }  names =\nappend(names, attrs.Name) }"
     },
     {
@@ -172,7 +172,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "go",
       "code": "ctx := context.Background() client, err := storage.NewClient(ctx) if err != nil {  // TODO: handle\nerror. } data := []byte(\"verify me\") wc :=\nclient.Bucket(\"bucketname\").Object(\"filename1\").NewWriter(ctx) wc.CRC32C = crc32.Checksum(data,\ncrc32.MakeTable(crc32.Castagnoli)) wc.SendCRC32C = true if _, err :=\nwc.Write([]byte(\"hello world\")); err != nil {  // TODO: handle error.  // Note that Write may return\nnil in some error situations,  // so always check the error from Close. } if err := wc.Close(); err\n!= nil {  // TODO: handle error. } fmt.Println(\"updated object:\", wc.Attrs())"
     },
     {
@@ -182,7 +182,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "go",
       "code": "ctx := context.Background() client, err := storage.NewClient(ctx) if err != nil {  // TODO: handle\nerror. } tctx, cancel := context.WithTimeout(ctx, 30*time.Second) defer cancel() // Cancel when\ndone, whether we time out or not. wc :=\nclient.Bucket(\"bucketname\").Object(\"filename1\").NewWriter(tctx) wc.ContentType = \"text/plain\" wc.ACL\n= []storage.ACLRule{{Entity: storage.AllUsers, Role: storage.RoleReader}} if _, err :=\nwc.Write([]byte(\"hello world\")); err != nil {  // TODO: handle error.  // Note that Write may return\nnil in some error situations,  // so always check the error from Close. } if err := wc.Close(); err\n!= nil {  // TODO: handle error. } fmt.Println(\"updated object:\", wc.Attrs())"
     },
     {

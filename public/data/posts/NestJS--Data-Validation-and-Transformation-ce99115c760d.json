@@ -122,7 +122,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "typescript",
       "code": "getTaskById(id: string): Task {    const found = this.tasks.find((task) => task.id === id);    if\n(!found) {      throw new NotFoundException(`Task with ID \"${id}\" not found`);    }    return found;\n}"
     },
     {
@@ -132,7 +132,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "typescript",
       "code": "deleteTask(id: string): void {    const found = this.getTaskById(id);    this.tasks =\nthis.tasks.filter((task) => task.id !== found.id);  }"
     },
     {
@@ -142,7 +142,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "typescript",
       "code": "updateTaskStatus(id: string, status: TaskStatus): Task {    const task = this.getTaskById(id);\ntask.status = status;    return task;  }"
     },
     {

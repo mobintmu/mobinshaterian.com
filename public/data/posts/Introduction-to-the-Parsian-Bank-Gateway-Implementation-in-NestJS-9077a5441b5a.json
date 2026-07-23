@@ -154,7 +154,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "typescript",
       "code": "parsian: {    callBackUrl: process.env.PARSIAN_CALLBACK_URL,    loginAccount:\nprocess.env.PARSIAN_PIN,  },"
     },
     {
@@ -233,7 +233,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "typescript",
       "code": "async verifyTransaction(query: VerifyPaymentParsianDto) {    const payment = await\nthis.paymentModel.findOne({      authority_code: query.Token,    });    if (!payment) {      throw\nnew NotFoundException();    }    if (      payment.status == PaymentStatus.Failed ||\npayment.status == PaymentStatus.Success    ) {      return new NotFoundException();    }    if\n(Number(query.RRN) < 0 || Number(query.status) != 0) {      payment.status = PaymentStatus.Failed;\npayment.response = query;      payment.save();      return { status: PaymentStatus.Failed, message:\nPaymentStatus.Failed };    }    payment.status = PaymentStatus.Pending;    await payment.save();\n// Make a SOAP request    const requestData = {      requestData: {        LoginAccount:\nconfiguration().parsian.loginAccount,        Token: query.Token,      },    };    try {      const\nresolve = await this.SendRequestConfirm(requestData);      if\n(!resolve.hasOwnProperty('ConfirmPaymentResult')) {\nconsole.log('ConfirmPaymentResult not found');        throw new InternalServerErrorException();\n}      const result = resolve?.ConfirmPaymentResult;      if (resolve?.ConfirmPaymentResult?.Status\n== 0) {        payment.response = result;        payment.status = PaymentStatus.Success;\nawait payment.save();        return { status: PaymentStatus.Success, message: result.RRN };      }\nelse {        payment.response = result;        payment.status = PaymentStatus.Failed;        await\npayment.save();        return {          status: result.status,          message:\nPaymentStatus.Failed,        };      }    } catch (e) {      console.error(e);      payment.response\n= e;      payment.status = PaymentStatus.Failed;      await payment.save();      throw\nInternalServerErrorException;    }  }  async SendRequestConfirm(requestData: any): Promise<any> {\nmoment.locale('en');    const options = {      // overrideRootElement: {      // namespace: 'ns1',\n// },    };    return await new Promise<any>((resolve, reject) => {      soap.createClient(\nParsianConfiguration.WsdlConfirm,        options,        function (err: any, client: any) {\nif (err) {            console.error('Error creating SOAP client:', err);            reject(err);\n}          client.ConfirmPayment(requestData, function (err, result) {            if (err) {\nconsole.error('Error making SOAP request:', err);              reject(err);            }\nresolve(result);          });        },      );    });  }"
     },
     {

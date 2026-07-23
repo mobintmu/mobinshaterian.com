@@ -50,7 +50,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "yaml",
       "code": "version: v2modules:  # - path: lint:  use:    - DEFAULTbreaking:  use:    - FILE"
     },
     {
@@ -59,7 +59,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "yaml",
       "code": "version: v2managed:  enabled: true  override:    - file_option: go_package_prefix      value:\ngithub.com/your_addressplugins:  - local: protoc-gen-go    out: go    opt: paths=source_relative"
     },
     {
@@ -68,7 +68,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "yaml",
       "code": "name: Default CICD for protorpeoon:  push:    branches: [main, dev]  pull_request:    types:\n[opened, synchronize, reopened, labeled, unlabeled]env:  CREATE_RELEASE: falsepermissions:\ncontents: read  pull-requests: writejobs:  buf:    runs-on: ubuntu-latest    steps:      - uses:\nactions/checkout@v4      - uses: bufbuild/buf-action@v1        with:          token:\n${{secrets.BUF_TOKEN}}"
     },
     {
@@ -82,8 +82,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "buf buildbuf lintbuf generate"
+      "lang": "bash",
+      "code": "buf build\nbuf lint\nbuf generate"
     },
     {
       "type": "heading",
@@ -121,7 +121,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "bash",
       "code": "buf format -w"
     },
     {

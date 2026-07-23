@@ -72,7 +72,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "go",
       "code": "// @title           My API// @version         1.0// @description     This is a sample API with Gin\nand Swagger.// @host              localhost:8080// @BasePath         /api/v1package main"
     },
     {
@@ -87,8 +87,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "go get github.com/swaggo/gin-swaggergo get github.com/swaggo/filesgo get github.com/swaggo/swag"
+      "lang": "bash",
+      "code": "go get github.com/swaggo/gin-swagger\ngo get github.com/swaggo/files\ngo get github.com/swaggo/swag"
     },
     {
       "type": "heading",

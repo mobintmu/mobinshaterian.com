@@ -212,8 +212,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "WITH  kpi_1 AS (    SELECT time, cell_id, vendor, ..., sum(counter_a) AS kpi_id_1001    FROM\nflat_lte_vendor_a    WHERE time>= toDateTime('2024-11-01 14:00:00', 'UTC')      AND time <\ntoDateTime('2024-11-01 15:00:00', 'UTC')    GROUP BY time, cell_id, vendor, ...  ),  kpi_2 AS (\nSELECT meta_begin_time, cell_id, vendor, ..., avg(counter_b) AS kpi_id_1002    FROM\nflat_lte_vendor_a    WHERE ...    GROUP BY ...  )INSERT INTO kpi_flat_lte_vendor_a_cell_hourlySELECT\ncoalesce(kpi_1.time, kpi_2.time) AS meta_begin_time,    coalesce(kpi_1.cell_id,\nkpi_2.cell_id)         AS cell_id,    -- ... coalesce for every dimension column ...    now('UTC')\nAS updated_at,    kpi_1.kpi_id_1001,    kpi_2.kpi_id_1002FROM kpi_1FULL OUTER JOIN kpi_2  ON\nkpi_1.meta_begin_time = kpi_2.meta_begin_time AND kpi_1.cell_id         = kpi_2.cell_id AND\nkpi_1.vendor          = kpi_2.vendor;"
+      "lang": "sql",
+      "code": "WITH  kpi_1 AS (\nSELECT time, cell_id, vendor, ..., sum(counter_a) AS kpi_id_1001\nFROM\nflat_lte_vendor_a\nWHERE time>= toDateTime('2024-11-01 14:00:00', 'UTC')      AND time <\ntoDateTime('2024-11-01 15:00:00', 'UTC')\nGROUP BY time, cell_id, vendor, ...  ),  kpi_2 AS (\nSELECT meta_begin_time, cell_id, vendor, ..., avg(counter_b) AS kpi_id_1002\nFROM\nflat_lte_vendor_a\nWHERE ...\nGROUP BY ...  )INSERT INTO kpi_flat_lte_vendor_a_cell_hourlySELECT\ncoalesce(kpi_1.time, kpi_2.time) AS meta_begin_time,    coalesce(kpi_1.cell_id,\nkpi_2.cell_id)         AS cell_id,    -- ... coalesce for every dimension column ...    now('UTC')\nAS updated_at,    kpi_1.kpi_id_1001,    kpi_2.kpi_id_1002FROM kpi_1FULL\nOUTER\nJOIN kpi_2  ON\nkpi_1.meta_begin_time = kpi_2.meta_begin_time AND kpi_1.cell_id         = kpi_2.cell_id AND\nkpi_1.vendor          = kpi_2.vendor;"
     },
     {
       "type": "paragraph",

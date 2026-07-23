@@ -92,8 +92,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "this.logger.verbose(\n`User \"${user.username}\" retrieving all tasks. Filters: ${JSON.stringify(        filterDto,      )}`,    );"
+      "lang": "typescript",
+      "code": "this.logger.verbose(\n  `User \"${user.username}\" retrieving all tasks. Filters: ${JSON.stringify(filterDto)}`,\n);"
     },
     {
       "type": "image",
@@ -109,8 +109,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "try {      const tasks = await query.getMany();      return tasks;    } catch (error) {\nthis.logger.error(\n`Failed to get tasks for user \"${user.username}\". Filters: ${JSON.stringify(filterDto)}`,\nerror.stack,      );    }"
+      "lang": "typescript",
+      "code": "try {\n  const tasks = await query.getMany();\n  return tasks;\n} catch (error) {\n  this.logger.error(\n    `Failed to get tasks for user \"${user.username}\". Filters: ${JSON.stringify(filterDto)}`,\n    error.stack,\n  );\n}"
     },
     {
       "type": "heading",
@@ -129,7 +129,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "typescript",
       "code": "console.log(process.env);"
     },
     {
@@ -153,7 +153,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "typescript",
       "code": "ConfigModule.forRoot({      envFilePath: [`.env.stage.${process.env.STAGE}`],    }),"
     },
     {
@@ -174,8 +174,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "\"start:dev\": \"STAGE=dev nest start --watch\",    \"start:debug\":\n\"STAGE=dev nest start --debug --watch\",    \"start:prod\": \"STAGE=prod node dist/main\",    \"lint\":\n\"eslint \\\"{src,apps,libs,test}/**/*.ts\\\" --fix\",    \"test\": \"STAGE=dev jest\","
+      "lang": "json",
+      "code": "{\n  \"start:dev\": \"STAGE=dev nest start --watch\",\n  \"start:debug\": \"STAGE=dev nest start --debug --watch\",\n  \"start:prod\": \"STAGE=prod node dist/main\",\n  \"lint\": \"eslint \\\"{src,apps,libs,test}/**/*.ts\\\" --fix\",\n  \"test\": \"STAGE=dev jest\"\n}"
     },
     {
       "type": "heading",
@@ -188,7 +188,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "typescript",
       "code": "constructor(    private tasksService: TasksService,    private configService: ConfigService,  ) {\nconsole.log(configService.get('DATABASE_HOST'));  }"
     },
     {
@@ -316,7 +316,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "bash",
       "code": "git push -f heroku HEAD:master"
     },
     {

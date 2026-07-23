@@ -281,7 +281,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "typescript",
       "code": "this.subject.next({\n  data: notification,\n});"
     },
     {

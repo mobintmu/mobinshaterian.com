@@ -70,7 +70,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "bash",
       "code": "go get go.uber.org/zap"
     },
     {

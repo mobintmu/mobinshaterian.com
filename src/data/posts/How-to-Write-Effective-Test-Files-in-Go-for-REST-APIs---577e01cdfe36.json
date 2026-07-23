@@ -86,7 +86,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "go",
       "code": "productRequest := sqlc.CreateProductParams{    Name: \"Test Product\",    Description:\n\"This is a test product\",    Price: 1000,    IsActive: true,}body, _ :=\njson.Marshal(productRequest)resp, _ := http.Post(addr+\"/api/v1/admin/products\", \"application/json\",\nbytes.NewBuffer(body))"
     },
     {
@@ -104,7 +104,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "go",
       "code": "resp, _ := http.Get(addr + \"/api/v1/products\")var products\n[]dto.ClientListProductsResponsejson.NewDecoder(resp.Body).Decode(&products)"
     },
     {
@@ -140,7 +140,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "go",
       "code": "req, _ := http.NewRequest(http.MethodDelete, addr+\"/api/v1/admin/products/1\", nil)client :=\n&http.Client{}resp, _ := client.Do(req)"
     },
     {
@@ -158,7 +158,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "go",
       "code": "if resp.StatusCode != http.StatusOK {    t.Errorf(\"Expected 200 OK, got %d\", resp.StatusCode)}"
     },
     {

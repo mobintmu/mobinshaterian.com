@@ -99,8 +99,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "type Product {  id: Int!  name: String!  description: String!  price: Int64!}type\nProductListResponse {  id: Int!  name: String!  description: String!  price: Int64!}type\nErrorResponse {  code: String!  message: String!}type Query {  \"\"\"Get a single product by ID\"\"\"\nproduct(id: Int!): Product  \"\"\"Get a list of all products\"\"\"  products: [Product!]!}"
+      "lang": "graphql",
+      "code": "type Product {\n  id: Int!\n  name: String!\n  description: String!\n  price: Int64!\n}\ntype ProductListResponse {\n  id: Int!\n  name: String!\n  description: String!\n  price: Int64!\n}\ntype ErrorResponse {\n  code: String!\n  message: String!\n}\ntype Query {\n  \"\"\"\n  Get a single product by ID\n  \"\"\"\n  product(id: Int!): Product\n  \"\"\"\n  Get a list of all products\n  \"\"\"\n  products: [Product!]!\n}"
     },
     {
       "type": "paragraph",
@@ -135,7 +135,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "graphql",
       "code": "query {  product(id: 1) {    id    name    price  }}query {  products {    id    name    description\nprice  }}j"
     },
     {

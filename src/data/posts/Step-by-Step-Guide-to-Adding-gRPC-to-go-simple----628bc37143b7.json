@@ -99,7 +99,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "go",
       "code": "conn, err := grpc.Dial(\"localhost:9090\",\ngrpc.WithTransportCredentials(insecure.NewCredentials()))client :=\nproductv1.NewProductServiceClient(conn)resp, err := client.GetProductByID(context.Background(),\n&productv1.ProductRequest{Id: 1})"
     },
     {
@@ -129,7 +129,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "yaml",
       "code": "version: v2plugins:  - local: protoc-gen-go    out: gen/go    opt:      - paths=source_relative  -\nlocal: protoc-gen-go-grpc    out: gen/go    opt:      - paths=source_relative"
     },
     {

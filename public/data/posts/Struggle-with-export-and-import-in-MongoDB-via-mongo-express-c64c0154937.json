@@ -90,8 +90,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "db.myCollection.find({})   .projection({})   .sort({_id:-1})   .limit(4000)"
+      "lang": "javascript",
+      "code": "db.myCollection.find({}).projection({}).sort({ _id: -1 }).limit(4000);"
     },
     {
       "type": "paragraph",
@@ -99,12 +99,12 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "javascript",
       "code": "[/* 1 createdAt:8/3/2022, 5:01:58 PM*/{ \"_id\" : ObjectId(\"62ea6abee2a83fe32a1****\"), \"user_id\" :\n\"2a15b17f-144f-4644-***\", \"price\" : NumberLong(\"10000\"), \"created_at\" :\nISODate(\"2022-08-03T17:01:58.806+04:30\"), \"updated_at\" : ISODate(\"2022-08-03T17:01:58.806+04:30\")},"
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "javascript",
       "code": "/* 2 createdAt:8/3/2022, 5:01:58 PM*/{ \"_id\" : ObjectId(\"62ea6abee2a83fe32a14****\"), \"user_id\" :\n\"2a15b17f-144f-4644-***\", \"price\" : NumberLong(\"10000\"), \"created_at\" :\nISODate(\"2022-08-03T17:01:58.806+04:30\"), \"updated_at\" : ISODate(\"2022-08-03T17:01:58.806+04:30\")},"
     },
     {

@@ -95,7 +95,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "go",
       "code": "fx.Provide(func(cfg *config.Config) (*sql.DB, error) {    return sql.Open(\"postgres\",\ncfg.DatabaseURL)})"
     },
     {
@@ -113,7 +113,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "go",
       "code": "// @Summary Get a product by ID// @Description Retrieve a single product using its unique ID// @Tags\nProducts// @Param id path int true \"Product ID\"// @Success 200 {object} dto.ProductResponse//\n@Failure 400 {object} response.ErrorResponse// @Failure 500 {object} response.ErrorResponse//\n@Router /products/{id} [get]"
     },
     {

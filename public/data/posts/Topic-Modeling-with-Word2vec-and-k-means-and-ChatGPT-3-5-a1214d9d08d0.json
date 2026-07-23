@@ -202,7 +202,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "python",
       "code": "model = Word2Vec(sentences=tokenized_docs, vector_size=100, workers=1, seed=SEED)"
     },
     {
@@ -215,7 +215,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "python",
       "code": "wv = api.load('word2vec-google-news-300')"
     },
     {
@@ -269,8 +269,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "# groupsgroups = cluster.groupby('Cluster', as_index=False).aggregate('count')groups\n=groups[['Cluster' ,\n'Index']]groups.sort_values('Index')groups.to_csv('sort_label.csv',index=True)selected_cluster =\ngroups.query('Index < 30')# open AIload_dotenv()key = os.getenv('OPENAI_API_KEY')client =\nOpenAI(api_key=key)def group_meaning_gpt(questions):    messages = [        {\"role\": \"user\",\n\"content\":\nf'What do the following customer questions have in common? .\\n\\nCustomer questions:\\n\"\"\"\\n{questions}\\n\"\"\"\\n\\nTheme:'}    ]    response = client.chat.completions.create(        model=\"gpt-3.5-turbo-1106\",        messages=messages,        temperature=0,        max_tokens=64,        top_p=1,        frequency_penalty=0,        presence_penalty=0)    return response.choices[0].message.content.replace(\"\\n\", \"\")questions = \"\"for index_cluster in selected_cluster['Cluster']:    batches = cluster[cluster['Cluster'] == index_cluster]    for batch in batches['Text']:        if questions != \"\":            questions = questions + \"\\n\\n\" + batch        else :            questions = batch    anwser = group_meaning_gpt(questions)    new_batcher = batches.copy()    new_batcher.loc[ : , 'Label']  = anwser    new_batcher.to_csv('cluster_'+str(anwser)+'.csv',index=True)    break"
+      "lang": "python",
+      "code": "# groupsgroups = cluster.groupby('Cluster', as_index=False).aggregate('count')\ngroups\n=groups[['Cluster' ,\n'Index']]groups.sort_values('Index')\ngroups.to_csv('sort_label.csv',index=True)\nselected_cluster =\ngroups.query('Index < 30')# open AIload_dotenv()\nkey = os.getenv('OPENAI_API_KEY')\nclient =\nOpenAI(api_key=key)\ndef group_meaning_gpt(questions):    messages = [        {\"role\": \"user\",\n\"content\":\nf'What do the following customer questions have in common? .\\n\\nCustomer questions:\\n\"\"\"\\n{questions}\\n\"\"\"\\n\\nTheme:'}    ]    response = client.chat.completions.create(        model=\"gpt-3.5-turbo-1106\",        messages=messages,        temperature=0,        max_tokens=64,        top_p=1,        frequency_penalty=0,        presence_penalty=0)    return response.choices[0].message.content.replace(\"\\n\", \"\")\nquestions = \"\"\nfor index_cluster in selected_cluster['Cluster']:    batches = cluster[cluster['Cluster'] == index_cluster]    for batch in batches['Text']:        if questions != \"\":            questions = questions + \"\\n\\n\" + batch        else :            questions = batch    anwser = group_meaning_gpt(questions)    new_batcher = batches.copy()    new_batcher.loc[ : , 'Label']  = anwser    new_batcher.to_csv('cluster_'+str(anwser)+'.csv',index=True)    break"
     },
     {
       "type": "heading",

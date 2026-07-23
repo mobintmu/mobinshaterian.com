@@ -139,7 +139,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "categories.json├── name: \"آجیل شب یلدا\"├── link: \"https://hosseinibrothers.ir/آجیل/...\"└── domain:\n\"hosseinibrothers.ir\""
+      "code": "categories.json\n\n├── name: \"آجیل شب یلدا\"\n\n├── link: \"https://hosseinibrothers.ir/آجیل/...\"\n\n└── domain:\n\"hosseinibrothers.ir\""
     },
     {
       "type": "paragraph",
@@ -178,8 +178,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "c.OnHTML(s.web.Pagination.Next, func(e *colly.HTMLElement) {    nextPage := e.Attr(\"href\")\ne.Request.Visit(nextPage)})‍‍‍"
+      "lang": "go",
+      "code": "c.OnHTML(s.web.Pagination.Next, func(e *colly.HTMLElement) {\n    nextPage := e.Attr(\"href\")\n    e.Request.Visit(nextPage)\n})"
     },
     {
       "type": "paragraph",
@@ -187,8 +187,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "s.mu.Lock()products = append(products, p)s.mu.Unlock()"
+      "lang": "go",
+      "code": "s.mu.Lock()\nproducts = append(products, p)\ns.mu.Unlock()"
     },
     {
       "type": "paragraph",
@@ -196,8 +196,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "if err != nil {    s.logger.Error(\"Visit failed, skipping category\", ...)    continue}c.Wait()"
+      "lang": "go",
+      "code": "if err != nil {\n    s.logger.Error(\"Visit failed, skipping category\", ...)\n    continue\n}\n\nc.Wait()"
     },
     {
       "type": "embed",
@@ -335,8 +335,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "fx.Provide(    productController.NewAdmin,    // Admin REST API    productController.NewClient,   //\nClient REST API    productController.NewGRPC,     // gRPC API)"
+      "lang": "go",
+      "code": "fx.Provide(\n    productController.NewAdmin,  // Admin REST API\n    productController.NewClient, // Client REST API\n    productController.NewGRPC,   // gRPC API\n)"
     },
     {
       "type": "heading",
@@ -349,8 +349,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "fx.Provide(    sql.InitialDB,    migrate.NewRunner,    sqlc.New,)"
+      "lang": "go",
+      "code": "fx.Provide(\n    sql.InitialDB,\n    migrate.NewRunner,\n    sqlc.New,\n)"
     },
     {
       "type": "paragraph",
@@ -358,8 +358,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "fx.Provide(    cache.NewClient,    cache.NewCacheStore,)"
+      "lang": "go",
+      "code": "fx.Provide(\n    cache.NewClient,\n    cache.NewCacheStore,\n)"
     },
     {
       "type": "paragraph",
@@ -381,8 +381,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "ProductList: domain.ProductListConfig{    Item: \"div.product\",    Fields: map[string]FieldConfig{\n\"title\": {Selector: \"h2.name\", Attr: \"text\"},        \"price\": {Selector: \".price\", Attr: \"text\"},\n...    }}"
+      "lang": "go",
+      "code": "ProductList: domain.ProductListConfig{\n    Item: \"div.product\",\n    Fields: map[string]FieldConfig{\n        \"title\": {Selector: \"h2.name\", Attr: \"text\"},\n        \"price\": {Selector: \".price\", Attr: \"text\"},\n        // ...\n    },\n}"
     },
     {
       "type": "paragraph",
@@ -399,8 +399,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "if err := c.Visit(cat.Link); err != nil {    s.logger.Error(\"Visit failed, skipping category\", ...)\ncontinue}"
+      "lang": "go",
+      "code": "if err := c.Visit(cat.Link); err != nil {\n    s.logger.Error(\"Visit failed, skipping category\", ...)\n    continue\n}"
     },
     {
       "type": "paragraph",

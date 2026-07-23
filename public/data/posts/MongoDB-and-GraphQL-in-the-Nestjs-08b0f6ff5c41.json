@@ -414,7 +414,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "typescript",
       "code": "getLesson(id: string): Promise<Lesson> {    return this.lessonRepository.findOne({ where: { id } });\n}"
     },
     {
@@ -476,7 +476,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "typescript",
       "code": "async createLesson(createLessonInput: CreateLessonInput): Promise<Lesson> {    const { name,\nstartDate, endDate } = createLessonInput;    const lesson = this.lessonRepository.create({      id:\nuuid(),      name,      startDate,      endDate,    });    return\nthis.lessonRepository.save(lesson);  }"
     },
     {
@@ -507,7 +507,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "typescript",
       "code": "getLessons(): Promise<Lesson[]> {    return this.lessonRepository.find();  }"
     },
     {
@@ -572,7 +572,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "typescript",
       "code": "async getStudents(): Promise<Student[]> {    return this.studentRepository.find();  }"
     },
     {
@@ -595,7 +595,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "typescript",
       "code": "async getStudent(id: string): Promise<Student> {    return this.studentRepository.findOne({ where: {\nid } });  }"
     },
     {
@@ -617,7 +617,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "typescript",
       "code": "@Column()  students: string[];"
     },
     {
@@ -644,7 +644,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "typescript",
       "code": "async assignStudentsToLesson(    assignStudentsToLessonInput: AssignStudentsToLessonInput,  ):\nPromise<Lesson> {    const { lessonId, studentIds } = assignStudentsToLessonInput;    const lesson =\nawait this.lessonRepository.findOne({      where: { id: lessonId },    });    if (!lesson) {\nthrow new Error(`Lesson with ID ${lessonId} not found`);    }    console.log(lesson.students);    if\n(lesson.students === undefined || lesson.students.length == 0) {      lesson.students =\n[...studentIds];    } else {      lesson.students = [...lesson.students, ...studentIds];    }\nreturn this.lessonRepository.save(lesson);  }"
     },
     {

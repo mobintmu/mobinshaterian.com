@@ -96,7 +96,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "sql",
       "code": "WHERE status = $1 AND status = 'active'"
     },
     {

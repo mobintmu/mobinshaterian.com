@@ -35,7 +35,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "bash",
       "code": "pip install pandas"
     },
     {
@@ -45,7 +45,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "bash",
       "code": "pip install jupyterlabjupyter labjupyter server list"
     },
     {
@@ -99,7 +99,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "python",
       "code": "class Person:  def __init__(self, name, age):    self.name = name    self.age = agep1 =\nPerson(\"John\", 36)print(p1.name)print(p1.age)"
     },
     {
@@ -137,8 +137,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "fruits = [\"apple\", \"banana\", \"cherry\"]for x in fruits:  print(x)"
+      "lang": "python",
+      "code": "fruits = [\"apple\", \"banana\", \"cherry\"]\nfor x in fruits:  print(x)"
     },
     {
       "type": "heading",
@@ -152,8 +152,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "pip install nltkpip install unidecodepip install pycontractionspip install word2number"
+      "lang": "bash",
+      "code": "pip install nltk\npip install unidecode\npip install pycontractions\npip install word2number"
     },
     {
       "type": "paragraph",
@@ -166,7 +166,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "bash",
       "code": "pip install language-tool-python"
     },
     {
@@ -175,8 +175,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "python3import nltknltk.download()punkt"
+      "lang": "python",
+      "code": "python3\nimport nltknltk.download()punkt"
     },
     {
       "type": "heading",
@@ -189,8 +189,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "sentences =\nsent_tokenize(text)print(sentences)['“Everything we’re doing is about going forward,” Phoebe Philo told Vogue in 2009, shortly before showing her debut Resort collection for Céline.', 'Although the label had garnered headlines when it was revived by Michael Kors in the late ’90s, it was Philo who truly brought the till then somewhat somnambulant luxury house to the forefront.', 'Critics credited her with pushing fashion in a new direction, toward a more spare, stripped-down kind of sophistication.', 'What Céline now offered women was, as the magazine put it, “a grown-up and hip way to put themselves together.”']"
+      "lang": "python",
+      "code": "sentences =\nsent_tokenize(text)\nprint(sentences)['“Everything we’re doing is about going forward,” Phoebe Philo told Vogue in 2009, shortly before showing her debut Resort collection for Céline.', 'Although the label had garnered headlines when it was revived by Michael Kors in the late ’90s, it was Philo who truly brought the till then somewhat somnambulant luxury house to the forefront.', 'Critics credited her with pushing fashion in a new direction, toward a more spare, stripped-down kind of sophistication.', 'What Céline now offered women was, as the magazine put it, “a grown-up and hip way to put themselves together.”']"
     },
     {
       "type": "heading",
@@ -199,12 +199,12 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "stop_words = set(stopwords.words('english'))filtered = [word for word in\nword_tokenize(test_sentence) if word not in stop_words]print(filtered)['“', 'Everything', 'going',\n'forward', '”', 'Phoebe', 'Philo', 'told', 'Vogue', '2009', 'shortly', 'showing', 'debut', 'Resort',\n'collection', 'Céline', '.']"
+      "lang": "python",
+      "code": "stop_words = set(stopwords.words('english'))\nfiltered = [word for word in\nword_tokenize(test_sentence) if word not in stop_words]\nprint(filtered)['“', 'Everything', 'going',\n'forward', '”', 'Phoebe', 'Philo', 'told', 'Vogue', '2009', 'shortly', 'showing', 'debut', 'Resort',\n'collection', 'Céline', '.']"
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "python",
       "code": ">>> import nltk>>> nltk.download('stopwords')"
     },
     {
@@ -214,8 +214,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "test_sentence = re.sub(' +',' ', test_sentence)print(test_sentence)"
+      "lang": "python",
+      "code": "test_sentence = re.sub(' +',' ', test_sentence)\nprint(test_sentence)"
     },
     {
       "type": "heading",
@@ -224,8 +224,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "test_sentence = test_sentence.lower()print(test_sentence)"
+      "lang": "python",
+      "code": "test_sentence = test_sentence.lower()\nprint(test_sentence)"
     },
     {
       "type": "heading",
@@ -234,8 +234,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "pattern = r'we[\\’\\']re'replacement = 'we are'test_sentence =\nre.sub(pattern,replacement,test_sentence)print(test_sentence)"
+      "lang": "python",
+      "code": "pattern = r'we[\\’\\']re'\nreplacement = 'we are'\ntest_sentence =\nre.sub(pattern,replacement,test_sentence)\nprint(test_sentence)"
     },
     {
       "type": "heading",
@@ -269,7 +269,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "python",
       "code": "@staticmethod    def simple_normalize(text) :        text = re.sub(' +',' ', text)        text =\ntext.replace('\\n', ' ')        text = text.replace('\\t', ' ')        text = text.replace('\\r', ' ')\ntext = text.replace('\\\"', ' ')        text = text.replace('\\'', ' ')        text = text.lower()\npattern = r'we[\\'\\']re'        replacement = 'we are'        text = re.sub(pattern,replacement,text)\npattern = r'we[\\'\\']ll'        replacement = 'we will'        text =\nre.sub(pattern,replacement,text)         return text"
     }
   ]

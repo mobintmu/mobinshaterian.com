@@ -334,7 +334,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "typescript",
       "code": "Keycloak\n  [ ] Switch from start-dev to start (production mode)\n  [ ] Configure TLS termination (nginx/Caddy in front)\n  [ ] Set KC_HOSTNAME to your public domain\n  [ ] Enable brute force protection in realm settings\n  [ ] Rotate admin credentials\n  [ ] Configure SMTP for email verification\n\nOpenFGA\n  [ ] Set OPENFGA_AUTHN_METHOD=preshared and rotate key\n  [ ] Enable TLS on the gRPC port\n  [ ] Set up PostgreSQL connection pooling (PgBouncer)\n  [ ] Add read replicas for FGA DB under high read load\n  [ ] Monitor tuple write latency — spikes indicate missing indexes\n\nApplication\n  [ ] Cache JWKS keys (jwks-rsa caches by default; verify TTL)\n  [ ] Add OpenFGA circuit breaker (fail-closed on FGA timeout)\n  [ ] Log all DENY decisions with user ID + resource + relation\n  [ ] Write integration tests per permission scenario, not per endpoint"
     },
     {

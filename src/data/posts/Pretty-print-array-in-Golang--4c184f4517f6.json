@@ -56,7 +56,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "go",
       "code": "PrettyPrint prettyPrintInterface = &prettyPrint{}"
     },
     {
@@ -71,7 +71,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "go",
       "code": "Print(i interface{}) string"
     },
     {
@@ -96,17 +96,17 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "go",
       "code": "s, _ := json.MarshalIndent(i, \"\", \"\\t\")"
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "go",
       "code": "fmt.Println(string(s))"
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "go",
       "code": "return string(s)"
     },
     {

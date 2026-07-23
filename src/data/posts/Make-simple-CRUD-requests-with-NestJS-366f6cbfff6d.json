@@ -119,8 +119,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "# installs nvm (Node Version Manager)curl -o-\nhttps://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash# download and install Node.js\n(you may need to restart the terminal)nvm install 20# verifies the right Node.js version is in the\nenvironmentnode -v # should print `v20.14.0`# verifies the right NPM version is in the\nenvironmentnpm -v # should print `10.7.0`"
+      "lang": "bash",
+      "code": "# installs nvm (Node Version Manager)\ncurl -o-\nhttps://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash# download and install Node.js\n(you may need to restart the terminal)nvm install 20# verifies the right Node.js version is in the\nenvironmentnode -v # should print `v20.14.0`# verifies the right NPM version is in the\nenvironmentnpm -v # should print `10.7.0`"
     },
     {
       "type": "code",
@@ -496,7 +496,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "typescript",
       "code": "createTask(title: string, description: string): Task {    const task: Task = {      id: uuid(),\ntitle,      description,      status: TaskStatus.OPEN,    };    this.tasks.push(task);    return\ntask;  }"
     },
     {
@@ -592,7 +592,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "typescript",
       "code": "getTaskById(id: number): Task {    return this.tasks.find((task) => task.id === id);  }"
     },
     {
@@ -615,7 +615,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "typescript",
       "code": "deleteTask(id: number): void {    this.tasks = this.tasks.filter((task) => task.id !== id);  }"
     },
     {
@@ -646,7 +646,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "typescript",
       "code": "updateTaskStatus(id: string, status: TaskStatus): Task {    const task = this.getTaskById(id);\nconsole.log(status);    task.status = status;    return task;  }"
     },
     {

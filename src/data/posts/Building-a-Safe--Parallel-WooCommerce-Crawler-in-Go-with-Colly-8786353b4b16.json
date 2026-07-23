@@ -157,8 +157,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "c.OnHTML(\"div.product-grid-item\", func(e *colly.HTMLElement) { p := Product{  Title:\ne.ChildText(\"h3.wd-entities-title a\"),  Price: e.ChildText(\"span.price\"),  Link:\ne.ChildAttr(\"a.product-image-link\", \"href\"),  Image: e.ChildAttr(\"a.product-image-link img\", \"src\"),\n} if p.Link != \"\" {  products = append(products, p) }})"
+      "lang": "go",
+      "code": "c.OnHTML(\"div.product-grid-item\", func(e *colly.HTMLElement) {\n    p := Product{\n        Title: e.ChildText(\"h3.wd-entities-title a\"),\n        Price: e.ChildText(\"span.price\"),\n        Link:  e.ChildAttr(\"a.product-image-link\", \"href\"),\n        Image: e.ChildAttr(\"a.product-image-link img\", \"src\"),\n    }\n\n    if p.Link != \"\" {\n        products = append(products, p)\n    }\n})"
     },
     {
       "type": "paragraph",
@@ -184,8 +184,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "c := colly.NewCollector( colly.AllowedDomains(\"badomjip.com\"), colly.Async(true),)"
+      "lang": "go",
+      "code": "c := colly.NewCollector(\n    colly.AllowedDomains(\"badomjip.com\"),\n    colly.Async(true),\n)"
     },
     {
       "type": "paragraph",
@@ -193,8 +193,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "c.Limit(&colly.LimitRule{ DomainGlob:  \"badomjip.com\", Parallelism: 4, Delay:       800 *\ntime.Millisecond,})"
+      "lang": "go",
+      "code": "c.Limit(&colly.LimitRule{\n    DomainGlob:  \"badomjip.com\",\n    Parallelism: 4,\n    Delay:       800 * time.Millisecond,\n})"
     },
     {
       "type": "paragraph",
@@ -211,8 +211,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "ctx := colly.NewContext()ctx.Put(\"index\", strconv.Itoa(i))"
+      "lang": "go",
+      "code": "ctx := colly.NewContext()\nctx.Put(\"index\", strconv.Itoa(i))"
     },
     {
       "type": "paragraph",
@@ -229,7 +229,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "go",
       "code": "s.products[idx].Description = desc"
     },
     {
@@ -238,8 +238,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "s.mu.Lock()s.products[idx].Description = descs.mu.Unlock()"
+      "lang": "go",
+      "code": "s.mu.Lock()\ns.products[idx].Description = desc\ns.mu.Unlock()"
     },
     {
       "type": "paragraph",
@@ -275,8 +275,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "cleaned = append(cleaned, Product{ Title:       title, Price:       strconv.Itoa(priceInt), Link:\np.Link, Image:       p.Image, Description: p.Description,})"
+      "lang": "go",
+      "code": "cleaned = append(cleaned, Product{\n    Title:       title,\n    Price:       strconv.Itoa(priceInt),\n    Link:        p.Link,\n    Image:       p.Image,\n    Description: p.Description,\n})"
     },
     {
       "type": "paragraph",

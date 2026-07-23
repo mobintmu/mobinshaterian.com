@@ -316,7 +316,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "typescript",
       "code": "async createUser(authCredentialDto: AuthCredentialsDto): Promise<void> {    const { username,\npassword } = authCredentialDto;    const user = this.create({      username,      password,    });\ntry {      await this.save(user);    } catch (error) {      console.error(error);      if\n(error.code === '23505') {        throw new ConflictException('Username already exists');      }\nelse {        throw new InternalServerErrorException();      }    }  }"
     },
     {
@@ -343,7 +343,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "typescript",
       "code": "async createUser(authCredentialDto: AuthCredentialsDto): Promise<void> {    const { username,\npassword } = authCredentialDto;    const salt = await bycrypt.genSalt();    const hashedPassword =\nawait bycrypt.hash(password, salt);    const user = this.create({      username,      password:\nhashedPassword,    });    try {      await this.save(user);    } catch (error) {\nconsole.error(error);      if (error.code === '23505') {        throw new\nConflictException('Username already exists');      } else {        throw new\nInternalServerErrorException();      }    }  }"
     },
     {
@@ -366,7 +366,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "typescript",
       "code": "async signIn(authCredentialsDto: AuthCredentialsDto): Promise<string> {    return\nthis.userRepository.validateUserPassword(authCredentialsDto);  }"
     },
     {
@@ -375,7 +375,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "typescript",
       "code": "async validateUserPassword(    authCredentialDto: AuthCredentialsDto,  ): Promise<string> {    const\n{ username, password } = authCredentialDto;    const user = await this.findOne({ where: { username }\n});    if (user && (await bycrypt.compare(password, user.password))) {      return 'success';    }\nelse {      return 'Invalid credentials';    }  }"
     },
     {

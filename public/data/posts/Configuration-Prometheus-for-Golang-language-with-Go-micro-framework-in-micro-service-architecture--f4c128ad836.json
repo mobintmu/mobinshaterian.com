@@ -48,7 +48,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "go",
       "code": "micro.WrapHandler(prometheus.NewHandlerWrapper())"
     },
     {
@@ -66,7 +66,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "go",
       "code": "RegisterVariablePrometheus()"
     },
     {
@@ -75,7 +75,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "go",
       "code": "mux := http.NewServeMux() mux.Handle(\"/metrics\", promhttp.Handler())"
     },
     {
@@ -84,7 +84,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "go",
       "code": "r.Use(prometheusMiddleware) r.Path(\"/metrics\").Handler(promhttp.Handler())"
     },
     {

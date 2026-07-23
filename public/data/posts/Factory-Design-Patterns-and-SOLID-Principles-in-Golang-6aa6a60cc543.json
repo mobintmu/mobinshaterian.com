@@ -210,7 +210,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "bash",
       "code": "go mod init"
     },
     {

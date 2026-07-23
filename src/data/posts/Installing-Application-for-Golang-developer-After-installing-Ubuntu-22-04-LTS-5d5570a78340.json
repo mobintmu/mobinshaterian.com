@@ -479,7 +479,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "go",
       "code": "You can do this by adding the following line to your $HOME/.profile or /etc/profile (for a\nsystem-wide installation):"
     },
     {
@@ -498,7 +498,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "go",
       "code": "# Set the GOPROXY environment variableexport GOPROXY=https://goproxy.io,direct# Set environment\nvariable allow bypassing the proxy for specified repos (optional)export\nGOPRIVATE=git.mycompany.com,github.com/my/private"
     },
     {
@@ -551,8 +551,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "go get github.com/nats-io/nats-streaming-servernats server run --jetstream"
+      "lang": "bash",
+      "code": "go get github.com/nats-io/nats-streaming-server\nnats server run --jetstream"
     },
     {
       "type": "heading",

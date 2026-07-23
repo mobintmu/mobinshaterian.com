@@ -28,7 +28,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "bash",
       "code": "pip install tensorflow[and-cuda]"
     },
     {
@@ -61,8 +61,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "# For GPU userspip install tensorflow[and-cuda]# For CPU userspip install tensorflow"
+      "lang": "bash",
+      "code": "# For GPU users\npip install tensorflow[and-cuda]# For CPU users\npip install tensorflow"
     },
     {
       "type": "heading",
@@ -149,7 +149,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "python",
       "code": "x = tf.random.normal((3,3), mean=0 , stddev=1)<tf.Tensor: shape=(3, 3), dtype=float32,\nnumpy=array([[ 0.8438105 , -1.3465139 ,  0.3282705 ],       [-1.3032753 ,  0.15576549,  2.9160573 ],\n[-0.57551485,  0.25881144, -1.4114394 ]], dtype=float32)>"
     },
     {
@@ -159,7 +159,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "python",
       "code": "x = tf.random.uniform((5,3) , minval=0, maxval=1)2.16.1<tf.Tensor: shape=(5, 3), dtype=float32,\nnumpy=array([[0.14925945, 0.68959737, 0.01986969],       [0.0124476 , 0.8936583 , 0.03025806],\n[0.22682643, 0.3770913 , 0.15388298],       [0.55487454, 0.16352475, 0.5743084 ],       [0.54566336,\n0.6106169 , 0.2642449 ]], dtype=float32)>"
     },
     {
@@ -254,7 +254,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "python",
       "code": "x[0].assign([[9,21,31]])<tf.Variable 'UnreadVariable' shape=(2, 3) dtype=int32, numpy=array([[ 9,\n21, 31],       [ 0,  4,  5]], dtype=int32)>"
     },
     {
@@ -264,12 +264,12 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "python",
       "code": "random_1 = tf.random.Generator.from_seed(42)random_1 = random_1.normal(shape=(3,2))<tf.Tensor:\nshape=(3, 2), dtype=float32, numpy=array([[-0.7565803 , -0.06854702],       [ 0.07595026, -1.2573844\n],       [-0.23193763, -1.8107855 ]], dtype=float32)>"
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "python",
       "code": "random_2 = tf.random.Generator.from_seed(42)random_2 = random_2.normal(shape=(3,2))<tf.Tensor:\nshape=(3, 2), dtype=float32, numpy=array([[-0.7565803 , -0.06854702],       [ 0.07595026, -1.2573844\n],       [-0.23193763, -1.8107855 ]], dtype=float32)>"
     },
     {
@@ -284,7 +284,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "python",
       "code": "tf.random.set_seed(42) # global level random seedtf.random.shuffle(not_shuffled , seed=\n42)<tf.Tensor: shape=(3, 2), dtype=int32, numpy=array([[ 10,  20],       [ 40,  50],       [ 90,\n100]], dtype=int32)><tf.Tensor: shape=(3, 2), dtype=int32, numpy=array([[ 10,  20],       [ 40,\n50],       [ 90, 100]], dtype=int32)>"
     },
     {
@@ -317,7 +317,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "python",
       "code": "<tf.Tensor: shape=(2, 3, 4, 5), dtype=float32, numpy=array([[[[0., 0., 0., 0., 0.],         [0., 0.,\n0., 0., 0.],         [0., 0., 0., 0., 0.],         [0., 0., 0., 0., 0.]],        [[0., 0., 0., 0.,\n0.],         [0., 0., 0., 0., 0.],         [0., 0., 0., 0., 0.],         [0., 0., 0., 0., 0.]],\n[[0., 0., 0., 0., 0.],         [0., 0., 0., 0., 0.],         [0., 0., 0., 0., 0.],         [0., 0.,\n0., 0., 0.]]],       [[[0., 0., 0., 0., 0.],         [0., 0., 0., 0., 0.],         [0., 0., 0., 0.,\n0.],         [0., 0., 0., 0., 0.]],        [[0., 0., 0., 0., 0.],         [0., 0., 0., 0., 0.],\n[0., 0., 0., 0., 0.],         [0., 0., 0., 0., 0.]],        [[0., 0., 0., 0., 0.],         [0., 0.,\n0., 0., 0.],         [0., 0., 0., 0., 0.],         [0., 0., 0., 0., 0.]]]], dtype=float32)>"
     },
     {
@@ -327,7 +327,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "python",
       "code": "<tf.Tensor: shape=(3, 4, 5), dtype=float32, numpy=array([[[0., 0., 0., 0., 0.],        [0., 0., 0.,\n0., 0.],        [0., 0., 0., 0., 0.],        [0., 0., 0., 0., 0.]],       [[0., 0., 0., 0., 0.],\n[0., 0., 0., 0., 0.],        [0., 0., 0., 0., 0.],        [0., 0., 0., 0., 0.]],       [[0., 0., 0.,\n0., 0.],        [0., 0., 0., 0., 0.],        [0., 0., 0., 0., 0.],        [0., 0., 0., 0., 0.]]],\ndtype=float32)>"
     },
     {
@@ -366,12 +366,12 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "python",
       "code": "rank_4 = rank_3[... , tf.newaxis]<tf.Tensor: shape=(2, 3, 4, 1), dtype=int64, numpy=array([[[[15],\n[43],         [ 0],         [82]],        [[68],         [26],         [52],         [ 6]],\n[[22],         [ 6],         [18],         [30]]],       [[[56],         [ 8],         [42],\n[58]],        [[12],         [ 7],         [81],         [55]],        [[18],         [46],\n[21],         [80]]]])>"
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "python",
       "code": "rank_4 = rank_3[ tf.newaxis , ... ]<tf.Tensor: shape=(1, 2, 3, 4), dtype=int64, numpy=array([[[[15,\n43,  0, 82],         [68, 26, 52,  6],         [22,  6, 18, 30]],        [[56,  8, 42, 58],\n[12,  7, 81, 55],         [18, 46, 21, 80]]]])>"
     },
     {
@@ -384,7 +384,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "python",
       "code": "rank_4 = rank_3[ : , tf.newaxis , : , :  ]<tf.Tensor: shape=(2, 1, 3, 4), dtype=int64,\nnumpy=array([[[[15, 43,  0, 82],         [68, 26, 52,  6],         [22,  6, 18, 30]]],       [[[56,\n8, 42, 58],         [12,  7, 81, 55],         [18, 46, 21, 80]]]])>"
     },
     {
@@ -404,7 +404,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "python",
       "code": "tensor + 10<tf.Tensor: shape=(2, 2), dtype=int32, numpy=array([[20, 17],       [13, 14]],\ndtype=int32)>"
     },
     {
@@ -432,7 +432,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "python",
       "code": "tensor @ tensor<tf.Tensor: shape=(2, 2), dtype=int32, numpy=array([[121,  98],       [ 42,  37]],\ndtype=int32)>"
     },
     {
@@ -442,7 +442,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "python",
       "code": "tensor * tensor<tf.Tensor: shape=(2, 2), dtype=int32, numpy=array([[100,  49],       [  9,  16]],\ndtype=int32)>"
     },
     {
@@ -565,7 +565,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "python",
       "code": "tf.config.list_physical_devices()[PhysicalDevice(name='/physical_device:CPU:0',\ndevice_type='CPU')]tf.config.list_physical_devices(\"GPU\")[]!nvidia-smi"
     },
     {
