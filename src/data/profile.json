@@ -19,6 +19,13 @@
       "date": "Jun 18, 2026",
       "url": "https://clickhouse.com/blog/202606-newsletter",
       "description": "ClickHouse highlighted two of my telecom analytics articles, including a KPI pipeline processing 15 million rows per hour and a platform rebuilt to handle 10 billion records per month."
+    },
+    {
+      "source": "Journal of Engineering Management and Soft Computing",
+      "title": "Identifying the Effective Factors on Neuropathic Diseases in Patients with Chronic Pain Using Deep Neural Networks",
+      "date": "Sep 22, 2020",
+      "url": "https://jemsc.qom.ac.ir/article_1276.html",
+      "description": "Published from my master's research, this paper applies deep neural networks and feature-selection methods to identify effective clinical factors for neuropathic pain, achieving 75% precision."
     }
   ],
   "skills": {
