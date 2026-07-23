@@ -101,13 +101,13 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "# 1. Allow established connections back insudo iptables -I FORWARD 1 -m state --state\nRELATED,ESTABLISHED -j ACCEPT"
+      "lang": "bash",
+      "code": "# 1. Allow established connections back in\nsudo iptables -I FORWARD 1 -m state --state\nRELATED,ESTABLISHED -j ACCEPT"
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "# 2. Allow new requests to the target destinationsudo iptables -I FORWARD 2 -p tcp -d ip_gateway\n--dport 4000 -j ACCEPT"
+      "lang": "bash",
+      "code": "# 2. Allow new requests to the target destination\nsudo iptables -I FORWARD 2 -p tcp -d ip_gateway\n--dport 4000 -j ACCEPT"
     },
     {
       "type": "heading",

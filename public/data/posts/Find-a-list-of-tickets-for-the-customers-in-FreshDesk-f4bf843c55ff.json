@@ -62,7 +62,7 @@
     },
     {
       "type": "code",
-      "lang": "text",
+      "lang": "python",
       "code": "mylist = a.tickets.list_tickets(requester_id=ticket.requester['id'],filter_name=None)"
     },
     {
