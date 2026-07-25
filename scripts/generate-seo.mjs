@@ -19,6 +19,11 @@ const escapeXml = (value) =>
 const urls = [
   { loc: `${siteUrl}/`, changefreq: "monthly", priority: "1.0" },
   {
+    loc: `${siteUrl}/experience`,
+    changefreq: "monthly",
+    priority: "0.9",
+  },
+  {
     loc: `${siteUrl}/blogs`,
     lastmod: posts[0]?.date,
     changefreq: "weekly",

@@ -111,7 +111,7 @@ function HomePage() {
         <About />
         <Writing posts={sortedPosts} />
         <Featured />
-        <Experience />
+        <ExperiencePreview />
         <Skills />
         <Education />
         <Contact />
@@ -284,36 +284,24 @@ function About() {
   );
 }
 
-function Experience() {
+function ExperiencePreview() {
   return (
     <section className="py-20">
       <SectionHeading id="experience" kbd="ls experience/" title="Experience" />
-      <ol className="space-y-6">
-        {profile.experience.map((job) => (
-          <li
-            key={`${job.company}-${job.period}`}
-            className="group rounded-lg border border-border bg-surface p-6 transition-colors hover:border-terminal/40"
-          >
-            <div className="flex flex-wrap items-baseline justify-between gap-2">
-              <div>
-                <h3 className="text-lg font-semibold">
-                  {job.role} <span className="text-muted-foreground">@ {job.company}</span>
-                </h3>
-                <p className="mt-1 font-mono-plus text-xs text-muted-foreground">{job.location}</p>
-              </div>
-              <span className="font-mono-plus text-xs text-terminal">{job.period}</span>
-            </div>
-            <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
-              {job.highlights.map((h, i) => (
-                <li key={i} className="flex gap-3">
-                  <span className="mt-2 h-1 w-1 flex-none rounded-full bg-terminal" />
-                  <span className="leading-relaxed">{h}</span>
-                </li>
-              ))}
-            </ul>
-          </li>
-        ))}
-      </ol>
+      <div className="rounded-lg border border-border bg-surface p-7">
+        <p className="max-w-3xl text-base leading-relaxed text-muted-foreground">
+          Sixteen years across backend engineering, distributed systems, data platforms, and
+          production ML—from services handling hundreds of thousands of daily requests to telecom
+          pipelines processing millions of rows per hour.
+        </p>
+        <Link
+          to="/experience"
+          className="mt-6 inline-flex items-center gap-2 rounded-md border border-terminal/40 bg-terminal/5 px-4 py-2 font-mono-plus text-sm text-terminal transition-colors hover:bg-terminal/10"
+        >
+          view complete experience
+          <ArrowUpRight className="h-4 w-4" />
+        </Link>
+      </div>
     </section>
   );
 }
