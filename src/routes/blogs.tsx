@@ -7,6 +7,7 @@ import { SiteMenu } from "@/components/SiteMenu";
 import postsIndex from "@/data/posts-index.json";
 import profile from "@/data/profile.json";
 import { ArrowLeft, Search, Tag as TagIcon, FileJson } from "lucide-react";
+import { BLOG_DESCRIPTION, BLOG_TITLE, SITE_URL, absoluteUrl, websiteMeta } from "@/lib/seo";
 
 type IndexEntry = {
   slug: string;
@@ -31,20 +32,37 @@ const searchSchema = z.object({
 export const Route = createFileRoute("/blogs")({
   validateSearch: zodValidator(searchSchema),
   head: () => ({
-    meta: [
-      { title: "Blog Archive — Mobin Shaterian" },
+    meta: websiteMeta({
+      title: BLOG_TITLE,
+      description: BLOG_DESCRIPTION,
+      path: "/blogs",
+    }),
+    links: [{ rel: "canonical", href: absoluteUrl("/blogs") }],
+    scripts: [
       {
-        name: "description",
-        content:
-          "All 200+ articles by Mobin Shaterian on Go, distributed systems, data engineering, and backend architecture — full-text search across title, tags, and content.",
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "CollectionPage",
+          "@id": `${SITE_URL}/blogs#collection`,
+          url: absoluteUrl("/blogs"),
+          name: BLOG_TITLE,
+          description: BLOG_DESCRIPTION,
+          inLanguage: "en",
+          author: { "@type": "Person", name: "Mobin Shaterian", url: SITE_URL },
+          isPartOf: { "@id": `${SITE_URL}/#website` },
+          mainEntity: {
+            "@type": "ItemList",
+            numberOfItems: (postsIndex as IndexEntry[]).length,
+            itemListElement: (postsIndex as IndexEntry[]).slice(0, 20).map((post, index) => ({
+              "@type": "ListItem",
+              position: index + 1,
+              url: absoluteUrl(`/blog/${post.slug}`),
+              name: post.title,
+            })),
+          },
+        }),
       },
-      { property: "og:title", content: "Blog Archive — Mobin Shaterian" },
-      {
-        property: "og:description",
-        content:
-          "Browse and search 200+ engineering articles by title, tag, or full text. Open data — per-article JSON at /data/posts/<slug>.json.",
-      },
-      { property: "og:type", content: "website" },
     ],
   }),
   component: BlogsPage,
@@ -316,7 +334,7 @@ function BlogsPage() {
                   {p.hero ? (
                     <img
                       src={p.hero}
-                      alt=""
+                      alt={p.title}
                       loading="lazy"
                       className="h-36 w-full border-b border-border object-cover"
                     />

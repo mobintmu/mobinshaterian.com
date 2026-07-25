@@ -5,9 +5,11 @@
   "type": "module",
   "scripts": {
     "dev": "vite dev",
+    "prebuild": "node scripts/generate-seo.mjs",
     "build": "vite build",
     "build:dev": "vite build --mode development",
     "preview": "vite preview",
+    "seo": "node scripts/generate-seo.mjs",
     "lint": "eslint .",
     "format": "prettier --write ."
   },

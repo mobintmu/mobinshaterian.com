@@ -12,6 +12,14 @@ import {
   Tag as TagIcon,
   FileJson,
 } from "lucide-react";
+import {
+  BLOG_DESCRIPTION,
+  DEFAULT_SOCIAL_IMAGE,
+  SITE_NAME,
+  SITE_URL,
+  absoluteUrl,
+  cleanDescription,
+} from "@/lib/seo";
 
 type IndexEntry = {
   slug: string;
@@ -63,33 +71,67 @@ export const Route = createFileRoute("/blog/$slug")({
       };
     }
     const { post } = loaderData;
+    const postUrl = absoluteUrl(`/blog/${params.slug}`);
+    const title = `${post.title} | ${SITE_NAME}`;
+    const description = cleanDescription(
+      post.subtitle || post.excerpt || firstParagraph(post),
+      BLOG_DESCRIPTION,
+    );
+    const image = post.hero || DEFAULT_SOCIAL_IMAGE;
     const meta: Array<Record<string, string>> = [
-      { title: `${post.title} — Mobin Shaterian` },
-      { name: "description", content: post.excerpt },
+      { title },
+      { name: "description", content: description },
+      { name: "author", content: SITE_NAME },
+      { name: "robots", content: "index, follow, max-image-preview:large" },
       { property: "og:title", content: post.title },
-      { property: "og:description", content: post.excerpt },
+      { property: "og:description", content: description },
       { property: "og:type", content: "article" },
-      { property: "og:url", content: `/blog/${params.slug}` },
+      { property: "og:url", content: postUrl },
+      { property: "og:site_name", content: SITE_NAME },
+      { property: "og:locale", content: "en_US" },
+      { property: "og:image", content: image },
+      { property: "og:image:alt", content: post.title },
       { property: "article:published_time", content: post.date },
-      ...post.tags.map((t) => ({ property: "article:tag", content: t })),
+      { property: "article:author", content: SITE_URL },
+      { property: "article:section", content: post.tags[0] || "Software Engineering" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: post.title },
+      { name: "twitter:description", content: description },
+      { name: "twitter:image", content: image },
+      { name: "twitter:image:alt", content: post.title },
     ];
-    if (post.hero) meta.push({ property: "og:image", content: post.hero });
+    if (post.tags[0]) {
+      meta.push({ property: "article:tag", content: post.tags[0] });
+    }
     return {
       meta,
-      links: [{ rel: "canonical", href: post.url }],
+      links: [{ rel: "canonical", href: postUrl }],
       scripts: [
         {
           type: "application/ld+json",
           children: JSON.stringify({
             "@context": "https://schema.org",
-            "@type": "Article",
+            "@type": "BlogPosting",
+            "@id": `${postUrl}#article`,
+            url: postUrl,
             headline: post.title,
-            description: post.excerpt,
+            description,
             datePublished: post.date,
-            author: { "@type": "Person", name: profile.name },
+            dateModified: post.date,
+            author: {
+              "@type": "Person",
+              "@id": `${SITE_URL}/#person`,
+              name: profile.name,
+              url: SITE_URL,
+            },
+            publisher: { "@id": `${SITE_URL}/#person` },
             keywords: post.tags.join(", "),
-            image: post.hero || undefined,
-            mainEntityOfPage: post.url,
+            articleSection: post.tags[0] || "Software Engineering",
+            image,
+            inLanguage: "en",
+            isPartOf: { "@id": `${SITE_URL}/blogs#collection` },
+            mainEntityOfPage: { "@type": "WebPage", "@id": postUrl },
+            sameAs: post.url ? [post.url] : undefined,
           }),
         },
       ],
@@ -102,6 +144,13 @@ export const Route = createFileRoute("/blog/$slug")({
 function formatDate(iso: string) {
   const d = new Date(iso);
   return d.toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });
+}
+
+function firstParagraph(post: FullPost) {
+  const paragraph = post.content.find(
+    (block): block is Extract<Block, { type: "paragraph" }> => block.type === "paragraph",
+  );
+  return paragraph?.html || "";
 }
 
 function sourceName(url: string) {
@@ -191,7 +240,7 @@ function BlogPostPage() {
         {post.hero ? (
           <img
             src={post.hero}
-            alt=""
+            alt={post.title}
             className="mt-8 w-full rounded-md border border-border"
             loading="eager"
           />
@@ -206,7 +255,7 @@ function BlogPostPage() {
             $ open --canonical
           </p>
           <p className="mt-2 text-sm text-muted-foreground">
-            Also published on {canonicalSource} — the canonical source.
+            This article was also published on {canonicalSource}.
           </p>
           <a
             href={post.url}

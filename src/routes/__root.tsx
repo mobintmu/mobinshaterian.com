@@ -12,6 +12,13 @@ import { useEffect, type ReactNode } from "react";
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import profile from "../data/profile.json";
+import {
+  DEFAULT_SOCIAL_IMAGE,
+  HOME_DESCRIPTION,
+  HOME_TITLE,
+  SITE_NAME,
+  SITE_URL,
+} from "../lib/seo";
 
 function NotFoundComponent() {
   return (
@@ -85,37 +92,41 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Mobin Shaterian — Senior Software Engineer & Golang Developer" },
-      {
-        name: "description",
-        content:
-          "Personal site of Mobin Shaterian: 16 years building high-throughput backends, microservices, and data pipelines in Go.",
-      },
-      { name: "author", content: "Mobin Shaterian" },
-      {
-        property: "og:title",
-        content: "Mobin Shaterian — Senior Software Engineer & Golang Developer",
-      },
-      {
-        property: "og:description",
-        content:
-          "Personal site of Mobin Shaterian: 16 years building high-throughput backends, microservices, and data pipelines in Go.",
-      },
+      { title: HOME_TITLE },
+      { name: "description", content: HOME_DESCRIPTION },
+      { name: "author", content: SITE_NAME },
+      { name: "robots", content: "index, follow, max-image-preview:large" },
+      { name: "theme-color", content: "#0a0a0a" },
+      { property: "og:title", content: HOME_TITLE },
+      { property: "og:description", content: HOME_DESCRIPTION },
       { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
+      { property: "og:url", content: SITE_URL },
+      { property: "og:site_name", content: SITE_NAME },
+      { property: "og:locale", content: "en_US" },
+      { property: "og:image", content: DEFAULT_SOCIAL_IMAGE },
       {
-        name: "twitter:title",
-        content: "Mobin Shaterian — Senior Software Engineer & Golang Developer",
+        property: "og:image:alt",
+        content: "Mobin Shaterian, senior software engineer and Go developer",
       },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: HOME_TITLE },
+      { name: "twitter:description", content: HOME_DESCRIPTION },
+      { name: "twitter:image", content: DEFAULT_SOCIAL_IMAGE },
       {
-        name: "twitter:description",
-        content:
-          "Personal site of Mobin Shaterian: 16 years building high-throughput backends, microservices, and data pipelines in Go.",
+        name: "twitter:image:alt",
+        content: "Mobin Shaterian, senior software engineer and Go developer",
       },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
-      { rel: "icon", href: "/favicon.jpeg", type: "image/x-icon" },
+      { rel: "icon", href: "/favicon.ico", sizes: "any" },
+      { rel: "apple-touch-icon", href: "/favicon.jpeg" },
+      {
+        rel: "alternate",
+        href: "/feed.xml",
+        type: "application/rss+xml",
+        title: `${SITE_NAME} Blog`,
+      },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {

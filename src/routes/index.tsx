@@ -4,6 +4,14 @@ import { SiteMenu } from "@/components/SiteMenu";
 import profile from "@/data/profile.json";
 import posts from "@/data/posts-index.json";
 import {
+  HOME_DESCRIPTION,
+  HOME_TITLE,
+  SITE_NAME,
+  SITE_URL,
+  absoluteUrl,
+  websiteMeta,
+} from "@/lib/seo";
+import {
   ArrowUpRight,
   Github,
   Linkedin,
@@ -17,6 +25,63 @@ import {
 } from "lucide-react";
 
 export const Route = createFileRoute("/")({
+  head: () => ({
+    meta: websiteMeta({
+      title: HOME_TITLE,
+      description: HOME_DESCRIPTION,
+      path: "/",
+    }),
+    links: [{ rel: "canonical", href: SITE_URL }],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@graph": [
+            {
+              "@type": "Person",
+              "@id": `${SITE_URL}/#person`,
+              name: SITE_NAME,
+              url: SITE_URL,
+              image: absoluteUrl("/mobin.jpg"),
+              jobTitle: "Senior Software Engineer",
+              description: HOME_DESCRIPTION,
+              email: `mailto:${profile.email}`,
+              address: {
+                "@type": "PostalAddress",
+                addressLocality: "Tehran",
+                addressCountry: "IR",
+              },
+              alumniOf: profile.education.map((education) => ({
+                "@type": "EducationalOrganization",
+                name: education.school,
+              })),
+              knowsAbout: Object.values(profile.skills).flat(),
+              sameAs: Object.values(profile.links),
+            },
+            {
+              "@type": "WebSite",
+              "@id": `${SITE_URL}/#website`,
+              url: SITE_URL,
+              name: SITE_NAME,
+              description: HOME_DESCRIPTION,
+              inLanguage: "en",
+              publisher: { "@id": `${SITE_URL}/#person` },
+            },
+            {
+              "@type": "ProfilePage",
+              "@id": `${SITE_URL}/#profile`,
+              url: SITE_URL,
+              name: HOME_TITLE,
+              description: HOME_DESCRIPTION,
+              mainEntity: { "@id": `${SITE_URL}/#person` },
+              isPartOf: { "@id": `${SITE_URL}/#website` },
+            },
+          ],
+        }),
+      },
+    ],
+  }),
   component: HomePage,
 });
 
@@ -43,9 +108,9 @@ function HomePage() {
       <Nav />
       <Hero />
       <main className="mx-auto max-w-5xl px-6 pb-24">
-        <Featured />
-        <Writing posts={sortedPosts} />
         <About />
+        <Writing posts={sortedPosts} />
+        <Featured />
         <Experience />
         <Skills />
         <Education />
@@ -264,15 +329,14 @@ function Writing({ posts }: { posts: Post[] }) {
     <section className="py-20">
       <SectionHeading id="writing" kbd="ls -lt posts/" title="Writing" />
       <p className="mb-6 max-w-2xl text-sm text-muted-foreground">
-        A handful of recent notes. The full archive of 200+ articles lives on{" "}
-        <a
-          href={profile.links.medium}
-          target="_blank"
-          rel="noreferrer noopener"
+        A handful of recent notes from my archive of 200+ software engineering articles.{" "}
+        <Link
+          to="/blogs"
+          search={{ tag: "All", q: "" }}
           className="text-terminal underline-offset-4 hover:underline"
         >
-          Medium
-        </a>
+          Browse the complete archive
+        </Link>
         .
       </p>
       <form
@@ -305,7 +369,7 @@ function Writing({ posts }: { posts: Post[] }) {
             {p.hero ? (
               <img
                 src={p.hero}
-                alt=""
+                alt={p.title}
                 loading="lazy"
                 className="h-40 w-full border-b border-border object-cover"
               />

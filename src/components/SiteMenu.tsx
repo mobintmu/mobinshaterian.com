@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { Menu, PenLine, Send, X } from "lucide-react";
+import { Braces, ChevronDown, Map, Menu, PenLine, Rss, Send, X } from "lucide-react";
 import { useState } from "react";
 import profile from "@/data/profile.json";
 
@@ -10,6 +10,12 @@ const items = [
   { href: "/#experience", label: "experience" },
   { href: "/#skills", label: "skills" },
   { href: "/#contact", label: "contact" },
+];
+
+const resources = [
+  { href: "/feed.xml", label: "RSS feed", icon: Rss },
+  { href: "/sitemap.xml", label: "sitemap", icon: Map },
+  { href: "/data/profile.json", label: "profile.json", icon: Braces },
 ];
 
 export function SiteMenu() {
@@ -27,6 +33,24 @@ export function SiteMenu() {
         <Link to="/blogs" className="transition-colors hover:text-terminal">
           blog
         </Link>
+        <details className="group relative">
+          <summary className="flex cursor-pointer list-none items-center gap-1 transition-colors hover:text-terminal [&::-webkit-details-marker]:hidden">
+            resources
+            <ChevronDown className="h-3 w-3 transition-transform group-open:rotate-180" />
+          </summary>
+          <div className="absolute right-0 top-full z-50 mt-3 grid min-w-44 gap-1 rounded-md border border-border bg-background/95 p-2 shadow-xl backdrop-blur">
+            {resources.map(({ href, label, icon: Icon }) => (
+              <a
+                key={href}
+                href={href}
+                className="inline-flex items-center gap-2 rounded px-3 py-2 transition-colors hover:bg-terminal/10 hover:text-terminal"
+              >
+                <Icon className="h-3.5 w-3.5" />
+                {label}
+              </a>
+            ))}
+          </div>
+        </details>
       </nav>
       <a
         href={profile.links.medium}
@@ -78,6 +102,17 @@ export function SiteMenu() {
           >
             blog
           </Link>
+          {resources.map(({ href, label, icon: Icon }) => (
+            <a
+              key={href}
+              href={href}
+              onClick={closeMobileMenu}
+              className="inline-flex items-center gap-2 rounded border border-border bg-surface px-3 py-2 transition-colors hover:border-terminal/50 hover:text-terminal"
+            >
+              <Icon className="h-3.5 w-3.5" />
+              {label}
+            </a>
+          ))}
           <a
             href={profile.links.medium}
             target="_blank"
