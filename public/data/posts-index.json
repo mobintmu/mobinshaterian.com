@@ -1,5 +1,33 @@
 [
   {
+    "slug": "When-Your-Domain-Talks-to-Stripe--A-DDD-Cautionary-Tale-9b498a851a7d",
+    "title": "When Your Domain Talks to Stripe, A DDD Cautionary Tale",
+    "excerpt": "A real-world dissection of a circular dependency in a billing module, and how Domain-Driven Design gives you the vocabulary — and the tools…",
+    "date": "2026-07-25",
+    "tags": [
+      "DDD",
+      "Architecture",
+      "Stripe"
+    ],
+    "readingTime": "6 min",
+    "url": "https://blog.devops.dev/when-your-domain-talks-to-stripe-a-ddd-cautionary-tale-9b498a851a7d",
+    "hero": "https://miro.medium.com/v2/resize:fit:1200/1*DHVw0VkL48Yuik_FO3lV9A.png"
+  },
+  {
+    "slug": "How-I-Use-AI-to-Build-Production-Ready-GraphQL-Resources-Faster-baf5d5123477",
+    "title": "How I Use AI to Build Production-Ready GraphQL Resources Faster",
+    "excerpt": "A practical workflow with Go, PostgreSQL, sqlc, gqlgen, and architecture-aware prompting",
+    "date": "2026-07-23",
+    "tags": [
+      "GraphQL",
+      "AI",
+      "Architecture"
+    ],
+    "readingTime": "11 min",
+    "url": "https://medium.datadriveninvestor.com/how-i-use-ai-to-build-production-ready-graphql-resources-faster-baf5d5123477",
+    "hero": "https://miro.medium.com/v2/resize:fit:1200/1*W0__bD3pLRbh8jvzTmIGjA.png"
+  },
+  {
     "slug": "Authentication---Authorization--RBAC--ReBAC--ABAC--and-PBAC-Explained-f3c6b95ad394",
     "title": "Authentication & Authorization: RBAC, ReBAC, ABAC, and PBAC Explained",
     "excerpt": "From “who are you?” to “what can you do?” — a complete guide to modern access control models, with real examples using CASL, Keycloak, and…",

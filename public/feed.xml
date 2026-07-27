@@ -7,6 +7,26 @@
     <language>en</language>
     <atom:link href="https://mobinshaterian.com/feed.xml" rel="self" type="application/rss+xml"/>
     <item>
+      <title>When Your Domain Talks to Stripe, A DDD Cautionary Tale</title>
+      <link>https://mobinshaterian.com/blog/When-Your-Domain-Talks-to-Stripe--A-DDD-Cautionary-Tale-9b498a851a7d</link>
+      <guid isPermaLink="true">https://mobinshaterian.com/blog/When-Your-Domain-Talks-to-Stripe--A-DDD-Cautionary-Tale-9b498a851a7d</guid>
+      <pubDate>Sat, 25 Jul 2026 00:00:00 GMT</pubDate>
+      <description>A real-world dissection of a circular dependency in a billing module, and how Domain-Driven Design gives you the vocabulary — and the tools…</description>
+      <category>DDD</category>
+      <category>Architecture</category>
+      <category>Stripe</category>
+    </item>
+    <item>
+      <title>How I Use AI to Build Production-Ready GraphQL Resources Faster</title>
+      <link>https://mobinshaterian.com/blog/How-I-Use-AI-to-Build-Production-Ready-GraphQL-Resources-Faster-baf5d5123477</link>
+      <guid isPermaLink="true">https://mobinshaterian.com/blog/How-I-Use-AI-to-Build-Production-Ready-GraphQL-Resources-Faster-baf5d5123477</guid>
+      <pubDate>Thu, 23 Jul 2026 00:00:00 GMT</pubDate>
+      <description>A practical workflow with Go, PostgreSQL, sqlc, gqlgen, and architecture-aware prompting</description>
+      <category>GraphQL</category>
+      <category>AI</category>
+      <category>Architecture</category>
+    </item>
+    <item>
       <title>Authentication &amp; Authorization: RBAC, ReBAC, ABAC, and PBAC Explained</title>
       <link>https://mobinshaterian.com/blog/Authentication---Authorization--RBAC--ReBAC--ABAC--and-PBAC-Explained-f3c6b95ad394</link>
       <guid isPermaLink="true">https://mobinshaterian.com/blog/Authentication---Authorization--RBAC--ReBAC--ABAC--and-PBAC-Explained-f3c6b95ad394</guid>
@@ -435,25 +455,6 @@
       <pubDate>Mon, 01 Dec 2025 00:00:00 GMT</pubDate>
       <description>Docker has revolutionized how developers build, ship, and run applications</description>
       <category>Docker</category>
-    </item>
-    <item>
-      <title>Atomic Deployment of Go Binaries on Ubuntu with Cron</title>
-      <link>https://mobinshaterian.com/blog/Atomic-Deployment-of-Go-Binaries-on-Ubuntu-with-Cron-dd7cf94cd8ab</link>
-      <guid isPermaLink="true">https://mobinshaterian.com/blog/Atomic-Deployment-of-Go-Binaries-on-Ubuntu-with-Cron-dd7cf94cd8ab</guid>
-      <pubDate>Wed, 26 Nov 2025 00:00:00 GMT</pubDate>
-      <description>This article presents a production-ready deployment strategy for Go applications on Ubuntu servers using GitLab CI/CD and cron scheduling.</description>
-      <category>Go</category>
-      <category>Linux</category>
-      <category>DevOps</category>
-      <category>Machine Learning</category>
-    </item>
-    <item>
-      <title>PostgreSQL Foreign Data Wrappers for Data Federation</title>
-      <link>https://mobinshaterian.com/blog/PostgreSQL-Foreign-Data-Wrappers-for-Data-Federation-7043c561f218</link>
-      <guid isPermaLink="true">https://mobinshaterian.com/blog/PostgreSQL-Foreign-Data-Wrappers-for-Data-Federation-7043c561f218</guid>
-      <pubDate>Sat, 22 Nov 2025 00:00:00 GMT</pubDate>
-      <description>Foreign Data Wrappers (FDWs) are a powerful feature in PostgreSQL that enables the database to act as a federated data hub ,…</description>
-      <category>Postgres</category>
     </item>
   </channel>
 </rss>
