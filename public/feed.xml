@@ -15,6 +15,7 @@
       <category>DDD</category>
       <category>Architecture</category>
       <category>Stripe</category>
+      <category>Payments</category>
     </item>
     <item>
       <title>How an AI Prompt Turned a Complex Multi-Database ETL Project Into Hours of Work</title>
@@ -24,7 +25,7 @@
       <description>In large organizations, data rarely lives in one place. Some information is stored in Oracle databases, while other datasets live in PostgreSQL.</description>
       <category>AI</category>
       <category>ETL</category>
-      <category>Database</category>
+      <category>Data Engineering</category>
     </item>
     <item>
       <title>How I Use AI to Build Production-Ready GraphQL Resources Faster</title>
@@ -35,6 +36,8 @@
       <category>GraphQL</category>
       <category>AI</category>
       <category>Architecture</category>
+      <category>Integration</category>
+      <category>PostgreSQL</category>
     </item>
     <item>
       <title>Authentication &amp; Authorization: RBAC, ReBAC, ABAC, and PBAC Explained</title>
@@ -54,6 +57,7 @@
       <description>Overview</description>
       <category>Security</category>
       <category>Architecture</category>
+      <category>Integration</category>
     </item>
     <item>
       <title>Deploying a Lovable (TanStack Start) App with GitHub Actions — the Real Story</title>
@@ -71,6 +75,8 @@
       <pubDate>Sat, 18 Jul 2026 00:00:00 GMT</pubDate>
       <description>Have you ever opened a “service” file and seen it reach deep into three or four other domains? Ever had to add a workaround like…</description>
       <category>Architecture</category>
+      <category>Clean Code</category>
+      <category>DDD</category>
     </item>
     <item>
       <title>The Entity You Modeled Isn&apos;t the Entity That Persists</title>
@@ -79,6 +85,7 @@
       <pubDate>Fri, 10 Jul 2026 00:00:00 GMT</pubDate>
       <description>A recurring architectural mistake — and the state machine pattern that fixes it. A pattern you&apos;ve probably seen before There&apos;s a particular kind of mess that shows up in almost every system that models a multi-stage bus…</description>
       <category>Architecture</category>
+      <category>DDD</category>
     </item>
     <item>
       <title>One Door, Two Mechanisms: When Your Domain Model Quietly Forks Itself</title>
@@ -87,6 +94,7 @@
       <pubDate>Wed, 08 Jul 2026 00:00:00 GMT</pubDate>
       <description>I want to talk about a bug that, on the surface, looked trivial. An endpoint was missing.</description>
       <category>Architecture</category>
+      <category>DDD</category>
     </item>
     <item>
       <title>Understanding Server-Sent Events (SSE): Architecture, Authentication, and Testing in NestJS</title>
@@ -120,7 +128,6 @@
       <pubDate>Tue, 23 Jun 2026 00:00:00 GMT</pubDate>
       <description>In traditional software engineering, databases are treated as state machines. When a user updates their profile, a transaction executes an…</description>
       <category>Career</category>
-      <category>Machine Learning</category>
     </item>
     <item>
       <title>The New Generation of E2E Test Automation: Capturing Traffic and Bypassing Auth with Postman and…</title>
@@ -140,6 +147,7 @@
       <category>Go</category>
       <category>API</category>
       <category>GraphQL</category>
+      <category>Gin</category>
     </item>
     <item>
       <title>Tunneling TCP Connections Over SSH Using socat and nc</title>
@@ -159,6 +167,7 @@
       <category>ClickHouse</category>
       <category>Docker</category>
       <category>Performance</category>
+      <category>Data Engineering</category>
     </item>
     <item>
       <title>Integrating Kafka with ClickHouse using SSL/SASL: A Technical Retrospective</title>
@@ -193,6 +202,8 @@
       <pubDate>Tue, 26 May 2026 00:00:00 GMT</pubDate>
       <description>Background</description>
       <category>Data Engineering</category>
+      <category>ClickHouse</category>
+      <category>Kafka</category>
     </item>
     <item>
       <title>Architectural Optimization of Shared Sandbox Deployments in GitLab CI/CD</title>
@@ -202,8 +213,10 @@
       <description>The shared sandbox deployment strategy provides high feedback velocity at a low cost by using a centralized development environment, yet it…</description>
       <category>DevOps</category>
       <category>Architecture</category>
-      <category>Machine Learning</category>
       <category>CI/CD</category>
+      <category>Docker</category>
+      <category>Docker Compose</category>
+      <category>Kubernetes</category>
     </item>
     <item>
       <title>Building a High-Throughput KPI Pipeline on ClickHouse: Partitioning, Idempotent Recalculation, and…</title>
@@ -225,6 +238,7 @@
       <description>Integrating high-velocity streaming data into ClickHouse often feels like a “set it and forget it” task — until it isn’t. Recently, we…</description>
       <category>Kafka</category>
       <category>ClickHouse</category>
+      <category>Data Engineering</category>
     </item>
     <item>
       <title>Mastering the Manual: A Guide to Manually Installing PostgreSQL JDBC Drivers in DBeaver</title>
@@ -232,7 +246,6 @@
       <guid isPermaLink="true">https://mobinshaterian.com/blog/Mastering-the-Manual--A-Guide-to-Manually-Installing-PostgreSQL-JDBC-Drivers-in-DBeaver-ac5c1507c94b</guid>
       <pubDate>Mon, 04 May 2026 00:00:00 GMT</pubDate>
       <description>In the world of database management, DBeaver is widely regarded as the “Swiss Army Knife” for developers and DBAs. While its automated…</description>
-      <category>Postgres</category>
       <category>PostgreSQL</category>
     </item>
     <item>
@@ -243,6 +256,7 @@
       <description>Every engineer eventually encounters a system that becomes a living catalog of anti-patterns. Recently, I reviewed a microservice…</description>
       <category>Microservices</category>
       <category>Career</category>
+      <category>ClickHouse</category>
     </item>
     <item>
       <title>Connecting Kafka to ClickHouse with SSL: A Complete Integration Guide</title>
@@ -255,6 +269,7 @@
       <category>Performance</category>
       <category>Security</category>
       <category>Integration</category>
+      <category>Data Engineering</category>
     </item>
     <item>
       <title>The “Clear-as-you-go” Pattern: Solving Memory Spikes in High-Volume Go Data Pipelines</title>
@@ -299,6 +314,7 @@
       <description>In the world of backend development, few things are as frustrating as an API that works the first time perfectly but fails mysteriously on…</description>
       <category>Go</category>
       <category>API</category>
+      <category>Python</category>
     </item>
     <item>
       <title>Bridging Networks: Using Nginx as a Reverse Proxy for Port Redirection</title>
@@ -332,6 +348,7 @@
       <pubDate>Sat, 24 Jan 2026 00:00:00 GMT</pubDate>
       <description>Modern web applications rarely start complex. A typical backend begins with session-based authentication, a frontend renders server-side…</description>
       <category>Security</category>
+      <category>Python</category>
     </item>
     <item>
       <title>Building a Safe, Parallel WooCommerce Crawler in Go with Colly</title>
@@ -340,7 +357,6 @@
       <pubDate>Wed, 07 Jan 2026 00:00:00 GMT</pubDate>
       <description>Web crawling often starts simple: fetch a listing page, extract some fields, and move on. The complexity appears when you need to enrich…</description>
       <category>Go</category>
-      <category>Machine Learning</category>
     </item>
     <item>
       <title>Building a Go Microservice to Crawl WooCommerce Products</title>
@@ -359,6 +375,8 @@
       <description>GraphQL provides a powerful query language for clients, while SQLC generates type‑safe Go code directly from SQL queries</description>
       <category>Go</category>
       <category>GraphQL</category>
+      <category>Gin</category>
+      <category>Integration</category>
     </item>
     <item>
       <title>Designing a Scalable Poller–Dispatcher–Worker Architecture in Go</title>
@@ -368,7 +386,6 @@
       <description>This architecture establishes a production-grade job processing system in Go by decoupling logic into a Poller (decision-maker), Dispatcher</description>
       <category>Go</category>
       <category>Architecture</category>
-      <category>Machine Learning</category>
     </item>
     <item>
       <title>Combining SQLC and GraphQL in Go for Type‑Safe APIs</title>
@@ -387,6 +404,7 @@
       <pubDate>Fri, 26 Dec 2025 00:00:00 GMT</pubDate>
       <description>The error message django.db.utils.ProgrammingError: column oauth2_provider_application.hash_client_secret does not exist is a classic…</description>
       <category>Security</category>
+      <category>Python</category>
     </item>
     <item>
       <title>Building a GraphQL API in Go with Custom Scalars</title>
@@ -397,6 +415,7 @@
       <category>Go</category>
       <category>API</category>
       <category>GraphQL</category>
+      <category>RESTful API</category>
     </item>
     <item>
       <title>Successfully Migrating from a Monolith to Microservices with a Technical-Debt Approach</title>
@@ -406,6 +425,7 @@
       <description>Deciding to migrate from a large, aging monolithic system to a microservices architecture is often a reactive response to…</description>
       <category>Microservices</category>
       <category>Architecture</category>
+      <category>Testing</category>
     </item>
     <item>
       <title>Complete Guide: Migrating from REST &amp; gRPC to GraphQL in Go</title>
@@ -426,6 +446,7 @@
       <description>ClickHouse has become a favorite for developers who need fast analytical queries, real‑time inserts, and effortless scalability. But…</description>
       <category>Go</category>
       <category>ClickHouse</category>
+      <category>Docker Compose</category>
     </item>
     <item>
       <title>Building a Complete Kafka + ClickHouse Streaming Stack with Docker Compose</title>
@@ -437,6 +458,8 @@
       <category>ClickHouse</category>
       <category>Docker</category>
       <category>Docker Compose</category>
+      <category>Data Engineering</category>
+      <category>DevOps</category>
     </item>
     <item>
       <title>Rsync from One Origin to Multiple Destinations: Strategies and Solutions 🔄</title>
@@ -462,6 +485,8 @@
       <pubDate>Tue, 02 Dec 2025 00:00:00 GMT</pubDate>
       <description>When building data-intensive applications in Go, you often find yourself writing repetitive boilerplate code.</description>
       <category>Go</category>
+      <category>GraphQL</category>
+      <category>Clean Code</category>
     </item>
   </channel>
 </rss>

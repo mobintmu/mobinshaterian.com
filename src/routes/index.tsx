@@ -13,6 +13,7 @@ import {
 } from "@/lib/seo";
 import {
   ArrowUpRight,
+  Download,
   Github,
   Linkedin,
   Mail,
@@ -511,6 +512,14 @@ function Contact() {
           >
             <Send className="h-4 w-4" />
             Telegram
+          </a>
+          <a
+            href="/data/pdf/MobinShaterian.pdf"
+            download
+            className="inline-flex items-center gap-2 rounded-md border border-border bg-background px-4 py-2 font-mono-plus text-sm text-foreground transition-colors hover:border-terminal/50 hover:text-terminal"
+          >
+            <Download className="h-4 w-4" />
+            Download profile (PDF)
           </a>
         </div>
       </div>

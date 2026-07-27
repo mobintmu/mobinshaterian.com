@@ -52,21 +52,38 @@
     }
   ],
   "skills": {
-    "Languages & Frameworks": ["Go", "gRPC", "Gin", "Echo", "Protobuf", "GraphQL", "RESTful API"],
+    "Languages & APIs": ["Go", "Node.js", "Python", "PHP", "API", "GraphQL", "Gin"],
     "Architecture": [
+      "Architecture",
       "Microservices",
-      "DDD",
-      "CQRS",
+      "Performance",
+      "Security",
       "Clean Code",
-      "SOLID",
-      "OOP",
-      "Design Patterns"
+      "Design Patterns",
+      "DDD"
     ],
-    "Data": ["PostgreSQL", "MongoDB", "Redis", "Cassandra", "Elasticsearch", "MySQL", "ClickHouse"],
-    "Messaging": ["NATS", "JetStream", "Kafka", "RabbitMQ"],
-    "Observability": ["OpenTelemetry", "Prometheus", "Sentry", "Swagger"],
-    "Ops": ["Docker", "Docker Compose", "MinIO", "CI/CD", "Linux"],
-    "Testing": ["TDD", "Unit", "Integration", "Performance"]
+    "Data & AI": [
+      "Machine Learning",
+      "AI",
+      "Data Engineering",
+      "PostgreSQL",
+      "ClickHouse",
+      "Redis",
+      "Kafka",
+      "RAG",
+      "MongoDB"
+    ],
+    "Delivery & Quality": [
+      "Linux",
+      "DevOps",
+      "Docker",
+      "Testing",
+      "Docker Compose",
+      "Integration",
+      "CI/CD",
+      "Kubernetes",
+      "OpenTelemetry"
+    ]
   },
   "experience": [
     {
