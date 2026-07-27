@@ -215,11 +215,8 @@ function Featured() {
       <SectionHeading id="featured" kbd="cat ./featured.log" title="Featured In" />
       <div className="grid gap-4">
         {profile.features.map((feature) => (
-          <a
+          <article
             key={feature.url}
-            href={feature.url}
-            target="_blank"
-            rel="noreferrer noopener"
             className="group rounded-lg border border-terminal/30 bg-terminal/5 p-6 transition-colors hover:border-terminal/60 hover:bg-terminal/10"
           >
             <div className="flex flex-wrap items-center justify-between gap-3">
@@ -233,11 +230,29 @@ function Featured() {
             <p className="mt-3 max-w-3xl text-sm leading-relaxed text-muted-foreground">
               {feature.description}
             </p>
-            <span className="mt-5 inline-flex items-center gap-1.5 font-mono-plus text-xs text-terminal">
-              Read on {feature.source}
-              <ArrowUpRight className="h-3.5 w-3.5 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
-            </span>
-          </a>
+            <div className="mt-5 flex flex-wrap items-center gap-4">
+              <a
+                href={feature.url}
+                target="_blank"
+                rel="noreferrer noopener"
+                className="inline-flex items-center gap-1.5 font-mono-plus text-xs text-terminal"
+              >
+                Read on {feature.source}
+                <ArrowUpRight className="h-3.5 w-3.5 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+              </a>
+              {"pdf" in feature && feature.pdf ? (
+                <a
+                  href={feature.pdf}
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  className="inline-flex items-center gap-1.5 font-mono-plus text-xs text-terminal"
+                >
+                  Read PDF
+                  <ArrowUpRight className="h-3.5 w-3.5 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                </a>
+              ) : null}
+            </div>
+          </article>
         ))}
       </div>
     </section>
