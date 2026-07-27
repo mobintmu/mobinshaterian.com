@@ -14,6 +14,20 @@
     "hero": "https://miro.medium.com/v2/resize:fit:1200/1*DHVw0VkL48Yuik_FO3lV9A.png"
   },
   {
+    "slug": "How-an-AI-Prompt-Turned-a-Complex-Multi-Database-ETL-Project-Into-Hours-of-Work-bjw7e",
+    "title": "How an AI Prompt Turned a Complex Multi-Database ETL Project Into Hours of Work",
+    "excerpt": "In large organizations, data rarely lives in one place. Some information is stored in Oracle databases, while other datasets live in PostgreSQL.",
+    "date": "2026-07-25",
+    "tags": [
+      "AI",
+      "ETL",
+      "Database"
+    ],
+    "readingTime": "5 min",
+    "url": "https://www.linkedin.com/pulse/how-ai-prompt-turned-complex-multi-database-etl-hours-mobin-shaterian-bjw7e",
+    "hero": "https://media.licdn.com/dms/image/v2/D4E12AQFgL43OD4VavQ/article-cover_image-shrink_720_1280/B4EZ.ZkljYH4AU-/0/1784987938374?e=2147483647&v=beta&t=cONHzViH8-Y-pkwG3xu5YjOQycvPGfygjE3OTRZwSxY"
+  },
+  {
     "slug": "How-I-Use-AI-to-Build-Production-Ready-GraphQL-Resources-Faster-baf5d5123477",
     "title": "How I Use AI to Build Production-Ready GraphQL Resources Faster",
     "excerpt": "A practical workflow with Go, PostgreSQL, sqlc, gqlgen, and architecture-aware prompting",

@@ -17,6 +17,16 @@
       <category>Stripe</category>
     </item>
     <item>
+      <title>How an AI Prompt Turned a Complex Multi-Database ETL Project Into Hours of Work</title>
+      <link>https://mobinshaterian.com/blog/How-an-AI-Prompt-Turned-a-Complex-Multi-Database-ETL-Project-Into-Hours-of-Work-bjw7e</link>
+      <guid isPermaLink="true">https://mobinshaterian.com/blog/How-an-AI-Prompt-Turned-a-Complex-Multi-Database-ETL-Project-Into-Hours-of-Work-bjw7e</guid>
+      <pubDate>Sat, 25 Jul 2026 00:00:00 GMT</pubDate>
+      <description>In large organizations, data rarely lives in one place. Some information is stored in Oracle databases, while other datasets live in PostgreSQL.</description>
+      <category>AI</category>
+      <category>ETL</category>
+      <category>Database</category>
+    </item>
+    <item>
       <title>How I Use AI to Build Production-Ready GraphQL Resources Faster</title>
       <link>https://mobinshaterian.com/blog/How-I-Use-AI-to-Build-Production-Ready-GraphQL-Resources-Faster-baf5d5123477</link>
       <guid isPermaLink="true">https://mobinshaterian.com/blog/How-I-Use-AI-to-Build-Production-Ready-GraphQL-Resources-Faster-baf5d5123477</guid>
@@ -447,14 +457,6 @@
       <pubDate>Tue, 02 Dec 2025 00:00:00 GMT</pubDate>
       <description>When building data-intensive applications in Go, you often find yourself writing repetitive boilerplate code.</description>
       <category>Go</category>
-    </item>
-    <item>
-      <title>Getting Started with Docker files: A Complete Guide</title>
-      <link>https://mobinshaterian.com/blog/Getting-Started-with-Docker-files--A-Complete-Guide-d1d5b2d44d1b</link>
-      <guid isPermaLink="true">https://mobinshaterian.com/blog/Getting-Started-with-Docker-files--A-Complete-Guide-d1d5b2d44d1b</guid>
-      <pubDate>Mon, 01 Dec 2025 00:00:00 GMT</pubDate>
-      <description>Docker has revolutionized how developers build, ship, and run applications</description>
-      <category>Docker</category>
     </item>
   </channel>
 </rss>
