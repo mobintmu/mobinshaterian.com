@@ -5,7 +5,9 @@
   "excerpt": "Use Open Telemetry Tracing system in sentry to understand what’s going on in the backend.",
   "date": "2023-04-13",
   "tags": [
-    "Go"
+    "Go",
+    "OpenTelemetry",
+    "Sentry"
   ],
   "readingTime": "2 min",
   "url": "https://medium.com/@mobinshaterian/tracking-system-request-with-open-telemetry-sentry-and-go-in-golang-language-b77c9cc4fb5a",

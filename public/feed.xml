@@ -62,6 +62,7 @@
       <pubDate>Sat, 18 Jul 2026 00:00:00 GMT</pubDate>
       <description>Deploying a Lovable (TanStack Start) App with GitHub Actions — the Real Story Lovable is a great way to scaffold a TanStack Start app fast. But the moment you want to ship it yourself — on your own domain, through your…</description>
       <category>DevOps</category>
+      <category>CI/CD</category>
     </item>
     <item>
       <title>How Domain Boundary Violations Slowly Destroy Your Codebase</title>
@@ -202,6 +203,7 @@
       <category>DevOps</category>
       <category>Architecture</category>
       <category>Machine Learning</category>
+      <category>CI/CD</category>
     </item>
     <item>
       <title>Building a High-Throughput KPI Pipeline on ClickHouse: Partitioning, Idempotent Recalculation, and…</title>
@@ -231,6 +233,7 @@
       <pubDate>Mon, 04 May 2026 00:00:00 GMT</pubDate>
       <description>In the world of database management, DBeaver is widely regarded as the “Swiss Army Knife” for developers and DBAs. While its automated…</description>
       <category>Postgres</category>
+      <category>PostgreSQL</category>
     </item>
     <item>
       <title>A Microservice That Teaches Everything Not to Do</title>
@@ -251,6 +254,7 @@
       <category>ClickHouse</category>
       <category>Performance</category>
       <category>Security</category>
+      <category>Integration</category>
     </item>
     <item>
       <title>The “Clear-as-you-go” Pattern: Solving Memory Spikes in High-Volume Go Data Pipelines</title>
@@ -432,6 +436,7 @@
       <category>Kafka</category>
       <category>ClickHouse</category>
       <category>Docker</category>
+      <category>Docker Compose</category>
     </item>
     <item>
       <title>Rsync from One Origin to Multiple Destinations: Strategies and Solutions 🔄</title>

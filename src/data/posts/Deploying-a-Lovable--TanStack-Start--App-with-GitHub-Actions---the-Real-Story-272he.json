@@ -5,7 +5,8 @@
   "excerpt": "Deploying a Lovable (TanStack Start) App with GitHub Actions — the Real Story Lovable is a great way to scaffold a TanStack Start app fast. But the moment you want to ship it yourself — on your own domain, through your…",
   "date": "2026-07-18",
   "tags": [
-    "DevOps"
+    "DevOps",
+    "CI/CD"
   ],
   "readingTime": "5 min",
   "url": "https://www.linkedin.com/pulse/deploying-lovable-tanstack-start-app-github-actions-real-shaterian-272he",

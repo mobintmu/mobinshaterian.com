@@ -10,7 +10,10 @@
     "Go",
     "Performance",
     "Testing",
-    "Machine Learning"
+    "Machine Learning",
+    "TDD",
+    "Unit",
+    "Integration"
   ],
   "readingTime": "14 min",
   "url": "https://medium.com/@mobinshaterian/how-write-a-unit-test-integration-test-and-performance-test-for-the-golang-language-a25ccef115f4",

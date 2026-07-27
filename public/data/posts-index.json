@@ -74,7 +74,8 @@
     "excerpt": "Deploying a Lovable (TanStack Start) App with GitHub Actions — the Real Story Lovable is a great way to scaffold a TanStack Start app fast. But the moment you want to ship it yourself — on your own domain, through your…",
     "date": "2026-07-18",
     "tags": [
-      "DevOps"
+      "DevOps",
+      "CI/CD"
     ],
     "readingTime": "5 min",
     "url": "https://www.linkedin.com/pulse/deploying-lovable-tanstack-start-app-github-actions-real-shaterian-272he",
@@ -276,7 +277,8 @@
     "tags": [
       "DevOps",
       "Architecture",
-      "Machine Learning"
+      "Machine Learning",
+      "CI/CD"
     ],
     "readingTime": "12 min",
     "url": "https://medium.com/@mobinshaterian/architectural-optimization-of-shared-sandbox-deployments-in-gitlab-ci-cd-47ccce21fa9d",
@@ -317,7 +319,8 @@
     "excerpt": "In the world of database management, DBeaver is widely regarded as the “Swiss Army Knife” for developers and DBAs. While its automated…",
     "date": "2026-05-04",
     "tags": [
-      "Postgres"
+      "Postgres",
+      "PostgreSQL"
     ],
     "readingTime": "3 min",
     "url": "https://medium.com/@mobinshaterian/mastering-the-manual-a-guide-to-manually-installing-postgresql-jdbc-drivers-in-dbeaver-ac5c1507c94b",
@@ -345,7 +348,8 @@
       "Kafka",
       "ClickHouse",
       "Performance",
-      "Security"
+      "Security",
+      "Integration"
     ],
     "readingTime": "2 min",
     "url": "https://medium.com/@mobinshaterian/connecting-kafka-to-clickhouse-with-ssl-a-complete-integration-guide-e5a0a5957de3",
@@ -604,7 +608,8 @@
     "tags": [
       "Kafka",
       "ClickHouse",
-      "Docker"
+      "Docker",
+      "Docker Compose"
     ],
     "readingTime": "4 min",
     "url": "https://medium.com/@mobinshaterian/building-a-complete-kafka-clickhouse-streaming-stack-with-docker-compose-98cbfc4bbf0c",
@@ -680,7 +685,8 @@
     "excerpt": "Foreign Data Wrappers (FDWs) are a powerful feature in PostgreSQL that enables the database to act as a federated data hub ,…",
     "date": "2025-11-22",
     "tags": [
-      "Postgres"
+      "Postgres",
+      "PostgreSQL"
     ],
     "readingTime": "11 min",
     "url": "https://medium.com/@mobinshaterian/postgresql-foreign-data-wrappers-for-data-federation-7043c561f218",
@@ -848,7 +854,8 @@
     "tags": [
       "Go",
       "API",
-      "Testing"
+      "Testing",
+      "RESTful API"
     ],
     "readingTime": "7 min",
     "url": "https://medium.com/@mobinshaterian/how-to-write-effective-test-files-in-go-for-rest-apis-577e01cdfe36",
@@ -882,7 +889,8 @@
     "excerpt": "In modern backend systems, it’s common to support multiple entry points for similar business logic, such as searching hotels by city…",
     "date": "2025-10-05",
     "tags": [
-      "Go"
+      "Go",
+      "Clean Code"
     ],
     "readingTime": "4 min",
     "url": "https://medium.com/@mobinshaterian/code-refactoring-eliminating-duplication-with-function-injection-in-go-0de231011296",
@@ -905,7 +913,8 @@
     "date": "2025-09-28",
     "tags": [
       "Go",
-      "Architecture"
+      "Architecture",
+      "Gin"
     ],
     "readingTime": "3 min",
     "url": "https://medium.com/@mobinshaterian/building-modular-product-management-in-go-with-sqlc-uber-fx-and-gin-bfb6dfaada6b",
@@ -997,7 +1006,8 @@
     "tags": [
       "Go",
       "Architecture",
-      "API"
+      "API",
+      "Clean Code"
     ],
     "readingTime": "4 min",
     "url": "https://medium.com/@mobinshaterian/building-a-clean-secure-and-scalable-go-web-api-a-layered-architecture-guide-ee3afe4aa58d",
@@ -1021,7 +1031,9 @@
     "excerpt": "In the earlier stage of the project, we implemented middleware components and a health monitoring controller. In this tutorial, I will…",
     "date": "2025-08-15",
     "tags": [
-      "Go"
+      "Go",
+      "Gin",
+      "Swagger"
     ],
     "readingTime": "2 min",
     "url": "https://medium.com/@mobinshaterian/add-swagger-to-a-golang-gin-project-0cad93295e0e",
@@ -1046,7 +1058,8 @@
     "date": "2025-08-09",
     "tags": [
       "Go",
-      "Architecture"
+      "Architecture",
+      "Echo"
     ],
     "readingTime": "5 min",
     "url": "https://medium.com/@mobinshaterian/simple-golang-http-server-fe7a88ef221e",
@@ -1083,7 +1096,8 @@
     "excerpt": "State is a behavioral design pattern that allows an object to change its behavior when its internal state changes. The State Pattern is a…",
     "date": "2025-07-28",
     "tags": [
-      "Go"
+      "Go",
+      "Design Patterns"
     ],
     "readingTime": "12 min",
     "url": "https://medium.com/@mobinshaterian/mastering-state-patterns-in-golang-overcoming-conditional-statement-limitations-ffc32b9b71ee",
@@ -1215,7 +1229,8 @@
     "date": "2025-04-28",
     "tags": [
       "Performance",
-      "Machine Learning"
+      "Machine Learning",
+      "RabbitMQ"
     ],
     "readingTime": "9 min",
     "url": "https://medium.com/@mobinshaterian/how-to-design-a-high-tps-inventory-handle-10k-requests-per-second-92e3c765226d",
@@ -1272,7 +1287,8 @@
     "date": "2025-01-28",
     "tags": [
       "Architecture",
-      "Performance"
+      "Performance",
+      "Cassandra"
     ],
     "readingTime": "11 min",
     "url": "https://medium.com/@mobinshaterian/system-design-a-comprehensive-exploration-based-on-practical-discussion-c55a288eda31",
@@ -1312,7 +1328,10 @@
     "title": "Database Deep Dive: Exploring Storage Engines and Indexing Strategies,LSM-Trees vs. B-Trees",
     "excerpt": "Modern databases rely on two foundational components: storage engines and indexing strategies",
     "date": "2025-01-13",
-    "tags": [],
+    "tags": [
+      "Cassandra",
+      "MySQL"
+    ],
     "readingTime": "14 min",
     "url": "https://medium.com/@mobinshaterian/database-deep-dive-exploring-storage-engines-and-indexing-strategies-lsm-trees-vs-b-trees-268ac1d24056",
     "hero": "https://cdn-images-1.medium.com/max/800/1*ExVaWJ2znYcNKFDvIHPQaw.png"
@@ -1426,7 +1445,8 @@
     "excerpt": "1. Optimistic vs. Pessimistic Locking:\n — Pessimistic: Assumes worst-case scenario\n — Optimistic: Assumes best-case scenario",
     "date": "2024-08-28",
     "tags": [
-      "Postgres"
+      "Postgres",
+      "PostgreSQL"
     ],
     "readingTime": "6 min",
     "url": "https://medium.com/@mobinshaterian/postgresql-concurrency-locking-and-isolation-levels-9fde2d582668",
@@ -1463,7 +1483,8 @@
     "excerpt": "Explore how Buf and GitHub Actions streamline Protobuf generation, format checking, and breaking change detection for smoother API…",
     "date": "2024-08-13",
     "tags": [
-      "API"
+      "API",
+      "Protobuf"
     ],
     "readingTime": "2 min",
     "url": "https://medium.com/@mobinshaterian/incredible-futures-of-buf-to-generate-protobuf-github-action-871f0d4f2339",
@@ -1475,7 +1496,8 @@
     "excerpt": "Buf is an innovative tool that revolutionizes API development by promoting a schema-driven approach using Protocol Buffers (Protobuf). As…",
     "date": "2024-08-12",
     "tags": [
-      "API"
+      "API",
+      "Protobuf"
     ],
     "readingTime": "5 min",
     "url": "https://medium.com/@mobinshaterian/buf-protobuf-06ebc98710c6",
@@ -1501,7 +1523,10 @@
     "date": "2024-08-06",
     "tags": [
       "Go",
-      "Career"
+      "Career",
+      "SOLID",
+      "OOP",
+      "Design Patterns"
     ],
     "readingTime": "8 min",
     "url": "https://medium.com/@mobinshaterian/factory-design-patterns-and-solid-principles-in-golang-6aa6a60cc543",
@@ -1528,7 +1553,9 @@
     "tags": [
       "Redis",
       "MongoDB",
-      "Docker"
+      "Docker",
+      "Docker Compose",
+      "MinIO"
     ],
     "readingTime": "1 min",
     "url": "https://medium.com/@mobinshaterian/docker-compose-setup-for-mongodb-redis-and-minio-f364e79162ea",
@@ -1555,7 +1582,8 @@
     "excerpt": "Writing Tests in NestJS",
     "date": "2024-07-18",
     "tags": [
-      "Node.js"
+      "Node.js",
+      "Unit"
     ],
     "readingTime": "3 min",
     "url": "https://medium.com/@mobinshaterian/how-do-you-write-tests-in-nestjs-03149ebeb372",
@@ -1622,7 +1650,8 @@
       "Node.js",
       "Postgres",
       "Docker",
-      "API"
+      "API",
+      "Docker Compose"
     ],
     "readingTime": "6 min",
     "url": "https://medium.com/@mobinshaterian/nestjs-postgresql-database-with-docker-compose-and-liquibase-faec0b09d944",
@@ -2088,7 +2117,8 @@
     "date": "2023-11-28",
     "tags": [
       "Go",
-      "DevOps"
+      "DevOps",
+      "OpenTelemetry"
     ],
     "readingTime": "2 min",
     "url": "https://medium.com/@mobinshaterian/exclude-endpoints-with-sample-rate-in-open-telemetry-in-the-golang-language-969da599af82",
@@ -2101,7 +2131,8 @@
     "date": "2023-11-15",
     "tags": [
       "My Experience",
-      "Go"
+      "Go",
+      "OpenTelemetry"
     ],
     "readingTime": "6 min",
     "url": "https://medium.com/@mobinshaterian/using-open-telemetry-in-golang-ef282c236e77",
@@ -2114,7 +2145,8 @@
     "date": "2023-11-09",
     "tags": [
       "My Experience",
-      "Career"
+      "Career",
+      "Design Patterns"
     ],
     "readingTime": "2 min",
     "url": "https://www.linkedin.com/pulse/toxic-mistake-use-function-option-pattern-instead-mobin-shaterian-zoydf",
@@ -2127,7 +2159,8 @@
     "date": "2023-11-07",
     "tags": [
       "Go",
-      "Performance"
+      "Performance",
+      "Gin"
     ],
     "readingTime": "1 min",
     "url": "https://medium.com/@mobinshaterian/gin-framework-in-golang-c453436c8c07",
@@ -2189,7 +2222,8 @@
     "tags": [
       "My Experience",
       "Go",
-      "API"
+      "API",
+      "Swagger"
     ],
     "readingTime": "2 min",
     "url": "https://medium.com/@mobinshaterian/make-swagger-from-your-http-rest-full-in-golang-4dc9088f5292",
@@ -2212,7 +2246,8 @@
     "date": "2023-07-05",
     "tags": [
       "Go",
-      "Architecture"
+      "Architecture",
+      "Prometheus"
     ],
     "readingTime": "1 min",
     "url": "https://medium.com/@mobinshaterian/configuration-prometheus-for-golang-language-with-go-micro-framework-in-micro-service-architecture-f4c128ad836",
@@ -2271,7 +2306,9 @@
     "excerpt": "Use Open Telemetry Tracing system in sentry to understand what’s going on in the backend.",
     "date": "2023-04-13",
     "tags": [
-      "Go"
+      "Go",
+      "OpenTelemetry",
+      "Sentry"
     ],
     "readingTime": "2 min",
     "url": "https://medium.com/@mobinshaterian/tracking-system-request-with-open-telemetry-sentry-and-go-in-golang-language-b77c9cc4fb5a",
@@ -2288,7 +2325,10 @@
       "Go",
       "Performance",
       "Testing",
-      "Machine Learning"
+      "Machine Learning",
+      "TDD",
+      "Unit",
+      "Integration"
     ],
     "readingTime": "14 min",
     "url": "https://medium.com/@mobinshaterian/how-write-a-unit-test-integration-test-and-performance-test-for-the-golang-language-a25ccef115f4",
@@ -2303,7 +2343,8 @@
       "My Experience",
       "Microservices",
       "Architecture",
-      "Performance"
+      "Performance",
+      "CQRS"
     ],
     "readingTime": "5 min",
     "url": "https://medium.com/@mobinshaterian/my-experience-to-build-a-cqrs-system-with-microservices-architecture-in-a-financial-system-to-1deeead8db9d",
@@ -2400,7 +2441,8 @@
     "excerpt": "Run simple Nats Jet Stream example",
     "date": "2022-12-28",
     "tags": [
-      "NATS"
+      "NATS",
+      "JetStream"
     ],
     "readingTime": "6 min",
     "url": "https://medium.com/@mobinshaterian/nats-jet-strem-hello-world-d909099c88e4",
@@ -2617,7 +2659,8 @@
     "tags": [
       "Laravel",
       "API",
-      "Machine Learning"
+      "Machine Learning",
+      "RESTful API"
     ],
     "readingTime": "2 min",
     "url": "https://medium.com/@mobinshaterian/using-restfull-api-of-farsava-deep-learning-automatic-speech-recognition-to-convert-persian-speech-1ba75d232212",

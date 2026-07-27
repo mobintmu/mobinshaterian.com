@@ -7,7 +7,8 @@
   "tags": [
     "DevOps",
     "Architecture",
-    "Machine Learning"
+    "Machine Learning",
+    "CI/CD"
   ],
   "readingTime": "12 min",
   "url": "https://medium.com/@mobinshaterian/architectural-optimization-of-shared-sandbox-deployments-in-gitlab-ci-cd-47ccce21fa9d",

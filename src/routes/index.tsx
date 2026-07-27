@@ -428,12 +428,15 @@ function Skills() {
             </h3>
             <div className="flex flex-wrap gap-1.5">
               {(items as string[]).map((s) => (
-                <span
+                <Link
                   key={s}
-                  className="rounded border border-border bg-background/50 px-2 py-1 font-mono-plus text-xs text-foreground/90"
+                  to="/blogs"
+                  search={{ tag: s, q: "" }}
+                  className="rounded border border-border bg-background/50 px-2 py-1 font-mono-plus text-xs text-foreground/90 transition-colors hover:border-terminal/50 hover:text-terminal"
+                  title={`Browse articles tagged ${s}`}
                 >
                   {s}
-                </span>
+                </Link>
               ))}
             </div>
           </div>

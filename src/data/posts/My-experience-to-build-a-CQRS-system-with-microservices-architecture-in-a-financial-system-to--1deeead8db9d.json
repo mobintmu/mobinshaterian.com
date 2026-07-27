@@ -8,7 +8,8 @@
     "My Experience",
     "Microservices",
     "Architecture",
-    "Performance"
+    "Performance",
+    "CQRS"
   ],
   "readingTime": "5 min",
   "url": "https://medium.com/@mobinshaterian/my-experience-to-build-a-cqrs-system-with-microservices-architecture-in-a-financial-system-to-1deeead8db9d",

@@ -8,7 +8,8 @@
     "Node.js",
     "Postgres",
     "Docker",
-    "API"
+    "API",
+    "Docker Compose"
   ],
   "readingTime": "6 min",
   "url": "https://medium.com/@mobinshaterian/nestjs-postgresql-database-with-docker-compose-and-liquibase-faec0b09d944",

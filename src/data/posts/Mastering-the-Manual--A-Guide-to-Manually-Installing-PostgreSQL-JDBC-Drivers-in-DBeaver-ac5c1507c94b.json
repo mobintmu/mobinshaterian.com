@@ -5,7 +5,8 @@
   "excerpt": "In the world of database management, DBeaver is widely regarded as the “Swiss Army Knife” for developers and DBAs. While its automated…",
   "date": "2026-05-04",
   "tags": [
-    "Postgres"
+    "Postgres",
+    "PostgreSQL"
   ],
   "readingTime": "3 min",
   "url": "https://medium.com/@mobinshaterian/mastering-the-manual-a-guide-to-manually-installing-postgresql-jdbc-drivers-in-dbeaver-ac5c1507c94b",

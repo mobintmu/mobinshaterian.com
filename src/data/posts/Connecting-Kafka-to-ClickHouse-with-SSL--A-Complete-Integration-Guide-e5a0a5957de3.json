@@ -8,7 +8,8 @@
     "Kafka",
     "ClickHouse",
     "Performance",
-    "Security"
+    "Security",
+    "Integration"
   ],
   "readingTime": "2 min",
   "url": "https://medium.com/@mobinshaterian/connecting-kafka-to-clickhouse-with-ssl-a-complete-integration-guide-e5a0a5957de3",

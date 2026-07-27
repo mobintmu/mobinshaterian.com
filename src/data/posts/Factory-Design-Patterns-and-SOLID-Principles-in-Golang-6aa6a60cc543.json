@@ -6,7 +6,10 @@
   "date": "2024-08-06",
   "tags": [
     "Go",
-    "Career"
+    "Career",
+    "SOLID",
+    "OOP",
+    "Design Patterns"
   ],
   "readingTime": "8 min",
   "url": "https://medium.com/@mobinshaterian/factory-design-patterns-and-solid-principles-in-golang-6aa6a60cc543",
