@@ -23,6 +23,7 @@ import {
   Search,
   Send,
   Terminal,
+  Youtube,
 } from "lucide-react";
 
 export const Route = createFileRoute("/")({
@@ -211,11 +212,15 @@ function SectionHeading({ id, kbd, title }: { id: string; kbd: string; title: st
 }
 
 function Featured() {
+  const featuresByDate = [...profile.features].sort(
+    (a, b) => Date.parse(b.date) - Date.parse(a.date),
+  );
+
   return (
     <section className="py-20">
       <SectionHeading id="featured" kbd="cat ./featured.log" title="Featured In" />
       <div className="grid gap-4">
-        {profile.features.map((feature) => (
+        {featuresByDate.map((feature) => (
           <article
             key={feature.url}
             className="group rounded-lg border border-terminal/30 bg-terminal/5 p-6 transition-colors hover:border-terminal/60 hover:bg-terminal/10"
@@ -249,6 +254,18 @@ function Featured() {
                   className="inline-flex items-center gap-1.5 font-mono-plus text-xs text-terminal"
                 >
                   Read PDF
+                  <ArrowUpRight className="h-3.5 w-3.5 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                </a>
+              ) : null}
+              {"youtube" in feature && feature.youtube ? (
+                <a
+                  href={feature.youtube}
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  className="inline-flex items-center gap-1.5 font-mono-plus text-xs text-terminal"
+                >
+                  <Youtube className="h-3.5 w-3.5" />
+                  Watch presentation
                   <ArrowUpRight className="h-3.5 w-3.5 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
                 </a>
               ) : null}

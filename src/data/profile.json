@@ -36,19 +36,27 @@
       "description": "Published from my master's research, this paper applies deep neural networks and feature-selection methods to identify effective clinical factors for neuropathic pain, achieving 75% precision."
     },
     {
-      "source": "Ketab-e Sabz",
-      "title": "Chess with Ludo Rules (بازی شطرنج با قواعد منچ)",
-      "date": "Nov 21, 2014",
-      "url": "https://ketabesabz.com/book/18884/%D8%AF%D8%A7%D9%86%D9%84%D9%88%D8%AF-%DA%A9%D8%AA%D8%A7%D8%A8-%D8%A8%D8%A7%D8%B2%DB%8C-%D8%B4%D8%B7%D8%B1%D9%86%D8%AC-%D8%A8%D8%A7-%D9%82%D9%88%D8%A7%D8%B9%D8%AF-%D9%85%D9%86%DA%86",
-      "pdf": "/data/pdf/shatranj-mench.pdf",
-      "description": "My 20-page Persian-language book about experiences, challenges, and lessons from building open-source software businesses and projects, published as a free PDF."
-    },
-    {
       "source": "Apple Podcasts",
       "title": "Episode 6: Artificial Intelligence in Medicine (قسمت ششم باهوش: هوش مصنوعی در پزشکی)",
       "date": "Feb 1, 2020",
       "url": "https://podcasts.apple.com/it/podcast/%D9%82%D8%B3%D9%85%D8%AA-%D8%B4%D8%B4%D9%85-%D8%A8%D8%A7%D9%87%D9%88%D8%B4-%D9%87%D9%88%D8%B4-%D9%85%D8%B5%D9%86%D9%88%D8%B9%DB%8C-%D8%AF%D8%B1-%D9%BE%D8%B2%D8%B4%DA%A9%DB%8C/id1588440347?i=1000537271498",
       "description": "I joined the Ba Hoosh podcast as an AI-in-healthcare researcher to discuss artificial intelligence in medicine, including software for children with ADHD and systems for detecting diseases associated with chronic pain."
+    },
+    {
+      "source": "YouTube",
+      "title": "Low-Level Employee: Why Free Software Philosophy Improves Employee Performance (کارمند دون‌پایه)",
+      "date": "Sep 29, 2016",
+      "url": "https://www.youtube.com/watch?v=54CsHtQ7NKI",
+      "description": "My presentation at Software Freedom Day Tehran at Sharif University, examining problems in proprietary-company management and how free-software principles can improve employee motivation, fairness, and performance."
+    },
+    {
+      "source": "Ketab-e Sabz",
+      "title": "Chess with Ludo Rules (بازی شطرنج با قواعد منچ)",
+      "date": "Nov 21, 2014",
+      "url": "https://ketabesabz.com/book/18884/%D8%AF%D8%A7%D9%86%D9%84%D9%88%D8%AF-%DA%A9%D8%AA%D8%A7%D8%A8-%D8%A8%D8%A7%D8%B2%DB%8C-%D8%B4%D8%B7%D8%B1%D9%86%D8%AC-%D8%A8%D8%A7-%D9%82%D9%88%D8%A7%D8%B9%D8%AF-%D9%85%D9%86%DA%86",
+      "pdf": "/data/pdf/shatranj-mench.pdf",
+      "youtube": "https://www.youtube.com/watch?v=wxPnLTMmPE0",
+      "description": "My 20-page Persian-language book about experiences, challenges, and lessons from building open-source software businesses and projects, published as a free PDF."
     }
   ],
   "skills": {
