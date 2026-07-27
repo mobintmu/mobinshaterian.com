@@ -7,7 +7,9 @@
   "tags": [
     "Microservices",
     "Data Engineering",
-    "Machine Learning"
+    "Integration",
+    "ETL",
+    "PostgreSQL"
   ],
   "readingTime": "8 min",
   "url": "https://medium.com/@mobinshaterian/integrating-multiple-databases-inmon-vs-kimball-and-a-microservice-etl-solution-5e78abb77e28",

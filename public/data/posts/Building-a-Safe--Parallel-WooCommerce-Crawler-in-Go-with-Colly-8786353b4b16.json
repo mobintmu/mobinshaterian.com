@@ -5,8 +5,7 @@
   "excerpt": "Web crawling often starts simple: fetch a listing page, extract some fields, and move on. The complexity appears when you need to enrich…",
   "date": "2026-01-07",
   "tags": [
-    "Go",
-    "Machine Learning"
+    "Go"
   ],
   "readingTime": "3 min",
   "url": "https://medium.com/@mobinshaterian/building-a-safe-parallel-woocommerce-crawler-in-go-with-colly-8786353b4b16",

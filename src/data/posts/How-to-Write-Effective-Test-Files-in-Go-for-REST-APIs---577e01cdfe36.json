@@ -8,7 +8,8 @@
     "Go",
     "API",
     "Testing",
-    "RESTful API"
+    "RESTful API",
+    "Unit"
   ],
   "readingTime": "7 min",
   "url": "https://medium.com/@mobinshaterian/how-to-write-effective-test-files-in-go-for-rest-apis-577e01cdfe36",

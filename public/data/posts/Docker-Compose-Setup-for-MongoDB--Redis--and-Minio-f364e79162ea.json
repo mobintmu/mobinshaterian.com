@@ -9,7 +9,8 @@
     "MongoDB",
     "Docker",
     "Docker Compose",
-    "MinIO"
+    "MinIO",
+    "DevOps"
   ],
   "readingTime": "1 min",
   "url": "https://medium.com/@mobinshaterian/docker-compose-setup-for-mongodb-redis-and-minio-f364e79162ea",

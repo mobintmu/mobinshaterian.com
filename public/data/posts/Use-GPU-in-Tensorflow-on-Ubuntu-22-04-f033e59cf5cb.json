@@ -5,9 +5,9 @@
   "excerpt": "This document provides a guide on installing TensorFlow with GPU support on Ubuntu 22.04. It details the necessary steps to install the…",
   "date": "2024-03-30",
   "tags": [
-    "Design Rag System",
     "Linux",
-    "Machine Learning"
+    "Machine Learning",
+    "Python"
   ],
   "readingTime": "3 min",
   "url": "https://medium.com/@mobinshaterian/use-gpu-in-tensorflow-on-ubuntu-22-04-f033e59cf5cb",

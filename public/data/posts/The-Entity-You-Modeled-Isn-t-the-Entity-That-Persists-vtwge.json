@@ -5,7 +5,8 @@
   "excerpt": "A recurring architectural mistake — and the state machine pattern that fixes it. A pattern you've probably seen before There's a particular kind of mess that shows up in almost every system that models a multi-stage bus…",
   "date": "2026-07-10",
   "tags": [
-    "Architecture"
+    "Architecture",
+    "DDD"
   ],
   "readingTime": "6 min",
   "url": "https://www.linkedin.com/pulse/entity-you-modeled-isnt-persists-mobin-shaterian-vtwge",

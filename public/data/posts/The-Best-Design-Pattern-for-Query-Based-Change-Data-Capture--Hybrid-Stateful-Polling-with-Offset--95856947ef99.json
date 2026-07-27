@@ -6,7 +6,9 @@
   "date": "2025-10-16",
   "tags": [
     "Architecture",
-    "Machine Learning"
+    "Data Engineering",
+    "Design Patterns",
+    "ETL"
   ],
   "readingTime": "21 min",
   "url": "https://medium.com/@mobinshaterian/the-best-design-pattern-for-query-based-change-data-capture-hybrid-stateful-polling-with-offset-95856947ef99",

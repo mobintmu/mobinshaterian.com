@@ -6,8 +6,7 @@
   "date": "2025-12-30",
   "tags": [
     "Go",
-    "Architecture",
-    "Machine Learning"
+    "Architecture"
   ],
   "readingTime": "5 min",
   "url": "https://medium.com/@mobinshaterian/designing-a-scalable-poller-dispatcher-worker-architecture-in-go-eb5576116190",

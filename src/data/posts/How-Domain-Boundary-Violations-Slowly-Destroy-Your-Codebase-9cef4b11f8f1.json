@@ -5,7 +5,9 @@
   "excerpt": "Have you ever opened a “service” file and seen it reach deep into three or four other domains? Ever had to add a workaround like…",
   "date": "2026-07-18",
   "tags": [
-    "Architecture"
+    "Architecture",
+    "Clean Code",
+    "DDD"
   ],
   "readingTime": "5 min",
   "url": "https://towardsdev.com/how-domain-boundary-violations-slowly-destroy-your-codebase-9cef4b11f8f1",

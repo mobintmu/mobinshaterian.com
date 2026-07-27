@@ -5,8 +5,9 @@
   "excerpt": "In every company, a group of agents is responsible for answering the client’s questions. My idea is related to ChatGPT automatically…",
   "date": "2024-05-07",
   "tags": [
-    "Design Rag System",
-    "Machine Learning"
+    "Machine Learning",
+    "AI",
+    "RAG"
   ],
   "readingTime": "2 min",
   "url": "https://medium.com/@mobinshaterian/my-experience-in-using-rag-and-fine-tuning-in-chatgpt-3-5-3b9e584059ba",

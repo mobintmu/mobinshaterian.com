@@ -8,7 +8,8 @@
     "Star",
     "My Experience",
     "Architecture",
-    "Data Engineering"
+    "Data Engineering",
+    "Kafka"
   ],
   "readingTime": "2 min",
   "url": "https://medium.com/@mobinshaterian/my-solution-for-designing-a-resilient-system-in-an-event-driven-pipeline-d1396711d423",

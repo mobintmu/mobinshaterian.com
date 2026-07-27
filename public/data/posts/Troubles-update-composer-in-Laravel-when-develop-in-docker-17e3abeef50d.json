@@ -6,7 +6,8 @@
   "date": "2020-09-14",
   "tags": [
     "Laravel",
-    "Docker"
+    "Docker",
+    "PHP"
   ],
   "readingTime": "1 min",
   "url": "https://medium.com/@mobinshaterian/troubles-update-composer-in-laravel-when-develop-in-docker-17e3abeef50d",

@@ -7,7 +7,9 @@
   "tags": [
     "GraphQL",
     "AI",
-    "Architecture"
+    "Architecture",
+    "Integration",
+    "PostgreSQL"
   ],
   "readingTime": "11 min",
   "url": "https://medium.datadriveninvestor.com/how-i-use-ai-to-build-production-ready-graphql-resources-faster-baf5d5123477",

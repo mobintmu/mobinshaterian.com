@@ -6,7 +6,9 @@
   "date": "2025-12-30",
   "tags": [
     "Go",
-    "GraphQL"
+    "GraphQL",
+    "Gin",
+    "Integration"
   ],
   "readingTime": "3 min",
   "url": "https://medium.com/@mobinshaterian/integrating-sqlc-and-graphql-in-go-a-practical-example-with-product-filtering-4722e0a53179",

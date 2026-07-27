@@ -8,7 +8,9 @@
     "Go",
     "Architecture",
     "API",
-    "Clean Code"
+    "Clean Code",
+    "RESTful API",
+    "Swagger"
   ],
   "readingTime": "4 min",
   "url": "https://medium.com/@mobinshaterian/building-a-clean-secure-and-scalable-go-web-api-a-layered-architecture-guide-ee3afe4aa58d",

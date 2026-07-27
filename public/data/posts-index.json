@@ -7,7 +7,8 @@
     "tags": [
       "DDD",
       "Architecture",
-      "Stripe"
+      "Stripe",
+      "Payments"
     ],
     "readingTime": "6 min",
     "url": "https://blog.devops.dev/when-your-domain-talks-to-stripe-a-ddd-cautionary-tale-9b498a851a7d",
@@ -21,7 +22,7 @@
     "tags": [
       "AI",
       "ETL",
-      "Database"
+      "Data Engineering"
     ],
     "readingTime": "5 min",
     "url": "https://www.linkedin.com/pulse/how-ai-prompt-turned-complex-multi-database-etl-hours-mobin-shaterian-bjw7e",
@@ -35,7 +36,9 @@
     "tags": [
       "GraphQL",
       "AI",
-      "Architecture"
+      "Architecture",
+      "Integration",
+      "PostgreSQL"
     ],
     "readingTime": "11 min",
     "url": "https://medium.datadriveninvestor.com/how-i-use-ai-to-build-production-ready-graphql-resources-faster-baf5d5123477",
@@ -62,7 +65,8 @@
     "date": "2026-07-20",
     "tags": [
       "Security",
-      "Architecture"
+      "Architecture",
+      "Integration"
     ],
     "readingTime": "9 min",
     "url": "https://medium.datadriveninvestor.com/keycloak-openfga-a-practical-integration-guide-a9ed984ee205",
@@ -87,7 +91,9 @@
     "excerpt": "Have you ever opened a “service” file and seen it reach deep into three or four other domains? Ever had to add a workaround like…",
     "date": "2026-07-18",
     "tags": [
-      "Architecture"
+      "Architecture",
+      "Clean Code",
+      "DDD"
     ],
     "readingTime": "5 min",
     "url": "https://towardsdev.com/how-domain-boundary-violations-slowly-destroy-your-codebase-9cef4b11f8f1",
@@ -99,7 +105,8 @@
     "excerpt": "A recurring architectural mistake — and the state machine pattern that fixes it. A pattern you've probably seen before There's a particular kind of mess that shows up in almost every system that models a multi-stage bus…",
     "date": "2026-07-10",
     "tags": [
-      "Architecture"
+      "Architecture",
+      "DDD"
     ],
     "readingTime": "6 min",
     "url": "https://www.linkedin.com/pulse/entity-you-modeled-isnt-persists-mobin-shaterian-vtwge",
@@ -111,7 +118,8 @@
     "excerpt": "I want to talk about a bug that, on the surface, looked trivial. An endpoint was missing.",
     "date": "2026-07-08",
     "tags": [
-      "Architecture"
+      "Architecture",
+      "DDD"
     ],
     "readingTime": "8 min",
     "url": "https://www.linkedin.com/pulse/one-door-two-mechanisms-when-your-domain-model-forks-itself-mobin-oewde",
@@ -160,8 +168,7 @@
     "excerpt": "In traditional software engineering, databases are treated as state machines. When a user updates their profile, a transaction executes an…",
     "date": "2026-06-23",
     "tags": [
-      "Career",
-      "Machine Learning"
+      "Career"
     ],
     "readingTime": "5 min",
     "url": "https://medium.com/@mobinshaterian/rebuilding-the-time-machine-designing-a-dual-purpose-data-versioning-system-for-modern-backends-c00ddf54bf53",
@@ -188,7 +195,8 @@
     "tags": [
       "Go",
       "API",
-      "GraphQL"
+      "GraphQL",
+      "Gin"
     ],
     "readingTime": "5 min",
     "url": "https://medium.com/@mobinshaterian/serving-an-offline-graphql-playground-in-go-avoiding-the-gin-static-file-pitfalls-dd907b2ab087",
@@ -213,7 +221,8 @@
       "Kafka",
       "ClickHouse",
       "Docker",
-      "Performance"
+      "Performance",
+      "Data Engineering"
     ],
     "readingTime": "3 min",
     "url": "https://medium.com/@mobinshaterian/real-time-data-ingestion-connecting-distributed-kafka-to-clickhouse-in-docker-1e29e0b0f665",
@@ -263,7 +272,9 @@
     "excerpt": "Background",
     "date": "2026-05-26",
     "tags": [
-      "Data Engineering"
+      "Data Engineering",
+      "ClickHouse",
+      "Kafka"
     ],
     "readingTime": "7 min",
     "url": "https://medium.com/@mobinshaterian/how-we-rebuilt-a-telecom-kpi-platform-to-handle-billions-of-records-from-json-blobs-to-flat-1a4eb6b27574",
@@ -277,8 +288,10 @@
     "tags": [
       "DevOps",
       "Architecture",
-      "Machine Learning",
-      "CI/CD"
+      "CI/CD",
+      "Docker",
+      "Docker Compose",
+      "Kubernetes"
     ],
     "readingTime": "12 min",
     "url": "https://medium.com/@mobinshaterian/architectural-optimization-of-shared-sandbox-deployments-in-gitlab-ci-cd-47ccce21fa9d",
@@ -307,7 +320,8 @@
     "date": "2026-05-19",
     "tags": [
       "Kafka",
-      "ClickHouse"
+      "ClickHouse",
+      "Data Engineering"
     ],
     "readingTime": "2 min",
     "url": "https://medium.com/@mobinshaterian/solving-the-nan-deadlock-streaming-kafka-to-clickhouse-with-data-sanitization-530ff573762f",
@@ -319,7 +333,6 @@
     "excerpt": "In the world of database management, DBeaver is widely regarded as the “Swiss Army Knife” for developers and DBAs. While its automated…",
     "date": "2026-05-04",
     "tags": [
-      "Postgres",
       "PostgreSQL"
     ],
     "readingTime": "3 min",
@@ -333,7 +346,8 @@
     "date": "2026-05-03",
     "tags": [
       "Microservices",
-      "Career"
+      "Career",
+      "ClickHouse"
     ],
     "readingTime": "6 min",
     "url": "https://medium.com/@mobinshaterian/a-microservice-that-teaches-everything-not-to-do-e055f7480424",
@@ -349,7 +363,8 @@
       "ClickHouse",
       "Performance",
       "Security",
-      "Integration"
+      "Integration",
+      "Data Engineering"
     ],
     "readingTime": "2 min",
     "url": "https://medium.com/@mobinshaterian/connecting-kafka-to-clickhouse-with-ssl-a-complete-integration-guide-e5a0a5957de3",
@@ -413,7 +428,8 @@
     "date": "2026-02-09",
     "tags": [
       "Go",
-      "API"
+      "API",
+      "Python"
     ],
     "readingTime": "2 min",
     "url": "https://medium.com/@mobinshaterian/the-phantom-403-solving-django-csrf-failures-in-golang-clients-83906f4770e8",
@@ -460,7 +476,8 @@
     "excerpt": "Modern web applications rarely start complex. A typical backend begins with session-based authentication, a frontend renders server-side…",
     "date": "2026-01-24",
     "tags": [
-      "Security"
+      "Security",
+      "Python"
     ],
     "readingTime": "4 min",
     "url": "https://medium.com/@mobinshaterian/when-authentication-grows-without-a-plan-a-hidden-security-risk-in-legacy-django-and-spa-systems-eeb172bc92a8",
@@ -472,8 +489,7 @@
     "excerpt": "Web crawling often starts simple: fetch a listing page, extract some fields, and move on. The complexity appears when you need to enrich…",
     "date": "2026-01-07",
     "tags": [
-      "Go",
-      "Machine Learning"
+      "Go"
     ],
     "readingTime": "3 min",
     "url": "https://medium.com/@mobinshaterian/building-a-safe-parallel-woocommerce-crawler-in-go-with-colly-8786353b4b16",
@@ -499,7 +515,9 @@
     "date": "2025-12-30",
     "tags": [
       "Go",
-      "GraphQL"
+      "GraphQL",
+      "Gin",
+      "Integration"
     ],
     "readingTime": "3 min",
     "url": "https://medium.com/@mobinshaterian/integrating-sqlc-and-graphql-in-go-a-practical-example-with-product-filtering-4722e0a53179",
@@ -512,8 +530,7 @@
     "date": "2025-12-30",
     "tags": [
       "Go",
-      "Architecture",
-      "Machine Learning"
+      "Architecture"
     ],
     "readingTime": "5 min",
     "url": "https://medium.com/@mobinshaterian/designing-a-scalable-poller-dispatcher-worker-architecture-in-go-eb5576116190",
@@ -539,7 +556,8 @@
     "excerpt": "The error message django.db.utils.ProgrammingError: column oauth2_provider_application.hash_client_secret does not exist is a classic…",
     "date": "2025-12-26",
     "tags": [
-      "Security"
+      "Security",
+      "Python"
     ],
     "readingTime": "3 min",
     "url": "https://medium.com/@mobinshaterian/database-migration-mismatch-the-hash-client-secret-error-in-django-oauth-db8fc9a511c7",
@@ -553,7 +571,8 @@
     "tags": [
       "Go",
       "API",
-      "GraphQL"
+      "GraphQL",
+      "RESTful API"
     ],
     "readingTime": "3 min",
     "url": "https://medium.com/@mobinshaterian/building-a-graphql-api-in-go-with-custom-scalars-0b1a1b3e52f9",
@@ -566,7 +585,8 @@
     "date": "2025-12-23",
     "tags": [
       "Microservices",
-      "Architecture"
+      "Architecture",
+      "Testing"
     ],
     "readingTime": "4 min",
     "url": "https://medium.com/@mobinshaterian/successfully-migrating-from-a-monolith-to-microservices-with-a-technical-debt-approach-aa08d713deec",
@@ -594,7 +614,8 @@
     "date": "2025-12-14",
     "tags": [
       "Go",
-      "ClickHouse"
+      "ClickHouse",
+      "Docker Compose"
     ],
     "readingTime": "4 min",
     "url": "https://medium.com/@mobinshaterian/adding-clickhouse-to-a-go-project-a-practical-guide-inspired-by-go-simple-5a4cfef93e41",
@@ -609,7 +630,9 @@
       "Kafka",
       "ClickHouse",
       "Docker",
-      "Docker Compose"
+      "Docker Compose",
+      "Data Engineering",
+      "DevOps"
     ],
     "readingTime": "4 min",
     "url": "https://medium.com/@mobinshaterian/building-a-complete-kafka-clickhouse-streaming-stack-with-docker-compose-98cbfc4bbf0c",
@@ -646,7 +669,9 @@
     "excerpt": "When building data-intensive applications in Go, you often find yourself writing repetitive boilerplate code.",
     "date": "2025-12-02",
     "tags": [
-      "Go"
+      "Go",
+      "GraphQL",
+      "Clean Code"
     ],
     "readingTime": "5 min",
     "url": "https://medium.com/@mobinshaterian/eliminating-code-duplication-in-go-with-go-generate-a-practical-guide-13d40dfa6df1",
@@ -658,7 +683,8 @@
     "excerpt": "Docker has revolutionized how developers build, ship, and run applications",
     "date": "2025-12-01",
     "tags": [
-      "Docker"
+      "Docker",
+      "DevOps"
     ],
     "readingTime": "4 min",
     "url": "https://medium.com/@mobinshaterian/getting-started-with-docker-files-a-complete-guide-d1d5b2d44d1b",
@@ -673,7 +699,7 @@
       "Go",
       "Linux",
       "DevOps",
-      "Machine Learning"
+      "CI/CD"
     ],
     "readingTime": "6 min",
     "url": "https://medium.com/@mobinshaterian/atomic-deployment-of-go-binaries-on-ubuntu-with-cron-dd7cf94cd8ab",
@@ -685,7 +711,6 @@
     "excerpt": "Foreign Data Wrappers (FDWs) are a powerful feature in PostgreSQL that enables the database to act as a federated data hub ,…",
     "date": "2025-11-22",
     "tags": [
-      "Postgres",
       "PostgreSQL"
     ],
     "readingTime": "11 min",
@@ -700,7 +725,9 @@
     "tags": [
       "Microservices",
       "Data Engineering",
-      "Machine Learning"
+      "Integration",
+      "ETL",
+      "PostgreSQL"
     ],
     "readingTime": "8 min",
     "url": "https://medium.com/@mobinshaterian/integrating-multiple-databases-inmon-vs-kimball-and-a-microservice-etl-solution-5e78abb77e28",
@@ -714,7 +741,7 @@
     "tags": [
       "Microservices",
       "Architecture",
-      "Machine Learning"
+      "Kafka"
     ],
     "readingTime": "9 min",
     "url": "https://medium.com/@mobinshaterian/the-hidden-costs-of-shared-databases-in-microservices-architecture-bbdaecceacb3",
@@ -737,7 +764,10 @@
     "title": "Comprehensive Overview of Microsoft SQL Server Business Intelligence (BI) Stack",
     "excerpt": "The Microsoft SQL Server Business Intelligence (BI) stack is an integrated platform designed for data transformation, analytical modeling,",
     "date": "2025-11-04",
-    "tags": [],
+    "tags": [
+      "Data Engineering",
+      "ETL"
+    ],
     "readingTime": "6 min",
     "url": "https://medium.com/@mobinshaterian/comprehensive-overview-of-microsoft-sql-server-business-intelligence-bi-stack-62383118c5f8",
     "hero": "https://cdn-images-1.medium.com/max/800/1*FzMmotQ3tHcjgykm0B2MeQ.png"
@@ -749,7 +779,9 @@
     "date": "2025-10-30",
     "tags": [
       "Go",
-      "Testing"
+      "Testing",
+      "Redis",
+      "PostgreSQL"
     ],
     "readingTime": "8 min",
     "url": "https://medium.com/@mobinshaterian/environment-configuration-in-go-managing-dev-test-production-environments-9b333c6d1868",
@@ -787,7 +819,8 @@
     "date": "2025-10-25",
     "tags": [
       "Star",
-      "Go"
+      "Go",
+      "Productivity"
     ],
     "readingTime": "11 min",
     "url": "https://medium.com/@mobinshaterian/essential-vs-code-extensions-for-go-developers-my-daily-toolkit-5604c0bbaf85",
@@ -813,7 +846,9 @@
     "date": "2025-10-16",
     "tags": [
       "Architecture",
-      "Machine Learning"
+      "Data Engineering",
+      "Design Patterns",
+      "ETL"
     ],
     "readingTime": "21 min",
     "url": "https://medium.com/@mobinshaterian/the-best-design-pattern-for-query-based-change-data-capture-hybrid-stateful-polling-with-offset-95856947ef99",
@@ -840,7 +875,8 @@
     "tags": [
       "Go",
       "API",
-      "gRPC"
+      "gRPC",
+      "Protobuf"
     ],
     "readingTime": "2 min",
     "url": "https://medium.com/@mobinshaterian/step-by-step-guide-to-adding-grpc-to-go-simple-628bc37143b7",
@@ -855,7 +891,8 @@
       "Go",
       "API",
       "Testing",
-      "RESTful API"
+      "RESTful API",
+      "Unit"
     ],
     "readingTime": "7 min",
     "url": "https://medium.com/@mobinshaterian/how-to-write-effective-test-files-in-go-for-rest-apis-577e01cdfe36",
@@ -914,7 +951,8 @@
     "tags": [
       "Go",
       "Architecture",
-      "Gin"
+      "Gin",
+      "Swagger"
     ],
     "readingTime": "3 min",
     "url": "https://medium.com/@mobinshaterian/building-modular-product-management-in-go-with-sqlc-uber-fx-and-gin-bfb6dfaada6b",
@@ -928,7 +966,7 @@
     "tags": [
       "Go",
       "Architecture",
-      "Machine Learning"
+      "Redis"
     ],
     "readingTime": "2 min",
     "url": "https://medium.com/@mobinshaterian/%EF%B8%8F-building-modular-go-services-with-uber-fx-and-sqlc-b8feb4b37721",
@@ -941,7 +979,8 @@
     "date": "2025-09-26",
     "tags": [
       "Docker",
-      "Linux"
+      "Linux",
+      "DevOps"
     ],
     "readingTime": "2 min",
     "url": "https://medium.com/@mobinshaterian/how-to-fix-cannot-connect-to-docker-daemon-error-on-ubuntu-linux-a2f25a79d786",
@@ -954,7 +993,9 @@
     "date": "2025-09-26",
     "tags": [
       "Go",
-      "Architecture"
+      "Architecture",
+      "Gin",
+      "Clean Code"
     ],
     "readingTime": "5 min",
     "url": "https://medium.com/@mobinshaterian/refactoring-a-go-web-service-with-uber-fx-from-monolith-to-modular-elegance-2789a9ac8ec5",
@@ -967,7 +1008,8 @@
     "date": "2025-09-25",
     "tags": [
       "API",
-      "Machine Learning"
+      "Machine Learning",
+      "AI"
     ],
     "readingTime": "6 min",
     "url": "https://medium.com/@mobinshaterian/ai-powered-paraphrasing-for-seo-optimizing-product-descriptions-with-avalai-api-26caab0f1a23",
@@ -992,7 +1034,8 @@
     "date": "2025-09-12",
     "tags": [
       "Go",
-      "Security"
+      "Security",
+      "Testing"
     ],
     "readingTime": "3 min",
     "url": "https://medium.com/@mobinshaterian/add-sonarqube-to-the-golang-project-28da80b3ee95",
@@ -1007,7 +1050,9 @@
       "Go",
       "Architecture",
       "API",
-      "Clean Code"
+      "Clean Code",
+      "RESTful API",
+      "Swagger"
     ],
     "readingTime": "4 min",
     "url": "https://medium.com/@mobinshaterian/building-a-clean-secure-and-scalable-go-web-api-a-layered-architecture-guide-ee3afe4aa58d",
@@ -1045,7 +1090,8 @@
     "excerpt": "In the previous article, a simple Golang project was demonstrated. In our current work, it is necessary to add a Gin middleware to handle…",
     "date": "2025-08-10",
     "tags": [
-      "Go"
+      "Go",
+      "Gin"
     ],
     "readingTime": "3 min",
     "url": "https://medium.com/@mobinshaterian/golang-gin-middleware-and-health-controller-fe53ce9d9754",
@@ -1084,7 +1130,7 @@
     "date": "2025-08-06",
     "tags": [
       "Go",
-      "Postgres"
+      "PostgreSQL"
     ],
     "readingTime": "1 min",
     "url": "https://medium.com/@mobinshaterian/resolving-sql-scan-error-when-handling-null-strings-in-go-and-postgresql-762bdf5a66b2",
@@ -1179,7 +1225,9 @@
     "title": "My Motivation for Becoming a Developer",
     "excerpt": "To many, learning programming is about chasing a higher salary, landing a prestigious job, leading teams, or even shaping society. And…",
     "date": "2025-06-08",
-    "tags": [],
+    "tags": [
+      "Career"
+    ],
     "readingTime": "5 min",
     "url": "https://medium.com/@mobinshaterian/my-motivation-for-becoming-a-developer-568e6a7774ab",
     "hero": "https://cdn-images-1.medium.com/max/800/1*Msw1hkm9a50Mah-WA_FI6w.png"
@@ -1230,7 +1278,8 @@
     "tags": [
       "Performance",
       "Machine Learning",
-      "RabbitMQ"
+      "RabbitMQ",
+      "Redis"
     ],
     "readingTime": "9 min",
     "url": "https://medium.com/@mobinshaterian/how-to-design-a-high-tps-inventory-handle-10k-requests-per-second-92e3c765226d",
@@ -1242,7 +1291,8 @@
     "excerpt": "In today’s fast-paced digital marketplace, businesses are increasingly turning to artificial intelligence (AI) to optimize pricing…",
     "date": "2025-04-22",
     "tags": [
-      "Machine Learning"
+      "Machine Learning",
+      "AI"
     ],
     "readingTime": "9 min",
     "url": "https://medium.com/@mobinshaterian/harnessing-ai-agents-to-revolutionize-pricing-strategies-through-customer-behavior-and-8ba2b1eb1520",
@@ -1254,7 +1304,8 @@
     "excerpt": "Consumerism — a culture that prioritizes quantity over quality and appearance over substance — is not limited to societal shopping habits.",
     "date": "2025-04-18",
     "tags": [
-      "Machine Learning"
+      "Team Management",
+      "Workplace Culture"
     ],
     "readingTime": "12 min",
     "url": "https://medium.com/@mobinshaterian/workplace-consumerism-culture-a-deep-dive-into-causes-consequences-and-solutions-e549d309a403",
@@ -1265,7 +1316,11 @@
     "title": "The High Cost of Toxicity: Why Insults, Humiliation, and Blame Are Killing Your Workplace Culture",
     "excerpt": "In any workplace, the way people interact with one another can make or break the environment. A healthy workplace thrives on respect…",
     "date": "2025-02-07",
-    "tags": [],
+    "tags": [
+      "Productivity",
+      "Team Management",
+      "Workplace Culture"
+    ],
     "readingTime": "8 min",
     "url": "https://medium.com/@mobinshaterian/the-high-cost-of-toxicity-why-insults-humiliation-and-blame-are-killing-your-workplace-culture-e3fe8e3645f7",
     "hero": "https://cdn-images-1.medium.com/max/800/1*d9Y2uxLPslcJmbmVm17uUg.jpeg"
@@ -1275,7 +1330,10 @@
     "title": "Title: Setting Boundaries with Clients: A Guide to Professional and Effective Communication",
     "excerpt": "In the world of technical support and client management, maintaining professionalism while setting boundaries is crucial. Whether dealing…",
     "date": "2025-01-30",
-    "tags": [],
+    "tags": [
+      "Team Management",
+      "Workplace Culture"
+    ],
     "readingTime": "4 min",
     "url": "https://medium.com/@mobinshaterian/title-setting-boundaries-with-clients-a-guide-to-professional-and-effective-communication-040db339cd83",
     "hero": "https://cdn-images-1.medium.com/max/800/1*11R0pwgJsrEb8baNyqeckg.jpeg"
@@ -1341,7 +1399,10 @@
     "title": "The Human Side of Bug Fixing in Software Development: “Tell me you’re good enough so I can fix the…",
     "excerpt": "In the complex world of software development, technical challenges often take center stage. However, a more nuanced challenge lies beneath…",
     "date": "2025-01-10",
-    "tags": [],
+    "tags": [
+      "Team Management",
+      "Workplace Culture"
+    ],
     "readingTime": "5 min",
     "url": "https://medium.com/@mobinshaterian/the-human-side-of-bug-fixing-in-software-development-tell-me-youre-good-enough-so-i-can-fix-the-d9510fb6dfce",
     "hero": "https://cdn-images-1.medium.com/max/800/1*geRrfJRC7I2soe_Mozh4gw.jpeg"
@@ -1351,7 +1412,11 @@
     "title": "Improving Team Morale and Efficiency in Software Development Projects",
     "excerpt": "In today’s rapidly evolving software development landscape, teams face numerous challenges that can significantly impact their…",
     "date": "2025-01-01",
-    "tags": [],
+    "tags": [
+      "Productivity",
+      "Team Management",
+      "Workplace Culture"
+    ],
     "readingTime": "12 min",
     "url": "https://medium.com/@mobinshaterian/improving-team-morale-and-efficiency-in-software-development-projects-d5f3da0b2137",
     "hero": "https://cdn-images-1.medium.com/max/800/1*5kDgTqaV1l7XPgIhIiVjfA.jpeg"
@@ -1361,7 +1426,11 @@
     "title": "The Art and Science of Technical Hiring: A Comprehensive Guide",
     "excerpt": "Successful tech hiring balances rigorous skill assessment with diversity, efficient processes, and long-term growth.",
     "date": "2024-12-29",
-    "tags": [],
+    "tags": [
+      "Career",
+      "Team Management",
+      "Workplace Culture"
+    ],
     "readingTime": "8 min",
     "url": "https://medium.com/@mobinshaterian/the-art-and-science-of-technical-hiring-a-comprehensive-guide-158ca954f2c7",
     "hero": "https://cdn-images-1.medium.com/max/800/1*pqjt7sIdrnxo0ZjEIPLhzw.jpeg"
@@ -1372,7 +1441,9 @@
     "excerpt": "The Challenge of Legacy Sorting Methods",
     "date": "2024-12-11",
     "tags": [
-      "My Experience"
+      "My Experience",
+      "Design Patterns",
+      "Clean Code"
     ],
     "readingTime": "3 min",
     "url": "https://medium.com/@mobinshaterian/refactoring-if-strategies-transforming-legacy-code-for-modern-e-commerce-platforms-3be0717570b4",
@@ -1383,7 +1454,10 @@
     "title": "Breaking Free from the “I’m Good, You’re Bad” Mindset: Transforming Competitive Culture into…",
     "excerpt": "In many organizations, a deeply ingrained culture of competition and individualism creates an environment where success is measured by…",
     "date": "2024-11-15",
-    "tags": [],
+    "tags": [
+      "Team Management",
+      "Workplace Culture"
+    ],
     "readingTime": "3 min",
     "url": "https://medium.com/@mobinshaterian/breaking-free-from-the-im-good-you-re-bad-mindset-transforming-competitive-culture-into-cc5a64a3bfc6",
     "hero": "https://cdn-images-1.medium.com/max/800/1*1vmrO4WKpJS1ZRvAWJtakw.jpeg"
@@ -1394,7 +1468,8 @@
     "excerpt": "In today’s complex organizations, system teams face a myriad of challenges that go far beyond technical implementation. These challenges…",
     "date": "2024-11-07",
     "tags": [
-      "Go"
+      "Team Management",
+      "Workplace Culture"
     ],
     "readingTime": "2 min",
     "url": "https://medium.com/@mobinshaterian/the-hidden-challenges-of-system-teams-in-software-companies-balancing-people-process-and-cfc16a6e1790",
@@ -1406,8 +1481,8 @@
     "excerpt": "The main Idea of this article concerns adding senior software developers to the business and customer support teams to reduce pressure on…",
     "date": "2024-10-14",
     "tags": [
-      "Design Rag System",
-      "Machine Learning"
+      "Machine Learning",
+      "AI"
     ],
     "readingTime": "6 min",
     "url": "https://medium.com/@mobinshaterian/what-will-happen-if-a-big-tech-based-company-hires-a-senior-software-developer-using-llm-and-ai-in-0e10e42d0229",
@@ -1445,7 +1520,6 @@
     "excerpt": "1. Optimistic vs. Pessimistic Locking:\n — Pessimistic: Assumes worst-case scenario\n — Optimistic: Assumes best-case scenario",
     "date": "2024-08-28",
     "tags": [
-      "Postgres",
       "PostgreSQL"
     ],
     "readingTime": "6 min",
@@ -1458,7 +1532,8 @@
     "excerpt": "پیاده سازی درگاه پارسیان در نست جی اس",
     "date": "2024-08-22",
     "tags": [
-      "Node.js"
+      "Node.js",
+      "Payments"
     ],
     "readingTime": "5 min",
     "url": "https://medium.com/@mobinshaterian/introduction-to-the-parsian-bank-gateway-implementation-in-nestjs-9077a5441b5a",
@@ -1555,7 +1630,8 @@
       "MongoDB",
       "Docker",
       "Docker Compose",
-      "MinIO"
+      "MinIO",
+      "DevOps"
     ],
     "readingTime": "1 min",
     "url": "https://medium.com/@mobinshaterian/docker-compose-setup-for-mongodb-redis-and-minio-f364e79162ea",
@@ -1569,8 +1645,7 @@
     "tags": [
       "Node.js",
       "MongoDB",
-      "GraphQL",
-      "Machine Learning"
+      "GraphQL"
     ],
     "readingTime": "9 min",
     "url": "https://medium.com/@mobinshaterian/mongodb-and-graphql-in-the-nestjs-08b0f6ff5c41",
@@ -1583,7 +1658,8 @@
     "date": "2024-07-18",
     "tags": [
       "Node.js",
-      "Unit"
+      "Unit",
+      "Testing"
     ],
     "readingTime": "3 min",
     "url": "https://medium.com/@mobinshaterian/how-do-you-write-tests-in-nestjs-03149ebeb372",
@@ -1595,7 +1671,8 @@
     "excerpt": "The document covers several important aspects of developing, deploying, and managing a NestJS application:",
     "date": "2024-07-12",
     "tags": [
-      "Node.js"
+      "Node.js",
+      "DevOps"
     ],
     "readingTime": "3 min",
     "url": "https://medium.com/@mobinshaterian/best-practices-for-developing-deploying-and-managing-nestjs-applications-cef0edc4681f",
@@ -1634,8 +1711,9 @@
     "excerpt": "In the rapidly evolving customer support landscape, integrating Artificial Intelligence (AI) has become increasingly pivotal. This essay…",
     "date": "2024-06-28",
     "tags": [
-      "Design Rag System",
-      "Machine Learning"
+      "Machine Learning",
+      "AI",
+      "RAG"
     ],
     "readingTime": "4 min",
     "url": "https://medium.com/@mobinshaterian/implementation-experience-retrieval-augmented-generation-rag-system-for-ai-powered-customer-1268ac4b4f8b",
@@ -1648,7 +1726,7 @@
     "date": "2024-06-27",
     "tags": [
       "Node.js",
-      "Postgres",
+      "PostgreSQL",
       "Docker",
       "API",
       "Docker Compose"
@@ -1663,8 +1741,7 @@
     "excerpt": "This report summarizes data validation and transformation techniques in NestJS, a framework for building Node.js server-side applications.",
     "date": "2024-06-26",
     "tags": [
-      "Node.js",
-      "Machine Learning"
+      "Node.js"
     ],
     "readingTime": "1 min",
     "url": "https://medium.com/@mobinshaterian/nestjs-data-validation-and-transformation-ce99115c760d",
@@ -1677,8 +1754,9 @@
     "date": "2024-06-25",
     "tags": [
       "My Experience",
-      "Design Rag System",
-      "Machine Learning"
+      "Machine Learning",
+      "AI",
+      "RAG"
     ],
     "readingTime": "4 min",
     "url": "https://medium.com/@mobinshaterian/rag-system-knowledge-graph-the-system-for-finding-the-best-answer-in-the-tickets-management-e2ae2692c7c6",
@@ -1691,7 +1769,8 @@
     "date": "2024-06-19",
     "tags": [
       "Node.js",
-      "API"
+      "API",
+      "RESTful API"
     ],
     "readingTime": "4 min",
     "url": "https://medium.com/@mobinshaterian/make-simple-crud-requests-with-nestjs-366f6cbfff6d",
@@ -1715,9 +1794,9 @@
     "excerpt": "This report outlines the steps involved in creating a conversational AI Telegram bot using Python.",
     "date": "2024-06-10",
     "tags": [
-      "Design Rag System",
       "Python",
-      "Machine Learning"
+      "Machine Learning",
+      "AI"
     ],
     "readingTime": "2 min",
     "url": "https://medium.com/@mobinshaterian/how-making-python-telegram-bot-for-conversational-ai-370d8e2c82bf",
@@ -1729,9 +1808,11 @@
     "excerpt": "This document describes how to set up a Docker container for a Retrieval-Augmented Generation (RAG) system using Llama 3 and Ollama.",
     "date": "2024-06-07",
     "tags": [
-      "Design Rag System",
       "Docker",
-      "Machine Learning"
+      "Machine Learning",
+      "DevOps",
+      "AI",
+      "RAG"
     ],
     "readingTime": "2 min",
     "url": "https://medium.com/@mobinshaterian/making-docker-for-llama3-rag-system-a3943f972711",
@@ -1743,8 +1824,9 @@
     "excerpt": "The article describes Retrieval-Augmented Generation (RAG) which helps large language models answer questions based on unseen documents…",
     "date": "2024-06-06",
     "tags": [
-      "Design Rag System",
-      "Machine Learning"
+      "Machine Learning",
+      "AI",
+      "RAG"
     ],
     "readingTime": "4 min",
     "url": "https://medium.com/@mobinshaterian/build-a-rag-with-llama-a24e88e1a399",
@@ -1756,8 +1838,8 @@
     "excerpt": "In this tutorial, the daily FAQ with ranking will be explained.",
     "date": "2024-05-21",
     "tags": [
-      "Design Rag System",
-      "Machine Learning"
+      "Machine Learning",
+      "AI"
     ],
     "readingTime": "1 min",
     "url": "https://medium.com/@mobinshaterian/design-daily-faq-maker-with-ai-25db05f8881e",
@@ -1769,8 +1851,9 @@
     "excerpt": "One of the biggest challenges for every business is related to client answers. Angry clients can ruin the business and need a quick…",
     "date": "2024-05-13",
     "tags": [
-      "Design Rag System",
-      "Machine Learning"
+      "Machine Learning",
+      "AI",
+      "RAG"
     ],
     "readingTime": "2 min",
     "url": "https://medium.com/@mobinshaterian/leveraging-rag-for-continuously-updated-faq-datasets-to-enhance-client-support-1d4dd8c9460a",
@@ -1782,7 +1865,6 @@
     "excerpt": "In this tutorial, I want to write a Python code for the extraction of a customer tickets list with FreshDesk API.",
     "date": "2024-05-08",
     "tags": [
-      "Design Rag System",
       "Python",
       "API"
     ],
@@ -1796,8 +1878,9 @@
     "excerpt": "In every company, a group of agents is responsible for answering the client’s questions. My idea is related to ChatGPT automatically…",
     "date": "2024-05-07",
     "tags": [
-      "Design Rag System",
-      "Machine Learning"
+      "Machine Learning",
+      "AI",
+      "RAG"
     ],
     "readingTime": "2 min",
     "url": "https://medium.com/@mobinshaterian/my-experience-in-using-rag-and-fine-tuning-in-chatgpt-3-5-3b9e584059ba",
@@ -1809,8 +1892,8 @@
     "excerpt": "Building a Knowledge Base is usually hard work for the company, and developers are always scared of writing documents. I found an effective…",
     "date": "2024-04-11",
     "tags": [
-      "Design Rag System",
-      "Machine Learning"
+      "Machine Learning",
+      "AI"
     ],
     "readingTime": "2 min",
     "url": "https://medium.com/@mobinshaterian/data-driven-approach-to-building-an-effective-knowledge-base-based-on-artificial-intelligence-ef3ef169f138",
@@ -1834,9 +1917,9 @@
     "excerpt": "This document provides a guide on installing TensorFlow with GPU support on Ubuntu 22.04. It details the necessary steps to install the…",
     "date": "2024-03-30",
     "tags": [
-      "Design Rag System",
       "Linux",
-      "Machine Learning"
+      "Machine Learning",
+      "Python"
     ],
     "readingTime": "3 min",
     "url": "https://medium.com/@mobinshaterian/use-gpu-in-tensorflow-on-ubuntu-22-04-f033e59cf5cb",
@@ -1848,8 +1931,8 @@
     "excerpt": "In this tutorial, I am going to learn the fundamentals of tensors.",
     "date": "2024-03-29",
     "tags": [
-      "Design Rag System",
-      "Machine Learning"
+      "Machine Learning",
+      "Python"
     ],
     "readingTime": "7 min",
     "url": "https://medium.com/@mobinshaterian/tensorflow-tutorial-basic-operations-on-tensors-fca6c839ca08",
@@ -1861,8 +1944,8 @@
     "excerpt": "Train ChatGPT with your own data.",
     "date": "2024-03-12",
     "tags": [
-      "Design Rag System",
-      "Machine Learning"
+      "Machine Learning",
+      "AI"
     ],
     "readingTime": "2 min",
     "url": "https://medium.com/@mobinshaterian/fine-tune-chatgpt-gpt-305606a02605",
@@ -1874,7 +1957,6 @@
     "excerpt": "In this article I am going to explain, how can run script on scheduled time. be careful, this script is not proper for run on kubernetis…",
     "date": "2024-03-01",
     "tags": [
-      "Design Rag System",
       "Python"
     ],
     "readingTime": "1 min",
@@ -1887,9 +1969,9 @@
     "excerpt": "In this article I want to get data from Fresh Desk via API key. and write note base on RAG open AI system.",
     "date": "2024-02-28",
     "tags": [
-      "Design Rag System",
       "API",
-      "Machine Learning"
+      "Machine Learning",
+      "AI"
     ],
     "readingTime": "2 min",
     "url": "https://medium.com/@mobinshaterian/get-data-from-fresh-desk-with-api-key-and-write-note-with-open-ai-5eee50365cbb",
@@ -1901,8 +1983,8 @@
     "excerpt": "In this tutorial I am going to get data from medium a make my version AI bot.",
     "date": "2024-02-23",
     "tags": [
-      "Design Rag System",
-      "Machine Learning"
+      "Machine Learning",
+      "AI"
     ],
     "readingTime": "1 min",
     "url": "https://medium.com/@mobinshaterian/get-data-from-medium-and-make-an-ai-model-e2eda73f62cb",
@@ -1951,7 +2033,8 @@
     "excerpt": "retrieval-augmented generation",
     "date": "2024-01-31",
     "tags": [
-      "Machine Learning"
+      "Machine Learning",
+      "RAG"
     ],
     "readingTime": "3 min",
     "url": "https://medium.com/@mobinshaterian/rag-retrieval-augmented-generation-a93e1a3bf531",
@@ -1987,7 +2070,7 @@
     "excerpt": "read data from json and write in CSV",
     "date": "2024-01-23",
     "tags": [
-      "Machine Learning"
+      "Python"
     ],
     "readingTime": "2 min",
     "url": "https://medium.com/@mobinshaterian/read-data-from-json-and-normalize-then-write-into-excel-cb7c29d1268b",
@@ -2001,7 +2084,8 @@
     "tags": [
       "API",
       "Performance",
-      "Machine Learning"
+      "Machine Learning",
+      "AI"
     ],
     "readingTime": "2 min",
     "url": "https://medium.com/@mobinshaterian/open-ai-tutorial-bbd89b9bd242",
@@ -2069,9 +2153,7 @@
     "title": "Nodejs with Smart contract for beginner version 0.4.17",
     "excerpt": "Install Nodejs on ubuntu",
     "date": "2023-12-12",
-    "tags": [
-      "Linux"
-    ],
+    "tags": [],
     "readingTime": "6 min",
     "url": "https://medium.com/@mobinshaterian/nodejs-with-smart-contract-for-beginner-version-0-4-17-59ee1d46aced",
     "hero": "https://cdn-images-1.medium.com/max/800/1*z1WKbpTCs5nWum4sbg-nMg.png"
@@ -2223,7 +2305,8 @@
       "My Experience",
       "Go",
       "API",
-      "Swagger"
+      "Swagger",
+      "RESTful API"
     ],
     "readingTime": "2 min",
     "url": "https://medium.com/@mobinshaterian/make-swagger-from-your-http-rest-full-in-golang-4dc9088f5292",
@@ -2282,10 +2365,7 @@
     "title": "I have seen the various personalities of developers, based on the DISC personality Test",
     "excerpt": "In this article, I will explain the typical of programmers’s personality based on my experiences.",
     "date": "2023-05-08",
-    "tags": [
-      "Testing",
-      "Machine Learning"
-    ],
+    "tags": [],
     "readingTime": "2 min",
     "url": "https://medium.com/@mobinshaterian/i-have-seen-the-various-personalities-of-developers-based-on-the-disc-personality-test-288dfec6b3fa",
     "hero": "https://cdn-images-1.medium.com/max/800/1*jFYpSedzYlhTwH-Vfztpsg.png"
@@ -2295,7 +2375,10 @@
     "title": "Effect of Inflation on IT company culture in Iran",
     "excerpt": "How inflation changes the environment of high-tech technologies in Iran?",
     "date": "2023-05-01",
-    "tags": [],
+    "tags": [
+      "Team Management",
+      "Workplace Culture"
+    ],
     "readingTime": "3 min",
     "url": "https://medium.com/@mobinshaterian/effect-of-inflation-on-it-company-culture-in-iran-dd1a5ade1605",
     "hero": "https://cdn-images-1.medium.com/max/800/1*GZZjyiy61IAHvJBK2HD_Iw.png"
@@ -2328,7 +2411,8 @@
       "Machine Learning",
       "TDD",
       "Unit",
-      "Integration"
+      "Integration",
+      "Redis"
     ],
     "readingTime": "14 min",
     "url": "https://medium.com/@mobinshaterian/how-write-a-unit-test-integration-test-and-performance-test-for-the-golang-language-a25ccef115f4",
@@ -2356,7 +2440,7 @@
     "excerpt": "Getting start with Liquibase for write migration in Postgres database",
     "date": "2023-02-16",
     "tags": [
-      "Postgres"
+      "PostgreSQL"
     ],
     "readingTime": "1 min",
     "url": "https://medium.com/@mobinshaterian/liquibase-hello-world-1d792968962f",
@@ -2405,7 +2489,8 @@
     "date": "2023-01-16",
     "tags": [
       "Go",
-      "Testing"
+      "Testing",
+      "Unit"
     ],
     "readingTime": "1 min",
     "url": "https://medium.com/@mobinshaterian/run-test-case-in-golnag-with-env-file-520616cbb54a",
@@ -2455,8 +2540,7 @@
     "date": "2022-12-04",
     "tags": [
       "Linux",
-      "Microservices",
-      "Architecture"
+      "PHP"
     ],
     "readingTime": "5 min",
     "url": "https://medium.com/@mobinshaterian/install-cakephp-application-on-server-with-the-traditional-way-on-ubuntu-22-0-server-3228ae49c3c1",
@@ -2471,7 +2555,8 @@
       "Star",
       "My Experience",
       "Architecture",
-      "Data Engineering"
+      "Data Engineering",
+      "Kafka"
     ],
     "readingTime": "2 min",
     "url": "https://medium.com/@mobinshaterian/my-solution-for-designing-a-resilient-system-in-an-event-driven-pipeline-d1396711d423",
@@ -2485,7 +2570,7 @@
     "tags": [
       "Star",
       "Go",
-      "Machine Learning"
+      "Productivity"
     ],
     "readingTime": "4 min",
     "url": "https://medium.com/@mobinshaterian/best-list-of-vscode-plugin-as-golang-developer-in-backend-position-4c3c945a903c",
@@ -2511,7 +2596,7 @@
     "tags": [
       "Star",
       "Redis",
-      "Postgres"
+      "PostgreSQL"
     ],
     "readingTime": "3 min",
     "url": "https://medium.com/@mobinshaterian/i-struggle-to-read-and-write-100k-requests-in-postgres-db-with-my-aggressive-solution-with-redis-91461a8316a1",
@@ -2576,8 +2661,7 @@
     "date": "2022-06-11",
     "tags": [
       "Go",
-      "Linux",
-      "Machine Learning"
+      "Linux"
     ],
     "readingTime": "5 min",
     "url": "https://medium.com/@mobinshaterian/installing-application-for-golang-developer-after-installing-ubuntu-22-04-lts-5d5570a78340",
@@ -2593,7 +2677,8 @@
       "API",
       "Performance",
       "Data Engineering",
-      "Machine Learning"
+      "Machine Learning",
+      "Redis"
     ],
     "readingTime": "2 min",
     "url": "https://medium.com/@mobinshaterian/improve-speed-of-machine-learning-api-engine-from-3-requests-per-second-to-10000-requests-per-4d649d246a99",
@@ -2622,7 +2707,7 @@
     "tags": [
       "My Experience",
       "PHP",
-      "Machine Learning"
+      "Laravel"
     ],
     "readingTime": "2 min",
     "url": "https://medium.com/@mobinshaterian/php-fpm-i-hate-you-1d17bb8a577b",
@@ -2660,7 +2745,8 @@
       "Laravel",
       "API",
       "Machine Learning",
-      "RESTful API"
+      "RESTful API",
+      "PHP"
     ],
     "readingTime": "2 min",
     "url": "https://medium.com/@mobinshaterian/using-restfull-api-of-farsava-deep-learning-automatic-speech-recognition-to-convert-persian-speech-1ba75d232212",
@@ -2673,7 +2759,8 @@
     "date": "2020-09-23",
     "tags": [
       "Laravel",
-      "Payments"
+      "Payments",
+      "PHP"
     ],
     "readingTime": "6 min",
     "url": "https://medium.com/@mobinshaterian/running-zarinpal-gateway-on-laravel-framework-ac9d84674ec6",
@@ -2685,7 +2772,10 @@
     "excerpt": "one of the nightmare for the developer is changing OS. Always we have a lot of tasks Todo that never finishes! When a new version of the…",
     "date": "2020-09-21",
     "tags": [
-      "Linux"
+      "Linux",
+      "MongoDB",
+      "Docker",
+      "PHP"
     ],
     "readingTime": "5 min",
     "url": "https://medium.com/@mobinshaterian/installing-application-for-web-developer-after-installing-ubuntu-20-04-lts-e8114c21044c",
@@ -2710,7 +2800,8 @@
     "date": "2020-09-14",
     "tags": [
       "Laravel",
-      "Docker"
+      "Docker",
+      "PHP"
     ],
     "readingTime": "1 min",
     "url": "https://medium.com/@mobinshaterian/troubles-update-composer-in-laravel-when-develop-in-docker-17e3abeef50d",

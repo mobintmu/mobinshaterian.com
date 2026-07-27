@@ -6,7 +6,9 @@
   "date": "2025-10-30",
   "tags": [
     "Go",
-    "Testing"
+    "Testing",
+    "Redis",
+    "PostgreSQL"
   ],
   "readingTime": "8 min",
   "url": "https://medium.com/@mobinshaterian/environment-configuration-in-go-managing-dev-test-production-environments-9b333c6d1868",

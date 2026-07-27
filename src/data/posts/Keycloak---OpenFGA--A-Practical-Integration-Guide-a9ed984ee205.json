@@ -6,7 +6,8 @@
   "date": "2026-07-20",
   "tags": [
     "Security",
-    "Architecture"
+    "Architecture",
+    "Integration"
   ],
   "readingTime": "9 min",
   "url": "https://medium.datadriveninvestor.com/keycloak-openfga-a-practical-integration-guide-a9ed984ee205",

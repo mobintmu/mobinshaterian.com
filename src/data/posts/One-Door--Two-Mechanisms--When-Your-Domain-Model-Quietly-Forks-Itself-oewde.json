@@ -5,7 +5,8 @@
   "excerpt": "I want to talk about a bug that, on the surface, looked trivial. An endpoint was missing.",
   "date": "2026-07-08",
   "tags": [
-    "Architecture"
+    "Architecture",
+    "DDD"
   ],
   "readingTime": "8 min",
   "url": "https://www.linkedin.com/pulse/one-door-two-mechanisms-when-your-domain-model-forks-itself-mobin-oewde",

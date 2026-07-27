@@ -5,7 +5,9 @@
   "excerpt": "The Challenge of Legacy Sorting Methods",
   "date": "2024-12-11",
   "tags": [
-    "My Experience"
+    "My Experience",
+    "Design Patterns",
+    "Clean Code"
   ],
   "readingTime": "3 min",
   "url": "https://medium.com/@mobinshaterian/refactoring-if-strategies-transforming-legacy-code-for-modern-e-commerce-platforms-3be0717570b4",

@@ -8,7 +8,8 @@
     "Kafka",
     "ClickHouse",
     "Docker",
-    "Performance"
+    "Performance",
+    "Data Engineering"
   ],
   "readingTime": "3 min",
   "url": "https://medium.com/@mobinshaterian/real-time-data-ingestion-connecting-distributed-kafka-to-clickhouse-in-docker-1e29e0b0f665",

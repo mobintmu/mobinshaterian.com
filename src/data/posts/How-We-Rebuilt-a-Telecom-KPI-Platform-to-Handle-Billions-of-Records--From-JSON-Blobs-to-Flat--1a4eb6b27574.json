@@ -5,7 +5,9 @@
   "excerpt": "Background",
   "date": "2026-05-26",
   "tags": [
-    "Data Engineering"
+    "Data Engineering",
+    "ClickHouse",
+    "Kafka"
   ],
   "readingTime": "7 min",
   "url": "https://medium.com/@mobinshaterian/how-we-rebuilt-a-telecom-kpi-platform-to-handle-billions-of-records-from-json-blobs-to-flat-1a4eb6b27574",

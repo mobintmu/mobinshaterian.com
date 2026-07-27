@@ -13,7 +13,8 @@
     "Machine Learning",
     "TDD",
     "Unit",
-    "Integration"
+    "Integration",
+    "Redis"
   ],
   "readingTime": "14 min",
   "url": "https://medium.com/@mobinshaterian/how-write-a-unit-test-integration-test-and-performance-test-for-the-golang-language-a25ccef115f4",
