@@ -99,11 +99,9 @@ type Post = {
 };
 
 function HomePage() {
-  const sortedPosts = [...(posts as Post[])]
-    .sort((a, b): number => {
-      return a.date === b.date ? a.slug.localeCompare(b.slug) : a.date < b.date ? 1 : -1;
-    })
-    .slice(0, 6);
+  const writingPosts = profile.writingSlugs
+    .map((slug) => (posts as Post[]).find((post) => post.slug === slug))
+    .filter((post): post is Post => Boolean(post));
 
   return (
     <div className="min-h-screen bg-background text-foreground font-sans">
@@ -111,7 +109,7 @@ function HomePage() {
       <Hero />
       <main className="mx-auto max-w-5xl px-6 pb-24">
         <About />
-        <Writing posts={sortedPosts} />
+        <Writing posts={writingPosts} />
         <Featured />
         <ExperiencePreview />
         <Skills />
