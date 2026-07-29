@@ -24,12 +24,12 @@ const hero = $('meta[property="og:image"]').attr("content") || null;
 const schema = JSON.parse($('script[type="application/ld+json"]').first().text() || "{}");
 const date = String(schema.datePublished || "").slice(0, 10);
 const readingTime =
-  $('meta[name="twitter:data2"]').attr("content")?.replace(/\s+read$/, "") || "1 min";
+  $('meta[name="twitter:data2"]')
+    .attr("content")
+    ?.replace(/\s+read$/, "") || "1 min";
 const slugPart = new URL(canonical).pathname.split("/").filter(Boolean).at(-1) || "";
 const articleId = slugPart.split("-").at(-1) || "linkedin";
-const slug = `${title
-  .replace(/[^a-zA-Z0-9]/g, "-")
-  .replace(/^-|-$/g, "")}-${articleId}`;
+const slug = `${title.replace(/[^a-zA-Z0-9]/g, "-").replace(/^-|-$/g, "")}-${articleId}`;
 
 function inlineHtml(element) {
   const clone = $(element).clone();
@@ -54,7 +54,12 @@ function inlineHtml(element) {
       $(node).attr("target", "_blank").attr("rel", "noreferrer noopener");
     }
   });
-  return clone.html()?.trim() || "";
+  return (
+    clone
+      .html()
+      ?.replace(/<!---->/g, "")
+      .trim() || ""
+  );
 }
 
 const blocks = [];

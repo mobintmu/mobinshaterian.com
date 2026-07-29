@@ -60,6 +60,16 @@
       <category>Integration</category>
     </item>
     <item>
+      <title>Git Reset: Recovering From Unstable AI Code Contributions</title>
+      <link>https://mobinshaterian.com/blog/Git-Reset--Recovering-From-Unstable-AI-Code-Contributions-tt4ze</link>
+      <guid isPermaLink="true">https://mobinshaterian.com/blog/Git-Reset--Recovering-From-Unstable-AI-Code-Contributions-tt4ze</guid>
+      <pubDate>Mon, 20 Jul 2026 00:00:00 GMT</pubDate>
+      <description>The rise of AI-powered development and &quot;vibe coding&quot; has dramatically changed how we build software. Today, tools like GitHub Copilot, ChatGPT, Claude, Cursor, and other AI assistants can generate features, fix bugs, an…</description>
+      <category>git</category>
+      <category>ai</category>
+      <category>devops</category>
+    </item>
+    <item>
       <title>Deploying a Lovable (TanStack Start) App with GitHub Actions — the Real Story</title>
       <link>https://mobinshaterian.com/blog/Deploying-a-Lovable--TanStack-Start--App-with-GitHub-Actions---the-Real-Story-272he</link>
       <guid isPermaLink="true">https://mobinshaterian.com/blog/Deploying-a-Lovable--TanStack-Start--App-with-GitHub-Actions---the-Real-Story-272he</guid>
@@ -477,16 +487,6 @@
       <description>Redis provides a distributed lock for Kubernetes to manage concurrency and prevent race conditions in scheduled tasks.</description>
       <category>Redis</category>
       <category>Kubernetes</category>
-    </item>
-    <item>
-      <title>Eliminating Code Duplication in Go with go:generate: A Practical Guide</title>
-      <link>https://mobinshaterian.com/blog/Eliminating-Code-Duplication-in-Go-with-go-generate--A-Practical-Guide-13d40dfa6df1</link>
-      <guid isPermaLink="true">https://mobinshaterian.com/blog/Eliminating-Code-Duplication-in-Go-with-go-generate--A-Practical-Guide-13d40dfa6df1</guid>
-      <pubDate>Tue, 02 Dec 2025 00:00:00 GMT</pubDate>
-      <description>When building data-intensive applications in Go, you often find yourself writing repetitive boilerplate code.</description>
-      <category>Go</category>
-      <category>GraphQL</category>
-      <category>Clean Code</category>
     </item>
   </channel>
 </rss>

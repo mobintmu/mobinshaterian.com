@@ -73,6 +73,20 @@
     "hero": "https://miro.medium.com/v2/resize:fit:1200/1*4lkbdotQol7xSmM-gExbxA.png"
   },
   {
+    "slug": "Git-Reset--Recovering-From-Unstable-AI-Code-Contributions-tt4ze",
+    "title": "Git Reset: Recovering From Unstable AI Code Contributions",
+    "excerpt": "The rise of AI-powered development and \"vibe coding\" has dramatically changed how we build software. Today, tools like GitHub Copilot, ChatGPT, Claude, Cursor, and other AI assistants can generate features, fix bugs, an…",
+    "date": "2026-07-20",
+    "tags": [
+      "git",
+      "ai",
+      "devops"
+    ],
+    "readingTime": "3 min",
+    "url": "https://www.linkedin.com/pulse/git-reset-recovering-from-unstable-ai-code-mobin-shaterian-tt4ze",
+    "hero": "https://media.licdn.com/dms/image/v2/D4E12AQEyjTVzpFXauQ/article-cover_image-shrink_720_1280/B4EZ91u3HkKoAQ-/0/1784386652691?e=2147483647&v=beta&t=AnHKbgNt7mNVd42XPyFroV1Na04aOXYjnd4stLZfxk8"
+  },
+  {
     "slug": "Deploying-a-Lovable--TanStack-Start--App-with-GitHub-Actions---the-Real-Story-272he",
     "title": "Deploying a Lovable (TanStack Start) App with GitHub Actions — the Real Story",
     "excerpt": "Deploying a Lovable (TanStack Start) App with GitHub Actions — the Real Story Lovable is a great way to scaffold a TanStack Start app fast. But the moment you want to ship it yourself — on your own domain, through your…",
