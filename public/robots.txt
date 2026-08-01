@@ -1,4 +1,5 @@
 User-agent: *
+Content-Signal: search=yes,ai-input=yes,ai-train=yes,use=full
 Allow: /
 
 Sitemap: https://mobinshaterian.com/sitemap.xml
