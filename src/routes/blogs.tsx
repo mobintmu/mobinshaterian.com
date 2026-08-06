@@ -102,7 +102,7 @@ function useSearchIndex() {
 
 function BlogsPage() {
   const { tag, q } = Route.useSearch();
-  const activeTag = tag || "Star";
+  const activeTag = tag || "All";
   const navigate = Route.useNavigate();
   const all = postsIndex as IndexEntry[];
   const loadMoreRef = useRef<HTMLDivElement>(null);
@@ -249,6 +249,22 @@ function BlogsPage() {
             filter by tag
           </div>
           <div className="flex flex-wrap gap-1.5">
+            <button
+              onClick={() =>
+                navigate({
+                  search: (prev: { tag: string; q: string }) => ({ ...prev, tag: "All" }),
+                  replace: true,
+                })
+              }
+              className={
+                "rounded border px-2 py-1 font-mono-plus text-xs transition-colors " +
+                (activeTag === "All"
+                  ? "border-terminal bg-terminal/10 text-terminal"
+                  : "border-border text-muted-foreground hover:border-terminal/50 hover:text-terminal")
+              }
+            >
+              all ({all.length})
+            </button>
             {starCount ? (
               <button
                 onClick={() =>
@@ -270,22 +286,6 @@ function BlogsPage() {
                 ★ star ({starCount})
               </button>
             ) : null}
-            <button
-              onClick={() =>
-                navigate({
-                  search: (prev: { tag: string; q: string }) => ({ ...prev, tag: "All" }),
-                  replace: true,
-                })
-              }
-              className={
-                "rounded border px-2 py-1 font-mono-plus text-xs transition-colors " +
-                (activeTag === "All"
-                  ? "border-terminal bg-terminal/10 text-terminal"
-                  : "border-border text-muted-foreground hover:border-terminal/50 hover:text-terminal")
-              }
-            >
-              all ({all.length})
-            </button>
             {otherTagCounts.map(([t, n]) => (
               <button
                 key={t}
