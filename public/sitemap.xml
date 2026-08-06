@@ -12,9 +12,15 @@
   </url>
   <url>
     <loc>https://mobinshaterian.com/blogs</loc>
-    <lastmod>2026-07-25</lastmod>
+    <lastmod>2026-08-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://mobinshaterian.com/blog/Architecting-an-Open-Source-Search-Engine--From-Algolia-Internals-to-Vector-Similarity-and-Qdrant-0423dad529fc</loc>
+    <lastmod>2026-08-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://mobinshaterian.com/blog/When-Your-Domain-Talks-to-Stripe--A-DDD-Cautionary-Tale-9b498a851a7d</loc>

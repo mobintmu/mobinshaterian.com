@@ -7,6 +7,17 @@
     <language>en</language>
     <atom:link href="https://mobinshaterian.com/feed.xml" rel="self" type="application/rss+xml"/>
     <item>
+      <title>Architecting an Open-Source Search Engine: From Algolia Internals to Vector Similarity and Qdrant</title>
+      <link>https://mobinshaterian.com/blog/Architecting-an-Open-Source-Search-Engine--From-Algolia-Internals-to-Vector-Similarity-and-Qdrant-0423dad529fc</link>
+      <guid isPermaLink="true">https://mobinshaterian.com/blog/Architecting-an-Open-Source-Search-Engine--From-Algolia-Internals-to-Vector-Similarity-and-Qdrant-0423dad529fc</guid>
+      <pubDate>Wed, 05 Aug 2026 00:00:00 GMT</pubDate>
+      <description>High-performance discovery platforms demand sub-50ms query latency, search-as-you-type prefix matching, real-time data synchronization, and semantic vector retrieval. Commercial SaaS solutions like Algolia have long dom…</description>
+      <category>Search Engine</category>
+      <category>Vector Search</category>
+      <category>Qdrant</category>
+      <category>System Design</category>
+    </item>
+    <item>
       <title>When Your Domain Talks to Stripe, A DDD Cautionary Tale</title>
       <link>https://mobinshaterian.com/blog/When-Your-Domain-Talks-to-Stripe--A-DDD-Cautionary-Tale-9b498a851a7d</link>
       <guid isPermaLink="true">https://mobinshaterian.com/blog/When-Your-Domain-Talks-to-Stripe--A-DDD-Cautionary-Tale-9b498a851a7d</guid>
@@ -478,15 +489,6 @@
       <pubDate>Wed, 03 Dec 2025 00:00:00 GMT</pubDate>
       <description>Scale one-to-many rsync using a concurrent fan-out script or a staged mirroring hierarchy to ensure speed and consistency.</description>
       <category>Performance</category>
-    </item>
-    <item>
-      <title>Preventing Race Conditions in Kubernetes Applications with Redis Locks</title>
-      <link>https://mobinshaterian.com/blog/Preventing-Race-Conditions-in-Kubernetes-Applications-with-Redis-Locks-7da00ec8c8dd</link>
-      <guid isPermaLink="true">https://mobinshaterian.com/blog/Preventing-Race-Conditions-in-Kubernetes-Applications-with-Redis-Locks-7da00ec8c8dd</guid>
-      <pubDate>Wed, 03 Dec 2025 00:00:00 GMT</pubDate>
-      <description>Redis provides a distributed lock for Kubernetes to manage concurrency and prevent race conditions in scheduled tasks.</description>
-      <category>Redis</category>
-      <category>Kubernetes</category>
     </item>
   </channel>
 </rss>

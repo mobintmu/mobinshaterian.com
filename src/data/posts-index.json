@@ -1,5 +1,20 @@
 [
   {
+    "slug": "Architecting-an-Open-Source-Search-Engine--From-Algolia-Internals-to-Vector-Similarity-and-Qdrant-0423dad529fc",
+    "title": "Architecting an Open-Source Search Engine: From Algolia Internals to Vector Similarity and Qdrant",
+    "excerpt": "High-performance discovery platforms demand sub-50ms query latency, search-as-you-type prefix matching, real-time data synchronization, and semantic vector retrieval. Commercial SaaS solutions like Algolia have long dom…",
+    "date": "2026-08-05",
+    "tags": [
+      "Search Engine",
+      "Vector Search",
+      "Qdrant",
+      "System Design"
+    ],
+    "readingTime": "9 min",
+    "url": "https://mobinshaterian.medium.com/architecting-an-open-source-search-engine-from-algolia-internals-to-vector-similarity-and-qdrant-0423dad529fc",
+    "hero": "https://miro.medium.com/v2/resize:fit:700/1*cTAf107dLVSOvdtPndUe9g.png"
+  },
+  {
     "slug": "When-Your-Domain-Talks-to-Stripe--A-DDD-Cautionary-Tale-9b498a851a7d",
     "title": "When Your Domain Talks to Stripe, A DDD Cautionary Tale",
     "excerpt": "A real-world dissection of a circular dependency in a billing module, and how Domain-Driven Design gives you the vocabulary — and the tools…",
