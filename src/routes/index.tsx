@@ -45,7 +45,7 @@ export const Route = createFileRoute("/")({
               "@id": `${SITE_URL}/#person`,
               name: SITE_NAME,
               url: SITE_URL,
-              image: absoluteUrl("/mobin.jpg"),
+              image: absoluteUrl("/logo.jpg"),
               jobTitle: "Senior Software Engineer",
               description: HOME_DESCRIPTION,
               email: `mailto:${profile.email}`,

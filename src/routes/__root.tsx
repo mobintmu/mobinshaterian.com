@@ -106,7 +106,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:image", content: DEFAULT_SOCIAL_IMAGE },
       {
         property: "og:image:alt",
-        content: "Mobin Shaterian, senior software engineer and Go developer",
+        content: "Mobin Shaterian monogram logo",
       },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: HOME_TITLE },
@@ -114,13 +114,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "twitter:image", content: DEFAULT_SOCIAL_IMAGE },
       {
         name: "twitter:image:alt",
-        content: "Mobin Shaterian, senior software engineer and Go developer",
+        content: "Mobin Shaterian monogram logo",
       },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
       { rel: "icon", href: "/favicon.ico", sizes: "any" },
-      { rel: "apple-touch-icon", href: "/favicon.jpeg" },
+      { rel: "icon", href: "/favicon-32x32.png", type: "image/png", sizes: "32x32" },
+      { rel: "apple-touch-icon", href: "/apple-touch-icon.png", sizes: "180x180" },
       {
         rel: "alternate",
         href: "/feed.xml",

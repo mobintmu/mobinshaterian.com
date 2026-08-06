@@ -1,6 +1,6 @@
 export const SITE_URL = "https://mobinshaterian.com";
 export const SITE_NAME = "Mobin Shaterian";
-export const DEFAULT_SOCIAL_IMAGE = `${SITE_URL}/mobin.jpg`;
+export const DEFAULT_SOCIAL_IMAGE = `${SITE_URL}/logo.jpg`;
 
 export const HOME_TITLE = "Mobin Shaterian | Senior Software Engineer & Go Developer";
 export const HOME_DESCRIPTION =
@@ -30,7 +30,7 @@ export function websiteMeta({
   description,
   path,
   image = DEFAULT_SOCIAL_IMAGE,
-  imageAlt = `${SITE_NAME}, senior software engineer and Go developer`,
+  imageAlt = `${SITE_NAME} monogram logo`,
 }: {
   title: string;
   description: string;
