@@ -20,6 +20,7 @@ import {
   absoluteUrl,
   cleanDescription,
 } from "@/lib/seo";
+import { BLOG_TAGS, blogTagSearchValue } from "@/lib/blog-tags";
 
 type IndexEntry = {
   slug: string;
@@ -38,15 +39,6 @@ type FullPost = IndexEntry & {
 };
 
 const postModules = import.meta.glob("@/data/posts/*.json");
-
-const allTags = Array.from(
-  (postsIndex as IndexEntry[]).reduce((counts, article) => {
-    for (const tag of article.tags) {
-      counts.set(tag, (counts.get(tag) ?? 0) + 1);
-    }
-    return counts;
-  }, new Map<string, number>()),
-).sort(([tagA], [tagB]) => tagA.localeCompare(tagB));
 
 async function loadPost(slug: string): Promise<FullPost | null> {
   const key = Object.keys(postModules).find((k) => k.endsWith(`/${slug}.json`));
@@ -353,14 +345,14 @@ function BlogPostPage() {
             </h2>
           </div>
           <div className="flex flex-wrap gap-1.5">
-            {allTags.map(([tag, count]) => (
+            {BLOG_TAGS.map((tag) => (
               <Link
-                key={tag}
+                key={tag.name}
                 to="/blogs"
-                search={{ tag, q: "" }}
+                search={{ tag: blogTagSearchValue(tag.name), q: "" }}
                 className="rounded border border-border px-2 py-1 font-mono-plus text-[11px] text-muted-foreground transition-colors hover:border-terminal/50 hover:text-terminal"
               >
-                #{tag} <span className="text-[10px] opacity-70">({count})</span>
+                #{tag.name} <span className="text-[10px] opacity-70">({tag.count})</span>
               </Link>
             ))}
           </div>

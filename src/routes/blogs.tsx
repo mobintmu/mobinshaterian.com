@@ -8,6 +8,7 @@ import postsIndex from "@/data/posts-index.json";
 import profile from "@/data/profile.json";
 import { ArrowLeft, Search, Tag as TagIcon, FileJson } from "lucide-react";
 import { BLOG_DESCRIPTION, BLOG_TITLE, SITE_URL, absoluteUrl, websiteMeta } from "@/lib/seo";
+import { ALL_BLOG_TAG, BLOG_TAGS, blogTagLabel, blogTagSearchValue } from "@/lib/blog-tags";
 
 type IndexEntry = {
   slug: string;
@@ -102,7 +103,7 @@ function useSearchIndex() {
 
 function BlogsPage() {
   const { tag, q } = Route.useSearch();
-  const activeTag = tag || "All";
+  const activeTag = tag || ALL_BLOG_TAG;
   const navigate = Route.useNavigate();
   const all = postsIndex as IndexEntry[];
   const loadMoreRef = useRef<HTMLDivElement>(null);
@@ -112,17 +113,6 @@ function BlogsPage() {
   useEffect(() => {
     if (q.trim()) load();
   }, [q, load]);
-
-  const { starCount, otherTagCounts } = useMemo(() => {
-    const c = new Map<string, number>();
-    for (const p of all) for (const t of p.tags) c.set(t, (c.get(t) ?? 0) + 1);
-    return {
-      starCount: c.get("Star") ?? 0,
-      otherTagCounts: [...c.entries()]
-        .filter(([name]) => name !== "Star")
-        .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0])),
-    };
-  }, [all]);
 
   const matchedSlugs = useMemo(() => {
     const needle = q.trim();
@@ -134,7 +124,7 @@ function BlogsPage() {
 
   const filtered = useMemo(() => {
     return all
-      .filter((p) => (activeTag === "All" ? true : p.tags.includes(activeTag)))
+      .filter((p) => (activeTag === ALL_BLOG_TAG ? true : p.tags.includes(activeTag)))
       .filter((p) => (matchedSlugs ? matchedSlugs.has(p.slug) : true))
       .sort((a, b) =>
         a.date === b.date ? a.slug.localeCompare(b.slug) : a.date < b.date ? 1 : -1,
@@ -197,7 +187,7 @@ function BlogsPage() {
           <h1 className="mt-2 text-3xl font-semibold tracking-tight md:text-4xl">Blog archive</h1>
           <p className="mt-2 text-sm text-muted-foreground">
             {filtered.length} of {all.length} articles
-            {activeTag !== "All" ? (
+            {activeTag !== ALL_BLOG_TAG ? (
               <>
                 {" "}
                 tagged <span className="font-mono-plus text-terminal">#{activeTag}</span>
@@ -249,63 +239,26 @@ function BlogsPage() {
             filter by tag
           </div>
           <div className="flex flex-wrap gap-1.5">
-            <button
-              onClick={() =>
-                navigate({
-                  search: (prev: { tag: string; q: string }) => ({ ...prev, tag: "All" }),
-                  replace: true,
-                })
-              }
-              className={
-                "rounded border px-2 py-1 font-mono-plus text-xs transition-colors " +
-                (activeTag === "All"
-                  ? "border-terminal bg-terminal/10 text-terminal"
-                  : "border-border text-muted-foreground hover:border-terminal/50 hover:text-terminal")
-              }
-            >
-              all ({all.length})
-            </button>
-            {starCount ? (
+            {BLOG_TAGS.map((tagOption) => (
               <button
+                key={tagOption.name}
                 onClick={() =>
                   navigate({
                     search: (prev: { tag: string; q: string }) => ({
                       ...prev,
-                      tag: "Star",
+                      tag: tagOption.name === activeTag ? "" : blogTagSearchValue(tagOption.name),
                     }),
                     replace: true,
                   })
                 }
                 className={
                   "rounded border px-2 py-1 font-mono-plus text-xs transition-colors " +
-                  (activeTag === "Star"
+                  (activeTag === tagOption.name
                     ? "border-terminal bg-terminal/10 text-terminal"
                     : "border-border text-muted-foreground hover:border-terminal/50 hover:text-terminal")
                 }
               >
-                ★ star ({starCount})
-              </button>
-            ) : null}
-            {otherTagCounts.map(([t, n]) => (
-              <button
-                key={t}
-                onClick={() =>
-                  navigate({
-                    search: (prev: { tag: string; q: string }) => ({
-                      ...prev,
-                      tag: t === activeTag ? "" : t,
-                    }),
-                    replace: true,
-                  })
-                }
-                className={
-                  "rounded border px-2 py-1 font-mono-plus text-xs transition-colors " +
-                  (activeTag === t
-                    ? "border-terminal bg-terminal/10 text-terminal"
-                    : "border-border text-muted-foreground hover:border-terminal/50 hover:text-terminal")
-                }
-              >
-                {t} ({n})
+                {blogTagLabel(tagOption)}
               </button>
             ))}
           </div>
