@@ -44,7 +44,7 @@
     },
     {
       "type": "paragraph",
-      "html": "In the legacy architecture, the database performs heavy table joins across <code>users<em>user</code>, <code>users</em>user<em>groups</code>, <code>auth</em>group</code>, and <code>auth_permission</code> on every request."
+      "html": "In the legacy architecture, the database performs heavy table joins across <code>users_user</code>, <code>users_user_groups</code>, <code>auth_group</code>, and <code>auth_permission</code> on every request."
     },
     {
       "type": "paragraph",
@@ -53,7 +53,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "========================================================================================================\n DECISION & DATA FLOW ARCHITECTURE\n========================================================================================================\n[ 1. LEGACY MONOLITH DATABASE ]\n ┌────────────────────────────────────────────────────────┐\n │ PostgreSQL / MySQL │\n │ Tables: users_user, users_user_groups, auth_group... │\n └───────────────────────────┬────────────────────────────┘\n │\n │ Phase 1 SQL Query (Aggregated JSON)\n ▼\n [ 2. ETL SYNC ENGINE / CRON WORKER ]\n ┌────────────────────────────────────────────────────────┐\n │ Extracts user profiles, groups, and permissions │\n │ Transforms into Keycloak JSON & OpenFGA Tuples │\n └───────────────┬────────────────────────┬───────────────┘\n │ │\n Phase 2 Sync │ │ Phase 3 Sync\n (HTTP REST) │ │ (HTTP REST)\n ▼ ▼\n [ KEYCLOAK IDENTITY PROVIDER ] [ OPENFGA AUTHORIZATION ENGINE ]\n ┌────────────────────────────┐ ┌──────────────────────────────┐\n │ - User Credentials │ │ - Relationship Graph (ReBAC) │\n │ - Profile Attributes │ │ - Fine-Grained Permissions │\n │ - Global Realm Roles │ │ - Object/Resource Mapping │\n └───────────────┬────────────┘ └──────────────┬───────────────┘\n │ │\n Authenticates │ │ Checks Permission\n & Issues JWT │ │ (openfga.check)\n ▼ ▼\n ========================================================\n [ 3. APPLICATION BACKEND / MICROSERVICES API MIDDLEWARE ]\n ========================================================",
+      "code": "DECISION & DATA FLOW ARCHITECTURE\n\n┌──────────────────────────────────────────────────────────────────────┐\n│ 1. LEGACY MONOLITH DATABASE                                          │\n├──────────────────────────────────────────────────────────────────────┤\n│ PostgreSQL / MySQL                                                   │\n│ Tables: users_user, users_user_groups, auth_group, auth_permission   │\n└──────────────────────────────────┬───────────────────────────────────┘\n                                   │ Phase 1: aggregated JSON query\n                                   ▼\n┌──────────────────────────────────────────────────────────────────────┐\n│ 2. ETL SYNC ENGINE / CRON WORKER                                    │\n├──────────────────────────────────────────────────────────────────────┤\n│ • Extract user profiles, groups, and permissions                    │\n│ • Transform into Keycloak JSON and OpenFGA tuples                   │\n└───────────────────┬────────────────────────────────┬─────────────────┘\n                    │ Phase 2: HTTP REST             │ Phase 3: HTTP REST\n                    ▼                                ▼\n┌────────────────────────────────┐  ┌──────────────────────────────────┐\n│ KEYCLOAK IDENTITY PROVIDER     │  │ OPENFGA AUTHORIZATION ENGINE     │\n├────────────────────────────────┤  ├──────────────────────────────────┤\n│ • User credentials             │  │ • Relationship graph (ReBAC)    │\n│ • Profile attributes           │  │ • Fine-grained permissions      │\n│ • Global realm roles           │  │ • Object/resource mapping       │\n└────────────────┬───────────────┘  └─────────────────┬────────────────┘\n                 │ Authenticate and issue JWT         │ Check permission\n                 └──────────────────┬──────────────────┘\n                                    ▼\n┌──────────────────────────────────────────────────────────────────────┐\n│ 3. APPLICATION BACKEND / MICROSERVICES API MIDDLEWARE               │\n└──────────────────────────────────────────────────────────────────────┘",
       "preserveWhitespace": true
     },
     {
@@ -80,7 +80,7 @@
     },
     {
       "type": "paragraph",
-      "html": "Using PostgreSQL JSON functions (<code>jsonb<em>build</em>object</code>, <code>jsonb_agg</code>), this query collapses raw relational joins into one clean, aggregated row per user."
+      "html": "Using PostgreSQL JSON functions (<code>jsonb_build_object</code>, <code>jsonb_agg</code>), this query collapses raw relational joins into one clean, aggregated row per user."
     },
     {
       "type": "heading",
@@ -103,11 +103,11 @@
     {
       "type": "code",
       "lang": "bash",
-      "code": "curl -X POST \"http://<KEYCLOAK_HOST>/admin/realms/<YOUR_REALM>/partialImport\" \\\n -H \"Authorization: Bearer <ACCESS_TOKEN>\" \\\n -H \"Content-Type: application/json\" \\\n -d '{\n \"ifResourceExists\": \"OVERWRITE\",\n \"users\": [\n {\n \"username\": \"user@example.com\",\n \"email\": \"user@example.com\",\n \"enabled\": true,\n \"emailVerified\": true,\n \"attributes\": { \"is_staff\": [\"false\"] },\n \"realmRoles\": [\"Generic sdm\", \"TicketingUser\"]\n }\n ]\n }'"
+      "code": "curl -X POST \"http://<KEYCLOAK_HOST>/admin/realms/<YOUR_REALM>/partialImport\" \\\n  -H \"Authorization: Bearer <ACCESS_TOKEN>\" \\\n  -H \"Content-Type: application/json\" \\\n  -d '{\n    \"ifResourceExists\": \"OVERWRITE\",\n    \"users\": [\n      {\n        \"username\": \"user@example.com\",\n        \"email\": \"user@example.com\",\n        \"enabled\": true,\n        \"emailVerified\": true,\n        \"attributes\": {\n          \"is_staff\": [\n            \"false\"\n          ]\n        },\n        \"realmRoles\": [\n          \"Generic sdm\",\n          \"TicketingUser\"\n        ]\n      }\n    ]\n  }'"
     },
     {
       "type": "quote",
-      "html": "<strong><em>Credential Note:</em></strong><em>Passwords are not directly exported in plain text from Django. During initial user migration, users should be imported with temporary credentials or forced to reset passwords on their first OIDC login attempt (</em><code>requiredActions: [&quot;UPDATE<em>PASSWORD&quot;]</code></em>)._"
+      "html": "<strong><em>Credential Note:</em></strong> <em>Passwords are not directly exported in plain text from Django. During initial user migration, users should be imported with temporary credentials or forced to reset passwords on their first OIDC login attempt (<code>requiredActions: [&quot;UPDATE_PASSWORD&quot;]</code>).</em>"
     },
     {
       "type": "heading",
@@ -126,7 +126,7 @@
     {
       "type": "code",
       "lang": "text",
-      "code": "model\n schema 1.1\ntype user\ntype role\n relations\n define member: [user]\ntype feature\n relations\n define viewer: [user, role#member]\n define creator: [user, role#member]\ndefine can_view_ticket: viewer\n define can_instantiate: creator"
+      "code": "model\n  schema 1.1\ntype user\ntype role\n  relations\n    define member: [user]\ntype feature\n  relations\n    define viewer: [user, role#member]\n    define creator: [user, role#member]\n    define can_view_ticket: viewer\n    define can_instantiate: creator"
     },
     {
       "type": "heading",
@@ -140,7 +140,7 @@
     {
       "type": "code",
       "lang": "bash",
-      "code": "curl -X POST \"http://<OPENFGA_HOST>:8080/stores/<STORE_ID>/write\" \\\n -H \"Content-Type: application/json\" \\\n -d '{\n \"authorization_model_id\": \"<MODEL_ID>\",\n \"writes\": {\n \"tuple_keys\": [\n {\n \"user\": \"user:user@example.com\",\n \"relation\": \"member\",\n \"object\": \"role:generic_sdm\"\n },\n {\n \"user\": \"role:generic_sdm#member\",\n \"relation\": \"viewer\",\n \"object\": \"feature:view_ticket\"\n }\n ]\n }\n }'"
+      "code": "curl -X POST \"http://<OPENFGA_HOST>:8080/stores/<STORE_ID>/write\" \\\n  -H \"Content-Type: application/json\" \\\n  -d '{\n    \"authorization_model_id\": \"<MODEL_ID>\",\n    \"writes\": {\n      \"tuple_keys\": [\n        {\n          \"user\": \"user:user@example.com\",\n          \"relation\": \"member\",\n          \"object\": \"role:generic_sdm\"\n        },\n        {\n          \"user\": \"role:generic_sdm#member\",\n          \"relation\": \"viewer\",\n          \"object\": \"feature:view_ticket\"\n        }\n      ]\n    }\n  }'"
     },
     {
       "type": "heading",
@@ -159,7 +159,7 @@
     {
       "type": "code",
       "lang": "python",
-      "code": "import os\nimport requests\nimport psycopg2\nfrom psycopg2.extras import RealDictCursor\ndef run_iam_etl_sync():\n conn = psycopg2.connect(os.getenv(\"DATABASE_URL\"))\n with conn.cursor(cursor_factory=RealDictCursor) as cursor:\n cursor.execute(\"... Phase 1 SQL Query ...\")\n records = cursor.fetchall()\n keycloak_users = []\n openfga_writes = []\n for row in records:\n keycloak_users.append(row[\"keycloak_payload\"])\n openfga_writes.extend(row[\"openfga_tuples\"])\n kc_token = get_keycloak_admin_token()\n requests.post(\n f\"{os.getenv('KEYCLOAK_HOST')}/admin/realms/{os.getenv('REALM')}/partialImport\",\n json={\"ifResourceExists\": \"OVERWRITE\", \"users\": keycloak_users},\n headers={\"Authorization\": f\"Bearer {kc_token}\"}\n )\n for i in range(0, len(openfga_writes), 100):\n batch = openfga_writes[i:i + 100]\n requests.post(\n f\"{os.getenv('OPENFGA_HOST')}/stores/{os.getenv('STORE_ID')}/write\",\n json={\"writes\": {\"tuple_keys\": batch}}\n )\nif __name__ == \"__main__\":\n run_iam_etl_sync()"
+      "code": "import os\nimport requests\nimport psycopg2\nfrom psycopg2.extras import RealDictCursor\n\ndef run_iam_etl_sync():\n    conn = psycopg2.connect(os.getenv(\"DATABASE_URL\"))\n    with conn.cursor(cursor_factory=RealDictCursor) as cursor:\n        cursor.execute(\"... Phase 1 SQL Query ...\")\n        records = cursor.fetchall()\n    keycloak_users = []\n    openfga_writes = []\n    for row in records:\n        keycloak_users.append(row[\"keycloak_payload\"])\n        openfga_writes.extend(row[\"openfga_tuples\"])\n    kc_token = get_keycloak_admin_token()\n    requests.post(\n        f\"{os.getenv('KEYCLOAK_HOST')}/admin/realms/{os.getenv('REALM')}/partialImport\",\n        json={\"ifResourceExists\": \"OVERWRITE\", \"users\": keycloak_users},\n        headers={\"Authorization\": f\"Bearer {kc_token}\"}\n    )\n    for i in range(0, len(openfga_writes), 100):\n        batch = openfga_writes[i:i + 100]\n        requests.post(\n            f\"{os.getenv('OPENFGA_HOST')}/stores/{os.getenv('STORE_ID')}/write\",\n            json={\"writes\": {\"tuple_keys\": batch}}\n        )\n\nif __name__ == \"__main__\":\n    run_iam_etl_sync()"
     },
     {
       "type": "heading",
@@ -173,7 +173,7 @@
     {
       "type": "code",
       "lang": "yaml",
-      "code": "apiVersion: batch/v1\nkind: CronJob\nmetadata:\n name: iam-etl-sync\nspec:\n schedule: \"0 * * * *\"\n jobTemplate:\n spec:\n template:\n spec:\n containers:\n - name: sync-worker\n image: mycompany/iam-etl-worker:latest\n restartPolicy: OnFailure"
+      "code": "apiVersion: batch/v1\nkind: CronJob\nmetadata:\n  name: iam-etl-sync\nspec:\n  schedule: \"0 * * * *\"\n  jobTemplate:\n    spec:\n      template:\n        spec:\n          containers:\n            - name: sync-worker\n              image: mycompany/iam-etl-worker:latest\n          restartPolicy: OnFailure"
     },
     {
       "type": "heading",
@@ -187,7 +187,7 @@
     {
       "type": "code",
       "lang": "python",
-      "code": "# API Endpoint Permission Check\ndef check_user_permission(user_email: str, permission: str, resource: str) -> bool:\n response = requests.post(\n \"http://openfga:8080/stores/YOUR_STORE_ID/check\",\n json={\n \"tuple_key\": {\n \"user\": f\"user:{user_email}\",\n \"relation\": permission,\n \"object\": resource\n }\n }\n )\n return response.json().get(\"allowed\", False)\n# Usage in API middleware:\n# allowed = check_user_permission(\"user@example.com\", \"can_view_ticket\", \"feature:view_ticket\")"
+      "code": "# API Endpoint Permission Check\n\ndef check_user_permission(user_email: str, permission: str, resource: str) -> bool:\n    response = requests.post(\n        \"http://openfga:8080/stores/YOUR_STORE_ID/check\",\n        json={\n            \"tuple_key\": {\n                \"user\": f\"user:{user_email}\",\n                \"relation\": permission,\n                \"object\": resource\n            }\n        }\n    )\n    return response.json().get(\"allowed\", False)\n\n# Usage in API middleware:\n# allowed = check_user_permission(\"user@example.com\", \"can_view_ticket\", \"feature:view_ticket\")"
     },
     {
       "type": "image",
@@ -204,10 +204,10 @@
       "type": "list",
       "ordered": false,
       "items": [
-        "[x] <strong>Database Audit:</strong> Verified custom user table (<code>users<em>user</code>) and role structures (<code>users</em>user<em>groups</code>, <code>auth</em>group</code>).",
+        "[x] <strong>Database Audit:</strong> Verified custom user table (<code>users_user</code>) and role structures (<code>users_user_groups</code>, <code>auth_group</code>).",
         "[x] <strong>Extract (Phase 1):</strong> Executed aggregated JSON SQL query to prepare dual payloads.",
-        "[x] <strong>Load Keycloak (Phase 2):</strong> Imported users, profile attributes (<code>is_act</code>ive), and macro realm roles via Partial Import API.",
-        "[x] <strong>Load OpenFGA (Phase 3):</strong> Deployed DSL model and written relationship tuples (<code>member</code>, <code>can<em>view</em>ticket</code>).",
+        "[x] <strong>Load Keycloak (Phase 2):</strong> Imported users, profile attributes (<code>is_active</code>), and macro realm roles via Partial Import API.",
+        "[x] <strong>Load OpenFGA (Phase 3):</strong> Deployed DSL model and written relationship tuples (<code>member</code>, <code>can_view_ticket</code>).",
         "[x] <strong>Automation (Phase 4):</strong> Scheduled background sync worker (CronJob/Airflow) to keep authorization state synchronized until cutover"
       ]
     }

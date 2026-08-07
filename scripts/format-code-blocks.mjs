@@ -1,11 +1,14 @@
 #!/usr/bin/env node
+// Add --multiline to repair reader-extracted code whose indentation was flattened.
 import fs from "node:fs";
 import path from "node:path";
+import { formatReaderCode } from "./reader-code-formatter.mjs";
 
 const SOURCE_DIR = "src/data/posts";
 const PUBLIC_DIR = "public/data/posts";
 const shouldFix = process.argv.includes("--fix");
 const shouldPreview = process.argv.includes("--preview");
+const shouldFormatMultiline = process.argv.includes("--multiline");
 const fileFilter = process.argv.find((argument) => argument.startsWith("--file="))?.slice(7);
 const MAX_LINE_LENGTH = 100;
 
@@ -136,7 +139,9 @@ function restoreIndentRuns(source, indentWidth, exactOnly = false) {
     let end = index;
     while (source[end + 1] === " ") end++;
     const width = end - index + 1;
-    const isIndent = exactOnly ? width === indentWidth : width >= indentWidth && width % indentWidth === 0;
+    const isIndent = exactOnly
+      ? width === indentWidth
+      : width >= indentWidth && width % indentWidth === 0;
     output += isIndent ? `\n${" ".repeat(width)}` : " ".repeat(width);
     index = end;
   }
@@ -145,15 +150,23 @@ function restoreIndentRuns(source, indentWidth, exactOnly = false) {
 }
 
 function formatSimpleGoStructs(source) {
-  return source.replace(/(\b(?:type\s+\w+\s+)?struct\s*\{)([^{}]+)(\})/g, (match, opening, body, closing) => {
-    const fieldPattern = /([A-Za-z_]\w*)\s+((?:\*|\[\])*[A-Za-z_]\w*(?:\.[A-Za-z_]\w*)?(?:\[[^\]]+\])?(?:\s+`[^`]+`)?)/g;
-    const fields = [...body.matchAll(fieldPattern)];
-    if (fields.length < 2) return match;
-    const consumed = fields.map((field) => field[0]).join(" ").replace(/\s+/g, " ").trim();
-    const normalizedBody = body.replace(/\s+/g, " ").trim();
-    if (consumed !== normalizedBody) return match;
-    return `${opening}\n${fields.map((field) => `    ${field[1]} ${field[2]}`).join("\n")}\n${closing}`;
-  });
+  return source.replace(
+    /(\b(?:type\s+\w+\s+)?struct\s*\{)([^{}]+)(\})/g,
+    (match, opening, body, closing) => {
+      const fieldPattern =
+        /([A-Za-z_]\w*)\s+((?:\*|\[\])*[A-Za-z_]\w*(?:\.[A-Za-z_]\w*)?(?:\[[^\]]+\])?(?:\s+`[^`]+`)?)/g;
+      const fields = [...body.matchAll(fieldPattern)];
+      if (fields.length < 2) return match;
+      const consumed = fields
+        .map((field) => field[0])
+        .join(" ")
+        .replace(/\s+/g, " ")
+        .trim();
+      const normalizedBody = body.replace(/\s+/g, " ").trim();
+      if (consumed !== normalizedBody) return match;
+      return `${opening}\n${fields.map((field) => `    ${field[1]} ${field[2]}`).join("\n")}\n${closing}`;
+    },
+  );
 }
 
 function hardWrapLine(line, width = MAX_LINE_LENGTH, forceBreak = false) {
@@ -257,7 +270,10 @@ function formatCode(code, language) {
     source = restoreIndentRuns(source, 2);
   } else if (language === "python") {
     source = source
-      .replace(/(?<!^)(?=def\s+\w+\s*\(|class\s+\w+\s*[:(]|from\s+[\w.]+\s+import\s+|import\s+[\w.]+)/g, "\n")
+      .replace(
+        /(?<!^)(?=def\s+\w+\s*\(|class\s+\w+\s*[:(]|from\s+[\w.]+\s+import\s+|import\s+[\w.]+)/g,
+        "\n",
+      )
       .replace(/(?<! ) {4}(?! )/g, "\n    ");
   } else if (language === "dotenv") {
     source = source.replace(/(?<=[^\n])(?=[A-Z][A-Z0-9_]*=)/g, "\n");
@@ -268,7 +284,10 @@ function formatCode(code, language) {
   }
 
   return hardWrap(
-    source.replace(/[ \t]+\n/g, "\n").replace(/\n{3,}/g, "\n\n").trim(),
+    source
+      .replace(/[ \t]+\n/g, "\n")
+      .replace(/\n{3,}/g, "\n\n")
+      .trim(),
     language === "text",
   );
 }
@@ -290,8 +309,13 @@ for (const filename of fs.readdirSync(SOURCE_DIR).filter((name) => name.endsWith
   for (const block of post.content || []) {
     if (block.type !== "code" || typeof block.code !== "string") continue;
     blocksChecked++;
-    if (block.code.includes("\n")) continue;
-    const formatted = formatCode(block.code, block.lang);
+    const isMultiline = block.code.includes("\n");
+    if (isMultiline && !shouldFormatMultiline) continue;
+    const formatted = isMultiline
+      ? formatReaderCode(block.code, block.lang, {
+          preserveWhitespace: block.preserveWhitespace === true,
+        })
+      : formatCode(block.code, block.lang);
     if (formatted === block.code) continue;
     if (shouldPreview && previews.length < 8) {
       previews.push({ filename, language: block.lang, before: block.code, after: formatted });

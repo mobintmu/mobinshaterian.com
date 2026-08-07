@@ -6,6 +6,7 @@ import path from "node:path";
 import { execFileSync } from "node:child_process";
 import * as cheerio from "cheerio";
 import { detectCodeLanguage, supportedCodeLanguages } from "./code-language.mjs";
+import { formatReaderCode } from "./reader-code-formatter.mjs";
 
 const requestedUrl = process.argv[2];
 const tags = process.argv.slice(3);
@@ -206,16 +207,23 @@ function escapeHtml(value) {
 }
 
 function inlineMarkdown(value) {
-  return escapeHtml(value)
+  const codeTokens = [];
+  const withCodeTokens = value.replace(/`([^`]+)`/g, (_, code) => {
+    const token = `\u0000CODE${codeTokens.length}\u0000`;
+    codeTokens.push(`<code>${escapeHtml(code)}</code>`);
+    return token;
+  });
+  return escapeHtml(withCodeTokens)
     .replace(
       /\[([^\]]+)\]\((https?:\/\/[^\s)]+)(?:\s+&quot;[^&]*&quot;)?\)/g,
       '<a href="$2" target="_blank" rel="noreferrer noopener">$1</a>',
     )
-    .replace(/`([^`]+)`/g, "<code>$1</code>")
     .replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>")
     .replace(/__([^_]+)__/g, "<strong>$1</strong>")
     .replace(/(?<!\*)\*([^*]+)\*(?!\*)/g, "<em>$1</em>")
-    .replace(/(?<!_)_([^_]+)_(?!_)/g, "<em>$1</em>");
+    .replace(/(?<!_)_([^_]+)_(?!_)/g, "<em>$1</em>")
+    .replace(/\u0000CODE(\d+)\u0000/g, (_, index) => codeTokens[Number(index)])
+    .replace(/<code>([\w.:-]+)<\/code>([\w]+)/g, "<code>$1$2</code>");
 }
 
 function plainMarkdown(value) {
@@ -246,12 +254,15 @@ function blocksFromReader(markdown) {
     addPlain(text);
   };
   const addCodeBlock = (codeLines, language, preserveWhitespace = false) => {
-    const code = codeLines
+    const rawCode = codeLines
       .filter((codeLine) => codeLine.trim())
       .map((codeLine) => codeLine.trimEnd())
       .join("\n")
       .trimEnd();
-    if (!code) return;
+    if (!rawCode) return;
+    const code = formatReaderCode(rawCode, language || detectCodeLanguage(rawCode), {
+      preserveWhitespace,
+    });
     parsedBlocks.push({
       type: "code",
       lang: language || detectCodeLanguage(code),
