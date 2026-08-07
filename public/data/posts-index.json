@@ -1,5 +1,21 @@
 [
   {
+    "slug": "Architecting-Search-Engines--A-Deep-Dive-into-Meilisearch-Internals--Vector-Retrieval--and-Algolia-92779f29488e",
+    "title": "Architecting Search Engines: A Deep Dive into Meilisearch Internals, Vector Retrieval, and Algolia",
+    "excerpt": "The design of application search has undergone a fundamental transformation over the past decade. Traditionally, software architectures relied on either SQL relational string operations (LIKE '%term%') or heavy analytic…",
+    "date": "2026-08-06",
+    "tags": [
+      "Search Engine",
+      "Meilisearch",
+      "Vector Search",
+      "Algolia",
+      "System Design"
+    ],
+    "readingTime": "6 min",
+    "url": "https://towardsdev.com/architecting-search-engines-a-deep-dive-into-meilisearch-internals-vector-retrieval-and-algolia-92779f29488e",
+    "hero": "https://miro.medium.com/v2/resize:fit:700/1*LRIBa1TJtBRLvXTIE-StAw.png"
+  },
+  {
     "slug": "Architecting-an-Open-Source-Search-Engine--From-Algolia-Internals-to-Vector-Similarity-and-Qdrant-0423dad529fc",
     "title": "Architecting an Open-Source Search Engine: From Algolia Internals to Vector Similarity and Qdrant",
     "excerpt": "High-performance discovery platforms demand sub-50ms query latency, search-as-you-type prefix matching, real-time data synchronization, and semantic vector retrieval. Commercial SaaS solutions like Algolia have long dom…",

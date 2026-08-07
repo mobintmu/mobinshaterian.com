@@ -7,6 +7,18 @@
     <language>en</language>
     <atom:link href="https://mobinshaterian.com/feed.xml" rel="self" type="application/rss+xml"/>
     <item>
+      <title>Architecting Search Engines: A Deep Dive into Meilisearch Internals, Vector Retrieval, and Algolia</title>
+      <link>https://mobinshaterian.com/blog/Architecting-Search-Engines--A-Deep-Dive-into-Meilisearch-Internals--Vector-Retrieval--and-Algolia-92779f29488e</link>
+      <guid isPermaLink="true">https://mobinshaterian.com/blog/Architecting-Search-Engines--A-Deep-Dive-into-Meilisearch-Internals--Vector-Retrieval--and-Algolia-92779f29488e</guid>
+      <pubDate>Thu, 06 Aug 2026 00:00:00 GMT</pubDate>
+      <description>The design of application search has undergone a fundamental transformation over the past decade. Traditionally, software architectures relied on either SQL relational string operations (LIKE &apos;%term%&apos;) or heavy analytic…</description>
+      <category>Search Engine</category>
+      <category>Meilisearch</category>
+      <category>Vector Search</category>
+      <category>Algolia</category>
+      <category>System Design</category>
+    </item>
+    <item>
       <title>Architecting an Open-Source Search Engine: From Algolia Internals to Vector Similarity and Qdrant</title>
       <link>https://mobinshaterian.com/blog/Architecting-an-Open-Source-Search-Engine--From-Algolia-Internals-to-Vector-Similarity-and-Qdrant-0423dad529fc</link>
       <guid isPermaLink="true">https://mobinshaterian.com/blog/Architecting-an-Open-Source-Search-Engine--From-Algolia-Internals-to-Vector-Similarity-and-Qdrant-0423dad529fc</guid>
@@ -481,14 +493,6 @@
       <category>Docker Compose</category>
       <category>Data Engineering</category>
       <category>DevOps</category>
-    </item>
-    <item>
-      <title>Rsync from One Origin to Multiple Destinations: Strategies and Solutions 🔄</title>
-      <link>https://mobinshaterian.com/blog/Rsync-from-One-Origin-to-Multiple-Destinations--Strategies-and-Solutions----30fb79b4164d</link>
-      <guid isPermaLink="true">https://mobinshaterian.com/blog/Rsync-from-One-Origin-to-Multiple-Destinations--Strategies-and-Solutions----30fb79b4164d</guid>
-      <pubDate>Wed, 03 Dec 2025 00:00:00 GMT</pubDate>
-      <description>Scale one-to-many rsync using a concurrent fan-out script or a staged mirroring hierarchy to ensure speed and consistency.</description>
-      <category>Performance</category>
     </item>
   </channel>
 </rss>
