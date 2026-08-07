@@ -3,6 +3,7 @@
 // Usage: node scripts/import-medium-url.mjs <article-url> [tag ...]
 import fs from "node:fs";
 import path from "node:path";
+import { execFileSync } from "node:child_process";
 import * as cheerio from "cheerio";
 import { detectCodeLanguage, supportedCodeLanguages } from "./code-language.mjs";
 
@@ -14,29 +15,85 @@ if (!requestedUrl) {
   process.exit(1);
 }
 
-let articleHtml;
+let articleHtml = "";
+let readerMarkdown = "";
 if (/^https?:\/\//i.test(requestedUrl)) {
-  const response = await fetch(requestedUrl);
-  if (!response.ok) throw new Error(`Medium returned HTTP ${response.status}`);
-  articleHtml = await response.text();
+  let mediumError;
+  try {
+    const response = await fetch(requestedUrl);
+    if (response.ok) {
+      const responseHtml = await response.text();
+      const responsePage = cheerio.load(responseHtml);
+      if (
+        responsePage("h1.pw-post-title, h1").first().text().trim() &&
+        responsePage('meta[property="article:published_time"]').attr("content")
+      ) {
+        articleHtml = responseHtml;
+      } else {
+        mediumError = "response did not contain article markup";
+      }
+    } else mediumError = `HTTP ${response.status}`;
+  } catch (error) {
+    mediumError = error instanceof Error ? error.message : String(error);
+  }
+
+  if (!articleHtml) {
+    const readerUrl = `https://r.jina.ai/${requestedUrl}`;
+    console.warn(`Medium request failed (${mediumError}); trying Jina Reader.`);
+    try {
+      readerMarkdown = execFileSync(
+        "curl",
+        [
+          "--location",
+          "--fail-with-body",
+          "--silent",
+          "--show-error",
+          "--max-time",
+          "30",
+          readerUrl,
+        ],
+        { encoding: "utf8", maxBuffer: 20 * 1024 * 1024 },
+      );
+      if (
+        !/^Title: .+$/m.test(readerMarkdown) ||
+        !/^URL Source: https?:\/\/.+$/m.test(readerMarkdown) ||
+        !/^Published Time: .+$/m.test(readerMarkdown) ||
+        !/^Markdown Content:\s*$/m.test(readerMarkdown)
+      ) {
+        throw new Error("Jina Reader returned an unexpected response format");
+      }
+    } catch (error) {
+      const detail = error instanceof Error ? error.message : String(error);
+      throw new Error(`Could not retrieve the Medium article or Jina Reader fallback: ${detail}`);
+    }
+  }
 } else {
-  articleHtml = fs.readFileSync(requestedUrl, "utf8");
+  const fileContent = fs.readFileSync(requestedUrl, "utf8");
+  if (/^Title: .+\n\nURL Source:/m.test(fileContent)) readerMarkdown = fileContent;
+  else articleHtml = fileContent;
 }
 
 const $ = cheerio.load(articleHtml);
-const title = $("h1.pw-post-title").first().text().trim() || $("h1").first().text().trim();
-const canonical = $('link[rel="canonical"]').attr("href") || requestedUrl;
+const readerField = (name) =>
+  readerMarkdown.match(new RegExp(`^${name}: (.+)$`, "m"))?.[1]?.trim() || "";
+const title =
+  readerField("Title") ||
+  $("h1.pw-post-title").first().text().trim() ||
+  $("h1").first().text().trim();
+const canonical =
+  readerField("URL Source") || $('link[rel="canonical"]').attr("href") || requestedUrl;
 const articleId = new URL(canonical).pathname.match(/-([a-f0-9]{12})\/?$/i)?.[1] || "medium";
 const slug = `${title.replace(/[^a-zA-Z0-9]/g, "-").replace(/^-|-$/g, "")}-${articleId}`;
-const date = String($('meta[property="article:published_time"]').attr("content") || "").slice(
-  0,
-  10,
-);
-const hero = $('meta[property="og:image"]').attr("content") || null;
+const date = String(
+  readerField("Published Time") ||
+    $('meta[property="article:published_time"]').attr("content") ||
+    "",
+).slice(0, 10);
+let hero = $('meta[property="og:image"]').attr("content") || null;
 const description = $('meta[property="og:description"]').attr("content")?.trim() || "";
 const contentRoot = $("h1.pw-post-title").first().parent().parent();
 
-if (!title || !date || !contentRoot.length) {
+if (!title || !date || (!readerMarkdown && !contentRoot.length)) {
   throw new Error("Could not parse the Medium article metadata or content root");
 }
 
@@ -146,6 +203,164 @@ function escapeHtml(value) {
     .replaceAll(">", "&gt;")
     .replaceAll('"', "&quot;")
     .replaceAll("'", "&#39;");
+}
+
+function inlineMarkdown(value) {
+  return escapeHtml(value)
+    .replace(
+      /\[([^\]]+)\]\((https?:\/\/[^\s)]+)(?:\s+&quot;[^&]*&quot;)?\)/g,
+      '<a href="$2" target="_blank" rel="noreferrer noopener">$1</a>',
+    )
+    .replace(/`([^`]+)`/g, "<code>$1</code>")
+    .replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>")
+    .replace(/__([^_]+)__/g, "<strong>$1</strong>")
+    .replace(/(?<!\*)\*([^*]+)\*(?!\*)/g, "<em>$1</em>")
+    .replace(/(?<!_)_([^_]+)_(?!_)/g, "<em>$1</em>");
+}
+
+function plainMarkdown(value) {
+  return cheerio
+    .load(`<body>${inlineMarkdown(value)}</body>`)("body")
+    .text()
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function blocksFromReader(markdown) {
+  const body = markdown.split(/^Markdown Content:\s*$/m).at(-1) || "";
+  const lines = body.split(/\r?\n/);
+  const parsedBlocks = [];
+  const parsedPlain = [];
+  let paragraph = [];
+  let started = false;
+
+  const addPlain = (value) => {
+    const text = plainMarkdown(value);
+    if (text) parsedPlain.push(text);
+  };
+  const flushParagraph = () => {
+    const text = paragraph.join(" ").trim();
+    paragraph = [];
+    if (!text) return;
+    parsedBlocks.push({ type: "paragraph", html: inlineMarkdown(text) });
+    addPlain(text);
+  };
+
+  for (let index = 0; index < lines.length; index++) {
+    const line = lines[index].trim();
+
+    if (!started) {
+      if (
+        !line ||
+        /^\[!\[/.test(line) ||
+        /^\d+ min read$/.test(line) ||
+        /^(?:\d+\s+)?(?:minutes?|hours?|days?|weeks?|months?|years?) ago$/i.test(line)
+      ) {
+        continue;
+      }
+      started = true;
+    }
+
+    if (!line || line === "Press enter or click to view image in full size") {
+      flushParagraph();
+      continue;
+    }
+
+    if (
+      /^## Get .+ stories in your inbox$/i.test(line) ||
+      /^Join Medium for free to get updates from this writer\.?$/i.test(line) ||
+      /^Remember me for faster sign in$/i.test(line)
+    ) {
+      flushParagraph();
+      continue;
+    }
+
+    const fence = line.match(/^```\s*([^\s`]*)/);
+    if (fence) {
+      flushParagraph();
+      const codeLines = [];
+      for (index++; index < lines.length && !/^```\s*$/.test(lines[index].trim()); index++) {
+        codeLines.push(lines[index]);
+      }
+      const code = codeLines.join("\n").trimEnd();
+      if (code) {
+        const declaredLanguage = fence[1].toLowerCase();
+        parsedBlocks.push({
+          type: "code",
+          lang: supportedCodeLanguages.has(declaredLanguage)
+            ? declaredLanguage
+            : detectCodeLanguage(code),
+          code,
+        });
+        parsedPlain.push(code);
+      }
+      continue;
+    }
+
+    const image = line.match(/^!\[([^\]]*)\]\((https?:\/\/[^\s)]+)(?:\s+"[^"]*")?\)$/);
+    if (image) {
+      flushParagraph();
+      const alt = image[1].replace(/^Image \d+:?\s*/, "").trim();
+      if (!hero) hero = image[2];
+      parsedBlocks.push({ type: "image", src: image[2], alt: alt || title, caption: "" });
+      continue;
+    }
+
+    const heading = line.match(/^(#{2,3})\s+(.+)$/);
+    if (heading) {
+      flushParagraph();
+      const text = plainMarkdown(heading[2]);
+      parsedBlocks.push({ type: "heading", level: heading[1].length === 2 ? 2 : 3, text });
+      parsedPlain.push(text);
+      continue;
+    }
+
+    if (/^>\s?/.test(line)) {
+      flushParagraph();
+      const quoteLines = [];
+      for (; index < lines.length; index++) {
+        const quote = lines[index].trim().match(/^>\s?(.*)$/);
+        if (!quote) break;
+        quoteLines.push(quote[1]);
+      }
+      index--;
+      const quote = quoteLines.join(" ").trim();
+      if (quote) {
+        parsedBlocks.push({ type: "quote", html: inlineMarkdown(quote) });
+        addPlain(quote);
+      }
+      continue;
+    }
+
+    const unordered = line.match(/^(?:\*|-|\+)\s+(.+)$/);
+    const ordered = line.match(/^\d+[.)]\s+(.+)$/);
+    if (unordered || ordered) {
+      flushParagraph();
+      const isOrdered = Boolean(ordered);
+      const itemPattern = isOrdered ? /^\d+[.)]\s+(.+)$/ : /^(?:\*|-|\+)\s+(.+)$/;
+      const items = [];
+      for (; index < lines.length; index++) {
+        const item = lines[index].trim().match(itemPattern);
+        if (!item) break;
+        items.push(inlineMarkdown(item[1]));
+        addPlain(item[1]);
+      }
+      index--;
+      parsedBlocks.push({ type: "list", ordered: isOrdered, items });
+      continue;
+    }
+
+    if (/^(?:---+|___+|\*\*\*+)$/.test(line)) {
+      flushParagraph();
+      parsedBlocks.push({ type: "hr" });
+      continue;
+    }
+
+    paragraph.push(line);
+  }
+
+  flushParagraph();
+  return { blocks: parsedBlocks, plain: parsedPlain };
 }
 
 function paragraphHtml(paragraph) {
@@ -285,7 +500,9 @@ function blocksFromApollo(paragraphs) {
   return { blocks: parsedBlocks, plain: parsedPlain };
 }
 
-const completeParagraphs = apolloParagraphs();
+if (readerMarkdown) ({ blocks, plain } = blocksFromReader(readerMarkdown));
+
+const completeParagraphs = readerMarkdown ? [] : apolloParagraphs();
 if (completeParagraphs.length > blocks.length) {
   ({ blocks, plain } = blocksFromApollo(completeParagraphs));
 }
@@ -293,11 +510,16 @@ if (completeParagraphs.length > blocks.length) {
 if (blocks.length === 0) throw new Error("Could not parse the Medium article body");
 
 const plainText = plain.join(" ").replace(/\s+/g, " ").trim();
-const subtitle = contentRoot.children("p.pw-post-body-paragraph").first().text().trim();
+const subtitle = readerMarkdown
+  ? plain.find((text) => text !== title) || ""
+  : contentRoot.children("p.pw-post-body-paragraph").first().text().trim();
 const excerptSource = description || subtitle || plainText;
 const excerpt =
   excerptSource.length > 220 ? `${excerptSource.slice(0, 219).trim()}…` : excerptSource;
-const readingTime = `${Math.max(1, Math.round(plainText.split(/\s+/).length / 220))} min`;
+const readerReadingTime = readerMarkdown.match(/^\s*(\d+) min read\s*$/m)?.[1];
+const readingTime = readerReadingTime
+  ? `${readerReadingTime} min`
+  : `${Math.max(1, Math.round(plainText.split(/\s+/).length / 220))} min`;
 const post = {
   slug,
   title,
