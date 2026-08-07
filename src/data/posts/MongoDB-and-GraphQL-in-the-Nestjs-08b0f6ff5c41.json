@@ -507,7 +507,7 @@
     {
       "type": "code",
       "lang": "typescript",
-      "code": "getLessons(): Promise<Lesson[]> {    return this.lessonRepository.find();  }"
+      "code": "getLessons(): Promise<Lesson[]> {\n  return this.lessonRepository.find();\n}"
     },
     {
       "type": "image",
@@ -572,7 +572,7 @@
     {
       "type": "code",
       "lang": "typescript",
-      "code": "async getStudents(): Promise<Student[]> {    return this.studentRepository.find();  }"
+      "code": "async getStudents(): Promise<Student[]> {\n  return this.studentRepository.find();\n}"
     },
     {
       "type": "heading",
@@ -617,7 +617,7 @@
     {
       "type": "code",
       "lang": "typescript",
-      "code": "@Column()  students: string[];"
+      "code": "@Column() students: string[];"
     },
     {
       "type": "paragraph",

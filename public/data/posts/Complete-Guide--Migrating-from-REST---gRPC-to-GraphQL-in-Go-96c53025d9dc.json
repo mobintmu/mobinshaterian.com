@@ -208,7 +208,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "// Repository layer stays the sametype ProductRepository struct {    db *sql.DB}"
+      "code": "// Repository layer stays the same\ntype ProductRepository struct {\n    db *sql.DB\n}"
     },
     {
       "type": "code",

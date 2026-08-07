@@ -25,7 +25,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "I need to set gin mode to release mode. How should I do it?gin.SetMode(gin.ReleaseMode)"
+      "code": "I need to set gin mode to release mode.How should I do it?gin.SetMode(gin.ReleaseMode)"
     },
     {
       "type": "heading",

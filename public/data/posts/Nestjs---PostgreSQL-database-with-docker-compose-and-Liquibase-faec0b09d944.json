@@ -387,7 +387,7 @@
     {
       "type": "code",
       "lang": "typescript",
-      "code": "async deleteTask(id: string): Promise<void> {    return await this.taskRepository.deleteTask(id);  }"
+      "code": "async deleteTask(id: string): Promise<void> {\n  return await this.taskRepository.deleteTask(id);\n}"
     },
     {
       "type": "paragraph",

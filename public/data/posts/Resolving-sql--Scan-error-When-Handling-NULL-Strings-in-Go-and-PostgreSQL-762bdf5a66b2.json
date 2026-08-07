@@ -58,7 +58,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "if code.Valid {    b.code = code.String}"
+      "code": "if code.Valid {\n    b.code = code.String\n}"
     },
     {
       "type": "paragraph",

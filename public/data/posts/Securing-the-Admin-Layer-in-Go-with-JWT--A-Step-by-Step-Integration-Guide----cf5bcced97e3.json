@@ -286,7 +286,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "// @Security BearerAuth"
+      "code": "//\n@Security BearerAuth"
     },
     {
       "type": "paragraph",

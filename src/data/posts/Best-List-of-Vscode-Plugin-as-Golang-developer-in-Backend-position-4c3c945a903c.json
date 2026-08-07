@@ -434,7 +434,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "Open a file and type anything.    Press Ctrl+Shift+P -> Reload Window."
+      "code": "Open a file and type anything.\nPress Ctrl+Shift+P -> Reload Window."
     },
     {
       "type": "heading",

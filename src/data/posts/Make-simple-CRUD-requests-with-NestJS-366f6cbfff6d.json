@@ -594,7 +594,7 @@
     {
       "type": "code",
       "lang": "typescript",
-      "code": "getTaskById(id: number): Task {    return this.tasks.find((task) => task.id === id);  }"
+      "code": "getTaskById(id: number): Task {\n  return this.tasks.find((task) => task.id === id);\n}"
     },
     {
       "type": "heading",
@@ -617,7 +617,7 @@
     {
       "type": "code",
       "lang": "typescript",
-      "code": "deleteTask(id: number): void {    this.tasks = this.tasks.filter((task) => task.id !== id);  }"
+      "code": "deleteTask(id: number): void {\n  this.tasks = this.tasks.filter((task) => task.id !== id);\n}"
     },
     {
       "type": "heading",

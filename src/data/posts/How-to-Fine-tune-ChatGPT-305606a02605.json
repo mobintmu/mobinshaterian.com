@@ -67,7 +67,7 @@
     {
       "type": "code",
       "lang": "python",
-      "code": "with open(\"out.json\", \"w\") as text_file:    text_file.write(json_string)"
+      "code": "with open(\"out.json\", \"w\") as text_file:\n    text_file.write(json_string)"
     },
     {
       "type": "heading",

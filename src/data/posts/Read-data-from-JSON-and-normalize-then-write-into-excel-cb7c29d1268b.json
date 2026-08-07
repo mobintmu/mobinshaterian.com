@@ -205,7 +205,7 @@
     {
       "type": "code",
       "lang": "python",
-      "code": ">>> import nltk>>> nltk.download('stopwords')"
+      "code": ">>>\nimport nltk>>> nltk.download('stopwords')"
     },
     {
       "type": "heading",

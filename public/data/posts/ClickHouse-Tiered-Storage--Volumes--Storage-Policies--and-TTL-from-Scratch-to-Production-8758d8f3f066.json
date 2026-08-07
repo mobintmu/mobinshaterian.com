@@ -351,7 +351,7 @@
     {
       "type": "code",
       "lang": "xml",
-      "code": "<warm>    <disk>hdd_disk_1</disk>    <disk>hdd_disk_2</disk>    <disk>hdd_disk_3</disk></warm>"
+      "code": "<warm>\n<disk>hdd_disk_1</disk>\n<disk>hdd_disk_2</disk>\n<disk>hdd_disk_3</disk>\n</warm>"
     },
     {
       "type": "heading",

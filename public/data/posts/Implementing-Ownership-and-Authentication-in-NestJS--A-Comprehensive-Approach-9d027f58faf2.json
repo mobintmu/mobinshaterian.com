@@ -83,7 +83,7 @@
     {
       "type": "code",
       "lang": "typescript",
-      "code": "@OneToMany(() => Tasks, (tasks) => tasks.user, { eager: true })  tasks: Tasks[];"
+      "code": "@OneToMany(() => Tasks, (tasks) => tasks.user, {\n  eager: true\n}) tasks: Tasks[];"
     },
     {
       "type": "paragraph",
@@ -92,7 +92,7 @@
     {
       "type": "code",
       "lang": "typescript",
-      "code": "@ManyToOne(() => Users, (user) => user.tasks, { eager: false })  user: Users;"
+      "code": "@ManyToOne(() => Users, (user) => user.tasks, {\n  eager: false\n}) user: Users;"
     },
     {
       "type": "heading",

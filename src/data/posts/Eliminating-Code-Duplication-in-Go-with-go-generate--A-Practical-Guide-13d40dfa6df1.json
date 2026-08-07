@@ -91,7 +91,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "// Slow and loses type safetyresult, _ := mapstructure.Decode(source, &destination)"
+      "code": "// Slow and loses\ntype safetyresult, _ := mapstructure.Decode(source, &destination)"
     },
     {
       "type": "paragraph",

@@ -124,7 +124,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "fx.Invoke(    server.RegisterRoutes,    server.StartHTTPServer,)"
+      "code": "fx.Invoke(\nserver.RegisterRoutes,\nserver.StartHTTPServer,)"
     },
     {
       "type": "paragraph",

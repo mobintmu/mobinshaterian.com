@@ -9,6 +9,7 @@ const PUBLIC_DIR = "public/data/posts";
 const shouldFix = process.argv.includes("--fix");
 const shouldPreview = process.argv.includes("--preview");
 const shouldFormatMultiline = process.argv.includes("--multiline");
+const previewLimit = process.argv.includes("--all-previews") ? Number.POSITIVE_INFINITY : 8;
 const fileFilter = process.argv.find((argument) => argument.startsWith("--file="))?.slice(7);
 const MAX_LINE_LENGTH = 100;
 
@@ -306,7 +307,7 @@ for (const filename of fs.readdirSync(SOURCE_DIR).filter((name) => name.endsWith
   const post = JSON.parse(fs.readFileSync(sourcePath, "utf8"));
   let changed = false;
 
-  for (const block of post.content || []) {
+  for (const [blockIndex, block] of (post.content || []).entries()) {
     if (block.type !== "code" || typeof block.code !== "string") continue;
     blocksChecked++;
     const isMultiline = block.code.includes("\n");
@@ -317,8 +318,14 @@ for (const filename of fs.readdirSync(SOURCE_DIR).filter((name) => name.endsWith
         })
       : formatCode(block.code, block.lang);
     if (formatted === block.code) continue;
-    if (shouldPreview && previews.length < 8) {
-      previews.push({ filename, language: block.lang, before: block.code, after: formatted });
+    if (shouldPreview && previews.length < previewLimit) {
+      previews.push({
+        filename,
+        blockIndex,
+        language: block.lang,
+        before: block.code,
+        after: formatted,
+      });
     }
     block.code = formatted;
     blocksChanged++;
@@ -337,6 +344,6 @@ console.log(
   `${shouldFix ? "Formatted" : "Would format"} ${blocksChanged} of ${blocksChecked} code blocks in ${filesChanged || filesChecked} blog files.`,
 );
 for (const preview of previews) {
-  console.log(`\n--- ${preview.filename} [${preview.language}]`);
+  console.log(`\n--- ${preview.filename} content[${preview.blockIndex}] [${preview.language}]`);
   console.log(preview.after);
 }

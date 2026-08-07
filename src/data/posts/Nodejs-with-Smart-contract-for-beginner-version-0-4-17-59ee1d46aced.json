@@ -211,7 +211,7 @@
     {
       "type": "code",
       "lang": "javascript",
-      "code": "// Get a list of all accounts    web3.eth.getAccounts()"
+      "code": "// Get a list of all accounts web3.eth.getAccounts()"
     },
     {
       "type": "heading",

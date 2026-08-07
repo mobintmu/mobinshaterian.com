@@ -292,7 +292,7 @@
     {
       "type": "code",
       "lang": "bash",
-      "code": "# Replace resolv.confecho \"nameserver 127.0.0.1\" | sudo tee /etc/resolv.conf"
+      "code": "# Replace resolv.confecho \"nameserver 127.0.0.1\" |\nsudo tee /etc/resolv.conf"
     },
     {
       "type": "heading",

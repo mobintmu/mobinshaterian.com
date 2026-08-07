@@ -398,7 +398,7 @@
     {
       "type": "code",
       "lang": "solidity",
-      "code": "address[] myArray = new address[](0); //dynamic arraymyArray = new address[2](0); //fix array"
+      "code": "address[] myArray = new address[](0);\n//dynamic arraymyArray = new address[2](0);\n//fix array"
     },
     {
       "type": "heading",

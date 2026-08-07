@@ -476,7 +476,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "abigen --abi ./build/Lottery.abi --pkg main --type Lottery --out Lottery.go"
+      "code": "abigen --abi./build/Lottery.abi --pkg main --type Lottery --out Lottery.go"
     },
     {
       "type": "paragraph",

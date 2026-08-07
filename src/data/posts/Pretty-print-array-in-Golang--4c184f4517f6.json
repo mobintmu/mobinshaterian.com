@@ -57,7 +57,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "PrettyPrint prettyPrintInterface = &prettyPrint{}"
+      "code": "PrettyPrint prettyPrintInterface = &prettyPrint{\n}"
     },
     {
       "type": "code",
@@ -72,7 +72,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "Print(i interface{}) string"
+      "code": "Print(i interface{\n}) string"
     },
     {
       "type": "code",

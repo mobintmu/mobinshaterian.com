@@ -115,7 +115,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "fx.New(    cache.Module,    // other modules...)"
+      "code": "fx.New(\ncache.Module,\n// other modules...)"
     },
     {
       "type": "heading",

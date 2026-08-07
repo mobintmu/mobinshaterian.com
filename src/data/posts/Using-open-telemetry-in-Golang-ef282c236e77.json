@@ -168,7 +168,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "exporter, err := stdouttrace.New(stdouttrace.WithPrettyPrint())  if err != nil {  log.Fatal(err)}"
+      "code": "exporter, err := stdouttrace.New(stdouttrace.WithPrettyPrint()) if err != nil {\n    log.Fatal(err)\n}"
     },
     {
       "type": "heading",

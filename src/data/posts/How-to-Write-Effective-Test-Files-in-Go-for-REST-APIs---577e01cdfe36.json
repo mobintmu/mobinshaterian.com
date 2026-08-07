@@ -161,7 +161,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "if resp.StatusCode != http.StatusOK {    t.Errorf(\"Expected 200 OK, got %d\", resp.StatusCode)}"
+      "code": "if resp.StatusCode != http.StatusOK {\n    t.Errorf(\"Expected 200 OK, got %d\", resp.StatusCode)\n}"
     },
     {
       "type": "paragraph",

@@ -538,7 +538,7 @@
     {
       "type": "code",
       "lang": "php",
-      "code": "'Content-Length: ' . strlen($jsonData)"
+      "code": "'Content-Length: '.strlen($jsonData)"
     },
     {
       "type": "code",
@@ -663,7 +663,7 @@
     {
       "type": "code",
       "lang": "php",
-      "code": "if($transaction AND !empty($result['data'][\"authority\"]) ){"
+      "code": "if($transaction AND !empty($result['data'][\"authority\"])){"
     },
     {
       "type": "code",
@@ -930,7 +930,7 @@
     {
       "type": "code",
       "lang": "php",
-      "code": "return view('/callback')->with('message', $message)->with('error' , $error);"
+      "code": "return view('/callback')->with('message', $message)->with('error', $error);"
     },
     {
       "type": "code",
@@ -960,7 +960,7 @@
     {
       "type": "code",
       "lang": "php",
-      "code": "return view('/callback')->with('message', $message)->with('error' , $error);"
+      "code": "return view('/callback')->with('message', $message)->with('error', $error);"
     },
     {
       "type": "code",
@@ -1035,7 +1035,7 @@
     {
       "type": "code",
       "lang": "php",
-      "code": "'Content-Length: ' . strlen($jsonData)"
+      "code": "'Content-Length: '.strlen($jsonData)"
     },
     {
       "type": "code",
@@ -1105,7 +1105,7 @@
     {
       "type": "code",
       "lang": "php",
-      "code": "return view('callback')->with('message', $message)->with('error' , $error);"
+      "code": "return view('callback')->with('message', $message)->with('error', $error);"
     },
     {
       "type": "code",
@@ -1230,7 +1230,7 @@
     {
       "type": "code",
       "lang": "php",
-      "code": "return view('/callback')->with('message', $message)->with('error' , $error);"
+      "code": "return view('/callback')->with('message', $message)->with('error', $error);"
     },
     {
       "type": "code",
@@ -1295,7 +1295,7 @@
     {
       "type": "code",
       "lang": "php",
-      "code": "return view('callback')->with('message', $message)->with('error' , $error);"
+      "code": "return view('callback')->with('message', $message)->with('error', $error);"
     },
     {
       "type": "code",
@@ -1325,7 +1325,7 @@
     {
       "type": "code",
       "lang": "php",
-      "code": "return view('/callback')->with('message', $message)->with('error' , $error);"
+      "code": "return view('/callback')->with('message', $message)->with('error', $error);"
     },
     {
       "type": "code",

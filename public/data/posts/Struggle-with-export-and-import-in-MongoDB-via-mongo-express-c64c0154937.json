@@ -91,7 +91,7 @@
     {
       "type": "code",
       "lang": "javascript",
-      "code": "db.myCollection.find({}).projection({}).sort({ _id: -1 }).limit(4000);"
+      "code": "db.myCollection.find({\n}).projection({\n}).sort({\n  _id: -1\n}).limit(4000);"
     },
     {
       "type": "paragraph",

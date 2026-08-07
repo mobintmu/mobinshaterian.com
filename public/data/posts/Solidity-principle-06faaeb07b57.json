@@ -175,7 +175,7 @@
     {
       "type": "code",
       "lang": "solidity",
-      "code": "msg.sender  //is address of account"
+      "code": "msg.sender //is address of account"
     },
     {
       "type": "heading",
@@ -806,7 +806,7 @@
     {
       "type": "code",
       "lang": "solidity",
-      "code": "modifier onlyOwner() {        require(msg.sender == owner, \"You are not allowed\");        _;    }"
+      "code": "modifier onlyOwner() {\n  require(msg.sender == owner, \"You are not allowed\");\n  _;\n}"
     },
     {
       "type": "heading",

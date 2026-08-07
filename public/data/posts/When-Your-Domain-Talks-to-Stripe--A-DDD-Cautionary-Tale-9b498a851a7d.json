@@ -125,8 +125,8 @@
     },
     {
       "type": "code",
-      "lang": "text",
-      "code": "// ❌ Infrastructure calls into the domain — the cycle closes here\nvoid this.billingService.renewSubscription(dto);\nvoid this.billingService.pauseUserSubscription(id);\nvoid this.invoiceService.create(createInvoiceDto);\nvoid this.invoiceService.updateStatus(invoice.id, 'paid');"
+      "lang": "typescript",
+      "code": "// ❌ Infrastructure calls into the domain — the cycle closes here\nvoid this.billingService.renewSubscription(dto);\nvoid this.billingService.pauseUserSubscription(id);\nvoid this.invoiceService.create(createInvoiceDto);\nvoid this.invoiceService.updateStatus(invoice.id, \"paid\");"
     },
     {
       "type": "paragraph",

@@ -359,7 +359,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "p.OnTick = func(ctx context.Context) { tickCount.Add(1)}"
+      "code": "p.OnTick = func(ctx context.Context) {\n    tickCount.Add(1)\n}"
     },
     {
       "type": "paragraph",
@@ -377,7 +377,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "job.Execute = func(ctx context.Context) error { executed.Store(true) return nil}"
+      "code": "job.Execute = func(ctx context.Context) error {\n    executed.Store(true) return nil\n}"
     },
     {
       "type": "paragraph",

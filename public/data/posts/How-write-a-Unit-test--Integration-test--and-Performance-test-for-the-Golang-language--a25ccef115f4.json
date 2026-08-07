@@ -475,7 +475,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "Example: m.On(\"Do\", MatchedBy(func(req *http.Request) bool { return req.Host == \"example.com\" }))"
+      "code": "Example: m.On(\"Do\", MatchedBy(func(req *http.Request) bool {\n    return req.Host == \"example.com\"\n}))"
     },
     {
       "type": "paragraph",

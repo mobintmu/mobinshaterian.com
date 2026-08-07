@@ -80,7 +80,7 @@
     {
       "type": "code",
       "lang": "sql",
-      "code": "ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password by 'mynewpassword';"
+      "code": "ALTER USER 'root'@'localhost' IDENTIFIED\nWITH mysql_native_password by 'mynewpassword';"
     },
     {
       "type": "code",
@@ -125,7 +125,7 @@
     {
       "type": "code",
       "lang": "sql",
-      "code": "SET GLOBAL sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''));"
+      "code": "SET GLOBAL sql_mode=(\nSELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''));"
     },
     {
       "type": "heading",

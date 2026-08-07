@@ -155,7 +155,7 @@
     {
       "type": "code",
       "lang": "typescript",
-      "code": "ConfigModule.forRoot({      envFilePath: [`.env.stage.${process.env.STAGE}`],    }),"
+      "code": "ConfigModule.forRoot({\n  envFilePath: [`.env.stage.${process.env.STAGE}`],\n}),"
     },
     {
       "type": "paragraph",

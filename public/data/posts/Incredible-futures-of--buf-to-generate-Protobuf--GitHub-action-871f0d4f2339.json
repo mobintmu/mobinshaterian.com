@@ -52,7 +52,7 @@
     {
       "type": "code",
       "lang": "yaml",
-      "code": "version: v2modules:  # - path: lint:  use:    - DEFAULTbreaking:  use:    - FILE"
+      "code": "version: v2modules:\n  # - path: lint:\n  use:\n    - DEFAULTbreaking:\n  use:\n    - FILE"
     },
     {
       "type": "paragraph",

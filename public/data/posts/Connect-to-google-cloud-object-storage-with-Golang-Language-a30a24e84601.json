@@ -80,7 +80,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "if err := bkt.Create(ctx, projectID, nil); err != nil {    // TODO: Handle error.}"
+      "code": "if err := bkt.Create(ctx, projectID, nil);\nerr != nil {\n    // TODO: Handle error.\n}"
     },
     {
       "type": "paragraph",
@@ -145,7 +145,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "err = obj.Delete(ctx) if err != nil {  logger.Fatal(err) }"
+      "code": "err = obj.Delete(ctx) if err != nil {\n    logger.Fatal(err)\n}"
     },
     {
       "type": "heading",

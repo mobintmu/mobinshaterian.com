@@ -32,7 +32,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "go func(ct context.Context) {    t.sample(ct, *book)}(ctx)"
+      "code": "go func(ct context.Context) {\n    t.sample(ct, *book)\n}\n(ctx)"
     },
     {
       "type": "image",
@@ -83,7 +83,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "go func(ct context.Context, book Book) {    t.sample(ct, book)}(ctx, *book)"
+      "code": "go func(ct context.Context, book Book) {\n    t.sample(ct, book)\n}\n(ctx, *book)"
     },
     {
       "type": "heading",
