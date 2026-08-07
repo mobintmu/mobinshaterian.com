@@ -1,8 +1,8 @@
 {
   "slug": "Complete-Technical-Migration-Strategy--Migrating-Legacy-Django-Auth-to-Keycloak---OpenFGA-via-ETL-bbf22fd59cf2",
   "title": "Complete Technical Migration Strategy: Migrating Legacy Django Auth to Keycloak & OpenFGA via ETL",
-  "subtitle": "Just now",
-  "excerpt": "Just now",
+  "subtitle": "A production-ready, four-phase ETL strategy for migrating legacy Django authentication to Keycloak and fine-grained authorization to OpenFGA.",
+  "excerpt": "A production-ready, four-phase ETL strategy for migrating legacy Django authentication to Keycloak and fine-grained authorization to OpenFGA.",
   "date": "2026-08-07",
   "tags": [
     "Keycloak",
@@ -15,10 +15,6 @@
   "url": "https://blog.stackademic.com/complete-technical-migration-strategy-migrating-legacy-django-auth-to-keycloak-openfga-via-etl-bbf22fd59cf2",
   "hero": "https://miro.medium.com/v2/resize:fit:700/1*FIVixsQIHFKfFTe-5kLrcQ.png",
   "content": [
-    {
-      "type": "paragraph",
-      "html": "Just now"
-    },
     {
       "type": "paragraph",
       "html": "Modernizing identity and authorization infrastructure is a critical step for scaling cloud-native applications. Transitioning from a monolith’s database-backed authorization framework — such as Django’s built-in <code>auth</code> and custom permission models—to a decoupled, API-driven architecture requires careful planning."

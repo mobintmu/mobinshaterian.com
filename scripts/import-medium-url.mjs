@@ -279,6 +279,7 @@ function blocksFromReader(markdown) {
       if (
         !line ||
         /^\[!\[/.test(line) ||
+        /^Just now$/i.test(line) ||
         /^\d+ min read$/.test(line) ||
         /^(?:\d+\s+)?(?:minutes?|hours?|days?|weeks?|months?|years?) ago$/i.test(line)
       ) {

@@ -2,7 +2,7 @@
   {
     "slug": "Complete-Technical-Migration-Strategy--Migrating-Legacy-Django-Auth-to-Keycloak---OpenFGA-via-ETL-bbf22fd59cf2",
     "title": "Complete Technical Migration Strategy: Migrating Legacy Django Auth to Keycloak & OpenFGA via ETL",
-    "excerpt": "Just now",
+    "excerpt": "A production-ready, four-phase ETL strategy for migrating legacy Django authentication to Keycloak and fine-grained authorization to OpenFGA.",
     "date": "2026-08-07",
     "tags": [
       "Keycloak",
