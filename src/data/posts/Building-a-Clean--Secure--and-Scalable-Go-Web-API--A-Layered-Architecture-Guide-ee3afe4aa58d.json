@@ -77,7 +77,7 @@
     },
     {
       "type": "code",
-      "lang": "go",
+      "lang": "text",
       "code": "internal/├── model/       → Data structures (e.g., Product)├── repository/  → Data access (DB,\nin-memory store)├── service/     → Business logic├── controller/  → HTTP handlers└── dto/         →\nData Transfer Objects (for API responses)"
     },
     {

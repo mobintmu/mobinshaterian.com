@@ -189,12 +189,12 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "type Helloworld struct{\n}"
+      "code": "type Helloworld struct {\n}"
     },
     {
       "type": "code",
       "lang": "go",
-      "code": "func (e *Helloworld) Call(ctx context.Context, req pb.CallRequest, rsp *pb.CallResponse) error {\n    logger.Infof(\"Received Helloworld.Call request: %v\", req)\n    rsp.Msg = greeter.Greet(ctx, req.Name)\n    return nil\n}"
+      "code": "func (e *Helloworld) Call(ctx context.Context, req pb.CallRequest, rsp *pb.CallResponse) error {\n\tlogger.Infof(\"Received Helloworld.Call request: %v\", req)\n\trsp.Msg = greeter.Greet(ctx, req.Name)\n\treturn nil\n}"
     },
     {
       "type": "paragraph",
@@ -218,7 +218,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "func Greet(ctx context.Context, name string) string {\n    defer trace.NewSpan(ctx).Finish()\n    return fmt.Sprint(\"Hello \" + name)\n}"
+      "code": "func Greet(ctx context.Context, name string) string {\n\tdefer trace.NewSpan(ctx).Finish()\n\treturn fmt.Sprint(\"Hello \" + name)\n}"
     },
     {
       "type": "heading",

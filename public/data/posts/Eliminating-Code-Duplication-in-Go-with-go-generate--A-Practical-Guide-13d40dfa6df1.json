@@ -120,7 +120,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "type FilterSetter interface {\n    SetStringField(name string, value *string)\n    SetIntField(name string, value *int)\n}"
+      "code": "type FilterSetter interface {\n\tSetStringField(name string, value *string)\n\tSetIntField(name string, value *int)\n}"
     },
     {
       "type": "paragraph",
@@ -243,7 +243,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "package service//go:generate go run../../../cmd/gen/generator.go"
+      "code": "package service //go:generate go run../../../cmd/gen/generator.go"
     },
     {
       "type": "paragraph",

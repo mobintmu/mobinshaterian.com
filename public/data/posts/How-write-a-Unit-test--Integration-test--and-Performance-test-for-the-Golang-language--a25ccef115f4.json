@@ -354,7 +354,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "package example_project\nimport (\n\"testing\"\n\"github.com/stretchr/testify/assert\"\n)\nfunc Foo(s Stringer) string {\n    return s.String()\n}\nfunc TestString(t *testing.T) {\n    mockStringer := NewMockStringer(t)\n    mockStringer.EXPECT().String().Return(\"mockery\")\n    assert.Equal(t, \"mockery\", Foo(mockStringer))\n}"
+      "code": "package example_project\n\nimport (\n\t\"github.com/stretchr/testify/assert\"\n\t\"testing\"\n)\n\nfunc Foo(s Stringer) string {\n\treturn s.String()\n}\nfunc TestString(t *testing.T) {\n\tmockStringer := NewMockStringer(t)\n\tmockStringer.EXPECT().String().Return(\"mockery\")\n\tassert.Equal(t, \"mockery\", Foo(mockStringer))\n}"
     },
     {
       "type": "image",
@@ -466,7 +466,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "func MatchedBy(fn interface{\n}) argumentMatcher"
+      "code": "func MatchedBy(fn interface {\n}) argumentMatcher"
     },
     {
       "type": "paragraph",
@@ -475,7 +475,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "Example: m.On(\"Do\", MatchedBy(func(req *http.Request) bool {\n    return req.Host == \"example.com\"\n}))"
+      "code": "Example:\nm.On(\"Do\", MatchedBy(func(req *http.Request) bool {\n\treturn req.Host == \"example.com\"\n}))"
     },
     {
       "type": "paragraph",
@@ -593,7 +593,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "mockGRPC \"github.com/go-micro/plugins/v4/client/mock\" response := []mockGRPC.MockResponse{\n{Endpoint: \"Foo.Bar\", Response: map[string]interface{}{\"foo\": \"bar\"}}, } clientMock :=\nmockGRPC.NewClient(mockGRPC.Response(\"go.mock\", response))"
+      "code": "mockGRPC \"github.com/go-micro/plugins/v4/client/mock\"\n\nresponse := []mockGRPC.MockResponse{\n    {\n        Endpoint: \"Foo.Bar\",\n        Response: map[string]interface{}{\"foo\": \"bar\"},\n    },\n}\n\nclientMock := mockGRPC.NewClient(\n    mockGRPC.Response(\"go.mock\", response),\n)"
     },
     {
       "type": "heading",
@@ -613,7 +613,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "mockGreeterClient.EXPECT().SayHello(    gomock.Any(), // expect any value for first parameter\ngomock.Any(), // expect any value for second parameter).Return(&helloworld.HelloReply{Message:\n“Mocked RPC”}, nil)"
+      "code": "mockGreeterClient.\n\tEXPECT().\n\tSayHello(\n\t\tgomock.Any(), // expect any value for first parameter\n\t\tgomock.Any(), // expect any value for second parameter\n\t).\n\tReturn(\n\t\t&helloworld.HelloReply{Message: \"Mocked RPC\"},\n\t\tnil,\n\t)"
     },
     {
       "type": "paragraph",
@@ -627,7 +627,7 @@
     {
       "type": "code",
       "lang": "dockerfile",
-      "code": "FROM golang:1.20WORKDIR /usr/src/appCOPY go.mod go.sum ./RUN go mod download && go mod verifyCOPY .\n.RUN\ngo build -v -o /usr/local/bin/app ./...CMD [\"app\"]"
+      "code": "FROM golang:1.20\n\nWORKDIR /usr/src/app\n\nCOPY go.mod go.sum ./\nRUN go mod download && go mod verify\n\nCOPY . .\nRUN go build -v -o /usr/local/bin/app ./...\n\nCMD [\"app\"]"
     },
     {
       "type": "heading",
@@ -717,12 +717,12 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "backend := backends.NewSimulatedBackend(   core.GenesisAlloc{    crypto.PubkeyToAddress(pub):\n{Balance: big.NewInt(10000000000)},   },   10000000,  )"
+      "code": "backend := backends.NewSimulatedBackend(\n\tcore.GenesisAlloc{\n\t\tcrypto.PubkeyToAddress(pub): {\n\t\t\tBalance: big.NewInt(10000000000),\n\t\t},\n\t},\n\t10000000,\n)"
     },
     {
       "type": "code",
       "lang": "go",
-      "code": "coreTokenAddress, _, _, err := contracts.DeployCoreToken(auth, s.xcbClient, fakeWrappedTokenAddr,\npriceFeedAddr)"
+      "code": "coreTokenAddress, _, _, err := contracts.DeployCoreToken(\n\tauth,\n\ts.xcbClient,\n\tfakeWrappedTokenAddr,\n\tpriceFeedAddr,\n)"
     },
     {
       "type": "heading",
@@ -1003,7 +1003,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "import (\n\"testing\"\n\"github.com/stretchr/testify/suite\"\n)\ntype MySuite struct {\n    suite.Suite\n}\nfunc (suite *MySuite) TestSomething() {\n    // Test something here\n}\nfunc TestSuite(t *testing.T) {\n    suite.Run(t, new(MySuite))\n}"
+      "code": "import (\n\t\"github.com/stretchr/testify/suite\"\n\t\"testing\"\n)\n\ntype MySuite struct {\n\tsuite.Suite\n}\n\nfunc (suite *MySuite) TestSomething() {\n\t// Test something here\n}\nfunc TestSuite(t *testing.T) {\n\tsuite.Run(t, new(MySuite))\n}"
     }
   ]
 }

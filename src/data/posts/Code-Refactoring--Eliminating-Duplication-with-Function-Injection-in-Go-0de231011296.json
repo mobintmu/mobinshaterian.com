@@ -49,7 +49,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "func (s *Service) LocationBasedSearch(ctx context.Context, req QueryParams, data Data) (*Result,\nerror) {\n    //...150+ lines of logic...\n    city := data.City\n    //...later...\n    s.applyRating(ctx, data)\n    //...and...\n    s.cachePrice(ctx, data)\n}\nfunc (s *Service) ProcessSearch(ctx context.Context, req QueryParams, data Data) (*Result, error) {\n    //...same 150+ lines...\n    // uses shared `city` from param\n    s.applyRatingVersionTwo(ctx, data)\n    s.cachePriceByOtherParam(ctx, data) // ← This one DOES need caching\n}"
+      "code": "func (s *Service) LocationBasedSearch(ctx context.Context, req QueryParams, data Data) (*Result,\n\terror) {\n\t//...150+ lines of logic...\n\tcity := data.City\n\t//...later...\n\ts.applyRating(ctx, data)\n\t//...and...\n\ts.cachePrice(ctx, data)\n}\nfunc (s *Service) ProcessSearch(ctx context.Context, req QueryParams, data Data) (*Result, error) {\n\t//...same 150+ lines...\n\t// uses shared `city` from param\n\ts.applyRatingVersionTwo(ctx, data)\n\ts.cachePriceByOtherParam(ctx, data) // ← This one DOES need caching\n}"
     },
     {
       "type": "paragraph",
@@ -173,7 +173,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "type CityResolver interface {\n    Resolve(data Data)\n}"
+      "code": "type CityResolver interface {\n\tResolve(data Data)\n}"
     },
     {
       "type": "list",

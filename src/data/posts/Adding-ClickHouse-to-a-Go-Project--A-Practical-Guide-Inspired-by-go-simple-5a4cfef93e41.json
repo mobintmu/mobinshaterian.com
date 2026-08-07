@@ -87,7 +87,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "type ProductResponse struct {\n    ID int32\n    Name string\n    Description string\n    Price int64\n}"
+      "code": "type ProductResponse struct {\n\tID          int32\n\tName        string\n\tDescription string\n\tPrice       int64\n}"
     },
     {
       "type": "paragraph",
@@ -119,7 +119,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "type ClickHouseCfg struct {\n    Host string\n    Port string\n    DB string\n    User string\n    Password string\n}"
+      "code": "type ClickHouseCfg struct {\n\tHost     string\n\tPort     string\n\tDB       string\n\tUser     string\n\tPassword string\n}"
     },
     {
       "type": "paragraph",
@@ -182,7 +182,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "type Storage struct {\n    SQL *sql.SQL\n    Cache *cache.Cache\n    ClickHouse *clickhouse.ClickHouse\n}"
+      "code": "type Storage struct {\n\tSQL        *sql.SQL\n\tCache      *cache.Cache\n\tClickHouse *clickhouse.ClickHouse\n}"
     },
     {
       "type": "paragraph",
@@ -191,7 +191,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "func New(pg *sql.SQL, cache *cache.Cache, ch *clickhouse.ClickHouse) *Storage {\n    return &Storage{\n        SQL: pg, Cache: cache, ClickHouse: ch,\n    }\n}"
+      "code": "func New(pg *sql.SQL, cache *cache.Cache, ch *clickhouse.ClickHouse) *Storage {\n\treturn &Storage{\n\t\tSQL: pg, Cache: cache, ClickHouse: ch,\n\t}\n}"
     },
     {
       "type": "paragraph",

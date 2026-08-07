@@ -98,7 +98,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "fx.Provide(func(cfg *config.Config) (*sql.DB, error) {    return sql.Open(\"postgres\",\ncfg.DatabaseURL)})"
+      "code": "fx.Provide(func(cfg *config.Config) (*sql.DB, error) {\n\treturn sql.Open(\"postgres\",\n\t\tcfg.DatabaseURL)\n})"
     },
     {
       "type": "paragraph",

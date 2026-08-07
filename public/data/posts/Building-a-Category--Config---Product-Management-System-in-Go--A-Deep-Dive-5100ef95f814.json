@@ -115,7 +115,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "func (s *Store) KeyCategory(ID int32) string {\n    return s.prefix + \":category:\" + fmt.Sprint(ID)\n}\nfunc (s *Store) KeyAllCategories(limit, offset int64) string {\n    return s.prefix + \":categories:all:\" + fmt.Sprint(limit) + \":\" + fmt.Sprint(offset)\n}\nfunc (r *Store) DeleteAllCategoryCache(ctx context.Context) error {\n    return r.deleteByPattern(ctx, r.prefix+\":categories:all:*\")\n}"
+      "code": "func (s *Store) KeyCategory(ID int32) string {\n\treturn s.prefix + \":category:\" + fmt.Sprint(ID)\n}\nfunc (s *Store) KeyAllCategories(limit, offset int64) string {\n\treturn s.prefix + \":categories:all:\" + fmt.Sprint(limit) + \":\" + fmt.Sprint(offset)\n}\nfunc (r *Store) DeleteAllCategoryCache(ctx context.Context) error {\n\treturn r.deleteByPattern(ctx, r.prefix+\":categories:all:*\")\n}"
     },
     {
       "type": "paragraph",
@@ -155,7 +155,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "func (c *AdminCategory) RegisterRoutes(rg *gin.RouterGroup, cfg *config.Config) {\n    auth := middleware.JWTAuth(cfg)\n    rg.POST(\"/\", auth, c.CreateCategory)\n    rg.PUT(\"/:id\", auth, c.UpdateCategory)\n    rg.DELETE(\"/:id\", auth, c.DeleteCategory)\n    rg.GET(\"/:id\", auth, c.GetCategoryByID)\n    rg.GET(\"/\", auth, c.ListCategories)\n}"
+      "code": "func (c *AdminCategory) RegisterRoutes(rg *gin.RouterGroup, cfg *config.Config) {\n\tauth := middleware.JWTAuth(cfg)\n\trg.POST(\"/\", auth, c.CreateCategory)\n\trg.PUT(\"/:id\", auth, c.UpdateCategory)\n\trg.DELETE(\"/:id\", auth, c.DeleteCategory)\n\trg.GET(\"/:id\", auth, c.GetCategoryByID)\n\trg.GET(\"/\", auth, c.ListCategories)\n}"
     },
     {
       "type": "paragraph",
@@ -178,7 +178,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "func TestProductGRPC(t *testing.T) {\n    //...\n    client := productv1.NewProductServiceClient(conn)\n    grpcGetProductByID(t, product, client)\n}"
+      "code": "func TestProductGRPC(t *testing.T) {\n\t//...\n\tclient := productv1.NewProductServiceClient(conn)\n\tgrpcGetProductByID(t, product, client)\n}"
     },
     {
       "type": "paragraph",

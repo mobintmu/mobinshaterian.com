@@ -11,6 +11,9 @@ const shouldPreview = process.argv.includes("--preview");
 const shouldFormatMultiline = process.argv.includes("--multiline");
 const previewLimit = process.argv.includes("--all-previews") ? Number.POSITIVE_INFINITY : 8;
 const fileFilter = process.argv.find((argument) => argument.startsWith("--file="))?.slice(7);
+const languageFilter = process.argv
+  .find((argument) => argument.startsWith("--language="))
+  ?.slice(11);
 const MAX_LINE_LENGTH = 100;
 
 function replaceOutsideStrings(source, replacer) {
@@ -309,6 +312,7 @@ for (const filename of fs.readdirSync(SOURCE_DIR).filter((name) => name.endsWith
 
   for (const [blockIndex, block] of (post.content || []).entries()) {
     if (block.type !== "code" || typeof block.code !== "string") continue;
+    if (languageFilter && block.lang !== languageFilter) continue;
     blocksChecked++;
     const isMultiline = block.code.includes("\n");
     if (isMultiline && !shouldFormatMultiline) continue;

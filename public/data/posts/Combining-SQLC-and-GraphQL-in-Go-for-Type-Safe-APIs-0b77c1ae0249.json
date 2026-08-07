@@ -216,7 +216,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "type ListUsersWithProductsRow struct {\n    UserID int32\n    UserName string\n    ProductID int32\n    ProductName string\n    Price int64\n}"
+      "code": "type ListUsersWithProductsRow struct {\n\tUserID      int32\n\tUserName    string\n\tProductID   int32\n\tProductName string\n\tPrice       int64\n}"
     },
     {
       "type": "paragraph",
@@ -239,7 +239,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "for _, row := range rows {    result = append(result, &model.UserProduct{        User: &model.User{\nID:   int(row.UserID),            Name: row.UserName,        },        Product: &model.Product{\nID:    int(row.ProductID),            Name:  row.ProductName,            Price: row.Price,        },\n})}"
+      "code": "for _, row := range rows {\n\tresult = append(result, &model.UserProduct{User: &model.User{\n\t\tID: int(row.UserID), Name: row.UserName}, Product: &model.Product{\n\t\tID: int(row.ProductID), Name: row.ProductName, Price: row.Price},\n\t})\n}"
     },
     {
       "type": "paragraph",

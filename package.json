@@ -10,6 +10,7 @@
     "build:dev": "vite build --mode development",
     "preview": "vite preview",
     "seo": "node scripts/generate-seo.mjs",
+    "format:go-posts": "node scripts/format-code-blocks.mjs --multiline --language=go --fix",
     "lint": "eslint .",
     "format": "prettier --write ."
   },

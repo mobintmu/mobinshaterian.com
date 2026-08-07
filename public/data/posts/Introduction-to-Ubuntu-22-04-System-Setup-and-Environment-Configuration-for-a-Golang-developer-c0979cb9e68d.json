@@ -218,7 +218,7 @@
     },
     {
       "type": "code",
-      "lang": "go",
+      "lang": "properties",
       "code": "# Special DNS for specific\ndomainsserver=/mysite.ir/1.1.1.1server=/youtube.com/4.4.4.4server=/shecan.ir/178.22.122.101server=/ir/1.1.1.1"
     },
     {

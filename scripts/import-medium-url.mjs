@@ -336,14 +336,16 @@ function blocksFromReader(markdown) {
       const code = codeLines.join("\n").trimEnd();
       if (code) {
         const declaredLanguage = fence[1].toLowerCase();
+        const language = supportedCodeLanguages.has(declaredLanguage)
+          ? declaredLanguage
+          : detectCodeLanguage(code);
+        const formattedCode = formatReaderCode(code, language);
         parsedBlocks.push({
           type: "code",
-          lang: supportedCodeLanguages.has(declaredLanguage)
-            ? declaredLanguage
-            : detectCodeLanguage(code),
-          code,
+          lang: language,
+          code: formattedCode,
         });
-        parsedPlain.push(code);
+        parsedPlain.push(formattedCode);
       }
       continue;
     }

@@ -1,3 +1,59 @@
+import { spawnSync } from "node:child_process";
+import fs from "node:fs";
+import os from "node:os";
+import path from "node:path";
+
+function runGofmt(source) {
+  const directory = fs.mkdtempSync(path.join(os.tmpdir(), "blog-go-format-"));
+  const filename = path.join(directory, "snippet.go");
+  try {
+    fs.writeFileSync(filename, source);
+    const result = spawnSync("gofmt", ["-w", filename], {
+      encoding: "utf8",
+      timeout: 2_000,
+    });
+    return result.status === 0 ? fs.readFileSync(filename, "utf8").trimEnd() : null;
+  } finally {
+    fs.rmSync(directory, { recursive: true, force: true });
+  }
+}
+
+function formatGo(source) {
+  // A blog block can be a complete file, declarations without a package line,
+  // or a few statements copied from a function. Try each shape independently
+  // and leave invalid/illustrative snippets untouched. gofmt only changes
+  // whitespace, so this never invents identifiers, expressions, or imports.
+  const firstToken = source
+    .replace(/^(?:(?:\/\/[^\n]*\n)|(?:\/\*[\s\S]*?\*\/\s*))*/, "")
+    .trimStart();
+
+  if (/^package\b/.test(firstToken)) {
+    return runGofmt(source) ?? source;
+  }
+
+  const declarationPrefix = "package snippet\n\n";
+  if (/^(?:import|const|var|type|func)\b/.test(firstToken)) {
+    const declaration = runGofmt(`${declarationPrefix}${source}\n`);
+    if (declaration?.startsWith(declarationPrefix)) {
+      return declaration.slice(declarationPrefix.length).trimEnd();
+    }
+    return source;
+  }
+
+  const statementPrefix = "package snippet\n\nfunc _() {\n";
+  const statements = runGofmt(`${statementPrefix}${source}\n}\n`);
+  if (statements?.startsWith(statementPrefix) && statements.endsWith("\n}")) {
+    return statements
+      .slice(statementPrefix.length, -2)
+      .split("\n")
+      .map((line) => (line.startsWith("\t") ? line.slice(1) : line))
+      .join("\n")
+      .trimEnd();
+  }
+
+  return source;
+}
+
 function formatJsonPayload(source) {
   const payload = source.match(/(-d\s+')([\s\S]*)(\'\s*)$/);
   if (!payload) return source;
@@ -188,6 +244,7 @@ export function formatReaderCode(source, language, { preserveWhitespace = false 
   const normalized = source.replace(/\r\n?/g, "\n").trim();
   if (!normalized) return normalized;
   if (preserveWhitespace) return formatDecisionDiagram(normalized);
+  if (language === "go") return formatGo(normalized);
   if (language === "bash") return formatJsonPayload(normalized);
   if (language === "python") return formatLoosePython(normalized);
   if (language === "yaml") return formatCronJobYaml(normalized);

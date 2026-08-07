@@ -58,7 +58,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "if code.Valid {\n    b.code = code.String\n}"
+      "code": "if code.Valid {\n\tb.code = code.String\n}"
     },
     {
       "type": "paragraph",
@@ -76,7 +76,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "func (s Storage) scan(scanner db.Scanner) (*Book, error) {\n    var b Booking\n    var discountCode sql.NullString\n    err := scanner.Scan(&b.ID, &discountCode,\n    )\n    if err != nil {\n        return nil, serr.DB(\"scan\", \"books\", err)\n    }\n    if discountCode.Valid {\n        b.DiscountCode = discountCode.String\n    }\n    return &b, nil\n}"
+      "code": "func (s Storage) scan(scanner db.Scanner) (*Book, error) {\n\tvar b Booking\n\tvar discountCode sql.NullString\n\terr := scanner.Scan(&b.ID, &discountCode)\n\tif err != nil {\n\t\treturn nil, serr.DB(\"scan\", \"books\", err)\n\t}\n\tif discountCode.Valid {\n\t\tb.DiscountCode = discountCode.String\n\t}\n\treturn &b, nil\n}"
     },
     {
       "type": "heading",

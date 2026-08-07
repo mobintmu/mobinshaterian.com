@@ -497,7 +497,7 @@
     },
     {
       "type": "code",
-      "lang": "go",
+      "lang": "bash",
       "code": "# Set the GOPROXY environment variableexport GOPROXY=https://goproxy.io,direct# Set environment\nvariable allow bypassing the proxy for specified repos (optional)export\nGOPRIVATE=git.mycompany.com,github.com/my/private"
     },
     {

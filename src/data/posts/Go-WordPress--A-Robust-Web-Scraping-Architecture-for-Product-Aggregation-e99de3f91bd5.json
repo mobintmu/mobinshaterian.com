@@ -116,7 +116,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "func (cd *Service) Discover() error {\n    c := colly.NewCollector(colly.AllowedDomains(cd.domain),\n    ) // Find categories in navigation\n    c.OnHTML(\"nav a[href]\",\n    func(e *colly.HTMLElement) {\n        // Extract and validate category links\n    })\n}"
+      "code": "func (cd *Service) Discover() error {\n\tc := colly.NewCollector(colly.AllowedDomains(cd.domain)) // Find categories in navigation\n\tc.OnHTML(\"nav a[href]\",\n\t\tfunc(e *colly.HTMLElement) {\n\t\t\t// Extract and validate category links\n\t\t})\n}"
     },
     {
       "type": "paragraph",
@@ -179,7 +179,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "c.OnHTML(s.web.Pagination.Next, func(e *colly.HTMLElement) {\n    nextPage := e.Attr(\"href\")\n    e.Request.Visit(nextPage)\n})"
+      "code": "c.OnHTML(s.web.Pagination.Next, func(e *colly.HTMLElement) {\n\tnextPage := e.Attr(\"href\")\n\te.Request.Visit(nextPage)\n})"
     },
     {
       "type": "paragraph",
@@ -276,7 +276,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "type ProductClean struct {\n    Title string\n    Price int64 // 749000 instead of \"749,000 تومان\"\n    Link string\n    Image string\n    Description string\n}"
+      "code": "type ProductClean struct {\n\tTitle       string\n\tPrice       int64 // 749000 instead of \"749,000 تومان\"\n\tLink        string\n\tImage       string\n\tDescription string\n}"
     },
     {
       "type": "heading",
@@ -295,7 +295,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "func TestWebsites(t *testing.T) {\n    webs := website.New(logger)\n    web := webs[0]\n    pr := product.New(logger, &web)\n    if err := pr.Run();\n    err != nil {\n        t.Fatalf(\"failed to run service: %v\", err)\n    }\n    // Validate output\n    cleanCategories := pr.CleanedProducts()\n    if len(cleanCategories) == 0 {\n        t.Fatalf(\"expected at least 1 category, got 0\")\n    }\n}"
+      "code": "func TestWebsites(t *testing.T) {\n\twebs := website.New(logger)\n\tweb := webs[0]\n\tpr := product.New(logger, &web)\n\tif err := pr.Run(); err != nil {\n\t\tt.Fatalf(\"failed to run service: %v\", err)\n\t}\n\t// Validate output\n\tcleanCategories := pr.CleanedProducts()\n\tif len(cleanCategories) == 0 {\n\t\tt.Fatalf(\"expected at least 1 category, got 0\")\n\t}\n}"
     },
     {
       "type": "paragraph",
@@ -304,7 +304,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "func TestProducts(t *testing.T) {\n    web.Categories[0] = domain.Category{\n        Name: \"آجیل شب یلدا\", // Yalda Night Nuts Link: \"https://hosseinibrothers.ir/...\",\n    }\n    // Verify Persian category names are handled correctly\n}"
+      "code": "func TestProducts(t *testing.T) {\n\tweb.Categories[0] = domain.Category{\n\t\tName: \"آجیل شب یلدا\", // Yalda Night Nuts Link: \"https://hosseinibrothers.ir/...\",\n\t}\n\t// Verify Persian category names are handled correctly\n}"
     },
     {
       "type": "paragraph",
@@ -313,7 +313,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "func TestDescription(t *testing.T) {\n    // Tests full pipeline: discovery → listing → description → cleanup\n    desc := description.New(logger, &web)\n    w, err := desc.FetchDescriptions(&web)\n    cleanup.Cleans(w.Categories)\n    if w.Categories[1].CleanedProducts[0].Description == \"\" {\n        t.Errorf(\"expected description, got empty string\")\n    }\n}"
+      "code": "func TestDescription(t *testing.T) {\n\t// Tests full pipeline: discovery → listing → description → cleanup\n\tdesc := description.New(logger, &web)\n\tw, err := desc.FetchDescriptions(&web)\n\tcleanup.Cleans(w.Categories)\n\tif w.Categories[1].CleanedProducts[0].Description == \"\" {\n\t\tt.Errorf(\"expected description, got empty string\")\n\t}\n}"
     },
     {
       "type": "paragraph",
@@ -336,7 +336,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "fx.Provide(\n    productController.NewAdmin,  // Admin REST API\n    productController.NewClient, // Client REST API\n    productController.NewGRPC,   // gRPC API\n)"
+      "code": "fx.Provide(\n\tproductController.NewAdmin,  // Admin REST API\n\tproductController.NewClient, // Client REST API\n\tproductController.NewGRPC,   // gRPC API\n)"
     },
     {
       "type": "heading",
@@ -350,7 +350,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "fx.Provide(\n    sql.InitialDB,\n    migrate.NewRunner,\n    sqlc.New,\n)"
+      "code": "fx.Provide(\n\tsql.InitialDB,\n\tmigrate.NewRunner,\n\tsqlc.New,\n)"
     },
     {
       "type": "paragraph",
@@ -359,7 +359,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "fx.Provide(\n    cache.NewClient,\n    cache.NewCacheStore,\n)"
+      "code": "fx.Provide(\n\tcache.NewClient,\n\tcache.NewCacheStore,\n)"
     },
     {
       "type": "paragraph",
@@ -382,7 +382,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "ProductList: domain.ProductListConfig{\n    Item: \"div.product\",\n    Fields: map[string]FieldConfig{\n        \"title\": {Selector: \"h2.name\", Attr: \"text\"},\n        \"price\": {Selector: \".price\", Attr: \"text\"},\n        // ...\n    },\n}"
+      "code": "ProductList:\ndomain.ProductListConfig{\n\tItem: \"div.product\",\n\tFields: map[string]FieldConfig{\n\t\t\"title\": {Selector: \"h2.name\", Attr: \"text\"},\n\t\t\"price\": {Selector: \".price\", Attr: \"text\"},\n\t\t// ...\n\t},\n}"
     },
     {
       "type": "paragraph",

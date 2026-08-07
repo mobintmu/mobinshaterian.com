@@ -93,7 +93,7 @@
     },
     {
       "type": "code",
-      "lang": "go",
+      "lang": "bash",
       "code": "# Download SonarScanner (replace with latest version if needed)wget\nhttps://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-5.0.1.3006-linux.zip# Create a directory for SonarScannersudo mkdir -p /opt/sonar-scanner# Unzip the downloaded filesudo unzip sonar-scanner-cli-5.0.1.3006-linux.zip -d /opt/sonar-scanner# Rename folder for easier referencesudo mv /opt/sonar-scanner/sonar-scanner-5.0.1.3006-linux /opt/sonar-scanner/sonar-scanner"
     },
     {
@@ -142,7 +142,7 @@
     },
     {
       "type": "code",
-      "lang": "go",
+      "lang": "properties",
       "code": "# Required metadatasonar.projectKey=mobintmu_go-simplesonar.projectName=Go\nSimplesonar.projectVersion=1.0# Source code locationsonar.sources=.# Languagesonar.language=go#\nEncodingsonar.sourceEncoding=UTF-8# Exclude tests and vendor\n(optional)sonar.exclusions=**/vendor/**,**/*_test.go# Go-specific: Use golangci-lint to generate\nreport for\nSonarQubesonar.go.coverage.reportPaths=coverage.outsonar.go.tests.reportPaths=test-report.xml"
     },
     {

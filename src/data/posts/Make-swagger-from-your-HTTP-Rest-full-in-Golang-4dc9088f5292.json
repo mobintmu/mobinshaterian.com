@@ -107,7 +107,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "// ShowAccount godoc// @Summary      Show an account// @Description  get string by ID// @Tags\naccounts// @Accept       json// @Produce      json// @Param        id   path      int  true\n\"Account ID\"// @Success      200  {object}  model.Account// @Failure      400  {object}\nhttputil.HTTPError// @Failure      404  {object}  httputil.HTTPError// @Failure      500  {object}\nhttputil.HTTPError// @Router       /accounts/{id} [get]"
+      "code": "// ShowAccount godoc// @Summary      Show an account// @Description  get string by ID// @Tags\naccounts           // @Accept       json// @Produce      json// @Param        id   path      int  true\n\"Account ID\"       // @Success      200  {object}  model.Account// @Failure      400  {object}\nhttputil.HTTPError // @Failure      404  {object}  httputil.HTTPError// @Failure      500  {object}\nhttputil.HTTPError // @Router       /accounts/{id} [get]"
     },
     {
       "type": "heading",

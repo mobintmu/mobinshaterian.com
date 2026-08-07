@@ -359,7 +359,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "p.OnTick = func(ctx context.Context) {\n    tickCount.Add(1)\n}"
+      "code": "p.OnTick = func(ctx context.Context) {\n\ttickCount.Add(1)\n}"
     },
     {
       "type": "paragraph",

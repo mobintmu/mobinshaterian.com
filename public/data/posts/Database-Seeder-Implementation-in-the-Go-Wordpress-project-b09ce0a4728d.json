@@ -109,7 +109,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "func RunSeeder(seeder *Seeder, cfg *config.Config) {\n    if cfg.IsTest() {\n        return\n    }\n    if err := seeder.SeederRun();\n    err != nil {\n        panic(err)\n    }\n}"
+      "code": "func RunSeeder(seeder *Seeder, cfg *config.Config) {\n\tif cfg.IsTest() {\n\t\treturn\n\t}\n\tif err := seeder.SeederRun(); err != nil {\n\t\tpanic(err)\n\t}\n}"
     },
     {
       "type": "heading",

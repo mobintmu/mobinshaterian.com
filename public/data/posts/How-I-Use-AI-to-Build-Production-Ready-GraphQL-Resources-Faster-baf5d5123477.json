@@ -253,7 +253,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "func exampleLocationOrderBySQLName(orderBy model.ExampleLocationOrderBy) string {\n    switch orderBy {\n    case model.ExampleLocationOrderByDisplayName:\n        return \"display_name\"\n    case model.ExampleLocationOrderByRowHash:\n        return \"row_hash\"\n    case model.ExampleLocationOrderByCreatedAt:\n        return \"created_at\"\n    case model.ExampleLocationOrderByDeletedAt:\n        return \"deleted_at\"\n    // Every other allowed enum is also listed explicitly.\n    default:\n        return \"\"\n    }\n}"
+      "code": "func exampleLocationOrderBySQLName(orderBy model.ExampleLocationOrderBy) string {\n\tswitch orderBy {\n\tcase model.ExampleLocationOrderByDisplayName:\n\t\treturn \"display_name\"\n\tcase model.ExampleLocationOrderByRowHash:\n\t\treturn \"row_hash\"\n\tcase model.ExampleLocationOrderByCreatedAt:\n\t\treturn \"created_at\"\n\tcase model.ExampleLocationOrderByDeletedAt:\n\t\treturn \"deleted_at\"\n\t// Every other allowed enum is also listed explicitly.\n\tdefault:\n\t\treturn \"\"\n\t}\n}"
     },
     {
       "type": "paragraph",

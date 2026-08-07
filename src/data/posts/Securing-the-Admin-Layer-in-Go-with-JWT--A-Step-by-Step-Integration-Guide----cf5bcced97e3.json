@@ -88,7 +88,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "type Config struct {\n    // existing fields...\n    JWTSecret string\n    JWTExpiryHours int\n}"
+      "code": "type Config struct {\n\t// existing fields...\n\tJWTSecret      string\n\tJWTExpiryHours int\n}"
     },
     {
       "type": "paragraph",
@@ -111,7 +111,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "func GenerateToken(cfg *config.Config, adminID string) (string, error) {\n    claims := jwt.MapClaims{\n        \"admin_id\": adminID, \"exp\": time.Now().Add(time.Hour *\n        time.Duration(cfg.JWTExpiryHours)).Unix(),\n    }\n    token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)\n    return token.SignedString([]byte(cfg.JWTSecret))\n}"
+      "code": "func GenerateToken(cfg *config.Config, adminID string) (string, error) {\n\tclaims := jwt.MapClaims{\n\t\t\"admin_id\": adminID, \"exp\": time.Now().Add(time.Hour *\n\t\t\ttime.Duration(cfg.JWTExpiryHours)).Unix(),\n\t}\n\ttoken := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)\n\treturn token.SignedString([]byte(cfg.JWTSecret))\n}"
     },
     {
       "type": "heading",
@@ -139,7 +139,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "func (c *AdminProduct) RegisterRoutes(rg *gin.RouterGroup, cfg *config.Config) {\n    auth := middleware.JWTAuth(cfg)\n    rg.POST(\"/\", auth, c.CreateProduct)\n    rg.PUT(\"/:id\", auth, c.UpdateProduct)\n    rg.DELETE(\"/:id\", auth, c.DeleteProduct)\n    rg.GET(\"/:id\", auth, c.GetProductByID)\n    rg.GET(\"/\", auth, c.ListProducts)\n}"
+      "code": "func (c *AdminProduct) RegisterRoutes(rg *gin.RouterGroup, cfg *config.Config) {\n\tauth := middleware.JWTAuth(cfg)\n\trg.POST(\"/\", auth, c.CreateProduct)\n\trg.PUT(\"/:id\", auth, c.UpdateProduct)\n\trg.DELETE(\"/:id\", auth, c.DeleteProduct)\n\trg.GET(\"/:id\", auth, c.GetProductByID)\n\trg.GET(\"/\", auth, c.ListProducts)\n}"
     },
     {
       "type": "heading",

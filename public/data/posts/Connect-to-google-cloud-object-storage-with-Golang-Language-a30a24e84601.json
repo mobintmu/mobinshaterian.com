@@ -80,7 +80,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "if err := bkt.Create(ctx, projectID, nil);\nerr != nil {\n    // TODO: Handle error.\n}"
+      "code": "if err := bkt.Create(ctx, projectID, nil); err != nil {\n\t// TODO: Handle error.\n}"
     },
     {
       "type": "paragraph",

@@ -103,7 +103,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "package main\nimport (\n\"go.uber.org/fx\"\n\"your_project/internal/pkg/logger\"\n)\nfunc main() {\n    app := fx.New(logger.Module, // other modules...\n    )\n    app.Run()\n}"
+      "code": "package main\n\nimport (\n\t\"go.uber.org/fx\"\n\t\"your_project/internal/pkg/logger\"\n)\n\nfunc main() {\n\tapp := fx.New(logger.Module) // other modules...\n\n\tapp.Run()\n}"
     },
     {
       "type": "paragraph",
@@ -139,7 +139,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "func RegisterLoggerLifecycle(lc fx.Lifecycle, log *zap.Logger) {\n    lc.Append(fx.Hook{\n        OnStop: func(ctx context.Context) error {\n            return log.Sync()\n        },\n    })\n}\nvar Module = fx.Options(\nfx.Provide(NewLogger),\nfx.Invoke(RegisterLoggerLifecycle),)"
+      "code": "func RegisterLoggerLifecycle(lc fx.Lifecycle, log *zap.Logger) {\n\tlc.Append(fx.Hook{\n\t\tOnStop: func(ctx context.Context) error {\n\t\t\treturn log.Sync()\n\t\t},\n\t})\n}\n\nvar Module = fx.Options(\n\tfx.Provide(NewLogger),\n\tfx.Invoke(RegisterLoggerLifecycle))"
     },
     {
       "type": "heading",

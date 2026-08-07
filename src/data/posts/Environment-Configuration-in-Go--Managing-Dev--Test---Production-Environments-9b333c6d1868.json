@@ -144,7 +144,7 @@
     },
     {
       "type": "code",
-      "lang": "go",
+      "lang": "dotenv",
       "code": "# Server ConfigurationAPP_HTTP_PORT=4001APP_HTTP_ADDRESS=127.0.0.1APP_GRPC_PORT=9002#\nEnvironmentAPP_ENV=test# Database - Separate test\ndatabaseAPP_DATABASE_DSN=postgresql://postgres:postgres@localhost:5432/go_simple_test?sslmode=disable# JWTAPP_JWT_SECRET=test-secret-keyAPP_JWT_EXPIRY_HOURS=1# Redis - Different DB for isolationAPP_REDIS_DSN=localhost:6379APP_REDIS_DB=1APP_REDIS_PREFIX=go-simple-testAPP_REDIS_DEFAULT_TTL=1"
     },
     {

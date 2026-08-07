@@ -71,7 +71,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "func TestProductsAdmin(t *testing.T) {\n    t.Parallel()\n    WithTestServer(t, func() {\n        // Setup config and base URL\n    })\n}"
+      "code": "func TestProductsAdmin(t *testing.T) {\n\tt.Parallel()\n\tWithTestServer(t, func() {\n\t\t// Setup config and base URL\n\t})\n}"
     },
     {
       "type": "paragraph",
@@ -125,7 +125,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "update := dto.AdminUpdateProductRequest{\n    Name:  \"Updated\",\n    Price: 1500,\n}\n\nbody, _ := json.Marshal(update)\nreq, _ := http.NewRequest(\n    http.MethodPut,\n    addr+\"/api/v1/admin/products/1\",\n    bytes.NewBuffer(body),\n)\nreq.Header.Set(\"Content-Type\", \"application/json\")\n\nclient := &http.Client{}\nresp, _ := client.Do(req)"
+      "code": "update := dto.AdminUpdateProductRequest{\n\tName:  \"Updated\",\n\tPrice: 1500,\n}\n\nbody, _ := json.Marshal(update)\nreq, _ := http.NewRequest(\n\thttp.MethodPut,\n\taddr+\"/api/v1/admin/products/1\",\n\tbytes.NewBuffer(body),\n)\nreq.Header.Set(\"Content-Type\", \"application/json\")\n\nclient := &http.Client{}\nresp, _ := client.Do(req)"
     },
     {
       "type": "paragraph",
@@ -161,7 +161,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "if resp.StatusCode != http.StatusOK {\n    t.Errorf(\"Expected 200 OK, got %d\", resp.StatusCode)\n}"
+      "code": "if resp.StatusCode != http.StatusOK {\n\tt.Errorf(\"Expected 200 OK, got %d\", resp.StatusCode)\n}"
     },
     {
       "type": "paragraph",

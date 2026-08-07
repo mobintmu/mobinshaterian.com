@@ -203,17 +203,17 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "func (s *ProductService) GetByID(ctx context.Context, id string) (*Product, error) {\n    // Existing implementation\n}"
+      "code": "func (s *ProductService) GetByID(ctx context.Context, id string) (*Product, error) {\n\t// Existing implementation\n}"
     },
     {
       "type": "code",
       "lang": "go",
-      "code": "// Repository layer stays the same\ntype ProductRepository struct {\n    db *sql.DB\n}"
+      "code": "// Repository layer stays the same\ntype ProductRepository struct {\n\tdb *sql.DB\n}"
     },
     {
       "type": "code",
       "lang": "go",
-      "code": "func (r *ProductRepository) FindByID(ctx context.Context, id string) (*Product, error) {\n    // Existing queries\n}"
+      "code": "func (r *ProductRepository) FindByID(ctx context.Context, id string) (*Product, error) {\n\t// Existing queries\n}"
     },
     {
       "type": "heading",

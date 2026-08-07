@@ -83,7 +83,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "func Key(parts...string) string {\n    return strings.Join(parts, \":\")\n}"
+      "code": "func Key(parts ...string) string {\n\treturn strings.Join(parts, \":\")\n}"
     },
     {
       "type": "paragraph",

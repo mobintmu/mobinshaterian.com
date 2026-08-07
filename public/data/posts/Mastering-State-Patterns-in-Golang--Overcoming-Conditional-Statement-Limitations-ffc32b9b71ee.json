@@ -233,7 +233,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "type State interface {\n    addItem(int) error\n    requestItem() error\n    insertMoney(money int) error\n    dispenseItem() error\n}"
+      "code": "type State interface {\n\taddItem(int) error\n\trequestItem() error\n\tinsertMoney(money int) error\n\tdispenseItem() error\n}"
     },
     {
       "type": "paragraph",
@@ -259,7 +259,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "func (v *VendingMachine) requestItem() error {\n    return v.currentState.requestItem()\n}"
+      "code": "func (v *VendingMachine) requestItem() error {\n\treturn v.currentState.requestItem()\n}"
     },
     {
       "type": "paragraph",
@@ -272,7 +272,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "func (i *HasItemState) requestItem() error {\n    i.vendingMachine.setState(i.vendingMachine.itemRequested)\n}"
+      "code": "func (i *HasItemState) requestItem() error {\n\ti.vendingMachine.setState(i.vendingMachine.itemRequested)\n}"
     },
     {
       "type": "paragraph",
@@ -281,7 +281,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "func (i *ItemRequestedState) insertMoney(money int) error {\n    if money < price {\n        return error\n    }\n    i.vendingMachine.setState(i.vendingMachine.hasMoney)\n}"
+      "code": "func (i *ItemRequestedState) insertMoney(money int) error {\n\tif money < price {\n\t\treturn error\n\t}\n\ti.vendingMachine.setState(i.vendingMachine.hasMoney)\n}"
     },
     {
       "type": "paragraph",
@@ -299,7 +299,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "func (i *NoItemState) requestItem() error {\n    return fmt.Errorf(\"Item out of stock\")\n}"
+      "code": "func (i *NoItemState) requestItem() error {\n\treturn fmt.Errorf(\"Item out of stock\")\n}"
     },
     {
       "type": "paragraph",
@@ -402,7 +402,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "type Transition struct {\n    From State\n    Act Action\n    To\n    State\n    Func func() error // Optional business logic\n}"
+      "code": "type Transition struct {\n\tFrom State\n\tAct  Action\n\tTo\n\tState\n\tFunc func() error // Optional business logic\n}"
     },
     {
       "type": "heading",

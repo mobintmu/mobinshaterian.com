@@ -54,17 +54,17 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "type MyData struct {\n    Galleries []GalleryItem `json:\"galleries\"` // works only for flat arrays\n}"
+      "code": "type MyData struct {\n\tGalleries []GalleryItem `json:\"galleries\"` // works only for flat arrays\n}"
     },
     {
       "type": "code",
       "lang": "go",
-      "code": "type MyData struct {\n    Galleries Galleries `json:\"galleries\"` // works only for object form\n}"
+      "code": "type MyData struct {\n\tGalleries Galleries `json:\"galleries\"` // works only for object form\n}"
     },
     {
       "type": "code",
       "lang": "go",
-      "code": "type Galleries struct {\n    Flat []GalleryItem // when galleries is a flat array\n}"
+      "code": "type Galleries struct {\n\tFlat []GalleryItem // when galleries is a flat array\n}"
     },
     {
       "type": "heading",
@@ -115,7 +115,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "import (\n\"encoding/json\"\n\"testing\"\n)\nfunc TestMyData_FlatGalleries(t *testing.T) {\n    jsonData :=\n    `{      \"galleries\": [        { \"id\": 1, \"media\": \"/path/1.jpg\"},        { \"id\": 2, \"media\": \"/path/2.jpg\"}      ]    }`\n    var data MyData\n    if err := json.Unmarshal([]byte(jsonData), &data);\n    err != nil {\n        t.Fatalf(\"unexpected error: %v\", err)\n    }\n    if len(data.Galleries.Flat) != 2 {\n        t.Errorf(\"expected 2 flat galleries, got %d\", len(data.Galleries.Flat))\n    }\n    if data.Galleries.Map != nil {\n        t.Errorf(\"expected Map to be nil, got %+v\", data.Galleries.Map)\n    }\n}\nfunc TestMyData_MapGalleries(t *testing.T) {\n    jsonData :=\n    `{      \"galleries\": {        \"type-one\": [          { \"id\": 1, \"media\": \"/path/en1.jpg\"}        ],        \"type-two\": [          { \"id\": 2, \"media\": \"/path/fa1.jpg\"}        ]      }    }`\n    var data MyData\n    if err := json.Unmarshal([]byte(jsonData), &data);\n    err != nil {\n        t.Fatalf(\"unexpected error: %v\", err)\n    }\n    if data.Galleries.Flat != nil {\n        t.Errorf(\"expected Flat to be nil, got %+v\", data.Galleries.Flat)\n    }\n    if len(data.Galleries.Map) != 2 {\n        t.Errorf(\"expected 2 keys in Map, got %d\", len(data.Galleries.Map))\n    }\n    if data.Galleries.Map[\"type-one\"][0].Media != \"/path/en1.jpg\" {\n        t.Errorf(\"unexpected type-one media: %+v\", data.Galleries.Map[\"type-one\"])\n    }\n    if data.Galleries.Map[\"type-two\"][0].Media != \"/path/fa1.jpg\" {\n        t.Errorf(\"unexpected type-two media: %+v\", data.Galleries.Map[\"type-two\"])\n    }\n}"
+      "code": "import (\n\t\"encoding/json\"\n\t\"testing\"\n)\n\nfunc TestMyData_FlatGalleries(t *testing.T) {\n\tjsonData :=\n\t\t`{      \"galleries\": [        { \"id\": 1, \"media\": \"/path/1.jpg\"},        { \"id\": 2, \"media\": \"/path/2.jpg\"}      ]    }`\n\tvar data MyData\n\tif err := json.Unmarshal([]byte(jsonData), &data); err != nil {\n\t\tt.Fatalf(\"unexpected error: %v\", err)\n\t}\n\tif len(data.Galleries.Flat) != 2 {\n\t\tt.Errorf(\"expected 2 flat galleries, got %d\", len(data.Galleries.Flat))\n\t}\n\tif data.Galleries.Map != nil {\n\t\tt.Errorf(\"expected Map to be nil, got %+v\", data.Galleries.Map)\n\t}\n}\nfunc TestMyData_MapGalleries(t *testing.T) {\n\tjsonData :=\n\t\t`{      \"galleries\": {        \"type-one\": [          { \"id\": 1, \"media\": \"/path/en1.jpg\"}        ],        \"type-two\": [          { \"id\": 2, \"media\": \"/path/fa1.jpg\"}        ]      }    }`\n\tvar data MyData\n\tif err := json.Unmarshal([]byte(jsonData), &data); err != nil {\n\t\tt.Fatalf(\"unexpected error: %v\", err)\n\t}\n\tif data.Galleries.Flat != nil {\n\t\tt.Errorf(\"expected Flat to be nil, got %+v\", data.Galleries.Flat)\n\t}\n\tif len(data.Galleries.Map) != 2 {\n\t\tt.Errorf(\"expected 2 keys in Map, got %d\", len(data.Galleries.Map))\n\t}\n\tif data.Galleries.Map[\"type-one\"][0].Media != \"/path/en1.jpg\" {\n\t\tt.Errorf(\"unexpected type-one media: %+v\", data.Galleries.Map[\"type-one\"])\n\t}\n\tif data.Galleries.Map[\"type-two\"][0].Media != \"/path/fa1.jpg\" {\n\t\tt.Errorf(\"unexpected type-two media: %+v\", data.Galleries.Map[\"type-two\"])\n\t}\n}"
     },
     {
       "type": "heading",

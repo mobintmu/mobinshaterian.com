@@ -94,7 +94,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "type Category struct {\n    Name string\n    Link string\n    Products []Product // Raw, uncleaned products\n    CleanedProducts []ProductClean // Validated, normalized products\n}"
+      "code": "type Category struct {\n\tName            string\n\tLink            string\n\tProducts        []Product      // Raw, uncleaned products\n\tCleanedProducts []ProductClean // Validated, normalized products\n}"
     },
     {
       "type": "paragraph",
@@ -126,7 +126,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "type Website struct {\n    Domain string\n    Categories []Category\n    StartURLs []string `json:\"start_urls\"`\n    ProductList ProductListConfig `json:\"product_list\"`\n    Pagination *PaginationConfig `json:\"pagination,omitempty\"`\n    ProductDetail ProductDetailConfig `json:\"product_detail\"`\n}"
+      "code": "type Website struct {\n\tDomain        string\n\tCategories    []Category\n\tStartURLs     []string            `json:\"start_urls\"`\n\tProductList   ProductListConfig   `json:\"product_list\"`\n\tPagination    *PaginationConfig   `json:\"pagination,omitempty\"`\n\tProductDetail ProductDetailConfig `json:\"product_detail\"`\n}"
     },
     {
       "type": "paragraph",
@@ -161,7 +161,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "type FieldConfig struct {\n    Selector string `json:\"selector\"`\n    Attr string `json:\"attr\"`\n}"
+      "code": "type FieldConfig struct {\n\tSelector string `json:\"selector\"`\n\tAttr     string `json:\"attr\"`\n}"
     },
     {
       "type": "list",
@@ -182,12 +182,12 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "// Extract text content.\nTitle: e.ChildText(s.web.ProductList.Fields[\"title\"].Selector)"
+      "code": "// Extract text content.\nTitle:\ne.ChildText(s.web.ProductList.Fields[\"title\"].Selector)"
     },
     {
       "type": "code",
       "lang": "go",
-      "code": "// Extract an attribute value.\nLink: e.ChildAttr(\n    s.web.ProductList.Fields[\"link\"].Selector,\n    s.web.ProductList.Fields[\"link\"].Attr,\n)"
+      "code": "// Extract an attribute value.\nLink:\ne.ChildAttr(\n\ts.web.ProductList.Fields[\"link\"].Selector,\n\ts.web.ProductList.Fields[\"link\"].Attr,\n)"
     },
     {
       "type": "heading",
@@ -236,7 +236,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "type PaginationConfig struct {\n    Next string `json:\"next\"`\n}"
+      "code": "type PaginationConfig struct {\n\tNext string `json:\"next\"`\n}"
     },
     {
       "type": "list",
@@ -256,7 +256,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "c.OnHTML(s.web.Pagination.Next, func(e *colly.HTMLElement) {\n    nextPage := e.Attr(\"href\")\n    s.logger.Info(\"Visiting next page\", zap.String(\"url\", nextPage))\n    e.Request.Visit(nextPage)\n})"
+      "code": "c.OnHTML(s.web.Pagination.Next, func(e *colly.HTMLElement) {\n\tnextPage := e.Attr(\"href\")\n\ts.logger.Info(\"Visiting next page\", zap.String(\"url\", nextPage))\n\te.Request.Visit(nextPage)\n})"
     },
     {
       "type": "heading",
@@ -270,7 +270,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "type ProductDetailConfig struct {\n    Description FieldConfig `json:\"description\"`\n}"
+      "code": "type ProductDetailConfig struct {\n\tDescription FieldConfig `json:\"description\"`\n}"
     },
     {
       "type": "paragraph",
@@ -293,7 +293,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "type Service struct {\n    web *Website\n    logger *zap.Logger\n    mu sync.Mutex\n}"
+      "code": "type Service struct {\n\tweb    *Website\n\tlogger *zap.Logger\n\tmu     sync.Mutex\n}"
     },
     {
       "type": "list",
@@ -730,7 +730,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "c.Limit(&colly.LimitRule{\n    DomainGlob:  s.web.Domain,\n    Parallelism: 4,                      // 4 concurrent requests\n    Delay:       800 * time.Millisecond, // 800ms between requests\n})"
+      "code": "c.Limit(&colly.LimitRule{\n\tDomainGlob:  s.web.Domain,\n\tParallelism: 4,                      // 4 concurrent requests\n\tDelay:       800 * time.Millisecond, // 800ms between requests\n})"
     },
     {
       "type": "paragraph",
@@ -772,7 +772,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "s.logger.Info(\n    \"Visiting next page\",\n    zap.String(\"url\", nextPage),\n)\n\ns.logger.Debug(\n    \"Product link is not valid\",\n    zap.Any(\"product\", p),\n)\n\ns.logger.Warn(\n    \"Failed to visit product\",\n    zap.String(\"url\", url),\n    zap.Error(err),\n)"
+      "code": "s.logger.Info(\n\t\"Visiting next page\",\n\tzap.String(\"url\", nextPage),\n)\n\ns.logger.Debug(\n\t\"Product link is not valid\",\n\tzap.Any(\"product\", p),\n)\n\ns.logger.Warn(\n\t\"Failed to visit product\",\n\tzap.String(\"url\", url),\n\tzap.Error(err),\n)"
     },
     {
       "type": "paragraph",

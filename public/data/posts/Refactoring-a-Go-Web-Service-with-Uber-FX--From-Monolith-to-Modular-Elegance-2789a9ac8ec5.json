@@ -66,7 +66,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "func main() {\n    fx.New(fx.Provide(config.NewConfig, health.New, server.NewGinEngine, server.CreateHTTPServer,),\n    fx.Invoke(server.RegisterRoutes, server.StartHTTPServer,),\n    ).Run()\n}"
+      "code": "func main() {\n\tfx.New(fx.Provide(config.NewConfig, health.New, server.NewGinEngine, server.CreateHTTPServer),\n\t\tfx.Invoke(server.RegisterRoutes, server.StartHTTPServer),\n\t).Run()\n}"
     },
     {
       "type": "paragraph",
@@ -89,7 +89,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "fx.Provide(    config.NewConfig,       // returns *Config    server.NewGinEngine,    // returns\n*gin.Engine)"
+      "code": "fx.Provide(config.NewConfig, // returns *Config    server.NewGinEngine,    // returns\n\t*gin.Engine)"
     },
     {
       "type": "paragraph",
@@ -124,7 +124,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "fx.Invoke(\nserver.RegisterRoutes,\nserver.StartHTTPServer,)"
+      "code": "fx.Invoke(\n\tserver.RegisterRoutes,\n\tserver.StartHTTPServer)"
     },
     {
       "type": "paragraph",
@@ -195,7 +195,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "type Config struct {\n    HTTPAddress string\n    HTTPPort int\n}\nfunc NewConfig() *Config {\n    return &Config{\n        HTTPAddress: \"127.0.0.1\", HTTPPort:\n        4000,\n    }\n}"
+      "code": "type Config struct {\n\tHTTPAddress string\n\tHTTPPort    int\n}\n\nfunc NewConfig() *Config {\n\treturn &Config{\n\t\tHTTPAddress: \"127.0.0.1\", HTTPPort: 4000,\n\t}\n}"
     },
     {
       "type": "paragraph",

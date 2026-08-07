@@ -125,7 +125,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "func queryProductsByFilter(t *testing.T, addr, filter string, validate func(map[string]interface{\n}) bool) {\n    query :=\n    fmt.Sprintf(`{\"query\":\"query { products(filter: { %s }) { products { id name description price isActive } total } }\"}`, filter)\n    resp, err := http.Post(addr+\"/query\", \"application/json\", bytes.NewBufferString(query))\n    //...decode response and validate results...\n}"
+      "code": "func queryProductsByFilter(t *testing.T, addr, filter string, validate func(map[string]interface {\n}) bool) {\n\tquery :=\n\t\tfmt.Sprintf(`{\"query\":\"query { products(filter: { %s }) { products { id name description price isActive } total } }\"}`, filter)\n\tresp, err := http.Post(addr+\"/query\", \"application/json\", bytes.NewBufferString(query))\n\t//...decode response and validate results...\n}"
     },
     {
       "type": "paragraph",

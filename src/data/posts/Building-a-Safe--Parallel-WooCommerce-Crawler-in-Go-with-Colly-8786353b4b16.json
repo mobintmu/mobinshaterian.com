@@ -84,7 +84,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "type Product struct {\n    Title string\n    Price string\n    Link string\n    Image string\n    Description string\n}"
+      "code": "type Product struct {\n\tTitle       string\n\tPrice       string\n\tLink        string\n\tImage       string\n\tDescription string\n}"
     },
     {
       "type": "paragraph",
@@ -102,7 +102,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "type Service struct {\n    products []Product\n    cleanedProducts []Product\n    logger *zap.Logger\n    mu sync.Mutex\n}"
+      "code": "type Service struct {\n\tproducts        []Product\n\tcleanedProducts []Product\n\tlogger          *zap.Logger\n\tmu              sync.Mutex\n}"
     },
     {
       "type": "paragraph",
@@ -157,7 +157,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "c.OnHTML(\"div.product-grid-item\", func(e *colly.HTMLElement) {\n    p := Product{\n        Title: e.ChildText(\"h3.wd-entities-title a\"),\n        Price: e.ChildText(\"span.price\"),\n        Link:  e.ChildAttr(\"a.product-image-link\", \"href\"),\n        Image: e.ChildAttr(\"a.product-image-link img\", \"src\"),\n    }\n\n    if p.Link != \"\" {\n        products = append(products, p)\n    }\n})"
+      "code": "c.OnHTML(\"div.product-grid-item\", func(e *colly.HTMLElement) {\n\tp := Product{\n\t\tTitle: e.ChildText(\"h3.wd-entities-title a\"),\n\t\tPrice: e.ChildText(\"span.price\"),\n\t\tLink:  e.ChildAttr(\"a.product-image-link\", \"href\"),\n\t\tImage: e.ChildAttr(\"a.product-image-link img\", \"src\"),\n\t}\n\n\tif p.Link != \"\" {\n\t\tproducts = append(products, p)\n\t}\n})"
     },
     {
       "type": "paragraph",
@@ -184,7 +184,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "c := colly.NewCollector(\n    colly.AllowedDomains(\"badomjip.com\"),\n    colly.Async(true),\n)"
+      "code": "c := colly.NewCollector(\n\tcolly.AllowedDomains(\"badomjip.com\"),\n\tcolly.Async(true),\n)"
     },
     {
       "type": "paragraph",
@@ -193,7 +193,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "c.Limit(&colly.LimitRule{\n    DomainGlob:  \"badomjip.com\",\n    Parallelism: 4,\n    Delay:       800 * time.Millisecond,\n})"
+      "code": "c.Limit(&colly.LimitRule{\n\tDomainGlob:  \"badomjip.com\",\n\tParallelism: 4,\n\tDelay:       800 * time.Millisecond,\n})"
     },
     {
       "type": "paragraph",
@@ -275,7 +275,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "cleaned = append(cleaned, Product{\n    Title:       title,\n    Price:       strconv.Itoa(priceInt),\n    Link:        p.Link,\n    Image:       p.Image,\n    Description: p.Description,\n})"
+      "code": "cleaned = append(cleaned, Product{\n\tTitle:       title,\n\tPrice:       strconv.Itoa(priceInt),\n\tLink:        p.Link,\n\tImage:       p.Image,\n\tDescription: p.Description,\n})"
     },
     {
       "type": "paragraph",

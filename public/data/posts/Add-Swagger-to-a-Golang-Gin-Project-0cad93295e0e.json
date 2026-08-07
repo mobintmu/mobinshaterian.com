@@ -80,7 +80,7 @@
     {
       "type": "code",
       "lang": "go",
-      "code": "func main() {\n    r := gin.Default()\n    // Serve Swagger docs\n    r.GET(\"/swagger/*any\", ginSwagger.WrapHandler(swaggerFiles.Handler))\n    r.Run(\":4000\")\n}"
+      "code": "func main() {\n\tr := gin.Default()\n\t// Serve Swagger docs\n\tr.GET(\"/swagger/*any\", ginSwagger.WrapHandler(swaggerFiles.Handler))\n\tr.Run(\":4000\")\n}"
     },
     {
       "type": "heading",
