@@ -245,6 +245,21 @@ function blocksFromReader(markdown) {
     parsedBlocks.push({ type: "paragraph", html: inlineMarkdown(text) });
     addPlain(text);
   };
+  const addCodeBlock = (codeLines, language, preserveWhitespace = false) => {
+    const code = codeLines
+      .filter((codeLine) => codeLine.trim())
+      .map((codeLine) => codeLine.trimEnd())
+      .join("\n")
+      .trimEnd();
+    if (!code) return;
+    parsedBlocks.push({
+      type: "code",
+      lang: language || detectCodeLanguage(code),
+      code,
+      ...(preserveWhitespace ? { preserveWhitespace: true } : {}),
+    });
+    parsedPlain.push(code);
+  };
 
   for (let index = 0; index < lines.length; index++) {
     const line = lines[index].trim();
@@ -275,6 +290,30 @@ function blocksFromReader(markdown) {
       continue;
     }
 
+    if (/^={20,}$/.test(line)) {
+      flushParagraph();
+      const diagramLines = [];
+      let separatorCount = 0;
+      for (; index < lines.length; index++) {
+        const diagramLine = lines[index];
+        const trimmedDiagramLine = diagramLine.trim();
+        if (/^={20,}$/.test(trimmedDiagramLine)) separatorCount++;
+        diagramLines.push(diagramLine);
+
+        if (separatorCount >= 2) {
+          const nextContentLine = lines
+            .slice(index + 1)
+            .find((candidate) => candidate.trim())
+            ?.trim();
+          if (!nextContentLine || /^(?:#{2,3}\s+|!\[|(?:\*|-|\+)\s+)/.test(nextContentLine)) {
+            break;
+          }
+        }
+      }
+      addCodeBlock(diagramLines, "text", true);
+      continue;
+    }
+
     const fence = line.match(/^```\s*([^\s`]*)/);
     if (fence) {
       flushParagraph();
@@ -294,6 +333,39 @@ function blocksFromReader(markdown) {
         });
         parsedPlain.push(code);
       }
+      continue;
+    }
+
+    if (line === "Code snippet") continue;
+
+    const plainCodeLanguage = /^curl\s+-/.test(line)
+      ? "bash"
+      : line === "model"
+        ? "text"
+        : /^import\s+[A-Za-z_]/.test(line) || /^#\s*(?:API Endpoint|Usage)/.test(line)
+          ? "python"
+          : /^apiVersion:/.test(line)
+            ? "yaml"
+            : "";
+    if (plainCodeLanguage) {
+      flushParagraph();
+      const codeLines = [];
+      for (; index < lines.length; index++) {
+        const codeLine = lines[index];
+        const trimmedCodeLine = codeLine.trim();
+        if (
+          codeLines.length &&
+          (/^#{2,3}\s+/.test(trimmedCodeLine) ||
+            /^>\s?/.test(trimmedCodeLine) ||
+            trimmedCodeLine === "Press enter or click to view image in full size" ||
+            /^!\[/.test(trimmedCodeLine))
+        ) {
+          break;
+        }
+        codeLines.push(codeLine);
+      }
+      index--;
+      addCodeBlock(codeLines, plainCodeLanguage);
       continue;
     }
 

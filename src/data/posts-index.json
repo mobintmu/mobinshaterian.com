@@ -1,5 +1,21 @@
 [
   {
+    "slug": "Complete-Technical-Migration-Strategy--Migrating-Legacy-Django-Auth-to-Keycloak---OpenFGA-via-ETL-bbf22fd59cf2",
+    "title": "Complete Technical Migration Strategy: Migrating Legacy Django Auth to Keycloak & OpenFGA via ETL",
+    "excerpt": "Just now",
+    "date": "2026-08-07",
+    "tags": [
+      "Keycloak",
+      "OpenFGA",
+      "Django",
+      "ETL",
+      "Security"
+    ],
+    "readingTime": "5 min",
+    "url": "https://blog.stackademic.com/complete-technical-migration-strategy-migrating-legacy-django-auth-to-keycloak-openfga-via-etl-bbf22fd59cf2",
+    "hero": "https://miro.medium.com/v2/resize:fit:700/1*FIVixsQIHFKfFTe-5kLrcQ.png"
+  },
+  {
     "slug": "Architecting-Search-Engines--A-Deep-Dive-into-Meilisearch-Internals--Vector-Retrieval--and-Algolia-92779f29488e",
     "title": "Architecting Search Engines: A Deep Dive into Meilisearch Internals, Vector Retrieval, and Algolia",
     "excerpt": "The design of application search has undergone a fundamental transformation over the past decade. Traditionally, software architectures relied on either SQL relational string operations (LIKE '%term%') or heavy analytic…",

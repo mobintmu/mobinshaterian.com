@@ -4,14 +4,22 @@ import { Check, Copy } from "lucide-react";
 export type Block =
   | { type: "heading"; level: 2 | 3; text: string }
   | { type: "paragraph"; html: string }
-  | { type: "code"; lang: string; code: string }
+  | { type: "code"; lang: string; code: string; preserveWhitespace?: boolean }
   | { type: "image"; src: string; alt?: string; caption?: string; width?: number; height?: number }
   | { type: "quote"; html: string }
   | { type: "list"; ordered: boolean; items: string[] }
   | { type: "embed"; provider: string; url: string }
   | { type: "hr" };
 
-function CodeBlock({ lang, code }: { lang: string; code: string }) {
+function CodeBlock({
+  lang,
+  code,
+  preserveWhitespace = false,
+}: {
+  lang: string;
+  code: string;
+  preserveWhitespace?: boolean;
+}) {
   const [copied, setCopied] = useState(false);
   const onCopy = async () => {
     try {
@@ -37,7 +45,13 @@ function CodeBlock({ lang, code }: { lang: string; code: string }) {
           {copied ? "copied" : "copy"}
         </button>
       </div>
-      <pre className="max-w-full whitespace-pre-wrap [overflow-wrap:anywhere] p-4 font-mono-plus text-xs leading-relaxed text-foreground/90">
+      <pre
+        className={`max-w-full p-4 font-mono-plus text-xs leading-relaxed text-foreground/90 ${
+          preserveWhitespace
+            ? "overflow-x-auto whitespace-pre"
+            : "whitespace-pre-wrap [overflow-wrap:anywhere]"
+        }`}
+      >
         <code>{code}</code>
       </pre>
     </div>
@@ -120,7 +134,14 @@ export function PostContent({
               />
             );
           case "code":
-            return <CodeBlock key={i} lang={b.lang} code={b.code} />;
+            return (
+              <CodeBlock
+                key={i}
+                lang={b.lang}
+                code={b.code}
+                preserveWhitespace={b.preserveWhitespace}
+              />
+            );
           case "image": {
             const normalizedSource = normalizeImageSource(b.src);
             if (normalizedSource && seenImageSources.has(normalizedSource)) {

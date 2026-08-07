@@ -7,6 +7,18 @@
     <language>en</language>
     <atom:link href="https://mobinshaterian.com/feed.xml" rel="self" type="application/rss+xml"/>
     <item>
+      <title>Complete Technical Migration Strategy: Migrating Legacy Django Auth to Keycloak &amp; OpenFGA via ETL</title>
+      <link>https://mobinshaterian.com/blog/Complete-Technical-Migration-Strategy--Migrating-Legacy-Django-Auth-to-Keycloak---OpenFGA-via-ETL-bbf22fd59cf2</link>
+      <guid isPermaLink="true">https://mobinshaterian.com/blog/Complete-Technical-Migration-Strategy--Migrating-Legacy-Django-Auth-to-Keycloak---OpenFGA-via-ETL-bbf22fd59cf2</guid>
+      <pubDate>Fri, 07 Aug 2026 00:00:00 GMT</pubDate>
+      <description>Just now</description>
+      <category>Keycloak</category>
+      <category>OpenFGA</category>
+      <category>Django</category>
+      <category>ETL</category>
+      <category>Security</category>
+    </item>
+    <item>
       <title>Architecting Search Engines: A Deep Dive into Meilisearch Internals, Vector Retrieval, and Algolia</title>
       <link>https://mobinshaterian.com/blog/Architecting-Search-Engines--A-Deep-Dive-into-Meilisearch-Internals--Vector-Retrieval--and-Algolia-92779f29488e</link>
       <guid isPermaLink="true">https://mobinshaterian.com/blog/Architecting-Search-Engines--A-Deep-Dive-into-Meilisearch-Internals--Vector-Retrieval--and-Algolia-92779f29488e</guid>
@@ -480,19 +492,6 @@
       <category>Go</category>
       <category>ClickHouse</category>
       <category>Docker Compose</category>
-    </item>
-    <item>
-      <title>Building a Complete Kafka + ClickHouse Streaming Stack with Docker Compose</title>
-      <link>https://mobinshaterian.com/blog/Building-a-Complete-Kafka---ClickHouse-Streaming-Stack-with-Docker-Compose-98cbfc4bbf0c</link>
-      <guid isPermaLink="true">https://mobinshaterian.com/blog/Building-a-Complete-Kafka---ClickHouse-Streaming-Stack-with-Docker-Compose-98cbfc4bbf0c</guid>
-      <pubDate>Sun, 07 Dec 2025 00:00:00 GMT</pubDate>
-      <description>The article demonstrates building a complete, reproducible real-time data streaming and analytics stack using Kafka and ClickHouse.</description>
-      <category>Kafka</category>
-      <category>ClickHouse</category>
-      <category>Docker</category>
-      <category>Docker Compose</category>
-      <category>Data Engineering</category>
-      <category>DevOps</category>
     </item>
   </channel>
 </rss>
