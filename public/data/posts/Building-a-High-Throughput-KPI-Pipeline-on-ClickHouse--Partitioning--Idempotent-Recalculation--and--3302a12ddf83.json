@@ -213,7 +213,7 @@
     {
       "type": "code",
       "lang": "sql",
-      "code": "WITH  kpi_1 AS (\nSELECT time, cell_id, vendor, ..., sum(counter_a) AS kpi_id_1001\nFROM\nflat_lte_vendor_a\nWHERE time>= toDateTime('2024-11-01 14:00:00', 'UTC')      AND time <\ntoDateTime('2024-11-01 15:00:00', 'UTC')\nGROUP BY time, cell_id, vendor, ...  ),  kpi_2 AS (\nSELECT meta_begin_time, cell_id, vendor, ..., avg(counter_b) AS kpi_id_1002\nFROM\nflat_lte_vendor_a\nWHERE ...\nGROUP BY ...  )INSERT INTO kpi_flat_lte_vendor_a_cell_hourlySELECT\ncoalesce(kpi_1.time, kpi_2.time) AS meta_begin_time,    coalesce(kpi_1.cell_id,\nkpi_2.cell_id)         AS cell_id,    -- ... coalesce for every dimension column ...    now('UTC')\nAS updated_at,    kpi_1.kpi_id_1001,    kpi_2.kpi_id_1002FROM kpi_1FULL\nOUTER\nJOIN kpi_2  ON\nkpi_1.meta_begin_time = kpi_2.meta_begin_time AND kpi_1.cell_id         = kpi_2.cell_id AND\nkpi_1.vendor          = kpi_2.vendor;"
+      "code": "WITH\n    kpi_1 AS (\n        SELECT\n            time,\n            cell_id,\n            vendor,\n            ...,\n            sum(counter_a) AS kpi_id_1001\n        FROM flat_lte_vendor_a\n        WHERE time >= toDateTime('2024-11-01 14:00:00', 'UTC')\n          AND time < toDateTime('2024-11-01 15:00:00', 'UTC')\n        GROUP BY time, cell_id, vendor, ...\n    ),\n    kpi_2 AS (\n        SELECT\n            meta_begin_time,\n            cell_id,\n            vendor,\n            ...,\n            avg(counter_b) AS kpi_id_1002\n        FROM flat_lte_vendor_a\n        WHERE ...\n        GROUP BY ...\n    )\nINSERT INTO kpi_flat_lte_vendor_a_cell_hourly\nSELECT\n    coalesce(kpi_1.time, kpi_2.time) AS meta_begin_time,\n    coalesce(kpi_1.cell_id, kpi_2.cell_id) AS cell_id,\n    -- ... coalesce for every dimension column ...\n    now('UTC') AS updated_at,\n    kpi_1.kpi_id_1001,\n    kpi_2.kpi_id_1002\nFROM kpi_1\nFULL OUTER JOIN kpi_2 ON\n    kpi_1.meta_begin_time = kpi_2.meta_begin_time\n    AND kpi_1.cell_id = kpi_2.cell_id\n    AND kpi_1.vendor = kpi_2.vendor;"
     },
     {
       "type": "paragraph",
@@ -229,9 +229,15 @@
       "html": "Each Airflow DAG run follows this sequence for a given <code>(vendor, technology, entity, granularity)</code> group:"
     },
     {
-      "type": "code",
-      "lang": "text",
-      "code": "1. Discover SQL files matching the group.2. ensure_target_table  — CREATE TABLE IF NOT EXISTS (no-op\nafter first run).3. ensure_kpi_columns   — ADD COLUMN IF NOT EXISTS for any new KPIs.4. ALTER TABLE\n… DELETE WHERE meta_begin_time in [start, end).5. WITH … INSERT INTO … SELECT (the merged CTE\nquery)."
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Discover the SQL files that match the current group.",
+        "Run <code>ensure_target_table</code>, which uses <code>CREATE TABLE IF NOT EXISTS</code>. After the first run, this is a no-op.",
+        "Run <code>ensure_kpi_columns</code>, which uses <code>ADD COLUMN IF NOT EXISTS</code> for newly discovered KPIs.",
+        "Delete existing results in the target window with <code>ALTER TABLE … DELETE WHERE meta_begin_time &gt;= start AND meta_begin_time &lt; end</code>.",
+        "Run the merged <code>INSERT INTO … WITH … SELECT</code> query to write the recalculated KPI values."
+      ]
     },
     {
       "type": "paragraph",
