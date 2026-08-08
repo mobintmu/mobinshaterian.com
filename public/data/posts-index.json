@@ -16,6 +16,20 @@
     "hero": "https://miro.medium.com/v2/resize:fit:700/1*FIVixsQIHFKfFTe-5kLrcQ.png"
   },
   {
+    "slug": "From-3NF-MySQL-to-Fast-Search--Building-a-CDC-Powered-Read-Model-7bfd2300c3c4",
+    "title": "From 3NF MySQL to Fast Search: Building a CDC-Powered Read Model",
+    "excerpt": "Normalized MySQL is great for writing data correctly. It’s not great for serving it fast. Once a project entity spans tasks, members, documents, orders, and comments, every “project overview” request turns into a wall o…",
+    "date": "2026-08-07",
+    "tags": [
+      "Architecture",
+      "Data Engineering",
+      "Search Engine"
+    ],
+    "readingTime": "7 min",
+    "url": "https://mobinshaterian.medium.com/from-3nf-mysql-to-fast-search-building-a-cdc-powered-read-model-7bfd2300c3c4",
+    "hero": null
+  },
+  {
     "slug": "Architecting-Search-Engines--A-Deep-Dive-into-Meilisearch-Internals--Vector-Retrieval--and-Algolia-92779f29488e",
     "title": "Architecting Search Engines: A Deep Dive into Meilisearch Internals, Vector Retrieval, and Algolia",
     "excerpt": "The design of application search has undergone a fundamental transformation over the past decade. Traditionally, software architectures relied on either SQL relational string operations (LIKE '%term%') or heavy analytic…",

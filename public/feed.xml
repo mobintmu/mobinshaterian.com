@@ -19,6 +19,16 @@
       <category>Security</category>
     </item>
     <item>
+      <title>From 3NF MySQL to Fast Search: Building a CDC-Powered Read Model</title>
+      <link>https://mobinshaterian.com/blog/From-3NF-MySQL-to-Fast-Search--Building-a-CDC-Powered-Read-Model-7bfd2300c3c4</link>
+      <guid isPermaLink="true">https://mobinshaterian.com/blog/From-3NF-MySQL-to-Fast-Search--Building-a-CDC-Powered-Read-Model-7bfd2300c3c4</guid>
+      <pubDate>Fri, 07 Aug 2026 00:00:00 GMT</pubDate>
+      <description>Normalized MySQL is great for writing data correctly. It’s not great for serving it fast. Once a project entity spans tasks, members, documents, orders, and comments, every “project overview” request turns into a wall o…</description>
+      <category>Architecture</category>
+      <category>Data Engineering</category>
+      <category>Search Engine</category>
+    </item>
+    <item>
       <title>Architecting Search Engines: A Deep Dive into Meilisearch Internals, Vector Retrieval, and Algolia</title>
       <link>https://mobinshaterian.com/blog/Architecting-Search-Engines--A-Deep-Dive-into-Meilisearch-Internals--Vector-Retrieval--and-Algolia-92779f29488e</link>
       <guid isPermaLink="true">https://mobinshaterian.com/blog/Architecting-Search-Engines--A-Deep-Dive-into-Meilisearch-Internals--Vector-Retrieval--and-Algolia-92779f29488e</guid>
@@ -482,16 +492,6 @@
       <category>API</category>
       <category>gRPC</category>
       <category>GraphQL</category>
-    </item>
-    <item>
-      <title>Adding ClickHouse to a Go Project: A Practical Guide Inspired by go-simple</title>
-      <link>https://mobinshaterian.com/blog/Adding-ClickHouse-to-a-Go-Project--A-Practical-Guide-Inspired-by-go-simple-5a4cfef93e41</link>
-      <guid isPermaLink="true">https://mobinshaterian.com/blog/Adding-ClickHouse-to-a-Go-Project--A-Practical-Guide-Inspired-by-go-simple-5a4cfef93e41</guid>
-      <pubDate>Sun, 14 Dec 2025 00:00:00 GMT</pubDate>
-      <description>ClickHouse has become a favorite for developers who need fast analytical queries, real‑time inserts, and effortless scalability. But…</description>
-      <category>Go</category>
-      <category>ClickHouse</category>
-      <category>Docker Compose</category>
     </item>
   </channel>
 </rss>

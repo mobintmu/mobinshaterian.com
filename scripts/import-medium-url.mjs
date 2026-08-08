@@ -436,6 +436,11 @@ function blocksFromReader(markdown) {
       continue;
     }
 
+    if (line === "--") {
+      flushParagraph();
+      continue;
+    }
+
     if (/^(?:---+|___+|\*\*\*+)$/.test(line)) {
       flushParagraph();
       parsedBlocks.push({ type: "hr" });
