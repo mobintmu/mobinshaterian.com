@@ -108,7 +108,7 @@
   {
     "slug": "Keycloak---OpenFGA--A-Practical-Integration-Guide-a9ed984ee205",
     "title": "Keycloak + OpenFGA: A Practical Integration Guide",
-    "excerpt": "Overview",
+    "excerpt": "Learn how to combine Keycloak authentication with OpenFGA’s relationship-based authorization to build scalable, fine-grained access control for modern applications.",
     "date": "2026-07-20",
     "tags": [
       "Security",

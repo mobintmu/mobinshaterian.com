@@ -1,8 +1,8 @@
 {
   "slug": "Keycloak---OpenFGA--A-Practical-Integration-Guide-a9ed984ee205",
   "title": "Keycloak + OpenFGA: A Practical Integration Guide",
-  "subtitle": "Concern Tool Why Authentication (AuthN) Keycloak JWT issuance, user identity, realm roles, SSO Authorization (AuthZ) OpenFGA Relationship-based permission checks (ReBAC)",
-  "excerpt": "Overview",
+  "subtitle": "Learn how to combine Keycloak authentication with OpenFGA’s relationship-based authorization to build scalable, fine-grained access control for modern applications.",
+  "excerpt": "Learn how to combine Keycloak authentication with OpenFGA’s relationship-based authorization to build scalable, fine-grained access control for modern applications.",
   "date": "2026-07-20",
   "tags": [
     "Security",

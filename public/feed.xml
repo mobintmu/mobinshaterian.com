@@ -89,7 +89,7 @@
       <link>https://mobinshaterian.com/blog/Keycloak---OpenFGA--A-Practical-Integration-Guide-a9ed984ee205</link>
       <guid isPermaLink="true">https://mobinshaterian.com/blog/Keycloak---OpenFGA--A-Practical-Integration-Guide-a9ed984ee205</guid>
       <pubDate>Mon, 20 Jul 2026 00:00:00 GMT</pubDate>
-      <description>Overview</description>
+      <description>Learn how to combine Keycloak authentication with OpenFGA’s relationship-based authorization to build scalable, fine-grained access control for modern applications.</description>
       <category>Security</category>
       <category>Architecture</category>
       <category>Integration</category>
