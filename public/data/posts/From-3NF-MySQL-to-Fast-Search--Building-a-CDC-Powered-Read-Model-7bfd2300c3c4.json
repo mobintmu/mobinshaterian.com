@@ -11,7 +11,7 @@
   ],
   "readingTime": "7 min",
   "url": "https://mobinshaterian.medium.com/from-3nf-mysql-to-fast-search-building-a-cdc-powered-read-model-7bfd2300c3c4",
-  "hero": null,
+  "hero": "https://cdn-images-1.medium.com/max/1024/1*SGfPJlpIJ7OV_5eRLTLcsQ.png",
   "content": [
     {
       "type": "paragraph",
@@ -20,6 +20,12 @@
     {
       "type": "paragraph",
       "html": "The fix isn’t picking a faster database. It’s moving the expensive work from <strong>request time</strong> to <strong>change time</strong>."
+    },
+    {
+      "type": "image",
+      "src": "https://cdn-images-1.medium.com/max/1024/1*SGfPJlpIJ7OV_5eRLTLcsQ.png",
+      "alt": "From 3NF MySQL to Fast Search: Building a CDC-Powered Read Model",
+      "caption": ""
     },
     {
       "type": "heading",
@@ -81,6 +87,12 @@
       "html": "Application-level dual writes (write MySQL, then write Mongo/Meilisearch) create a split-brain risk if the second write fails. Debezium reads MySQL’s binlog and emits change events to Kafka instead — MySQL writes only to itself, and everything downstream reacts asynchronously."
     },
     {
+      "type": "image",
+      "src": "https://cdn-images-1.medium.com/max/1024/1*FcCC0bX62MVd3U3d5FvUKg.png",
+      "alt": "From 3NF MySQL to Fast Search: Building a CDC-Powered Read Model",
+      "caption": ""
+    },
+    {
       "type": "heading",
       "level": 2,
       "text": "The projection service is the real component"
@@ -99,8 +111,20 @@
       "text": "Choosing the destination store"
     },
     {
+      "type": "image",
+      "src": "https://cdn-images-1.medium.com/max/676/1*GWjsDM7newzPNmYECC2ipw.png",
+      "alt": "From 3NF MySQL to Fast Search: Building a CDC-Powered Read Model",
+      "caption": ""
+    },
+    {
       "type": "paragraph",
       "html": "Don’t force one system to do both jobs well. A common split: a reporting-oriented store (Mongo, Postgres, ClickHouse) for dashboards and aggregation, Meilisearch dedicated purely to interactive search — both fed from the same projection stream."
+    },
+    {
+      "type": "image",
+      "src": "https://cdn-images-1.medium.com/max/1024/1*p9u1Ge05A4v2KzPtvohe5A.png",
+      "alt": "From 3NF MySQL to Fast Search: Building a CDC-Powered Read Model",
+      "caption": ""
     },
     {
       "type": "heading",

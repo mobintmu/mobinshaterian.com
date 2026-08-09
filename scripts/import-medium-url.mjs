@@ -94,6 +94,47 @@ let hero = $('meta[property="og:image"]').attr("content") || null;
 const description = $('meta[property="og:description"]').attr("content")?.trim() || "";
 const contentRoot = $("h1.pw-post-title").first().parent().parent();
 
+async function readerImagesFromFeed() {
+  if (!readerMarkdown || !/^https?:\/\//i.test(requestedUrl)) return [];
+
+  try {
+    const source = new URL(requestedUrl);
+    const feedResponse = await fetch(`${source.origin}/feed`);
+    if (!feedResponse.ok) throw new Error(`HTTP ${feedResponse.status}`);
+
+    const feed = cheerio.load(await feedResponse.text(), { xmlMode: true });
+    const item = feed("item")
+      .toArray()
+      .map((node) => feed(node))
+      .find((entry) => entry.find("guid").text().includes(articleId));
+    if (!item) return [];
+
+    const encoded = item.find("content\\:encoded").text();
+    const article = cheerio.load(encoded);
+    return article("figure img")
+      .toArray()
+      .map((image) => ({
+        src: article(image).attr("src") || "",
+        alt: article(image).attr("alt") || title,
+        after: article(image)
+          .closest("figure")
+          .prevAll("h1, h2, h3, h4, p, pre, blockquote, ul, ol")
+          .first()
+          .text()
+          .replace(/\s+/g, " ")
+          .trim(),
+      }))
+      .filter((image) => image.src);
+  } catch (error) {
+    const detail = error instanceof Error ? error.message : String(error);
+    console.warn(`Could not recover reader images from Medium RSS (${detail}).`);
+    return [];
+  }
+}
+
+const readerImages = await readerImagesFromFeed();
+if (!hero && readerImages.length) hero = readerImages[0].src;
+
 if (!title || !date || (!readerMarkdown && !contentRoot.length)) {
   throw new Error("Could not parse the Medium article metadata or content root");
 }
@@ -288,7 +329,12 @@ function blocksFromReader(markdown) {
       started = true;
     }
 
-    if (!line || line === "Press enter or click to view image in full size") {
+    if (!line) {
+      flushParagraph();
+      continue;
+    }
+
+    if (line === "Press enter or click to view image in full size") {
       flushParagraph();
       continue;
     }
@@ -451,6 +497,38 @@ function blocksFromReader(markdown) {
   }
 
   flushParagraph();
+
+  for (const image of readerImages) {
+    const normalizedAnchor = image.after.replace(/\s+/g, " ").trim();
+    let insertAt = -1;
+    for (let blockIndex = parsedBlocks.length - 1; blockIndex >= 0; blockIndex--) {
+      const block = parsedBlocks[blockIndex];
+      const blockText =
+        block.type === "heading"
+          ? block.text
+          : block.type === "paragraph" || block.type === "quote"
+            ? cheerio.load(`<body>${block.html}</body>`)("body").text()
+            : block.type === "code"
+              ? block.code
+              : block.type === "list"
+                ? block.items.join(" ")
+                : "";
+      if (blockText.replace(/\s+/g, " ").trim() === normalizedAnchor) {
+        insertAt = blockIndex + 1;
+        while (parsedBlocks[insertAt]?.type === "image") insertAt++;
+        break;
+      }
+    }
+    if (insertAt !== -1) {
+      parsedBlocks.splice(insertAt, 0, {
+        type: "image",
+        src: image.src,
+        alt: image.alt,
+        caption: "",
+      });
+    }
+  }
+
   return { blocks: parsedBlocks, plain: parsedPlain };
 }
 
