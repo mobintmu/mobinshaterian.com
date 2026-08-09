@@ -11,10 +11,12 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as YoutubeRouteImport } from './routes/youtube'
 import { Route as VirgoolRouteImport } from './routes/virgool'
+import { Route as GithubRouteImport } from './routes/github'
 import { Route as ExperienceRouteImport } from './routes/experience'
 import { Route as BlogsRouteImport } from './routes/blogs'
 import { Route as AparatRouteImport } from './routes/aparat'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as GithubRepoRouteImport } from './routes/github_.$repo'
 import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
 
 const YoutubeRoute = YoutubeRouteImport.update({
@@ -25,6 +27,11 @@ const YoutubeRoute = YoutubeRouteImport.update({
 const VirgoolRoute = VirgoolRouteImport.update({
   id: '/virgool',
   path: '/virgool',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GithubRoute = GithubRouteImport.update({
+  id: '/github',
+  path: '/github',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ExperienceRoute = ExperienceRouteImport.update({
@@ -47,6 +54,11 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const GithubRepoRoute = GithubRepoRouteImport.update({
+  id: '/github_/$repo',
+  path: '/github/$repo',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const BlogSlugRoute = BlogSlugRouteImport.update({
   id: '/blog/$slug',
   path: '/blog/$slug',
@@ -58,18 +70,22 @@ export interface FileRoutesByFullPath {
   '/aparat': typeof AparatRoute
   '/blogs': typeof BlogsRoute
   '/experience': typeof ExperienceRoute
+  '/github': typeof GithubRoute
   '/virgool': typeof VirgoolRoute
   '/youtube': typeof YoutubeRoute
   '/blog/$slug': typeof BlogSlugRoute
+  '/github/$repo': typeof GithubRepoRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/aparat': typeof AparatRoute
   '/blogs': typeof BlogsRoute
   '/experience': typeof ExperienceRoute
+  '/github': typeof GithubRoute
   '/virgool': typeof VirgoolRoute
   '/youtube': typeof YoutubeRoute
   '/blog/$slug': typeof BlogSlugRoute
+  '/github/$repo': typeof GithubRepoRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -77,9 +93,11 @@ export interface FileRoutesById {
   '/aparat': typeof AparatRoute
   '/blogs': typeof BlogsRoute
   '/experience': typeof ExperienceRoute
+  '/github': typeof GithubRoute
   '/virgool': typeof VirgoolRoute
   '/youtube': typeof YoutubeRoute
   '/blog/$slug': typeof BlogSlugRoute
+  '/github_/$repo': typeof GithubRepoRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -88,27 +106,33 @@ export interface FileRouteTypes {
     | '/aparat'
     | '/blogs'
     | '/experience'
+    | '/github'
     | '/virgool'
     | '/youtube'
     | '/blog/$slug'
+    | '/github/$repo'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/aparat'
     | '/blogs'
     | '/experience'
+    | '/github'
     | '/virgool'
     | '/youtube'
     | '/blog/$slug'
+    | '/github/$repo'
   id:
     | '__root__'
     | '/'
     | '/aparat'
     | '/blogs'
     | '/experience'
+    | '/github'
     | '/virgool'
     | '/youtube'
     | '/blog/$slug'
+    | '/github_/$repo'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -116,9 +140,11 @@ export interface RootRouteChildren {
   AparatRoute: typeof AparatRoute
   BlogsRoute: typeof BlogsRoute
   ExperienceRoute: typeof ExperienceRoute
+  GithubRoute: typeof GithubRoute
   VirgoolRoute: typeof VirgoolRoute
   YoutubeRoute: typeof YoutubeRoute
   BlogSlugRoute: typeof BlogSlugRoute
+  GithubRepoRoute: typeof GithubRepoRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -135,6 +161,13 @@ declare module '@tanstack/react-router' {
       path: '/virgool'
       fullPath: '/virgool'
       preLoaderRoute: typeof VirgoolRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/github': {
+      id: '/github'
+      path: '/github'
+      fullPath: '/github'
+      preLoaderRoute: typeof GithubRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/experience': {
@@ -165,6 +198,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/github_/$repo': {
+      id: '/github_/$repo'
+      path: '/github/$repo'
+      fullPath: '/github/$repo'
+      preLoaderRoute: typeof GithubRepoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/blog/$slug': {
       id: '/blog/$slug'
       path: '/blog/$slug'
@@ -180,9 +220,11 @@ const rootRouteChildren: RootRouteChildren = {
   AparatRoute: AparatRoute,
   BlogsRoute: BlogsRoute,
   ExperienceRoute: ExperienceRoute,
+  GithubRoute: GithubRoute,
   VirgoolRoute: VirgoolRoute,
   YoutubeRoute: YoutubeRoute,
   BlogSlugRoute: BlogSlugRoute,
+  GithubRepoRoute: GithubRepoRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

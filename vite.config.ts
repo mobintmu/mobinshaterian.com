@@ -5,7 +5,17 @@ import fs from "node:fs";
 const index = JSON.parse(fs.readFileSync("./src/data/posts-index.json", "utf8")) as Array<{
   slug: string;
 }>;
-const staticPages = ["/", "/experience", "/blogs", ...index.map((p) => `/blog/${p.slug}`)];
+const github = JSON.parse(fs.readFileSync("./src/data/github-projects.json", "utf8")) as {
+  projects: Array<{ name: string }>;
+};
+const staticPages = [
+  "/",
+  "/experience",
+  "/blogs",
+  "/github",
+  ...github.projects.map((project) => `/github/${project.name}`),
+  ...index.map((p) => `/blog/${p.slug}`),
+];
 
 export default defineConfig({
   tanstackStart: {

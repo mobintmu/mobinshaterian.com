@@ -6,6 +6,9 @@ const directory = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(directory, "..");
 const publicDirectory = path.join(root, "public");
 const posts = JSON.parse(fs.readFileSync(path.join(root, "src/data/posts-index.json"), "utf8"));
+const github = JSON.parse(
+  fs.readFileSync(path.join(root, "src/data/github-projects.json"), "utf8"),
+);
 const siteUrl = "https://mobinshaterian.com";
 
 const escapeXml = (value) =>
@@ -23,6 +26,18 @@ const urls = [
     changefreq: "monthly",
     priority: "0.9",
   },
+  {
+    loc: `${siteUrl}/github`,
+    lastmod: github.generatedAt,
+    changefreq: "weekly",
+    priority: "0.9",
+  },
+  ...github.projects.map((project) => ({
+    loc: `${siteUrl}/github/${encodeURIComponent(project.name)}`,
+    lastmod: project.pushedAt,
+    changefreq: "monthly",
+    priority: "0.9",
+  })),
   {
     loc: `${siteUrl}/youtube`,
     changefreq: "weekly",
@@ -97,6 +112,10 @@ fs.writeFileSync(path.join(publicDirectory, "feed.xml"), feed);
 fs.copyFileSync(
   path.join(root, "src/data/profile.json"),
   path.join(publicDirectory, "data/profile.json"),
+);
+fs.copyFileSync(
+  path.join(root, "src/data/github-projects.json"),
+  path.join(publicDirectory, "data/github-projects.json"),
 );
 fs.writeFileSync(
   path.join(publicDirectory, "robots.txt"),

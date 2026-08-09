@@ -11,6 +11,48 @@
     <priority>0.9</priority>
   </url>
   <url>
+    <loc>https://mobinshaterian.com/github</loc>
+    <lastmod>2026-08-09T13:36:55.527Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://mobinshaterian.com/github/go-simple</loc>
+    <lastmod>2025-12-01T08:29:04Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://mobinshaterian.com/github/go-clickhouse</loc>
+    <lastmod>2025-12-14T07:44:41Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://mobinshaterian.com/github/go-graphql</loc>
+    <lastmod>2025-11-30T14:36:02Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://mobinshaterian.com/github/go-worker</loc>
+    <lastmod>2025-12-30T09:30:21Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://mobinshaterian.com/github/go-wordpress</loc>
+    <lastmod>2026-02-23T12:01:07Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://mobinshaterian.com/github/mobinshaterian.com</loc>
+    <lastmod>2026-08-09T13:17:24Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
     <loc>https://mobinshaterian.com/youtube</loc>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>

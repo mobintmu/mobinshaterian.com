@@ -1,9 +1,12 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
 import { SiteMenu } from "@/components/SiteMenu";
+import { GitHubProjectCard } from "@/components/GitHubProjectCard";
+import githubDataJson from "@/data/github-projects.json";
 import profile from "@/data/profile.json";
 import posts from "@/data/posts-index.json";
 import videos from "@/data/youtube-videos.json";
+import type { GitHubData } from "@/lib/github";
 import {
   HOME_DESCRIPTION,
   HOME_TITLE,
@@ -25,6 +28,8 @@ import {
   Terminal,
   Youtube,
 } from "lucide-react";
+
+const githubData = githubDataJson as GitHubData;
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -109,6 +114,7 @@ function HomePage() {
       <Hero />
       <main className="mx-auto max-w-5xl px-6 pb-24">
         <Writing posts={writingPosts} />
+        <GitHubProjects />
         <YouTubePreview />
         <Featured />
         <ExperiencePreview />
@@ -308,6 +314,44 @@ function ExperiencePreview() {
           view complete experience
           <ArrowUpRight className="h-4 w-4" />
         </Link>
+      </div>
+    </section>
+  );
+}
+
+function GitHubProjects() {
+  return (
+    <section className="py-20">
+      <SectionHeading id="github" kbd="git remote -v" title="Open source" />
+      <div className="mb-7 flex flex-col justify-between gap-5 rounded-lg border border-terminal/30 bg-terminal/5 p-6 md:flex-row md:items-center">
+        <div>
+          <p className="max-w-2xl text-sm leading-relaxed text-muted-foreground">
+            Production-minded Go reference architectures, data services, worker systems, crawling
+            infrastructure, and the source behind this website—documented as individual projects.
+          </p>
+          <div className="mt-3 flex gap-4 font-mono-plus text-xs text-muted-foreground">
+            <span>
+              <strong className="text-foreground">{githubData.profile.publicRepos}</strong> public
+              repos
+            </span>
+            <span>
+              <strong className="text-foreground">{githubData.profile.followers}</strong> followers
+            </span>
+          </div>
+        </div>
+        <Link
+          to="/github"
+          className="inline-flex flex-none items-center justify-center gap-2 rounded-md bg-terminal px-4 py-2 font-mono-plus text-sm font-medium text-primary-foreground transition-colors hover:bg-terminal/90"
+        >
+          <Github className="h-4 w-4" />
+          explore GitHub
+          <ArrowUpRight className="h-4 w-4" />
+        </Link>
+      </div>
+      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+        {githubData.projects.map((project) => (
+          <GitHubProjectCard key={project.name} project={project} />
+        ))}
       </div>
     </section>
   );

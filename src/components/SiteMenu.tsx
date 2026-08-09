@@ -4,6 +4,7 @@ import {
   ChevronDown,
   Clapperboard,
   Feather,
+  Github,
   Map,
   Menu,
   PenLine,
@@ -15,12 +16,7 @@ import {
 import { useState } from "react";
 import profile from "@/data/profile.json";
 
-const items = [
-  { href: "/#featured", label: "featured" },
-  { href: "/experience", label: "experience" },
-  { href: "/#skills", label: "skills" },
-  { href: "/#contact", label: "contact" },
-];
+const items = [{ href: "/", label: "whoami" }];
 
 const resources = [
   { href: "/feed.xml", label: "RSS feed", icon: Rss },
@@ -40,6 +36,13 @@ export function SiteMenu() {
             {item.label}
           </a>
         ))}
+        <Link
+          to="/github"
+          className="inline-flex items-center gap-1.5 transition-colors hover:text-terminal"
+        >
+          <Github className="h-3.5 w-3.5" />
+          github
+        </Link>
         <Link to="/blogs" className="transition-colors hover:text-terminal">
           blog
         </Link>
@@ -126,6 +129,14 @@ export function SiteMenu() {
               {item.label}
             </a>
           ))}
+          <Link
+            to="/github"
+            onClick={closeMobileMenu}
+            className="inline-flex items-center gap-2 rounded border border-border bg-surface px-3 py-2 transition-colors hover:border-terminal/50 hover:text-terminal"
+          >
+            <Github className="h-3.5 w-3.5" />
+            github
+          </Link>
           <Link
             to="/blogs"
             onClick={closeMobileMenu}
