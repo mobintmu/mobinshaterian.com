@@ -17,7 +17,6 @@ import {
   Github,
   Linkedin,
   Mail,
-  MapPin,
   Newspaper,
   PenLine,
   Search,
@@ -108,7 +107,6 @@ function HomePage() {
       <Nav />
       <Hero />
       <main className="mx-auto max-w-5xl px-6 pb-24">
-        <About />
         <Writing posts={writingPosts} />
         <Featured />
         <ExperiencePreview />
@@ -165,6 +163,13 @@ function Hero() {
 > location  : ${profile.location}
 > writing   : 200+ articles on Medium`}
           </pre>
+          <p className="mt-4 max-w-3xl font-sans text-base leading-relaxed text-muted-foreground">
+            I'm a senior backend engineer focused on Go, distributed systems, and data-heavy
+            platforms. Over 16 years I've moved teams from monoliths to microservices, rebuilt B2B
+            APIs for scale, and turned research-grade ML services into production systems handling
+            tens of thousands of TPS. I care about clean code, honest observability, and the boring
+            parts of reliability.
+          </p>
         </div>
 
         <div className="mt-8 flex flex-wrap gap-3">
@@ -192,6 +197,15 @@ function Hero() {
           >
             <Linkedin className="h-4 w-4" />
             linkedin
+          </a>
+          <a
+            href={profile.links.medium}
+            target="_blank"
+            rel="noreferrer noopener"
+            className="inline-flex items-center gap-2 rounded-md border border-border bg-surface px-4 py-2 font-mono-plus text-sm text-foreground transition-colors hover:border-terminal/50 hover:text-terminal"
+          >
+            <PenLine className="h-4 w-4" />
+            medium
           </a>
         </div>
       </div>
@@ -270,46 +284,6 @@ function Featured() {
             </div>
           </article>
         ))}
-      </div>
-    </section>
-  );
-}
-
-function About() {
-  return (
-    <section className="py-20">
-      <SectionHeading id="about" kbd="cat about.md" title="About" />
-      <div className="grid gap-8 md:grid-cols-3">
-        <p className="text-base leading-relaxed text-muted-foreground md:col-span-2">
-          I'm a senior backend engineer focused on Go, distributed systems, and data-heavy
-          platforms. Over 16 years I've moved teams from monoliths into microservices, rebuilt B2B
-          APIs for scale, and turned research-grade ML services into production systems doing tens
-          of thousands of TPS. I care about clean code, honest observability, and the boring parts
-          of reliability.
-        </p>
-        <ul className="space-y-3 font-mono-plus text-sm">
-          <li className="flex items-center gap-2 text-muted-foreground">
-            <MapPin className="h-4 w-4 text-terminal" />
-            {profile.location}
-          </li>
-          <li className="flex items-center gap-2 text-muted-foreground">
-            <Mail className="h-4 w-4 text-terminal" />
-            <a href={`mailto:${profile.email}`} className="hover:text-terminal">
-              {profile.email}
-            </a>
-          </li>
-          <li className="flex items-center gap-2 text-muted-foreground">
-            <PenLine className="h-4 w-4 text-terminal" />
-            <a
-              href={profile.links.medium}
-              target="_blank"
-              rel="noreferrer noopener"
-              className="hover:text-terminal"
-            >
-              mobinshaterian.medium.com
-            </a>
-          </li>
-        </ul>
       </div>
     </section>
   );

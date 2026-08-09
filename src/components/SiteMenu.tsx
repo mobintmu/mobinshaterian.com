@@ -4,7 +4,6 @@ import { useState } from "react";
 import profile from "@/data/profile.json";
 
 const items = [
-  { href: "/#about", label: "about" },
   { href: "/#featured", label: "featured" },
   { href: "/experience", label: "experience" },
   { href: "/#skills", label: "skills" },
