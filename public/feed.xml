@@ -209,7 +209,7 @@
       <link>https://mobinshaterian.com/blog/Tunneling-TCP-Connections-Over-SSH-Using-socat-and-nc-fb142a2d6034</link>
       <guid isPermaLink="true">https://mobinshaterian.com/blog/Tunneling-TCP-Connections-Over-SSH-Using-socat-and-nc-fb142a2d6034</guid>
       <pubDate>Mon, 08 Jun 2026 00:00:00 GMT</pubDate>
-      <description>The Problem</description>
+      <description>Tunnel TCP traffic through an SSH jump host using socat and netcat, without a VPN or extra firewall rules.</description>
 
     </item>
     <item>
