@@ -34,6 +34,11 @@ const urls = [
     priority: "0.9",
   },
   {
+    loc: `${siteUrl}/aparat`,
+    changefreq: "monthly",
+    priority: "0.8",
+  },
+  {
     loc: `${siteUrl}/blogs`,
     lastmod: posts[0]?.date,
     changefreq: "weekly",

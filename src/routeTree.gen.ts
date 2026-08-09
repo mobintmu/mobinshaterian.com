@@ -13,6 +13,7 @@ import { Route as YoutubeRouteImport } from './routes/youtube'
 import { Route as VirgoolRouteImport } from './routes/virgool'
 import { Route as ExperienceRouteImport } from './routes/experience'
 import { Route as BlogsRouteImport } from './routes/blogs'
+import { Route as AparatRouteImport } from './routes/aparat'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
 
@@ -36,6 +37,11 @@ const BlogsRoute = BlogsRouteImport.update({
   path: '/blogs',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AparatRoute = AparatRouteImport.update({
+  id: '/aparat',
+  path: '/aparat',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -49,6 +55,7 @@ const BlogSlugRoute = BlogSlugRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/aparat': typeof AparatRoute
   '/blogs': typeof BlogsRoute
   '/experience': typeof ExperienceRoute
   '/virgool': typeof VirgoolRoute
@@ -57,6 +64,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/aparat': typeof AparatRoute
   '/blogs': typeof BlogsRoute
   '/experience': typeof ExperienceRoute
   '/virgool': typeof VirgoolRoute
@@ -66,6 +74,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/aparat': typeof AparatRoute
   '/blogs': typeof BlogsRoute
   '/experience': typeof ExperienceRoute
   '/virgool': typeof VirgoolRoute
@@ -75,12 +84,26 @@ export interface FileRoutesById {
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
-    '/' | '/blogs' | '/experience' | '/virgool' | '/youtube' | '/blog/$slug'
+    | '/'
+    | '/aparat'
+    | '/blogs'
+    | '/experience'
+    | '/virgool'
+    | '/youtube'
+    | '/blog/$slug'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/blogs' | '/experience' | '/virgool' | '/youtube' | '/blog/$slug'
+  to:
+    | '/'
+    | '/aparat'
+    | '/blogs'
+    | '/experience'
+    | '/virgool'
+    | '/youtube'
+    | '/blog/$slug'
   id:
     | '__root__'
     | '/'
+    | '/aparat'
     | '/blogs'
     | '/experience'
     | '/virgool'
@@ -90,6 +113,7 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AparatRoute: typeof AparatRoute
   BlogsRoute: typeof BlogsRoute
   ExperienceRoute: typeof ExperienceRoute
   VirgoolRoute: typeof VirgoolRoute
@@ -127,6 +151,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BlogsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/aparat': {
+      id: '/aparat'
+      path: '/aparat'
+      fullPath: '/aparat'
+      preLoaderRoute: typeof AparatRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -146,6 +177,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AparatRoute: AparatRoute,
   BlogsRoute: BlogsRoute,
   ExperienceRoute: ExperienceRoute,
   VirgoolRoute: VirgoolRoute,

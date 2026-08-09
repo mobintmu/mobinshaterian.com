@@ -2,6 +2,7 @@ import { Link } from "@tanstack/react-router";
 import {
   Braces,
   ChevronDown,
+  Clapperboard,
   Feather,
   Map,
   Menu,
@@ -55,6 +56,13 @@ export function SiteMenu() {
         >
           <Feather className="h-3.5 w-3.5" />
           فارسی
+        </Link>
+        <Link
+          to="/aparat"
+          className="inline-flex items-center gap-1.5 transition-colors hover:text-terminal"
+        >
+          <Clapperboard className="h-3.5 w-3.5" />
+          آپارات
         </Link>
         <details className="group relative">
           <summary className="flex cursor-pointer list-none items-center gap-1 transition-colors hover:text-terminal [&::-webkit-details-marker]:hidden">
@@ -140,6 +148,14 @@ export function SiteMenu() {
           >
             <Feather className="h-3.5 w-3.5" />
             فارسی · ویرگول
+          </Link>
+          <Link
+            to="/aparat"
+            onClick={closeMobileMenu}
+            className="inline-flex items-center gap-2 rounded border border-border bg-surface px-3 py-2 transition-colors hover:border-terminal/50 hover:text-terminal"
+          >
+            <Clapperboard className="h-3.5 w-3.5" />
+            آپارات
           </Link>
           {resources.map(({ href, label, icon: Icon }) => (
             <a

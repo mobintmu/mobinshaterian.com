@@ -12,6 +12,7 @@
     "seo": "node scripts/generate-seo.mjs",
     "import:youtube": "node scripts/import-youtube.mjs",
     "import:virgool": "node scripts/import-virgool.mjs",
+    "import:aparat": "node scripts/import-aparat.mjs",
     "format:go-posts": "node scripts/format-code-blocks.mjs --multiline --language=go --fix",
     "lint": "eslint .",
     "format": "prettier --write ."
