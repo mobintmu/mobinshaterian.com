@@ -3,6 +3,7 @@ import { useState } from "react";
 import { SiteMenu } from "@/components/SiteMenu";
 import profile from "@/data/profile.json";
 import posts from "@/data/posts-index.json";
+import videos from "@/data/youtube-videos.json";
 import {
   HOME_DESCRIPTION,
   HOME_TITLE,
@@ -108,6 +109,7 @@ function HomePage() {
       <Hero />
       <main className="mx-auto max-w-5xl px-6 pb-24">
         <Writing posts={writingPosts} />
+        <YouTubePreview />
         <Featured />
         <ExperiencePreview />
         <Skills />
@@ -306,6 +308,73 @@ function ExperiencePreview() {
           view complete experience
           <ArrowUpRight className="h-4 w-4" />
         </Link>
+      </div>
+    </section>
+  );
+}
+
+function YouTubePreview() {
+  const [latest, ...moreVideos] = videos.slice(0, 3);
+
+  return (
+    <section className="py-20">
+      <SectionHeading id="youtube" kbd="play ./latest" title="YouTube" />
+      <div className="grid overflow-hidden rounded-lg border border-border bg-surface lg:grid-cols-[1.45fr_1fr]">
+        <div className="border-b border-border lg:border-b-0 lg:border-r">
+          <div className="aspect-video bg-black">
+            <iframe
+              src={`https://www.youtube-nocookie.com/embed/${latest.id}`}
+              title={latest.title}
+              loading="lazy"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerPolicy="strict-origin-when-cross-origin"
+              allowFullScreen
+              className="h-full w-full"
+            />
+          </div>
+          <div className="p-5">
+            <span className="font-mono-plus text-xs text-terminal">latest upload</span>
+            <h3 className="mt-2 text-lg font-semibold leading-snug">{latest.title}</h3>
+          </div>
+        </div>
+        <div className="flex flex-col">
+          <div className="p-5">
+            <p className="text-sm leading-relaxed text-muted-foreground">
+              Watch practical breakdowns of Go, backend architecture, databases, search engines, and
+              production-scale systems.
+            </p>
+          </div>
+          <div className="divide-y divide-border border-y border-border">
+            {moreVideos.map((video) => (
+              <a
+                key={video.id}
+                href={`https://www.youtube.com/watch?v=${video.id}`}
+                target="_blank"
+                rel="noreferrer noopener"
+                className="group grid grid-cols-[7rem_1fr] gap-3 p-4 transition-colors hover:bg-terminal/5"
+              >
+                <img
+                  src={`https://i.ytimg.com/vi/${video.id}/mqdefault.jpg`}
+                  alt=""
+                  loading="lazy"
+                  className="aspect-video w-full rounded border border-border object-cover"
+                />
+                <span className="self-center text-sm font-medium leading-snug group-hover:text-terminal">
+                  {video.title}
+                </span>
+              </a>
+            ))}
+          </div>
+          <div className="mt-auto p-5">
+            <Link
+              to="/youtube"
+              className="inline-flex items-center gap-2 rounded-md border border-terminal/40 bg-terminal/5 px-4 py-2 font-mono-plus text-sm text-terminal transition-colors hover:bg-terminal/10"
+            >
+              browse all videos
+              <ArrowUpRight className="h-4 w-4" />
+            </Link>
+          </div>
+        </div>
       </div>
     </section>
   );

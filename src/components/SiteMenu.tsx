@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { Braces, ChevronDown, Map, Menu, PenLine, Rss, Send, X } from "lucide-react";
+import { Braces, ChevronDown, Map, Menu, PenLine, Rss, Send, X, Youtube } from "lucide-react";
 import { useState } from "react";
 import profile from "@/data/profile.json";
 
@@ -30,6 +30,13 @@ export function SiteMenu() {
         ))}
         <Link to="/blogs" className="transition-colors hover:text-terminal">
           blog
+        </Link>
+        <Link
+          to="/youtube"
+          className="inline-flex items-center gap-1.5 transition-colors hover:text-terminal"
+        >
+          <Youtube className="h-3.5 w-3.5" />
+          youtube
         </Link>
         <details className="group relative">
           <summary className="flex cursor-pointer list-none items-center gap-1 transition-colors hover:text-terminal [&::-webkit-details-marker]:hidden">
@@ -99,6 +106,14 @@ export function SiteMenu() {
             className="rounded border border-border bg-surface px-3 py-2 transition-colors hover:border-terminal/50 hover:text-terminal"
           >
             blog
+          </Link>
+          <Link
+            to="/youtube"
+            onClick={closeMobileMenu}
+            className="inline-flex items-center gap-2 rounded border border-border bg-surface px-3 py-2 transition-colors hover:border-terminal/50 hover:text-terminal"
+          >
+            <Youtube className="h-3.5 w-3.5" />
+            youtube
           </Link>
           {resources.map(({ href, label, icon: Icon }) => (
             <a

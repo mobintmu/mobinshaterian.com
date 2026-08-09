@@ -24,6 +24,11 @@ const urls = [
     priority: "0.9",
   },
   {
+    loc: `${siteUrl}/youtube`,
+    changefreq: "weekly",
+    priority: "0.9",
+  },
+  {
     loc: `${siteUrl}/blogs`,
     lastmod: posts[0]?.date,
     changefreq: "weekly",
@@ -86,6 +91,7 @@ fs.copyFileSync(
 fs.writeFileSync(
   path.join(publicDirectory, "robots.txt"),
   `User-agent: *
+Content-Signal: search=yes,ai-input=yes,ai-train=yes,use=full
 Allow: /
 
 Sitemap: ${siteUrl}/sitemap.xml
