@@ -1,5 +1,16 @@
 import { Link } from "@tanstack/react-router";
-import { Braces, ChevronDown, Map, Menu, PenLine, Rss, Send, X, Youtube } from "lucide-react";
+import {
+  Braces,
+  ChevronDown,
+  Feather,
+  Map,
+  Menu,
+  PenLine,
+  Rss,
+  Send,
+  X,
+  Youtube,
+} from "lucide-react";
 import { useState } from "react";
 import profile from "@/data/profile.json";
 
@@ -37,6 +48,13 @@ export function SiteMenu() {
         >
           <Youtube className="h-3.5 w-3.5" />
           youtube
+        </Link>
+        <Link
+          to="/virgool"
+          className="inline-flex items-center gap-1.5 transition-colors hover:text-terminal"
+        >
+          <Feather className="h-3.5 w-3.5" />
+          فارسی
         </Link>
         <details className="group relative">
           <summary className="flex cursor-pointer list-none items-center gap-1 transition-colors hover:text-terminal [&::-webkit-details-marker]:hidden">
@@ -114,6 +132,14 @@ export function SiteMenu() {
           >
             <Youtube className="h-3.5 w-3.5" />
             youtube
+          </Link>
+          <Link
+            to="/virgool"
+            onClick={closeMobileMenu}
+            className="inline-flex items-center gap-2 rounded border border-border bg-surface px-3 py-2 transition-colors hover:border-terminal/50 hover:text-terminal"
+          >
+            <Feather className="h-3.5 w-3.5" />
+            فارسی · ویرگول
           </Link>
           {resources.map(({ href, label, icon: Icon }) => (
             <a
