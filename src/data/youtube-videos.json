@@ -1,5 +1,12 @@
 [
   {
+    "id": "_1npRaaR1pE",
+    "title": "Migrating from database-backed sessions to stateless JWT",
+    "published": "2026-08-12",
+    "duration": "7:29",
+    "views": "1 view"
+  },
+  {
     "id": "XIWQdMwNuLc",
     "title": "MySQL to MongoDB: Building High-Performance Read Models",
     "published": "2026-08-07",
