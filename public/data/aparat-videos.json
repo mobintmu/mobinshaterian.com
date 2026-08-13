@@ -12,6 +12,18 @@
     "url": "https://www.aparat.com/v/u65t5bd"
   },
   {
+    "id": "16402896",
+    "uid": "w68j1bf",
+    "title": "توضیحات فنی پنل بینایار",
+    "date": "2019-08-13",
+    "persianDate": "22 مرداد 1398 15:29",
+    "duration": 417,
+    "views": 84,
+    "thumbnail": "https://static.cdn.asset.aparat.com/avt/16402896-1447-l__5396.jpg",
+    "embedUrl": "https://www.aparat.com/video/video/embed/videohash/w68j1bf/vt/frame",
+    "url": "https://www.aparat.com/v/w68j1bf"
+  },
+  {
     "id": "14596617",
     "uid": "pu81y",
     "title": "چگونه کسر خدمت نخبگان بگیریم؟",
@@ -120,18 +132,6 @@
     "url": "https://www.aparat.com/v/83Bby"
   },
   {
-    "id": "437667",
-    "uid": "e520f4f",
-    "title": "انیمیشن مقابله لینوکس با ویندوز (ارور صفحه آبی)",
-    "date": "2013-01-23",
-    "persianDate": "4 بهمن 1391",
-    "duration": 113,
-    "views": 1006,
-    "thumbnail": "https://static.cdn.asset.aparat.com/avt/437667-531-b__531.jpg",
-    "embedUrl": "https://www.aparat.com/video/video/embed/videohash/e520f4f/vt/frame",
-    "url": "https://www.aparat.com/v/e520f4f"
-  },
-  {
     "id": "441873",
     "uid": "e8698ij",
     "title": "چرا لینوکس بهتر از ویندوز است ؟(وبندوز)",
@@ -154,5 +154,17 @@
     "thumbnail": "https://static.cdn.asset.aparat.com/avt/440884-124-b__124.jpg",
     "embedUrl": "https://www.aparat.com/video/video/embed/videohash/uEeNp/vt/frame",
     "url": "https://www.aparat.com/v/uEeNp"
+  },
+  {
+    "id": "437667",
+    "uid": "e520f4f",
+    "title": "انیمیشن مقابله لینوکس با ویندوز (ارور صفحه آبی)",
+    "date": "2013-01-23",
+    "persianDate": "4 بهمن 1391",
+    "duration": 113,
+    "views": 1006,
+    "thumbnail": "https://static.cdn.asset.aparat.com/avt/437667-531-b__531.jpg",
+    "embedUrl": "https://www.aparat.com/video/video/embed/videohash/e520f4f/vt/frame",
+    "url": "https://www.aparat.com/v/e520f4f"
   }
 ]
