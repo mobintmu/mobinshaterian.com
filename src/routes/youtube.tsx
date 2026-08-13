@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowUpRight, CalendarDays, Clock3, Eye, Youtube } from "lucide-react";
+import { ArrowUpRight, CalendarDays, Clock3, Youtube } from "lucide-react";
 import { SiteMenu } from "@/components/SiteMenu";
 import profile from "@/data/profile.json";
 import videos from "@/data/youtube-videos.json";
@@ -127,10 +127,6 @@ function YouTubePage() {
                     <span className="inline-flex items-center gap-1.5">
                       <Clock3 className="h-3.5 w-3.5 text-terminal" />
                       {video.duration}
-                    </span>
-                    <span className="inline-flex items-center gap-1.5">
-                      <Eye className="h-3.5 w-3.5 text-terminal" />
-                      {video.views}
                     </span>
                   </div>
                   <h3 className="text-base font-semibold leading-snug group-hover:text-terminal">

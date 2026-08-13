@@ -38,18 +38,11 @@ const pageMetadata = new Map(
     .map((item) => item.richItemRenderer?.content?.lockupViewModel)
     .filter(Boolean)
     .map((video) => {
-      const metadataRows =
-        video.metadata.lockupMetadataViewModel.metadata?.contentMetadataViewModel?.metadataRows ??
-        [];
-      const metadata = metadataRows
-        .flatMap((row) => row.metadataParts ?? [])
-        .map((part) => part.text?.content)
-        .filter(Boolean);
       const duration = video.contentImage.thumbnailViewModel.overlays?.flatMap(
         (overlay) => overlay.thumbnailBottomOverlayViewModel?.badges ?? [],
       )[0]?.thumbnailBadgeViewModel?.text;
 
-      return [video.contentId, { duration: duration ?? "", views: metadata[0] ?? "" }];
+      return [video.contentId, { duration: duration ?? "" }];
     }),
 );
 
@@ -65,7 +58,6 @@ const videos = $("entry")
       title: element.children("title").first().text(),
       published: element.children("published").text().slice(0, 10),
       duration: pageMetadata.get(id)?.duration ?? "",
-      views: pageMetadata.get(id)?.views ?? "",
     };
   });
 

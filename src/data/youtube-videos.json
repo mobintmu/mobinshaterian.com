@@ -1,114 +1,104 @@
 [
   {
+    "id": "tk7wukNJbJc",
+    "title": "Database Refactors",
+    "published": "2026-08-13",
+    "duration": "8:31"
+  },
+  {
     "id": "_1npRaaR1pE",
     "title": "Migrating from database-backed sessions to stateless JWT",
     "published": "2026-08-12",
-    "duration": "7:29",
-    "views": "1 view"
+    "duration": "7:29"
   },
   {
     "id": "XIWQdMwNuLc",
     "title": "MySQL to MongoDB: Building High-Performance Read Models",
     "published": "2026-08-07",
-    "duration": "6:48",
-    "views": "4 views"
+    "duration": "6:48"
   },
   {
     "id": "a1vxNvDUxGE",
     "title": "Deep Dive Meilisearch",
     "published": "2026-08-06",
-    "duration": "9:10",
-    "views": "6 views"
+    "duration": "9:10"
   },
   {
     "id": "V3dCR0w9fsg",
     "title": "Vector Database Similarity",
     "published": "2026-08-06",
-    "duration": "7:45",
-    "views": "1 view"
+    "duration": "7:45"
   },
   {
     "id": "x-5u87QeXYU",
     "title": "Architectural Blueprint: Bi-Temporal Data Versioning for Unified Backend and AI Ecosystems",
     "published": "2026-06-23",
-    "duration": "9:13",
-    "views": "8 views"
+    "duration": "9:13"
   },
   {
     "id": "6Dsa9KVWP5U",
     "title": "How do you process 10 billion records per month while keeping query latency in the milliseconds?",
     "published": "2026-05-24",
-    "duration": "9:40",
-    "views": "48 views"
+    "duration": "9:40"
   },
   {
     "id": "scLVXF3B4BQ",
     "title": "Idempotent Database Seeder",
     "published": "2026-02-23",
-    "duration": "6:58",
-    "views": "11 views"
+    "duration": "6:58"
   },
   {
     "id": "FJCQN4g8Ncw",
     "title": "The Go WordPress Blueprint",
     "published": "2026-02-22",
-    "duration": "5:53",
-    "views": "7 views"
+    "duration": "5:53"
   },
   {
     "id": "P84b10Gucwg",
     "title": "Building a Better Scraper",
     "published": "2026-02-14",
-    "duration": "7:08",
-    "views": "19 views"
+    "duration": "7:08"
   },
   {
     "id": "VDlJpx83O2w",
     "title": "Go s Unbreakable Scraper",
     "published": "2026-02-02",
-    "duration": "6:12",
-    "views": "9 views"
+    "duration": "6:12"
   },
   {
     "id": "KZps3z5Dyns",
     "title": "The Scalable Go Worker",
     "published": "2025-12-30",
-    "duration": "7:31",
-    "views": "63 views"
+    "duration": "7:31"
   },
   {
     "id": "KsIbJ_mwLrE",
     "title": "معماری Poller Dispatcher Worker",
     "published": "2025-12-30",
-    "duration": "8:27",
-    "views": "3 views"
+    "duration": "8:27"
   },
   {
     "id": "ZgO2XbWgrvA",
     "title": "از اسکریپت تا سرویس  طرح اولیه Golang",
     "published": "2025-11-28",
-    "duration": "10:04",
-    "views": "32 views"
+    "duration": "10:04"
   },
   {
     "id": "HxV87sY1DFA",
     "title": "PostgreSQL Foreign Data Wrappers and `postgres_fdw`",
     "published": "2025-11-22",
-    "duration": "6:11",
-    "views": "439 views"
+    "duration": "6:11"
   },
   {
     "id": "6ClNZt6ZnMA",
     "title": "Hybrid Stateful Polling",
     "published": "2025-10-16",
-    "duration": "7:32",
-    "views": "2 views"
+    "duration": "7:32"
   },
   {
     "id": "vjf0GuUDGRU",
     "title": "Go Web Service Refactoring with Uber FX",
     "published": "2025-09-26",
-    "duration": "5:18",
-    "views": "200 views"
+    "duration": "5:18"
   }
 ]
