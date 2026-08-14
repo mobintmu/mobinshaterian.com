@@ -7,6 +7,9 @@ const CHANNEL_HANDLE = "mobinshaterian";
 const CHANNEL_ID = "UCTwwa7ad2dwiDfotiQg7Ufw";
 const directory = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(directory, "..");
+const dataPath = path.join(root, "src/data/youtube-videos.json");
+const existingVideos = JSON.parse(fs.readFileSync(dataPath, "utf8"));
+const existingById = new Map(existingVideos.map((video) => [video.id, video]));
 
 const [videosResponse, feedResponse] = await Promise.all([
   fetch(`https://www.youtube.com/@${CHANNEL_HANDLE}/videos`),
@@ -48,20 +51,26 @@ const pageMetadata = new Map(
 
 const xml = await feedResponse.text();
 const $ = cheerio.load(xml, { xmlMode: true });
-const videos = $("entry")
+const feedVideos = $("entry")
   .toArray()
   .map((entry) => {
     const element = $(entry);
     const id = element.find("yt\\:videoId").text();
+    const existing = existingById.get(id);
     return {
       id,
       title: element.children("title").first().text(),
       published: element.children("published").text().slice(0, 10),
-      duration: pageMetadata.get(id)?.duration ?? "",
+      duration: pageMetadata.get(id)?.duration ?? existing?.duration ?? "",
+      description: element.find("media\\:description").text().trim() || existing?.description || "",
     };
   });
 
+const feedIds = new Set(feedVideos.map((video) => video.id));
+const archivedVideos = existingVideos.filter((video) => !feedIds.has(video.id));
+const videos = [...feedVideos, ...archivedVideos];
+
 const output = `${JSON.stringify(videos, null, 2)}\n`;
-fs.writeFileSync(path.join(root, "src/data/youtube-videos.json"), output);
+fs.writeFileSync(dataPath, output);
 fs.writeFileSync(path.join(root, "public/data/youtube-videos.json"), output);
 console.log(`Imported ${videos.length} videos from @${CHANNEL_HANDLE}.`);

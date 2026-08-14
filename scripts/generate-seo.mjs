@@ -9,6 +9,9 @@ const posts = JSON.parse(fs.readFileSync(path.join(root, "src/data/posts-index.j
 const github = JSON.parse(
   fs.readFileSync(path.join(root, "src/data/github-projects.json"), "utf8"),
 );
+const youtube = JSON.parse(
+  fs.readFileSync(path.join(root, "src/data/youtube-videos.json"), "utf8"),
+);
 const siteUrl = "https://mobinshaterian.com";
 
 const escapeXml = (value) =>
@@ -40,9 +43,16 @@ const urls = [
   })),
   {
     loc: `${siteUrl}/youtube`,
+    lastmod: youtube[0]?.published,
     changefreq: "weekly",
     priority: "0.9",
   },
+  ...youtube.map((video) => ({
+    loc: `${siteUrl}/youtube/${encodeURIComponent(video.id)}`,
+    lastmod: video.published,
+    changefreq: "monthly",
+    priority: "0.8",
+  })),
   {
     loc: `${siteUrl}/virgool`,
     changefreq: "weekly",

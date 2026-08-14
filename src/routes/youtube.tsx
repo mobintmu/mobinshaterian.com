@@ -129,18 +129,27 @@ function YouTubePage() {
                       {video.duration}
                     </span>
                   </div>
-                  <h3 className="text-base font-semibold leading-snug group-hover:text-terminal">
-                    {video.title}
-                  </h3>
-                  <a
-                    href={`https://www.youtube.com/watch?v=${video.id}`}
-                    target="_blank"
-                    rel="noreferrer noopener"
-                    className="mt-4 inline-flex items-center gap-1.5 font-mono-plus text-xs text-terminal"
+                  <Link
+                    to="/youtube/$id"
+                    params={{ id: video.id }}
+                    className="text-base font-semibold leading-snug group-hover:text-terminal block"
                   >
-                    watch on YouTube
-                    <ArrowUpRight className="h-3.5 w-3.5" />
-                  </a>
+                    {video.title}
+                  </Link>
+                  <p className="mt-2 text-sm text-muted-foreground line-clamp-2">
+                    {video.description}
+                  </p>
+                  <div className="mt-4">
+                    <a
+                      href={`https://www.youtube.com/watch?v=${video.id}`}
+                      target="_blank"
+                      rel="noreferrer noopener"
+                      className="inline-flex items-center gap-1.5 font-mono-plus text-xs text-terminal"
+                    >
+                      watch on YouTube
+                      <ArrowUpRight className="h-3.5 w-3.5" />
+                    </a>
+                  </div>
                 </div>
               </article>
             ))}

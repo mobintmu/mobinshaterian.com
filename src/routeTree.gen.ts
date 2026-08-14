@@ -16,6 +16,7 @@ import { Route as ExperienceRouteImport } from './routes/experience'
 import { Route as BlogsRouteImport } from './routes/blogs'
 import { Route as AparatRouteImport } from './routes/aparat'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as YoutubeIdRouteImport } from './routes/youtube_.$id'
 import { Route as GithubRepoRouteImport } from './routes/github_.$repo'
 import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
 
@@ -54,6 +55,11 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const YoutubeIdRoute = YoutubeIdRouteImport.update({
+  id: '/youtube_/$id',
+  path: '/youtube/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const GithubRepoRoute = GithubRepoRouteImport.update({
   id: '/github_/$repo',
   path: '/github/$repo',
@@ -75,6 +81,7 @@ export interface FileRoutesByFullPath {
   '/youtube': typeof YoutubeRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/github/$repo': typeof GithubRepoRoute
+  '/youtube/$id': typeof YoutubeIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -86,6 +93,7 @@ export interface FileRoutesByTo {
   '/youtube': typeof YoutubeRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/github/$repo': typeof GithubRepoRoute
+  '/youtube/$id': typeof YoutubeIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -98,6 +106,7 @@ export interface FileRoutesById {
   '/youtube': typeof YoutubeRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/github_/$repo': typeof GithubRepoRoute
+  '/youtube_/$id': typeof YoutubeIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -111,6 +120,7 @@ export interface FileRouteTypes {
     | '/youtube'
     | '/blog/$slug'
     | '/github/$repo'
+    | '/youtube/$id'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -122,6 +132,7 @@ export interface FileRouteTypes {
     | '/youtube'
     | '/blog/$slug'
     | '/github/$repo'
+    | '/youtube/$id'
   id:
     | '__root__'
     | '/'
@@ -133,6 +144,7 @@ export interface FileRouteTypes {
     | '/youtube'
     | '/blog/$slug'
     | '/github_/$repo'
+    | '/youtube_/$id'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -145,6 +157,7 @@ export interface RootRouteChildren {
   YoutubeRoute: typeof YoutubeRoute
   BlogSlugRoute: typeof BlogSlugRoute
   GithubRepoRoute: typeof GithubRepoRoute
+  YoutubeIdRoute: typeof YoutubeIdRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -198,6 +211,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/youtube_/$id': {
+      id: '/youtube_/$id'
+      path: '/youtube/$id'
+      fullPath: '/youtube/$id'
+      preLoaderRoute: typeof YoutubeIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/github_/$repo': {
       id: '/github_/$repo'
       path: '/github/$repo'
@@ -225,6 +245,7 @@ const rootRouteChildren: RootRouteChildren = {
   YoutubeRoute: YoutubeRoute,
   BlogSlugRoute: BlogSlugRoute,
   GithubRepoRoute: GithubRepoRoute,
+  YoutubeIdRoute: YoutubeIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
