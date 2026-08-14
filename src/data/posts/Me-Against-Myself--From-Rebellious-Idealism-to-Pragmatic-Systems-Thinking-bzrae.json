@@ -101,6 +101,11 @@
       "html": "Left unconstrained, self-serving behavior behaves exactly like an unbounded process: it consumes trust, goodwill, and engineering capacity until the entire runtime crashes. Systems do not get safer because we hope people will act in good faith. They get safer because we design boundaries that hold even when they don't."
     },
     {
+      "type": "embed",
+      "provider": "youtube",
+      "url": "https://www.youtube-nocookie.com/embed/wPL130yFgYo"
+    },
+    {
       "type": "heading",
       "level": 3,
       "text": "3. The Twelve-Year Evolution"
