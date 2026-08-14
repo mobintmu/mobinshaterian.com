@@ -13,6 +13,20 @@
     "hero": "https://media.licdn.com/dms/image/v2/D4E12AQEF2_s5mhFNaQ/article-cover_image-shrink_720_1280/B4EZ__TEl1IUAQ-/0/1786694622897?e=2147483647&v=beta&t=yKaXIZl7YbdVdr7ubB5lJcf7cUxoXq9QJT0q1PK4oes"
   },
   {
+    "slug": "Unified-AI-Orchestration--Setting-Up-9router--Model-Combos--and-Cline-in-VS-Code-116d0453da6a",
+    "title": "Unified AI Orchestration: Setting Up 9router, Model Combos, and Cline in VS Code",
+    "excerpt": "When working with autonomous coding agents like Cline, managing multiple upstream AI providers — such as Google AI Studio, OpenRouter, and premium OAuth subscriptions — quickly becomes a maintenance bottleneck. Rate…",
+    "date": "2026-08-14",
+    "tags": [
+      "AI",
+      "DevOps",
+      "Integration"
+    ],
+    "readingTime": "4 min",
+    "url": "https://mobinshaterian.medium.com/unified-ai-orchestration-setting-up-9router-model-combos-and-cline-in-vs-code-116d0453da6a",
+    "hero": "https://cdn-images-1.medium.com/max/1024/1*-uAU9N6zuLzsRX3EjucJcg.jpeg"
+  },
+  {
     "slug": "Complete-Technical-Migration-Strategy--Migrating-Legacy-Django-Auth-to-Keycloak---OpenFGA-via-ETL-bbf22fd59cf2",
     "title": "Complete Technical Migration Strategy: Migrating Legacy Django Auth to Keycloak & OpenFGA via ETL",
     "excerpt": "A production-ready, four-phase ETL strategy for migrating legacy Django authentication to Keycloak and fine-grained authorization to OpenFGA.",

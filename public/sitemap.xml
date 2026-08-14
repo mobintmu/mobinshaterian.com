@@ -189,6 +189,12 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://mobinshaterian.com/blog/Unified-AI-Orchestration--Setting-Up-9router--Model-Combos--and-Cline-in-VS-Code-116d0453da6a</loc>
+    <lastmod>2026-08-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://mobinshaterian.com/blog/Complete-Technical-Migration-Strategy--Migrating-Legacy-Django-Auth-to-Keycloak---OpenFGA-via-ETL-bbf22fd59cf2</loc>
     <lastmod>2026-08-07</lastmod>
     <changefreq>monthly</changefreq>

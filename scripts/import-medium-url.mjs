@@ -398,6 +398,22 @@ function blocksFromReader(markdown) {
 
     if (line === "Code snippet") continue;
 
+    if (/^Plaintext$/i.test(line)) continue;
+
+    const standaloneCommandLanguage =
+      /^(?:npm\s+(?:install|run|exec)\b|npx\s+|bun\s+|pnpm\s+|yarn\s+|9router(?:\s+--\S+)*$)/.test(
+        line,
+      )
+        ? "bash"
+        : /^Inspect\s+@[^\s]+\s+/i.test(line)
+          ? "text"
+          : "";
+    if (standaloneCommandLanguage) {
+      flushParagraph();
+      addCodeBlock([lines[index]], standaloneCommandLanguage);
+      continue;
+    }
+
     const plainCodeLanguage = /^curl\s+-/.test(line)
       ? "bash"
       : line === "model"
@@ -499,6 +515,15 @@ function blocksFromReader(markdown) {
   flushParagraph();
 
   for (const image of readerImages) {
+    const mediumAssetId = image.src.match(/\/(1\*[^/?]+)/)?.[1];
+    const alreadyIncluded = parsedBlocks.some(
+      (block) =>
+        block.type === "image" &&
+        (block.src === image.src ||
+          (mediumAssetId && block.src.match(/\/(1\*[^/?]+)/)?.[1] === mediumAssetId)),
+    );
+    if (alreadyIncluded) continue;
+
     const normalizedAnchor = image.after.replace(/\s+/g, " ").trim();
     let insertAt = -1;
     for (let blockIndex = parsedBlocks.length - 1; blockIndex >= 0; blockIndex--) {
@@ -683,8 +708,12 @@ const subtitle = readerMarkdown
   ? plain.find((text) => text !== title) || ""
   : contentRoot.children("p.pw-post-body-paragraph").first().text().trim();
 const excerptSource = description || subtitle || plainText;
-const excerpt =
-  excerptSource.length > 220 ? `${excerptSource.slice(0, 219).trim()}…` : excerptSource;
+const excerpt = (() => {
+  if (excerptSource.length <= 220) return excerptSource;
+  const shortened = excerptSource.slice(0, 219).trim();
+  const lastSpace = shortened.lastIndexOf(" ");
+  return `${lastSpace > 160 ? shortened.slice(0, lastSpace) : shortened}…`;
+})();
 const readerReadingTime = readerMarkdown.match(/^\s*(\d+) min read\s*$/m)?.[1];
 const readingTime = readerReadingTime
   ? `${readerReadingTime} min`

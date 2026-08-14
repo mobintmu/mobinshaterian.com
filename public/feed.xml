@@ -16,6 +16,16 @@
       <category>Career</category>
     </item>
     <item>
+      <title>Unified AI Orchestration: Setting Up 9router, Model Combos, and Cline in VS Code</title>
+      <link>https://mobinshaterian.com/blog/Unified-AI-Orchestration--Setting-Up-9router--Model-Combos--and-Cline-in-VS-Code-116d0453da6a</link>
+      <guid isPermaLink="true">https://mobinshaterian.com/blog/Unified-AI-Orchestration--Setting-Up-9router--Model-Combos--and-Cline-in-VS-Code-116d0453da6a</guid>
+      <pubDate>Fri, 14 Aug 2026 00:00:00 GMT</pubDate>
+      <description>When working with autonomous coding agents like Cline, managing multiple upstream AI providers — such as Google AI Studio, OpenRouter, and premium OAuth subscriptions — quickly becomes a maintenance bottleneck. Rate…</description>
+      <category>AI</category>
+      <category>DevOps</category>
+      <category>Integration</category>
+    </item>
+    <item>
       <title>Complete Technical Migration Strategy: Migrating Legacy Django Auth to Keycloak &amp; OpenFGA via ETL</title>
       <link>https://mobinshaterian.com/blog/Complete-Technical-Migration-Strategy--Migrating-Legacy-Django-Auth-to-Keycloak---OpenFGA-via-ETL-bbf22fd59cf2</link>
       <guid isPermaLink="true">https://mobinshaterian.com/blog/Complete-Technical-Migration-Strategy--Migrating-Legacy-Django-Auth-to-Keycloak---OpenFGA-via-ETL-bbf22fd59cf2</guid>
@@ -480,16 +490,6 @@
       <category>API</category>
       <category>GraphQL</category>
       <category>RESTful API</category>
-    </item>
-    <item>
-      <title>Successfully Migrating from a Monolith to Microservices with a Technical-Debt Approach</title>
-      <link>https://mobinshaterian.com/blog/Successfully-Migrating-from-a-Monolith-to-Microservices-with-a-Technical-Debt-Approach-aa08d713deec</link>
-      <guid isPermaLink="true">https://mobinshaterian.com/blog/Successfully-Migrating-from-a-Monolith-to-Microservices-with-a-Technical-Debt-Approach-aa08d713deec</guid>
-      <pubDate>Tue, 23 Dec 2025 00:00:00 GMT</pubDate>
-      <description>Deciding to migrate from a large, aging monolithic system to a microservices architecture is often a reactive response to…</description>
-      <category>Microservices</category>
-      <category>Architecture</category>
-      <category>Testing</category>
     </item>
   </channel>
 </rss>
