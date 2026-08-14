@@ -1,5 +1,18 @@
 [
   {
+    "slug": "Me-Against-Myself--From-Rebellious-Idealism-to-Pragmatic-Systems-Thinking-bzrae",
+    "title": "Me Against Myself: From Rebellious Idealism to Pragmatic Systems Thinking",
+    "excerpt": "From \"your system is not open source\" to \"how can I change your system's properties\" I have spent twelve years arguing with people who build closed systems. I did not notice, until recently, that the longest, most exhau…",
+    "date": "2026-08-14",
+    "tags": [
+      "My Experience",
+      "Career"
+    ],
+    "readingTime": "5 min",
+    "url": "https://www.linkedin.com/pulse/me-against-myself-from-rebellious-idealism-pragmatic-mobin-shaterian-bzrae",
+    "hero": "https://media.licdn.com/dms/image/v2/D4E12AQEF2_s5mhFNaQ/article-cover_image-shrink_720_1280/B4EZ__TEl1IUAQ-/0/1786694622897?e=2147483647&v=beta&t=yKaXIZl7YbdVdr7ubB5lJcf7cUxoXq9QJT0q1PK4oes"
+  },
+  {
     "slug": "Complete-Technical-Migration-Strategy--Migrating-Legacy-Django-Auth-to-Keycloak---OpenFGA-via-ETL-bbf22fd59cf2",
     "title": "Complete Technical Migration Strategy: Migrating Legacy Django Auth to Keycloak & OpenFGA via ETL",
     "excerpt": "A production-ready, four-phase ETL strategy for migrating legacy Django authentication to Keycloak and fine-grained authorization to OpenFGA.",

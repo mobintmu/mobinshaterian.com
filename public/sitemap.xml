@@ -69,9 +69,15 @@
   </url>
   <url>
     <loc>https://mobinshaterian.com/blogs</loc>
-    <lastmod>2026-08-07</lastmod>
+    <lastmod>2026-08-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://mobinshaterian.com/blog/Me-Against-Myself--From-Rebellious-Idealism-to-Pragmatic-Systems-Thinking-bzrae</loc>
+    <lastmod>2026-08-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://mobinshaterian.com/blog/Complete-Technical-Migration-Strategy--Migrating-Legacy-Django-Auth-to-Keycloak---OpenFGA-via-ETL-bbf22fd59cf2</loc>

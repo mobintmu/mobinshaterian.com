@@ -92,6 +92,27 @@ container.children().each((_, wrapper) => {
     plain.push(code);
     return;
   }
+  const image = element.find("img").first();
+  if (image.length) {
+    const src = image.attr("data-delayed-url") || image.attr("src");
+    if (!src) return;
+    const caption = element.find("figcaption").first().text().trim();
+    blocks.push({
+      type: "image",
+      src,
+      alt: image.attr("alt")?.trim() || title,
+      caption,
+    });
+    return;
+  }
+  const quote = element.find("blockquote").first();
+  if (quote.length) {
+    const text = quote.text().trim();
+    if (!text) return;
+    blocks.push({ type: "quote", html: inlineHtml(quote) });
+    plain.push(text);
+    return;
+  }
   const list = element.find("ol, ul").first();
   if (list.length) {
     const items = list

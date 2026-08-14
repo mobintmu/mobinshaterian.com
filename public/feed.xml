@@ -7,6 +7,15 @@
     <language>en</language>
     <atom:link href="https://mobinshaterian.com/feed.xml" rel="self" type="application/rss+xml"/>
     <item>
+      <title>Me Against Myself: From Rebellious Idealism to Pragmatic Systems Thinking</title>
+      <link>https://mobinshaterian.com/blog/Me-Against-Myself--From-Rebellious-Idealism-to-Pragmatic-Systems-Thinking-bzrae</link>
+      <guid isPermaLink="true">https://mobinshaterian.com/blog/Me-Against-Myself--From-Rebellious-Idealism-to-Pragmatic-Systems-Thinking-bzrae</guid>
+      <pubDate>Fri, 14 Aug 2026 00:00:00 GMT</pubDate>
+      <description>From &quot;your system is not open source&quot; to &quot;how can I change your system&apos;s properties&quot; I have spent twelve years arguing with people who build closed systems. I did not notice, until recently, that the longest, most exhau…</description>
+      <category>My Experience</category>
+      <category>Career</category>
+    </item>
+    <item>
       <title>Complete Technical Migration Strategy: Migrating Legacy Django Auth to Keycloak &amp; OpenFGA via ETL</title>
       <link>https://mobinshaterian.com/blog/Complete-Technical-Migration-Strategy--Migrating-Legacy-Django-Auth-to-Keycloak---OpenFGA-via-ETL-bbf22fd59cf2</link>
       <guid isPermaLink="true">https://mobinshaterian.com/blog/Complete-Technical-Migration-Strategy--Migrating-Legacy-Django-Auth-to-Keycloak---OpenFGA-via-ETL-bbf22fd59cf2</guid>
@@ -481,17 +490,6 @@
       <category>Microservices</category>
       <category>Architecture</category>
       <category>Testing</category>
-    </item>
-    <item>
-      <title>Complete Guide: Migrating from REST &amp; gRPC to GraphQL in Go</title>
-      <link>https://mobinshaterian.com/blog/Complete-Guide--Migrating-from-REST---gRPC-to-GraphQL-in-Go-96c53025d9dc</link>
-      <guid isPermaLink="true">https://mobinshaterian.com/blog/Complete-Guide--Migrating-from-REST---gRPC-to-GraphQL-in-Go-96c53025d9dc</guid>
-      <pubDate>Sun, 14 Dec 2025 00:00:00 GMT</pubDate>
-      <description>we’ll walk through the complete process of migrating a Go application from a REST API with gRPC to a modern GraphQL Go base</description>
-      <category>Go</category>
-      <category>API</category>
-      <category>gRPC</category>
-      <category>GraphQL</category>
     </item>
   </channel>
 </rss>
