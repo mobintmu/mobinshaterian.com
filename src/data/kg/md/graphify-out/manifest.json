@@ -994,5 +994,809 @@
     "seen": 1787269695.174868,
     "ast_hash": "6ec6ba3cee2798f2917ed6d274bb30c5",
     "semantic_hash": "6ec6ba3cee2798f2917ed6d274bb30c5"
+  },
+  "post_Adding-Zap-Logger-to-Your-Go-Project--A-Practical-Guide----52091fc2db7d.md": {
+    "mtime": 1787268861.6968813,
+    "seen": 1787305477.0424924,
+    "ast_hash": "eafae165e79fb5432b73a0a2afaf0cf9",
+    "semantic_hash": "eafae165e79fb5432b73a0a2afaf0cf9"
+  },
+  "post_Architecting-an-Open-Source-Search-Engine--From-Algolia-Internals-to-Vector-Similarity-and-Qdrant-0423dad529fc.md": {
+    "mtime": 1787268861.6616642,
+    "seen": 1787305477.0425014,
+    "ast_hash": "3dee128733d79249ba2a29a16d8daaf5",
+    "semantic_hash": "3dee128733d79249ba2a29a16d8daaf5"
+  },
+  "post_Building-Modular-Product-Management-in-Go-with-SQLC--Uber-FX--and-Gin-bfb6dfaada6b.md": {
+    "mtime": 1787268861.6648018,
+    "seen": 1787305477.042507,
+    "ast_hash": "8a943be732a02380caa13ae363b70aa2",
+    "semantic_hash": "8a943be732a02380caa13ae363b70aa2"
+  },
+  "post_Building-a-Go-Microservice-to-Crawl-WooCommerce-Products-3910d3b99f1d.md": {
+    "mtime": 1787268861.7003672,
+    "seen": 1787305477.0425093,
+    "ast_hash": "e4e48281398ef00f781167cbe0cd2df4",
+    "semantic_hash": "e4e48281398ef00f781167cbe0cd2df4"
+  },
+  "post_Building-a-GraphQL-API-in-Go-with-Custom-Scalars-0b1a1b3e52f9.md": {
+    "mtime": 1787268861.7059488,
+    "seen": 1787305477.0425122,
+    "ast_hash": "a2ff6dc059d91428cc53c5bc7de3f9e0",
+    "semantic_hash": "a2ff6dc059d91428cc53c5bc7de3f9e0"
+  },
+  "post_Building-a-Redis-Backed-Cache-Layer-in-Go-with-Uber-FX----c10052c9b9ca.md": {
+    "mtime": 1787268861.6058078,
+    "seen": 1787305477.0425332,
+    "ast_hash": "3bf1c692dfc0737afc4a894308c1f2e7",
+    "semantic_hash": "3bf1c692dfc0737afc4a894308c1f2e7"
+  },
+  "post_Deploy-smart-contract-and-connect-with-go-Ethereum-935f4290249f.md": {
+    "mtime": 1787268861.6175082,
+    "seen": 1787305477.042535,
+    "ast_hash": "ebbae6dabe1098c360d2d017c606f9f1",
+    "semantic_hash": "ebbae6dabe1098c360d2d017c606f9f1"
+  },
+  "post_Docker-Compose-Setup-for-MongoDB--Redis--and-Minio-f364e79162ea.md": {
+    "mtime": 1787268861.6494236,
+    "seen": 1787305477.0425375,
+    "ast_hash": "05dae936fd4562816b7bcc1653da9c81",
+    "semantic_hash": "05dae936fd4562816b7bcc1653da9c81"
+  },
+  "post_Essential-VS-Code-Extensions-for-Go-Developers--My-Daily-Toolkit-5604c0bbaf85.md": {
+    "mtime": 1787268861.6419897,
+    "seen": 1787305477.0425391,
+    "ast_hash": "84255daa0d9b709f3efc0cff7b5270d2",
+    "semantic_hash": "84255daa0d9b709f3efc0cff7b5270d2"
+  },
+  "post_Ethereum-for-beginner-aa9bd2e85ee6.md": {
+    "mtime": 1787268861.6342013,
+    "seen": 1787305477.0425408,
+    "ast_hash": "209ffd5cbee06f0c6892eb6629baaa33",
+    "semantic_hash": "209ffd5cbee06f0c6892eb6629baaa33"
+  },
+  "post_Exclude-Endpoints-with-Sample-Rate-in-OpenTelemetry-in-the-Golang-Language-969da599af82.md": {
+    "mtime": 1787268861.7043593,
+    "seen": 1787305477.0425434,
+    "ast_hash": "ef64a17eeef83716b54303a7de6685fb",
+    "semantic_hash": "ef64a17eeef83716b54303a7de6685fb"
+  },
+  "post_Factory-Design-Patterns-and-SOLID-Principles-in-Golang-6aa6a60cc543.md": {
+    "mtime": 1787268861.711991,
+    "seen": 1787305477.0425456,
+    "ast_hash": "1a9eba62d7f250111326f671de72f3ad",
+    "semantic_hash": "1a9eba62d7f250111326f671de72f3ad"
+  },
+  "post_Find-a-list-of-tickets-for-the-customers-in-FreshDesk-f4bf843c55ff.md": {
+    "mtime": 1787268861.6313136,
+    "seen": 1787305477.0425482,
+    "ast_hash": "c75c8e0fe16e61c67d5331a9e5a387cb",
+    "semantic_hash": "c75c8e0fe16e61c67d5331a9e5a387cb"
+  },
+  "post_Fixing-Blocked-Subdomain-DNS-with-Dnsmasq-on-Ubuntu----b25cc19e9877.md": {
+    "mtime": 1787268861.612794,
+    "seen": 1787305477.0425503,
+    "ast_hash": "ebd55ff8b860b07a835d5999286abb53",
+    "semantic_hash": "ebd55ff8b860b07a835d5999286abb53"
+  },
+  "post_Get-Data-from-Fresh-Desk-with-API-Key-and-Write-Notes-with-Open-AI-5eee50365cbb.md": {
+    "mtime": 1787268861.618665,
+    "seen": 1787305477.0425532,
+    "ast_hash": "1e0fe463f7c1f048c4b7f41ac3e7d2fb",
+    "semantic_hash": "1e0fe463f7c1f048c4b7f41ac3e7d2fb"
+  },
+  "post_Get-Data-from-medium-and-make-an-AI-model-e2eda73f62cb.md": {
+    "mtime": 1787268861.6877787,
+    "seen": 1787305477.042556,
+    "ast_hash": "0e2e3fc99829bca2e5903ed040a1e413",
+    "semantic_hash": "0e2e3fc99829bca2e5903ed040a1e413"
+  },
+  "post_Getting-Started-with-Docker-files--A-Complete-Guide-d1d5b2d44d1b.md": {
+    "mtime": 1787268861.6620662,
+    "seen": 1787305477.0425575,
+    "ast_hash": "cefd59f691d27673d9e0082fc3b45958",
+    "semantic_hash": "cefd59f691d27673d9e0082fc3b45958"
+  },
+  "post_Gin-framework-in-Golang-c453436c8c07.md": {
+    "mtime": 1787268861.6719532,
+    "seen": 1787305477.0425851,
+    "ast_hash": "c17be120ebce10284eac471845150043",
+    "semantic_hash": "c17be120ebce10284eac471845150043"
+  },
+  "post_Hello-world-in-go-micro-as-the-base-of-GoLang-in-a-microservice-architecture-5f6fa75af724.md": {
+    "mtime": 1787268861.6844149,
+    "seen": 1787305477.042587,
+    "ast_hash": "7e29245b02563bc59fd51072ddc3b123",
+    "semantic_hash": "7e29245b02563bc59fd51072ddc3b123"
+  },
+  "post_How-an-AI-Prompt-Turned-a-Complex-Multi-Database-ETL-Project-Into-Hours-of-Work-bjw7e.md": {
+    "mtime": 1787268861.699907,
+    "seen": 1787305477.0425885,
+    "ast_hash": "05484002286d770a83f65fef9464a407",
+    "semantic_hash": "05484002286d770a83f65fef9464a407"
+  },
+  "post_How-do-you-write-tests-in-Nestjs--03149ebeb372.md": {
+    "mtime": 1787268861.7051165,
+    "seen": 1787305477.042599,
+    "ast_hash": "70669c25ee9e02a22c6079221313337e",
+    "semantic_hash": "70669c25ee9e02a22c6079221313337e"
+  },
+  "post_How-to-Fine-tune-ChatGPT-305606a02605.md": {
+    "mtime": 1787268861.6269228,
+    "seen": 1787305477.0426059,
+    "ast_hash": "43a7f32d9afb183d18cb5093139c796f",
+    "semantic_hash": "43a7f32d9afb183d18cb5093139c796f"
+  },
+  "post_How-to-Make-Python-Telegram-Bot-for-Conversational-AI-370d8e2c82bf.md": {
+    "mtime": 1787268861.6552012,
+    "seen": 1787305477.0426114,
+    "ast_hash": "028446c17e2b9407374cd6185cf402c1",
+    "semantic_hash": "028446c17e2b9407374cd6185cf402c1"
+  },
+  "post_How-to-Port-Forward-Traffic-to-a-Remote-IP-Using-Iptables-c3a8c10a6228.md": {
+    "mtime": 1787268861.684687,
+    "seen": 1787305477.0426126,
+    "ast_hash": "173c9340d271e74c00f507cc87ebe322",
+    "semantic_hash": "173c9340d271e74c00f507cc87ebe322"
+  },
+  "post_How-to-Write-Effective-Test-Files-in-Go-for-REST-APIs---577e01cdfe36.md": {
+    "mtime": 1787268861.7048478,
+    "seen": 1787305477.0426147,
+    "ast_hash": "feba54e41a7a3968573d28bd0e34e6e4",
+    "semantic_hash": "feba54e41a7a3968573d28bd0e34e6e4"
+  },
+  "post_How-to-increase-the-size-of-the-swap-in-Ubuntu-6fdeeef9851b.md": {
+    "mtime": 1787268861.6818416,
+    "seen": 1787305477.0426168,
+    "ast_hash": "4c1dbd234b919838e8125be6a911932d",
+    "semantic_hash": "4c1dbd234b919838e8125be6a911932d"
+  },
+  "post_How-to-make-several-ssh-keys-in-Ubuntu-for-manage-different-repositories-in-GitHub-e224a5156752.md": {
+    "mtime": 1787268861.616384,
+    "seen": 1787305477.042619,
+    "ast_hash": "e10b4ed66f272d76571aa7e8d221b81a",
+    "semantic_hash": "e10b4ed66f272d76571aa7e8d221b81a"
+  },
+  "post_Hugo-Static-website-builder-4e28457adc49.md": {
+    "mtime": 1787268861.6712723,
+    "seen": 1787305477.0426204,
+    "ast_hash": "968c8b0e0cf4bc1ce11373a706e62ab2",
+    "semantic_hash": "968c8b0e0cf4bc1ce11373a706e62ab2"
+  },
+  "post_I-struggle-to-read-and-write-100K-requests-in-Postgres-DB--and-my-aggressive-solution-with-Redis--91461a8316a1.md": {
+    "mtime": 1787268861.6467025,
+    "seen": 1787305477.042622,
+    "ast_hash": "9dd07b2916a3c57820ff02cdef9ae2a1",
+    "semantic_hash": "9dd07b2916a3c57820ff02cdef9ae2a1"
+  },
+  "post_Impelient-Bank-Mellat-Payment-Gateway-in-Nestjs-71f67308fa3a.md": {
+    "mtime": 1787268861.621705,
+    "seen": 1787305477.0426245,
+    "ast_hash": "79e7ed38d3ad4574cc3c2b6ff2471883",
+    "semantic_hash": "79e7ed38d3ad4574cc3c2b6ff2471883"
+  },
+  "post_Implementation-Experience--Retrieval-Augmented-Generation--RAG--System-for-AI-powered-Customer--1268ac4b4f8b.md": {
+    "mtime": 1787268861.6952918,
+    "seen": 1787305477.0426266,
+    "ast_hash": "73508c975c4b8a70fce4257ba5adaea7",
+    "semantic_hash": "73508c975c4b8a70fce4257ba5adaea7"
+  },
+  "post_Improve-speed-of-Machine-Learning-API--Engine--from-3-requests-per-second-to-10000-requests-per--4d649d246a99.md": {
+    "mtime": 1787268861.682089,
+    "seen": 1787305477.0426283,
+    "ast_hash": "1758170a03d4569ab460dd9fe1ff9dd2",
+    "semantic_hash": "1758170a03d4569ab460dd9fe1ff9dd2"
+  },
+  "post_Improving-Team-Morale-and-Efficiency-in-Software-Development-Projects-d5f3da0b2137.md": {
+    "mtime": 1787268861.683711,
+    "seen": 1787305477.042631,
+    "ast_hash": "ee47cdd3688806ed332bc44b0c9d037a",
+    "semantic_hash": "ee47cdd3688806ed332bc44b0c9d037a"
+  },
+  "post_Incredible-futures-of--buf-to-generate-Protobuf--GitHub-action-871f0d4f2339.md": {
+    "mtime": 1787268861.7098873,
+    "seen": 1787305477.0426335,
+    "ast_hash": "46d45355fca995fd920e7f40c212dbcf",
+    "semantic_hash": "46d45355fca995fd920e7f40c212dbcf"
+  },
+  "post_Install-CakePHP-application-on-server-with-the-traditional-way-on-Ubuntu-22-0-server-3228ae49c3c1.md": {
+    "mtime": 1787268861.6536934,
+    "seen": 1787305477.042635,
+    "ast_hash": "014b8134832a4e789fe83e901f05701d",
+    "semantic_hash": "014b8134832a4e789fe83e901f05701d"
+  },
+  "post_Installing-Application-for-Golang-developer-After-installing-Ubuntu-22-04-LTS-5d5570a78340.md": {
+    "mtime": 1787268861.701152,
+    "seen": 1787305477.0426369,
+    "ast_hash": "f7b1267a364b88e2665521f4be4bf02a",
+    "semantic_hash": "f7b1267a364b88e2665521f4be4bf02a"
+  },
+  "post_Installing-Application-for-Golang-developer-After-installing-Ubuntu-24-04-LTS-0444c87d7f9d.md": {
+    "mtime": 1787268861.6724215,
+    "seen": 1787305477.0426383,
+    "ast_hash": "24ee92faceba713433847bcb1ad71059",
+    "semantic_hash": "24ee92faceba713433847bcb1ad71059"
+  },
+  "post_Installing-Application-for-web-developer-After-installing-Ubuntu-20-04-LTS-e8114c21044c.md": {
+    "mtime": 1787268861.6289747,
+    "seen": 1787305477.0426402,
+    "ast_hash": "6c5bf9ff2c9925dbd61afcaeb71e37bf",
+    "semantic_hash": "6c5bf9ff2c9925dbd61afcaeb71e37bf"
+  },
+  "post_Introduction-to-Ubuntu-22-04-System-Setup-and-Environment-Configuration-for-a-Golang-developer-c0979cb9e68d.md": {
+    "mtime": 1787268861.640064,
+    "seen": 1787305477.0426419,
+    "ast_hash": "2374bc3141bdc63b1618994aaacc624f",
+    "semantic_hash": "2374bc3141bdc63b1618994aaacc624f"
+  },
+  "post_Liquibase-Hello-world-1d792968962f.md": {
+    "mtime": 1787268861.626549,
+    "seen": 1787305477.0426445,
+    "ast_hash": "c857b4031171785fe3ac37796f60e9e4",
+    "semantic_hash": "c857b4031171785fe3ac37796f60e9e4"
+  },
+  "post_Make-Crowdfunding-Smart-Contract-using-Solidity-and-Golang-Language-bd5dc7c8f84f.md": {
+    "mtime": 1787268861.669447,
+    "seen": 1787305477.0426462,
+    "ast_hash": "0a653e00a5ee37dbaa04d69a6fb41510",
+    "semantic_hash": "0a653e00a5ee37dbaa04d69a6fb41510"
+  },
+  "post_NLP-tutorial-cf3f48ed14fb.md": {
+    "mtime": 1787268861.6569312,
+    "seen": 1787305477.0426483,
+    "ast_hash": "bf0ac66e6683fe681ccb4ae913c0dcb4",
+    "semantic_hash": "bf0ac66e6683fe681ccb4ae913c0dcb4"
+  },
+  "post_Nats-Jet-Strem--Hello-World-d909099c88e4.md": {
+    "mtime": 1787268861.6306489,
+    "seen": 1787305477.042651,
+    "ast_hash": "368d465ac4cddd121334503f464d7e86",
+    "semantic_hash": "368d465ac4cddd121334503f464d7e86"
+  },
+  "post_NestJS--Data-Validation-and-Transformation-ce99115c760d.md": {
+    "mtime": 1787268861.6115081,
+    "seen": 1787305477.0426521,
+    "ast_hash": "efb2627d95e2542851f6058050970ac0",
+    "semantic_hash": "efb2627d95e2542851f6058050970ac0"
+  },
+  "post_Nodejs-with-Smart-contract-for-beginner-version-0-4-17-59ee1d46aced.md": {
+    "mtime": 1787268861.6679091,
+    "seen": 1787305477.0426538,
+    "ast_hash": "1f9b89977df4ea7474f5a2999710f045",
+    "semantic_hash": "1f9b89977df4ea7474f5a2999710f045"
+  },
+  "post_Pretty-print-array-in-Golang--4c184f4517f6.md": {
+    "mtime": 1787268861.712528,
+    "seen": 1787305477.0426552,
+    "ast_hash": "69c05c896b7593643d78cf86e55fcee4",
+    "semantic_hash": "69c05c896b7593643d78cf86e55fcee4"
+  },
+  "post_Simple-Golang-HTTP-server-fe7a88ef221e.md": {
+    "mtime": 1787268861.6882865,
+    "seen": 1787305477.0426564,
+    "ast_hash": "1e668a89d4ce5bf0f10655b5777a1c62",
+    "semantic_hash": "1e668a89d4ce5bf0f10655b5777a1c62"
+  },
+  "post_Solidity-principle-06faaeb07b57.md": {
+    "mtime": 1787268861.6530385,
+    "seen": 1787305477.0426579,
+    "ast_hash": "a9540b316cf70d709e993127c4e93219",
+    "semantic_hash": "a9540b316cf70d709e993127c4e93219"
+  },
+  "post_Solve-problem-to-Install-Nodejs20-on-Ubuntu-22-04-feacc6684a5b.md": {
+    "mtime": 1787268861.6208265,
+    "seen": 1787305477.042659,
+    "ast_hash": "e98ad8fb45be1ef4f89a4924e52225a9",
+    "semantic_hash": "e98ad8fb45be1ef4f89a4924e52225a9"
+  },
+  "post_Struggle-with-export-and-import-in-MongoDB-via-mongo-express-c64c0154937.md": {
+    "mtime": 1787268861.6100578,
+    "seen": 1787305477.0426607,
+    "ast_hash": "1731324e9b77d15e892469340afbecd1",
+    "semantic_hash": "1731324e9b77d15e892469340afbecd1"
+  },
+  "post_Successfully-Migrating-from-a-Monolith-to-Microservices-with-a-Technical-Debt-Approach-aa08d713deec.md": {
+    "mtime": 1787268861.6768525,
+    "seen": 1787305477.042662,
+    "ast_hash": "b3b027fe839fb8f313af703923028e0f",
+    "semantic_hash": "b3b027fe839fb8f313af703923028e0f"
+  },
+  "post_Tensorflow-tutorial--Basic-operations-on-tensors-fca6c839ca08.md": {
+    "mtime": 1787268861.6986878,
+    "seen": 1787305477.042663,
+    "ast_hash": "845db52c247b85634322ede2e4bf03c8",
+    "semantic_hash": "845db52c247b85634322ede2e4bf03c8"
+  },
+  "post_The--Problem--How-Elasticsearch-s-Stop-Word-Filtering-Broke-Our-Product-Search---ff2973455d45.md": {
+    "mtime": 1787268861.6471016,
+    "seen": 1787305477.0426643,
+    "ast_hash": "2cd7adf4dcc6d04247188b19847d0eb6",
+    "semantic_hash": "2cd7adf4dcc6d04247188b19847d0eb6"
+  },
+  "post_The-Art-and-Science-of-Technical-Hiring--A-Comprehensive-Guide-158ca954f2c7.md": {
+    "mtime": 1787268861.6670878,
+    "seen": 1787305477.0426655,
+    "ast_hash": "c55c54f3f78d8e2f14abfd7bdaeda7f1",
+    "semantic_hash": "c55c54f3f78d8e2f14abfd7bdaeda7f1"
+  },
+  "post_The-Entity-You-Modeled-Isn-t-the-Entity-That-Persists-vtwge.md": {
+    "mtime": 1787268861.6302342,
+    "seen": 1787305477.0426667,
+    "ast_hash": "36d7b056416d934764740ca9ebbb0525",
+    "semantic_hash": "36d7b056416d934764740ca9ebbb0525"
+  },
+  "post_The-Future-of-Hospitality--How-Hotels-Can-Transform-with-Web3-and-ERC-20-Tokens-796bde294021.md": {
+    "mtime": 1787268861.699304,
+    "seen": 1787305477.042668,
+    "ast_hash": "196b7283ce457efc6a1193dd6fd62375",
+    "semantic_hash": "196b7283ce457efc6a1193dd6fd62375"
+  },
+  "post_The-Hidden-Challenges-of-System-Teams-in-Software-Companies--Balancing-People--Process--and--cfc16a6e1790.md": {
+    "mtime": 1787268861.6162267,
+    "seen": 1787305477.0426695,
+    "ast_hash": "65462a9e6764c94d9b27fed596200697",
+    "semantic_hash": "65462a9e6764c94d9b27fed596200697"
+  },
+  "post_The-New-Generation-of-E2E-Test-Automation--Capturing-Traffic-and-Bypassing-Auth-with-Postman-and--16f167e37950.md": {
+    "mtime": 1787268861.6799488,
+    "seen": 1787305477.0426705,
+    "ast_hash": "861ef336a1a9af7a813f1cf5b303043a",
+    "semantic_hash": "861ef336a1a9af7a813f1cf5b303043a"
+  },
+  "post_The-Role-of-IgE-in-Allergic-and-Chronic-Sinusitis--Mechanisms--Treatments--and-Impact-on--5578822607ff.md": {
+    "mtime": 1787268861.670626,
+    "seen": 1787305477.0426722,
+    "ast_hash": "25475bac906f74f18a9eee3a690c0930",
+    "semantic_hash": "25475bac906f74f18a9eee3a690c0930"
+  },
+  "post_Title--Setting-Boundaries-with-Clients--A-Guide-to-Professional-and-Effective-Communication-040db339cd83.md": {
+    "mtime": 1787268861.7041442,
+    "seen": 1787305477.0426733,
+    "ast_hash": "71655120128bfb5dcb12cfa7e0f8ac01",
+    "semantic_hash": "71655120128bfb5dcb12cfa7e0f8ac01"
+  },
+  "post_Topic-Modeling-with-TF-IDF-and-k-means-and-Chat-GPT-3-5-4d03fc92a8aa.md": {
+    "mtime": 1787268861.6899323,
+    "seen": 1787305477.0426748,
+    "ast_hash": "aa838afd5959ec01693070abd4bbc75f",
+    "semantic_hash": "aa838afd5959ec01693070abd4bbc75f"
+  },
+  "post_When-Mediums-Bots-Fear-Your-Writing--Why-Im-Leaving-After-6-Years-and-200-Articles-anlqe.md": {
+    "mtime": 1787268861.6664226,
+    "seen": 1787305477.042676,
+    "ast_hash": "e73547160241e2a6242f38f62e418c1a",
+    "semantic_hash": "e73547160241e2a6242f38f62e418c1a"
+  },
+  "post_index_Building_a_Safe__Parallel_WooCommerce_Cr_30.md": {
+    "mtime": 1787268861.724627,
+    "seen": 1787305477.0426774,
+    "ast_hash": "dee1bbfe2a50cb64d377bffea14b4230",
+    "semantic_hash": "dee1bbfe2a50cb64d377bffea14b4230"
+  },
+  "post_index____Building_Modular_Go_Services_with_Ube_69.md": {
+    "mtime": 1787268861.728121,
+    "seen": 1787305477.0426786,
+    "ast_hash": "16676f857ad3d14c58acdd7813fb4a75",
+    "semantic_hash": "16676f857ad3d14c58acdd7813fb4a75"
+  },
+  "youtube_video_Database_Refactors_1.md": {
+    "mtime": 1787268861.7145193,
+    "seen": 1787305477.0426798,
+    "ast_hash": "182b30873f15bb64728cc6c80d1645e9",
+    "semantic_hash": "182b30873f15bb64728cc6c80d1645e9"
+  },
+  "youtube_video_Deep_Dive_Meilisearch_4.md": {
+    "mtime": 1787268861.7147264,
+    "seen": 1787305477.0426807,
+    "ast_hash": "db5e1854eef5e728b1157f9e72ece378",
+    "semantic_hash": "db5e1854eef5e728b1157f9e72ece378"
+  },
+  "youtube_video_Go_Web_Service_Refactoring_with_Uber_FX_17.md": {
+    "mtime": 1787268861.7155957,
+    "seen": 1787305477.0426822,
+    "ast_hash": "037312ad2aa05e86887d23e65855b588",
+    "semantic_hash": "037312ad2aa05e86887d23e65855b588"
+  },
+  "youtube_video_Go_s_Unbreakable_Scraper_11.md": {
+    "mtime": 1787268861.7151067,
+    "seen": 1787305477.0426836,
+    "ast_hash": "0523262b62c77d9b1d305994624a7e07",
+    "semantic_hash": "0523262b62c77d9b1d305994624a7e07"
+  },
+  "youtube_video_Idempotent_Database_Seeder_8.md": {
+    "mtime": 1787268861.7149677,
+    "seen": 1787305477.0426853,
+    "ast_hash": "c9cffe1de6b26ad13561422136da1872",
+    "semantic_hash": "c9cffe1de6b26ad13561422136da1872"
+  },
+  "youtube_video_Migrating_from_database_backed_sessions__2.md": {
+    "mtime": 1787268861.7145963,
+    "seen": 1787305477.0426865,
+    "ast_hash": "0493aeffca82c1b1f82f8077b0e07bae",
+    "semantic_hash": "0493aeffca82c1b1f82f8077b0e07bae"
+  },
+  "youtube_video_PostgreSQL_Foreign_Data_Wrappers_and__po_15.md": {
+    "mtime": 1787268861.7154493,
+    "seen": 1787305477.0426877,
+    "ast_hash": "e5e5263905ef1cbbb2564203e4042f3f",
+    "semantic_hash": "e5e5263905ef1cbbb2564203e4042f3f"
+  },
+  "youtube_video_The_Unbounded_Process_0.md": {
+    "mtime": 1787268861.7144628,
+    "seen": 1787305477.0426893,
+    "ast_hash": "8936c7d050a4ab1b116cc3ba04964f09",
+    "semantic_hash": "8936c7d050a4ab1b116cc3ba04964f09"
+  },
+  "aparat_video_Java_forever_6.md": {
+    "mtime": 1787268861.7165058,
+    "seen": 1787305801.4950428,
+    "ast_hash": "506983ac8132feb45a4c0b144dc2edc2",
+    "semantic_hash": "506983ac8132feb45a4c0b144dc2edc2"
+  },
+  "aparat_video_\u0627\u0646\u06cc\u0645\u06cc\u0634\u0646_\u0645\u0642\u0627\u0628\u0644\u0647_\u0644\u06cc\u0646\u0648\u06a9\u0633_\u0628\u0627_\u0648\u06cc\u0646\u062f\u0648\u0632__\u0627\u0631\u0648\u0631_\u0635\u0641_13.md": {
+    "mtime": 1787268861.7170434,
+    "seen": 1787305801.4950638,
+    "ast_hash": "0a5bc629436bea3f5b979f338507cb25",
+    "semantic_hash": "0a5bc629436bea3f5b979f338507cb25"
+  },
+  "post_A-comprehensive-guide-for-backend-developers-aiming-to-build-secure-applications-7f8ebff2cb9c.md": {
+    "mtime": 1787268861.658509,
+    "seen": 1787305801.4950728,
+    "ast_hash": "0ddd2c00e8d203b533eec595769b97c0",
+    "semantic_hash": "0ddd2c00e8d203b533eec595769b97c0"
+  },
+  "post_AI-Powered-Paraphrasing-for-SEO--Optimizing-Product-Descriptions-with-AvalAI-API-26caab0f1a23.md": {
+    "mtime": 1787268861.6803305,
+    "seen": 1787305801.4950798,
+    "ast_hash": "92059f1acd306c3deaf57ddbcac79ab6",
+    "semantic_hash": "92059f1acd306c3deaf57ddbcac79ab6"
+  },
+  "post_Architecting-Search-Engines--A-Deep-Dive-into-Meilisearch-Internals--Vector-Retrieval--and-Algolia-92779f29488e.md": {
+    "mtime": 1787268861.6438186,
+    "seen": 1787305801.4950852,
+    "ast_hash": "1d491a076e01501d020c29479eb2ee41",
+    "semantic_hash": "1d491a076e01501d020c29479eb2ee41"
+  },
+  "post_Architectural-Optimization-of-Shared-Sandbox-Deployments-in-GitLab-CI-CD-47ccce21fa9d.md": {
+    "mtime": 1787268861.6574771,
+    "seen": 1787305801.495093,
+    "ast_hash": "5ddeb2276952c39bf08df805281a0778",
+    "semantic_hash": "5ddeb2276952c39bf08df805281a0778"
+  },
+  "post_Atomic-Deployment-of-Go-Binaries-on-Ubuntu-with-Cron-dd7cf94cd8ab.md": {
+    "mtime": 1787268861.6284711,
+    "seen": 1787305801.495098,
+    "ast_hash": "611f61e0822e9ca7e9ad6594802faf27",
+    "semantic_hash": "611f61e0822e9ca7e9ad6594802faf27"
+  },
+  "post_Blockchain-for-beginner-6d55bb535ef0.md": {
+    "mtime": 1787268861.6492462,
+    "seen": 1787305801.4951031,
+    "ast_hash": "94d037a1f1d3acd412e90b3358e6b3f0",
+    "semantic_hash": "94d037a1f1d3acd412e90b3358e6b3f0"
+  },
+  "post_Common-Bug--Closure-Captures-a-Variable-from-the-Outer-Scope-a5ab7bed750b.md": {
+    "mtime": 1787268861.692088,
+    "seen": 1787305801.495108,
+    "ast_hash": "450b87edbf5de9fa1908d1541eba7eaf",
+    "semantic_hash": "450b87edbf5de9fa1908d1541eba7eaf"
+  },
+  "post_Connect-to-a-remote-Oracle-Database-with-Ubuntu-22-04-b1e2d803d6ec.md": {
+    "mtime": 1787268861.6178477,
+    "seen": 1787305801.4951124,
+    "ast_hash": "881e887e92e03c399ea40d059cd22a4f",
+    "semantic_hash": "881e887e92e03c399ea40d059cd22a4f"
+  },
+  "post_Convenience-Apps--A-Double-Edged-Sword-for-Humanity-1a81bd3e988e.md": {
+    "mtime": 1787268861.7111292,
+    "seen": 1787305801.4951167,
+    "ast_hash": "21d70379096673ce5c309ac01d46fdeb",
+    "semantic_hash": "21d70379096673ce5c309ac01d46fdeb"
+  },
+  "post_Git-Reset--Recovering-From-Unstable-AI-Code-Contributions-tt4ze.md": {
+    "mtime": 1787268861.663527,
+    "seen": 1787305801.495121,
+    "ast_hash": "6d7562a821158035878f5477101aac67",
+    "semantic_hash": "6d7562a821158035878f5477101aac67"
+  },
+  "post_Make-swagger-from-your-HTTP-Rest-full-in-Golang-4dc9088f5292.md": {
+    "mtime": 1787268861.609424,
+    "seen": 1787305801.4951255,
+    "ast_hash": "be68ea7df4b9fddb4f30419b488807b7",
+    "semantic_hash": "be68ea7df4b9fddb4f30419b488807b7"
+  },
+  "post_Me-Against-Myself--From-Rebellious-Idealism-to-Pragmatic-Systems-Thinking-bzrae.md": {
+    "mtime": 1787268861.616867,
+    "seen": 1787305801.4951303,
+    "ast_hash": "d92f23ba7278f70d23081177c797f4ac",
+    "semantic_hash": "d92f23ba7278f70d23081177c797f4ac"
+  },
+  "post_My-Experience-After-Four-Years-of-Migration-from-PHP-to-Golang-Language-554643db5b8e.md": {
+    "mtime": 1787268861.6138103,
+    "seen": 1787305801.4951353,
+    "ast_hash": "0b60c3102979ca7ec658fc9c5bba926b",
+    "semantic_hash": "0b60c3102979ca7ec658fc9c5bba926b"
+  },
+  "post_My-Experience-After-Three-Years-of-Migration-from-PHP-to-Golang-Language---df3fb8f466ee.md": {
+    "mtime": 1787268861.70151,
+    "seen": 1787305801.4951406,
+    "ast_hash": "2466a7d9454a35ea47678a342a4c4868",
+    "semantic_hash": "2466a7d9454a35ea47678a342a4c4868"
+  },
+  "post_My-first-application-development-with-Golang-as-a-PHP-developer--9c31e37903b8.md": {
+    "mtime": 1787268861.7065325,
+    "seen": 1787305801.4951446,
+    "ast_hash": "987701a191855ed4ed4888e3b58b89b8",
+    "semantic_hash": "987701a191855ed4ed4888e3b58b89b8"
+  },
+  "post_Navigating-the-Complexities-of-System-Design--A-Deep-Dive-into-Scalability--Microservices--and--ef3c948873eb.md": {
+    "mtime": 1787268861.6140754,
+    "seen": 1787305801.4951499,
+    "ast_hash": "dfe56f2618b054d2483567bd9dbf55bc",
+    "semantic_hash": "dfe56f2618b054d2483567bd9dbf55bc"
+  },
+  "post_Nestjs---PostgreSQL-database-with-docker-compose-and-Liquibase-faec0b09d944.md": {
+    "mtime": 1787268861.6274498,
+    "seen": 1787305801.4951577,
+    "ast_hash": "c3de39696878b31cb532826572950222",
+    "semantic_hash": "c3de39696878b31cb532826572950222"
+  },
+  "post_PHP-fpm---I-hate-you-1d17bb8a577b.md": {
+    "mtime": 1787268861.6261914,
+    "seen": 1787305801.4951665,
+    "ast_hash": "14daedfa38c143f983ef02b3151480f6",
+    "semantic_hash": "14daedfa38c143f983ef02b3151480f6"
+  },
+  "post_Python-selenium-for-crawler-data-from-website-4e45d3cc517b.md": {
+    "mtime": 1787268861.612994,
+    "seen": 1787305801.4951704,
+    "ast_hash": "e9cdc1ce64b40d9fac571e418fb91bdd",
+    "semantic_hash": "e9cdc1ce64b40d9fac571e418fb91bdd"
+  },
+  "post_Read-data-from-JSON-and-normalize-then-write-into-excel-cb7c29d1268b.md": {
+    "mtime": 1787268861.6197433,
+    "seen": 1787305801.495174,
+    "ast_hash": "03d5e1c3fe5c784ccf887f8052d9284d",
+    "semantic_hash": "03d5e1c3fe5c784ccf887f8052d9284d"
+  },
+  "post_Reading-Matlab--mat-format-Dataset-in-Python-f19c024bdb83.md": {
+    "mtime": 1787268861.7054896,
+    "seen": 1787305801.4951782,
+    "ast_hash": "25cb5e1995fdd94a2d6941ed1efbad92",
+    "semantic_hash": "25cb5e1995fdd94a2d6941ed1efbad92"
+  },
+  "post_Resolving-sql--Scan-error-When-Handling-NULL-Strings-in-Go-and-PostgreSQL-762bdf5a66b2.md": {
+    "mtime": 1787268861.6601765,
+    "seen": 1787305801.4951825,
+    "ast_hash": "625fb8fcf8d7994188bd5be810f2f25f",
+    "semantic_hash": "625fb8fcf8d7994188bd5be810f2f25f"
+  },
+  "post_Rsync-from-One-Origin-to-Multiple-Destinations--Strategies-and-Solutions----30fb79b4164d.md": {
+    "mtime": 1787268861.6190057,
+    "seen": 1787305801.4951873,
+    "ast_hash": "848ed20d54add61ecbd65b466177d0c3",
+    "semantic_hash": "848ed20d54add61ecbd65b466177d0c3"
+  },
+  "post_Small-Example-of-Solidity-Project-41cb5f9f801d.md": {
+    "mtime": 1787268861.6660738,
+    "seen": 1787305801.4951913,
+    "ast_hash": "2b210891d924c1674ee6e41b6f6fcd6e",
+    "semantic_hash": "2b210891d924c1674ee6e41b6f6fcd6e"
+  },
+  "post_index_If_my_service_or_database_is_down__the_c_208.md": {
+    "mtime": 1787268861.7402656,
+    "seen": 1787305801.4951963,
+    "ast_hash": "0d8e6ea3883f10452a34298873acaec9",
+    "semantic_hash": "0d8e6ea3883f10452a34298873acaec9"
+  },
+  "post_index_Images_SEO_Optimization_when_the_quality_245.md": {
+    "mtime": 1787268861.7472427,
+    "seen": 1787305801.4952013,
+    "ast_hash": "548eb39794b07b591dfe2a650cd63582",
+    "semantic_hash": "548eb39794b07b591dfe2a650cd63582"
+  },
+  "post_index_Impelient_Bank_Mellat_Payment_Gateway_in_86.md": {
+    "mtime": 1787268861.7295153,
+    "seen": 1787305801.4952059,
+    "ast_hash": "52e92d489671449baf5782cd2c90a35c",
+    "semantic_hash": "52e92d489671449baf5782cd2c90a35c"
+  },
+  "post_index_Implementing_Ownership_and_Authenticatio_130.md": {
+    "mtime": 1787268861.7333152,
+    "seen": 1787305801.4952106,
+    "ast_hash": "c87483c8a16ab20e03307360546ce0f2",
+    "semantic_hash": "c87483c8a16ab20e03307360546ce0f2"
+  },
+  "post_index_Implementing_a_Custom_JSON_Unmarshaller__77.md": {
+    "mtime": 1787268861.7288396,
+    "seen": 1787305801.4952173,
+    "ast_hash": "89cd757e8620afb34cac6fbab849d187",
+    "semantic_hash": "89cd757e8620afb34cac6fbab849d187"
+  },
+  "post_index_Improve_speed_of_Machine_Learning_API__E_233.md": {
+    "mtime": 1787268861.7458768,
+    "seen": 1787305801.4952211,
+    "ast_hash": "65246ffd3a082c10d7fb417278f1d106",
+    "semantic_hash": "65246ffd3a082c10d7fb417278f1d106"
+  },
+  "post_index_Incredible_futures_of_buf_to_generate_Pr_121.md": {
+    "mtime": 1787268861.7326272,
+    "seen": 1787305801.495226,
+    "ast_hash": "cca2eaf3a394f077c5b467c71e78f4a2",
+    "semantic_hash": "cca2eaf3a394f077c5b467c71e78f4a2"
+  },
+  "post_index_Install_CakePHP_application_on_server_wi_205.md": {
+    "mtime": 1787268861.739891,
+    "seen": 1787305801.4952302,
+    "ast_hash": "bd057de6d6bdfb090954e6a1a618cb24",
+    "semantic_hash": "bd057de6d6bdfb090954e6a1a618cb24"
+  },
+  "post_index_Integrating_Multiple_Databases__Inmon_vs_50.md": {
+    "mtime": 1787268861.7264915,
+    "seen": 1787305801.4952354,
+    "ast_hash": "a14b79e60ec641a16deed41b9e0bfc00",
+    "semantic_hash": "a14b79e60ec641a16deed41b9e0bfc00"
+  },
+  "post_index_Integrating_SQLC_and_GraphQL_in_Go__A_Pr_33.md": {
+    "mtime": 1787268861.7248924,
+    "seen": 1787305801.4952402,
+    "ast_hash": "df0a270378ca2cc38213bd3efce8bde3",
+    "semantic_hash": "df0a270378ca2cc38213bd3efce8bde3"
+  },
+  "post_index_Integrating_Zarinpal_Payment_Gateway_in__125.md": {
+    "mtime": 1787268861.7329211,
+    "seen": 1787305801.4952464,
+    "ast_hash": "aad6b7132f4c7b7ca74952f74337ae90",
+    "semantic_hash": "aad6b7132f4c7b7ca74952f74337ae90"
+  },
+  "post_index_Introducing_Buf_for_Protobuf_122.md": {
+    "mtime": 1787268861.7326975,
+    "seen": 1787305801.4952507,
+    "ast_hash": "ecc18f6d28510d5e54e3a3c642f28ca0",
+    "semantic_hash": "ecc18f6d28510d5e54e3a3c642f28ca0"
+  },
+  "post_index_Introduction_to_AWS_DynamoDB_for_Golang__120.md": {
+    "mtime": 1787268861.7325318,
+    "seen": 1787305801.495256,
+    "ast_hash": "0f04f1b85683d0df8262e69bd4c3838d",
+    "semantic_hash": "0f04f1b85683d0df8262e69bd4c3838d"
+  },
+  "post_index_Liquibase_Hello_world_196.md": {
+    "mtime": 1787268861.7390015,
+    "seen": 1787305801.4952614,
+    "ast_hash": "924004829a5e1b189eb4d25e40252954",
+    "semantic_hash": "924004829a5e1b189eb4d25e40252954"
+  },
+  "post_index_Make_Crowdfunding_Smart_Contract_using_S_166.md": {
+    "mtime": 1787268861.7366312,
+    "seen": 1787305801.4952662,
+    "ast_hash": "bfed296113fbfac0e799ca463806ff8b",
+    "semantic_hash": "bfed296113fbfac0e799ca463806ff8b"
+  },
+  "post_index_Make_simple_CRUD_requests_with_NestJS_136.md": {
+    "mtime": 1787268861.7337675,
+    "seen": 1787305801.4952714,
+    "ast_hash": "aa246a216a217604f888034cc42f2f23",
+    "semantic_hash": "aa246a216a217604f888034cc42f2f23"
+  },
+  "post_index_Making_docker_for_llama3_RAG_system_139.md": {
+    "mtime": 1787268861.7340496,
+    "seen": 1787305801.4952762,
+    "ast_hash": "782c79708ab757b1e1e17fc319493175",
+    "semantic_hash": "782c79708ab757b1e1e17fc319493175"
+  },
+  "post_index_MongoDB_and_GraphQL_in_the_Nestjs_127.md": {
+    "mtime": 1787268861.7330804,
+    "seen": 1787305801.4952812,
+    "ast_hash": "dc426c77e3456fafc230a1bcd2ffabc4",
+    "semantic_hash": "dc426c77e3456fafc230a1bcd2ffabc4"
+  },
+  "post_index_My_experience_to_build_a_CQRS_system_wit_195.md": {
+    "mtime": 1787268861.7389357,
+    "seen": 1787305801.4952862,
+    "ast_hash": "33057844aa4fda2e5e7099bb0599a55a",
+    "semantic_hash": "33057844aa4fda2e5e7099bb0599a55a"
+  },
+  "post_index_My_solution_for_designing_a_resilient_sy_209.md": {
+    "mtime": 1787268861.7403688,
+    "seen": 1787305801.495292,
+    "ast_hash": "9dd1c71066b060f720ad191c509222e1",
+    "semantic_hash": "9dd1c71066b060f720ad191c509222e1"
+  },
+  "post_index_Nats_Jet_Strem__Hello_World_204.md": {
+    "mtime": 1787268861.7397785,
+    "seen": 1787305801.495297,
+    "ast_hash": "497b6c02c54a5ea9133e61f021669d82",
+    "semantic_hash": "497b6c02c54a5ea9133e61f021669d82"
+  },
+  "post_index_Nestjs___PostgreSQL_database_with_docker_133.md": {
+    "mtime": 1787268861.73354,
+    "seen": 1787305801.4953022,
+    "ast_hash": "23323dee27831964ea4cff25348ed3b4",
+    "semantic_hash": "23323dee27831964ea4cff25348ed3b4"
+  },
+  "post_index_Ory_Kratos_Hello_world_197.md": {
+    "mtime": 1787268861.7390711,
+    "seen": 1787305801.4953067,
+    "ast_hash": "aad79bd255e7f36faa5913458e12c813",
+    "semantic_hash": "aad79bd255e7f36faa5913458e12c813"
+  },
+  "post_index_Ory_Oathkeeper_Hello_world_198.md": {
+    "mtime": 1787268861.7391386,
+    "seen": 1787305801.4953122,
+    "ast_hash": "c9a6a445f086c73a0271b6116dabd201",
+    "semantic_hash": "c9a6a445f086c73a0271b6116dabd201"
+  },
+  "post_index_PostgreSQL_Concurrency__Locking__and_Iso_116.md": {
+    "mtime": 1787268861.732048,
+    "seen": 1787305801.4953227,
+    "ast_hash": "d3ce044f2bdcc2664ff4a3e914274ef2",
+    "semantic_hash": "d3ce044f2bdcc2664ff4a3e914274ef2"
+  },
+  "post_index_PostgreSQL_Foreign_Data_Wrappers_for_Dat_49.md": {
+    "mtime": 1787268861.7264018,
+    "seen": 1787305801.4953272,
+    "ast_hash": "d6c20772c249bd6e37ed3ecce7d5a460",
+    "semantic_hash": "d6c20772c249bd6e37ed3ecce7d5a460"
+  },
+  "post_index_Preventing_Race_Conditions_in_Kubernetes_42.md": {
+    "mtime": 1787268861.725728,
+    "seen": 1787305801.4953313,
+    "ast_hash": "1e26991d3efb5335a0f5392d66094da5",
+    "semantic_hash": "1e26991d3efb5335a0f5392d66094da5"
+  },
+  "post_index_Run_test_case_in_Golnag_with__env_file_200.md": {
+    "mtime": 1787268861.7393153,
+    "seen": 1787305801.4953356,
+    "ast_hash": "d1d671efb57799c2c80d5552660ab539",
+    "semantic_hash": "d1d671efb57799c2c80d5552660ab539"
+  },
+  "post_index_Securing_the_Admin_Layer_in_Go_with_JWT__61.md": {
+    "mtime": 1787268861.7273507,
+    "seen": 1787305801.49534,
+    "ast_hash": "186de0e6381c5c4d1e67941db77205b2",
+    "semantic_hash": "186de0e6381c5c4d1e67941db77205b2"
+  },
+  "post_index_Step_by_Step_Guide_to_Adding_gRPC_to_go__62.md": {
+    "mtime": 1787268861.727428,
+    "seen": 1787305801.4953444,
+    "ast_hash": "916561c39b5d906396968f2defcdf49b",
+    "semantic_hash": "916561c39b5d906396968f2defcdf49b"
+  },
+  "post_index_The_Best_Design_Pattern_for_Query_Based__60.md": {
+    "mtime": 1787268861.7272732,
+    "seen": 1787305801.4953504,
+    "ast_hash": "0d4c068d8277e3dd57bbd02e7702cc08",
+    "semantic_hash": "0d4c068d8277e3dd57bbd02e7702cc08"
+  },
+  "post_index_The_Hidden_Costs_of_Shared_Databases_in__52.md": {
+    "mtime": 1787268861.7266688,
+    "seen": 1787305801.4953554,
+    "ast_hash": "98880e473c5cd8923c6e95adc0574026",
+    "semantic_hash": "98880e473c5cd8923c6e95adc0574026"
+  },
+  "post_index_Tracking_system_request_with_Open_teleme_193.md": {
+    "mtime": 1787268861.7387767,
+    "seen": 1787305801.495361,
+    "ast_hash": "a3ed21763df0b8de701bfc3663728e3a",
+    "semantic_hash": "a3ed21763df0b8de701bfc3663728e3a"
+  },
+  "post_index_Transform_database_bottleneck_in_softwar_184.md": {
+    "mtime": 1787268861.737943,
+    "seen": 1787305801.4953659,
+    "ast_hash": "ac6e62358478f4fb14167b3395cca871",
+    "semantic_hash": "ac6e62358478f4fb14167b3395cca871"
+  },
+  "post_index_Using_open_telemetry_in_Golang_179.md": {
+    "mtime": 1787268861.7375944,
+    "seen": 1787305801.4953697,
+    "ast_hash": "3fed289d68840c42bda817690f023575",
+    "semantic_hash": "3fed289d68840c42bda817690f023575"
+  },
+  "post_index_using_redis_and_nginx_cache_are_very_goo_234.md": {
+    "mtime": 1787268861.7459965,
+    "seen": 1787305801.4953747,
+    "ast_hash": "f300466cb3af65879eff1376e03a847f",
+    "semantic_hash": "f300466cb3af65879eff1376e03a847f"
   }
 }
