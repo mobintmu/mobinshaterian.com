@@ -23,3 +23,8 @@ cd /home/mobin/Documents/mobinshaterian.com/src/data/kg/md
 # Find relationships connected to a specific technology
 graphify query "ClickHouse"
 graphify query "Kafka"
+
+
+# Find relationships connected to a specific technology and return the results in a human-readable format
+
+python3 graph_rag.py
