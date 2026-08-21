@@ -7,6 +7,7 @@ import {
   Github,
   Map,
   Menu,
+  Network,
   PenLine,
   Rss,
   Send,
@@ -22,6 +23,7 @@ const resources = [
   { href: "/feed.xml", label: "RSS feed", icon: Rss },
   { href: "/sitemap.xml", label: "sitemap", icon: Map },
   { href: "/data/profile.json", label: "profile.json", icon: Braces },
+  { href: "/graph.html", label: "knowledge graph", icon: Network },
 ];
 
 export function SiteMenu() {
