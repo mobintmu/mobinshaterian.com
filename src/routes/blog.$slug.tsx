@@ -1,5 +1,6 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import postsIndex from "@/data/posts-index.json";
+import relatedPosts from "@/data/kg/related_posts.json";
 import profile from "@/data/profile.json";
 import { PostContent, type Block } from "@/components/PostContent";
 import { SiteMenu } from "@/components/SiteMenu";
@@ -156,6 +157,80 @@ function sourceName(url: string) {
   return "the original source";
 }
 
+function normalizeSlug(str: string): string {
+  return str
+    .toLowerCase()
+    .replace(/^(post_index_|post_|project_project_1_0_|project_)/, "")
+    .replace(
+      /-(article|authguard|createtaskdto|tasksservice|taskscontroller|sqlc|gqlgen|gin|jwt|viper|kafka|clickhouse|debezium|mysql|mongodb|meilisearch|redis|projectionservice|pollingservice|backoffpoller)$/,
+      "",
+    )
+    .replace(/-[a-f0-9]{8,16}$/, "")
+    .replace(/-\d+$/, "")
+    .replace(/_/g, "-")
+    .replace(/[^a-z0-9-]/g, "")
+    .replace(/-+/g, "-")
+    .trim();
+}
+
+function relatedPostSlugs(slug: string, articles: IndexEntry[]): IndexEntry[] {
+  const relationMap = relatedPosts as Record<string, string[]>;
+  const cleanCurrentSlug = normalizeSlug(slug);
+
+  const matchedKey = Object.keys(relationMap).find((key) => {
+    const cleanKey = normalizeSlug(key);
+    return (
+      cleanCurrentSlug === cleanKey ||
+      cleanCurrentSlug.startsWith(cleanKey) ||
+      cleanKey.startsWith(cleanCurrentSlug)
+    );
+  });
+
+  if (!matchedKey || !relationMap[matchedKey]) {
+    return [];
+  }
+
+  const rawRelatedSlugs = relationMap[matchedKey];
+  const matchedArticles: IndexEntry[] = [];
+
+  for (const relSlug of rawRelatedSlugs) {
+    const cleanTarget = normalizeSlug(relSlug);
+
+    const foundArticle = articles.find((candidate) => {
+      if (candidate.slug === slug) return false;
+      const cleanCandidate = normalizeSlug(candidate.slug);
+      return (
+        cleanCandidate === cleanTarget ||
+        cleanCandidate.startsWith(cleanTarget) ||
+        cleanTarget.startsWith(cleanCandidate)
+      );
+    });
+
+    if (foundArticle && !matchedArticles.some((a) => a.slug === foundArticle.slug)) {
+      matchedArticles.push(foundArticle);
+    }
+  }
+
+  return matchedArticles;
+}
+
+function getRelatedPosts(currentPost: FullPost, articles: IndexEntry[]): IndexEntry[] {
+  const graphRelated = relatedPostSlugs(currentPost.slug, articles);
+  if (graphRelated.length >= 2) {
+    return graphRelated.slice(0, 4);
+  }
+
+  const primaryTag = currentPost.tags[0]?.toLowerCase();
+  const tagRelated = articles.filter(
+    (article) =>
+      article.slug !== currentPost.slug &&
+      !graphRelated.some((g) => g.slug === article.slug) &&
+      article.tags.some((t) => t.toLowerCase() === primaryTag),
+  );
+
+  return [...graphRelated, ...tagRelated].slice(0, 4);
+}
+
 function BlogPostPage() {
   const { post } = Route.useLoaderData();
   const canonicalSource = sourceName(post.url);
@@ -163,6 +238,7 @@ function BlogPostPage() {
   const currentIndex = articles.findIndex((article) => article.slug === post.slug);
   const previousPost = currentIndex >= 0 ? articles[currentIndex + 1] : undefined;
   const nextPost = currentIndex > 0 ? articles[currentIndex - 1] : undefined;
+  const related = getRelatedPosts(post, articles);
 
   return (
     <div className="min-h-screen bg-background text-foreground font-sans">
@@ -304,6 +380,40 @@ function BlogPostPage() {
             </Link>
           ) : null}
         </nav>
+
+        {related.length ? (
+          <section
+            className="mt-10 border-t border-border pt-6"
+            aria-labelledby="related-posts-heading"
+          >
+            <div className="mb-4 flex items-center gap-2">
+              <ArrowRight className="h-4 w-4 text-terminal" />
+              <h2
+                id="related-posts-heading"
+                className="font-mono-plus text-xs uppercase tracking-wider text-terminal"
+              >
+                Related blogs
+              </h2>
+            </div>
+            <div className="grid gap-3 sm:grid-cols-2">
+              {related.map((article) => (
+                <Link
+                  key={article.slug}
+                  to="/blog/$slug"
+                  params={{ slug: article.slug }}
+                  className="group rounded-md border border-border bg-surface p-4 transition-colors hover:border-terminal/50 hover:bg-terminal/5"
+                >
+                  <span className="block line-clamp-3 text-sm font-medium leading-snug transition-colors group-hover:text-terminal">
+                    {article.title}
+                  </span>
+                  <span className="mt-2 block font-mono-plus text-[10px] text-muted-foreground">
+                    {formatDate(article.date)} · {article.readingTime}
+                  </span>
+                </Link>
+              ))}
+            </div>
+          </section>
+        ) : null}
 
         {post.tags.length ? (
           <section
