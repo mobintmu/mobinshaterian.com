@@ -1,5 +1,21 @@
 [
   {
+    "slug": "How-I-Made-a-Chatbot-With-My-Knowledge--Turning-My-Technical-Articles-into-a-GraphRAG-Assistant-d3d95c3c8e52",
+    "title": "How I Made a Chatbot With My Knowledge: Turning My Technical Articles into a GraphRAG Assistant",
+    "excerpt": "As software engineers, our personal blogs and notes often end up as chronological archives — hundreds of Markdown files, JSON payloads, and code repositories scattered across years of work. Traditional vector search…",
+    "date": "2026-08-21",
+    "tags": [
+      "AI",
+      "RAG",
+      "Knowledge Graphs",
+      "GraphRAG",
+      "Go"
+    ],
+    "readingTime": "9 min",
+    "url": "https://towardsdev.com/how-i-made-a-chatbot-with-my-knowledge-turning-my-technical-articles-into-a-graphrag-assistant-d3d95c3c8e52",
+    "hero": "https://cdn-images-1.medium.com/max/1024/1*z8EbXWNNorfLBg4jqeI-0g.png"
+  },
+  {
     "slug": "Me-Against-Myself--From-Rebellious-Idealism-to-Pragmatic-Systems-Thinking-bzrae",
     "title": "Me Against Myself: From Rebellious Idealism to Pragmatic Systems Thinking",
     "excerpt": "From \"your system is not open source\" to \"how can I change your system's properties\" I have spent twelve years arguing with people who build closed systems. I did not notice, until recently, that the longest, most exhau…",

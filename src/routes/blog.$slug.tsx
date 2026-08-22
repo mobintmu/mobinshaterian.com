@@ -93,8 +93,8 @@ export const Route = createFileRoute("/blog/$slug")({
       { name: "twitter:image", content: image },
       { name: "twitter:image:alt", content: post.title },
     ];
-    if (post.tags[0]) {
-      meta.push({ property: "article:tag", content: post.tags[0] });
+    for (const tag of post.tags) {
+      meta.push({ property: "article:tag", content: tag });
     }
     return {
       meta,

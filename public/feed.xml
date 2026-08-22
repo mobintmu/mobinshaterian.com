@@ -7,6 +7,18 @@
     <language>en</language>
     <atom:link href="https://mobinshaterian.com/feed.xml" rel="self" type="application/rss+xml"/>
     <item>
+      <title>How I Made a Chatbot With My Knowledge: Turning My Technical Articles into a GraphRAG Assistant</title>
+      <link>https://mobinshaterian.com/blog/How-I-Made-a-Chatbot-With-My-Knowledge--Turning-My-Technical-Articles-into-a-GraphRAG-Assistant-d3d95c3c8e52</link>
+      <guid isPermaLink="true">https://mobinshaterian.com/blog/How-I-Made-a-Chatbot-With-My-Knowledge--Turning-My-Technical-Articles-into-a-GraphRAG-Assistant-d3d95c3c8e52</guid>
+      <pubDate>Fri, 21 Aug 2026 00:00:00 GMT</pubDate>
+      <description>As software engineers, our personal blogs and notes often end up as chronological archives — hundreds of Markdown files, JSON payloads, and code repositories scattered across years of work. Traditional vector search…</description>
+      <category>AI</category>
+      <category>RAG</category>
+      <category>Knowledge Graphs</category>
+      <category>GraphRAG</category>
+      <category>Go</category>
+    </item>
+    <item>
       <title>Me Against Myself: From Rebellious Idealism to Pragmatic Systems Thinking</title>
       <link>https://mobinshaterian.com/blog/Me-Against-Myself--From-Rebellious-Idealism-to-Pragmatic-Systems-Thinking-bzrae</link>
       <guid isPermaLink="true">https://mobinshaterian.com/blog/Me-Against-Myself--From-Rebellious-Idealism-to-Pragmatic-Systems-Thinking-bzrae</guid>
@@ -479,17 +491,6 @@
       <description>The error message django.db.utils.ProgrammingError: column oauth2_provider_application.hash_client_secret does not exist is a classic…</description>
       <category>Security</category>
       <category>Python</category>
-    </item>
-    <item>
-      <title>Building a GraphQL API in Go with Custom Scalars</title>
-      <link>https://mobinshaterian.com/blog/Building-a-GraphQL-API-in-Go-with-Custom-Scalars-0b1a1b3e52f9</link>
-      <guid isPermaLink="true">https://mobinshaterian.com/blog/Building-a-GraphQL-API-in-Go-with-Custom-Scalars-0b1a1b3e52f9</guid>
-      <pubDate>Fri, 26 Dec 2025 00:00:00 GMT</pubDate>
-      <description>GraphQL has become a powerful alternative to REST APIs, offering clients the ability to request exactly the data they need. In Go, the…</description>
-      <category>Go</category>
-      <category>API</category>
-      <category>GraphQL</category>
-      <category>RESTful API</category>
     </item>
   </channel>
 </rss>
