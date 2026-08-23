@@ -3,6 +3,11 @@
 import fs from "node:fs";
 import path from "node:path";
 import { formatReaderCode } from "./reader-code-formatter.mjs";
+import {
+  hasCollapsedIndentation,
+  repairCrawlerDamage,
+  restorePythonIndentation,
+} from "./code-block-heuristics.mjs";
 
 const SOURCE_DIR = "src/data/posts";
 const PUBLIC_DIR = "public/data/posts";
@@ -273,12 +278,19 @@ function formatCode(code, language) {
   } else if (language === "yaml") {
     source = restoreIndentRuns(source, 2);
   } else if (language === "python") {
-    source = source
-      .replace(
-        /(?<!^)(?=def\s+\w+\s*\(|class\s+\w+\s*[:(]|from\s+[\w.]+\s+import\s+|import\s+[\w.]+)/g,
-        "\n",
-      )
-      .replace(/(?<! ) {4}(?! )/g, "\n    ");
+    source = repairCrawlerDamage(source);
+    if (hasCollapsedIndentation(source)) {
+      // Reader/crawler damage: real newlines survived but indentation was
+      // flattened. Rebuild the 4-space structure instead of guessing splits.
+      source = restorePythonIndentation(source);
+    } else {
+      source = source
+        .replace(
+          /(?<!^)(?=def\s+\w+\s*\(|class\s+\w+\s*[:(]|from\s+[\w.]+\s+import\s+|import\s+[\w.]+)/g,
+          "\n",
+        )
+        .replace(/(?<! ) {4}(?! )/g, "\n    ");
+    }
   } else if (language === "dotenv") {
     source = source.replace(/(?<=[^\n])(?=[A-Z][A-Z0-9_]*=)/g, "\n");
   } else if (language === "text") {
@@ -316,11 +328,18 @@ for (const filename of fs.readdirSync(SOURCE_DIR).filter((name) => name.endsWith
     blocksChecked++;
     const isMultiline = block.code.includes("\n");
     if (isMultiline && !shouldFormatMultiline) continue;
-    const formatted = isMultiline
-      ? formatReaderCode(block.code, block.lang, {
-          preserveWhitespace: block.preserveWhitespace === true,
-        })
-      : formatCode(block.code, block.lang);
+    let formatted;
+    if (isMultiline && block.lang === "python" && hasCollapsedIndentation(block.code)) {
+      // Crawler damage: newlines survived but indentation was flattened, so
+      // rebuilding structure beats guessing where lines should be split.
+      formatted = restorePythonIndentation(repairCrawlerDamage(block.code));
+    } else {
+      formatted = isMultiline
+        ? formatReaderCode(block.code, block.lang, {
+            preserveWhitespace: block.preserveWhitespace === true,
+          })
+        : formatCode(block.code, block.lang);
+    }
     if (formatted === block.code) continue;
     if (shouldPreview && previews.length < previewLimit) {
       previews.push({

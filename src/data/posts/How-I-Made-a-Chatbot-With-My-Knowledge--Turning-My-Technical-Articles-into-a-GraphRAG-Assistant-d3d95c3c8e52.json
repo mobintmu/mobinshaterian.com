@@ -39,76 +39,26 @@
       "html": "My blog archive (<code>src/data</code>) contained raw JSON files spanning article dumps, GitHub project repositories, video records (YouTube/Aparat), and author metadata:"
     },
     {
-      "type": "paragraph",
-      "html": "src/data/"
+      "type": "code",
+      "lang": "text",
+      "code": "src/data/\n├── aparat-videos.json\n├── github-projects.json\n├── posts/\n│   ├── Real-Time-Data-Ingestion-Kafka-to-ClickHouse.json\n│   └── ...\n├── profile.json\n└── youtube-videos.json"
     },
     {
       "type": "paragraph",
-      "html": "├── aparat-videos.json"
-    },
-    {
-      "type": "paragraph",
-      "html": "├── github-projects.json"
-    },
-    {
-      "type": "paragraph",
-      "html": "├── posts/"
-    },
-    {
-      "type": "paragraph",
-      "html": "│ ├── Real-Time-Data-Ingestion-Kafka-to-ClickHouse.json"
-    },
-    {
-      "type": "paragraph",
-      "html": "│ └── ..."
-    },
-    {
-      "type": "paragraph",
-      "html": "├── profile.json"
-    },
-    {
-      "type": "paragraph",
-      "html": "└── youtube-videos.json When feeding raw <code>.json</code> files into AST-based code parsers (like Graphify), the engine classified them as source code rather than semantic documents, resulting in zero nodes."
+      "html": "When feeding raw <code>.json</code> files into AST-based code parsers (like Graphify), the engine classified them as source code rather than semantic documents, resulting in zero nodes."
     },
     {
       "type": "paragraph",
       "html": "To resolve this, I built an automated transformer script (<code>build_kg_docs.py</code>) to convert all JSON records into clean, structured Markdown documents with explicit headers and frontmatter:"
     },
     {
-      "type": "paragraph",
-      "html": "def write_md(filename, title, meta, body):"
+      "type": "code",
+      "lang": "python",
+      "code": "def write_md(filename, title, meta, body):\n    filepath = os.path.join(OUT_DIR, f\"{filename}.md\")\n    content = f\"# {title}\\n\\n\"\n    for k, v in meta.items():\n        if v:\n            content += f\"{k}: {v}\\n\"\n    content += f\"\\n{body}\\n\"\n    with open(filepath, \"w\", encoding=\"utf-8\") as f:\n        f.write(content)"
     },
     {
       "type": "paragraph",
-      "html": "filepath = os.path.join(OUT_DIR, f&quot;{filename}.md&quot;)"
-    },
-    {
-      "type": "paragraph",
-      "html": "content = f&quot;# {title}\\n\\n&quot;"
-    },
-    {
-      "type": "paragraph",
-      "html": "for k, v in meta.items():"
-    },
-    {
-      "type": "paragraph",
-      "html": "if v:"
-    },
-    {
-      "type": "paragraph",
-      "html": "content += f&quot;<strong>{k}:</strong> {v}\\n&quot;"
-    },
-    {
-      "type": "paragraph",
-      "html": "content += f&quot;\\n{body}\\n&quot;"
-    },
-    {
-      "type": "paragraph",
-      "html": "with open(filepath, &quot;w&quot;, encoding=&quot;utf-8&quot;) as f:"
-    },
-    {
-      "type": "paragraph",
-      "html": "f.write(content) This formatted 525 documents into an <code>/md</code> staging directory, ready for semantic extraction."
+      "html": "This formatted 525 documents into an <code>/md</code> staging directory, ready for semantic extraction."
     },
     {
       "type": "heading",
@@ -120,12 +70,9 @@
       "html": "Using <code>graphify</code> routed through an OpenAI-compatible proxy (<code>api.avalai.ir/v1</code>) using <code>gpt-5.6-luna</code>, I extracted semantic entity-relation-entity triples and multi-component system hyperedges:"
     },
     {
-      "type": "paragraph",
-      "html": "env $(cat .env | xargs) graphify extract ./md --backend openai --model gpt-5.6-luna"
-    },
-    {
-      "type": "paragraph",
-      "html": "env $(cat .env | xargs) graphify cluster-only ./md --backend openai --model gpt-5.6-luna"
+      "type": "code",
+      "lang": "bash",
+      "code": "env $(cat .env | xargs) graphify extract ./md --backend openai --model gpt-5.6-luna\nenv $(cat .env | xargs) graphify cluster-only ./md --backend openai --model gpt-5.6-luna"
     },
     {
       "type": "heading",
@@ -223,7 +170,7 @@
     {
       "type": "code",
       "lang": "python",
-      "code": "import os, json, requests\nfrom collections import defaultdict\nfrom typing import List, Dict, Any\nGRAPH_JSON_PATH = \"./md/graphify-out/graph.json\"\nOPENAI_BASE_URL = os.getenv(\"OPENAI_BASE_URL\", \"https://api.avalai.ir/v1\")\nOPENAI_API_KEY = os.getenv(\"OPENAI_API_KEY\")\nMODEL_NAME = os.getenv(\"OPENAI_MODEL\", \"gpt-5.6-luna\")\nclass GraphRAGRetriever:\n def  __init__ (self, graph_path: str):\n with open(graph_path, \"r\", encoding=\"utf-8\") as f:\n data = json.load(f)\nself.nodes = {n[\"id\"]: n for n in data.get(\"nodes\", [])}\n self.adjacency = defaultdict(set)\n self.hyperedges = data.get(\"graph\", {}).get(\"hyperedges\", [])\nfor link in data.get(\"links\", []):\n self.adjacency[link[\"source\"]].add(link[\"target\"])\n self.adjacency[link[\"target\"]].add(link[\"source\"])\n def traverse(self, seeds: List[str], depth: int = 2, max_nodes: int = 15):\n visited = set(seeds)\n queue = [(s, 0) for s in seeds]\nwhile queue and len(visited) < max_nodes:\n curr, d = queue.pop(0)\n if d >= depth:\n continue\n for neighbor in self.adjacency.get(curr, []):\n if neighbor not in visited:\n visited.add(neighbor)\n queue.append((neighbor, d + 1))\nreturn [self.nodes[nid] for nid in visited if nid in self.nodes]\n def query_graph_rag(user_query: str):\n retriever = GraphRAGRetriever(GRAPH_JSON_PATH)\n seeds = [nid for nid, n in retriever.nodes.items() if n.get(\"label\", \"\").lower() in user_query.lower()]\n subgraph_nodes = retriever.traverse(seeds or [\"concept_clickhouse\", \"concept_kafka\"])\ncontext = \"\\n\".join([f\"- {n['label']} ({n.get('file_type')}): {n.get('rationale', '')}\" for n in subgraph_nodes])\nprompt = f\"\"\"Use the following knowledge graph context to answer the architectural question:\nContext:\n{context}\nQuestion: {user_query}\"\"\"\n res = requests.post(\n f\"{OPENAI_BASE_URL.rstrip('/')}/chat/completions\",\n headers={\"Authorization\": f\"Bearer {OPENAI_API_KEY}\"},\n json={\"model\": MODEL_NAME, \"messages\": [{\"role\": \"user\", \"content\": prompt}]}\n ).json()\nreturn res[\"choices\"][0][\"message\"][\"content\"]"
+      "code": "import os, json, requests\nfrom collections import defaultdict\nfrom typing import List, Dict, Any\n\nGRAPH_JSON_PATH = \"./md/graphify-out/graph.json\"\nOPENAI_BASE_URL = os.getenv(\"OPENAI_BASE_URL\", \"https://api.avalai.ir/v1\")\nOPENAI_API_KEY = os.getenv(\"OPENAI_API_KEY\")\nMODEL_NAME = os.getenv(\"OPENAI_MODEL\", \"gpt-5.6-luna\")\n\n\nclass GraphRAGRetriever:\n    def __init__(self, graph_path: str):\n        with open(graph_path, \"r\", encoding=\"utf-8\") as f:\n            data = json.load(f)\n        self.nodes = {n[\"id\"]: n for n in data.get(\"nodes\", [])}\n        self.adjacency = defaultdict(set)\n        self.hyperedges = data.get(\"graph\", {}).get(\"hyperedges\", [])\n        for link in data.get(\"links\", []):\n            self.adjacency[link[\"source\"]].add(link[\"target\"])\n            self.adjacency[link[\"target\"]].add(link[\"source\"])\n\n    def traverse(self, seeds: List[str], depth: int = 2, max_nodes: int = 15):\n        visited = set(seeds)\n        queue = [(s, 0) for s in seeds]\n        while queue and len(visited) < max_nodes:\n            curr, d = queue.pop(0)\n            if d >= depth:\n                continue\n            for neighbor in self.adjacency.get(curr, []):\n                if neighbor not in visited:\n                    visited.add(neighbor)\n                    queue.append((neighbor, d + 1))\n        return [self.nodes[nid] for nid in visited if nid in self.nodes]\n\n\ndef query_graph_rag(user_query: str):\n    retriever = GraphRAGRetriever(GRAPH_JSON_PATH)\n    seeds = [nid for nid, n in retriever.nodes.items() if n.get(\"label\", \"\").lower() in user_query.lower()]\n    subgraph_nodes = retriever.traverse(seeds or [\"concept_clickhouse\", \"concept_kafka\"])\n    context = \"\\n\".join([f\"- {n['label']} ({n.get('file_type')}): {n.get('rationale', '')}\" for n in subgraph_nodes])\n    prompt = f\"\"\"Use the following knowledge graph context to answer the architectural question:\nContext:\n{context}\nQuestion: {user_query}\"\"\"\n    res = requests.post(\n        f\"{OPENAI_BASE_URL.rstrip('/')}/chat/completions\",\n        headers={\"Authorization\": f\"Bearer {OPENAI_API_KEY}\"},\n        json={\"model\": MODEL_NAME, \"messages\": [{\"role\": \"user\", \"content\": prompt}]}\n    ).json()\n    return res[\"choices\"][0][\"message\"][\"content\"]\n"
     },
     {
       "type": "heading",
@@ -235,76 +182,9 @@
       "html": "In the frontend router (<code>/blog/$slug</code>), I connected the graph mapping to a normalized slug resolver to guarantee resilient fuzzy matching across hash suffixes (<code>-530ff573762f</code>) and index identifiers (<code>--17</code>):"
     },
     {
-      "type": "paragraph",
-      "html": "function normalizeSlug(str: string): string {"
-    },
-    {
-      "type": "paragraph",
-      "html": "return str"
-    },
-    {
-      "type": "paragraph",
-      "html": ".toLowerCase()"
-    },
-    {
-      "type": "paragraph",
-      "html": ".replace(/^(post<em>index</em>|post<em>|project</em>)/, &#39;&#39;)"
-    },
-    {
-      "type": "paragraph",
-      "html": ".replace(/-[a-f0-9]{8,16}$/, &#39;&#39;)"
-    },
-    {
-      "type": "paragraph",
-      "html": ".replace(/-\\d+$/, &#39;&#39;)"
-    },
-    {
-      "type": "paragraph",
-      "html": ".replace(/_/g, &#39;-&#39;)"
-    },
-    {
-      "type": "paragraph",
-      "html": ".trim();"
-    },
-    {
-      "type": "paragraph",
-      "html": "}"
-    },
-    {
-      "type": "paragraph",
-      "html": "function relatedPostSlugs(slug: string, articles: IndexEntry[]): IndexEntry[] {"
-    },
-    {
-      "type": "paragraph",
-      "html": "const relationMap = relatedPosts as Record&lt;string, string[]&gt;;"
-    },
-    {
-      "type": "paragraph",
-      "html": "const cleanCurrentSlug = normalizeSlug(slug);"
-    },
-    {
-      "type": "paragraph",
-      "html": "const matchedKey = Object.keys(relationMap).find(key =&gt; normalizeSlug(key) === cleanCurrentSlug);"
-    },
-    {
-      "type": "paragraph",
-      "html": "if (!matchedKey) return [];"
-    },
-    {
-      "type": "paragraph",
-      "html": "return relationMap[matchedKey]"
-    },
-    {
-      "type": "paragraph",
-      "html": ".map(relSlug =&gt; articles.find(a =&gt; normalizeSlug(a.slug) === normalizeSlug(relSlug)))"
-    },
-    {
-      "type": "paragraph",
-      "html": ".filter((a): a is IndexEntry =&gt; Boolean(a));"
-    },
-    {
-      "type": "paragraph",
-      "html": "}"
+      "type": "code",
+      "lang": "typescript",
+      "code": "function normalizeSlug(str: string): string {\n  return str\n    .toLowerCase()\n    .replace(/^(post_index|post_|project_)/, '')\n    .replace(/-[a-f0-9]{8,16}$/, '')\n    .replace(/-\\d+$/, '')\n    .replace(/_/g, '-')\n    .trim();\n}\n\nfunction relatedPostSlugs(slug: string, articles: IndexEntry[]): IndexEntry[] {\n  const relationMap = relatedPosts as Record<string, string[]>;\n  const cleanCurrentSlug = normalizeSlug(slug);\n  const matchedKey = Object.keys(relationMap).find(key => normalizeSlug(key) === cleanCurrentSlug);\n  if (!matchedKey) return [];\n  return relationMap[matchedKey]\n    .map(relSlug => articles.find(a => normalizeSlug(a.slug) === normalizeSlug(relSlug)))\n    .filter((a): a is IndexEntry => Boolean(a));\n}"
     },
     {
       "type": "heading",
@@ -330,12 +210,9 @@
       "text": "Example:"
     },
     {
-      "type": "paragraph",
-      "html": "<strong>python3 graph_rag.py</strong>"
-    },
-    {
-      "type": "paragraph",
-      "html": "=== GraphRAG Architecture Assistant (Type ‘exit’ or Ctrl+C to quit) ==="
+      "type": "code",
+      "lang": "text",
+      "code": "$ python3 graph_rag.py\n=== GraphRAG Architecture Assistant (Type 'exit' or Ctrl+C to quit) ==="
     },
     {
       "type": "heading",

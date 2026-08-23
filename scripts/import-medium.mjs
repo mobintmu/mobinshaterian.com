@@ -5,6 +5,7 @@ import fs from "node:fs";
 import path from "node:path";
 import * as cheerio from "cheerio";
 import { detectCodeLanguage } from "./code-language.mjs";
+import { coalesceFragmentedCode, repairCrawlerDamage } from "./code-block-heuristics.mjs";
 
 const POSTS_DIR = process.argv[2] || "/tmp/medium/posts";
 const OUT_POSTS = "src/data/posts";
@@ -141,7 +142,9 @@ async function parseFile(filename) {
       blocks.push({ type: "paragraph", html: inlineHtml($, node) });
       plain.push(text);
     } else if (tag === "pre") {
-      const code = preformattedText($, node);
+      // Harden against crawler damage (escaped entities, injected
+      // <em>/<strong>, glued dunders like "def  __init__ (") before detection.
+      const code = repairCrawlerDamage(preformattedText($, node));
       blocks.push({ type: "code", lang: detectCodeLanguage(code), code });
       plain.push(code);
     } else if (tag === "blockquote") {
@@ -191,6 +194,12 @@ async function parseFile(filename) {
       // skip; already handled if picked at top-level
     }
   }
+
+  // Fallback for articles whose fenced code arrived as one <p> per line:
+  // merge runs of code-like paragraph fragments back into single code blocks
+  // (the exact damage seen when the GraphRAG post was crawled by URL).
+  const mergedRuns = coalesceFragmentedCode(blocks);
+  if (mergedRuns) console.log(`  ${slug}: merged ${mergedRuns} fragmented code run(s)`);
 
   const plainText = plain.join("\n").replace(/\s+/g, " ").trim();
   if (plainText.length < 200) {
