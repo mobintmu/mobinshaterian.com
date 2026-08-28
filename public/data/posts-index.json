@@ -1,5 +1,21 @@
 [
   {
+    "slug": "Stop-Picking-an-AI-Model--Start-Picking-a-Capability-3bf2eeb9bf2d",
+    "title": "Stop Picking an AI Model. Start Picking a Capability.",
+    "excerpt": "Why I built a gateway that routes coding agents by job, not by vendor",
+    "date": "2026-08-26",
+    "tags": [
+      "AI",
+      "AI Agents",
+      "Architecture",
+      "DevOps",
+      "Integration"
+    ],
+    "readingTime": "5 min",
+    "url": "https://medium.datadriveninvestor.com/stop-picking-an-ai-model-start-picking-a-capability-3bf2eeb9bf2d",
+    "hero": "https://miro.medium.com/v2/resize:fit:640/format:webp/1*firdfOv0cTN-Os3tvVT7AA.png"
+  },
+  {
     "slug": "How-I-Made-a-Chatbot-With-My-Knowledge--Turning-My-Technical-Articles-into-a-GraphRAG-Assistant-d3d95c3c8e52",
     "title": "How I Made a Chatbot With My Knowledge: Turning My Technical Articles into a GraphRAG Assistant",
     "excerpt": "As software engineers, our personal blogs and notes often end up as chronological archives — hundreds of Markdown files, JSON payloads, and code repositories scattered across years of work. Traditional vector search…",

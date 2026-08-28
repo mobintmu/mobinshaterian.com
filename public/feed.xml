@@ -7,6 +7,18 @@
     <language>en</language>
     <atom:link href="https://mobinshaterian.com/feed.xml" rel="self" type="application/rss+xml"/>
     <item>
+      <title>Stop Picking an AI Model. Start Picking a Capability.</title>
+      <link>https://mobinshaterian.com/blog/Stop-Picking-an-AI-Model--Start-Picking-a-Capability-3bf2eeb9bf2d</link>
+      <guid isPermaLink="true">https://mobinshaterian.com/blog/Stop-Picking-an-AI-Model--Start-Picking-a-Capability-3bf2eeb9bf2d</guid>
+      <pubDate>Wed, 26 Aug 2026 00:00:00 GMT</pubDate>
+      <description>Why I built a gateway that routes coding agents by job, not by vendor</description>
+      <category>AI</category>
+      <category>AI Agents</category>
+      <category>Architecture</category>
+      <category>DevOps</category>
+      <category>Integration</category>
+    </item>
+    <item>
       <title>How I Made a Chatbot With My Knowledge: Turning My Technical Articles into a GraphRAG Assistant</title>
       <link>https://mobinshaterian.com/blog/How-I-Made-a-Chatbot-With-My-Knowledge--Turning-My-Technical-Articles-into-a-GraphRAG-Assistant-d3d95c3c8e52</link>
       <guid isPermaLink="true">https://mobinshaterian.com/blog/How-I-Made-a-Chatbot-With-My-Knowledge--Turning-My-Technical-Articles-into-a-GraphRAG-Assistant-d3d95c3c8e52</guid>
@@ -482,15 +494,6 @@
       <category>Go</category>
       <category>GraphQL</category>
       <category>Performance</category>
-    </item>
-    <item>
-      <title>Database Migration Mismatch: The “Hash Client Secret” Error in Django OAuth🚨</title>
-      <link>https://mobinshaterian.com/blog/Database-Migration-Mismatch--The--Hash-Client-Secret--Error-in-Django-OAuth---db8fc9a511c7</link>
-      <guid isPermaLink="true">https://mobinshaterian.com/blog/Database-Migration-Mismatch--The--Hash-Client-Secret--Error-in-Django-OAuth---db8fc9a511c7</guid>
-      <pubDate>Fri, 26 Dec 2025 00:00:00 GMT</pubDate>
-      <description>The error message django.db.utils.ProgrammingError: column oauth2_provider_application.hash_client_secret does not exist is a classic…</description>
-      <category>Security</category>
-      <category>Python</category>
     </item>
   </channel>
 </rss>
