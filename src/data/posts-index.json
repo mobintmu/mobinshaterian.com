@@ -1,5 +1,20 @@
 [
   {
+    "slug": "Why-Large-Database-Refactors-Need-Isolated-Development-Databases-b2584413a5f5",
+    "title": "Why Large Database Refactors Need Isolated Development Databases",
+    "excerpt": "A practical case for isolating development data while changing large database systems.",
+    "date": "2026-08-29",
+    "tags": [
+      "Databases",
+      "Architecture",
+      "DevOps",
+      "Software Engineering"
+    ],
+    "readingTime": "1 min",
+    "url": "https://medium.com/codetodeploy/why-large-database-refactors-need-isolated-development-databases-b2584413a5f5",
+    "hero": "https://miro.medium.com/v2/resize:fit:640/format:webp/1*1Xc21HT2tmSPp2-eknwMFw.png"
+  },
+  {
     "slug": "Query-Federation--A-Practical-Guide-to-Modern-Data-Virtualization-v7qoe",
     "title": "Query Federation: A Practical Guide to Modern Data Virtualization",
     "excerpt": "How to query everything without moving anything Why This Matters Every growing engineering org eventually hits the same wall: data ends up scattered across a relational database here, a warehouse there, a pile of Parque…",

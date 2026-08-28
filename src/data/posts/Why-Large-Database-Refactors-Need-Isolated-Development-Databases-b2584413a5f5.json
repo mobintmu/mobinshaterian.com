@@ -1,0 +1,30 @@
+{
+  "slug": "Why-Large-Database-Refactors-Need-Isolated-Development-Databases-b2584413a5f5",
+  "title": "Why Large Database Refactors Need Isolated Development Databases",
+  "subtitle": "A practical case for isolating development data while changing large database systems.",
+  "excerpt": "A practical case for isolating development data while changing large database systems.",
+  "date": "2026-08-29",
+  "tags": [
+    "Databases",
+    "Architecture",
+    "DevOps",
+    "Software Engineering"
+  ],
+  "readingTime": "1 min",
+  "url": "https://medium.com/codetodeploy/why-large-database-refactors-need-isolated-development-databases-b2584413a5f5",
+  "hero": "https://miro.medium.com/v2/resize:fit:640/format:webp/1*1Xc21HT2tmSPp2-eknwMFw.png",
+  "content": [
+    {
+      "type": "paragraph",
+      "html": "A practical case for isolating development data while changing large database systems."
+    },
+    {
+      "type": "paragraph",
+      "html": "Large database refactors can affect schemas, migrations, test data, and application behavior at the same time. Isolated development databases give engineers a safe place to make those changes without competing with other work or putting shared environments at risk."
+    },
+    {
+      "type": "paragraph",
+      "html": "The full article explores why this isolation matters for reliable development and safer database evolution. Read the original article on Medium for the complete discussion."
+    }
+  ]
+}
