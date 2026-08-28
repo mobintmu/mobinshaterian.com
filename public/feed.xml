@@ -7,6 +7,17 @@
     <language>en</language>
     <atom:link href="https://mobinshaterian.com/feed.xml" rel="self" type="application/rss+xml"/>
     <item>
+      <title>Query Federation: A Practical Guide to Modern Data Virtualization</title>
+      <link>https://mobinshaterian.com/blog/Query-Federation--A-Practical-Guide-to-Modern-Data-Virtualization-v7qoe</link>
+      <guid isPermaLink="true">https://mobinshaterian.com/blog/Query-Federation--A-Practical-Guide-to-Modern-Data-Virtualization-v7qoe</guid>
+      <pubDate>Fri, 28 Aug 2026 00:00:00 GMT</pubDate>
+      <description>How to query everything without moving anything Why This Matters Every growing engineering org eventually hits the same wall: data ends up scattered across a relational database here, a warehouse there, a pile of Parque…</description>
+      <category>Data Engineering</category>
+      <category>Architecture</category>
+      <category>SQL</category>
+      <category>System Design</category>
+    </item>
+    <item>
       <title>Stop Picking an AI Model. Start Picking a Capability.</title>
       <link>https://mobinshaterian.com/blog/Stop-Picking-an-AI-Model--Start-Picking-a-Capability-3bf2eeb9bf2d</link>
       <guid isPermaLink="true">https://mobinshaterian.com/blog/Stop-Picking-an-AI-Model--Start-Picking-a-Capability-3bf2eeb9bf2d</guid>
@@ -484,16 +495,6 @@
       <description>This architecture establishes a production-grade job processing system in Go by decoupling logic into a Poller (decision-maker), Dispatcher</description>
       <category>Go</category>
       <category>Architecture</category>
-    </item>
-    <item>
-      <title>Combining SQLC and GraphQL in Go for Type‑Safe APIs</title>
-      <link>https://mobinshaterian.com/blog/Combining-SQLC-and-GraphQL-in-Go-for-Type-Safe-APIs-0b77c1ae0249</link>
-      <guid isPermaLink="true">https://mobinshaterian.com/blog/Combining-SQLC-and-GraphQL-in-Go-for-Type-Safe-APIs-0b77c1ae0249</guid>
-      <pubDate>Mon, 29 Dec 2025 00:00:00 GMT</pubDate>
-      <description>Modern backend development often requires balancing flexibility for clients with performance and safety in the data layer. Two powerful…</description>
-      <category>Go</category>
-      <category>GraphQL</category>
-      <category>Performance</category>
     </item>
   </channel>
 </rss>

@@ -1,4 +1,10 @@
 {
+  "Query-Federation--A-Practical-Guide-to-Modern-Data-Virtualization-v7qoe": [
+    "PostgreSQL-Foreign-Data-Wrappers-for-Data-Federation-7043c561f218",
+    "Integrating-Multiple-Databases--Inmon-vs--Kimball-and-a-Microservice-ETL-Solution-5e78abb77e28",
+    "From-3NF-MySQL-to-Fast-Search--Building-a-CDC-Powered-Read-Model-7bfd2300c3c4",
+    "The-Best-Design-Pattern-for-Query-Based-Change-Data-Capture--Hybrid-Stateful-Polling-with-Offset--95856947ef99"
+  ],
   "Stop-Picking-an-AI-Model--Start-Picking-a-Capability-3bf2eeb9bf2d": [
     "Unified-AI-Orchestration--Setting-Up-9router--Model-Combos--and-Cline-in-VS-Code-116d0453da6a",
     "Git-Reset--Recovering-From-Unstable-AI-Code-Contributions-tt4ze",

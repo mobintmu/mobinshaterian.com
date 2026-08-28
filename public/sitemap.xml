@@ -190,9 +190,15 @@
   </url>
   <url>
     <loc>https://mobinshaterian.com/blogs</loc>
-    <lastmod>2026-08-26</lastmod>
+    <lastmod>2026-08-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://mobinshaterian.com/blog/Query-Federation--A-Practical-Guide-to-Modern-Data-Virtualization-v7qoe</loc>
+    <lastmod>2026-08-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://mobinshaterian.com/blog/Stop-Picking-an-AI-Model--Start-Picking-a-Capability-3bf2eeb9bf2d</loc>
