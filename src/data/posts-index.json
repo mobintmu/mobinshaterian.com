@@ -2,7 +2,7 @@
   {
     "slug": "Why-Large-Database-Refactors-Need-Isolated-Development-Databases-b2584413a5f5",
     "title": "Why Large Database Refactors Need Isolated Development Databases",
-    "excerpt": "A practical case for isolating development data while changing large database systems.",
+    "excerpt": "A practical workflow for running legacy and refactor branches safely when their migration histories diverge",
     "date": "2026-08-29",
     "tags": [
       "Databases",
@@ -10,7 +10,7 @@
       "DevOps",
       "Software Engineering"
     ],
-    "readingTime": "1 min",
+    "readingTime": "7 min",
     "url": "https://medium.com/codetodeploy/why-large-database-refactors-need-isolated-development-databases-b2584413a5f5",
     "hero": "https://miro.medium.com/v2/resize:fit:640/format:webp/1*1Xc21HT2tmSPp2-eknwMFw.png"
   },

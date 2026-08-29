@@ -11,7 +11,7 @@
       <link>https://mobinshaterian.com/blog/Why-Large-Database-Refactors-Need-Isolated-Development-Databases-b2584413a5f5</link>
       <guid isPermaLink="true">https://mobinshaterian.com/blog/Why-Large-Database-Refactors-Need-Isolated-Development-Databases-b2584413a5f5</guid>
       <pubDate>Sat, 29 Aug 2026 00:00:00 GMT</pubDate>
-      <description>A practical case for isolating development data while changing large database systems.</description>
+      <description>A practical workflow for running legacy and refactor branches safely when their migration histories diverge</description>
       <category>Databases</category>
       <category>Architecture</category>
       <category>DevOps</category>
