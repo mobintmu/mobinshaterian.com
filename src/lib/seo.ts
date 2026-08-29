@@ -8,7 +8,7 @@ export const HOME_DESCRIPTION =
 
 export const BLOG_TITLE = "Software Engineering Blog | Mobin Shaterian";
 export const BLOG_DESCRIPTION =
-  "Read 200+ practical articles about Go, backend architecture, distributed systems, ClickHouse, Kafka, databases, DevOps, security, and software engineering.";
+  "Read 200+ practical articles about Go, backend architecture, distributed systems, GraphRAG, ClickHouse, Kafka, databases, DevOps, security, and software engineering.";
 
 export function absoluteUrl(path = "/") {
   return new URL(path, SITE_URL).toString();

@@ -1,0 +1,116 @@
+{
+  "slug": "How-I-Would-Build-MobinAI--A-GraphRAG-Chatbot-for-200-Technical-Articles-dez6e",
+  "title": "How I Would Build MobinAI: A GraphRAG Chatbot for 200+ Technical Articles",
+  "subtitle": "A practical architecture for turning a personal technical archive into a cited, context-aware AI assistant.",
+  "excerpt": "How I would build MobinAI: a GraphRAG assistant that connects 200+ technical articles, retrieves supporting passages, and answers with trustworthy citations.",
+  "date": "2026-08-29",
+  "tags": [
+    "AI",
+    "RAG",
+    "GraphRAG",
+    "Knowledge Graphs",
+    "Architecture"
+  ],
+  "readingTime": "6 min",
+  "url": "https://www.linkedin.com/pulse/how-i-would-build-mobinai-graph-rag-chatbot-200-mobin-shaterian-dez6e",
+  "hero": null,
+  "content": [
+    {
+      "type": "paragraph",
+      "html": "I have more than 200 technical articles covering Go, distributed systems, databases, data pipelines, security, and AI. A normal blog search can find a matching phrase, but it cannot reliably answer a question that crosses several articles and technologies. <strong>MobinAI</strong> is my proposed answer: a personal knowledge assistant built with GraphRAG."
+    },
+    {
+      "type": "paragraph",
+      "html": "This post describes the architecture I would use to turn my publishing archive into a useful assistant. The goal is not to train a new foundation model. The goal is to retrieve the right relationships and source passages, ask a model to synthesize them, and return an answer that a reader can verify."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Why a GraphRAG assistant?"
+    },
+    {
+      "type": "paragraph",
+      "html": "Traditional vector search is good at locating semantically similar paragraphs. It is weaker when the answer depends on a chain such as <em>Kafka → workers → ClickHouse → schema and retry behavior</em>. A knowledge graph makes those connections explicit, while article chunks provide the detailed evidence that graph metadata alone cannot provide."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "The proposed architecture"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "Visitor\n  │\n  ▼\nTanStack Start chat frontend\n  │ HTTPS + JSON/SSE\n  ▼\nFastAPI backend\n  ├── PostgreSQL + pgvector  ── article chunks and citations\n  ├── Graph retriever        ── entities, links, and communities\n  ├── RAG orchestrator       ── context assembly and prompting\n  └── AI provider adapter    ── OpenAI-compatible model gateway"
+    },
+    {
+      "type": "paragraph",
+      "html": "The browser should never hold an AI provider key or write directly to the database. A FastAPI service owns registration, rate limits, conversations, retrieval, model calls, and citation mapping. The frontend remains a small, independently deployable chat client."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "From articles to a knowledge graph"
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Normalize the article JSON into structured Markdown with titles, tags, canonical URLs, and readable content.",
+        "Extract entities, relationships, and multi-component system hyperedges with Graphify.",
+        "Compute related-article scores that give more weight to rare technical concepts than broad tags.",
+        "Store article chunks in PostgreSQL with pgvector so every generated answer can point to source passages.",
+        "At query time, identify graph seed entities, expand a small subgraph, retrieve supporting chunks, and pass both forms of context to the model."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "html": "The graph is especially valuable for navigation and multi-hop questions. The vector index is especially valuable for evidence. Combining them is more reliable than treating either one as the entire retrieval system."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "A trustworthy answer loop"
+    },
+    {
+      "type": "paragraph",
+      "html": "For each question, MobinAI should return an English answer, a short list of cited articles, and enough context for the reader to inspect the original material. The prompt should tell the model to distinguish sourced statements from inference and to say when the archive does not contain enough evidence."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Validate and rate-limit the request before retrieval.",
+        "Retrieve a localized graph neighborhood and the strongest article passages.",
+        "Generate the answer through a provider-neutral adapter.",
+        "Map citations to stable article URLs and persist retrieval diagnostics.",
+        "Collect lightweight feedback so weak answers can improve the evaluation set."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Operating it safely"
+    },
+    {
+      "type": "paragraph",
+      "html": "Because this would be a public assistant, the production design needs more than a prompt and an API call. Registration should use human verification, contact data should stay behind protected administrative endpoints, accepted questions should have daily and monthly limits, and the system should retain only the data needed for support and evaluation. Knowledge releases should be versioned, evaluated, and activated atomically so a bad graph can be rolled back."
+    },
+    {
+      "type": "paragraph",
+      "html": "The current website already contains the first prototype ingredients: article JSON, a Graphify knowledge graph, a BFS retriever, and related-post generation. The next step is to separate those concerns into an ingestion pipeline, a retrieval service, and a frontend that exposes citations clearly."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "The practical outcome"
+    },
+    {
+      "type": "paragraph",
+      "html": "MobinAI would make a long technical archive feel like a connected body of knowledge. It could explain how ideas developed across articles, surface genuinely related posts, reveal knowledge gaps, and answer architecture questions with links back to the source. GraphRAG is useful here not because a graph is fashionable, but because the relationships between systems are part of the knowledge I want the assistant to understand."
+    },
+    {
+      "type": "paragraph",
+      "html": "This article is the original LinkedIn publication. The companion implementation proposal documents the planned API, frontend, ingestion, privacy, and deployment details."
+    }
+  ]
+}

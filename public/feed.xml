@@ -18,6 +18,18 @@
       <category>Software Engineering</category>
     </item>
     <item>
+      <title>How I Would Build MobinAI: A GraphRAG Chatbot for 200+ Technical Articles</title>
+      <link>https://mobinshaterian.com/blog/How-I-Would-Build-MobinAI--A-GraphRAG-Chatbot-for-200-Technical-Articles-dez6e</link>
+      <guid isPermaLink="true">https://mobinshaterian.com/blog/How-I-Would-Build-MobinAI--A-GraphRAG-Chatbot-for-200-Technical-Articles-dez6e</guid>
+      <pubDate>Sat, 29 Aug 2026 00:00:00 GMT</pubDate>
+      <description>How I would build MobinAI: a GraphRAG assistant that connects 200+ technical articles, retrieves supporting passages, and answers with trustworthy citations.</description>
+      <category>AI</category>
+      <category>RAG</category>
+      <category>GraphRAG</category>
+      <category>Knowledge Graphs</category>
+      <category>Architecture</category>
+    </item>
+    <item>
       <title>Query Federation: A Practical Guide to Modern Data Virtualization</title>
       <link>https://mobinshaterian.com/blog/Query-Federation--A-Practical-Guide-to-Modern-Data-Virtualization-v7qoe</link>
       <guid isPermaLink="true">https://mobinshaterian.com/blog/Query-Federation--A-Practical-Guide-to-Modern-Data-Virtualization-v7qoe</guid>
@@ -486,17 +498,6 @@
       <description>In this project, we explored how to design and implement a Go‑based microservice that crawls products from a WooCommerce WordPress site.</description>
       <category>Go</category>
       <category>Microservices</category>
-    </item>
-    <item>
-      <title>Integrating SQLC and GraphQL in Go: A Practical Example with Product Filtering</title>
-      <link>https://mobinshaterian.com/blog/Integrating-SQLC-and-GraphQL-in-Go--A-Practical-Example-with-Product-Filtering-4722e0a53179</link>
-      <guid isPermaLink="true">https://mobinshaterian.com/blog/Integrating-SQLC-and-GraphQL-in-Go--A-Practical-Example-with-Product-Filtering-4722e0a53179</guid>
-      <pubDate>Tue, 30 Dec 2025 00:00:00 GMT</pubDate>
-      <description>GraphQL provides a powerful query language for clients, while SQLC generates type‑safe Go code directly from SQL queries</description>
-      <category>Go</category>
-      <category>GraphQL</category>
-      <category>Gin</category>
-      <category>Integration</category>
     </item>
   </channel>
 </rss>
