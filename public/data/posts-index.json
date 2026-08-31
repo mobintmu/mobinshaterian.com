@@ -1,5 +1,20 @@
 [
   {
+    "slug": "Generate-a-Guided-Wizard-for-End-Users-from-the-Derived-Flow-Graph-1fd65e7916ff",
+    "title": "Generate a Guided Wizard for End Users from the Derived Flow Graph",
+    "excerpt": "Turning your backend, frontend, e2e tests, and Swagger spec into a queryable knowledge graph — and using it to build a smarter, AI-assisted…",
+    "date": "2026-08-30",
+    "tags": [
+      "AI",
+      "GraphRAG",
+      "Software Architecture",
+      "User Experience"
+    ],
+    "readingTime": "12 min",
+    "url": "https://blog.stackademic.com/generate-a-guided-wizard-for-end-users-from-the-derived-flow-graph-1fd65e7916ff",
+    "hero": "https://miro.medium.com/v2/resize:fit:1200/1*xSIaOGGe5GSrvfLuEVXK-g.png"
+  },
+  {
     "slug": "Why-Large-Database-Refactors-Need-Isolated-Development-Databases-b2584413a5f5",
     "title": "Why Large Database Refactors Need Isolated Development Databases",
     "excerpt": "A practical workflow for running legacy and refactor branches safely when their migration histories diverge",

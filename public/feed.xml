@@ -7,6 +7,17 @@
     <language>en</language>
     <atom:link href="https://mobinshaterian.com/feed.xml" rel="self" type="application/rss+xml"/>
     <item>
+      <title>Generate a Guided Wizard for End Users from the Derived Flow Graph</title>
+      <link>https://mobinshaterian.com/blog/Generate-a-Guided-Wizard-for-End-Users-from-the-Derived-Flow-Graph-1fd65e7916ff</link>
+      <guid isPermaLink="true">https://mobinshaterian.com/blog/Generate-a-Guided-Wizard-for-End-Users-from-the-Derived-Flow-Graph-1fd65e7916ff</guid>
+      <pubDate>Sun, 30 Aug 2026 00:00:00 GMT</pubDate>
+      <description>Turning your backend, frontend, e2e tests, and Swagger spec into a queryable knowledge graph — and using it to build a smarter, AI-assisted…</description>
+      <category>AI</category>
+      <category>GraphRAG</category>
+      <category>Software Architecture</category>
+      <category>User Experience</category>
+    </item>
+    <item>
       <title>Why Large Database Refactors Need Isolated Development Databases</title>
       <link>https://mobinshaterian.com/blog/Why-Large-Database-Refactors-Need-Isolated-Development-Databases-b2584413a5f5</link>
       <guid isPermaLink="true">https://mobinshaterian.com/blog/Why-Large-Database-Refactors-Need-Isolated-Development-Databases-b2584413a5f5</guid>
@@ -489,15 +500,6 @@
       <pubDate>Wed, 07 Jan 2026 00:00:00 GMT</pubDate>
       <description>Web crawling often starts simple: fetch a listing page, extract some fields, and move on. The complexity appears when you need to enrich…</description>
       <category>Go</category>
-    </item>
-    <item>
-      <title>Building a Go Microservice to Crawl WooCommerce Products</title>
-      <link>https://mobinshaterian.com/blog/Building-a-Go-Microservice-to-Crawl-WooCommerce-Products-3910d3b99f1d</link>
-      <guid isPermaLink="true">https://mobinshaterian.com/blog/Building-a-Go-Microservice-to-Crawl-WooCommerce-Products-3910d3b99f1d</guid>
-      <pubDate>Tue, 06 Jan 2026 00:00:00 GMT</pubDate>
-      <description>In this project, we explored how to design and implement a Go‑based microservice that crawls products from a WooCommerce WordPress site.</description>
-      <category>Go</category>
-      <category>Microservices</category>
     </item>
   </channel>
 </rss>
