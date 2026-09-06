@@ -7,6 +7,17 @@
     <language>en</language>
     <atom:link href="https://mobinshaterian.com/feed.xml" rel="self" type="application/rss+xml"/>
     <item>
+      <title>Vibe Coding Your Everyday Math: Turning Personal Questions into Small, Trustworthy Tools</title>
+      <link>https://mobinshaterian.com/blog/Vibe-Coding-Your-Everyday-Math--Turning-Personal-Questions-into-Small--Trustworthy-Tools-85d5e6454303</link>
+      <guid isPermaLink="true">https://mobinshaterian.com/blog/Vibe-Coding-Your-Everyday-Math--Turning-Personal-Questions-into-Small--Trustworthy-Tools-85d5e6454303</guid>
+      <pubDate>Wed, 02 Sep 2026 00:00:00 GMT</pubDate>
+      <description>Most of the decisions we agonize over in daily life are really just messy calculations wearing a disguise. Should I rent or buy? Which grocery run actually costs less per meal? Is this loan offer better than that one?…</description>
+      <category>Vibe Coding</category>
+      <category>Small Tool</category>
+      <category>Software Development</category>
+      <category>Excel</category>
+    </item>
+    <item>
       <title>Generate a Guided Wizard for End Users from the Derived Flow Graph</title>
       <link>https://mobinshaterian.com/blog/Generate-a-Guided-Wizard-for-End-Users-from-the-Derived-Flow-Graph-1fd65e7916ff</link>
       <guid isPermaLink="true">https://mobinshaterian.com/blog/Generate-a-Guided-Wizard-for-End-Users-from-the-Derived-Flow-Graph-1fd65e7916ff</guid>
@@ -492,14 +503,6 @@
       <description>Modern web applications rarely start complex. A typical backend begins with session-based authentication, a frontend renders server-side…</description>
       <category>Security</category>
       <category>Python</category>
-    </item>
-    <item>
-      <title>Building a Safe, Parallel WooCommerce Crawler in Go with Colly</title>
-      <link>https://mobinshaterian.com/blog/Building-a-Safe--Parallel-WooCommerce-Crawler-in-Go-with-Colly-8786353b4b16</link>
-      <guid isPermaLink="true">https://mobinshaterian.com/blog/Building-a-Safe--Parallel-WooCommerce-Crawler-in-Go-with-Colly-8786353b4b16</guid>
-      <pubDate>Wed, 07 Jan 2026 00:00:00 GMT</pubDate>
-      <description>Web crawling often starts simple: fetch a listing page, extract some fields, and move on. The complexity appears when you need to enrich…</description>
-      <category>Go</category>
     </item>
   </channel>
 </rss>

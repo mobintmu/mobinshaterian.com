@@ -1,5 +1,20 @@
 [
   {
+    "slug": "Vibe-Coding-Your-Everyday-Math--Turning-Personal-Questions-into-Small--Trustworthy-Tools-85d5e6454303",
+    "title": "Vibe Coding Your Everyday Math: Turning Personal Questions into Small, Trustworthy Tools",
+    "excerpt": "Most of the decisions we agonize over in daily life are really just messy calculations wearing a disguise. Should I rent or buy? Which grocery run actually costs less per meal? Is this loan offer better than that one?…",
+    "date": "2026-09-02",
+    "tags": [
+      "Vibe Coding",
+      "Small Tool",
+      "Software Development",
+      "Excel"
+    ],
+    "readingTime": "5 min",
+    "url": "https://medium.datadriveninvestor.com/vibe-coding-your-everyday-math-turning-personal-questions-into-small-trustworthy-tools-85d5e6454303",
+    "hero": "https://miro.medium.com/v2/resize:fit:720/format:webp/1*IoZm7yIXPyEbHh2Vm5U8iQ.jpeg"
+  },
+  {
     "slug": "Generate-a-Guided-Wizard-for-End-Users-from-the-Derived-Flow-Graph-1fd65e7916ff",
     "title": "Generate a Guided Wizard for End Users from the Derived Flow Graph",
     "excerpt": "Turning your backend, frontend, e2e tests, and Swagger spec into a queryable knowledge graph — and using it to build a smarter, AI-assisted…",
