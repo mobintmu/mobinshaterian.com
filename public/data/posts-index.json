@@ -1,5 +1,21 @@
 [
   {
+    "slug": "From-Database-Backed-Sessions-to-JWT-Authorization-in-NestJS-dcbfb6929d40",
+    "title": "From Database-Backed Sessions to JWT Authorization in NestJS",
+    "excerpt": "",
+    "date": "2026-09-06",
+    "tags": [
+      "NestJS",
+      "JWT",
+      "Security",
+      "Authentication",
+      "Software Architecture"
+    ],
+    "readingTime": "10 min",
+    "url": "https://blog.devops.dev/from-database-backed-sessions-to-jwt-authorization-in-nestjs-dcbfb6929d40",
+    "hero": "https://miro.medium.com/v2/resize:fit:720/format:webp/1*uRohmjmqMNTS58doY_K9Vg.png"
+  },
+  {
     "slug": "Vibe-Coding-Your-Everyday-Math--Turning-Personal-Questions-into-Small--Trustworthy-Tools-85d5e6454303",
     "title": "Vibe Coding Your Everyday Math: Turning Personal Questions into Small, Trustworthy Tools",
     "excerpt": "Most of the decisions we agonize over in daily life are really just messy calculations wearing a disguise. Should I rent or buy? Which grocery run actually costs less per meal? Is this loan offer better than that one?…",

@@ -7,6 +7,18 @@
     <language>en</language>
     <atom:link href="https://mobinshaterian.com/feed.xml" rel="self" type="application/rss+xml"/>
     <item>
+      <title>From Database-Backed Sessions to JWT Authorization in NestJS</title>
+      <link>https://mobinshaterian.com/blog/From-Database-Backed-Sessions-to-JWT-Authorization-in-NestJS-dcbfb6929d40</link>
+      <guid isPermaLink="true">https://mobinshaterian.com/blog/From-Database-Backed-Sessions-to-JWT-Authorization-in-NestJS-dcbfb6929d40</guid>
+      <pubDate>Sun, 06 Sep 2026 00:00:00 GMT</pubDate>
+      <description></description>
+      <category>NestJS</category>
+      <category>JWT</category>
+      <category>Security</category>
+      <category>Authentication</category>
+      <category>Software Architecture</category>
+    </item>
+    <item>
       <title>Vibe Coding Your Everyday Math: Turning Personal Questions into Small, Trustworthy Tools</title>
       <link>https://mobinshaterian.com/blog/Vibe-Coding-Your-Everyday-Math--Turning-Personal-Questions-into-Small--Trustworthy-Tools-85d5e6454303</link>
       <guid isPermaLink="true">https://mobinshaterian.com/blog/Vibe-Coding-Your-Everyday-Math--Turning-Personal-Questions-into-Small--Trustworthy-Tools-85d5e6454303</guid>
@@ -494,15 +506,6 @@
       <description>A Deep Dive into Enhanced Web Scraping Architecture and Configuration</description>
       <category>Go</category>
       <category>Architecture</category>
-    </item>
-    <item>
-      <title>When Authentication Grows Without a Plan: A Hidden Security Risk in Legacy Django and SPA Systems</title>
-      <link>https://mobinshaterian.com/blog/When-Authentication-Grows-Without-a-Plan--A-Hidden-Security-Risk-in-Legacy-Django-and-SPA-Systems-eeb172bc92a8</link>
-      <guid isPermaLink="true">https://mobinshaterian.com/blog/When-Authentication-Grows-Without-a-Plan--A-Hidden-Security-Risk-in-Legacy-Django-and-SPA-Systems-eeb172bc92a8</guid>
-      <pubDate>Sat, 24 Jan 2026 00:00:00 GMT</pubDate>
-      <description>Modern web applications rarely start complex. A typical backend begins with session-based authentication, a frontend renders server-side…</description>
-      <category>Security</category>
-      <category>Python</category>
     </item>
   </channel>
 </rss>
