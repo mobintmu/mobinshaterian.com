@@ -1,8 +1,8 @@
 {
   "slug": "From-Database-Backed-Sessions-to-JWT-Authorization-in-NestJS-dcbfb6929d40",
   "title": "From Database-Backed Sessions to JWT Authorization in NestJS",
-  "subtitle": "",
-  "excerpt": "",
+  "subtitle": "An AI-assisted migration guided by a detailed SRS and protected by end-to-end tests",
+  "excerpt": "An AI-assisted migration guided by a detailed SRS and protected by end-to-end tests",
   "date": "2026-09-06",
   "tags": [
     "NestJS",
