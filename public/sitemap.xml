@@ -190,9 +190,15 @@
   </url>
   <url>
     <loc>https://mobinshaterian.com/blogs</loc>
-    <lastmod>2026-09-06</lastmod>
+    <lastmod>2026-09-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://mobinshaterian.com/blog/One-Pipeline--Three-Ways-to-Consume-It--Designing-Multi-Channel-KPI-Distribution-on-ClickHouse-medium</loc>
+    <lastmod>2026-09-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://mobinshaterian.com/blog/From-Database-Backed-Sessions-to-JWT-Authorization-in-NestJS-dcbfb6929d40</loc>

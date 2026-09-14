@@ -1,4 +1,10 @@
 {
+  "One-Pipeline--Three-Ways-to-Consume-It--Designing-Multi-Channel-KPI-Distribution-on-ClickHouse-medium": [
+    "Building-a-High-Throughput-KPI-Pipeline-on-ClickHouse--Partitioning--Idempotent-Recalculation--and--3302a12ddf83",
+    "Real-Time-Data-Ingestion--Connecting-Distributed-Kafka-to-ClickHouse-in-Docker-1e29e0b0f665",
+    "ClickHouse-Tiered-Storage--Volumes--Storage-Policies--and-TTL-from-Scratch-to-Production-8758d8f3f066",
+    "Query-Federation--A-Practical-Guide-to-Modern-Data-Virtualization-v7qoe"
+  ],
   "From-Database-Backed-Sessions-to-JWT-Authorization-in-NestJS-dcbfb6929d40": [
     "Authentication-and-Authorization-in-NestJS---A-Comprehensive-Overview-66495810c5b4",
     "Keycloak---OpenFGA--A-Practical-Integration-Guide-a9ed984ee205",

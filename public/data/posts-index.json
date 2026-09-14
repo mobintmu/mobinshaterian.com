@@ -1,5 +1,21 @@
 [
   {
+    "slug": "One-Pipeline--Three-Ways-to-Consume-It--Designing-Multi-Channel-KPI-Distribution-on-ClickHouse-medium",
+    "title": "One Pipeline, Three Ways to Consume It: Designing Multi-Channel KPI Distribution on ClickHouse",
+    "excerpt": "Every hour, our pipeline turns 15 million raw measurement rows into hundreds of per-cell, per-technology KPIs and writes them to ClickHouse. I’ve written before about how we keep that calculation correct — partitioned…",
+    "date": "2026-09-13",
+    "tags": [
+      "ClickHouse",
+      "Kafka",
+      "Data Engineering",
+      "Distributed Systems",
+      "System Design"
+    ],
+    "readingTime": "6 min",
+    "url": "https://medium.com/stackademic/85857cb960e4",
+    "hero": "https://miro.medium.com/v2/resize:fit:720/format:webp/1*2gwLATsUvvktem7DNPQ7Mw.png"
+  },
+  {
     "slug": "From-Database-Backed-Sessions-to-JWT-Authorization-in-NestJS-dcbfb6929d40",
     "title": "From Database-Backed Sessions to JWT Authorization in NestJS",
     "excerpt": "An AI-assisted migration guided by a detailed SRS and protected by end-to-end tests",
