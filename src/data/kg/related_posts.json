@@ -1456,5 +1456,11 @@
     "How-I-Would-Build-MobinAI--A-GraphRAG-Chatbot-for-200-Technical-Articles-dez6e",
     "How-I-Made-a-Chatbot-With-My-Knowledge--Turning-My-Technical-Articles-into-a-GraphRAG-Assistant-d3d95c3c8e52",
     "Implementation-Experience--Retrieval-Augmented-Generation--RAG--System-for-AI-powered-Customer--1268ac4b4f8b"
+  ],
+  "From-a-49-Second-KPI-Request-to-an-840-Millisecond-Response-eqtce": [
+    "Building-a-High-Throughput-KPI-Pipeline-on-ClickHouse--Partitioning--Idempotent-Recalculation--and--3302a12ddf83",
+    "How-We-Rebuilt-a-Telecom-KPI-Platform-to-Handle-Billions-of-Records--From-JSON-Blobs-to-Flat--1a4eb6b27574",
+    "One-Pipeline--Three-Ways-to-Consume-It--Designing-Multi-Channel-KPI-Distribution-on-ClickHouse-medium",
+    "Integrating-Kafka-with-ClickHouse-using-SSL-SASL--A-Technical-Retrospective-be9d75864340"
   ]
 }

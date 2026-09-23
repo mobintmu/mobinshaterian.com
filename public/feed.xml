@@ -7,6 +7,16 @@
     <language>en</language>
     <atom:link href="https://mobinshaterian.com/feed.xml" rel="self" type="application/rss+xml"/>
     <item>
+      <title>From a 49-Second KPI Request to an 840-Millisecond Response</title>
+      <link>https://mobinshaterian.com/blog/From-a-49-Second-KPI-Request-to-an-840-Millisecond-Response-eqtce</link>
+      <guid isPermaLink="true">https://mobinshaterian.com/blog/From-a-49-Second-KPI-Request-to-an-840-Millisecond-Response-eqtce</guid>
+      <pubDate>Thu, 17 Sep 2026 00:00:00 GMT</pubDate>
+      <description>Introduction A customer-reported issue initially appeared to be a backend or database performance problem. A KPI request with thousands of selected elements was taking almost 50 seconds to complete, which was unacceptab…</description>
+      <category>kpi</category>
+      <category>clickhouse</category>
+      <category>performance</category>
+    </item>
+    <item>
       <title>One Pipeline, Three Ways to Consume It: Designing Multi-Channel KPI Distribution on ClickHouse</title>
       <link>https://mobinshaterian.com/blog/One-Pipeline--Three-Ways-to-Consume-It--Designing-Multi-Channel-KPI-Distribution-on-ClickHouse-medium</link>
       <guid isPermaLink="true">https://mobinshaterian.com/blog/One-Pipeline--Three-Ways-to-Consume-It--Designing-Multi-Channel-KPI-Distribution-on-ClickHouse-medium</guid>
@@ -501,14 +511,6 @@
       <pubDate>Mon, 09 Feb 2026 00:00:00 GMT</pubDate>
       <description>When managing distributed systems or local development environments, you often encounter a common networking hurdle: needing to access a…</description>
 
-    </item>
-    <item>
-      <title>How to Port Forward Traffic to a Remote IP Using Iptables</title>
-      <link>https://mobinshaterian.com/blog/How-to-Port-Forward-Traffic-to-a-Remote-IP-Using-Iptables-c3a8c10a6228</link>
-      <guid isPermaLink="true">https://mobinshaterian.com/blog/How-to-Port-Forward-Traffic-to-a-Remote-IP-Using-Iptables-c3a8c10a6228</guid>
-      <pubDate>Mon, 02 Feb 2026 00:00:00 GMT</pubDate>
-      <description>In the world of networking, you often find yourself in a situation where a vital service — like a Swagger API dashboard — is hosted on a…</description>
-      <category>API</category>
     </item>
   </channel>
 </rss>

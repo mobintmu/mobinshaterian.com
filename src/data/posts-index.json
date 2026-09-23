@@ -1,5 +1,19 @@
 [
   {
+    "slug": "From-a-49-Second-KPI-Request-to-an-840-Millisecond-Response-eqtce",
+    "title": "From a 49-Second KPI Request to an 840-Millisecond Response",
+    "excerpt": "Introduction A customer-reported issue initially appeared to be a backend or database performance problem. A KPI request with thousands of selected elements was taking almost 50 seconds to complete, which was unacceptab…",
+    "date": "2026-09-17",
+    "tags": [
+      "kpi",
+      "clickhouse",
+      "performance"
+    ],
+    "readingTime": "5 min",
+    "url": "https://www.linkedin.com/pulse/from-49-second-kpi-request-840-millisecond-response-mobin-shaterian-eqtce",
+    "hero": "https://media.licdn.com/dms/image/v2/D4E12AQGJY9OrhC5VlA/article-cover_image-shrink_720_1280/B4EaCukfKqJ8AQ-/0/1789635195832?e=2147483647&v=beta&t=pT5V_gLiuQxM6zEvwAchlHNPI53WW5mKcwsPo_k6oHo"
+  },
+  {
     "slug": "One-Pipeline--Three-Ways-to-Consume-It--Designing-Multi-Channel-KPI-Distribution-on-ClickHouse-medium",
     "title": "One Pipeline, Three Ways to Consume It: Designing Multi-Channel KPI Distribution on ClickHouse",
     "excerpt": "Every hour, our pipeline turns 15 million raw measurement rows into hundreds of per-cell, per-technology KPIs and writes them to ClickHouse. I’ve written before about how we keep that calculation correct — partitioned…",
