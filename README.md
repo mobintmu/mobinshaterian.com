@@ -256,3 +256,24 @@ For a manual deployment, run the workflow from the GitHub Actions interface. Git
 - **Pre rendering** – your `vite.config.ts` has `prerender.enabled: true` with a list of static pages (home, blogs, each blog post) — so at build time it crawls your routes and outputs static HTML, which is why this can deploy to GitHub Pages (a static host) instead of needing a live Node server.
 - **bun** – package manager/runtime, replacing npm.
 - **Lovable.dev plugins** (`@lovable.dev/vite-plugin-*`) – dev-time tooling from the platform this was originally built in (hot-reload bridges, etc.) — not something you'll need to touch for normal editing.
+
+## Mobin'AI chat embed
+
+The root layout loads the versioned chat script from `https://chat.mobinshaterian.com/embed/v1.js` once on every page. It adds a 56px circular launcher, remembers only the open/closed preference in this site’s `localStorage`, and creates a chat-origin iframe only when opened. The chat UI, registration, token, and API calls stay in the separate `mobin-ai-frontend` project. This is a JavaScript loader, not a JSON file.
+
+The same integration works on a plain HTML site when placed immediately before `</body>`:
+
+```html
+<script defer src="https://chat.mobinshaterian.com/embed/v1.js"
+        data-base-url="https://chat.mobinshaterian.com"></script>
+```
+
+The loader and CSS live in `mobin-ai-frontend/src/embed/loader.ts`; this website contains only the root script reference. The iframe uses `https://chat.mobinshaterian.com/embed` and never receives credentials in its URL. The chat host must permit framing by this website; GitHub Pages cannot set a path-specific `frame-ancestors` header without an edge rule. Backend CORS will need to allow the chat origin, not the main website, when the backend is deployed.
+
+For local development, start `mobin-ai-frontend` with `npm run demo` at `http://127.0.0.1:5173`, then run this site with:
+
+```bash
+VITE_MOBIN_AI_ORIGIN=http://127.0.0.1:5173 bun run dev
+```
+
+The website needs `VITE_MOBIN_AI_ORIGIN` only to override the default chat origin during development. Deploy the chat frontend at `chat.mobinshaterian.com` before expecting the launcher to work on the public website. If a Content Security Policy is added to this site, allow the chat origin in `script-src` and `frame-src`.
