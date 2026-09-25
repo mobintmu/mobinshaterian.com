@@ -41,6 +41,20 @@
       "description": "ClickHouse featured my guide to connecting a SASL_SSL-secured Kafka cluster to ClickHouse, covering SSL configuration, a Kafka engine and materialized-view ingestion pipeline, and performance tuning."
     },
     {
+      "source": "IRIB News",
+      "title": "رونمایی از ریسک من",
+      "date": "Mar 6, 2021",
+      "url": "https://www.irib-news.ir/fa/news/3041191/%D8%B1%D9%88%D9%86%D9%85%D8%A7%DB%8C%DB%8C-%D8%A7%D8%B2-%D8%B1%DB%8C%D8%B3%DA%A9-%D9%85%D9%86",
+      "description": "خبرگزاری صدا و سیما گزارش رونمایی از سامانه «ریسک من» را منتشر کرد؛ سامانه‌ای برای ارزیابی ریسک و راهنمایی سلامت در دوران کرونا."
+    },
+    {
+      "source": "Shahid Beheshti University of Medical Sciences",
+      "title": "از سامانه ریسک من رونمایی شد؛ دکتر زالی: با شیوع کرونا شاهد خیزش عظیم پژوهشگران نسل جوان کشور بودیم",
+      "date": "Mar 6, 2021",
+      "url": "https://sbmu.ac.ir/all_news/%D8%A7%D8%B2-%D8%B3%D8%A7%D9%85%D8%A7%D9%86%D9%87-%D8%B1%DB%8C%D8%B3%DA%A9-%D9%85%D9%86-%D8%B1%D9%88%D9%86%D9%85%D8%A7%DB%8C%DB%8C-%D8%B4%D8%AF%E2%81%84-%D8%AF%DA%A9%D8%AA%D8%B1-%D8%B2%D8%A7%D9%84%DB%8C:-%D8%A8%D8%A7-%D8%B4%DB%8C%D9%88%D8%B9-%DA%A9%D8%B1%D9%88%D9%86%D8%A7-%D8%B4%D8%A7%D9%87%D8%AF-%D8%AE%DB%8C%D8%B2%D8%B4-%D8%B9%D8%B8%DB%8C%D9%85-%D9%BE%DA%98%D9%88%D9%87%D8%B4%DA%AF%D8%B1%D8%A7%D9%86-%D9%86%D8%B3%D9%84-%D8%AC%D9%88%D8%A7%D9%86-%DA%A9%D8%B4%D9%88%D8%B1-%D8%A8%D9%88%D8%AF%DB%8C%D9%85",
+      "description": "دانشگاه علوم پزشکی شهید بهشتی خبر رونمایی از سامانه «ریسک من» را پوشش داد؛ سامانه‌ای که برای ارزیابی ریسک و ارائه راهنمایی سلامت در دوران کرونا معرفی شد."
+    },
+    {
       "source": "Journal of Engineering Management and Soft Computing",
       "title": "Identifying the Effective Factors on Neuropathic Diseases in Patients with Chronic Pain Using Deep Neural Networks",
       "date": "Sep 22, 2020",
