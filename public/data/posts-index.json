@@ -1,5 +1,19 @@
 [
   {
+    "slug": "I-Was-Never-Trying-to-Become-a-Better-Component-773723916af5",
+    "title": "I Was Never Trying to Become a Better Component",
+    "excerpt": "From allergy to IgE, from an external brain to AI, and from Mobin to Mobin-less",
+    "date": "2026-10-08",
+    "tags": [
+      "IgE",
+      "AI Agent",
+      "RAGs"
+    ],
+    "readingTime": "12 min",
+    "url": "https://mobinshaterian.medium.com/i-was-never-trying-to-become-a-better-component-773723916af5?postPublishedType=repub",
+    "hero": "https://miro.medium.com/v2/resize:fit:720/format:webp/1*PNjSaw1t1Rw3sAKZ4E_S0g.jpeg"
+  },
+  {
     "slug": "Building-a-Resilient-Event-Driven-Data-Lakehouse--MinIO-Bucket-Notifications-to-Apache-Kafka-6f8e33267278",
     "title": "Building a Resilient Event-Driven Data Lakehouse: MinIO Bucket Notifications to Apache Kafka",
     "excerpt": "Eliminate object storage polling and prevent race conditions using MinIO’s native Kafka notification engine and the Sentinel Marker pattern.",

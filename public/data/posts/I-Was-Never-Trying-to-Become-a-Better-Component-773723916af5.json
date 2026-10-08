@@ -1,0 +1,643 @@
+{
+  "slug": "I-Was-Never-Trying-to-Become-a-Better-Component-773723916af5",
+  "title": "I Was Never Trying to Become a Better Component",
+  "subtitle": "From allergy to IgE, from an external brain to AI, and from Mobin to Mobin-less",
+  "excerpt": "From allergy to IgE, from an external brain to AI, and from Mobin to Mobin-less",
+  "date": "2026-10-08",
+  "tags": [
+    "IgE",
+    "AI Agent",
+    "RAGs"
+  ],
+  "readingTime": "12 min",
+  "url": "https://mobinshaterian.medium.com/i-was-never-trying-to-become-a-better-component-773723916af5?postPublishedType=repub",
+  "hero": "https://miro.medium.com/v2/resize:fit:720/format:webp/1*PNjSaw1t1Rw3sAKZ4E_S0g.jpeg",
+  "content": [
+    {
+      "type": "paragraph",
+      "html": "I Was Never Trying to Become a Better Component"
+    },
+    {
+      "type": "paragraph",
+      "html": "From allergy to IgE, from an external brain to AI, and from Mobin to Mobin-less"
+    },
+    {
+      "type": "quote",
+      "html": "I was born into a system before I learned what a system was.  It had no documentation. No source code. No logs. No administrator I could contact.  And whenever something went wrong, I was inside it.  The system was my body."
+    },
+    {
+      "type": "image",
+      "src": "https://miro.medium.com/v2/resize:fit:720/format:webp/1*PNjSaw1t1Rw3sAKZ4E_S0g.jpeg",
+      "alt": "I Was Never Trying to Become a Better Component",
+      "caption": ""
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "The Boy Who Always Looked Sick"
+    },
+    {
+      "type": "paragraph",
+      "html": "My mother says the problems started in infancy. Certain foods didn’t agree with me, wheat among them. Long before “gluten-free” became a label on expensive packages, I was being fed rice cereal because wheat cereal seemed to cause trouble."
+    },
+    {
+      "type": "paragraph",
+      "html": "Nobody was discussing IgE, mast cells, or sensitization. There was only an observation:"
+    },
+    {
+      "type": "quote",
+      "html": "Give the child this. Something happens. Stop giving the child this. Try something else."
+    },
+    {
+      "type": "paragraph",
+      "html": "Without knowing it, that was probably my first experiment."
+    },
+    {
+      "type": "paragraph",
+      "html": "Allergy is invisible and embarrassingly visible at the same time. Nobody can see your immunoglobulins. They can see your nose."
+    },
+    {
+      "type": "paragraph",
+      "html": "At school I was the kid with the runny nose, the one who sneezed, the one who looked like he’d been sick for weeks. Children don’t conduct differential diagnoses."
+    },
+    {
+      "type": "paragraph",
+      "html": "They move their chairs."
+    },
+    {
+      "type": "paragraph",
+      "html": "I can’t reconstruct what they were thinking. I only remember the distance. That’s the strange thing about chronic illness in childhood: it doesn’t stay inside the body. It walks into the classroom, sits beside you, and changes how people see you before anyone has the vocabulary to explain what’s happening."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "“Why Are You Here Again?”"
+    },
+    {
+      "type": "paragraph",
+      "html": "For years, medicine looked to me like a sequence of rooms. You waited outside one. Someone called your name. You described the problem, got a prescription, and left. Then the problem came back, so you did too."
+    },
+    {
+      "type": "paragraph",
+      "html": "I remember a physician asking, in effect:"
+    },
+    {
+      "type": "quote",
+      "html": "“Why have you come here three times this month?”"
+    },
+    {
+      "type": "paragraph",
+      "html": "The answer in my head was painfully obvious: because I’m not getting better."
+    },
+    {
+      "type": "paragraph",
+      "html": "There’s something almost bureaucratic about recurring disease. The system treats every episode as a new ticket. The patient knows it’s the same unresolved incident."
+    },
+    {
+      "type": "paragraph",
+      "html": "I didn’t only want today’s symptoms to disappear. I wanted to know why I was back."
+    },
+    {
+      "type": "paragraph",
+      "html": "That distinction would matter later."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "A Piece of Paper on the Wall"
+    },
+    {
+      "type": "paragraph",
+      "html": "By high school, I was investigating the problem myself. I discovered Immunoglobulin E, taped a sheet of paper to my wall, drew a circle, and wrote IgE inside it."
+    },
+    {
+      "type": "paragraph",
+      "html": "My model was primitive:"
+    },
+    {
+      "type": "quote",
+      "html": "My immune system has a false alarm."
+    },
+    {
+      "type": "paragraph",
+      "html": "I know now that this is an oversimplification. IgE has legitimate biological functions, and allergy involves a far more intricate chain of sensitization, mast cells, basophils, and inflammatory mediators."
+    },
+    {
+      "type": "paragraph",
+      "html": "But I was a teenager, not writing a textbook. I was trying to debug myself."
+    },
+    {
+      "type": "paragraph",
+      "html": "There was an input most people tolerated. My system received it. Some component classified it differently. An alarm fired. The system changed state. There were outputs."
+    },
+    {
+      "type": "paragraph",
+      "html": "I wanted to find the component."
+    },
+    {
+      "type": "paragraph",
+      "html": "Years later I’d learn the words for what I was doing: root cause, trigger, state transition, observability, failure mode. Back then, I had paper and tape."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Then I Found a Machine That Obeyed"
+    },
+    {
+      "type": "paragraph",
+      "html": "I started programming around thirteen, and computers offered something extraordinary. Their complexity was a different kind of complexity."
+    },
+    {
+      "type": "paragraph",
+      "html": "Change the input, observe the output. If the program failed, inspect it. If my assumption was wrong, the machine eventually gave me evidence."
+    },
+    {
+      "type": "paragraph",
+      "html": "And the compiler had one more property I loved: it didn’t care about authority. Senior developer, junior, professor, student, the machine executed what existed, not what the author believed existed."
+    },
+    {
+      "type": "paragraph",
+      "html": "Maybe that’s why “this is how we’ve always done it” has never satisfied me. I want to know why."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Expertise Is Not Omniscience"
+    },
+    {
+      "type": "paragraph",
+      "html": "After sixteen years in software, do I know everything about software? Of course not. Sixteen years mainly teach you how enormous the territory is."
+    },
+    {
+      "type": "paragraph",
+      "html": "It changed how I see other professions, too. A physician can be wrong without medicine being useless. A senior engineer can confidently propose a terrible architecture. A patient can spend ten hours on PubMed and still misunderstand his disease."
+    },
+    {
+      "type": "paragraph",
+      "html": "Authority and correctness are less correlated than we’d like. What matters to me more and more is the error-correction mechanism. Can the claim be challenged? Can evidence change it? Can someone else reproduce it?"
+    },
+    {
+      "type": "paragraph",
+      "html": "Science isn’t valuable because scientists never err. It’s valuable because, at its best, it contains machinery for fixing the errors."
+    },
+    {
+      "type": "paragraph",
+      "html": "This is also why a good doctor matters more now, not less. When information becomes abundant, judgment becomes scarce."
+    },
+    {
+      "type": "quote",
+      "html": "The same thing is happening to programmers."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "The Unreliable Employee"
+    },
+    {
+      "type": "paragraph",
+      "html": "My allergy isn’t a constant level of impairment. For much of the year I function normally, sometimes better than normally. I can research obsessively, build fast, write a lot."
+    },
+    {
+      "type": "paragraph",
+      "html": "Then a season arrives. The environment shifts, my body shifts, sometimes a respiratory illness joins the inflammation. And the person running at what felt like 100 percent is suddenly running at a fraction."
+    },
+    {
+      "type": "paragraph",
+      "html": "From outside, a manager might reasonably wonder: where did that guy go?"
+    },
+    {
+      "type": "paragraph",
+      "html": "I’m still here. Capacity isn’t."
+    },
+    {
+      "type": "paragraph",
+      "html": "That experience reshaped how I think about reliability. Engineers talk endlessly about high availability while quietly designing organizations that assume humans are highly available."
+    },
+    {
+      "type": "paragraph",
+      "html": "Humans aren’t. We get sick, exhausted, stressed. We forget. We resign. We die."
+    },
+    {
+      "type": "paragraph",
+      "html": "Yet we keep building systems in which one particular person must remember one particular thing at exactly the right moment, and then we call that person “experienced.”"
+    },
+    {
+      "type": "paragraph",
+      "html": "I increasingly call it a design defect."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "The External Brain"
+    },
+    {
+      "type": "paragraph",
+      "html": "I’m not an organized person, though I love organized systems. My attention is fluid. I can sink into one problem and neglect everything else. I’ve never wanted to trust my memory blindly. (I’ve noticed traits that make me curious about ADHD, but I’ve never had a formal diagnosis, so I don’t claim one.)"
+    },
+    {
+      "type": "paragraph",
+      "html": "The label matters less than the engineering response. At some point in high school I concluded: I shouldn’t rely entirely on myself."
+    },
+    {
+      "type": "paragraph",
+      "html": "I needed another brain, and there was one on my desk."
+    },
+    {
+      "type": "paragraph",
+      "html": "The computer could remember so I didn’t have to. Why memorize a command when I can retrieve it? Why solve the same problem twice? Why keep an architectural decision in biological memory?"
+    },
+    {
+      "type": "paragraph",
+      "html": "Write it down. Index it. Search it. Automate it."
+    },
+    {
+      "type": "paragraph",
+      "html": "Cognitive science calls part of this cognitive offloading. I discovered the practice before I discovered the term."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "228 Articles"
+    },
+    {
+      "type": "paragraph",
+      "html": "When I last counted, my website held around 228 articles."
+    },
+    {
+      "type": "paragraph",
+      "html": "It looks like I love publishing. I do. But that’s not the real reason."
+    },
+    {
+      "type": "paragraph",
+      "html": "I write because I forget."
+    },
+    {
+      "type": "paragraph",
+      "html": "I hit a strange Linux problem, solve it, write it down. I learn something about Go, Kafka, SSH, distributed systems, or some obscure production failure, and I document it. Months later the problem returns, I search my own site, and there it is."
+    },
+    {
+      "type": "paragraph",
+      "html": "The article was never just an article. It was a memory. Then I added search, and it became a memory with an index."
+    },
+    {
+      "type": "paragraph",
+      "html": "The goal was never for my brain to contain 228 articles. The goal was for my brain to remember one thing:"
+    },
+    {
+      "type": "quote",
+      "html": "I think I’ve seen this before."
+    },
+    {
+      "type": "paragraph",
+      "html": "The machine does the rest."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "The Academic Door"
+    },
+    {
+      "type": "paragraph",
+      "html": "My interests were never limited to software. My thesis involved hospitals. I got curious about chronic pain, neuropathic pain, psychosomatic questions, cognition, and eventually cognitive science. At one point I wanted to pursue that path further."
+    },
+    {
+      "type": "paragraph",
+      "html": "The formal academic route didn’t unfold as I’d hoped. I never got the chance to publish and continue in the way I’d imagined. For a while it looked like a closed door."
+    },
+    {
+      "type": "paragraph",
+      "html": "Then I did something entirely predictable. I stopped treating the door as the system."
+    },
+    {
+      "type": "paragraph",
+      "html": "I read. I investigated. I wrote. I published on my own website, where people could find it and search engines could index it. I didn’t need permission to keep a notebook on the internet."
+    },
+    {
+      "type": "paragraph",
+      "html": "It wasn’t peer review. It wasn’t a university. It wasn’t a substitute for science."
+    },
+    {
+      "type": "paragraph",
+      "html": "But it let the inquiry continue. When one system wouldn’t accept the process, I built another."
+    },
+    {
+      "type": "image",
+      "src": "https://miro.medium.com/v2/resize:fit:720/format:webp/1*1fLUPskMj9rJbRsaocF7Jg.jpeg",
+      "alt": "The academic door",
+      "caption": ""
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "There Is, Unfortunately, Money"
+    },
+    {
+      "type": "paragraph",
+      "html": "There’s a romantic version of intellectual life where you follow curiosity wherever it leads."
+    },
+    {
+      "type": "paragraph",
+      "html": "Then there’s the payment terminal at the doctor’s office."
+    },
+    {
+      "type": "paragraph",
+      "html": "You can be fascinated by cognitive science. You can write essays on the architecture of memory. The terminal still says: insert card."
+    },
+    {
+      "type": "paragraph",
+      "html": "Medicine costs money. So do housing and food. Life charges a subscription fee with no cancellation button."
+    },
+    {
+      "type": "paragraph",
+      "html": "So for years the trade was simple:"
+    },
+    {
+      "type": "quote",
+      "html": "time → implementation → salary → life"
+    },
+    {
+      "type": "paragraph",
+      "html": "Curiosity got whatever was left over. That’s why “just follow your passion” has always seemed incomplete to me."
+    },
+    {
+      "type": "paragraph",
+      "html": "Passion doesn’t pay an allergist."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Then AI Arrived"
+    },
+    {
+      "type": "paragraph",
+      "html": "The public debate asks, will AI replace programmers? I find that question incomplete. A more useful one for me is:"
+    },
+    {
+      "type": "quote",
+      "html": "Which parts of me can I stop spending on work that can be specified?"
+    },
+    {
+      "type": "paragraph",
+      "html": "Some of my routine engineering work is so well defined that I’ve written prompts thousands of lines long describing how to do it. Do this. Inspect that. If this condition holds, do that. Don’t touch this. Produce this output."
+    },
+    {
+      "type": "paragraph",
+      "html": "What used to be knowledge inside my head became instructions outside it."
+    },
+    {
+      "type": "paragraph",
+      "html": "For years, computers were my external memory. AI made them, in a limited way, my external execution capacity. That’s a much bigger transition."
+    },
+    {
+      "type": "paragraph",
+      "html": "Say a task used to cost four hours of my direct attention. If I can formalize enough of my method that an AI does the mechanical work while I check assumptions and make the hard calls, the real output isn’t “more code.”"
+    },
+    {
+      "type": "paragraph",
+      "html": "It’s thinking time."
+    },
+    {
+      "type": "paragraph",
+      "html": "I still need income. I still need to pay the doctor. But maybe I no longer have to sell every cognitive hour directly, and the hours that remain can move upward: from implementation to judgment, from typing to investigation, from answering to asking better questions."
+    },
+    {
+      "type": "paragraph",
+      "html": "AI didn’t give me this philosophy. It made an old one executable."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "The 3,000-Line Prompt Is Still a Failure"
+    },
+    {
+      "type": "paragraph",
+      "html": "There’s a catch."
+    },
+    {
+      "type": "paragraph",
+      "html": "If my three-thousand-line prompt only works because I understand its hidden assumptions, maintain it personally, recognize every failure, and rescue it by hand when reality changes, I haven’t removed myself."
+    },
+    {
+      "type": "paragraph",
+      "html": "I’ve hidden myself inside a text file."
+    },
+    {
+      "type": "paragraph",
+      "html": "That isn’t independence. That’s dependency with better formatting."
+    },
+    {
+      "type": "paragraph",
+      "html": "So the workflow has to become testable, versioned, observable, and repeatable. Its assumptions have to be explicit and its failure modes visible. Other people, or other systems, must be able to operate it."
+    },
+    {
+      "type": "paragraph",
+      "html": "Which leads to the idea that has become the logical endpoint of this story."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Mobin-less"
+    },
+    {
+      "type": "paragraph",
+      "html": "I call it Mobin-less: a system that works without Mobin."
+    },
+    {
+      "type": "paragraph",
+      "html": "It sounds like an attempt to erase myself. It’s almost the opposite. I want to remove myself as a dependency."
+    },
+    {
+      "type": "paragraph",
+      "html": "Software has a morbid term for this: the bus factor. How many people can disappear before the project stops working? If the answer is one, the system is fragile. If that one person is me, I’ve built something I increasingly distrust."
+    },
+    {
+      "type": "paragraph",
+      "html": "Mobin-less means:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Documentation instead of remembering",
+        "Search instead of memorizing locations",
+        "Automation instead of repeated manual action",
+        "Observability instead of intuition",
+        "Decision records instead of organizational mythology",
+        "AI assistance instead of spending cognition on deterministic repetition"
+      ]
+    },
+    {
+      "type": "paragraph",
+      "html": "The principle is simple:"
+    },
+    {
+      "type": "quote",
+      "html": "I should not be infrastructure."
+    },
+    {
+      "type": "paragraph",
+      "html": "Looking back, I can almost draw the architecture:"
+    },
+    {
+      "type": "quote",
+      "html": "Memory → Computer → Internet → Search → Retrieval → AI → Delegation"
+    },
+    {
+      "type": "paragraph",
+      "html": "First the computer remembered for me. Then the internet made that memory reachable from anywhere. Search meant I no longer had to remember where things were. Retrieval could reconstruct context. Now AI can do limited reasoning and execution over it."
+    },
+    {
+      "type": "paragraph",
+      "html": "The next step almost writes itself: connect the archive, the decisions, the projects, the history, and build an intelligent interface over my externalized knowledge."
+    },
+    {
+      "type": "paragraph",
+      "html": "Not immortality. Not an uploaded consciousness. Not “digital Mobin.”"
+    },
+    {
+      "type": "paragraph",
+      "html": "Something more mundane and, to me, more useful: a system that knows enough of my context that I don’t have to rebuild myself from zero every time I need to think."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "The Trial"
+    },
+    {
+      "type": "paragraph",
+      "html": "Kafka wrote about people trapped in systems whose rules they couldn’t see. My life has been closer to the reverse obsession. I can’t tolerate the invisible system. I want the rule, the dependency graph, the logs. I want to know which input caused the transition, who made the decision, and under what constraint."
+    },
+    {
+      "type": "paragraph",
+      "html": "Why did the doctor choose that treatment? Why did the architecture become this architecture? Why did I behave the way I did?"
+    },
+    {
+      "type": "paragraph",
+      "html": "When no documentation exists, I start writing it."
+    },
+    {
+      "type": "paragraph",
+      "html": "It’s a useful instinct. It’s also a dangerous one. A mind that’s good at finding patterns can invent patterns that aren’t there. A coherent story can still be wrong."
+    },
+    {
+      "type": "paragraph",
+      "html": "My history is N=1. Allergy doesn’t prove programming. Childhood isolation doesn’t prove my adult personality. Fourteen jobs don’t prove a psychological theory. A story can connect every dot and still mistake elegance for causality."
+    },
+    {
+      "type": "paragraph",
+      "html": "So the system I interrogate most aggressively has to include myself. My own explanations need debugging too."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "The Good Doctor"
+    },
+    {
+      "type": "paragraph",
+      "html": "Years ago, information was scarce. I’d wait for hours, get a short explanation, and leave. Today I can read guidelines, compare studies, and ask an AI to explain terminology. I arrive with better questions."
+    },
+    {
+      "type": "paragraph",
+      "html": "But more information doesn’t remove the need for expertise. It changes what I demand from it."
+    },
+    {
+      "type": "paragraph",
+      "html": "I value the physician who can say: Here’s what we know. Here’s what we don’t. Here’s why I think this applies to you. Here are the alternatives. Here’s what evidence would change my mind."
+    },
+    {
+      "type": "paragraph",
+      "html": "That doctor becomes more valuable in the age of abundant information."
+    },
+    {
+      "type": "paragraph",
+      "html": "I suspect programmers are next. AI will make plausible code cheap, which makes judgment more valuable. The engineer who translates instructions into syntax becomes easier to replace. The engineer who decides whether the instruction makes sense becomes more important."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "I Was Never Trying to Become a Better Component"
+    },
+    {
+      "type": "paragraph",
+      "html": "This is the part I understood late."
+    },
+    {
+      "type": "paragraph",
+      "html": "For years I thought improving meant becoming more reliable: remember more, work harder, stay available, never get sick at the wrong time, never forget, never need help."
+    },
+    {
+      "type": "paragraph",
+      "html": "That’s an impossible specification for a human being. It’s also bad architecture. A robust system doesn’t demand that every component become incapable of failure. It assumes failure and designs around it."
+    },
+    {
+      "type": "paragraph",
+      "html": "Maybe my body taught me that before software did. I can be productive and sick. I can know something and forget it. I can love research and still need a salary. I can be experienced and still be wrong. I can build a system and still misunderstand it."
+    },
+    {
+      "type": "paragraph",
+      "html": "I can disappear. So can everyone else."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "From Allergy to Mobin-less"
+    },
+    {
+      "type": "paragraph",
+      "html": "I can’t prove that allergy made me a programmer, or that kids moving their chairs made me prefer computers, or that unreliable health made me obsessed with reliable systems. Life doesn’t offer controlled experiments."
+    },
+    {
+      "type": "paragraph",
+      "html": "But I can see the same question recurring:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "As a child: Why does my body keep doing this?",
+        "As a teenager, staring at IgE on the wall: Which part of the system generates the alarm?",
+        "As a programmer: Why did the program enter this state?",
+        "As an engineer: Why was it designed this way?",
+        "As an architect: What happens when this dependency fails?",
+        "As an employee: Why am I spending human cognition on something deterministic?",
+        "As someone building with AI: Which parts of my work can be externalized?"
+      ]
+    },
+    {
+      "type": "paragraph",
+      "html": "And finally: Why should the system depend on me at all?"
+    },
+    {
+      "type": "paragraph",
+      "html": "Maybe Mobin-less isn’t a software project. Maybe it’s the latest version of something I started as a child without knowing it. First I tried to understand the system. Then to remember it. Then to document it. Then to automate it. Now I’m trying to remove myself from its critical path."
+    },
+    {
+      "type": "paragraph",
+      "html": "Not because humans are unnecessary. Because I’ve spent my whole life learning the opposite:"
+    },
+    {
+      "type": "quote",
+      "html": "Humans are necessary, valuable, intelligent, and fundamentally unreliable."
+    },
+    {
+      "type": "paragraph",
+      "html": "We get sick. We forget. We get overwhelmed. We change. We leave."
+    },
+    {
+      "type": "paragraph",
+      "html": "A humane system should know that. A good system should survive it."
+    },
+    {
+      "type": "paragraph",
+      "html": "And maybe that’s the only architecture I’ve been trying to build all along:"
+    },
+    {
+      "type": "quote",
+      "html": "a system that lets the human being inside it remain human."
+    },
+    {
+      "type": "paragraph",
+      "html": "Ige AI Agent Rags"
+    }
+  ]
+}

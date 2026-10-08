@@ -7,6 +7,16 @@
     <language>en</language>
     <atom:link href="https://mobinshaterian.com/feed.xml" rel="self" type="application/rss+xml"/>
     <item>
+      <title>I Was Never Trying to Become a Better Component</title>
+      <link>https://mobinshaterian.com/blog/I-Was-Never-Trying-to-Become-a-Better-Component-773723916af5</link>
+      <guid isPermaLink="true">https://mobinshaterian.com/blog/I-Was-Never-Trying-to-Become-a-Better-Component-773723916af5</guid>
+      <pubDate>Thu, 08 Oct 2026 00:00:00 GMT</pubDate>
+      <description>From allergy to IgE, from an external brain to AI, and from Mobin to Mobin-less</description>
+      <category>IgE</category>
+      <category>AI Agent</category>
+      <category>RAGs</category>
+    </item>
+    <item>
       <title>Building a Resilient Event-Driven Data Lakehouse: MinIO Bucket Notifications to Apache Kafka</title>
       <link>https://mobinshaterian.com/blog/Building-a-Resilient-Event-Driven-Data-Lakehouse--MinIO-Bucket-Notifications-to-Apache-Kafka-6f8e33267278</link>
       <guid isPermaLink="true">https://mobinshaterian.com/blog/Building-a-Resilient-Event-Driven-Data-Lakehouse--MinIO-Bucket-Notifications-to-Apache-Kafka-6f8e33267278</guid>
@@ -504,16 +514,6 @@
       <description>Introduction</description>
       <category>Go</category>
       <category>Architecture</category>
-    </item>
-    <item>
-      <title>The “Phantom” 403: Solving Django CSRF Failures in Golang Clients</title>
-      <link>https://mobinshaterian.com/blog/The--Phantom--403--Solving-Django-CSRF-Failures-in-Golang-Clients-83906f4770e8</link>
-      <guid isPermaLink="true">https://mobinshaterian.com/blog/The--Phantom--403--Solving-Django-CSRF-Failures-in-Golang-Clients-83906f4770e8</guid>
-      <pubDate>Mon, 09 Feb 2026 00:00:00 GMT</pubDate>
-      <description>In the world of backend development, few things are as frustrating as an API that works the first time perfectly but fails mysteriously on…</description>
-      <category>Go</category>
-      <category>API</category>
-      <category>Python</category>
     </item>
   </channel>
 </rss>
