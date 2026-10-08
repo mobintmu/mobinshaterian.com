@@ -1,5 +1,20 @@
 [
   {
+    "slug": "Building-a-Resilient-Event-Driven-Data-Lakehouse--MinIO-Bucket-Notifications-to-Apache-Kafka-6f8e33267278",
+    "title": "Building a Resilient Event-Driven Data Lakehouse: MinIO Bucket Notifications to Apache Kafka",
+    "excerpt": "Eliminate object storage polling and prevent race conditions using MinIO’s native Kafka notification engine and the Sentinel Marker pattern.",
+    "date": "2026-10-03",
+    "tags": [
+      "MinIO",
+      "Kafka",
+      "Big Data",
+      "Data Lake"
+    ],
+    "readingTime": "6 min",
+    "url": "https://blog.devops.dev/building-a-resilient-event-driven-data-lakehouse-minio-bucket-notifications-to-apache-kafka-6f8e33267278",
+    "hero": "https://miro.medium.com/v2/resize:fit:720/format:webp/1*uhk3S8cuLkHKDjBCrJB82g.png"
+  },
+  {
     "slug": "From-a-49-Second-KPI-Request-to-an-840-Millisecond-Response-eqtce",
     "title": "From a 49-Second KPI Request to an 840-Millisecond Response",
     "excerpt": "Introduction A customer-reported issue initially appeared to be a backend or database performance problem. A KPI request with thousands of selected elements was taking almost 50 seconds to complete, which was unacceptab…",

@@ -7,6 +7,17 @@
     <language>en</language>
     <atom:link href="https://mobinshaterian.com/feed.xml" rel="self" type="application/rss+xml"/>
     <item>
+      <title>Building a Resilient Event-Driven Data Lakehouse: MinIO Bucket Notifications to Apache Kafka</title>
+      <link>https://mobinshaterian.com/blog/Building-a-Resilient-Event-Driven-Data-Lakehouse--MinIO-Bucket-Notifications-to-Apache-Kafka-6f8e33267278</link>
+      <guid isPermaLink="true">https://mobinshaterian.com/blog/Building-a-Resilient-Event-Driven-Data-Lakehouse--MinIO-Bucket-Notifications-to-Apache-Kafka-6f8e33267278</guid>
+      <pubDate>Sat, 03 Oct 2026 00:00:00 GMT</pubDate>
+      <description>Eliminate object storage polling and prevent race conditions using MinIO’s native Kafka notification engine and the Sentinel Marker pattern.</description>
+      <category>MinIO</category>
+      <category>Kafka</category>
+      <category>Big Data</category>
+      <category>Data Lake</category>
+    </item>
+    <item>
       <title>From a 49-Second KPI Request to an 840-Millisecond Response</title>
       <link>https://mobinshaterian.com/blog/From-a-49-Second-KPI-Request-to-an-840-Millisecond-Response-eqtce</link>
       <guid isPermaLink="true">https://mobinshaterian.com/blog/From-a-49-Second-KPI-Request-to-an-840-Millisecond-Response-eqtce</guid>
@@ -503,14 +514,6 @@
       <category>Go</category>
       <category>API</category>
       <category>Python</category>
-    </item>
-    <item>
-      <title>Bridging Networks: Using Nginx as a Reverse Proxy for Port Redirection</title>
-      <link>https://mobinshaterian.com/blog/Bridging-Networks--Using-Nginx-as-a-Reverse-Proxy-for-Port-Redirection-b8e1f515b549</link>
-      <guid isPermaLink="true">https://mobinshaterian.com/blog/Bridging-Networks--Using-Nginx-as-a-Reverse-Proxy-for-Port-Redirection-b8e1f515b549</guid>
-      <pubDate>Mon, 09 Feb 2026 00:00:00 GMT</pubDate>
-      <description>When managing distributed systems or local development environments, you often encounter a common networking hurdle: needing to access a…</description>
-
     </item>
   </channel>
 </rss>

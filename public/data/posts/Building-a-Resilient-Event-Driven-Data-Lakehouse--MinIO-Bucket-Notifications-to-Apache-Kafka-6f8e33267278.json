@@ -1,0 +1,375 @@
+{
+  "slug": "Building-a-Resilient-Event-Driven-Data-Lakehouse--MinIO-Bucket-Notifications-to-Apache-Kafka-6f8e33267278",
+  "title": "Building a Resilient Event-Driven Data Lakehouse: MinIO Bucket Notifications to Apache Kafka",
+  "subtitle": "Eliminate object storage polling and prevent race conditions using MinIO’s native Kafka notification engine and the Sentinel Marker pattern.",
+  "excerpt": "Eliminate object storage polling and prevent race conditions using MinIO’s native Kafka notification engine and the Sentinel Marker pattern.",
+  "date": "2026-10-03",
+  "tags": [
+    "MinIO",
+    "Kafka",
+    "Big Data",
+    "Data Lake"
+  ],
+  "readingTime": "6 min",
+  "url": "https://blog.devops.dev/building-a-resilient-event-driven-data-lakehouse-minio-bucket-notifications-to-apache-kafka-6f8e33267278",
+  "hero": "https://miro.medium.com/v2/resize:fit:720/format:webp/1*uhk3S8cuLkHKDjBCrJB82g.png",
+  "content": [
+    {
+      "type": "paragraph",
+      "html": "Building a Resilient Event-Driven Data Lakehouse: MinIO Bucket Notifications to Apache Kafka"
+    },
+    {
+      "type": "paragraph",
+      "html": "Eliminate object storage polling and prevent race conditions using MinIO’s native Kafka notification engine and the Sentinel Marker pattern."
+    },
+    {
+      "type": "paragraph",
+      "html": "Special thanks to <a href=\"https://blog.devops.dev/\" target=\"_blank\" rel=\"noreferrer noopener\">mohsen taleb</a>."
+    },
+    {
+      "type": "image",
+      "src": "https://miro.medium.com/v2/resize:fit:720/format:webp/1*uhk3S8cuLkHKDjBCrJB82g.png",
+      "alt": "Building a resilient event-driven data lakehouse",
+      "caption": ""
+    },
+    {
+      "type": "paragraph",
+      "html": "In distributed architectures, few patterns cause as much latency and architectural debt as active polling. Having downstream consumers periodically query an object store like AWS S3 or MinIO to check whether a batch calculation or machine learning dataset has finished is inefficient, difficult to scale, and fraught with timing issues."
+    },
+    {
+      "type": "paragraph",
+      "html": "Conversely, passing entire multi-gigabyte analytical datasets directly through a message broker like Apache Kafka can saturate network interfaces, spike memory usage, and exhaust broker storage."
+    },
+    {
+      "type": "paragraph",
+      "html": "The optimal pattern is Claim-Check / Event-Driven Metadata Notification: the analytical engine writes the bulk data directly into object storage, while the storage layer itself notifies Apache Kafka that the dataset is ready. Downstream consumers simply receive a lightweight event containing the bucket and object path, then fetch only the files they need via standard S3 API primitives."
+    },
+    {
+      "type": "paragraph",
+      "html": "However, there is a catch that catches many teams off guard: the partial read problem."
+    },
+    {
+      "type": "paragraph",
+      "html": "Here is a guide to designing and implementing an enterprise-grade MinIO-to-Kafka event pipeline that solves this problem using the sentinel marker pattern, resilient local queueing, and secure SCRAM authentication."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "The Partial Read Challenge and the Sentinel Marker Pattern"
+    },
+    {
+      "type": "paragraph",
+      "html": "Distributed compute engines — such as Apache Spark, Flink, Trino, or containerized data workers — write dataset partitions concurrently across many parallel tasks. A single pipeline run may output dozens of Parquet files alongside a metadata manifest."
+    },
+    {
+      "type": "paragraph",
+      "html": "If you configure MinIO to publish an event on every generic object creation (<code>s3:ObjectCreated:*</code>), your message broker will be flooded with dozens of notifications while the dataset is still being written. Downstream consumers will inevitably attempt to read partitions before the entire dataset has finished persisting, resulting in corrupted states, missing records, or failed pipeline runs."
+    },
+    {
+      "type": "paragraph",
+      "html": "To achieve atomic completion semantics without altering consumer architectures, use the Sentinel Marker Pattern:"
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "<strong>Write Data Partitions:</strong> The pipeline writes all raw partition chunks into the object prefix (for example, <code>v1/domain=telemetry/generation=20260927/</code>).",
+        "<strong>Write Manifest:</strong> The pipeline writes a summarizing <code>manifest.json</code> containing table metadata and file checksums.",
+        "<strong>Emit Sentinel Object:</strong> As its final, atomic action, the pipeline writes a zero-byte marker file named <code>_SUCCESS</code> to the partition root.",
+        "<strong>Trigger Event Notification:</strong> MinIO monitors only put events matching the prefix <code>v1/</code> and the exact suffix <code>_SUCCESS</code>.",
+        "<strong>Consume Safely:</strong> Kafka delivers exactly one event per generation. Downstream workers ingest the notification, strip the <code>_SUCCESS</code> suffix to find the dataset root, verify the manifest, and process the complete data payload."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "html": "Furthermore, internal retention policies and Data Lifecycle Management (ILM) deletions will never trigger spurious consumer actions, because object removal events (<code>s3:ObjectRemoved:*</code>) are omitted from the configuration."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Architecture and End-to-End Workflow"
+    },
+    {
+      "type": "paragraph",
+      "html": "The workflow separates concerns across the pipeline:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "<strong>Analytical Writer:</strong> Produces partitioned files and writes <code>_SUCCESS</code> last.",
+        "<strong>MinIO Notification Subsystem:</strong> Intercepts the upload, filters by prefix and suffix, stages the notification in an on-disk buffer, and publishes to Kafka.",
+        "<strong>Apache Kafka Broker:</strong> Stores the notification event in a secured, durable topic.",
+        "<strong>Consumer Group:</strong> Microservices or ingestion workers read the event, fetch the corresponding manifest, and load the dataset."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Step 1: Kafka Broker Setup and Access Control"
+    },
+    {
+      "type": "paragraph",
+      "html": "To secure this integration in production, we configure transport security using SASL_SSL and authenticate via SCRAM-SHA-512."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "Topic Provisioning"
+    },
+    {
+      "type": "paragraph",
+      "html": "Because completed generation events have a low-to-moderate throughput profile, configuring a single partition guarantees strict global FIFO ordering across all downstream tasks:"
+    },
+    {
+      "type": "code",
+      "lang": "bash",
+      "code": "kafka-topics.sh --bootstrap-server kafka1.example.com:9093 \\\n  --command-config /etc/kafka/admin-client.properties \\\n  --create \\\n  --topic lakehouse-ingestion-events \\\n  --partitions 1 \\\n  --replication-factor 3 \\\n  --config min.insync.replicas=2 \\\n  --config cleanup.policy=delete \\\n  --config retention.ms=604800000"
+    },
+    {
+      "type": "paragraph",
+      "html": "Setting <code>retention.ms</code> to 7 days (<code>604,800,000 ms</code>) provides an operational safety window to resolve consumer outages without message loss."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "Credentials and Access Control Lists (ACLs)"
+    },
+    {
+      "type": "paragraph",
+      "html": "MinIO acts exclusively as a Kafka producer. It requires topic write permissions and cluster metadata access, but should never be granted consumer group privileges."
+    },
+    {
+      "type": "paragraph",
+      "html": "Create the producer principal using <code>kafka-configs.sh</code>:"
+    },
+    {
+      "type": "code",
+      "lang": "bash",
+      "code": "kafka-configs.sh --bootstrap-server kafka1.example.com:9093 \\\n  --entity-type users \\\n  --entity-name minio-lakehouse-producer \\\n  --alter \\\n  --add-config 'SCRAM-SHA-512=[password=CHANGE_TO_A_SECURE_TOKEN]' \\\n  --command-config /etc/kafka/admin-client.properties"
+    },
+    {
+      "type": "paragraph",
+      "html": "Next, grant least-privilege permissions:"
+    },
+    {
+      "type": "code",
+      "lang": "bash",
+      "code": "kafka-acls.sh --bootstrap-server kafka1.example.com:9093 \\\n  --command-config /etc/kafka/admin-client.properties \\\n  --add \\\n  --allow-principal User:minio-lakehouse-producer \\\n  --operation Write \\\n  --operation Describe \\\n  --topic lakehouse-ingestion-events"
+    },
+    {
+      "type": "paragraph",
+      "html": "Downstream consumers will use a separate identity (for example, <code>User:downstream-consumer</code>) authorized with Read operations on the topic and their respective Consumer Group."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Step 2: Configuring MinIO with Durable Queuing"
+    },
+    {
+      "type": "paragraph",
+      "html": "MinIO supports dynamic Kafka target configuration via its command-line client (<code>mc</code>). The top-level configuration key is <code>notify_kafka</code>, where an appended suffix identifies the unique endpoint target."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "1. Distribute Kafka’s Certificate Authority (CA)"
+    },
+    {
+      "type": "paragraph",
+      "html": "When certificate verification is enabled (<code>tls_skip_verify=&quot;off&quot;</code>), MinIO verifies the broker&#39;s TLS identity. Place the root CA chain into MinIO’s trusted authority directory across every node in the cluster:"
+    },
+    {
+      "type": "code",
+      "lang": "bash",
+      "code": "sudo mkdir -p /etc/minio/certs/CAs\nsudo cp kafka-ca.crt /etc/minio/certs/CAs/kafka-ca.crt\nsudo chown -R minio-user:minio-user /etc/minio/certs/CAs\nsudo chmod 644 /etc/minio/certs/CAs/kafka-ca.crt"
+    },
+    {
+      "type": "paragraph",
+      "html": "Note: MinIO loads trusted CA certificates into its memory pool during service initialization. Adding a new CA requires a service restart."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "2. Allocate an On-Disk Durable Queue"
+    },
+    {
+      "type": "paragraph",
+      "html": "What happens if your Kafka cluster is down for maintenance or undergoing a partition rebalance?"
+    },
+    {
+      "type": "paragraph",
+      "html": "By configuring <code>queue_dir</code>, MinIO serializes unsent events to a local filesystem spool instead of dropping them or keeping them in volatile RAM. Create this directory across all MinIO hosts:"
+    },
+    {
+      "type": "code",
+      "lang": "bash",
+      "code": "sudo mkdir -p /var/lib/minio/events/analytics\nsudo chown -R minio-user:minio-user /var/lib/minio/events/analytics\nsudo chmod 700 /var/lib/minio/events/analytics"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "3. Register the Kafka Target"
+    },
+    {
+      "type": "paragraph",
+      "html": "Run <code>mc admin config set</code> using the brokers parameter to specify the bootstrap endpoints, and configure authentication and disk queuing:"
+    },
+    {
+      "type": "code",
+      "lang": "bash",
+      "code": "mc admin config set my-minio notify_kafka:analytics \\\n  brokers=\"kafka1.example.com:9093,kafka2.example.com:9093,kafka3.example.com:9093\" \\\n  topic=\"lakehouse-ingestion-events\" \\\n  sasl=\"on\" \\\n  sasl_username=\"minio-lakehouse-producer\" \\\n  sasl_password=\"CHANGE_TO_A_SECURE_TOKEN\" \\\n  sasl_mechanism=\"SHA512\" \\\n  tls=\"on\" \\\n  tls_skip_verify=\"off\" \\\n  queue_dir=\"/var/lib/minio/events/analytics\" \\\n  queue_limit=\"100000\" \\\n  comment=\"Completed pipeline run notifications\""
+    },
+    {
+      "type": "paragraph",
+      "html": "Restart the MinIO service to activate the Kafka worker pool and load the TLS certificates:"
+    },
+    {
+      "type": "code",
+      "lang": "bash",
+      "code": "mc admin service restart my-minio"
+    },
+    {
+      "type": "paragraph",
+      "html": "Confirm that MinIO has assigned an Amazon Resource Name (ARN) to the endpoint:"
+    },
+    {
+      "type": "code",
+      "lang": "bash",
+      "code": "mc event target list my-minio"
+    },
+    {
+      "type": "paragraph",
+      "html": "You should see an active ARN:"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "arn:minio:sqs::analytics:kafka"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Step 3: Binding the Filtered Notification Rule"
+    },
+    {
+      "type": "paragraph",
+      "html": "Now that the Kafka target is active, bind it to your target bucket (<code>analytics-lakehouse</code>) with the required event filters:"
+    },
+    {
+      "type": "code",
+      "lang": "bash",
+      "code": "mc event add \\\n  --event put \\\n  --prefix \"v1/\" \\\n  --suffix \"_SUCCESS\" \\\n  my-minio/analytics-lakehouse \\\n  arn:minio:sqs::analytics:kafka"
+    },
+    {
+      "type": "paragraph",
+      "html": "Verify that the rule is registered:"
+    },
+    {
+      "type": "code",
+      "lang": "bash",
+      "code": "mc event ls my-minio/analytics-lakehouse"
+    },
+    {
+      "type": "paragraph",
+      "html": "Expected output:"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "arn:minio:sqs::analytics:kafka s3:ObjectCreated:* Filter: prefix=\"v1/\", suffix=\"_SUCCESS\""
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "What the Downstream Event Looks Like"
+    },
+    {
+      "type": "paragraph",
+      "html": "When MinIO intercepts the upload of <code>v1/domain=telemetry/generation=20260927/_SUCCESS</code>, it constructs an Amazon S3-compliant JSON notification record and dispatches it to Kafka:"
+    },
+    {
+      "type": "code",
+      "lang": "json",
+      "code": "{\n  \"EventName\": \"s3:ObjectCreated:Put\",\n  \"Key\": \"analytics-lakehouse/v1/domain=telemetry/generation=20260927/_SUCCESS\",\n  \"Records\": [\n    {\n      \"eventVersion\": \"2.0\",\n      \"eventSource\": \"minio:s3\",\n      \"awsRegion\": \"\",\n      \"eventTime\": \"2026-09-27T08:14:02.150Z\",\n      \"eventName\": \"s3:ObjectCreated:Put\",\n      \"s3\": {\n        \"bucket\": {\n          \"name\": \"analytics-lakehouse\",\n          \"arn\": \"arn:aws:s3:::analytics-lakehouse\"\n        },\n        \"object\": {\n          \"key\": \"v1/domain=telemetry/generation=20260927/_SUCCESS\",\n          \"size\": 0,\n          \"eTag\": \"d41d8cd98f00b204e9800998ecf8427e\",\n          \"sequencer\": \"182178E8B3728CAC\"\n        }\n      }\n    }\n  ]\n}"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Consumer Best Practices: Handling at-Least-Once Delivery"
+    },
+    {
+      "type": "paragraph",
+      "html": "Distributed messaging systems operate under at-least-once delivery guarantees. Network disconnects, consumer crashes, or MinIO queue replays can occasionally deliver duplicate messages."
+    },
+    {
+      "type": "paragraph",
+      "html": "To keep downstream data pipelines reliable:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "<strong>De-duplicate via the Sequencer:</strong> Notice the <code>s3.object.sequencer</code> token inside the payload. MinIO produces this monotonically increasing hexadecimal identifier to record state changes on an object. Store processed sequencer tokens in a quick-lookup store (like Redis or a tracking table). If an event arrives with an already-processed sequencer, acknowledge and skip it.",
+        "<strong>Trim the Sentinel Suffix:</strong> Strip the trailing <code>_SUCCESS</code> to infer the generation prefix."
+      ]
+    },
+    {
+      "type": "code",
+      "lang": "python",
+      "code": "object_key = event[\"Records\"][0][\"s3\"][\"object\"][\"key\"]\nbase_dir = object_key.replace(\"_SUCCESS\", \"\")\n# Results in: \"v1/domain=telemetry/generation=20260927/\""
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "<strong>Read the Manifest First:</strong> Query <code>base_dir + &quot;manifest.json&quot;</code>. Confirm that all data chunks listed in the manifest exist and match expected checksums before kicking off heavy downstream transformation jobs."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Operational Observability"
+    },
+    {
+      "type": "paragraph",
+      "html": "When running this pattern in production, monitor MinIO’s Prometheus metrics endpoint (<code>/minio/v2/metrics/cluster</code>). Key metrics to track include:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "<code>minio_notify_target_queue_length</code>: The count of pending messages spooled in <code>queue_dir</code>. Under healthy conditions, this sits near 0. If it climbs for more than a few minutes, investigate Kafka broker connectivity or SASL authorization failures.",
+        "<code>minio_notify_events_skipped_total</code>: Increments only if <code>queue_limit</code> is saturated and MinIO is forced to discard events to prevent disk exhaustion. This metric should trigger a critical alert.",
+        "<code>minio_notify_target_failed_events</code>: Increments upon connection failures or TLS handshake rejections."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Summary"
+    },
+    {
+      "type": "paragraph",
+      "html": "Decoupling object storage persistence from message passing creates resilient, scalable data pipelines. By pairing MinIO’s native <code>notify_kafka</code> subsystem with the Sentinel Marker pattern, you gain:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "<strong>Zero Polling Overhead:</strong> Compute resources activate only when data is ready.",
+        "<strong>Deterministic Reads:</strong> Applications consume only complete datasets.",
+        "<strong>Network Efficiency:</strong> Kafka brokers handle lightweight metadata instead of heavy data transfers.",
+        "<strong>Outage Resilience:</strong> Persistent on-disk buffers keep notifications safe during broker downtime."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "html": "With these configurations in place, your object storage tier becomes an active, event-driven participant in your analytics infrastructure."
+    },
+    {
+      "type": "paragraph",
+      "html": "Minio Kafka Big Data Data Lake"
+    }
+  ]
+}
