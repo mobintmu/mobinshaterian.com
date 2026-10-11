@@ -21,7 +21,7 @@ import {
   absoluteUrl,
   cleanDescription,
 } from "@/lib/seo";
-import { BLOG_TAGS, blogTagSearchValue } from "@/lib/blog-tags";
+import { BLOG_TAGS, blogTagSearchValue, isVisibleBlogTag } from "@/lib/blog-tags";
 
 type IndexEntry = {
   slug: string;
@@ -233,6 +233,7 @@ function getRelatedPosts(currentPost: FullPost, articles: IndexEntry[]): IndexEn
 
 function BlogPostPage() {
   const { post } = Route.useLoaderData();
+  const visiblePostTags = post.tags.filter(isVisibleBlogTag);
   const canonicalSource = sourceName(post.url);
   const articles = postsIndex as IndexEntry[];
   const currentIndex = articles.findIndex((article) => article.slug === post.slug);
@@ -289,10 +290,10 @@ function BlogPostPage() {
           </span>
         </div>
 
-        {post.tags?.length ? (
+        {visiblePostTags.length ? (
           <div className="mt-6 flex flex-wrap items-center gap-1.5">
             <TagIcon className="h-3.5 w-3.5 text-terminal" />
-            {post.tags.map((t: string) => (
+            {visiblePostTags.map((t: string) => (
               <Link
                 key={t}
                 to="/blogs"
@@ -415,7 +416,7 @@ function BlogPostPage() {
           </section>
         ) : null}
 
-        {post.tags.length ? (
+        {visiblePostTags.length ? (
           <section
             className="mt-10 border-t border-border pt-6"
             aria-labelledby="post-tags-heading"
@@ -430,7 +431,7 @@ function BlogPostPage() {
               </h2>
             </div>
             <div className="flex flex-wrap gap-1.5">
-              {post.tags.map((tag) => (
+              {visiblePostTags.map((tag) => (
                 <Link
                   key={tag}
                   to="/blogs"

@@ -8,7 +8,13 @@ import postsIndex from "@/data/posts-index.json";
 import profile from "@/data/profile.json";
 import { ArrowLeft, Search, Tag as TagIcon, FileJson } from "lucide-react";
 import { BLOG_DESCRIPTION, BLOG_TITLE, SITE_URL, absoluteUrl, websiteMeta } from "@/lib/seo";
-import { ALL_BLOG_TAG, BLOG_TAGS, blogTagLabel, blogTagSearchValue } from "@/lib/blog-tags";
+import {
+  ALL_BLOG_TAG,
+  BLOG_TAGS,
+  blogTagLabel,
+  blogTagSearchValue,
+  isVisibleBlogTag,
+} from "@/lib/blog-tags";
 
 type IndexEntry = {
   slug: string;
@@ -24,6 +30,8 @@ type IndexEntry = {
 type SearchDoc = { slug: string; title: string; tags: string[]; plainText: string };
 
 const POSTS_PER_PAGE = 20;
+
+const ALL_POSTS = postsIndex as IndexEntry[];
 
 const searchSchema = z.object({
   tag: fallback(z.string(), "").default(""),
@@ -105,9 +113,17 @@ function BlogsPage() {
   const { tag, q } = Route.useSearch();
   const activeTag = tag || ALL_BLOG_TAG;
   const navigate = Route.useNavigate();
-  const all = postsIndex as IndexEntry[];
+  const all = ALL_POSTS;
   const loadMoreRef = useRef<HTMLDivElement>(null);
   const [visibleCount, setVisibleCount] = useState(POSTS_PER_PAGE);
+
+  // Reset pagination whenever the active tag or search query changes.
+  const filterKey = `${activeTag}\u0000${q}`;
+  const [appliedFilterKey, setAppliedFilterKey] = useState(filterKey);
+  if (filterKey !== appliedFilterKey) {
+    setAppliedFilterKey(filterKey);
+    setVisibleCount(POSTS_PER_PAGE);
+  }
 
   const { ms, loading, load } = useSearchIndex();
   useEffect(() => {
@@ -129,15 +145,11 @@ function BlogsPage() {
       .sort((a, b) =>
         a.date === b.date ? a.slug.localeCompare(b.slug) : a.date < b.date ? 1 : -1,
       );
-  }, [all, activeTag, matchedSlugs]);
+  }, [activeTag, matchedSlugs]);
 
   const searching = q.trim() && !ms;
   const visiblePosts = filtered.slice(0, visibleCount);
   const hasMore = visibleCount < filtered.length;
-
-  useEffect(() => {
-    setVisibleCount(POSTS_PER_PAGE);
-  }, [activeTag, q]);
 
   useEffect(() => {
     const target = loadMoreRef.current;
@@ -220,6 +232,7 @@ function BlogsPage() {
           />
           {q ? (
             <button
+              type="button"
               onClick={() =>
                 navigate({
                   search: (prev: { tag: string; q: string }) => ({ ...prev, q: "" }),
@@ -241,6 +254,7 @@ function BlogsPage() {
           <div className="flex flex-wrap gap-1.5">
             {BLOG_TAGS.map((tagOption) => (
               <button
+                type="button"
                 key={tagOption.name}
                 onClick={() =>
                   navigate({
@@ -304,7 +318,7 @@ function BlogsPage() {
                       {p.excerpt}
                     </p>
                     <div className="flex flex-wrap gap-1.5">
-                      {p.tags.map((t) => (
+                      {p.tags.filter(isVisibleBlogTag).map((t) => (
                         <span
                           key={t}
                           className="rounded border border-border px-1.5 py-0.5 font-mono-plus text-[10px] uppercase tracking-wide text-muted-foreground"
