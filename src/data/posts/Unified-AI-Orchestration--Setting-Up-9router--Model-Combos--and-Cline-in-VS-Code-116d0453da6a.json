@@ -4,14 +4,27 @@
   "subtitle": "When working with autonomous coding agents like Cline, managing multiple upstream AI providers — such as Google AI Studio, OpenRouter, and premium OAuth subscriptions — quickly becomes a maintenance bottleneck. Rate limits (HTTP 429), quota exhaustion, and fragmented API keys disrupt agentic loops mid-refactor.",
   "excerpt": "When working with autonomous coding agents like Cline, managing multiple upstream AI providers — such as Google AI Studio, OpenRouter, and premium OAuth subscriptions — quickly becomes a maintenance bottleneck. Rate…",
   "date": "2026-08-14",
+  "dateModified": "2026-10-11",
+  "seoTitle": "9router Setup: AI Model Failover with Cline | Mobin Shaterian",
+  "seoDescription": "Set up 9router with Gemini, OpenRouter, model combos, and Cline in VS Code for one OpenAI-compatible endpoint and automatic AI model failover.",
+  "seoKeywords": [
+    "9router",
+    "Cline",
+    "AI model routing",
+    "AI model failover",
+    "OpenRouter",
+    "Gemini API",
+    "VS Code AI",
+    "OpenAI-compatible API"
+  ],
   "tags": [
     "AI",
     "DevOps",
     "Integration"
   ],
   "readingTime": "4 min",
-  "url": "https://mobinshaterian.medium.com/unified-ai-orchestration-setting-up-9router-model-combos-and-cline-in-vs-code-116d0453da6a",
-  "hero": "https://cdn-images-1.medium.com/max/1024/1*-uAU9N6zuLzsRX3EjucJcg.jpeg",
+  "url": "https://medium.datadriveninvestor.com/unified-ai-orchestration-setting-up-9router-model-combos-and-cline-in-vs-code-116d0453da6a",
+  "hero": "https://miro.medium.com/v2/resize:fit:720/format:webp/1*-uAU9N6zuLzsRX3EjucJcg.jpeg",
   "content": [
     {
       "type": "paragraph",

@@ -1,27 +1,27 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
-import postsIndex from "@/data/posts-index.json";
-import relatedPosts from "@/data/kg/related_posts.json";
-import profile from "@/data/profile.json";
-import { PostContent, type Block } from "@/components/PostContent";
-import { SiteMenu } from "@/components/SiteMenu";
 import {
   ArrowLeft,
   ArrowRight,
-  ExternalLink,
   Calendar,
   Clock,
-  Tag as TagIcon,
+  ExternalLink,
   FileJson,
+  Tag as TagIcon,
 } from "lucide-react";
+import { type Block, PostContent } from "@/components/PostContent";
+import { SiteMenu } from "@/components/SiteMenu";
+import relatedPosts from "@/data/kg/related_posts.json";
+import postsIndex from "@/data/posts-index.json";
+import profile from "@/data/profile.json";
+import { BLOG_TAGS, blogTagSearchValue, isVisibleBlogTag } from "@/lib/blog-tags";
 import {
+  absoluteUrl,
   BLOG_DESCRIPTION,
+  cleanDescription,
   DEFAULT_SOCIAL_IMAGE,
   SITE_NAME,
   SITE_URL,
-  absoluteUrl,
-  cleanDescription,
 } from "@/lib/seo";
-import { BLOG_TAGS, blogTagSearchValue, isVisibleBlogTag } from "@/lib/blog-tags";
 
 type IndexEntry = {
   slug: string;
@@ -36,6 +36,10 @@ type IndexEntry = {
 
 type FullPost = IndexEntry & {
   subtitle?: string;
+  seoTitle?: string;
+  seoDescription?: string;
+  seoKeywords?: string[];
+  dateModified?: string;
   content: Block[];
 };
 
@@ -65,15 +69,18 @@ export const Route = createFileRoute("/blog/$slug")({
     }
     const { post } = loaderData;
     const postUrl = absoluteUrl(`/blog/${params.slug}`);
-    const title = `${post.title} | ${SITE_NAME}`;
+    const title = post.seoTitle || `${post.title} | ${SITE_NAME}`;
     const description = cleanDescription(
-      post.subtitle || post.excerpt || firstParagraph(post),
+      post.seoDescription || post.subtitle || post.excerpt || firstParagraph(post),
       BLOG_DESCRIPTION,
     );
     const image = post.hero || DEFAULT_SOCIAL_IMAGE;
+    const keywords = post.seoKeywords?.length ? post.seoKeywords : post.tags;
+    const dateModified = post.dateModified || post.date;
     const meta: Array<Record<string, string>> = [
       { title },
       { name: "description", content: description },
+      { name: "keywords", content: keywords.join(", ") },
       { name: "author", content: SITE_NAME },
       { name: "robots", content: "index, follow, max-image-preview:large" },
       { property: "og:title", content: post.title },
@@ -85,6 +92,7 @@ export const Route = createFileRoute("/blog/$slug")({
       { property: "og:image", content: image },
       { property: "og:image:alt", content: post.title },
       { property: "article:published_time", content: post.date },
+      { property: "article:modified_time", content: dateModified },
       { property: "article:author", content: SITE_URL },
       { property: "article:section", content: post.tags[0] || "Software Engineering" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -110,7 +118,7 @@ export const Route = createFileRoute("/blog/$slug")({
             headline: post.title,
             description,
             datePublished: post.date,
-            dateModified: post.date,
+            dateModified,
             author: {
               "@type": "Person",
               "@id": `${SITE_URL}/#person`,
@@ -118,7 +126,7 @@ export const Route = createFileRoute("/blog/$slug")({
               url: SITE_URL,
             },
             publisher: { "@id": `${SITE_URL}/#person` },
-            keywords: post.tags.join(", "),
+            keywords,
             articleSection: post.tags[0] || "Software Engineering",
             image,
             inLanguage: "en",

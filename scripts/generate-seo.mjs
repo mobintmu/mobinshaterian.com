@@ -71,7 +71,7 @@ const urls = [
   },
   ...posts.map((post) => ({
     loc: `${siteUrl}/blog/${encodeURIComponent(post.slug)}`,
-    lastmod: post.date,
+    lastmod: post.dateModified || post.date,
     changefreq: "monthly",
     priority: "0.8",
   })),
