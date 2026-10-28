@@ -1,5 +1,35 @@
 [
   {
+    "slug": "I-Don-t-Want-to-Become-the-People-Who-Hurt-Me-9cf28eb913dc",
+    "title": "I Don’t Want to Become the People Who Hurt Me",
+    "excerpt": "A rewrite done with AI, a junior developer, and a harsh review that exposed an old wound. A reflection on how hurt can turn into the behavior we swore never to repeat.",
+    "date": "2026-10-25",
+    "tags": [
+      "Career",
+      "Workplace Culture",
+      "Team Management",
+      "AI"
+    ],
+    "readingTime": "27 min",
+    "url": "https://blog.stackademic.com/i-dont-want-to-become-the-people-who-hurt-me-9cf28eb913dc",
+    "hero": "https://miro.medium.com/v2/resize:fit:720/format:webp/1*Tt0O_5KYTKXniTfOopvyPg.jpeg"
+  },
+  {
+    "slug": "Building-a-Telecom-Intelligence-Platform-from-Scratch--From-Raw-KPIs-to-an-AI-Ready-Rule-Engine-38161ac3d456",
+    "title": "Building a Telecom Intelligence Platform from Scratch: From Raw KPIs to an AI-Ready Rule Engine",
+    "excerpt": "Why a telecom monitoring platform should start with normalized KPIs and reusable features before writing a single rule.",
+    "date": "2026-10-19",
+    "tags": [
+      "Telecom",
+      "Data Engineering",
+      "ClickHouse",
+      "Kafka"
+    ],
+    "readingTime": "5 min",
+    "url": "https://medium.datadriveninvestor.com/building-a-telecom-intelligence-platform-from-scratch-from-raw-kpis-to-an-ai-ready-rule-engine-38161ac3d456",
+    "hero": "https://miro.medium.com/v2/resize:fit:720/format:webp/1*ET8WU0os1MPUwIgwQM0OCw.png"
+  },
+  {
     "slug": "I-Was-Never-Trying-to-Become-a-Better-Component-773723916af5",
     "title": "I Was Never Trying to Become a Better Component",
     "excerpt": "From allergy to IgE, from an external brain to AI, and from Mobin to Mobin-less",

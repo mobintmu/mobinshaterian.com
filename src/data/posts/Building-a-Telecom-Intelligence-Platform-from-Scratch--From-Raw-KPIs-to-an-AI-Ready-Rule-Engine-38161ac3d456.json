@@ -1,0 +1,953 @@
+{
+  "slug": "Building-a-Telecom-Intelligence-Platform-from-Scratch--From-Raw-KPIs-to-an-AI-Ready-Rule-Engine-38161ac3d456",
+  "title": "Building a Telecom Intelligence Platform from Scratch: From Raw KPIs to an AI-Ready Rule Engine",
+  "subtitle": "From raw counters to an AI-ready rule engine: why features come before rules",
+  "excerpt": "Why a telecom monitoring platform should start with normalized KPIs and reusable features before writing a single rule.",
+  "date": "2026-10-19",
+  "tags": [
+    "Telecom",
+    "Data Engineering",
+    "ClickHouse",
+    "Kafka"
+  ],
+  "readingTime": "5 min",
+  "url": "https://medium.datadriveninvestor.com/building-a-telecom-intelligence-platform-from-scratch-from-raw-kpis-to-an-ai-ready-rule-engine-38161ac3d456",
+  "hero": "https://miro.medium.com/v2/resize:fit:720/format:webp/1*ET8WU0os1MPUwIgwQM0OCw.png",
+  "content": [
+    {
+      "type": "paragraph",
+      "html": "Building a Telecom Intelligence Platform from Scratch: From Raw KPIs to an AI-Ready Rule Engine"
+    },
+    {
+      "type": "paragraph",
+      "html": "From raw counters to an AI-ready rule engine: why features come before rules"
+    },
+    {
+      "type": "image",
+      "src": "https://miro.medium.com/v2/resize:fit:720/format:webp/1*ET8WU0os1MPUwIgwQM0OCw.png",
+      "alt": "Building a Telecom Intelligence Platform from Scratch",
+      "caption": ""
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Introduction"
+    },
+    {
+      "type": "paragraph",
+      "html": "Modern telecom networks generate massive amounts of performance data every hour."
+    },
+    {
+      "type": "paragraph",
+      "html": "A large mobile network with multiple vendors such as:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Huawei",
+        "Ericsson",
+        "Nokia",
+        "ZTE"
+      ]
+    },
+    {
+      "type": "paragraph",
+      "html": "can generate millions of performance counters every hour."
+    },
+    {
+      "type": "paragraph",
+      "html": "These counters include:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Traffic",
+        "Active users",
+        "PRB utilization",
+        "Throughput",
+        "Drop rates",
+        "Accessibility counters",
+        "Mobility counters",
+        "Radio quality measurements",
+        "Availability counters"
+      ]
+    },
+    {
+      "type": "paragraph",
+      "html": "However, raw counters alone do not provide operational intelligence."
+    },
+    {
+      "type": "paragraph",
+      "html": "Network engineers do not want to see:"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "PRB_Usage = 92\nCounter_A = 123456\nCounter_B = 234567"
+    },
+    {
+      "type": "paragraph",
+      "html": "They want answers:"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "Why is this cell congested?\nIs this a coverage problem?\nIs this an interference issue?\nWill this cell fail soon?\nWhat action should we take?"
+    },
+    {
+      "type": "paragraph",
+      "html": "To answer these questions, we need to build a system that transforms raw counters into:"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "Counters\n   ↓\nKPIs\n   ↓\nFeatures\n   ↓\nRules\n   ↓\nEvents\n   ↓\nNetwork Intelligence"
+    },
+    {
+      "type": "paragraph",
+      "html": "This article explains how to build this platform from scratch, even when we do not have a complete rule engine definition at the beginning."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "1. The Wrong Approach: Start With Thousands of Rules"
+    },
+    {
+      "type": "paragraph",
+      "html": "A common mistake is starting with:"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "Rule 1:\nIF PRB > 80 THEN congestion\n\nRule 2:\nIF drop_rate > 2 THEN alarm\n\nRule 3:\nIF RSRP < -110 THEN coverage problem"
+    },
+    {
+      "type": "paragraph",
+      "html": "After several months, you have:"
+    },
+    {
+      "type": "paragraph",
+      "html": "10,000 rules"
+    },
+    {
+      "type": "paragraph",
+      "html": "but nobody knows:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Which rules are useful?",
+        "Which rules create false alarms?",
+        "Which rules overlap?",
+        "Which rules are outdated?",
+        "Which features are actually important?"
+      ]
+    },
+    {
+      "type": "paragraph",
+      "html": "A rule engine without a feature foundation becomes a collection of hardcoded thresholds."
+    },
+    {
+      "type": "paragraph",
+      "html": "The correct approach is:"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "Build the intelligence platform first.\nAdd rules gradually.\nLearn from historical data."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "2. Start With the Data Foundation"
+    },
+    {
+      "type": "paragraph",
+      "html": "The first step is not the rule engine."
+    },
+    {
+      "type": "paragraph",
+      "html": "The first step is building a reliable KPI platform."
+    },
+    {
+      "type": "paragraph",
+      "html": "The architecture:"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "Vendor PM Files → Kafka → KPI Processing Layer → ClickHouse → Feature Platform → Rule Engine → Network Events"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "3. Normalize Vendor Counters"
+    },
+    {
+      "type": "paragraph",
+      "html": "Different vendors describe the same concept differently."
+    },
+    {
+      "type": "paragraph",
+      "html": "Example:"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "Huawei:  RRCSuccRate\nEricsson: pmRrcConnEstabSucc\nNokia:   L.RRC.ConnEstabSucc\nZTE:     RRC.Setup.Success"
+    },
+    {
+      "type": "paragraph",
+      "html": "They represent a similar concept:"
+    },
+    {
+      "type": "paragraph",
+      "html": "RRC Connection Success"
+    },
+    {
+      "type": "paragraph",
+      "html": "Therefore, create a canonical KPI model."
+    },
+    {
+      "type": "paragraph",
+      "html": "Example:"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "canonical_kpi_name:\nrrc_connection_success_rate\n\nvendor_mapping:\nHuawei:\n  RRCSuccRate\nEricsson:\n  pmRrcConnEstabSucc\nNokia:\n  L.RRC.ConnEstabSucc\nZTE:\n  RRC.Setup.Success"
+    },
+    {
+      "type": "paragraph",
+      "html": "The rule engine should never know vendor-specific counters."
+    },
+    {
+      "type": "paragraph",
+      "html": "It should understand:"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "rrc_connection_success_rate"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "4. Build the KPI Layer"
+    },
+    {
+      "type": "paragraph",
+      "html": "The first storage layer:"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "raw_counters"
+    },
+    {
+      "type": "paragraph",
+      "html": "contains:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "cell_id",
+        "vendor",
+        "technology",
+        "counter_name",
+        "counter_value",
+        "timestamp"
+      ]
+    },
+    {
+      "type": "paragraph",
+      "html": "Example:"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "CELL001\nHuawei\nPRB_USED\n83\n2026-07-21 10:00"
+    },
+    {
+      "type": "paragraph",
+      "html": "Then calculate KPIs."
+    },
+    {
+      "type": "paragraph",
+      "html": "Example:"
+    },
+    {
+      "type": "paragraph",
+      "html": "Accessibility:"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "success_rate = successful_attempts / total_attempts"
+    },
+    {
+      "type": "paragraph",
+      "html": "Retainability:"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "drop_rate = drop_calls / established_calls"
+    },
+    {
+      "type": "paragraph",
+      "html": "Availability:"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "availability = available_time / total_time"
+    },
+    {
+      "type": "paragraph",
+      "html": "Store:"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "hourly_kpi"
+    },
+    {
+      "type": "paragraph",
+      "html": "Example:"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "cell_id\nkpi_name\nvalue\nhour"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "5. Do Not Build Rules Yet"
+    },
+    {
+      "type": "paragraph",
+      "html": "At this stage, we do not know all rules."
+    },
+    {
+      "type": "paragraph",
+      "html": "That is normal."
+    },
+    {
+      "type": "paragraph",
+      "html": "Instead, build a feature platform."
+    },
+    {
+      "type": "paragraph",
+      "html": "A feature describes network behavior."
+    },
+    {
+      "type": "paragraph",
+      "html": "Example:"
+    },
+    {
+      "type": "paragraph",
+      "html": "KPI: PRB Utilization"
+    },
+    {
+      "type": "paragraph",
+      "html": "Features:"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "current_value\naverage_3h\naverage_24h\np95_24h\nchange_vs_previous_hour\nchange_vs_yesterday\nbaseline_deviation\nz_score\ntrend"
+    },
+    {
+      "type": "paragraph",
+      "html": "Now the system understands behavior, not only values."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "6. Build the Feature Store"
+    },
+    {
+      "type": "paragraph",
+      "html": "A feature store contains reusable intelligence."
+    },
+    {
+      "type": "paragraph",
+      "html": "Example:"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "cell_features_hourly"
+    },
+    {
+      "type": "paragraph",
+      "html": "Example row:"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "Cell: LTE_CELL_1001\n\nFeatures:\nprb_avg_24h: 78\nprb_p95_24h: 92\nthroughput_change_24h: -31%\nactive_users_change_24h: +22%\ntraffic_baseline_deviation: +15%\ndata_quality: 99%"
+    },
+    {
+      "type": "paragraph",
+      "html": "Now many different rules can use the same features."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "7. Feature Calculation Architecture"
+    },
+    {
+      "type": "paragraph",
+      "html": "Use different tools for different jobs."
+    },
+    {
+      "type": "paragraph",
+      "html": "<strong>Kafka</strong>"
+    },
+    {
+      "type": "paragraph",
+      "html": "Responsible for:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Data movement",
+        "Streaming events",
+        "Buffering",
+        "Decoupling services"
+      ]
+    },
+    {
+      "type": "paragraph",
+      "html": "Example topics:"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "raw-counter-topic\nhourly-kpi-topic\nfeature-ready-topic\nnetwork-event-topic"
+    },
+    {
+      "type": "paragraph",
+      "html": "<strong>ClickHouse</strong>"
+    },
+    {
+      "type": "paragraph",
+      "html": "Responsible for:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Aggregation",
+        "Historical analysis",
+        "Feature calculation",
+        "Large-scale queries"
+      ]
+    },
+    {
+      "type": "paragraph",
+      "html": "Good examples:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "AVG",
+        "SUM",
+        "MAX",
+        "MIN",
+        "P95",
+        "24 hour statistics",
+        "7 day baseline",
+        "28 day comparison"
+      ]
+    },
+    {
+      "type": "paragraph",
+      "html": "<strong>Airflow</strong>"
+    },
+    {
+      "type": "paragraph",
+      "html": "Responsible for:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Scheduling",
+        "Backfills",
+        "Recalculation",
+        "Data validation",
+        "Feature pipelines"
+      ]
+    },
+    {
+      "type": "paragraph",
+      "html": "Example:"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "Every hour:\n1. Wait for KPI completion\n2. Calculate features\n3. Validate quality\n4. Publish feature-ready event"
+    },
+    {
+      "type": "paragraph",
+      "html": "<strong>Python</strong>"
+    },
+    {
+      "type": "paragraph",
+      "html": "Use Python only when necessary."
+    },
+    {
+      "type": "paragraph",
+      "html": "Examples:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Machine learning",
+        "Anomaly detection",
+        "Forecasting",
+        "Complex algorithms"
+      ]
+    },
+    {
+      "type": "paragraph",
+      "html": "Do not use Python for:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "SUM()",
+        "AVG()",
+        "P95()",
+        "Rolling average"
+      ]
+    },
+    {
+      "type": "paragraph",
+      "html": "ClickHouse is better for these."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "8. Create Rules From Features"
+    },
+    {
+      "type": "paragraph",
+      "html": "Now rules become simple."
+    },
+    {
+      "type": "paragraph",
+      "html": "Example rule: LTE Congestion Detection"
+    },
+    {
+      "type": "paragraph",
+      "html": "Definition:"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "IF PRB p95 3h > 85%\nAND User throughput decreased > 25%\nAND Active users increased > 10%\nAND Condition exists for 3 hours\n\nTHEN\nCreate congestion event"
+    },
+    {
+      "type": "paragraph",
+      "html": "The rule is no longer:"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "IF counter_x > 123"
+    },
+    {
+      "type": "paragraph",
+      "html": "It is:"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "IF network behavior matches congestion pattern"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "9. Store Rules as Data"
+    },
+    {
+      "type": "paragraph",
+      "html": "Do not hardcode rules."
+    },
+    {
+      "type": "paragraph",
+      "html": "Create a <code>rules</code> table."
+    },
+    {
+      "type": "paragraph",
+      "html": "Example:"
+    },
+    {
+      "type": "code",
+      "lang": "json",
+      "code": "{\n  \"name\": \"LTE Congestion\",\n  \"conditions\": [\n    { \"feature\": \"prb_p95_3h\", \"operator\": \">\", \"value\": 85 },\n    { \"feature\": \"throughput_change_24h\", \"operator\": \"<\", \"value\": -25 }\n  ],\n  \"severity\": \"MAJOR\"\n}"
+    },
+    {
+      "type": "paragraph",
+      "html": "Now engineers can create rules without changing code."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "10. Rule Evaluation Engine"
+    },
+    {
+      "type": "paragraph",
+      "html": "The rule engine receives:"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "FEATURE_READY"
+    },
+    {
+      "type": "paragraph",
+      "html": "event."
+    },
+    {
+      "type": "paragraph",
+      "html": "Example:"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "Cell LTE001\nFeature set version 5\nHour 12:00"
+    },
+    {
+      "type": "paragraph",
+      "html": "The engine:"
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Loads active rules.",
+        "Loads features.",
+        "Evaluates conditions.",
+        "Creates events."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "html": "Example:"
+    },
+    {
+      "type": "paragraph",
+      "html": "Input:"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "PRB = 92\nThroughput change = -35%\nUsers change = +20%"
+    },
+    {
+      "type": "paragraph",
+      "html": "Output:"
+    },
+    {
+      "type": "code",
+      "lang": "json",
+      "code": "{\n  \"type\": \"CONGESTION\",\n  \"cell\": \"LTE001\",\n  \"severity\": \"MAJOR\",\n  \"reason\": \"High utilization with throughput degradation\"\n}"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "11. Use Event State Management"
+    },
+    {
+      "type": "paragraph",
+      "html": "A network condition is not only TRUE or FALSE."
+    },
+    {
+      "type": "paragraph",
+      "html": "Real networks need state."
+    },
+    {
+      "type": "paragraph",
+      "html": "Example:"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "10:00  PRB high  →  State: PENDING\n11:00  PRB high  →  State: PENDING\n12:00  PRB high  →  State: ACTIVE ALARM"
+    },
+    {
+      "type": "paragraph",
+      "html": "States:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "NORMAL",
+        "PENDING",
+        "ACTIVE",
+        "RECOVERING",
+        "CLOSED"
+      ]
+    },
+    {
+      "type": "paragraph",
+      "html": "This prevents alarm storms."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "12. Create an Event Platform"
+    },
+    {
+      "type": "paragraph",
+      "html": "Output events to the Kafka topic:"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "network-events"
+    },
+    {
+      "type": "paragraph",
+      "html": "Example:"
+    },
+    {
+      "type": "code",
+      "lang": "json",
+      "code": "{\n  \"type\": \"CELL_CONGESTION\",\n  \"cell\": \"LTE001\",\n  \"severity\": \"MAJOR\",\n  \"time\": \"2026-07-21T12:00\",\n  \"evidence\": {\n    \"prb_p95\": 92,\n    \"throughput_change\": -35\n  }\n}"
+    },
+    {
+      "type": "paragraph",
+      "html": "Consumers can include:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Dashboard",
+        "Ticketing system",
+        "Optimization system",
+        "Automation platform",
+        "AI assistant"
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "13. Add AI Later"
+    },
+    {
+      "type": "paragraph",
+      "html": "After collecting:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Features",
+        "Rules",
+        "Events",
+        "Engineer feedback"
+      ]
+    },
+    {
+      "type": "paragraph",
+      "html": "then add AI."
+    },
+    {
+      "type": "paragraph",
+      "html": "AI can:"
+    },
+    {
+      "type": "paragraph",
+      "html": "<strong>Generate rules</strong>"
+    },
+    {
+      "type": "paragraph",
+      "html": "Engineer: Find cells with possible congestion"
+    },
+    {
+      "type": "paragraph",
+      "html": "AI: Create candidate rule."
+    },
+    {
+      "type": "paragraph",
+      "html": "<strong>Detect unknown problems</strong>"
+    },
+    {
+      "type": "paragraph",
+      "html": "Machine learning:"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "feature vector → anomaly model → anomaly score"
+    },
+    {
+      "type": "paragraph",
+      "html": "Example:"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "Congestion probability: 0.94"
+    },
+    {
+      "type": "paragraph",
+      "html": "<strong>Explain alarms</strong>"
+    },
+    {
+      "type": "paragraph",
+      "html": "Input:"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "PRB=92\nThroughput=-35%\nUsers=+22%"
+    },
+    {
+      "type": "paragraph",
+      "html": "AI:"
+    },
+    {
+      "type": "paragraph",
+      "html": "Cell congestion is likely caused by capacity shortage. Traffic increased while available radio resources decreased."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "14. Complete Final Architecture"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "Vendors → PM Counters → Kafka → KPI Normalization → ClickHouse KPI Store → Feature Calculation (ClickHouse + Python ML) → Feature Store → Rule Engine → Kafka Network Events → Dashboard / Automation / AI"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "15. Development Roadmap"
+    },
+    {
+      "type": "paragraph",
+      "html": "<strong>Phase 1 — Foundation</strong>"
+    },
+    {
+      "type": "paragraph",
+      "html": "Build:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Kafka ingestion",
+        "Vendor normalization",
+        "ClickHouse KPI storage",
+        "Basic feature calculation"
+      ]
+    },
+    {
+      "type": "paragraph",
+      "html": "<strong>Phase 2 — First intelligence</strong>"
+    },
+    {
+      "type": "paragraph",
+      "html": "Create:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "10 important rules",
+        "Feature dependency matrix",
+        "Rule engine",
+        "Event generation"
+      ]
+    },
+    {
+      "type": "paragraph",
+      "html": "<strong>Phase 3 — Optimization</strong>"
+    },
+    {
+      "type": "paragraph",
+      "html": "Add:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Historical simulation",
+        "False-positive analysis",
+        "Rule versioning",
+        "Engineer feedback"
+      ]
+    },
+    {
+      "type": "paragraph",
+      "html": "<strong>Phase 4 — AI</strong>"
+    },
+    {
+      "type": "paragraph",
+      "html": "Add:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "AI rule assistant",
+        "Anomaly detection",
+        "Root cause prediction",
+        "Network optimization recommendations"
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Conclusion"
+    },
+    {
+      "type": "paragraph",
+      "html": "A telecom intelligent monitoring system should not start with thousands of rules."
+    },
+    {
+      "type": "paragraph",
+      "html": "The correct evolution is:"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "code": "Raw Counters\n      ↓\nNormalized KPIs\n      ↓\nReusable Features\n      ↓\nSimple Explainable Rules\n      ↓\nEvents\n      ↓\nAI Enhancement"
+    },
+    {
+      "type": "paragraph",
+      "html": "The biggest architectural decision is separating:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Feature engineering (understanding network behavior)",
+        "Rule evaluation (deciding whether action is required)"
+      ]
+    },
+    {
+      "type": "paragraph",
+      "html": "Once this foundation exists, adding new rules becomes easy, and the platform can naturally evolve into an AI-driven network intelligence system."
+    }
+  ]
+}

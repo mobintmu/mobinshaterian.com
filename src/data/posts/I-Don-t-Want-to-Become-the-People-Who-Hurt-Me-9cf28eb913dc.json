@@ -1,0 +1,771 @@
+{
+  "slug": "I-Don-t-Want-to-Become-the-People-Who-Hurt-Me-9cf28eb913dc",
+  "title": "I Don’t Want to Become the People Who Hurt Me",
+  "subtitle": "Sixteen years in software, an old wound, an AI-generated rewrite, and the day I heard someone else’s voice come out of my mouth",
+  "excerpt": "A rewrite done with AI, a junior developer, and a harsh review that exposed an old wound. A reflection on how hurt can turn into the behavior we swore never to repeat.",
+  "date": "2026-10-25",
+  "tags": ["Career", "Workplace Culture", "Team Management", "AI"],
+  "readingTime": "27 min",
+  "url": "https://blog.stackademic.com/i-dont-want-to-become-the-people-who-hurt-me-9cf28eb913dc",
+  "hero": "https://miro.medium.com/v2/resize:fit:720/format:webp/1*Tt0O_5KYTKXniTfOopvyPg.jpeg",
+  "content": [
+    {
+      "type": "quote",
+      "html": "Drink wine, for you do not know where you came from.<br /> Be happy, for you do not know where you are going.<br /> — attributed to Omar Khayyam"
+    },
+    {
+      "type": "paragraph",
+      "html": "I don’t know where I came from, and I don’t know where I’m going. It may be the most honest thing a person can say about their life."
+    },
+    {
+      "type": "paragraph",
+      "html": "We spend years accumulating experience. We fail, learn, build things, break things. We start to believe that experience has made us wiser, that suffering has made us kinder, and that our mistakes have taught us how to treat other people."
+    },
+    {
+      "type": "paragraph",
+      "html": "Then something small happens. A conversation. A disagreement about a project. A few lines of code. And in the middle of the words coming out of our mouths, we hear the voice of someone who hurt us years ago."
+    },
+    {
+      "type": "paragraph",
+      "html": "The same tone. The same irritation. The same contempt. The behavior we once hated with our whole being."
+    },
+    {
+      "type": "paragraph",
+      "html": "Maybe the most frightening moment in a life isn’t when someone hurts us. Maybe it’s when we realize we are doing the same thing to someone else."
+    },
+    {
+      "type": "paragraph",
+      "html": "This story is about that moment. It began with a software project and ended at a much older question:"
+    },
+    {
+      "type": "paragraph",
+      "html": "<strong>How does someone who spent his whole life trying not to resemble the people who hurt him suddenly become one of them?</strong>"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Sixteen years of a career, sixteen years of a life"
+    },
+    {
+      "type": "paragraph",
+      "html": "I’ve worked in software for sixteen years. I started in the days when writing a few lines of code was thrilling. Now I think less about code and more about architecture, organizations, human behavior, and the consequences of technical decisions."
+    },
+    {
+      "type": "paragraph",
+      "html": "I’ve worked with databases, distributed systems, data processing, and microservices. I’ve built systems that handle millions of requests, systems that could waste thousands of hours of human effort and enormous amounts of data if designed badly."
+    },
+    {
+      "type": "paragraph",
+      "html": "None of it came free. Nobody sat beside me on my first day and calmly explained why one decision was right and another wrong. Most of what I know came from failing, enduring pressure, and working with people who were often more judges than teachers. People who saw my mistakes not as chances to learn but as reasons for contempt."
+    },
+    {
+      "type": "paragraph",
+      "html": "In an environment like that, you learn more than a skill. You learn to hide your mistakes. You learn to rehearse a question ten times before asking it. You learn that not knowing has a price. And worst of all, you slowly absorb the idea that harshness, humiliation, and pressure are simply how learning works."
+    },
+    {
+      "type": "paragraph",
+      "html": "For years I fought that idea. I kept telling myself:"
+    },
+    {
+      "type": "paragraph",
+      "html": "<strong>I can’t change my past, but I can decide not to treat others that way.</strong>"
+    },
+    {
+      "type": "paragraph",
+      "html": "I didn’t want to become the manager I feared. I didn’t want to be the senior engineer who humiliated instead of teaching. I didn’t want to turn knowledge into a weapon for showing off."
+    },
+    {
+      "type": "paragraph",
+      "html": "Maybe that’s why I started sharing what I know. I wrote articles, published my experience, built open-source projects. To me, knowledge wasn’t something that gains value by being hoarded. Its value shows when other people can use it without repeating our pain."
+    },
+    {
+      "type": "paragraph",
+      "html": "But knowing how not to behave doesn’t guarantee you’ll behave well when you’re angry. I learned that on a completely ordinary day."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "A young developer and the wrong project"
+    },
+    {
+      "type": "paragraph",
+      "html": "A few days earlier, I’d learned that a colleague was rewriting a system. He was a frontend developer: kind, curious, eager to move into backend work. One of those people in whom you can still see the excitement of learning."
+    },
+    {
+      "type": "paragraph",
+      "html": "His manager had handed him a project that looked simple. A Python application pulled files from an SFTP server and pushed their contents into Kafka. Fetch the file, read it, process it, send it on."
+    },
+    {
+      "type": "paragraph",
+      "html": "Anyone who has designed data pipelines knows the real complexity hides in sentences like that."
+    },
+    {
+      "type": "paragraph",
+      "html": "What happens if the network drops? If a file arrives incomplete? If the process dies halfway through publishing? If Kafka accepts the message but the app crashes before recording success? If a file is processed twice? If two workers pick up the same file?"
+    },
+    {
+      "type": "paragraph",
+      "html": "And the question that matters most:"
+    },
+    {
+      "type": "paragraph",
+      "html": "<strong>How do you prove the system never silently loses data?</strong>"
+    },
+    {
+      "type": "paragraph",
+      "html": "The old system had exactly these problems. It lost data. It tracked file state poorly. It wasn’t resilient to failure, and its architecture meant every fix risked creating new bugs. This was one of the most sensitive technical problems in the organization."
+    },
+    {
+      "type": "paragraph",
+      "html": "The rewrite had been allotted two weeks."
+    },
+    {
+      "type": "paragraph",
+      "html": "For a problem like this, covering design, testing, implementation, validation, and deployment, I would have estimated about six months and two experienced engineers. That gap wasn’t about typing speed. It was a gap in understanding the problem."
+    },
+    {
+      "type": "paragraph",
+      "html": "To be fair, their scope might have been narrower than I assumed, and there may have been constraints I didn’t know about. But what I saw looked like an old mistake being repeated: an organization wanting results fast, a junior developer wanting a chance to grow, and the real complexity of the problem lost somewhere between them."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Enter the AI"
+    },
+    {
+      "type": "paragraph",
+      "html": "When I learned he was rewriting the system in Go, I got curious and asked how he was doing it. He said he was using Cursor. He gave the Python code to the model and asked for a Go equivalent. That was it."
+    },
+    {
+      "type": "paragraph",
+      "html": "Something in me shifted. Not because I dislike AI. I use it constantly in my own work. I’ve written long instructions to automate repetitive tasks, designed workflows a model can execute step by step, and thought hard about how to pull engineering knowledge out of one person’s head and into a repeatable system."
+    },
+    {
+      "type": "paragraph",
+      "html": "But using AI to do engineering is very different from using AI to generate code."
+    },
+    {
+      "type": "paragraph",
+      "html": "<strong>AI can turn one flawed implementation into another flawed implementation at astonishing speed.</strong>"
+    },
+    {
+      "type": "paragraph",
+      "html": "If the Python architecture is flawed, translating it into Go doesn’t fix it. If there’s no real state management, changing languages won’t create one. If there’s no failure-recovery strategy, goroutines won’t make the system resilient by themselves. If delivery guarantees, deduplication, and progress tracking aren’t defined, the speed of the program isn’t the issue. You may simply end up with a system that makes the old mistakes faster."
+    },
+    {
+      "type": "paragraph",
+      "html": "So I asked him: why rewrite this at all?"
+    },
+    {
+      "type": "paragraph",
+      "html": "Had they looked at Kafka Connect and existing connectors? Had they identified the limitations of those tools? Had anyone documented the problem or written down requirements? Were there acceptance criteria? Was it clear what “better” meant?"
+    },
+    {
+      "type": "paragraph",
+      "html": "There were no clear answers."
+    },
+    {
+      "type": "paragraph",
+      "html": "Then I looked at the code. Its structure, concurrency handling, separation of concerns, and error handling all had serious problems. It read like a translation of the old structure, not the design of a new system."
+    },
+    {
+      "type": "paragraph",
+      "html": "What angered me most, though, was something he said:"
+    },
+    {
+      "type": "paragraph",
+      "html": "“AI wrote it, so it should be good.”"
+    },
+    {
+      "type": "paragraph",
+      "html": "I don’t know exactly what happened in my head. I only know I could no longer talk as calmly as I had a few minutes earlier."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "The moment anger replaced teaching"
+    },
+    {
+      "type": "paragraph",
+      "html": "I started reviewing the code line by line. This part is wrong. This structure doesn’t work. Error handling is incomplete here. Data could be lost here. This doesn’t fit Go’s design principles. You shouldn’t solve the problem this way at all."
+    },
+    {
+      "type": "paragraph",
+      "html": "Question after question. Flaw after flaw."
+    },
+    {
+      "type": "paragraph",
+      "html": "Then I asked him: “Do you want to become a software engineer, or do you just want to generate code?”"
+    },
+    {
+      "type": "paragraph",
+      "html": "Much of what I said was technically correct. Many of the flaws were real. But looking back, being right wasn’t the issue."
+    },
+    {
+      "type": "paragraph",
+      "html": "The issue was how I said it."
+    },
+    {
+      "type": "paragraph",
+      "html": "I was standing in front of a developer who was just entering the backend world. Someone without the experience to grasp every subtlety of distributed systems. Someone whose manager had given him the project, and who probably thought AI would help him do something big. And I, with sixteen years behind me, dumped everything I’d learned over those years on him at once. As if I expected him to reach in minutes the understanding that cost me years."
+    },
+    {
+      "type": "paragraph",
+      "html": "I didn’t shout. I didn’t mean to humiliate him. But I was harsh, more than necessary, and my tone probably told him his work was worthless. He hadn’t acted in bad faith. He wanted to learn, to grow, to use the opportunity he’d been given, instead of seeing that first, I fixed every bit of my attention on his mistakes."
+    },
+    {
+      "type": "paragraph",
+      "html": "In that moment I forgot something I’d cared about for years:"
+    },
+    {
+      "type": "paragraph",
+      "html": "<strong>A person who doesn’t know something isn’t necessarily at fault for not knowing it.</strong>"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Kafka, and the trial that never ends"
+    },
+    {
+      "type": "paragraph",
+      "html": "In Franz Kafka’s world, people find themselves inside structures whose rules they don’t understand, yet they must live within them. In <em>The Trial</em>, Josef K. is accused of something he can’t identify. He must defend himself without knowing what the charge is. Power exists. Judgment exists. Anxiety exists. But the logic of the world stays opaque to the person trapped in it."
+    },
+    {
+      "type": "paragraph",
+      "html": "Thinking about that day, I see a bit of this atmosphere in workplaces."
+    },
+    {
+      "type": "paragraph",
+      "html": "A young developer joins an organization. He’s handed a project and a short deadline, and he’s expected to deliver. But he isn’t necessarily given the time to understand the problem, learn the architecture, or test his solutions. If it works, the organization has its result. If it fails, someone may ask why he didn’t design it properly."
+    },
+    {
+      "type": "paragraph",
+      "html": "That’s the contradiction: he’s expected to own decisions he may not have had the knowledge or authority to make."
+    },
+    {
+      "type": "paragraph",
+      "html": "I’d lived this before. Years ago I was handed work whose complexity didn’t match the time and resources available. When things went wrong, the structure that produced the decision went unexamined, and the person who wrote the code was questioned instead."
+    },
+    {
+      "type": "paragraph",
+      "html": "And now, strangely, I had become the person questioning the developer. He said, “My manager told me to do this.” I answered: “You’re responsible too. You can’t just do whatever your manager says without thinking.”"
+    },
+    {
+      "type": "paragraph",
+      "html": "That’s defensible as professional responsibility. An engineer should question technical decisions, explain risks, and push back on dangerous plans. But can we expect a junior developer to have the same independence and willingness to disagree that we expect of a senior engineer? Had the organization made him safe enough to say, “This can’t be done in two weeks”? Had anyone ever taught him how to challenge a technical decision?"
+    },
+    {
+      "type": "paragraph",
+      "html": "I don’t know. And that not-knowing matters, because we often judge people by standards we’ve had years to reach, while they’re only at the start of the road."
+    },
+    {
+      "type": "paragraph",
+      "html": "Kafka reminds me that sometimes a person isn’t only the victim of another individual. He’s the victim of a structure that even the people inside it unknowingly help reproduce. For a few minutes that day, I was part of that structure."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "I wasn’t really angry at him"
+    },
+    {
+      "type": "paragraph",
+      "html": "This is the most complicated part of the story."
+    },
+    {
+      "type": "paragraph",
+      "html": "I wasn’t upset with that developer. He was a good person. When I pointed out the problems, he didn’t get defensive. He listened, accepted the criticism, and explained that he’d planned to fix some parts later. His behavior was so respectful that my anger became even more puzzling to me afterward."
+    },
+    {
+      "type": "paragraph",
+      "html": "So why was I so angry?"
+    },
+    {
+      "type": "paragraph",
+      "html": "I think the answer lies beyond that project. I had spent a long time working toward reliable system design. I’d called meetings, written documents, prepared technical proposals, justified architectural decisions, and argued for the time that complexity requires. Sometimes I’d spent weeks debating details that might look trivial from the outside."
+    },
+    {
+      "type": "paragraph",
+      "html": "And suddenly I discovered that right next to me, someone was doing similar work without anyone having asked about my experience or assessments. Not that they were obliged to ask my permission. Not that I own every Go project in the organization. That nobody may design anything without me."
+    },
+    {
+      "type": "paragraph",
+      "html": "It was that I felt all those years of experience, all those discussions, all that effort to build an engineering practice, had simply been overlooked. If someone had just asked, “We’re planning to rewrite this system, and you have similar experience. What do you think?”, I’d have felt completely different. But nobody asked. I found out by accident."
+    },
+    {
+      "type": "paragraph",
+      "html": "I have to be honest with myself here. Part of my anger was an engineer’s anger at weak design. But another part was the reaction of a human being who felt unseen."
+    },
+    {
+      "type": "paragraph",
+      "html": "I was talking about code quality, but somewhere underneath I was asking about the value of my own experience."
+    },
+    {
+      "type": "paragraph",
+      "html": "Those two things should never have been mixed. That developer wasn’t responsible for my feeling of being overlooked. He shouldn’t have paid for the decisions of managers, my past experiences, and my accumulated frustration. In that moment, I lost the boundary between them."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "The scariest part: the voice from the past"
+    },
+    {
+      "type": "paragraph",
+      "html": "That night I thought less about the technical problems and more about my own behavior. Why did I react that way? Why couldn’t I explain things calmly? Why did I start counting his mistakes instead of helping him understand the problem?"
+    },
+    {
+      "type": "paragraph",
+      "html": "And suddenly I noticed a resemblance I didn’t want to see. I had done what others once did to me. Not with the same intensity, not necessarily with the same intent, but the pattern was familiar: a more experienced person faces a less experienced one, sees his mistakes, gets angry at what he doesn’t know, and instead of making knowledge a bridge, makes it a measure of the distance between them."
+    },
+    {
+      "type": "paragraph",
+      "html": "I had hated that behavior for years. But hating a pattern doesn’t stop you from repeating it. We don’t learn only through conscious decisions. Parts of our behavior form through repetition, exposure, and similar situations. When you live for years in an environment where mistakes are met with blame, that way of reacting to mistakes can become a familiar groove in your mind, even if you consciously oppose it."
+    },
+    {
+      "type": "paragraph",
+      "html": "This isn’t destiny. Being hurt doesn’t necessarily turn you into someone who hurts others. But under pressure, we may reproduce behaviors we learned from others, behaviors we never wanted as part of our character."
+    },
+    {
+      "type": "paragraph",
+      "html": "Maybe that’s the hardest part of growing up: knowing what’s right and doing what’s right are two different abilities. I knew I shouldn’t talk that way. But in a moment of anger, I couldn’t act on what I knew."
+    },
+    {
+      "type": "paragraph",
+      "html": "That contradiction tormented me, because the question was no longer about a project. It was this:"
+    },
+    {
+      "type": "paragraph",
+      "html": "<strong>Had all those years of trying to be a different person failed in a single moment?</strong>"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Khayyam: how much do we really know?"
+    },
+    {
+      "type": "paragraph",
+      "html": "In those two lines attributed to Khayyam, there’s something that grows more meaningful the longer I live: the admission of not knowing."
+    },
+    {
+      "type": "paragraph",
+      "html": "We don’t know why we were born into this world. We don’t know what’s waiting for us. We don’t know whether a decision that looks right today will look right in ten years. Sometimes we don’t even know why we behaved the way we did in a particular moment."
+    },
+    {
+      "type": "paragraph",
+      "html": "We’re creatures making decisions with limited knowledge in an enormously complex world. And yet this same ignorant creature sometimes judges others with such certainty, as though he knows the whole truth."
+    },
+    {
+      "type": "paragraph",
+      "html": "I knew the code had serious problems. But did I know everything about that developer’s situation? What his manager expected of him? How much time he’d had to learn? What pressure he was carrying? How he himself felt about the quality of his work?"
+    },
+    {
+      "type": "paragraph",
+      "html": "No. I saw only part of reality, just as he saw only part of the technical complexity. Maybe we were both judging on incomplete knowledge."
+    },
+    {
+      "type": "paragraph",
+      "html": "For me, Khayyam’s thought isn’t an invitation to irresponsibility. Not knowing the future doesn’t mean we shouldn’t plan. Not knowing where life ends doesn’t mean our actions don’t matter. On the contrary: precisely because we don’t know, the way we act today matters more. When we don’t know what awaits us, we can at least be more deliberate about the effect we have on others right now."
+    },
+    {
+      "type": "paragraph",
+      "html": "I don’t know where that developer will be in five years. He might become an excellent backend engineer. He might lead the architecture of large systems. He might leave programming entirely. This project might be the turning point of his career."
+    },
+    {
+      "type": "paragraph",
+      "html": "But I do know my behavior can shape his experience today. It can make learning thrilling, or it can tie it to anxiety, fear, and feeling inadequate. I can’t determine his future. I can try not to be an unnecessary obstacle on his path."
+    },
+    {
+      "type": "paragraph",
+      "html": "Our control over the future may be limited, but our responsibility for how we act now doesn’t disappear."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "A phone call"
+    },
+    {
+      "type": "paragraph",
+      "html": "After that incident, I called my colleague. I told him I wasn’t happy with how I’d spoken to him. I said I shouldn’t have talked to him that way."
+    },
+    {
+      "type": "paragraph",
+      "html": "The technical problems were still there. My opinion of the architecture hadn’t changed. I still thought a hasty rewrite, without understanding the problem, was a dangerous decision. But I’d understood that a critique being correct doesn’t justify delivering it badly."
+    },
+    {
+      "type": "paragraph",
+      "html": "You can be firm about a technical decision without questioning the person’s character or ability. You can hold high standards without making learning humiliating. You can say, “This architecture isn’t suitable for production,” without implying, “You aren’t suitable for this job.” For someone at the start of a career, that seemingly small difference can matter enormously."
+    },
+    {
+      "type": "paragraph",
+      "html": "Of course the call didn’t erase the past. I couldn’t take the words back. I couldn’t be sure he wasn’t upset. But I could take responsibility. And perhaps more important than the apology was deciding how I would act next time. I didn’t want to just feel regret. I wanted to change my behavior."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Instead of building a project, build an engineer"
+    },
+    {
+      "type": "paragraph",
+      "html": "After the call, I thought about what would actually help."
+    },
+    {
+      "type": "paragraph",
+      "html": "Should I do the project myself? No. I have no interest in solving every problem in the organization personally. For years I’ve tried to design systems that don’t depend on one person’s constant presence: where knowledge is documented, decisions can be reviewed, code is maintainable, and people can carry on without relying on a single individual. If every complex project ends up rescued by one experienced engineer, the organization hasn’t learned anything. It has only deepened its dependence on that person."
+    },
+    {
+      "type": "paragraph",
+      "html": "So what’s the answer? I think that developers should be given a real opportunity. Not a sensitive project with an unrealistic schedule, handed over in the hope that AI solves the rest, but learning alongside responsibility, guidance, and room to make mistakes in a controlled environment."
+    },
+    {
+      "type": "paragraph",
+      "html": "In our next conversation, instead of reviewing every flaw in the code again, I decided to ask him to define the problem from scratch. Before a single new line of code is written, we need to answer:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "What is the real problem, and under exactly what conditions does the current system fail?",
+        "Have existing solutions, including Kafka Connect and suitable connectors, been evaluated?",
+        "What are the functional and non-functional requirements?",
+        "What guarantee is needed to prevent data loss, and how is reprocessing handled?",
+        "What architecture is being proposed, and why was it chosen?",
+        "How can we validate the system’s behavior in a test environment?",
+        "What are the acceptance criteria, constraints, risks, and a realistic timeline?"
+      ]
+    },
+    {
+      "type": "paragraph",
+      "html": "After that, we can write a requirements document, a technical proposal, and a phased implementation plan. We can build a sandbox. We can simulate failure scenarios and write tests for connection drops, partial file downloads, reprocessing, and sudden crashes. We can review the architecture with other engineers before implementing it. We can use existing open-source projects as references for good Go structure. Maybe, if the organization agrees and security and IP concerns allow, we could even open-source the project."
+    },
+    {
+      "type": "paragraph",
+      "html": "Then this stops being the rewrite of a Python program. It becomes a chance to learn software engineering at real scale."
+    },
+    {
+      "type": "paragraph",
+      "html": "And AI can play an important role in that. Not as an authority whose output is assumed correct, but as a tool working against defined requirements, architectural standards, tests, and constraints."
+    },
+    {
+      "type": "paragraph",
+      "html": "I don’t want him to stop using AI. I want him to learn how to ask it the right questions, how to critique its output, how to justify technical decisions, and how to understand that generating code is not the same as solving the problem."
+    },
+    {
+      "type": "paragraph",
+      "html": "My goal isn’t for him to write code like me. It’s that one day he can make better engineering decisions without needing me."
+    },
+    {
+      "type": "paragraph",
+      "html": "Maybe he’ll even become better than me."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Organizations that confuse speed with progress"
+    },
+    {
+      "type": "paragraph",
+      "html": "There’s a bigger issue behind all of this: organizational cultures that sometimes mistake speed of output for real progress."
+    },
+    {
+      "type": "paragraph",
+      "html": "A project is defined. A short deadline is set. The developer starts coding. A first version appears. Everyone’s happy that it moved so fast. Months later, the problems surface. Data goes missing. The system fails under unexpected conditions. The code becomes hard to change. Nobody knows exactly why certain decisions were made. And the organization pays to fix the very thing it rushed to build."
+    },
+    {
+      "type": "paragraph",
+      "html": "I’ve seen this cycle many times. The problem isn’t only code quality. It’s how decisions get made."
+    },
+    {
+      "type": "paragraph",
+      "html": "When an organization doesn’t set aside time to understand a problem, the complexity doesn’t disappear. It’s just moved to the future. When we skip design, the cost of design isn’t eliminated. It often comes back as rework, bugs, and painful maintenance. And when we put an inexperienced developer on a sensitive project without enough support, we may endanger both the project and that person’s confidence."
+    },
+    {
+      "type": "paragraph",
+      "html": "Of course, not every project needs six months of design. Sometimes a quick prototype is the best way to understand a problem. Sometimes you have to build something to learn whether your assumptions hold. But there’s a big difference between building a prototype to learn and shipping that same prototype as a dependable production system."
+    },
+    {
+      "type": "paragraph",
+      "html": "My issue isn’t with speed. It’s with haste that ignores risk, and with a culture that overlooks complexity but later bills developers for the consequences."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Power, and the repetition of pain"
+    },
+    {
+      "type": "paragraph",
+      "html": "Back to Kafka, this time not to the courtroom but to power."
+    },
+    {
+      "type": "paragraph",
+      "html": "In many human relationships, power doesn’t require a management title. Knowledge is a kind of power. Experience is power. The ability to spot other people’s mistakes is power. Someone with sixteen years in a field holds a form of professional power over someone who has just entered it."
+    },
+    {
+      "type": "paragraph",
+      "html": "But power always carries a danger. We forget that we, too, once didn’t know. We take the gap between our experience and someone else’s inexperience as proof of our superiority as people. We assume that because we were treated harshly, others should walk the same road."
+    },
+    {
+      "type": "paragraph",
+      "html": "I don’t want to be that person. I don’t want to use my experience to frighten people. I don’t want knowledge I earned through pain to become a tool for producing new pain."
+    },
+    {
+      "type": "paragraph",
+      "html": "But there’s a tension here. I can’t give up my professional standards. I can’t stay silent when a system loses data just so no one feels uncomfortable. I can’t approve a dangerous design. I can’t pretend all solutions are equally good."
+    },
+    {
+      "type": "paragraph",
+      "html": "So the point isn’t to eliminate rigor. It’s to distinguish between being rigorous about the problem and being harsh toward the person."
+    },
+    {
+      "type": "paragraph",
+      "html": "I can be extremely demanding about a weak architecture and still be patient with the human who wrote it. I can reject a decision without destroying someone’s desire to learn. I can defend standards without diminishing someone else to prove I’m right."
+    },
+    {
+      "type": "paragraph",
+      "html": "That distinction may be one of the hardest things I still have to learn."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "I don’t want to be a hero"
+    },
+    {
+      "type": "paragraph",
+      "html": "Years ago I thought a good engineer was someone who could solve hard problems. Later I realized solving the problem is only part of the job. The more important questions are why the problem arose and how to prevent it from happening again."
+    },
+    {
+      "type": "paragraph",
+      "html": "Today I’ve gone one step further. The best system isn’t one that always needs a capable person to save it. It’s one that works correctly without that person’s constant presence. I feel the same way about organizations."
+    },
+    {
+      "type": "paragraph",
+      "html": "I don’t want to do every project myself. I don’t want every decision to pass through me. I don’t want to be the person called whenever something breaks. I don’t even want others to have to agree with all my technical tastes. I want a process in which decisions can be explained, challenged, and tested. I want knowledge to be shared. I want young developers to have room to learn. I want mistakes found in safe environments, not in sensitive production systems. I want people to be able to disagree on technical grounds, even with someone more experienced than they are."
+    },
+    {
+      "type": "paragraph",
+      "html": "Most of all, I don’t want to wreck a person in order to fix a system. If a project succeeds technically but a young developer loses his motivation and confidence, have we really succeeded?"
+    },
+    {
+      "type": "paragraph",
+      "html": "The answer isn’t always simple. Sometimes you have to make hard calls. Sometimes you have to halt an implementation. Sometimes you have to say that someone isn’t yet ready to own a sensitive system. But that truth can be told without contempt. Responsibility can be matched to experience. A growth path can be defined. Instead of leaving someone alone with complexity, we can give them tools and support."
+    },
+    {
+      "type": "paragraph",
+      "html": "I don’t want to be that developer’s savior. I just don’t want to be one of the obstacles to his growth."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Maybe the real problem is me"
+    },
+    {
+      "type": "paragraph",
+      "html": "The more I think about this story, the clearer it becomes that it wasn’t about Go, Python, Kafka, or AI. Those were just the stage on which something more important played out."
+    },
+    {
+      "type": "paragraph",
+      "html": "I came face to face with a part of myself I didn’t want to exist. A part that still gets angry at being overlooked. A part that still wants to prove its experience is worth something. A part that, when someone solves a complex problem naively, feels as though all its past effort has been made meaningless. And a part that under pressure may retreat to the very behavior that once hurt it."
+    },
+    {
+      "type": "paragraph",
+      "html": "I don’t want to deny these parts. I don’t want to justify everything by saying, “I just have high standards.” High standards are valuable. But having standards is not a license to treat people badly."
+    },
+    {
+      "type": "paragraph",
+      "html": "At the same time, I don’t want to put my entire identity on trial over one bad reaction. Humans are collections of decisions, habits, experiences, and contradictions. We can act against values we sincerely believe in. That doesn’t erase our responsibility, but it doesn’t mean everything we tried to be was worthless either."
+    },
+    {
+      "type": "paragraph",
+      "html": "What matters is what we do after recognizing the contradiction. Do we justify the behavior? Blame the other person? Say that because we were right, our delivery must have been fine? Or do we accept that you can be right in your technical analysis and wrong in your human conduct at the same time?"
+    },
+    {
+      "type": "paragraph",
+      "html": "I want to choose the second path. Not because it’s easy, but because I’ve seen the first one too many times in my life."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Suffering doesn’t automatically improve us"
+    },
+    {
+      "type": "paragraph",
+      "html": "I used to believe the hardships I’d endured would necessarily make me a better person. I no longer hold that view with such certainty."
+    },
+    {
+      "type": "paragraph",
+      "html": "Suffering can deepen understanding. It can also make us angrier. Failure can bring humility. It can also deepen the fear of failing. Being humiliated may make us vow never to humiliate anyone. It may also fix that pattern of behavior in our minds."
+    },
+    {
+      "type": "paragraph",
+      "html": "Suffering by itself doesn’t produce virtue. What matters is what we do with it."
+    },
+    {
+      "type": "paragraph",
+      "html": "A person can be hurt for years and then, on gaining power, pass the same hurt to others. He might say, “I went through the same hardship. He should too.” Or, “Nobody helped me. Why should I help anyone?”"
+    },
+    {
+      "type": "paragraph",
+      "html": "That logic is familiar to me. And it’s exactly the logic I fear. If every generation passes its pain to the next, nothing changes. Only the roles do. Yesterday’s student becomes today’s teacher. Yesterday’s employee becomes today’s manager. Yesterday’s junior developer becomes today’s senior engineer. The behaviors continue: the same contempt, the same fear, the same silence, the same inability to ask a question."
+    },
+    {
+      "type": "paragraph",
+      "html": "Perhaps one of the few meaningful things we can do with our lives is refuse to let that cycle pass through us unchallenged. Not with slogans. Not with claims to moral superiority. But with small, concrete acts. By apologizing. By explaining instead of belittling. By giving a chance to someone who doesn’t know yet. By accepting that our experience, however valuable, is not the whole truth."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Saturday, face to face again"
+    },
+    {
+      "type": "paragraph",
+      "html": "In a few days I’ll meet that developer again. We’ll probably talk about the same project. The same problems will exist. The same time pressure. The same architectural complexity. The same organization that wants results faster. And the same developer who wants to change the direction of his career."
+    },
+    {
+      "type": "paragraph",
+      "html": "I hope one thing will be different: me."
+    },
+    {
+      "type": "paragraph",
+      "html": "I want to start the conversation somewhere else. Not with the code’s mistakes. Not with why a function was written a certain way. Not with why the AI produced weak output. I want to start with the problem itself. I want to ask what he’s understood about the system, what problems he’s identified, what solutions he’s explored, and how he thinks we could prove a solution is correct."
+    },
+    {
+      "type": "paragraph",
+      "html": "I want to let him think, ask his own questions, and find his own mistakes. And if necessary, draw on my experience. Not because I have all the answers, but because I’ve walked some of these roads before, and maybe I can help him avoid repeating all my mistakes."
+    },
+    {
+      "type": "paragraph",
+      "html": "I want to be strict about the architecture. Strict about the tests. Strict about data loss. But fairer to the person sitting across from me."
+    },
+    {
+      "type": "paragraph",
+      "html": "Maybe at the end of that session no new code will have been written. Maybe we’ll only have a design document. Maybe we’ll even conclude we shouldn’t rewrite the system at all. But if he’s learned to understand a problem before coding, to defend his decisions, and to not accept AI output without evaluating it, that session will have been worth it."
+    },
+    {
+      "type": "paragraph",
+      "html": "And if I can make the same serious critiques without humiliating him, maybe I’ll have made a small step forward too."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Between Khayyam’s world and Kafka’s"
+    },
+    {
+      "type": "paragraph",
+      "html": "Sometimes I think our lives run somewhere between Khayyam’s world and Kafka’s."
+    },
+    {
+      "type": "paragraph",
+      "html": "On one side stands Khayyam, with his questions about life’s beginning and end, his doubt about human certainties, his reminder of how short life is and how limited our knowledge. On the other stands Kafka, with people caught in complex structures, anxious about invisible powers, burdened by guilt and judgment and the inability to fully understand the world they live in."
+    },
+    {
+      "type": "paragraph",
+      "html": "What the two share, I think, is this: human beings don’t know everything and can’t control everything. We live in a world far larger than our understanding or our authority. We work in organizations where we don’t make all the decisions. We enter relationships without knowing the other person’s past. We meet people whose fears, hopes, and experiences aren’t fully visible to us. And we don’t always understand all of our own reactions."
+    },
+    {
+      "type": "paragraph",
+      "html": "But these limits don’t make our choices meaningless. Perhaps it’s precisely in an uncertain world that moral responsibility means something."
+    },
+    {
+      "type": "paragraph",
+      "html": "I can’t guarantee that developer will become a great engineer. I can’t guarantee the project will succeed. I can’t fix every wrong decision in the organization. I can’t even guarantee I’ll never be angry again."
+    },
+    {
+      "type": "paragraph",
+      "html": "But I can try, when I’m angry, not to turn that anger into contempt. I can take responsibility when I’m wrong. When someone doesn’t know something, I can offer a chance to learn instead of an instant verdict."
+    },
+    {
+      "type": "paragraph",
+      "html": "And I can ask myself: Is the way I’m behaving today the way I once wished others would behave toward me?"
+    },
+    {
+      "type": "paragraph",
+      "html": "That question isn’t easy. Sometimes the answer is uncomfortable. But maybe that very question can change the course of a life, even a little."
+    },
+    {
+      "type": "image",
+      "src": "https://miro.medium.com/v2/resize:fit:720/format:webp/1*wegQAtV6Ew_hBVJBE59r3A.jpeg",
+      "alt": "I Don’t Want to Become the People Who Hurt Me",
+      "caption": ""
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "I don’t want to become like the people who hurt me"
+    },
+    {
+      "type": "paragraph",
+      "html": "I don’t know what kind of person I’ll become. I don’t know where I’ll be working in five years, or how many more systems I’ll build, or how AI will change our profession. Many of the skills we spent years acquiring may one day be done by machines in seconds. Writing code as we know it today may matter less. The software engineer’s role may shift toward defining problems, designing systems, evaluating decisions, and managing complexity."
+    },
+    {
+      "type": "paragraph",
+      "html": "I don’t know."
+    },
+    {
+      "type": "paragraph",
+      "html": "But there’s something I hope survives every technological change: one human being’s ability to understand another."
+    },
+    {
+      "type": "paragraph",
+      "html": "I’ve spent sixteen years learning engineering. Yet I’m still learning something harder than any programming language or architecture I know. How to respond when someone else makes a mistake. How to critique without humiliating. How to take responsibility without controlling everything. How to defend my experience without diminishing others. And how to keep the pain of the past from dictating my behavior today."
+    },
+    {
+      "type": "paragraph",
+      "html": "I learned a great deal from the people who mistreated me. But perhaps the most important thing to learn from them is not to become them. Not that I’ll never make mistakes. Not that I’ll always be calm. Not that I’ll never be angry. But that when I notice I’ve repeated behavior that once hurt me, I can stop. I can go back. I can apologize. And next time, I can choose differently."
+    },
+    {
+      "type": "paragraph",
+      "html": "Maybe that young developer will never know how much this episode made me think. Maybe for him it was just an unpleasant work conversation, forgotten in a few days."
+    },
+    {
+      "type": "paragraph",
+      "html": "But for me it was a reminder of something I’d lost sight of through all those years of work, experience, and trying to be better:"
+    },
+    {
+      "type": "paragraph",
+      "html": "<strong>We’re responsible not only for what we build, but for the effect we have on other people along the way.</strong>"
+    },
+    {
+      "type": "paragraph",
+      "html": "We can rewrite a software system. We can fix a bad architecture. We can rebuild code that has been broken for years, and do it better."
+    },
+    {
+      "type": "paragraph",
+      "html": "But people can’t be rewritten like software. The words we say, the experiences we create for them, and the feelings they leave our company with can stay in their minds for a long time."
+    },
+    {
+      "type": "paragraph",
+      "html": "I know this well, because I still remember some of the words of those who hurt me years ago. I still recognize certain tones of voice. I still haven’t forgotten certain humiliations."
+    },
+    {
+      "type": "paragraph",
+      "html": "And maybe that’s exactly why I don’t want my voice to live on in someone else’s mind that way."
+    },
+    {
+      "type": "paragraph",
+      "html": "If something of me is going to remain in other people’s lives, I don’t want it to be fear. I don’t want it to be contempt. I don’t want it to be a feeling of worthlessness. I want it to be what I needed on so many days of my own life:"
+    },
+    {
+      "type": "paragraph",
+      "html": "<strong>The chance to make a mistake without being afraid of being broken.</strong>"
+    },
+    {
+      "type": "paragraph",
+      "html": "Perhaps my whole personal philosophy, after sixteen years of engineering and a lifetime of trying to understand the world, comes down to a single sentence:"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "I don’t want to become like the people who hurt me."
+    },
+    {
+      "type": "paragraph",
+      "html": "Not because I’m better than they are."
+    },
+    {
+      "type": "paragraph",
+      "html": "But because I know how easy it is to become like them."
+    },
+    {
+      "type": "paragraph",
+      "html": "And how hard it is to be different."
+    }
+  ]
+}

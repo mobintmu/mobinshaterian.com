@@ -7,6 +7,28 @@
     <language>en</language>
     <atom:link href="https://mobinshaterian.com/feed.xml" rel="self" type="application/rss+xml"/>
     <item>
+      <title>I Don’t Want to Become the People Who Hurt Me</title>
+      <link>https://mobinshaterian.com/blog/I-Don-t-Want-to-Become-the-People-Who-Hurt-Me-9cf28eb913dc</link>
+      <guid isPermaLink="true">https://mobinshaterian.com/blog/I-Don-t-Want-to-Become-the-People-Who-Hurt-Me-9cf28eb913dc</guid>
+      <pubDate>Sun, 25 Oct 2026 00:00:00 GMT</pubDate>
+      <description>A rewrite done with AI, a junior developer, and a harsh review that exposed an old wound. A reflection on how hurt can turn into the behavior we swore never to repeat.</description>
+      <category>Career</category>
+      <category>Workplace Culture</category>
+      <category>Team Management</category>
+      <category>AI</category>
+    </item>
+    <item>
+      <title>Building a Telecom Intelligence Platform from Scratch: From Raw KPIs to an AI-Ready Rule Engine</title>
+      <link>https://mobinshaterian.com/blog/Building-a-Telecom-Intelligence-Platform-from-Scratch--From-Raw-KPIs-to-an-AI-Ready-Rule-Engine-38161ac3d456</link>
+      <guid isPermaLink="true">https://mobinshaterian.com/blog/Building-a-Telecom-Intelligence-Platform-from-Scratch--From-Raw-KPIs-to-an-AI-Ready-Rule-Engine-38161ac3d456</guid>
+      <pubDate>Mon, 19 Oct 2026 00:00:00 GMT</pubDate>
+      <description>Why a telecom monitoring platform should start with normalized KPIs and reusable features before writing a single rule.</description>
+      <category>Telecom</category>
+      <category>Data Engineering</category>
+      <category>ClickHouse</category>
+      <category>Kafka</category>
+    </item>
+    <item>
       <title>I Was Never Trying to Become a Better Component</title>
       <link>https://mobinshaterian.com/blog/I-Was-Never-Trying-to-Become-a-Better-Component-773723916af5</link>
       <guid isPermaLink="true">https://mobinshaterian.com/blog/I-Was-Never-Trying-to-Become-a-Better-Component-773723916af5</guid>
@@ -497,23 +519,6 @@
       <pubDate>Mon, 23 Feb 2026 00:00:00 GMT</pubDate>
       <description>Overview</description>
       <category>Go</category>
-    </item>
-    <item>
-      <title>Building a Category, Config &amp; Product Management System in Go: A Deep Dive</title>
-      <link>https://mobinshaterian.com/blog/Building-a-Category--Config---Product-Management-System-in-Go--A-Deep-Dive-5100ef95f814</link>
-      <guid isPermaLink="true">https://mobinshaterian.com/blog/Building-a-Category--Config---Product-Management-System-in-Go--A-Deep-Dive-5100ef95f814</guid>
-      <pubDate>Sun, 22 Feb 2026 00:00:00 GMT</pubDate>
-      <description>Overview</description>
-      <category>Go</category>
-    </item>
-    <item>
-      <title>Go-WordPress: A Robust Web Scraping Architecture for Product Aggregation</title>
-      <link>https://mobinshaterian.com/blog/Go-WordPress--A-Robust-Web-Scraping-Architecture-for-Product-Aggregation-e99de3f91bd5</link>
-      <guid isPermaLink="true">https://mobinshaterian.com/blog/Go-WordPress--A-Robust-Web-Scraping-Architecture-for-Product-Aggregation-e99de3f91bd5</guid>
-      <pubDate>Sat, 14 Feb 2026 00:00:00 GMT</pubDate>
-      <description>Introduction</description>
-      <category>Go</category>
-      <category>Architecture</category>
     </item>
   </channel>
 </rss>
