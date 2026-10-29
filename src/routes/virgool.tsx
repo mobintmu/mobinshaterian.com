@@ -3,11 +3,7 @@ import { ArrowUpLeft, CalendarDays, Feather, Rss } from "lucide-react";
 import { SiteMenu } from "@/components/SiteMenu";
 import profile from "@/data/profile.json";
 import posts from "@/data/virgool-posts.json";
-import { SITE_NAME, SITE_URL, websiteMeta } from "@/lib/seo";
-
-const VIRGOOL_TITLE = "نوشته‌های فارسی مبین شاطریان | ویرگول";
-const VIRGOOL_DESCRIPTION =
-  "مجموعه نوشته‌های فارسی مبین شاطریان درباره فناوری، محیط کار، جامعه، سینما و تجربه‌های شخصی در ویرگول.";
+import { SITE_NAME, SITE_URL, VIRGOOL_DESCRIPTION, VIRGOOL_TITLE, websiteMeta } from "@/lib/seo";
 
 export const Route = createFileRoute("/virgool")({
   head: () => ({
@@ -15,6 +11,7 @@ export const Route = createFileRoute("/virgool")({
       title: VIRGOOL_TITLE,
       description: VIRGOOL_DESCRIPTION,
       path: "/virgool",
+      locale: "fa_IR",
       imageAlt: "نوشته‌های فارسی مبین شاطریان در ویرگول",
     }),
     links: [{ rel: "canonical", href: `${SITE_URL}/virgool` }],
@@ -23,27 +20,49 @@ export const Route = createFileRoute("/virgool")({
         type: "application/ld+json",
         children: JSON.stringify({
           "@context": "https://schema.org",
-          "@type": "CollectionPage",
-          name: VIRGOOL_TITLE,
-          description: VIRGOOL_DESCRIPTION,
-          url: `${SITE_URL}/virgool`,
-          inLanguage: "fa",
-          author: { "@type": "Person", name: SITE_NAME, url: SITE_URL },
-          mainEntity: {
-            "@type": "ItemList",
-            numberOfItems: posts.length,
-            itemListElement: posts.map((post, index) => ({
-              "@type": "ListItem",
-              position: index + 1,
-              item: {
-                "@type": "BlogPosting",
-                headline: post.title,
-                datePublished: post.date,
-                url: post.url,
-                inLanguage: "fa",
+          "@graph": [
+            {
+              "@type": "Person",
+              "@id": `${SITE_URL}/#person`,
+              name: SITE_NAME,
+              url: SITE_URL,
+            },
+            {
+              "@type": "WebSite",
+              "@id": `${SITE_URL}/#website`,
+              url: SITE_URL,
+              name: SITE_NAME,
+              inLanguage: "en",
+              publisher: { "@id": `${SITE_URL}/#person` },
+            },
+            {
+              "@type": "CollectionPage",
+              "@id": `${SITE_URL}/virgool#collection`,
+              name: VIRGOOL_TITLE,
+              description: VIRGOOL_DESCRIPTION,
+              url: `${SITE_URL}/virgool`,
+              inLanguage: "fa",
+              dateModified: posts[0]?.date,
+              author: { "@id": `${SITE_URL}/#person` },
+              isPartOf: { "@id": `${SITE_URL}/#website` },
+              mainEntity: {
+                "@type": "ItemList",
+                numberOfItems: posts.length,
+                itemListElement: posts.map((post, index) => ({
+                  "@type": "ListItem",
+                  position: index + 1,
+                  item: {
+                    "@type": "BlogPosting",
+                    headline: post.title,
+                    description: post.excerpt,
+                    datePublished: post.date,
+                    url: post.url,
+                    inLanguage: "fa",
+                  },
+                })),
               },
-            })),
-          },
+            },
+          ],
         }),
       },
     ],

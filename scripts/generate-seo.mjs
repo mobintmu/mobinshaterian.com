@@ -12,6 +12,7 @@ const github = JSON.parse(
 const youtube = JSON.parse(
   fs.readFileSync(path.join(root, "src/data/youtube-videos.json"), "utf8"),
 );
+const virgool = JSON.parse(fs.readFileSync(path.join(root, "src/data/virgool-posts.json"), "utf8"));
 const siteUrl = "https://mobinshaterian.com";
 
 const escapeXml = (value) =>
@@ -55,6 +56,7 @@ const urls = [
   })),
   {
     loc: `${siteUrl}/virgool`,
+    lastmod: virgool[0]?.date,
     changefreq: "weekly",
     priority: "0.9",
   },
@@ -137,4 +139,6 @@ Sitemap: ${siteUrl}/sitemap.xml
 `,
 );
 
-console.log(`Generated SEO files and public profile JSON for ${posts.length} posts.`);
+console.log(
+  `Generated SEO files and public profile JSON for ${posts.length} posts and ${virgool.length} Virgool posts.`,
+);

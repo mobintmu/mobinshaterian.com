@@ -1,18 +1,22 @@
 # mobinshaterian.com
 
-Personal portfolio and technical blog for Mobin Shaterian. The site presents a resume-style home page and a searchable archive of 200+ articles imported from Medium.
+Personal portfolio and technical blog for Mobin Shaterian. The site presents a resume-style home page, a searchable archive of 200+ English articles imported from Medium, and an index of Persian writing and videos published on Virgool and Aparat.
 
 The application is built with React and TanStack Start, then pre rendered to static HTML for deployment to GitHub Pages. Blog content is stored as JSON in the repository, so the site does not need a database, CMS, or production API.
 
 ## What the site contains
 
 - `/` — portfolio page with profile, experience, skills, education, recent writing, and contact details
+- `/experience` — long-form work history page
 - `/blogs` — full blog archive with tag filters and client-side full-text search
 - `/blog/:slug` — an individual article rendered from local JSON
-- `/data/posts-index.json` — public, machine-readable post metadata
-- `/data/posts/:slug.json` — public JSON representation of an article
+- `/github` and `/github/:repo` — featured open-source repositories and per-repository detail pages
+- `/youtube` and `/youtube/:id` — English video index and per-video detail pages
+- `/aparat` — Persian video index that links to Aparat
+- `/virgool` — Persian article index that links to Virgool; articles stay canonical on virgool.io
+- `/data/*.json` — public, machine-readable metadata: `posts-index.json`, `posts/:slug.json`, `virgool-posts.json`, `youtube-videos.json`, `aparat-videos.json`, and `github-projects.json`
 - Custom application and article 404 pages
-- SEO metadata, Open Graph fields, canonical Medium links, and article JSON-LD
+- SEO metadata, Open Graph fields, canonical links, per-page JSON-LD, `sitemap.xml`, `feed.xml`, and `robots.txt`
 
 ## Technology stack
 
@@ -69,16 +73,23 @@ The repository also includes shadcn components backed by libraries such as Sonne
 
 Routes live in `src/routes` and follow TanStack Router's file-based conventions:
 
-| Source file                 | Route                                                                 |
-| --------------------------- | --------------------------------------------------------------------- |
-| `src/routes/__root.tsx`     | Root document, global metadata, providers, error boundary, and 404 UI |
-| `src/routes/index.tsx`      | `/`                                                                   |
-| `src/routes/blogs.tsx`      | `/blogs`                                                              |
-| `src/routes/blog.$slug.tsx` | `/blog/:slug`                                                         |
+| Source file                    | Route                                                                 |
+| ------------------------------ | --------------------------------------------------------------------- |
+| `src/routes/__root.tsx`        | Root document, global metadata, providers, error boundary, and 404 UI |
+| `src/routes/index.tsx`         | `/`                                                                   |
+| `src/routes/experience.tsx`    | `/experience`                                                         |
+| `src/routes/blogs.tsx`         | `/blogs`                                                              |
+| `src/routes/blog.$slug.tsx`    | `/blog/:slug`                                                         |
+| `src/routes/github.tsx`        | `/github`                                                             |
+| `src/routes/github_.$repo.tsx` | `/github/:repo` (`_` opts the page out of nesting under `/github`)    |
+| `src/routes/youtube.tsx`       | `/youtube`                                                            |
+| `src/routes/youtube_.$id.tsx`  | `/youtube/:id`                                                        |
+| `src/routes/aparat.tsx`        | `/aparat`                                                             |
+| `src/routes/virgool.tsx`       | `/virgool`                                                            |
 
 `src/routeTree.gen.ts` is generated from these files. Do not edit it manually.
 
-At build time, `vite.config.ts` reads every slug from `src/data/posts-index.json` and adds the home page, archive, and all article URLs to the prerender list. TanStack Start and Nitro render those routes ahead of time. The resulting static site is written to `.output/public` and can be hosted without a running Node server.
+At build time, `vite.config.ts` reads every slug from `src/data/posts-index.json` and adds the home page, archive, and all article URLs to the prerender list. TanStack Start and Nitro render those routes ahead of time. Static routes that are not listed explicitly, such as `/virgool` and `/aparat`, are still discovered by `prerender.autoStaticPathsDiscovery`, so they are pre rendered as well. The resulting static site is written to `.output/public` and can be hosted without a running Node server.
 
 The custom server entry in `src/server.ts` is still used by the build/server-rendering pipeline. Together with `src/start.ts` and the error helpers in `src/lib`, it converts catastrophic SSR failures into a user-friendly HTML error page and reports client-side route errors to Lovable when that bridge is available.
 
@@ -107,6 +118,21 @@ An article JSON file contains metadata plus an ordered `content` array. `PostCon
 
 On `/blogs`, titles and post cards come from the small metadata index. The larger search index is downloaded only after a visitor focuses the search field or supplies a query. MiniSearch gives titles and tags more weight than article body text and supports prefixes and fuzzy matches. The selected query and tag stay in the URL, so filtered views are shareable.
 
+### SEO artifacts
+
+`scripts/generate-seo.mjs` runs before every build (through the `prebuild` script) and can be run on its own with `bun run seo`. It writes the static SEO files into `public/`:
+
+| Output                                                            | Source of truth                                                                                                                                                                                                                                            |
+| ----------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `public/sitemap.xml`                                              | Every public page. `lastmod` comes from `github-projects.json` (`generatedAt` and per-project `pushedAt`), `youtube-videos.json` (`published`), `posts-index.json` (`dateModified` or `date`), and the newest entry in `virgool-posts.json` for `/virgool` |
+| `public/feed.xml`                                                 | The 50 newest English Medium articles. Persian Virgool posts are intentionally excluded because they stay canonical on virgool.io                                                                                                                          |
+| `public/robots.txt`                                               | Crawling rules, the `Content-Signal` hints, and the sitemap location                                                                                                                                                                                       |
+| `public/data/profile.json` and `public/data/github-projects.json` | Copies of the matching `src/data` files                                                                                                                                                                                                                    |
+
+Per-page metadata lives in each route's `head()` and is built with `websiteMeta()` from `src/lib/seo.ts`. That helper emits the description, author, robots, Open Graph, and Twitter tags, and accepts a `locale` argument so Persian pages (`/virgool`, `/aparat`) declare `og:locale=fa_IR` instead of the `en_US` default. Titles and descriptions shared across the app belong in that file as constants such as `HOME_TITLE`, `BLOG_DESCRIPTION`, or `VIRGOOL_TITLE`.
+
+Structured data is emitted per route: `Person`, `WebSite`, and `ProfilePage` on `/`, a `@graph` holding the shared `Person` and `WebSite` nodes plus a `CollectionPage` with an `ItemList` of `BlogPosting` entries on `/virgool` (with `dateModified` taken from the newest post), and `ItemList` of `VideoObject` entries on `/youtube` and `/aparat`. Because Virgool articles are canonical on virgool.io, individual Virgool URLs are not added to `sitemap.xml`; only the `/virgool` index is submitted.
+
 ### GitHub Pages routing
 
 Static hosts cannot normally resolve an unknown nested client-side URL. `public/404.html` stores the requested location in `sessionStorage` and redirects to `/`; the root React component then restores that path through TanStack Router. Pre rendered known routes load directly, while unknown routes reach the application's 404 UI.
@@ -119,10 +145,16 @@ Static hosts cannot normally resolve an unknown nested client-side URL. `public/
 ├── public/
 │   ├── 404.html                  # GitHub Pages SPA fallback
 │   ├── data/                     # Public post, metadata, and search JSON
+│   ├── sitemap.xml, feed.xml     # Generated by scripts/generate-seo.mjs
 │   ├── CNAME                     # Custom domain copied into the build
 │   └── robots.txt, favicons...
 ├── scripts/
 │   ├── import-medium.mjs         # Convert a Medium export to site JSON
+│   ├── import-virgool.mjs        # Read the Virgool RSS feed into post metadata
+│   ├── import-youtube.mjs        # Refresh src/data/youtube-videos.json
+│   ├── import-aparat.mjs         # Refresh src/data/aparat-videos.json
+│   ├── import-github.mjs         # Refresh src/data/github-projects.json
+│   ├── generate-seo.mjs          # Write sitemap, RSS feed, robots, public data
 │   ├── fix-images.mjs            # Replace broken local image paths with Medium CDN URLs
 │   └── retag-ml.mjs              # Recalculate the Machine Learning tag
 ├── src/
@@ -133,8 +165,12 @@ Static hosts cannot normally resolve an unknown nested client-side URL. `public/
 │   │   ├── profile.json          # Portfolio content and contact links
 │   │   ├── posts/                # Full article JSON used by route loaders
 │   │   ├── posts-index.json      # Compact post metadata
-│   │   └── search-index.json     # Full-text search source data
-│   ├── lib/                      # Utilities and error handling
+│   │   ├── search-index.json     # Full-text search source data
+│   │   ├── virgool-posts.json    # Persian article metadata shown on /virgool
+│   │   ├── youtube-videos.json   # Video metadata shown on /youtube
+│   │   ├── aparat-videos.json    # Persian video metadata shown on /aparat
+│   │   └── github-projects.json  # Repository metadata shown on /github
+│   ├── lib/                      # Utilities, SEO helpers (seo.ts), error handling
 │   ├── routes/                   # File-based pages
 │   ├── router.tsx                # Router and QueryClient context
 │   ├── server.ts                 # Custom TanStack Start server entry
@@ -168,14 +204,20 @@ No environment variables, external database, or API credentials are required for
 
 ## Available commands
 
-| Command             | Description                                           |
-| ------------------- | ----------------------------------------------------- |
-| `bun run dev`       | Start the Vite development server with hot reload.    |
-| `bun run build`     | Create the production/pre rendered build in `.output`. |
-| `bun run build:dev` | Build using Vite's development mode.                  |
-| `bun run preview`   | Preview the production build locally.                 |
-| `bun run lint`      | Run ESLint and Prettier checks.                       |
-| `bun run format`    | Rewrite supported files with Prettier.                |
+| Command                   | Description                                                                     |
+| ------------------------- | ------------------------------------------------------------------------------- |
+| `bun run dev`             | Start the Vite development server with hot reload.                              |
+| `bun run build`           | Create the production/pre rendered build in `.output`.                          |
+| `bun run build:dev`       | Build using Vite's development mode.                                            |
+| `bun run preview`         | Preview the production build locally.                                           |
+| `bun run lint`            | Run ESLint and Prettier checks.                                                 |
+| `bun run format`          | Rewrite supported files with Prettier.                                          |
+| `bun run seo`             | Regenerate `sitemap.xml`, `feed.xml`, `robots.txt`, and the public data copies. |
+| `bun run import:virgool`  | Refresh the Persian post metadata from the Virgool RSS feed.                    |
+| `bun run import:youtube`  | Refresh `src/data/youtube-videos.json` from YouTube.                            |
+| `bun run import:aparat`   | Refresh `src/data/aparat-videos.json` from Aparat.                              |
+| `bun run import:github`   | Refresh `src/data/github-projects.json` from GitHub.                            |
+| `bun run format:go-posts` | Reformat Go code blocks inside imported articles.                               |
 
 There is currently no automated test command.
 
@@ -224,6 +266,46 @@ Two one-off maintenance scripts are also included:
 
 Both maintenance scripts rewrite many generated JSON files, so review their diff before committing.
 
+## Persian content on Virgool
+
+`/virgool` is an index of Persian articles that are written and hosted on [Virgool](https://virgool.io/@mobinshaterian). The repository stores only metadata and links out, so no Virgool article body is copied into this site.
+
+```bash
+bun run import:virgool   # node scripts/import-virgool.mjs
+```
+
+The importer reads `https://virgool.io/feed/@mobinshaterian`, fails loudly when the feed is unreachable or empty, and writes the same array to `src/data/virgool-posts.json` and `public/data/virgool-posts.json`:
+
+```json
+[
+  {
+    "title": "کلاچ برقی در عصر ماشین‌های پرنده",
+    "url": "https://virgool.io/@mobinshaterian/...-zymt4fd0hbgy",
+    "date": "2026-10-28",
+    "excerpt": "…"
+  }
+]
+```
+
+| Field     | Rule                                                                                                                    |
+| --------- | ----------------------------------------------------------------------------------------------------------------------- |
+| `title`   | RSS `<title>`, trimmed                                                                                                  |
+| `url`     | RSS `<link>`, which is the canonical Virgool URL                                                                        |
+| `date`    | `<pubDate>` normalized to an ISO date (`YYYY-MM-DD`); drives the card date label and JSON-LD `datePublished`            |
+| `excerpt` | First 240 characters of the whitespace-normalized `<description>`, suffixed with `…` when the text was longer than that |
+
+The list is ordered newest first and the first element is rendered as the featured card. `src/routes/virgool.tsx` reads the source copy at build time, `scripts/generate-seo.mjs` uses `[0].date` as the `/virgool` sitemap `lastmod`, and the page's `CollectionPage` JSON-LD reuses it as `dateModified`.
+
+### When the Virgool feed is unavailable
+
+The Virgool RSS endpoint occasionally answers `500 Internal Server Error`. The importer aborts in that case instead of writing a partial or empty file, so add the post by hand and keep the list newest first:
+
+1. Open the article and read `article:published_time` from its metadata for the exact `date`.
+2. Add `{ title, url, date, excerpt }` as the first element of both `src/data/virgool-posts.json` and `public/data/virgool-posts.json`.
+3. Run `bun run seo` so the `/virgool` sitemap `lastmod` matches the new post, then run `bun run lint`.
+
+Once the feed is healthy again, `bun run import:virgool` rebuilds the entire list from the feed, so manual entries do not accumulate as debt. The individual Virgool URLs are deliberately left out of `sitemap.xml` and `feed.xml` because Virgool is their canonical host; only the `/virgool` index is promoted.
+
 ## Production deployment
 
 Pushing to `main` triggers `.github/workflows/deploy.yml`. The workflow:
@@ -240,13 +322,15 @@ For a manual deployment, run the workflow from the GitHub Actions interface. Git
 ## Important maintenance notes
 
 - Keep `src/data` and `public/data` synchronized; the import and maintenance scripts already update both.
+- Keep `src/data/virgool-posts.json` ordered newest first. The featured card, the `CollectionPage` `dateModified`, and the `/virgool` sitemap `lastmod` all read the first entry.
+- Run `bun run seo` (or any build, because `prebuild` runs it) after changing profile, GitHub, YouTube, Aparat, or Virgool data so `sitemap.xml`, `feed.xml`, and the public JSON copies stay in sync.
 - Add new article slugs to `src/data/posts-index.json` through the importer so `vite.config.ts` pre renders them.
 - Do not edit `src/routeTree.gen.ts` by hand.
 - Do not commit `.output`, `dist`, `.vinxi`, or `node_modules`.
 - This repository is connected to Lovable. Do not force-push, rebase, amend, or squash commits that have already been pushed, because rewriting published history can break Lovable's project history.
 
-
 # Technology
+
 - **React** – the actual UI library, same as what you know.
 - **TanStack Start** – a full-stack React framework (like Next.js, but from the TanStack team — makers of React Query, TanStack Router). It adds file-based routing, server-side rendering, and API routes on top of plain React.
 - **Vite** – the build tool/dev server. Fast hot-reload, bundles everything for production.
@@ -264,8 +348,11 @@ The root layout loads the versioned chat script from `https://chat.mobinshateria
 The same integration works on a plain HTML site when placed immediately before `</body>`:
 
 ```html
-<script defer src="https://chat.mobinshaterian.com/embed/v1.js"
-        data-base-url="https://chat.mobinshaterian.com"></script>
+<script
+  defer
+  src="https://chat.mobinshaterian.com/embed/v1.js"
+  data-base-url="https://chat.mobinshaterian.com"
+></script>
 ```
 
 The loader and CSS live in `mobin-ai-frontend/src/embed/loader.ts`; this website contains only the root script reference. The iframe uses `https://chat.mobinshaterian.com/embed` and never receives credentials in its URL. The chat host must permit framing by this website; GitHub Pages cannot set a path-specific `frame-ancestors` header without an edge rule. Backend CORS will need to allow the chat origin, not the main website, when the backend is deployed.

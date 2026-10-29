@@ -10,6 +10,10 @@ export const BLOG_TITLE = "Software Engineering Blog | Mobin Shaterian";
 export const BLOG_DESCRIPTION =
   "Read 200+ practical articles about Go, backend architecture, distributed systems, GraphRAG, ClickHouse, Kafka, databases, DevOps, security, and software engineering.";
 
+export const VIRGOOL_TITLE = "نوشته‌های فارسی مبین شاطریان | ویرگول";
+export const VIRGOOL_DESCRIPTION =
+  "مجموعه نوشته‌های فارسی مبین شاطریان درباره فناوری، خودرو و کلاچ برقی، محیط کار، جامعه، سینما و تجربه‌های شخصی در ویرگول.";
+
 export function absoluteUrl(path = "/") {
   return new URL(path, SITE_URL).toString();
 }
@@ -31,12 +35,14 @@ export function websiteMeta({
   path,
   image = DEFAULT_SOCIAL_IMAGE,
   imageAlt = `${SITE_NAME} monogram logo`,
+  locale = "en_US",
 }: {
   title: string;
   description: string;
   path: string;
   image?: string;
   imageAlt?: string;
+  locale?: string;
 }) {
   const url = absoluteUrl(path);
   return [
@@ -49,7 +55,7 @@ export function websiteMeta({
     { property: "og:type", content: "website" },
     { property: "og:url", content: url },
     { property: "og:site_name", content: SITE_NAME },
-    { property: "og:locale", content: "en_US" },
+    { property: "og:locale", content: locale },
     { property: "og:image", content: image },
     { property: "og:image:alt", content: imageAlt },
     { name: "twitter:card", content: "summary_large_image" },

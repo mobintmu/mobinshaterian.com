@@ -15,6 +15,7 @@ export const Route = createFileRoute("/aparat")({
       title: APARAT_TITLE,
       description: APARAT_DESCRIPTION,
       path: "/aparat",
+      locale: "fa_IR",
       image: videos[0].thumbnail,
       imageAlt: videos[0].title,
     }),
