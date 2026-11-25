@@ -184,35 +184,35 @@ function normalizeSlug(str: string): string {
 function relatedPostSlugs(slug: string, articles: IndexEntry[]): IndexEntry[] {
   const relationMap = relatedPosts as Record<string, string[]>;
   const cleanCurrentSlug = normalizeSlug(slug);
-
-  const matchedKey = Object.keys(relationMap).find((key) => {
-    const cleanKey = normalizeSlug(key);
-    return (
-      cleanCurrentSlug === cleanKey ||
-      cleanCurrentSlug.startsWith(cleanKey) ||
-      cleanKey.startsWith(cleanCurrentSlug)
-    );
-  });
-
-  if (!matchedKey || !relationMap[matchedKey]) {
-    return [];
-  }
-
-  const rawRelatedSlugs = relationMap[matchedKey];
+  const rawRelatedSlugs =
+    relationMap[slug.toLowerCase()] ??
+    Object.entries(relationMap).find(([key]) => {
+      const cleanKey = normalizeSlug(key);
+      return (
+        cleanCurrentSlug === cleanKey ||
+        cleanCurrentSlug.startsWith(cleanKey) ||
+        cleanKey.startsWith(cleanCurrentSlug)
+      );
+    })?.[1] ??
+    [];
   const matchedArticles: IndexEntry[] = [];
 
   for (const relSlug of rawRelatedSlugs) {
-    const cleanTarget = normalizeSlug(relSlug);
+    const exactTarget = relSlug.toLowerCase();
+    if (exactTarget === slug.toLowerCase()) continue;
 
-    const foundArticle = articles.find((candidate) => {
-      if (candidate.slug === slug) return false;
-      const cleanCandidate = normalizeSlug(candidate.slug);
-      return (
-        cleanCandidate === cleanTarget ||
-        cleanCandidate.startsWith(cleanTarget) ||
-        cleanTarget.startsWith(cleanCandidate)
-      );
-    });
+    const cleanTarget = normalizeSlug(relSlug);
+    const foundArticle =
+      articles.find((candidate) => candidate.slug.toLowerCase() === exactTarget) ??
+      articles.find((candidate) => {
+        if (candidate.slug === slug) return false;
+        const cleanCandidate = normalizeSlug(candidate.slug);
+        return (
+          cleanCandidate === cleanTarget ||
+          cleanCandidate.startsWith(cleanTarget) ||
+          cleanTarget.startsWith(cleanCandidate)
+        );
+      });
 
     if (foundArticle && !matchedArticles.some((a) => a.slug === foundArticle.slug)) {
       matchedArticles.push(foundArticle);

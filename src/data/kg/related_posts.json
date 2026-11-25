@@ -864,10 +864,10 @@
     "my-experience-to-build-a-cqrs-system-with-microservices-architecture-in-a-financial-system-to-1deeead8db9d"
   ],
   "my-solution-for-designing-a-resilient-system-in-an-event-driven-pipeline-d1396711d423": [
-    "my-experience-to-build-a-cqrs-system-with-microservices-architecture-in-a-financial-system-to-1deeead8db9d-settlement-pod",
-    "my-experience-to-build-a-cqrs-system-with-microservices-architecture-in-a-financial-system-to-1deeead8db9d-cqrs",
-    "my-solution-for-designing-a-resilient-system-in-an-event-driven-pipeline-d1396711d423-kafka",
-    "my-solution-for-designing-a-resilient-system-in-an-event-driven-pipeline-d1396711d423-outbox-pattern"
+    "building-a-resilient-event-driven-data-lakehouse--minio-bucket-notifications-to-apache-kafka-6f8e33267278",
+    "my-experience-to-build-a-cqrs-system-with-microservices-architecture-in-a-financial-system-to--1deeead8db9d",
+    "building-a-high-throughput-kpi-pipeline-on-clickhouse--partitioning--idempotent-recalculation--and--3302a12ddf83",
+    "essential-vs-code-extensions-for-go-developers--my-daily-toolkit-5604c0bbaf85"
   ],
   "building-a-complete-kafka---clickhouse-s-41": [
     "adding-clickhouse-to-a-go-project--a-pra-39",
@@ -1410,5 +1410,97 @@
     "make-simple-crud-requests-with-nestjs-366f6cbfff6d-tasksservice",
     "introducing-buf-for-protobuf-06ebc98710c6-connect",
     "integrating-zarinpal-payment-gateway-in-nestjs-12017908490d-mongodb-mongoose"
+  ],
+  "your-nestjs-api-is-leaking-password-hashes---and-you-probably-don-t-know-it-dcaea709a987": [
+    "authentication-and-authorization-in-nestjs---a-comprehensive-overview-66495810c5b4",
+    "nestjs--data-validation-and-transformation-ce99115c760d",
+    "from-database-backed-sessions-to-jwt-authorization-in-nestjs-dcbfb6929d40",
+    "implementing-ownership-and-authentication-in-nestjs--a-comprehensive-approach-9d027f58faf2"
+  ],
+  "i-don-t-want-to-become-the-people-who-hurt-me-9cf28eb913dc": [
+    "the-high-cost-of-toxicity--why-insults--humiliation--and-blame-are-killing-your-workplace-culture-e3fe8e3645f7",
+    "breaking-the-cycle-of-workplace-overwhelm--strategies-for-healthier--more-productive-teams-5a00f94922ee"
+  ],
+  "building-a-telecom-intelligence-platform-from-scratch--from-raw-kpis-to-an-ai-ready-rule-engine-38161ac3d456": [
+    "how-we-rebuilt-a-telecom-kpi-platform-to-handle-billions-of-records--from-json-blobs-to-flat--1a4eb6b27574",
+    "one-pipeline--three-ways-to-consume-it--designing-multi-channel-kpi-distribution-on-clickhouse-medium",
+    "from-a-49-second-kpi-request-to-an-840-millisecond-response-eqtce",
+    "building-a-resilient-event-driven-data-lakehouse--minio-bucket-notifications-to-apache-kafka-6f8e33267278"
+  ],
+  "i-was-never-trying-to-become-a-better-component-773723916af5": [
+    "the-role-of-ige-in-allergic-and-chronic-sinusitis--mechanisms--treatments--and-impact-on--5578822607ff",
+    "stop-picking-an-ai-model--start-picking-a-capability-3bf2eeb9bf2d"
+  ],
+  "building-a-resilient-event-driven-data-lakehouse--minio-bucket-notifications-to-apache-kafka-6f8e33267278": [
+    "my-solution-for-designing-a-resilient-system-in-an-event-driven-pipeline-d1396711d423",
+    "docker-compose-setup-for-mongodb--redis--and-minio-f364e79162ea",
+    "one-pipeline--three-ways-to-consume-it--designing-multi-channel-kpi-distribution-on-clickhouse-medium",
+    "building-a-telecom-intelligence-platform-from-scratch--from-raw-kpis-to-an-ai-ready-rule-engine-38161ac3d456"
+  ],
+  "authentication-and-authorization-in-nestjs---a-comprehensive-overview-66495810c5b4": [
+    "your-nestjs-api-is-leaking-password-hashes---and-you-probably-don-t-know-it-dcaea709a987",
+    "nestjs--data-validation-and-transformation-ce99115c760d",
+    "from-database-backed-sessions-to-jwt-authorization-in-nestjs-dcbfb6929d40",
+    "implementing-ownership-and-authentication-in-nestjs--a-comprehensive-approach-9d027f58faf2"
+  ],
+  "nestjs--data-validation-and-transformation-ce99115c760d": [
+    "your-nestjs-api-is-leaking-password-hashes---and-you-probably-don-t-know-it-dcaea709a987",
+    "authentication-and-authorization-in-nestjs---a-comprehensive-overview-66495810c5b4",
+    "from-database-backed-sessions-to-jwt-authorization-in-nestjs-dcbfb6929d40",
+    "implementing-ownership-and-authentication-in-nestjs--a-comprehensive-approach-9d027f58faf2"
+  ],
+  "from-database-backed-sessions-to-jwt-authorization-in-nestjs-dcbfb6929d40": [
+    "your-nestjs-api-is-leaking-password-hashes---and-you-probably-don-t-know-it-dcaea709a987",
+    "authentication-and-authorization-in-nestjs---a-comprehensive-overview-66495810c5b4",
+    "nestjs--data-validation-and-transformation-ce99115c760d",
+    "implementing-ownership-and-authentication-in-nestjs--a-comprehensive-approach-9d027f58faf2"
+  ],
+  "implementing-ownership-and-authentication-in-nestjs--a-comprehensive-approach-9d027f58faf2": [
+    "your-nestjs-api-is-leaking-password-hashes---and-you-probably-don-t-know-it-dcaea709a987",
+    "authentication-and-authorization-in-nestjs---a-comprehensive-overview-66495810c5b4",
+    "nestjs--data-validation-and-transformation-ce99115c760d",
+    "from-database-backed-sessions-to-jwt-authorization-in-nestjs-dcbfb6929d40"
+  ],
+  "the-high-cost-of-toxicity--why-insults--humiliation--and-blame-are-killing-your-workplace-culture-e3fe8e3645f7": [
+    "i-don-t-want-to-become-the-people-who-hurt-me-9cf28eb913dc",
+    "essential-vs-code-extensions-for-go-developers--my-daily-toolkit-5604c0bbaf85",
+    "breaking-the-cycle-of-workplace-overwhelm--strategies-for-healthier--more-productive-teams-5a00f94922ee",
+    "improving-team-morale-and-efficiency-in-software-development-projects-d5f3da0b2137"
+  ],
+  "breaking-the-cycle-of-workplace-overwhelm--strategies-for-healthier--more-productive-teams-5a00f94922ee": [
+    "i-don-t-want-to-become-the-people-who-hurt-me-9cf28eb913dc",
+    "workplace-consumerism-culture--a-deep-dive-into-causes--consequences--and-solutions-e549d309a403",
+    "the-high-cost-of-toxicity--why-insults--humiliation--and-blame-are-killing-your-workplace-culture-e3fe8e3645f7",
+    "title--setting-boundaries-with-clients--a-guide-to-professional-and-effective-communication-040db339cd83"
+  ],
+  "how-we-rebuilt-a-telecom-kpi-platform-to-handle-billions-of-records--from-json-blobs-to-flat--1a4eb6b27574": [
+    "building-a-telecom-intelligence-platform-from-scratch--from-raw-kpis-to-an-ai-ready-rule-engine-38161ac3d456",
+    "one-pipeline--three-ways-to-consume-it--designing-multi-channel-kpi-distribution-on-clickhouse-medium",
+    "query-federation--a-practical-guide-to-modern-data-virtualization-v7qoe",
+    "from-3nf-mysql-to-fast-search--building-a-cdc-powered-read-model-7bfd2300c3c4"
+  ],
+  "one-pipeline--three-ways-to-consume-it--designing-multi-channel-kpi-distribution-on-clickhouse-medium": [
+    "building-a-telecom-intelligence-platform-from-scratch--from-raw-kpis-to-an-ai-ready-rule-engine-38161ac3d456",
+    "building-a-resilient-event-driven-data-lakehouse--minio-bucket-notifications-to-apache-kafka-6f8e33267278",
+    "from-a-49-second-kpi-request-to-an-840-millisecond-response-eqtce",
+    "real-time-data-ingestion--connecting-distributed-kafka-to-clickhouse-in-docker-1e29e0b0f665"
+  ],
+  "from-a-49-second-kpi-request-to-an-840-millisecond-response-eqtce": [
+    "building-a-telecom-intelligence-platform-from-scratch--from-raw-kpis-to-an-ai-ready-rule-engine-38161ac3d456"
+  ],
+  "the-role-of-ige-in-allergic-and-chronic-sinusitis--mechanisms--treatments--and-impact-on--5578822607ff": [
+    "i-was-never-trying-to-become-a-better-component-773723916af5"
+  ],
+  "stop-picking-an-ai-model--start-picking-a-capability-3bf2eeb9bf2d": [
+    "i-was-never-trying-to-become-a-better-component-773723916af5",
+    "i-don-t-want-to-become-the-people-who-hurt-me-9cf28eb913dc",
+    "generate-a-guided-wizard-for-end-users-from-the-derived-flow-graph-1fd65e7916ff",
+    "how-i-would-build-mobinai--a-graphrag-chatbot-for-200-technical-articles-dez6e"
+  ],
+  "docker-compose-setup-for-mongodb--redis--and-minio-f364e79162ea": [
+    "building-a-resilient-event-driven-data-lakehouse--minio-bucket-notifications-to-apache-kafka-6f8e33267278",
+    "preventing-race-conditions-in-kubernetes-applications-with-redis-locks-7da00ec8c8dd",
+    "environment-configuration-in-go--managing-dev--test---production-environments-9b333c6d1868",
+    "building-a-redis-backed-cache-layer-in-go-with-uber-fx----c10052c9b9ca"
   ]
 }

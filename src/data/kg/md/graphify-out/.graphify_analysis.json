@@ -94,7 +94,10 @@
       "post_solving_the_nan_deadlock_streaming_kafka_to_clickhouse_with_data_sanitization_530ff573762f_json_each_row",
       "post_solving_the_nan_deadlock_streaming_kafka_to_clickhouse_with_data_sanitization_530ff573762f_kafka",
       "post_when_mediums_bots_fear_your_writing_why_im_leaving_after_6_years_and_200_articles_anlqe",
-      "youtube_video_scraper_12"
+      "youtube_video_scraper_12",
+      "post_building_a_telecom_intelligence_platform_from_scratch_from_raw_kpis_to_an_ai_ready_rule_engine_38161ac3d456",
+      "post_building_a_resilient_event_driven_data_lakehouse_minio_bucket_notifications_to_apache_kafka_6f8e33267278",
+      "concept_minio"
     ],
     "2": [
       "beautifulsoup",
@@ -125,7 +128,8 @@
       "post_open_ai_tutorial",
       "post_rag_retrieval_augmented_generation",
       "post_rag_system_knowledge_graph_the_system_for_finding_the_best_answer_in_the_tickets_management",
-      "retrieval_augmented_generation"
+      "retrieval_augmented_generation",
+      "post_i_was_never_trying_to_become_a_better_component_773723916af5"
     ],
     "3": [
       "foreign_data_wrappers",
@@ -208,7 +212,11 @@
       "post_jwt_nestjs_migration",
       "post_nestjs_postgresql_database_with_docker_compose_and_liquibase_faec0b09d944",
       "post_query_federation",
-      "post_resolving_sql_scan_error_when_handling_null_strings_in_go_and_postgresql_762bdf5a66b2"
+      "post_resolving_sql_scan_error_when_handling_null_strings_in_go_and_postgresql_762bdf5a66b2",
+      "post_your_nestjs_api_is_leaking_password_hashes_and_you_probably_don_t_know_it_dcaea709a987",
+      "concept_prisma",
+      "concept_bopla",
+      "concept_api_security"
     ],
     "6": [
       "aparat_video_linux_first_session",
@@ -437,7 +445,8 @@
       "post_breaking_free_mindset",
       "post_disc_developer_personalities",
       "post_effect_inflation_iran",
-      "post_engineer_lifestyle_diet"
+      "post_engineer_lifestyle_diet",
+      "post_i_don_t_want_to_become_the_people_who_hurt_me_9cf28eb913dc"
     ],
     "18": [
       "apache_iceberg",
@@ -1506,11 +1515,11 @@
   },
   "cohesion": {
     "0": 0.050505050505050504,
-    "1": 0.07657657657657657,
-    "2": 0.07142857142857142,
+    "1": 0.07307692307692308,
+    "2": 0.06896551724137931,
     "3": 0.07936507936507936,
     "4": 0.12333333333333334,
-    "5": 0.08695652173913043,
+    "5": 0.07407407407407407,
     "6": 0.1038961038961039,
     "7": 0.09090909090909091,
     "8": 0.12105263157894737,
@@ -1522,7 +1531,7 @@
     "14": 0.2,
     "15": 0.16483516483516483,
     "16": 0.16666666666666666,
-    "17": 0.18181818181818182,
+    "17": 0.16666666666666666,
     "18": 0.23636363636363636,
     "19": 0.21818181818181817,
     "20": 0.2222222222222222,
@@ -1792,6 +1801,11 @@
       "degree": 8
     },
     {
+      "id": "concept_rag",
+      "label": "Retrieval-Augmented Generation (RAG)",
+      "degree": 7
+    },
+    {
       "id": "retrieval_augmented_generation",
       "label": "Retrieval-Augmented Generation",
       "degree": 7
@@ -1804,11 +1818,6 @@
     {
       "id": "concept_uber_fx",
       "label": "Uber FX Dependency Injection",
-      "degree": 6
-    },
-    {
-      "id": "concept_rag",
-      "label": "Retrieval-Augmented Generation (RAG)",
       "degree": 6
     }
   ],
@@ -1837,17 +1846,6 @@
     },
     {
       "source": "My Experience After Four Years of Migration from PHP to Golang Language",
-      "target": "My Experience After Three Years of Migration from PHP to Golang Language",
-      "source_files": [
-        "post_My-Experience-After-Four-Years-of-Migration-from-PHP-to-Golang-Language-554643db5b8e.md",
-        "post_My-Experience-After-Three-Years-of-Migration-from-PHP-to-Golang-Language---df3fb8f466ee.md"
-      ],
-      "confidence": "INFERRED",
-      "relation": "semantically_similar_to",
-      "why": "inferred connection - not explicitly stated in source; connects across different repos/directories; semantically similar concepts with no structural link"
-    },
-    {
-      "source": "My Experience After Four Years of Migration from PHP to Golang Language",
       "target": "My First Application Development with Golang as a PHP Developer",
       "source_files": [
         "post_My-Experience-After-Four-Years-of-Migration-from-PHP-to-Golang-Language-554643db5b8e.md",
@@ -1858,15 +1856,26 @@
       "why": "inferred connection - not explicitly stated in source; connects across different repos/directories; semantically similar concepts with no structural link"
     },
     {
-      "source": "Integrating Zarinpal Payment Gateway in NestJS",
-      "target": "Parsian Bank Gateway Implementation in NestJS",
+      "source": "My Experience After Four Years of Migration from PHP to Golang Language",
+      "target": "My Experience After Three Years of Migration from PHP to Golang Language",
       "source_files": [
-        "post_Integrating-Zarinpal-Payment-Gateway-in-NestJS-12017908490d.md",
-        "post_Introduction-to-the-Parsian-Bank-Gateway-Implementation-in-NestJS-9077a5441b5a.md"
+        "post_My-Experience-After-Four-Years-of-Migration-from-PHP-to-Golang-Language-554643db5b8e.md",
+        "post_My-Experience-After-Three-Years-of-Migration-from-PHP-to-Golang-Language---df3fb8f466ee.md"
       ],
       "confidence": "INFERRED",
       "relation": "semantically_similar_to",
       "why": "inferred connection - not explicitly stated in source; connects across different repos/directories; semantically similar concepts with no structural link"
+    },
+    {
+      "source": "NestJS: Data Validation and Transformation",
+      "target": "Your NestJS API Is Leaking Password Hashes — And You Probably Don’t Know It",
+      "source_files": [
+        "post_NestJS--Data-Validation-and-Transformation-ce99115c760d.md",
+        "post_Your-NestJS-API-Is-Leaking-Password-Hashes---And-You-Probably-Don-t-Know-It-dcaea709a987.md"
+      ],
+      "confidence": "INFERRED",
+      "relation": "conceptually_related_to",
+      "why": "inferred connection - not explicitly stated in source; connects across different repos/directories; bridges separate communities; peripheral node `NestJS: Data Validation and Transformation` unexpectedly reaches hub `Your NestJS API Is Leaking Password Hashes — And You Probably Don’t Know It`"
     }
   ],
   "questions": [
@@ -1882,18 +1891,13 @@
     },
     {
       "type": "bridge_node",
-      "question": "Why does `Build your own GraphRAG Assistant` connect `Build your own GraphRAG Assistant` to `ClickHouse`?",
-      "why": "High betweenness centrality (0.009) - this node is a cross-community bridge."
+      "question": "Why does `Building a Telecom Intelligence Platform from Scratch: From Raw KPIs to an AI-Ready Rule Engine` connect `ClickHouse` to `Machine Learning`?",
+      "why": "High betweenness centrality (0.028) - this node is a cross-community bridge."
     },
     {
       "type": "bridge_node",
-      "question": "Why does `You're absolutely welcome!` connect `ClickHouse` to `Machine Learning`, `Go`?",
-      "why": "High betweenness centrality (0.008) - this node is a cross-community bridge."
-    },
-    {
-      "type": "bridge_node",
-      "question": "Why does `How I Made a Chatbot With My Knowledge: Turning My Technical Articles into a GraphRAG Assistant` connect `Build your own GraphRAG Assistant` to `ClickHouse`, `Golang`?",
-      "why": "High betweenness centrality (0.007) - this node is a cross-community bridge."
+      "question": "Why does `If my service or database is down, the client receives 500 errors` connect `ClickHouse` to `Machine Learning`?",
+      "why": "High betweenness centrality (0.018) - this node is a cross-community bridge."
     },
     {
       "type": "verify_inferred",
@@ -1903,7 +1907,12 @@
     {
       "type": "isolated_nodes",
       "question": "What connects `go-graphql`, `Using PHP for High User Throughput or Machine Learning Pipelines`, `mobinshaterian.com` to the rest of the system?",
-      "why": "538 weakly-connected nodes found - possible documentation gaps or missing edges."
+      "why": "537 weakly-connected nodes found - possible documentation gaps or missing edges."
+    },
+    {
+      "type": "low_cohesion",
+      "question": "Should `Uber FX Dependency Injection` be split into smaller, more focused modules?",
+      "why": "Cohesion score 0.12418300653594772 - nodes in this community are weakly interconnected."
     }
   ]
 }

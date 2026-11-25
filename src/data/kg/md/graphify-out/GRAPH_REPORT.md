@@ -1,11 +1,11 @@
-# Graph Report - md  (2026-09-25)
+# Graph Report - md  (2026-11-26)
 
 ## Corpus Check
-- cluster-only mode — file stats not available
+- Five articles added from local Markdown with manually mapped relationships.
 
 ## Summary
-- 995 nodes · 936 edges · 254 communities (113 shown, 141 thin omitted)
-- Extraction: 84% EXTRACTED · 15% INFERRED · 0% AMBIGUOUS · INFERRED: 144 edges (avg confidence: 0.78)
+- 1004 nodes · 953 edges · 254 communities (113 shown, 141 thin omitted)
+- Extraction: 84% EXTRACTED · 16% INFERRED · 0% AMBIGUOUS · INFERRED: 149 edges (avg confidence: 0.78)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
@@ -276,22 +276,22 @@
 4. `Uber FX` - 8 edges
 5. `How I Made a Chatbot With My Knowledge: Turning My Technical Articles into a GraphRAG Assistant` - 8 edges
 6. `How I Would Build MobinAI: A GraphRAG Chatbot for 200+ Technical Articles` - 8 edges
-7. `Retrieval-Augmented Generation` - 7 edges
-8. `OpenFGA` - 7 edges
-9. `Uber FX Dependency Injection` - 6 edges
-10. `Retrieval-Augmented Generation (RAG)` - 6 edges
+7. `Retrieval-Augmented Generation (RAG)` - 7 edges
+8. `Retrieval-Augmented Generation` - 7 edges
+9. `OpenFGA` - 7 edges
+10. `Uber FX Dependency Injection` - 6 edges
 
 ## Surprising Connections (you probably didn't know these)
 - `Connecting Kafka to ClickHouse with SSL: A Complete Integration Guide` --semantically_similar_to--> `Integrating Kafka with ClickHouse using SSL/SASL: A Technical Retrospective`  [INFERRED] [semantically similar]
   post_index_Connecting_Kafka_to_ClickHouse_with_SSL__17.md → post_index_Integrating_Kafka_with_ClickHouse_using__8.md
 - `Real-Time Data Ingestion: Connecting Distributed Kafka to ClickHouse in Docker` --semantically_similar_to--> `Solving the NaN Deadlock: Streaming Kafka to ClickHouse with Data Sanitization`  [INFERRED] [semantically similar]
   post_index_Real_Time_Data_Ingestion__Connecting_Dis_6.md → post_index_Solving_the__NaN__Deadlock__Streaming_Ka_13.md
-- `My Experience After Four Years of Migration from PHP to Golang Language` --semantically_similar_to--> `My Experience After Three Years of Migration from PHP to Golang Language`  [INFERRED] [semantically similar]
-  post_My-Experience-After-Four-Years-of-Migration-from-PHP-to-Golang-Language-554643db5b8e.md → post_My-Experience-After-Three-Years-of-Migration-from-PHP-to-Golang-Language---df3fb8f466ee.md
 - `My Experience After Four Years of Migration from PHP to Golang Language` --semantically_similar_to--> `My First Application Development with Golang as a PHP Developer`  [INFERRED] [semantically similar]
   post_My-Experience-After-Four-Years-of-Migration-from-PHP-to-Golang-Language-554643db5b8e.md → post_My-first-application-development-with-Golang-as-a-PHP-developer--9c31e37903b8.md
-- `Integrating Zarinpal Payment Gateway in NestJS` --semantically_similar_to--> `Parsian Bank Gateway Implementation in NestJS`  [INFERRED] [semantically similar]
-  post_Integrating-Zarinpal-Payment-Gateway-in-NestJS-12017908490d.md → post_Introduction-to-the-Parsian-Bank-Gateway-Implementation-in-NestJS-9077a5441b5a.md
+- `My Experience After Four Years of Migration from PHP to Golang Language` --semantically_similar_to--> `My Experience After Three Years of Migration from PHP to Golang Language`  [INFERRED] [semantically similar]
+  post_My-Experience-After-Four-Years-of-Migration-from-PHP-to-Golang-Language-554643db5b8e.md → post_My-Experience-After-Three-Years-of-Migration-from-PHP-to-Golang-Language---df3fb8f466ee.md
+- `NestJS: Data Validation and Transformation` --conceptually_related_to--> `Your NestJS API Is Leaking Password Hashes — And You Probably Don’t Know It`  [INFERRED]
+  post_NestJS--Data-Validation-and-Transformation-ce99115c760d.md → post_Your-NestJS-API-Is-Leaking-Password-Hashes---And-You-Probably-Don-t-Know-It-dcaea709a987.md
 
 ## Import Cycles
 - None detected.
@@ -398,12 +398,12 @@ Cohesion: 0.05
 Nodes (55): API, Architecture, ClickHouse, Data Engineering, DevOps, Docker, GitLab CI/CD, Go (+47 more)
 
 ### Community 1 - "ClickHouse"
-Cohesion: 0.08
-Nodes (37): ClickHouse, Colly, Uber fx Framework, Go, go-wordpress, Kafka, KPI Query Optimization, Kubernetes (+29 more)
+Cohesion: 0.07
+Nodes (40): ClickHouse, Colly, Uber fx Framework, Go, go-wordpress, Kafka, KPI Query Optimization, Kubernetes (+32 more)
 
 ### Community 2 - "Retrieval-Augmented Generation"
 Cohesion: 0.07
-Nodes (29): BeautifulSoup, Chroma Vector Store, Customer Support, Retrieval-Augmented Generation (RAG), FreshDesk API, Knowledge Graph, LangChain, Neo4j (+21 more)
+Nodes (30): BeautifulSoup, Chroma Vector Store, Customer Support, Retrieval-Augmented Generation (RAG), FreshDesk API, Knowledge Graph, LangChain, Neo4j (+22 more)
 
 ### Community 3 - "Ubuntu"
 Cohesion: 0.08
@@ -414,8 +414,8 @@ Cohesion: 0.12
 Nodes (25): Adamic-Adar Similarity, AvalAI, BFS Retrieval, FastAPI, Graphify, GraphRAG, Kafka, Keycloak (+17 more)
 
 ### Community 5 - "NestJS"
-Cohesion: 0.09
-Nodes (24): GraphQL, JWT Authorization, NestJS, Payments, PostgreSQL, Query Federation, Security, Docker Compose (+16 more)
+Cohesion: 0.07
+Nodes (28): GraphQL, JWT Authorization, NestJS, Payments, PostgreSQL, Query Federation, Security, Docker Compose (+20 more)
 
 ### Community 6 - "Linux"
 Cohesion: 0.10
@@ -462,8 +462,8 @@ Cohesion: 0.17
 Nodes (13): Integrating SQLC and GraphQL in Go, graphqlFilterToSQLCParams, ListProductsWithFilters, SQLC, MongoDB and GraphQL in NestJS, GraphQL, MongoDB, NestJS (+5 more)
 
 ### Community 17 - "Workplace Culture"
-Cohesion: 0.18
-Nodes (12): چگونه کسر خدمت نخبگان بگیریم؟ (نسخه ۲), چگونه کسر خدمت نخبگان بگیریم؟ (نسخه ۴), کسر خدمت سربازی, DISC Personality Model, Inflation in Iran, Military Service Exemption, Workplace Culture, Breaking the Cycle of Workplace Overwhelm (+4 more)
+Cohesion: 0.17
+Nodes (13): چگونه کسر خدمت نخبگان بگیریم؟ (نسخه ۲), چگونه کسر خدمت نخبگان بگیریم؟ (نسخه ۴), کسر خدمت سربازی, DISC Personality Model, Inflation in Iran, Military Service Exemption, Workplace Culture, Breaking the Cycle of Workplace Overwhelm (+5 more)
 
 ### Community 18 - "Change Data Capture"
 Cohesion: 0.24
@@ -852,7 +852,7 @@ Nodes (3): Server-Sent Events in NestJS, Server-Sent Events, WebSockets
   post_index_Convenience_Apps__A_Double_Edged_Sword_f_91.md · relation: conceptually_related_to
 
 ## Knowledge Gaps
-- **538 isolated node(s):** `go-graphql`, `Using PHP for High User Throughput or Machine Learning Pipelines`, `mobinshaterian.com`, `Materialized View`, `A classic east-west traffic blind spot: SQL Injection Through Trusted Internal Flows` (+533 more)
+- **537 isolated node(s):** `go-graphql`, `Using PHP for High User Throughput or Machine Learning Pipelines`, `mobinshaterian.com`, `Materialized View`, `Kubectl` (+532 more)
   These have ≤1 connection - possible missing edges or undocumented components.
 - **141 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
@@ -863,13 +863,13 @@ _Questions this graph is uniquely positioned to answer:_
   _Edge tagged AMBIGUOUS (relation: references) - confidence is low._
 - **What is the exact relationship between `Convenience Apps: A Double-Edged Sword for Humanity` and `Get Data from medium and make an AI model`?**
   _Edge tagged AMBIGUOUS (relation: conceptually_related_to) - confidence is low._
-- **Why does `Build your own GraphRAG Assistant` connect `Build your own GraphRAG Assistant` to `ClickHouse`?**
-  _High betweenness centrality (0.009) - this node is a cross-community bridge._
-- **Why does `You're absolutely welcome!` connect `ClickHouse` to `Machine Learning`, `Go`?**
-  _High betweenness centrality (0.008) - this node is a cross-community bridge._
-- **Why does `How I Made a Chatbot With My Knowledge: Turning My Technical Articles into a GraphRAG Assistant` connect `Build your own GraphRAG Assistant` to `ClickHouse`, `Golang`?**
-  _High betweenness centrality (0.007) - this node is a cross-community bridge._
+- **Why does `Building a Telecom Intelligence Platform from Scratch: From Raw KPIs to an AI-Ready Rule Engine` connect `ClickHouse` to `Machine Learning`?**
+  _High betweenness centrality (0.028) - this node is a cross-community bridge._
+- **Why does `If my service or database is down, the client receives 500 errors` connect `ClickHouse` to `Machine Learning`?**
+  _High betweenness centrality (0.018) - this node is a cross-community bridge._
 - **Are the 23 inferred relationships involving `Mobin Shaterian` (e.g. with `Changing architecture of webservice` and `Effect of index column on MySQL performance`) actually correct?**
   _`Mobin Shaterian` has 23 INFERRED edges - model-reasoned connections that need verification._
 - **What connects `go-graphql`, `Using PHP for High User Throughput or Machine Learning Pipelines`, `mobinshaterian.com` to the rest of the system?**
-  _538 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _537 weakly-connected nodes found - possible documentation gaps or missing edges._
+- **Should `Uber FX Dependency Injection` be split into smaller, more focused modules?**
+  _Cohesion score 0.12418300653594772 - nodes in this community are weakly interconnected._

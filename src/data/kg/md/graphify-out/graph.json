@@ -16875,6 +16875,107 @@
       "source_file": "post_index_Run_Cronjob_in_python_152.md",
       "source_location": null,
       "source_url": "https://medium.com/@mobinshaterian/run-cronjob-in-python-1d0616113a77"
+    },
+    {
+      "id": "post_your_nestjs_api_is_leaking_password_hashes_and_you_probably_don_t_know_it_dcaea709a987",
+      "label": "Your NestJS API Is Leaking Password Hashes \u2014 And You Probably Don\u2019t Know It",
+      "_origin": "manual",
+      "community": 5,
+      "community_name": "NestJS",
+      "file_type": "document",
+      "norm_label": "your nestjs api is leaking password hashes \u2014 and you probably don\u2019t know it",
+      "author": "Mobin Shaterian",
+      "source_file": "post_Your-NestJS-API-Is-Leaking-Password-Hashes---And-You-Probably-Don-t-Know-It-dcaea709a987.md",
+      "source_location": "L1",
+      "source_url": "https://medium.com/devops-dev/your-nestjs-api-is-leaking-password-hashes-and-you-probably-dont-know-it-dcaea709a987"
+    },
+    {
+      "id": "concept_prisma",
+      "label": "Prisma",
+      "_origin": "manual",
+      "community": 5,
+      "community_name": "NestJS",
+      "file_type": "concept",
+      "norm_label": "prisma"
+    },
+    {
+      "id": "concept_bopla",
+      "label": "Broken Object Property Level Authorization (BOPLA)",
+      "_origin": "manual",
+      "community": 5,
+      "community_name": "NestJS",
+      "file_type": "concept",
+      "norm_label": "broken object property level authorization (bopla)"
+    },
+    {
+      "id": "concept_api_security",
+      "label": "API Security",
+      "_origin": "manual",
+      "community": 5,
+      "community_name": "NestJS",
+      "file_type": "concept",
+      "norm_label": "api security"
+    },
+    {
+      "id": "post_i_don_t_want_to_become_the_people_who_hurt_me_9cf28eb913dc",
+      "label": "I Don\u2019t Want to Become the People Who Hurt Me",
+      "_origin": "manual",
+      "community": 17,
+      "community_name": "Workplace Culture",
+      "file_type": "document",
+      "norm_label": "i don\u2019t want to become the people who hurt me",
+      "author": "Mobin Shaterian",
+      "source_file": "post_I-Don-t-Want-to-Become-the-People-Who-Hurt-Me-9cf28eb913dc.md",
+      "source_location": "L1",
+      "source_url": "https://blog.stackademic.com/i-dont-want-to-become-the-people-who-hurt-me-9cf28eb913dc"
+    },
+    {
+      "id": "post_building_a_telecom_intelligence_platform_from_scratch_from_raw_kpis_to_an_ai_ready_rule_engine_38161ac3d456",
+      "label": "Building a Telecom Intelligence Platform from Scratch: From Raw KPIs to an AI-Ready Rule Engine",
+      "_origin": "manual",
+      "community": 1,
+      "community_name": "ClickHouse",
+      "file_type": "document",
+      "norm_label": "building a telecom intelligence platform from scratch: from raw kpis to an ai-ready rule engine",
+      "author": "Mobin Shaterian",
+      "source_file": "post_Building-a-Telecom-Intelligence-Platform-from-Scratch--From-Raw-KPIs-to-an-AI-Ready-Rule-Engine-38161ac3d456.md",
+      "source_location": "L1",
+      "source_url": "https://medium.datadriveninvestor.com/building-a-telecom-intelligence-platform-from-scratch-from-raw-kpis-to-an-ai-ready-rule-engine-38161ac3d456"
+    },
+    {
+      "id": "post_i_was_never_trying_to_become_a_better_component_773723916af5",
+      "label": "I Was Never Trying to Become a Better Component",
+      "_origin": "manual",
+      "community": 2,
+      "community_name": "Retrieval-Augmented Generation",
+      "file_type": "document",
+      "norm_label": "i was never trying to become a better component",
+      "author": "Mobin Shaterian",
+      "source_file": "post_I-Was-Never-Trying-to-Become-a-Better-Component-773723916af5.md",
+      "source_location": "L1",
+      "source_url": "https://mobinshaterian.medium.com/i-was-never-trying-to-become-a-better-component-773723916af5?postPublishedType=repub"
+    },
+    {
+      "id": "post_building_a_resilient_event_driven_data_lakehouse_minio_bucket_notifications_to_apache_kafka_6f8e33267278",
+      "label": "Building a Resilient Event-Driven Data Lakehouse: MinIO Bucket Notifications to Apache Kafka",
+      "_origin": "manual",
+      "community": 1,
+      "community_name": "ClickHouse",
+      "file_type": "document",
+      "norm_label": "building a resilient event-driven data lakehouse: minio bucket notifications to apache kafka",
+      "author": "Mobin Shaterian",
+      "source_file": "post_Building-a-Resilient-Event-Driven-Data-Lakehouse--MinIO-Bucket-Notifications-to-Apache-Kafka-6f8e33267278.md",
+      "source_location": "L1",
+      "source_url": "https://blog.devops.dev/building-a-resilient-event-driven-data-lakehouse-minio-bucket-notifications-to-apache-kafka-6f8e33267278"
+    },
+    {
+      "id": "concept_minio",
+      "label": "MinIO",
+      "_origin": "manual",
+      "community": 1,
+      "community_name": "ClickHouse",
+      "file_type": "concept",
+      "norm_label": "minio"
     }
   ],
   "links": [
@@ -26803,6 +26904,193 @@
       "source_file": "aparat_video_\u0686\u0631\u0627_\u0644\u06cc\u0646\u0648\u06a9\u0633_\u0628\u0647\u062a\u0631_\u0627\u0632_\u0648\u06cc\u0646\u062f\u0648\u0632_\u0627\u0633\u062a____\u0627\u0648\u0628\u0648\u0646\u062a\u0648_12.md",
       "source_location": null,
       "weight": 1.0
+    },
+    {
+      "source": "post_your_nestjs_api_is_leaking_password_hashes_and_you_probably_don_t_know_it_dcaea709a987",
+      "target": "concept_nestjs",
+      "relation": "references",
+      "_origin": "manual",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "post_Your-NestJS-API-Is-Leaking-Password-Hashes---And-You-Probably-Don-t-Know-It-dcaea709a987.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "post_your_nestjs_api_is_leaking_password_hashes_and_you_probably_don_t_know_it_dcaea709a987",
+      "target": "concept_prisma",
+      "relation": "references",
+      "_origin": "manual",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "post_Your-NestJS-API-Is-Leaking-Password-Hashes---And-You-Probably-Don-t-Know-It-dcaea709a987.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "post_your_nestjs_api_is_leaking_password_hashes_and_you_probably_don_t_know_it_dcaea709a987",
+      "target": "concept_bopla",
+      "relation": "references",
+      "_origin": "manual",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "post_Your-NestJS-API-Is-Leaking-Password-Hashes---And-You-Probably-Don-t-Know-It-dcaea709a987.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "post_your_nestjs_api_is_leaking_password_hashes_and_you_probably_don_t_know_it_dcaea709a987",
+      "target": "concept_api_security",
+      "relation": "references",
+      "_origin": "manual",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "post_Your-NestJS-API-Is-Leaking-Password-Hashes---And-You-Probably-Don-t-Know-It-dcaea709a987.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "post_your_nestjs_api_is_leaking_password_hashes_and_you_probably_don_t_know_it_dcaea709a987",
+      "target": "post_nestjs_data_validation_and_transformation_ce99115c760d_article",
+      "relation": "conceptually_related_to",
+      "_origin": "manual",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "post_Your-NestJS-API-Is-Leaking-Password-Hashes---And-You-Probably-Don-t-Know-It-dcaea709a987.md",
+      "source_location": null,
+      "weight": 0.8
+    },
+    {
+      "source": "post_i_don_t_want_to_become_the_people_who_hurt_me_9cf28eb913dc",
+      "target": "concept_workplace_culture",
+      "relation": "references",
+      "_origin": "manual",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "post_I-Don-t-Want-to-Become-the-People-Who-Hurt-Me-9cf28eb913dc.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "post_i_don_t_want_to_become_the_people_who_hurt_me_9cf28eb913dc",
+      "target": "concept_workplace_toxicity",
+      "relation": "references",
+      "_origin": "manual",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "post_I-Don-t-Want-to-Become-the-People-Who-Hurt-Me-9cf28eb913dc.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "post_building_a_telecom_intelligence_platform_from_scratch_from_raw_kpis_to_an_ai_ready_rule_engine_38161ac3d456",
+      "target": "concept_clickhouse",
+      "relation": "references",
+      "_origin": "manual",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "post_Building-a-Telecom-Intelligence-Platform-from-Scratch--From-Raw-KPIs-to-an-AI-Ready-Rule-Engine-38161ac3d456.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "post_building_a_telecom_intelligence_platform_from_scratch_from_raw_kpis_to_an_ai_ready_rule_engine_38161ac3d456",
+      "target": "concept_kafka",
+      "relation": "references",
+      "_origin": "manual",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "post_Building-a-Telecom-Intelligence-Platform-from-Scratch--From-Raw-KPIs-to-an-AI-Ready-Rule-Engine-38161ac3d456.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "post_building_a_telecom_intelligence_platform_from_scratch_from_raw_kpis_to_an_ai_ready_rule_engine_38161ac3d456",
+      "target": "data_engineering",
+      "relation": "references",
+      "_origin": "manual",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "post_Building-a-Telecom-Intelligence-Platform-from-Scratch--From-Raw-KPIs-to-an-AI-Ready-Rule-Engine-38161ac3d456.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "post_building_a_telecom_intelligence_platform_from_scratch_from_raw_kpis_to_an_ai_ready_rule_engine_38161ac3d456",
+      "target": "post_one_pipeline_three_ways",
+      "relation": "conceptually_related_to",
+      "_origin": "manual",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "post_Building-a-Telecom-Intelligence-Platform-from-Scratch--From-Raw-KPIs-to-an-AI-Ready-Rule-Engine-38161ac3d456.md",
+      "source_location": null,
+      "weight": 0.8
+    },
+    {
+      "source": "post_building_a_telecom_intelligence_platform_from_scratch_from_raw_kpis_to_an_ai_ready_rule_engine_38161ac3d456",
+      "target": "post_49_second_kpi",
+      "relation": "conceptually_related_to",
+      "_origin": "manual",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "post_Building-a-Telecom-Intelligence-Platform-from-Scratch--From-Raw-KPIs-to-an-AI-Ready-Rule-Engine-38161ac3d456.md",
+      "source_location": null,
+      "weight": 0.8
+    },
+    {
+      "source": "post_i_was_never_trying_to_become_a_better_component_773723916af5",
+      "target": "concept_rag",
+      "relation": "references",
+      "_origin": "manual",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "post_I-Was-Never-Trying-to-Become-a-Better-Component-773723916af5.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "post_i_was_never_trying_to_become_a_better_component_773723916af5",
+      "target": "post_the_role_of_ige_in_allergic_and_chronic_sinusitis_mechanisms_treatments_and_impact_on_5578822607ff_article",
+      "relation": "conceptually_related_to",
+      "_origin": "manual",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "post_I-Was-Never-Trying-to-Become-a-Better-Component-773723916af5.md",
+      "source_location": null,
+      "weight": 0.8
+    },
+    {
+      "source": "post_building_a_resilient_event_driven_data_lakehouse_minio_bucket_notifications_to_apache_kafka_6f8e33267278",
+      "target": "concept_kafka",
+      "relation": "references",
+      "_origin": "manual",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "post_Building-a-Resilient-Event-Driven-Data-Lakehouse--MinIO-Bucket-Notifications-to-Apache-Kafka-6f8e33267278.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "post_building_a_resilient_event_driven_data_lakehouse_minio_bucket_notifications_to_apache_kafka_6f8e33267278",
+      "target": "concept_minio",
+      "relation": "references",
+      "_origin": "manual",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "post_Building-a-Resilient-Event-Driven-Data-Lakehouse--MinIO-Bucket-Notifications-to-Apache-Kafka-6f8e33267278.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "post_building_a_resilient_event_driven_data_lakehouse_minio_bucket_notifications_to_apache_kafka_6f8e33267278",
+      "target": "post_my_solution_for_designing_a_resilient_system_in_an_event_driven_pipeline_d1396711d423",
+      "relation": "conceptually_related_to",
+      "_origin": "manual",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "post_Building-a-Resilient-Event-Driven-Data-Lakehouse--MinIO-Bucket-Notifications-to-Apache-Kafka-6f8e33267278.md",
+      "source_location": null,
+      "weight": 0.8
     }
   ],
   "hyperedges": [
