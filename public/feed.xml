@@ -7,6 +7,18 @@
     <language>en</language>
     <atom:link href="https://mobinshaterian.com/feed.xml" rel="self" type="application/rss+xml"/>
     <item>
+      <title>Your NestJS API Is Leaking Password Hashes — And You Probably Don’t Know It</title>
+      <link>https://mobinshaterian.com/blog/Your-NestJS-API-Is-Leaking-Password-Hashes---And-You-Probably-Don-t-Know-It-dcaea709a987</link>
+      <guid isPermaLink="true">https://mobinshaterian.com/blog/Your-NestJS-API-Is-Leaking-Password-Hashes---And-You-Probably-Don-t-Know-It-dcaea709a987</guid>
+      <pubDate>Wed, 11 Nov 2026 00:00:00 GMT</pubDate>
+      <description>A deep dive into Broken Object Property Level Authorization (BOPLA) — the silent API vulnerability hiding in your Prisma includes</description>
+      <category>API Security</category>
+      <category>NestJS</category>
+      <category>Prisma</category>
+      <category>OWASP</category>
+      <category>TypeScript</category>
+    </item>
+    <item>
       <title>I Don’t Want to Become the People Who Hurt Me</title>
       <link>https://mobinshaterian.com/blog/I-Don-t-Want-to-Become-the-People-Who-Hurt-Me-9cf28eb913dc</link>
       <guid isPermaLink="true">https://mobinshaterian.com/blog/I-Don-t-Want-to-Become-the-People-Who-Hurt-Me-9cf28eb913dc</guid>
@@ -511,14 +523,6 @@
       <category>Go</category>
       <category>Data Engineering</category>
       <category>Career</category>
-    </item>
-    <item>
-      <title>Database Seeder Implementation in the Go-Wordpress project</title>
-      <link>https://mobinshaterian.com/blog/Database-Seeder-Implementation-in-the-Go-Wordpress-project-b09ce0a4728d</link>
-      <guid isPermaLink="true">https://mobinshaterian.com/blog/Database-Seeder-Implementation-in-the-Go-Wordpress-project-b09ce0a4728d</guid>
-      <pubDate>Mon, 23 Feb 2026 00:00:00 GMT</pubDate>
-      <description>Overview</description>
-      <category>Go</category>
     </item>
   </channel>
 </rss>

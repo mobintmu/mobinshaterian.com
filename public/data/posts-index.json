@@ -1,5 +1,21 @@
 [
   {
+    "slug": "Your-NestJS-API-Is-Leaking-Password-Hashes---And-You-Probably-Don-t-Know-It-dcaea709a987",
+    "title": "Your NestJS API Is Leaking Password Hashes — And You Probably Don’t Know It",
+    "excerpt": "A deep dive into Broken Object Property Level Authorization (BOPLA) — the silent API vulnerability hiding in your Prisma includes",
+    "date": "2026-11-11",
+    "tags": [
+      "API Security",
+      "NestJS",
+      "Prisma",
+      "OWASP",
+      "TypeScript"
+    ],
+    "readingTime": "2 min",
+    "url": "https://medium.com/devops-dev/your-nestjs-api-is-leaking-password-hashes-and-you-probably-dont-know-it-dcaea709a987",
+    "hero": "https://miro.medium.com/v2/resize:fit:720/format:webp/1*jTRxwTYrH67pD6Y6hAwUFA.png"
+  },
+  {
     "slug": "I-Don-t-Want-to-Become-the-People-Who-Hurt-Me-9cf28eb913dc",
     "title": "I Don’t Want to Become the People Who Hurt Me",
     "excerpt": "A rewrite done with AI, a junior developer, and a harsh review that exposed an old wound. A reflection on how hurt can turn into the behavior we swore never to repeat.",
