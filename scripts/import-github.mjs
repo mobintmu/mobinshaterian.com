@@ -91,6 +91,25 @@ const projectDetails = {
     stack: ["Go", "Colly", "PostgreSQL", "SQLC", "Redis", "Gin", "gRPC", "Uber FX", "Docker"],
     quickStart: ["docker compose up -d", "go run cmd/server/main.go"],
   },
+  "go-wordpress-extractor": {
+    kind: "Product extraction service",
+    tagline: "A stateless Go API for extracting product data from e-commerce pages.",
+    summary:
+      "Send a product URL to an authenticated HTTP endpoint and get normalized product data or a structured explanation of what went wrong. Site-specific parsing rules live in JSON files, and instances can run independently without a shared database.",
+    features: [
+      "Synchronous extraction with structured diagnostics",
+      "Reusable site templates for WooCommerce, WoodMart, and PrestaShop",
+      "Normalization of product prices, currencies, and text",
+      "Live reload of site configurations and API keys",
+      "Per-site concurrency limits and Prometheus metrics",
+      "CLI tools for configuration validation and offline fixture tests",
+    ],
+    stack: ["Go", "Colly", "Playwright", "JSON", "Swagger", "Prometheus", "Docker"],
+    quickStart: [
+      "APP_API_KEY_PEPPER=$(grep '^APP_API_KEY_PEPPER=' .env.development | cut -d= -f2-) APP_API_KEYS_FILE=secrets/api_keys.json go run ./cmd/apikey generate --name local-dev",
+      "go run ./cmd/server",
+    ],
+  },
   "mobinshaterian.com": {
     kind: "Portfolio platform",
     tagline: "This portfolio, blog, and publishing system.",
