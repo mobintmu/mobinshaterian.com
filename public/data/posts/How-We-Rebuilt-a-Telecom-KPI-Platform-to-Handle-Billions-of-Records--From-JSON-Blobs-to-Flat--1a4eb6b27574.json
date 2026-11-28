@@ -53,9 +53,24 @@
       "html": "In the previous version, a component called <strong>pm-parser</strong> was responsible for reading raw PM files (delivered by network vendors) and loading the extracted measurements into ClickHouse. The design stored all measurement counters as a <strong>single JSON string</strong> in one column, alongside a timestamp and some cell identifiers:"
     },
     {
-      "type": "code",
-      "lang": "text",
-      "code": "| time                | cell_id   | vendor | technology | measurements\n|\n|---------------------|-----------|--------|------------|-------------------------------------------|\n| 2026-05-15 10:00:00 | CELL_0001 | nokia  | LMBB       | {\"ctr_1\":1200,\"ctr_2\":980,...}     |"
+      "type": "table",
+      "caption": "Old schema with sample counters stored in one JSON string",
+      "columns": [
+        "time",
+        "cell_id",
+        "vendor",
+        "technology",
+        "measurements"
+      ],
+      "rows": [
+        [
+          "2026-05-15 10:00:00",
+          "CELL_0001",
+          "nokia",
+          "LMBB",
+          "{\"ctr_1\": 1200, \"ctr_2\": 980}"
+        ]
+      ]
     },
     {
       "type": "paragraph",
@@ -92,9 +107,30 @@
       "html": "The core insight is simple: <strong>store each measurement counter as its own column.</strong> Instead of one row with a JSON blob, each row contains the base cell dimensions plus a dedicated <code>Nullable(Float64)</code> column for every counter:"
     },
     {
-      "type": "code",
-      "lang": "text",
-      "code": "| time                | cell_id   | vendor | technology | ctr_1       | ctr_2        | ctr_3      |\nctr_4       | ...\n|\n|---------------------|-----------|--------|------------|-------------|--------------|------------|-------------|-----|\n| 2026-05-15 10:00:00 | CELL_0001 | nokia  | LMBB       | 1200        | 1150         | 430        | 418         | ... |"
+      "type": "table",
+      "caption": "New schema with a separate column for each counter (selected columns)",
+      "columns": [
+        "time",
+        "cell_id",
+        "vendor",
+        "technology",
+        "ctr_1",
+        "ctr_2",
+        "ctr_3",
+        "ctr_4"
+      ],
+      "rows": [
+        [
+          "2026-05-15 10:00:00",
+          "CELL_0001",
+          "nokia",
+          "LMBB",
+          "1200",
+          "1150",
+          "430",
+          "418"
+        ]
+      ]
     },
     {
       "type": "paragraph",

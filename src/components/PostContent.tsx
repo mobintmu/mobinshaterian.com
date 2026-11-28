@@ -5,6 +5,7 @@ export type Block =
   | { type: "heading"; level: 2 | 3; text: string }
   | { type: "paragraph"; html: string }
   | { type: "code"; lang: string; code: string; preserveWhitespace?: boolean }
+  | { type: "table"; caption: string; columns: string[]; rows: string[][] }
   | { type: "image"; src: string; alt?: string; caption?: string; width?: number; height?: number }
   | { type: "quote"; html: string }
   | { type: "list"; ordered: boolean; items: string[] }
@@ -141,6 +142,42 @@ export function PostContent({
                 code={b.code}
                 preserveWhitespace={b.preserveWhitespace}
               />
+            );
+          case "table":
+            return (
+              <div
+                key={i}
+                role="region"
+                aria-label={b.caption}
+                tabIndex={0}
+                className="my-6 overflow-x-auto rounded-md border border-border bg-surface"
+              >
+                <table className="w-full border-collapse text-left text-sm">
+                  <caption className="px-4 py-3 text-left font-medium text-foreground">
+                    {b.caption}
+                  </caption>
+                  <thead className="border-y border-border bg-terminal/10 text-terminal">
+                    <tr>
+                      {b.columns.map((column) => (
+                        <th key={column} scope="col" className="whitespace-nowrap px-4 py-2.5">
+                          <code className="font-mono-plus">{column}</code>
+                        </th>
+                      ))}
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-border">
+                    {b.rows.map((row, rowIndex) => (
+                      <tr key={rowIndex}>
+                        {row.map((cell, columnIndex) => (
+                          <td key={columnIndex} className="whitespace-nowrap px-4 py-3">
+                            <code className="font-mono-plus tabular-nums">{cell}</code>
+                          </td>
+                        ))}
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
             );
           case "image": {
             const normalizedSource = normalizeImageSource(b.src);

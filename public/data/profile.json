@@ -1,7 +1,8 @@
 {
   "name": "Mobin Shaterian",
-  "title": "Senior Software Engineer · Golang Developer",
-  "tagline": "16 years building scalable backend systems.",
+  "title": "Senior Software Engineer & Technical Lead",
+  "specialties": "Data Engineering | Applied AI",
+  "tagline": "16 years designing scalable backend systems, leading engineering teams, and building data platforms and production machine learning services.",
   "location": "Tehran, Iran",
   "email": "mobinest@gmail.com",
   "phone": "+98 912 494 7927",
@@ -27,14 +28,30 @@
     "title": "June 2026 Newsletter",
     "date": "Jun 18, 2026",
     "url": "https://clickhouse.com/blog/202606-newsletter",
-    "description": "ClickHouse highlighted two of my telecom analytics articles, including a KPI pipeline processing 15 million rows per hour and a platform rebuilt to handle 10 billion records per month."
+    "description": "ClickHouse highlighted two of my telecom analytics articles, covering a KPI pipeline that processes 15 million rows per hour and a platform designed for 10 billion records per month.",
+    "articles": [
+      {
+        "title": "Building a high-throughput KPI pipeline on ClickHouse",
+        "slug": "Building-a-High-Throughput-KPI-Pipeline-on-ClickHouse--Partitioning--Idempotent-Recalculation--and--3302a12ddf83"
+      },
+      {
+        "title": "Rebuilding a telecom KPI platform for 10 billion records per month",
+        "slug": "How-We-Rebuilt-a-Telecom-KPI-Platform-to-Handle-Billions-of-Records--From-JSON-Blobs-to-Flat--1a4eb6b27574"
+      }
+    ]
   },
   {
     "source": "ClickHouse",
     "title": "May 2026 Newsletter",
     "date": "May 21, 2026",
     "url": "https://clickhouse.com/blog/202605-newsletter",
-    "description": "ClickHouse featured my guide to connecting a SASL_SSL-secured Kafka cluster to ClickHouse, covering SSL configuration, a Kafka engine and materialized-view ingestion pipeline, and performance tuning."
+    "description": "ClickHouse featured my guide to securing Kafka ingestion into ClickHouse with SASL_SSL and tuning the pipeline for performance.",
+    "articles": [
+      {
+        "title": "Connecting Kafka to ClickHouse with SSL",
+        "slug": "Connecting-Kafka-to-ClickHouse-with-SSL--A-Complete-Integration-Guide-e5a0a5957de3"
+      }
+    ]
   },
   {
     "source": "IRIB News",
@@ -132,12 +149,25 @@
   "experience": [
     {
       "company": "MTN Irancell",
-      "role": "Senior Software Engineer · Golang",
+      "role": "Technical Lead & Senior Software Engineer",
       "location": "Tehran, Iran",
       "period": "Sep 2025 — Present",
       "highlights": [
-        "Designing an ETL system integrating Atoll network measurement data, exposed via a high-performance GraphQL API.",
-        "Architecting a KPI pipeline on ClickHouse processing 15M+ rows/hour with date-based partitioning and wide-table storage."
+        "Architected the One OSS telecom KPI platform at MTN Irancell. It processes 15 million measurement rows per hour and was designed for 10 billion records per month.",
+        "Built Kafka and ClickHouse ingestion and Airflow workflows for repeatable KPI recalculation.",
+        "Designed an ETL system for Atoll network data and a high-performance GraphQL API for network metadata.",
+        "Cut KPI API response time from 40 minutes to 840 ms in an end-to-end benchmark covering roughly 4,000 sites. Profiling pointed to repeated scans in the Go response builder, which we replaced with single-pass grouping.",
+        "Worked on a KPI platform that publishes versioned Parquet snapshots for partners, sends Kafka notifications when new versions are ready, and serves dashboards through a ClickHouse query API."
+      ],
+      "articles": [
+        {
+          "title": "How we cut KPI response time from 49 seconds to 840 ms",
+          "slug": "From-a-49-Second-KPI-Request-to-an-840-Millisecond-Response-eqtce"
+        },
+        {
+          "title": "How we distribute KPIs through Parquet, Kafka, and a query API",
+          "slug": "One-Pipeline--Three-Ways-to-Consume-It--Designing-Multi-Channel-KPI-Distribution-on-ClickHouse-medium"
+        }
       ]
     },
     {
@@ -146,19 +176,20 @@
       "location": "Tehran, Iran",
       "period": "Dec 2024 — Oct 2025",
       "highlights": [
-        "Built V2 of a B2B API serving 30+ partners and 400K+ daily requests; redesigned architecture for scale and HA.",
-        "Contributed to the Tour project with performance work, testing discipline, and fault-tolerant design."
+        "Built the second-generation B2B API serving 30+ partners and more than 400,000 requests per day. Redesigned the services for scalability and high availability.",
+        "Improved the Tour platform through performance tuning, automated testing, monitoring, and fault-tolerant design."
       ]
     },
     {
       "company": "Wall IT s.r.o.",
-      "role": "Golang Developer (Remote)",
-      "location": "Bratislava, Slovakia",
+      "role": "Golang Developer & Data Scientist",
+      "location": "Bratislava, Slovakia (Remote)",
       "period": "Jan 2023 — Sep 2024",
       "highlights": [
-        "Led monolith → microservices transformation with clean code and SOLID.",
-        "Integrated Go-micro, Swagger, OpenTelemetry, Prometheus, GCS, Liquibase — 40% better monitoring, 25% faster deploys, 60% fewer post-deploy issues.",
-        "Also worked as a Data Scientist: LLM-driven CRM auto-response and topic modeling for ticket clustering."
+        "Led the migration from a monolith to Go microservices, introduced OAuth2, and contributed to Corepass v1 and v2.",
+        "Improved monitoring efficiency by 40%, cut deployment time by 25%, and reduced post-deployment issues by 60%.",
+        "Built an LLM-based support-ticket response system. In evaluation, 35% of responses were comparable to those from human agents.",
+        "Used topic modeling to group support tickets and build a knowledge base for recurring issues."
       ]
     },
     {
@@ -167,9 +198,9 @@
       "location": "Tehran, Iran",
       "period": "Jun 2022 — Feb 2023",
       "highlights": [
-        "High-TPS microservices with Postgres, MongoDB, Kafka, and NATS.",
-        "Built a CQRS transaction system for payment businesses; Debezium + Kafka replication into MongoDB.",
-        "Handled 100K read/write RPS on Postgres with aggressive Redis strategies."
+        "Designed event-driven B2B payment services with PostgreSQL, MongoDB, Kafka, and NATS.",
+        "Implemented CQRS and change data capture with Debezium and Kafka so customers could search and view transactions in near real time.",
+        "Used Redis caching to relieve PostgreSQL bottlenecks during bursts of 100,000 requests."
       ]
     },
     {
@@ -178,19 +209,105 @@
       "location": "Tehran, Iran",
       "period": "Jan 2021 — Jun 2022",
       "highlights": [
-        "Riskeman: back-end for COVID-19 mortality prediction, scaled to 8M requests/day.",
-        "Optimized ML model serving from 3 TPS → 10,000 TPS.",
-        "Led backend for Crawler News processing 1TB of data per day."
+        "Led backend development for Riskeman, a COVID-19 mortality-risk prediction application that handled 8 million requests per day.",
+        "Increased production ML inference throughput from 3 to 10,000 transactions per second and exposed predictions through a Go REST API.",
+        "Led backend development for Crawler News, which collected and processed 1 TB of data per day."
       ]
     },
     {
       "company": "Elaart",
       "role": "Technical Project Manager (Contract)",
       "location": "Karaj, Iran",
-      "period": "Jan 2019 — 2024",
+      "period": "Jan 2019 — Dec 2025",
       "highlights": [
-        "Automated e-commerce workflows; online sales surpassed physical store revenue."
+        "Helped assemble the team, designed and developed the website, and provided technical consulting.",
+        "Automated e-commerce workflows and reduced operational overhead. Online sales went on to surpass in-store revenue."
       ]
+    },
+    {
+      "company": "Institute of Applied Science Technology Jahad Daneshgahi (IASTJD)",
+      "role": "Python Instructor (Contract)",
+      "location": "Tehran Province, Iran",
+      "period": "Oct 2018 — Jan 2019",
+      "highlights": ["Taught Python programming."]
+    },
+    {
+      "company": "Amer Andish Hooshmand",
+      "role": "Healthcare AI & Backend Developer",
+      "location": "Tehran, Iran (On-site)",
+      "period": "Jul 2018 — Jan 2021",
+      "highlights": [
+        "Built web interfaces for the Farsava speech-to-text engine and Binayar using Laravel, MySQL, Docker, and Docker Compose."
+      ]
+    },
+    {
+      "company": "Tehran Institute of Technology",
+      "role": "Programming Instructor (Contract)",
+      "period": "Jan 2016 — Jan 2019",
+      "highlights": ["Taught C++, Java, and PHP courses."]
+    },
+    {
+      "company": "Shafa Neuroscience Research Center",
+      "role": "Pain Management Researcher (Contract)",
+      "period": "Jan 2016 — Jan 2017",
+      "highlights": ["Built an AI system for pain management."]
+    },
+    {
+      "company": "LimitLines",
+      "role": "Backend Developer (Full-time)",
+      "location": "Tehran, Iran (Hybrid)",
+      "period": "Aug 2015 — Sep 2017",
+      "highlights": ["Built website backends using PHP and CakePHP."]
+    },
+    {
+      "company": "آرتا نگاه نو ایرانیان",
+      "role": "Backend Developer (Contract)",
+      "period": "Jan 2015 — Jan 2016",
+      "highlights": ["Developed backend functionality in PHP."]
+    },
+    {
+      "company": "Swan Design Studio",
+      "role": "Backend Developer (Freelance)",
+      "location": "Remote",
+      "period": "Jan 2014 — Jun 2019",
+      "highlights": [
+        "Built backends for client websites including Narni, Pasargad Tile, and Hinava using PHP, CakePHP, Laravel, MySQL, and Redis."
+      ]
+    },
+    {
+      "company": "AlaaTV",
+      "role": "Backend Developer",
+      "location": "Tehran Province, Iran",
+      "period": "Jan 2014 — Jan 2015",
+      "highlights": [
+        "Developed the PHP and MySQL backend for a free online education platform offering recorded classes and exam preparation."
+      ]
+    }
+  ],
+  "experienceProjects": [
+    {
+      "name": "Telecom DataHub ETL",
+      "summary": "Built a pipeline to bring network data from Oracle and PostgreSQL into a shared DataHub. Standardized site identifiers, regions, and operational statuses, then validated field mappings and confirmed that every source record reached the destination.",
+      "article": {
+        "title": "Read the telecom ETL case study",
+        "slug": "How-an-AI-Prompt-Turned-a-Complex-Multi-Database-ETL-Project-Into-Hours-of-Work-bjw7e"
+      }
+    },
+    {
+      "name": "Mobin’AI GraphRAG prototype",
+      "summary": "Prototyped a question-answering tool for a collection of 200+ technical articles. It retrieves related concepts from a knowledge graph so answers can point readers back to the source material.",
+      "article": {
+        "title": "Read the GraphRAG design",
+        "slug": "How-I-Would-Build-MobinAI--A-GraphRAG-Chatbot-for-200-Technical-Articles-dez6e"
+      }
+    },
+    {
+      "name": "Portfolio build and deployment",
+      "summary": "Set up GitHub Actions to deploy this TanStack Start site to GitHub Pages. Configured Nitro to run the prerender step in Node so articles and other routes ship as static HTML.",
+      "article": {
+        "title": "Read the deployment walkthrough",
+        "slug": "Deploying-a-Lovable--TanStack-Start--App-with-GitHub-Actions---the-Real-Story-272he"
+      }
     }
   ],
   "education": [

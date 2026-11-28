@@ -25,11 +25,13 @@ import {
   PenLine,
   Search,
   Send,
-  Terminal,
   Youtube,
 } from "lucide-react";
 
 const githubData = githubDataJson as GitHubData;
+const featuresByDate = [...profile.features].sort(
+  (a, b) => Date.parse(b.date) - Date.parse(a.date),
+);
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -51,7 +53,7 @@ export const Route = createFileRoute("/")({
               name: SITE_NAME,
               url: SITE_URL,
               image: absoluteUrl("/logo.jpg"),
-              jobTitle: "Senior Software Engineer",
+              jobTitle: profile.title,
               description: HOME_DESCRIPTION,
               email: `mailto:${profile.email}`,
               address: {
@@ -113,13 +115,14 @@ function HomePage() {
       <Nav />
       <Hero />
       <main className="mx-auto max-w-5xl px-6 pb-24">
+        <ExperiencePreview />
+        <IndustryRecognition />
         <Writing posts={writingPosts} />
         <GitHubProjects />
-        <YouTubePreview />
-        <Featured />
-        <ExperiencePreview />
-        <Skills />
         <Education />
+        <Featured />
+        <Skills />
+        <YouTubePreview />
         <Contact />
       </main>
       <Footer />
@@ -148,39 +151,30 @@ function Hero() {
     <section id="top" className="relative overflow-hidden border-b border-border/60">
       <div className="absolute inset-0 grid-bg opacity-70" aria-hidden />
       <div className="relative mx-auto max-w-5xl px-6 py-24 md:py-32">
-        <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-terminal/40 bg-terminal/5 px-3 py-1 font-mono-plus text-xs text-terminal">
-          <span className="h-1.5 w-1.5 rounded-full bg-terminal terminal-glow" />
-          available for senior backend roles
-        </div>
-
-        <h1 className="max-w-3xl text-4xl font-semibold leading-tight tracking-tight md:text-6xl">
-          {profile.name}.<span className="block text-muted-foreground">{profile.title}.</span>
+        <h1 className="text-4xl font-semibold leading-tight tracking-tight md:text-6xl">
+          {profile.name}
         </h1>
+        <p className="mt-3 max-w-3xl text-2xl font-semibold leading-tight tracking-tight md:text-4xl">
+          {profile.title}
+        </p>
+        <p className="mt-3 font-mono-plus text-sm text-terminal md:text-base">
+          {profile.specialties}
+        </p>
 
-        <p className="mt-6 max-w-2xl text-lg text-muted-foreground">{profile.tagline}</p>
-
-        <div className="mt-8 font-mono-plus text-sm">
-          <div className="flex items-center gap-2 text-terminal">
-            <Terminal className="h-4 w-4" />
-            <span>whoami</span>
-          </div>
-          <pre className="mt-3 overflow-x-auto rounded-md border border-border bg-surface p-4 text-xs leading-relaxed text-foreground/90 md:text-sm">
-            {`> role      : Senior Software Engineer @ MTN Irancell
-> stack     : Go · Python · Nestjs · ClickHouse · Kafka · Postgres
-> shipped   : 15M rows/hr · 400K req/day · 10K TPS ML inference
-> location  : ${profile.location}
-> writing   : 200+ articles on Medium`}
-          </pre>
-          <p className="mt-4 max-w-3xl font-sans text-base leading-relaxed text-muted-foreground">
-            I'm a senior backend engineer focused on Go, distributed systems, and data-heavy
-            platforms. Over 16 years I've moved teams from monoliths to microservices, rebuilt B2B
-            APIs for scale, and turned research-grade ML services into production systems handling
-            tens of thousands of TPS. I care about clean code, honest observability, and the boring
-            parts of reliability.
-          </p>
-        </div>
+        <p className="mt-6 max-w-2xl text-lg leading-relaxed text-muted-foreground">
+          {profile.tagline} I hold an M.Sc. in Artificial Intelligence and have published research
+          on deep learning for chronic pain.
+        </p>
 
         <div className="mt-8 flex flex-wrap gap-3">
+          <a
+            href="/data/pdf/MobinShaterian.pdf"
+            download
+            className="inline-flex items-center gap-2 rounded-md bg-terminal px-4 py-2 font-mono-plus text-sm font-medium text-primary-foreground transition-colors hover:bg-terminal/90"
+          >
+            <Download className="h-4 w-4" />
+            Download CV (PDF)
+          </a>
           <a
             href={`mailto:${profile.email}`}
             className="inline-flex items-center gap-2 rounded-md border border-border bg-surface px-4 py-2 font-mono-plus text-sm text-foreground transition-colors hover:border-terminal/50 hover:text-terminal"
@@ -231,69 +225,103 @@ function SectionHeading({ id, kbd, title }: { id: string; kbd: string; title: st
   );
 }
 
-function Featured() {
-  const featuresByDate = [...profile.features].sort(
-    (a, b) => Date.parse(b.date) - Date.parse(a.date),
-  );
-
+function IndustryRecognition() {
   return (
     <section className="py-20">
-      <SectionHeading id="featured" kbd="cat ./featured.log" title="Featured In" />
-      <div className="grid gap-4">
-        {featuresByDate.map((feature) => (
-          <article
-            key={feature.url}
-            className="group rounded-lg border border-terminal/30 bg-terminal/5 p-6 transition-colors hover:border-terminal/60 hover:bg-terminal/10"
-          >
-            <div className="flex flex-wrap items-center justify-between gap-3">
-              <span className="inline-flex items-center gap-2 font-mono-plus text-xs uppercase tracking-wider text-terminal">
-                <Newspaper className="h-4 w-4" />
-                {feature.source}
-              </span>
-              <time className="font-mono-plus text-xs text-muted-foreground">{feature.date}</time>
-            </div>
-            <h3 className="mt-4 text-xl font-semibold tracking-tight">{feature.title}</h3>
-            <p className="mt-3 max-w-3xl text-sm leading-relaxed text-muted-foreground">
-              {feature.description}
-            </p>
-            <div className="mt-5 flex flex-wrap items-center gap-4">
+      <SectionHeading id="recognition" kbd="cat ./recognition.log" title="Industry Recognition" />
+      <p className="mb-6 max-w-3xl leading-relaxed text-muted-foreground">
+        Three of my technical articles were featured across the May and June 2026 ClickHouse
+        newsletters.
+      </p>
+      <FeatureCards
+        features={featuresByDate.filter((feature) => feature.source === "ClickHouse")}
+      />
+    </section>
+  );
+}
+
+function Featured() {
+  return (
+    <section className="py-20">
+      <SectionHeading id="featured" kbd="cat ./featured.log" title="Publications & Media" />
+      <FeatureCards
+        features={featuresByDate.filter((feature) => feature.source !== "ClickHouse")}
+      />
+    </section>
+  );
+}
+
+function FeatureCards({ features }: { features: typeof profile.features }) {
+  return (
+    <div className="grid gap-4">
+      {features.map((feature) => (
+        <article
+          key={feature.url}
+          className="group rounded-lg border border-terminal/30 bg-terminal/5 p-6 transition-colors hover:border-terminal/60 hover:bg-terminal/10"
+        >
+          <div className="flex flex-wrap items-center justify-between gap-3">
+            <span className="inline-flex items-center gap-2 font-mono-plus text-xs uppercase tracking-wider text-terminal">
+              <Newspaper className="h-4 w-4" />
+              {feature.source}
+            </span>
+            <time className="font-mono-plus text-xs text-muted-foreground">{feature.date}</time>
+          </div>
+          <h3 className="mt-4 text-xl font-semibold tracking-tight">{feature.title}</h3>
+          <p className="mt-3 max-w-3xl text-sm leading-relaxed text-muted-foreground">
+            {feature.description}
+          </p>
+          {feature.articles ? (
+            <ul className="mt-3 list-disc space-y-1.5 pl-5 text-sm">
+              {feature.articles.map((article) => (
+                <li key={article.slug}>
+                  <Link
+                    to="/blog/$slug"
+                    params={{ slug: article.slug }}
+                    className="underline decoration-terminal/50 underline-offset-4 hover:text-terminal"
+                  >
+                    {article.title}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          ) : null}
+          <div className="mt-5 flex flex-wrap items-center gap-4">
+            <a
+              href={feature.url}
+              target="_blank"
+              rel="noreferrer noopener"
+              className="inline-flex items-center gap-1.5 font-mono-plus text-xs text-terminal"
+            >
+              Read on {feature.source}
+              <ArrowUpRight className="h-3.5 w-3.5 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+            </a>
+            {"pdf" in feature && feature.pdf ? (
               <a
-                href={feature.url}
+                href={feature.pdf}
                 target="_blank"
                 rel="noreferrer noopener"
                 className="inline-flex items-center gap-1.5 font-mono-plus text-xs text-terminal"
               >
-                Read on {feature.source}
+                Read PDF
                 <ArrowUpRight className="h-3.5 w-3.5 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
               </a>
-              {"pdf" in feature && feature.pdf ? (
-                <a
-                  href={feature.pdf}
-                  target="_blank"
-                  rel="noreferrer noopener"
-                  className="inline-flex items-center gap-1.5 font-mono-plus text-xs text-terminal"
-                >
-                  Read PDF
-                  <ArrowUpRight className="h-3.5 w-3.5 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
-                </a>
-              ) : null}
-              {"youtube" in feature && feature.youtube ? (
-                <a
-                  href={feature.youtube}
-                  target="_blank"
-                  rel="noreferrer noopener"
-                  className="inline-flex items-center gap-1.5 font-mono-plus text-xs text-terminal"
-                >
-                  <Youtube className="h-3.5 w-3.5" />
-                  Watch presentation
-                  <ArrowUpRight className="h-3.5 w-3.5 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
-                </a>
-              ) : null}
-            </div>
-          </article>
-        ))}
-      </div>
-    </section>
+            ) : null}
+            {"youtube" in feature && feature.youtube ? (
+              <a
+                href={feature.youtube}
+                target="_blank"
+                rel="noreferrer noopener"
+                className="inline-flex items-center gap-1.5 font-mono-plus text-xs text-terminal"
+              >
+                <Youtube className="h-3.5 w-3.5" />
+                Watch presentation
+                <ArrowUpRight className="h-3.5 w-3.5 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+              </a>
+            ) : null}
+          </div>
+        </article>
+      ))}
+    </div>
   );
 }
 
@@ -302,11 +330,24 @@ function ExperiencePreview() {
     <section className="py-20">
       <SectionHeading id="experience" kbd="ls experience/" title="Experience" />
       <div className="rounded-lg border border-border bg-surface p-7">
-        <p className="max-w-3xl text-base leading-relaxed text-muted-foreground">
-          Sixteen years across backend engineering, distributed systems, data platforms, and
-          production ML—from services handling hundreds of thousands of daily requests to telecom
-          pipelines processing millions of rows per hour.
-        </p>
+        <ul className="max-w-3xl list-disc space-y-3 pl-5 leading-relaxed text-muted-foreground">
+          <li>
+            <strong className="font-semibold text-foreground">One OSS at MTN Irancell.</strong>{" "}
+            Architected a telecom KPI platform that processes 15 million measurement rows per hour
+            and was designed for 10 billion records per month.
+          </li>
+          <li>
+            <strong className="font-semibold text-foreground">
+              Production ML at Mom Hospital.
+            </strong>{" "}
+            Increased inference throughput from 3 to 10,000 transactions per second (TPS).
+          </li>
+          <li>
+            <strong className="font-semibold text-foreground">Performance engineering.</strong>{" "}
+            Reduced KPI API benchmark time from 49 seconds to 840 ms through Go profiling and
+            algorithmic improvements.
+          </li>
+        </ul>
         <Link
           to="/experience"
           className="mt-6 inline-flex items-center gap-2 rounded-md border border-terminal/40 bg-terminal/5 px-4 py-2 font-mono-plus text-sm text-terminal transition-colors hover:bg-terminal/10"
@@ -326,8 +367,9 @@ function GitHubProjects() {
       <div className="mb-7 flex flex-col justify-between gap-5 rounded-lg border border-terminal/30 bg-terminal/5 p-6 md:flex-row md:items-center">
         <div>
           <p className="max-w-2xl text-sm leading-relaxed text-muted-foreground">
-            Production-minded Go reference architectures, data services, worker systems, crawling
-            infrastructure, and the source behind this website—documented as individual projects.
+            My open-source Go projects include an analytics backend for ClickHouse and PostgreSQL, a
+            concurrent worker service, a modular REST and gRPC service, and a type-safe GraphQL
+            service.
           </p>
           <div className="mt-3 flex gap-4 font-mono-plus text-xs text-muted-foreground">
             <span>
@@ -435,7 +477,8 @@ function Writing({ posts }: { posts: Post[] }) {
     <section className="py-20">
       <SectionHeading id="writing" kbd="ls -lt posts/" title="Writing" />
       <p className="mb-6 max-w-2xl text-sm text-muted-foreground">
-        A handful of recent notes from my archive of 200+ software engineering articles.{" "}
+        I've published 200+ technical articles on data engineering, Go, distributed systems, AI, and
+        software architecture.{" "}
         <Link
           to="/blogs"
           search={{ tag: "All", q: "" }}
@@ -577,8 +620,9 @@ function Contact() {
       <SectionHeading id="contact" kbd="./contact.sh" title="Contact" />
       <div className="rounded-lg border border-border bg-surface p-8">
         <p className="max-w-xl text-base text-muted-foreground">
-          The fastest way to reach me is email. I'm open to senior backend, staff-level, and
-          platform roles — remote or Tehran-based.
+          The fastest way to reach me is email. I'm open to senior engineering and technical
+          leadership roles in backend systems, data platforms, and applied AI, either remotely or in
+          Tehran.
         </p>
         <div className="mt-6 flex flex-wrap gap-3">
           <a
@@ -621,7 +665,7 @@ function Contact() {
             className="inline-flex items-center gap-2 rounded-md border border-border bg-background px-4 py-2 font-mono-plus text-sm text-foreground transition-colors hover:border-terminal/50 hover:text-terminal"
           >
             <Download className="h-4 w-4" />
-            Download profile (PDF)
+            Download CV (PDF)
           </a>
         </div>
       </div>

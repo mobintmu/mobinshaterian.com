@@ -71,7 +71,8 @@
     {
       "type": "code",
       "lang": "bash",
-      "code": "sudo\nmkdir -p /etc/clickhouse-server/certs\nsudo cp your-ca.pem /etc/clickhouse-server/certs/kafka-ca.pem\nsudo\nchown clickhouse:clickhouse /etc/clickhouse-server/certs/kafka-ca.pem\nsudo\nchmod 440 /etc/clickhouse-server/certs/kafka-ca.pem"
+      "code": "sudo mkdir -p /etc/clickhouse-server/certs\nsudo cp your-ca.pem /etc/clickhouse-server/certs/kafka-ca.pem\nsudo chown clickhouse:clickhouse /etc/clickhouse-server/certs/kafka-ca.pem\nsudo chmod 440 /etc/clickhouse-server/certs/kafka-ca.pem",
+      "preserveWhitespace": true
     },
     {
       "type": "heading",
@@ -89,7 +90,8 @@
     {
       "type": "code",
       "lang": "xml",
-      "code": "<clickhouse>\n<kafka>\n<ssl_ca_location>/etc/clickhouse-server/certs/kafka-ca.pem</ssl_ca_location>\n<security_protocol>sasl_ssl</security_protocol>\n<sasl_mechanism>scram-sha-512</sasl_mechanism>\n<sasl_username>your_kafka_user</sasl_username>\n<sasl_password>your_kafka_password</sasl_password>\n</kafka>\n</clickhouse>"
+      "code": "<clickhouse>\n    <kafka>\n        <ssl_ca_location>/etc/clickhouse-server/certs/kafka-ca.pem</ssl_ca_location>\n        <security_protocol>sasl_ssl</security_protocol>\n        <sasl_mechanism>scram-sha-512</sasl_mechanism>\n        <sasl_username>your_kafka_user</sasl_username>\n        <sasl_password>your_kafka_password</sasl_password>\n    </kafka>\n</clickhouse>",
+      "preserveWhitespace": true
     },
     {
       "type": "paragraph",
@@ -102,12 +104,13 @@
     },
     {
       "type": "paragraph",
-      "html": "Restart the server to apply changes and use <code>openssl</code> to ensure the ClickHouse host can reach the broker over port 9093:"
+      "html": "Restart ClickHouse to apply the configuration. Replace <code>broker.example.com</code> with your Kafka broker hostname, then use <code>openssl</code> to check the TLS connection on port 9093."
     },
     {
       "type": "code",
       "lang": "bash",
-      "code": "sudo systemctl restart clickhouse-serveropenssl s_client -connect <broker-ip>:9093 -CAfile\n/etc/clickhouse-server/certs/kafka-ca.pem"
+      "code": "sudo systemctl restart clickhouse-server\n\nopenssl s_client -connect broker.example.com:9093 \\\n    -CAfile /etc/clickhouse-server/certs/kafka-ca.pem",
+      "preserveWhitespace": true
     },
     {
       "type": "heading",
@@ -158,7 +161,8 @@
     {
       "type": "code",
       "lang": "sql",
-      "code": "CREATE MATERIALIZED VIEW kafka_ingest_mv TO events_destination ASSELECT event_id, event_name,\nevent_time, payloadFROM kafka_queue_stream;"
+      "code": "CREATE MATERIALIZED VIEW kafka_ingest_mv\nTO events_destination\nAS\nSELECT\n    event_id,\n    event_name,\n    event_time,\n    payload\nFROM kafka_queue_stream;",
+      "preserveWhitespace": true
     },
     {
       "type": "heading",

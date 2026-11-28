@@ -1,10 +1,12 @@
+import profile from "@/data/profile.json";
+
 export const SITE_URL = "https://mobinshaterian.com";
 export const SITE_NAME = "Mobin Shaterian";
 export const DEFAULT_SOCIAL_IMAGE = `${SITE_URL}/logo.jpg`;
 
-export const HOME_TITLE = "Mobin Shaterian | Senior Software Engineer & Go Developer";
+export const HOME_TITLE = `${SITE_NAME} | ${profile.title} | ${profile.specialties}`;
 export const HOME_DESCRIPTION =
-  "Mobin Shaterian is a senior software engineer with 16 years of experience building high-throughput Go backends, distributed systems, microservices, and data pipelines.";
+  "Mobin Shaterian is a senior software engineer and technical lead with 16 years of experience in backend architecture, data engineering, and production ML.";
 
 export const BLOG_TITLE = "Software Engineering Blog | Mobin Shaterian";
 export const BLOG_DESCRIPTION =
